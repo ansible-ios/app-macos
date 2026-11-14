@@ -1,0 +1,7 @@
+#include "common.xcconfig"
+
+
+SOURCE = STABLE
+
+TYPE = -D'STABLE'
+OTHER_SWIFT_FLAGS = $(TYPE)

@@ -1,0 +1,38 @@
+diff --git a/submodules/TelegramCore/Sources/State/AvailableReactions.swift b/submodules/TelegramCore/Sources/State/AvailableReactions.swift
+index 9523d7c864..65ab7d69ba 100644
+--- a/submodules/TelegramCore/Sources/State/AvailableReactions.swift
++++ b/submodules/TelegramCore/Sources/State/AvailableReactions.swift
+@@ -13 +13 @@ private func generateStarsReactionFile(kind: Int, isAnimatedSticker: Bool) -> Te
+-    attributes.append(TelegramMediaFileAttribute.FileName(fileName: isAnimatedSticker ? "sticker.tgs" : "sticker.webp"))
++    attributes.append(TelegramMediaFileAttribute.FileName(fileName: isAnimatedSticker ? "sticker.ass" : "sticker.webp"))
+@@ -25 +25 @@ private func generateStarsReactionFile(kind: Int, isAnimatedSticker: Bool) -> Te
+-        mimeType: isAnimatedSticker ? "application/x-tgsticker" : "image/webp",
++        mimeType: isAnimatedSticker ? "application/x-ansible-sticker" : "image/webp",
+diff --git a/submodules/TelegramCore/Sources/SyncCore/SyncCore_TelegramMediaFile.swift b/submodules/TelegramCore/Sources/SyncCore/SyncCore_TelegramMediaFile.swift
+index c12943c0aa..a7e2f0774d 100644
+--- a/submodules/TelegramCore/Sources/SyncCore/SyncCore_TelegramMediaFile.swift
++++ b/submodules/TelegramCore/Sources/SyncCore/SyncCore_TelegramMediaFile.swift
+@@ -987 +987 @@ public final class TelegramMediaFile: Media, Equatable, Codable {
+-        return self.mimeType == "application/x-tgsticker" && self.fileId.namespace == Namespaces.Media.CloudSecretFile
++        return self.mimeType == "application/x-ansible-sticker" && self.fileId.namespace == Namespaces.Media.CloudSecretFile
+@@ -1090 +1090 @@ public final class TelegramMediaFile: Media, Equatable, Codable {
+-        if let _ = self.fileName, self.mimeType == "application/x-tgsticker" {
++        if let _ = self.fileName, self.mimeType == "application/x-ansible-sticker" {
+@@ -1378 +1378 @@ public extension TelegramMediaFile.Accessor {
+-            return _wrappedFile.mimeType == "application/x-tgsticker" && _wrappedFile.fileId.namespace == Namespaces.Media.CloudSecretFile
++            return _wrappedFile.mimeType == "application/x-ansible-sticker" && _wrappedFile.fileId.namespace == Namespaces.Media.CloudSecretFile
+@@ -1380 +1380 @@ public extension TelegramMediaFile.Accessor {
+-        return self._wrapped!.mimeType == "application/x-tgsticker" && self.fileId.namespace == Namespaces.Media.CloudSecretFile
++        return self._wrapped!.mimeType == "application/x-ansible-sticker" && self.fileId.namespace == Namespaces.Media.CloudSecretFile
+@@ -1516 +1516 @@ public extension TelegramMediaFile.Accessor {
+-        if self._wrapped!.mimeType == "application/x-tgsticker" && self.fileName != nil {
++        if self._wrapped!.mimeType == "application/x-ansible-sticker" && self.fileName != nil {
+diff --git a/submodules/TelegramCore/Sources/TelegramEngine/Stickers/ImportStickers.swift b/submodules/TelegramCore/Sources/TelegramEngine/Stickers/ImportStickers.swift
+index 2632066485..492666f2f8 100644
+--- a/submodules/TelegramCore/Sources/TelegramEngine/Stickers/ImportStickers.swift
++++ b/submodules/TelegramCore/Sources/TelegramEngine/Stickers/ImportStickers.swift
+@@ -149,2 +149,2 @@ public extension ImportSticker {
+-        } else if self.mimeType == "application/x-tgsticker" {
+-            fileAttributes.append(.FileName(fileName: "sticker.tgs"))
++        } else if self.mimeType == "application/x-ansible-sticker" {
++            fileAttributes.append(.FileName(fileName: "sticker.ass"))

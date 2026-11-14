@@ -1,0 +1,19 @@
+Ansible for macOS
+
+This application is derived from Telegram for macOS:
+https://github.com/TelegramMessenger/telegram-macos
+Initial upstream base: 246e3e95.
+
+The upstream project is distributed under the GNU General Public License,
+version 2. Its license text is retained in LICENSE. Upstream and third-party
+copyright headers, license files and notices remain applicable to their
+respective components. Ansible modifications are distributed under the
+same GPL v2 terms.
+
+Telegram is the name of the upstream project. Ansible for macOS is an
+independently maintained fork and is not affiliated with, endorsed by,
+or sponsored by Telegram.
+
+The Ansible icon and selected interface artwork are reused from the
+Ansible iOS client. Ansible account credentials and local application
+state are not included in this source repository.
