@@ -1,0 +1,40 @@
+id,phase,priority,role,task,acceptance,depends_on,status
+R0-01,R0,P0,Client,"Зафиксировать HEAD, status и применённые submodule patches",Нет потери чужих изменений; сохранён baseline,,baseline-recorded
+R0-02,R0,P0,Client,Карта активных экранов и capabilities,Для каждого денежного сценария известен backend контракт,R0-01,planned
+R0-03,R0,P0,Design,Разобрать asset inventory и потребителей,Каждый валютный/logo ассет имеет роль и caller,R0-01,partial-46-slots
+R0-04,R0,P0,Localization,Закрепить raw/reference snapshots и checksum manifest,25 macos языков с обеих сторон воспроизводимы,,audit-complete
+R1-01,R1,P0,Design,Сохранить утверждённые dark app icon и diamond master,Исходные форма и логотип не изменены случайно,R0-03,verified
+R1-02,R1,P0,Design,Матрица цветной/монохромный/плитка/inline/hero,Contact sheet с настоящими размерами light/dark,R1-01,assets-preview-ui-pending
+R1-03,R1,P0,Design,Определить Premium и валютную символику,Баланс и Premium различимы в интерфейсе,R1-02,planned
+R1-04,R1,P1,Client,Привязать дизайн-токены к native theme/tint,Hover selected disabled и auto theme согласованы,R1-02,planned
+R2-01,R2,P0,Localization,Карта native keys/forms и действующих server aliases,Нет неподтверждённого массового переименования ключей,R0-04,verified
+R2-02,R2,P0,Localization,Проверить en additions и встроенный fallback,1632 отсутствующих формы разобраны без удаления legacy keys,R2-01,deployed-verified
+R2-03,R2,P0,Localization,Проверить ru additions и 15 форм без TG значения,1464 отсутствующих формы разобраны по смыслу и форматам,R2-01,deployed-verified
+R2-04,R2,P1,Localization,Разобрать оставшиеся 23 языка,Покрытие и fallback явно измерены; нет фиктивного translated status,R2-02;R2-03,planned
+R2-05,R2,P0,Translations,Macos-only импорт с dry-run и защитой от sparse seed,Не тронуты другие платформы; нет удаления отсутствующих данных по ошибке,R2-01,deployed-verified
+R2-06,R2,P0,Translations,Сохранить approved/custom packs и версии,Экспорт до/после доказывает отсутствие перезаписи ручных правок,R2-05,sql-guard-rpc-verified
+R2-07,R2,P0,QA,"Проверить форматные аргументы, plural, links, RTL",0/1/2/5/11/21/101; позиции и типы аргументов сохранены,R2-02;R2-03,format-verified-rtl-pending
+R2-08,R2,P0,QA,Полный pack/diff/push/offline/reconnect e2e,Клиент не стирает язык при сбое и применяет новую версию,R2-06;R2-07,rpc-verified-ui-pending
+R3-01,R3,P0,Client,Воспроизводимый экспорт и applied asset manifest,Все слоты имеют размеры scale alpha и hash,R1-02,implemented-verified
+R3-02,R3,P0,Client,App icon и все системные logo поверхности,Dock Finder Cmd-Tab About QR Share без чужого бренда,R3-01,planned
+R3-03,R3,P0,Client,"Settings tile, menu template, inline money","Нет белой рамки, emoji substitution и неверной baseline",R3-01,ui-pending
+R3-04,R3,P0,Client,Статические payment/refund/gift/affiliate assets,Каждый активный денежный сценарий использует свой корректный slot,R3-03,partial
+R4-01,R4,P0,Animation,Inline Lottie и reaction animations,Нет звезды на первом/среднем/последнем кадре валютной анимации,R1-02,assets-verified-ui-pending
+R4-02,R4,P1,Animation,Hero SceneKit/Metal и Premium сцены,Силуэт совпадает с мастером; корректны fallback и материалы,R1-02;R1-03,currency-hero-only
+R4-03,R4,P0,QA,Reduce Motion и нагрузка списков,Нет постоянной перерисовки idle hero или роста CPU,R4-01;R4-02,planned
+R5-01,R5,P0,Client,"Auth/onboarding +777, QR, ошибки и язык до входа",Все варианты входа показывают Ansible и рабочие собственные ссылки,R2-07;R3-02,planned
+R5-02,R5,P0,Client,Settings/About/menu/search/tooltips,"Согласованы строки, логотипы и системная версия",R2-07;R3-02,planned
+R5-03,R5,P0,Client,Balance/transactions/purchases/refunds,"Совпадают иконка, единица валюты и backend amount semantics",R0-02;R3-04,planned
+R5-04,R5,P0,Client,Paid messages/media/reactions/subscriptions,Платные поверхности согласованы во всех состояниях,R5-03,planned
+R5-05,R5,P1,Client,Gifts/collections/craft/auction/affiliate/giveaway,Нет оставшихся валютных звёзд или чужих CTA,R5-03,planned
+R5-06,R5,P0,Client,Premium/badges/limits/paywall,Premium роль не смешана с денежным балансом,R1-03;R4-02,planned
+R5-07,R5,P0,Client,Карта Gram/TON/Wallet и capability gates,Неподдерживаемые операции недоступны и через deep link,R0-02,planned
+R5-08,R5,P0,Client,Все public/deep links и QR generators,as:// и asme.su; нет отправки на чужой checkout/support,R0-02,planned
+R5-09,R5,P0,Client,Localized plist/menu/permissions/notifications/Share,Системные строки не зависят только от облачного pack,R2-07;R3-02,planned
+R5-10,R5,P1,Client,"Служебный контент, examples и negative states",Каждый empty/loading/error/expired сценарий проверен,R5-01;R5-03,planned
+R6-01,R6,P0,QA,Визуальная матрица всех поверхностей,Before/after light/dark/auto Retina small-window; явные PASS/FAIL,R3-04;R4-03;R5-10,planned
+R6-02,R6,P0,QA,Межклиентский и language-cache e2e,iOS/Desktop/macOS согласованы; старые ключи/клиенты работают,R2-08;R5-04;R5-08,planned
+R6-03,R6,P0,Security,"Проверить diff, ссылки, capabilities, секреты","Нет authz bypass, утечек и случайного wire rename",R5-07;R5-08,planned
+R6-04,R6,P0,Release,Клиентская сборка arm64 и подпись,Ограниченные jobs; launch/signature/handlers smoke PASS,R6-01;R6-03,planned
+R6-05,R6,P0,Release,Выпуск переводов через действующий процесс TeamCity,"Source revisions, import scope, version, runtime и rollback доказаны",R2-08;R6-03,planned
+R6-06,R6,P0,Release,Финальная native UI/session проверка и передача,Контрольные сценарии PASS; отчёт хранит реальные границы проверки,R6-02;R6-04;R6-05,planned

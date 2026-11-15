@@ -220,7 +220,7 @@ private final class RowView: GeneralContainableRowView {
         dismiss.setGlassEffect(size: NSMakeSize(36, 36))
         dismiss.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
         
-        stickerView.updateMonetizationSticker(animation: LocalAnimatedSticker.fragment, size: stickerView.frame.size, context: item.context, table: nil, colors: [.init(keyPath: "", color: theme.colors.underSelectedColor)], animated: animated)
+        stickerView.updateMonetizationSticker(animation: LocalAnimatedSticker.star_currency_new, size: stickerView.frame.size, context: item.context, table: nil, colors: [], animated: animated)
         
         needsLayout = true
     }

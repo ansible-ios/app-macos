@@ -263,7 +263,7 @@ public final class GiftOptionsRowItem : GeneralRowItem {
             if let starOption = option.starProduct {
                 let price = NSMutableAttributedString()
                 
-                price.append(string: strings().giftPremiumPayOrStars(clown + " " + "\(starOption.giftOption.amount)"), color: GOLD, font: .normal(.small))
+                price.append(string: strings().giftPremiumPayOrStars(clown + " " + "\(starOption.giftOption.amount)"), color: DiamondAppearance.foreground, font: .normal(.small))
                 price.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
                 
                 starsPrice = .init(price)
@@ -850,16 +850,16 @@ public final class GiftOptionsRowView:  GeneralContainableRowView {
                 if option.nativeStarGift?.native.generic?.isAuction == true, option.nativeStarGift?.native.generic?.soldOut == nil {
                     attr.append(
                         string: strings().starGiftOptionJoin,
-                        color: plain ? NSColor.white : GOLD,
+                        color: plain ? NSColor.white : DiamondAppearance.foreground,
                         font: .medium(.text)
                     )
                 } else {
-                    attr.append(string: "\(clown_space)\(int64)" + (addPlus ? "+" : ""), color: plain ? NSColor.white : GOLD, font: .medium(.text))
+                    attr.append(string: "\(clown_space)\(int64)" + (addPlus ? "+" : ""), color: plain ? NSColor.white : DiamondAppearance.foreground, font: .medium(.text))
                     attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file, color: nil), for: clown)
                 }
                 let priceLayout = TextViewLayout(attr)
                 priceLayout.measure(width: .greatestFiniteMagnitude)
-                current.backgroundColor = plain ? NSColor.white.withAlphaComponent(0.2) : GOLD.withAlphaComponent(0.2)
+                current.backgroundColor = plain ? NSColor.white.withAlphaComponent(0.2) : DiamondAppearance.foreground.withAlphaComponent(0.2)
                 current.update(text: priceLayout, context: context)
             case .none:
                 if let view = self.priceView {

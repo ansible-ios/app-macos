@@ -117,7 +117,7 @@ private final class HeaderItem : GeneralRowItem {
             let badgeText: String
             let color: NSColor
             badgeText = "\(invoice.totalAmount)"
-            color = NSColor(0xFFAC04)
+            color = DiamondAppearance.foreground
             under = .white
             
             badge = .init(.initialize(string: badgeText, color: under, font: .avatar(.small)), color, aroundFill: theme.colors.background, additionSize: NSMakeSize(16, 7))

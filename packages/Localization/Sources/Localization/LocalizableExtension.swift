@@ -251,11 +251,15 @@ private let _englishFallbackBundle: Bundle? = {
 /// returns the raw key as a last resort (matches `NSLocalizedString` default
 /// behavior when the key is absent from the bundle).
 internal func _LocalizedStringFor(_ key: String, primary: Language, secondary: Language?, returnNilIfMissing: Bool = false) -> String? {
-    if let value = primary.strings[key], !value.isEmpty {
-        return value
+    for lookupKey in localizationLookupKeys(key) {
+        if let value = primary.strings[lookupKey], !value.isEmpty {
+            return value
+        }
     }
-    if let value = secondary?.strings[key], !value.isEmpty {
-        return value
+    for lookupKey in localizationLookupKeys(key) {
+        if let value = secondary?.strings[lookupKey], !value.isEmpty {
+            return value
+        }
     }
     if let bundle = _englishFallbackBundle {
         let resolved = NSLocalizedString(key, bundle: bundle, comment: "")

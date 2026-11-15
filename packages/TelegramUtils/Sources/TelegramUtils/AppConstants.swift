@@ -9,8 +9,16 @@ public let clown: String = "🤡"
 
 public let itunesAppLink = "https://apps.apple.com/us/app/telegram/id747648890"
 public let XTRSTAR: String = "⭐️"
-public var GOLD: NSColor {
-    return theme.colors.isDark ? NSColor(0xF5C555) : NSColor(0xD2720B)
+public enum DiamondAppearance {
+    public static var foreground: NSColor {
+        return theme.colors.isDark ? NSColor(0x5DBBFF) : NSColor(0x087AC4)
+    }
+    public static var gradient: [NSColor] {
+        return [NSColor(0x168FE8), NSColor(0x55C6FF)]
+    }
+    public static var particle: NSColor {
+        return NSColor(0x40B4FF)
+    }
 }
 public let clown_space: String = "\(clown)\(TINY_SPACE)"
 public let XTR_USD_RATE = 0.013

@@ -14,7 +14,7 @@ import TelegramMedia
 import SceneEffects
 import InlineStickerLayer
 
-public let starsGradient = [NSColor(0xFFAC04), NSColor(0xFFCA35)]
+public var starsGradient: [NSColor] { DiamondAppearance.gradient }
 
 public final class StarsButtonEffectLayer: SimpleLayer {
     fileprivate static let whiteParticle: CGImage = TelegramThemeHooks.shared.image(.starReactionParticle).precomposed(.white)
@@ -23,7 +23,7 @@ public final class StarsButtonEffectLayer: SimpleLayer {
     
     private var currentColor: CGColor?
     private var currentSize: CGSize?
-    public var color: NSColor = NSColor(0xffbe27) {
+    public var color: NSColor = DiamondAppearance.particle {
         didSet { updateEmitterColor() }
     }
     
@@ -106,7 +106,7 @@ public final class BadgeStarsViewEffect: View {
     
     private var currentColor: CGColor?
     private var currentLayout: CGRect?
-    public var color = NSColor(rgb: 0xffbe27) {
+    public var color = DiamondAppearance.particle {
         didSet { updateEmitterColor() }
     }
 

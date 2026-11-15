@@ -423,7 +423,7 @@ private final class SendersView: View {
             badgeView.layer?.borderColor = item.presentation.colors.background.cgColor
             badgeView.layer?.borderWidth = 2
             
-            amountIcon.image = TelegramThemeHooks.shared.image(.iconPeerPremium).precomposed(NSColor.white, zoom: 0.875)
+            amountIcon.image = TelegramThemeHooks.shared.image(.iconMenuStar).precomposed(NSColor.white, zoom: 0.875)
             amountIcon.sizeToFit()
             
             badgeView.setFrameSize(NSMakeSize(amountView.frame.width + 14 + amountIcon.frame.width, amountView.frame.height + 5))
@@ -743,8 +743,8 @@ private final class HeaderItemView : GeneralContainableRowView {
         
         switch item.state.source {
         case .message:
-            sliderView.updateColors(starsGradient, effect: NSColor(0xffbe27))
-            badgeView.updateColors(starsGradient, effect: NSColor(0xffbe27))
+            sliderView.updateColors(starsGradient, effect: DiamondAppearance.particle)
+            badgeView.updateColors(starsGradient, effect: DiamondAppearance.particle)
             showMeInTop.isHidden = false
         case .liveStream:
             let color = getStarAmountColorMapping(value: Int64(item.state.amount.realValue))

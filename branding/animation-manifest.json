@@ -1,0 +1,65 @@
+[
+  {
+    "path": "Resources/tgs/star_currency_new.tgs",
+    "role": "currency",
+    "source": "web/Diamond.ass",
+    "sha256": "b0c1b8de4d84a3840a27e182daa6b7e1045f34c29b62e5000e0f99092b06d533",
+    "width": 512,
+    "height": 512,
+    "frames": 180
+  },
+  {
+    "path": "Resources/tgs/star_currency_part_new.tgs",
+    "role": "currency",
+    "source": "web/Diamond.ass",
+    "sha256": "b0c1b8de4d84a3840a27e182daa6b7e1045f34c29b62e5000e0f99092b06d533",
+    "width": 512,
+    "height": 512,
+    "frames": 180
+  },
+  {
+    "path": "Resources/tgs/star_currency_mono.tgs",
+    "role": "menu-template",
+    "source": "web/Diamond.ass",
+    "sha256": "b0c1b8de4d84a3840a27e182daa6b7e1045f34c29b62e5000e0f99092b06d533",
+    "width": 512,
+    "height": 512,
+    "frames": 180
+  },
+  {
+    "path": "Resources/tgs/premium_reactions/premium_reaction_6.tgs",
+    "role": "paid-reaction",
+    "source": "web/diamonds/DiamondReaction.ass",
+    "sha256": "cbec593e3b57f65d9c0d379963d6f5964f827e92dfe8876de4e9ee8374dfe7df",
+    "width": 512,
+    "height": 512,
+    "frames": 125
+  },
+  {
+    "path": "Resources/tgs/premium_gift_3.tgs",
+    "role": "premium-gift-3",
+    "source": "ios/premiumGifts/Gift3.ass",
+    "sha256": "7b1ef663dcbf9f8d3c98f06221d1d368bbe319020386c88ae978aa3c35058de4",
+    "width": 512,
+    "height": 512,
+    "frames": 180
+  },
+  {
+    "path": "Resources/tgs/premium_gift_6.tgs",
+    "role": "premium-gift-6",
+    "source": "ios/premiumGifts/Gift6.ass",
+    "sha256": "b21fd78c0a3ff0a3efc712d76d54d9f97a385cccdec8ad371de37e6205ff4daf",
+    "width": 512,
+    "height": 512,
+    "frames": 180
+  },
+  {
+    "path": "Resources/tgs/premium_gift_12.tgs",
+    "role": "premium-gift-12",
+    "source": "ios/premiumGifts/Gift12.ass",
+    "sha256": "c9aaee3531bc83beec2505c658f75ae4333e52e4ea4474ef60fa82c98f32f1e5",
+    "width": 512,
+    "height": 512,
+    "frames": 180
+  }
+]

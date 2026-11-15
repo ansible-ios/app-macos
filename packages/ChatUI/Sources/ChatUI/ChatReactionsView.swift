@@ -102,7 +102,7 @@ public final class ChatReactionsLayout {
             let borderColor: NSColor
             let selectedColor: NSColor
             
-            let gold_alpha = GOLD.withAlphaComponent(0.2)
+            let diamondAlpha = DiamondAppearance.foreground.withAlphaComponent(0.2)
             
             switch mode {
             case .full, .tag:
@@ -110,38 +110,38 @@ public final class ChatReactionsLayout {
                 case .bubble:
                     if isOutOfBounds {
                         if !hasWallpaper {
-                            bgColor = isStars ? gold_alpha : theme.colors.grayIcon.withAlphaComponent(0.3)
-                            textColor = isStars ? GOLD : theme.colors.accent
+                            bgColor = isStars ? diamondAlpha : theme.colors.grayIcon.withAlphaComponent(0.3)
+                            textColor = isStars ? DiamondAppearance.foreground : theme.colors.accent
                             borderColor = .clear
-                            selectedColor = isStars ? GOLD : theme.colors.accent
+                            selectedColor = isStars ? DiamondAppearance.foreground : theme.colors.accent
                             textSelectedColor = isStars ? NSColor(0xffffff) : theme.colors.underSelectedColor
                         } else {
                             bgColor = theme.blurServiceColor
                             textColor = theme.chatServiceItemTextColor
                             borderColor = .clear
-                            selectedColor = isStars ? GOLD : theme.colors.accent
+                            selectedColor = isStars ? DiamondAppearance.foreground : theme.colors.accent
                             textSelectedColor = isStars ? NSColor(0xffffff) : selectedColor.underTextColor
                         }
                     } else {
                         if isIncoming {
-                            bgColor = isStars ? gold_alpha : theme.colors.accent.withAlphaComponent(0.15)
-                            textColor = isStars ? GOLD : theme.colors.accent
+                            bgColor = isStars ? diamondAlpha : theme.colors.accent.withAlphaComponent(0.15)
+                            textColor = isStars ? DiamondAppearance.foreground : theme.colors.accent
                             borderColor = .clear
-                            selectedColor = isStars ? GOLD : theme.colors.accent
+                            selectedColor = isStars ? DiamondAppearance.foreground : theme.colors.accent
                             textSelectedColor = selectedColor.underTextColor
                         } else {
                             bgColor = theme.chat.grayText(false, true).withAlphaComponent(0.15)
                             textColor = theme.chat.grayText(false, true)
                             borderColor = .clear
-                            selectedColor = isStars ? GOLD : theme.chat.grayText(false, true)
+                            selectedColor = isStars ? DiamondAppearance.foreground : theme.chat.grayText(false, true)
                             textSelectedColor = isStars ? NSColor(0xffffff) : theme.colors.blendedOutgoingColors
                         }
                     }
                 case .list:
-                    bgColor = isStars ? gold_alpha : theme.colors.accent.withAlphaComponent(0.15)
-                    textColor = isStars ? GOLD : theme.colors.accent
+                    bgColor = isStars ? diamondAlpha : theme.colors.accent.withAlphaComponent(0.15)
+                    textColor = isStars ? DiamondAppearance.foreground : theme.colors.accent
                     borderColor = .clear
-                    selectedColor = isStars ? GOLD : theme.colors.accent
+                    selectedColor = isStars ? DiamondAppearance.foreground : theme.colors.accent
                     textSelectedColor = selectedColor.underTextColor
                 }
             }

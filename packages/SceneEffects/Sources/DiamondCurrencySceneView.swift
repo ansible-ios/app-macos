@@ -1,21 +1,22 @@
 import Cocoa
 import TGUIKit
+import TelegramMedia
+import LocalAnimations
 
 public final class DiamondCurrencySceneView: View, PremiumSceneView {
-    private let diamond = InteractiveDiamondView(frame: .zero)
+    private let diamond = LottiePlayerView(frame: .zero)
     private var diamondHidden = false
 
     public var sceneBackground: NSColor = .clear {
         didSet {
             backgroundColor = sceneBackground
-            updateDiamond()
         }
     }
 
     public required init(frame: CGRect) {
         super.init(frame: frame)
+        diamond.isEventLess = true
         addSubview(diamond)
-        updateDiamond()
     }
 
     public required init?(coder: NSCoder) {
@@ -29,7 +30,6 @@ public final class DiamondCurrencySceneView: View, PremiumSceneView {
 
     public override func layout() {
         super.layout()
-        diamond.frame = bounds
         updateDiamond()
     }
 
@@ -44,17 +44,25 @@ public final class DiamondCurrencySceneView: View, PremiumSceneView {
     }
 
     public func playAgain() {
-        diamond.spin(3, decay: 2)
+        diamond.playAgain()
     }
 
     public func updateLayout(size: CGSize, transition: ContainedViewLayoutTransition) {
-        diamond.frame = CGRect(origin: .zero, size: size)
         updateDiamond()
     }
 
     private func updateDiamond() {
         diamond.isHidden = diamondHidden
-        let visible = window != nil && !isHidden && !diamondHidden
-        diamond.update(size: diamond.bounds.size, diamondWidth: min(96, diamond.bounds.height * 0.7), isVisible: visible, lightBackground: (sceneBackground.usingColorSpace(.deviceRGB)?.brightnessComponent ?? 0) > 0.5)
+        let side = min(120, bounds.height * 0.85)
+        let size = NSMakeSize(side, side)
+        diamond.frame = focus(size)
+        guard window != nil, !isHidden, !diamondHidden else {
+            diamond.set(nil)
+            return
+        }
+        if let data = LocalAnimatedSticker.star_currency_new.data {
+            let animation = LottieAnimation(compressed: data, key: .init(key: .bundle("ansible_currency_web_v1"), size: size, backingScale: Int(System.backingScale), fitzModifier: nil), cachePurpose: .temporaryLZ4(.thumb), playPolicy: .onceEnd, maximumFps: 30)
+            diamond.set(animation)
+        }
     }
 }

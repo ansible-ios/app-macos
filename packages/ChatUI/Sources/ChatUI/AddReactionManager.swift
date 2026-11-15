@@ -69,9 +69,9 @@ public final class ContextAddReactionsListView : View, StickerFramesCollector  {
                     self.layer?.addSublayer(starBackground!)
                     
                     starBackground?.type = .radial
-                    starBackground?.colors =  [NSColor(0xFFAC04).withAlphaComponent(0.28),
-                                               NSColor(0xFFCA35).withAlphaComponent(0.14),
-                                               NSColor(0xFFCA35).withAlphaComponent(0.0)].map { $0.cgColor }
+                    starBackground?.colors =  [DiamondAppearance.particle.withAlphaComponent(0.28),
+                                               DiamondAppearance.particle.withAlphaComponent(0.14),
+                                               DiamondAppearance.particle.withAlphaComponent(0.0)].map { $0.cgColor }
                     
                     starBackground?.startPoint = NSMakePoint(0.5, 0.5)
                     starBackground?.endPoint = NSMakePoint(1, 1)
