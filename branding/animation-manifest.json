@@ -61,5 +61,59 @@
     "width": 512,
     "height": 512,
     "frames": 180
+  },
+  {
+    "path": "Resources/tgs/premium_reactions/premium_reaction_effect_1.tgs",
+    "role": "paid-reaction-effect-1",
+    "source": "win-desk/media-opus5-5/animations__star_reaction__effect1.ass",
+    "sha256": "a0373a6a42d71d0f72731d5c80531a810ae1df91053c04b381f16fb19b5903a1",
+    "width": 512,
+    "height": 512,
+    "frames": 90
+  },
+  {
+    "path": "Resources/tgs/premium_reactions/premium_reaction_effect_2.tgs",
+    "role": "paid-reaction-effect-2",
+    "source": "win-desk/media-opus5-5/animations__star_reaction__effect2.ass",
+    "sha256": "eceacd14f9d21900c3ee6c976f57496dcc1514cfa011ae7c0f6130cb65636870",
+    "width": 512,
+    "height": 512,
+    "frames": 83
+  },
+  {
+    "path": "Resources/tgs/premium_reactions/premium_reaction_effect_3.tgs",
+    "role": "paid-reaction-effect-3",
+    "source": "win-desk/media-opus5-5/animations__star_reaction__effect3.ass",
+    "sha256": "3c1d6e779b13a0f1ec77060395ee02c7e37aba13c22ca3760ae3443e1b9afe56",
+    "width": 512,
+    "height": 512,
+    "frames": 85
+  },
+  {
+    "path": "Resources/tgs/premium_reactions/premium_reaction_effect_4.tgs",
+    "role": "paid-reaction-effect-4",
+    "source": "andr/media-opus5-5_test/raw__star_reaction_effect4.json",
+    "sha256": "29796bc572a59fadf1a89f52374be7b75106c04829eda25e54f6e80323918ca0",
+    "width": 512,
+    "height": 512,
+    "frames": 90
+  },
+  {
+    "path": "Resources/tgs/premium_reactions/premium_reaction_effect_5.tgs",
+    "role": "paid-reaction-effect-5",
+    "source": "andr/media-opus5-5_test/raw__star_reaction_effect5.json",
+    "sha256": "56a35d9075bf6e986975eaf4531fd225184b3c8d47c961b6e5a7bae0042885ad",
+    "width": 512,
+    "height": 512,
+    "frames": 90
+  },
+  {
+    "path": "Resources/tgs/gigagroup.tgs",
+    "role": "broadcast-group",
+    "source": "ios-media/media_opus-5-5/BroadcastGroup.ass",
+    "sha256": "1fcc49c0cf562bed6a04b20d96c4f0748e90179cce2ee03bb9648de168a8ca43",
+    "width": 512,
+    "height": 512,
+    "frames": 150
   }
 ]

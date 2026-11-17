@@ -3027,7 +3027,7 @@ public final class L10n {
   public static var channelReactionsAddInfo: String  { return L10n.tr("Localizable", "ChannelReactions.Add.Info") }
   /// You can add emoji from any emoji pack as reactions.
   public static var channelReactionsEnableReactionsInfo: String  { return L10n.tr("Localizable", "ChannelReactions.EnableReactions.Info") }
-  /// Switch this on to let your subscribers react to posts with Telegram Stars, which you will be able to withdraw as TON. [Learn More >](https://telegram.org/tos/content-creator-rewards#2-3-subscriber-donations)
+  /// Switch this on to let your subscribers react to posts with Ansible Diamonds, which you will be able to withdraw as TON. [Learn More >](https://ansible.su/tos/content-creator-rewards#2-3-subscriber-donations)
   public static var channelReactionsEnableStarsInfo: String  { return L10n.tr("Localizable", "ChannelReactions.EnableStars.Info") }
   /// Limit the number of different reactions that can be added to a post, including already published posts.
   public static var channelReactionsMaxCountInfo: String  { return L10n.tr("Localizable", "ChannelReactions.MaxCount.Info") }
@@ -4779,7 +4779,7 @@ public final class L10n {
   public static func chatServiceGiftUnpackOutgoing(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.GiftUnpack.Outgoing", p1)
   }
-  /// %1$@ just started a giveaway of %2$d Telegram Stars for its followers.
+  /// %1$@ just started a giveaway of %2$d Ansible Diamonds for its followers.
   public static func chatServiceGiveawayStartedStarsOther(_ p1: String, _ p2: Int) -> String {
     return L10n.tr("Localizable", "Chat.Service.GiveawayStarted.Stars_other", p1, p2)
   }
@@ -9885,7 +9885,7 @@ public final class L10n {
   public static func giveawayStarsPrepaidDescOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Giveaway.Stars.Prepaid.Desc_other", p1)
   }
-  /// %d Telegram Stars
+  /// %d Ansible Diamonds
   public static func giveawayStarsPrepaidTitle(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Giveaway.Stars.Prepaid.Title", p1)
   }
@@ -9913,7 +9913,7 @@ public final class L10n {
   public static var giveawayTypeSpecificModalSelectUsers: String  { return L10n.tr("Localizable", "Giveaway.Type.Specific.Modal.SelectUsers") }
   /// winners are chosen randomly
   public static var giveawayTypeStarsText: String  { return L10n.tr("Localizable", "Giveaway.Type.Stars.Text") }
-  /// Telegram Stars
+  /// Ansible Diamonds
   public static var giveawayTypeStarsTitle: String  { return L10n.tr("Localizable", "Giveaway.Type.Stars.Title") }
   /// Choose the channels users need to join to take part in the giveaway.
   public static var givewayChannelsInfo: String  { return L10n.tr("Localizable", "Giveway.Channels.Info") }
@@ -14599,7 +14599,7 @@ public final class L10n {
   public static var qrStudioControllerPillFree: String  { return L10n.tr("Localizable", "QrStudio.Controller.PillFree") }
   /// Permanent
   public static var qrStudioControllerPillPermanent: String  { return L10n.tr("Localizable", "QrStudio.Controller.PillPermanent") }
-  /// Remove ⭐%1$@ fee
+  /// Remove %1$@ fee
   public static func qrStudioControllerPillRemoveFee(_ p1: String) -> String {
     return L10n.tr("Localizable", "QrStudio.Controller.PillRemoveFee", p1)
   }
@@ -16641,7 +16641,7 @@ public final class L10n {
   public static func starListStarsNeededOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Star.List.StarsNeeded_other", p1)
   }
-  /// Telegram Stars
+  /// Ansible Diamonds
   public static var starListTelegramStars: String  { return L10n.tr("Localizable", "Star.List.TelegramStars") }
   /// Top Up
   public static var starListTopUp: String  { return L10n.tr("Localizable", "Star.List.TopUp") }
@@ -17337,7 +17337,7 @@ public final class L10n {
   public static var starsIntroTransactionTelegramBotApiTitle: String  { return L10n.tr("Localizable", "Stars.Intro.Transaction.TelegramBotApi.Title") }
   /// What are Stars?
   public static var starsPromoHeader: String  { return L10n.tr("Localizable", "Stars.Promo.Header") }
-  /// Telegram Stars allow users to:
+  /// Ansible Diamonds allow users to:
   public static var starsPromoHeaderInfo: String  { return L10n.tr("Localizable", "Stars.Promo.HeaderInfo") }
   /// Give your friends gifts that can be added to their profiles or converted to Stars.
   public static var starsPromoOption1Info: String  { return L10n.tr("Localizable", "Stars.Promo.Option1.Info") }

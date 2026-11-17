@@ -2,81 +2,7 @@ import Foundation
 import Cocoa
 import QuartzCore
 import TGUIKit
-
-private func qrStudioParsePath(_ string: String) -> CGPath {
-    let path = CGMutablePath()
-    var numbers: [CGFloat] = []
-    var command: Character?
-    var current = ""
-
-    func flushNumber() {
-        if !current.isEmpty, let value = Double(current) {
-            numbers.append(CGFloat(value))
-        }
-        current = ""
-    }
-
-    func apply() {
-        guard let command = command else {
-            return
-        }
-        switch command {
-        case "M":
-            var i = 0
-            while i + 1 < numbers.count {
-                if i == 0 {
-                    path.move(to: CGPoint(x: numbers[i], y: numbers[i + 1]))
-                } else {
-                    path.addLine(to: CGPoint(x: numbers[i], y: numbers[i + 1]))
-                }
-                i += 2
-            }
-        case "L":
-            var i = 0
-            while i + 1 < numbers.count {
-                path.addLine(to: CGPoint(x: numbers[i], y: numbers[i + 1]))
-                i += 2
-            }
-        case "C":
-            var i = 0
-            while i + 5 < numbers.count {
-                path.addCurve(to: CGPoint(x: numbers[i + 4], y: numbers[i + 5]), control1: CGPoint(x: numbers[i], y: numbers[i + 1]), control2: CGPoint(x: numbers[i + 2], y: numbers[i + 3]))
-                i += 6
-            }
-        case "Z":
-            path.closeSubpath()
-        default:
-            break
-        }
-        numbers.removeAll()
-    }
-
-    for character in string {
-        if character.isLetter {
-            flushNumber()
-            apply()
-            command = character
-        } else if character == "-" {
-            flushNumber()
-            current.append(character)
-        } else if character == " " || character == "," {
-            flushNumber()
-        } else if character == "." && current.contains(".") {
-            flushNumber()
-            current.append(character)
-        } else {
-            current.append(character)
-        }
-    }
-    flushNumber()
-    apply()
-    return path
-}
-
-private enum QrStudioStarGlyph {
-    static let star = qrStudioParsePath("M5.72902 8.83283L3.37965 10.2721C3.13537 10.4217 2.81601 10.345 2.66636 10.1007C2.59327 9.9814 2.57148 9.83762 2.60593 9.70201L2.96961 8.27055C3.10089 7.75382 3.45449 7.32187 3.93512 7.09112L6.49815 5.86056C6.61764 5.80319 6.668 5.65982 6.61063 5.54033C6.56417 5.44356 6.45911 5.38941 6.35334 5.40772L3.50035 5.90164C2.9204 6.00205 2.32567 5.8419 1.87456 5.46386L0.973277 4.70856C0.753702 4.52455 0.724871 4.19737 0.908881 3.9778C0.998378 3.871 1.12707 3.8047 1.26599 3.79383L4.01967 3.57833C4.21421 3.56311 4.38375 3.43999 4.45843 3.25971L5.52076 0.695335C5.6304 0.430662 5.93384 0.304986 6.19851 0.414629C6.3256 0.467277 6.42657 0.568248 6.47922 0.695335L7.54154 3.25971C7.61622 3.43999 7.78576 3.56311 7.9803 3.57833L10.7491 3.79502C11.0347 3.81737 11.2481 4.06702 11.2258 4.35263C11.215 4.49003 11.1501 4.6175 11.0452 4.70691L8.93352 6.50715C8.78486 6.63388 8.72001 6.83338 8.76573 7.02329L9.41492 9.72017C9.48196 9.99869 9.31052 10.2788 9.03199 10.3459C8.89816 10.3781 8.75701 10.3558 8.63962 10.2839L6.27096 8.83283C6.10467 8.73097 5.8953 8.73097 5.72902 8.83283Z")
-    static let slashed = qrStudioParsePath("M5.52052 0.695024C5.63025 0.430602 5.93372 0.305263 6.19826 0.41475C6.32528 0.467369 6.42684 0.568033 6.47951 0.695024L7.54201 3.25948C7.61673 3.43966 7.78601 3.56262 7.98048 3.57784L10.749 3.79463C11.0345 3.81702 11.2477 4.06682 11.2256 4.35225C11.2149 4.48955 11.1497 4.61734 11.0449 4.70674L8.93361 6.50655C8.78502 6.63322 8.72004 6.8333 8.76564 7.02315L8.77638 7.06905L11.3535 9.6462C11.5487 9.84141 11.5486 10.158 11.3535 10.3532C11.1583 10.5485 10.8418 10.5485 10.6465 10.3532L1.6465 1.35323C1.45137 1.15795 1.45128 0.841412 1.6465 0.646195C1.84173 0.451131 2.15831 0.451121 2.35353 0.646195L4.60744 2.9001L5.52052 0.695024ZM9.26955 10.2106C9.20511 10.2734 9.12597 10.3228 9.03224 10.3454C8.89844 10.3776 8.75703 10.3558 8.63966 10.2839L6.2715 8.83272C6.10536 8.73096 5.89571 8.73111 5.72951 8.83272L3.3799 10.2722C3.13562 10.4218 2.81567 10.3446 2.66603 10.1003C2.59316 9.98108 2.57206 9.8373 2.60646 9.70186L2.96974 8.27022C3.10109 7.75364 3.45504 7.32124 3.93556 7.09053L5.43068 6.37178L9.26955 10.2106ZM4.74416 5.68526L3.50002 5.90108C2.92028 6.00133 2.326 5.84141 1.87502 5.46358L0.973648 4.7087C0.754138 4.52467 0.725205 4.1968 0.909195 3.97725C0.998577 3.87085 1.12711 3.80462 1.26564 3.79366L2.73634 3.67745L4.74416 5.68526Z")
-}
+import TelegramTheme
 
 private final class QrStudioPillLabelView: View {
     struct Content: Equatable {
@@ -86,14 +12,14 @@ private final class QrStudioPillLabelView: View {
     }
 
     static let padding: CGFloat = 12.0
-    private static let starSide: CGFloat = 12.0
-    private static let starSpacing: CGFloat = 3.0
+    private static let diamondSide: CGFloat = 12.0
+    private static let diamondSpacing: CGFloat = 3.0
     private static let dotSide: CGFloat = 3.0
     private static let dotSpacing: CGFloat = 5.0
     private static let titleFont: NSFont = .medium(12.0)
     private static let detailFont: NSFont = NSFont.monospacedDigitSystemFont(ofSize: 12.0, weight: .regular)
 
-    private let starLayer = SimpleShapeLayer()
+    private let diamondLayer = SimpleLayer()
     private let titleView = TextView()
     private let dotLayer = SimpleLayer()
     private let detailView = TextView()
@@ -120,9 +46,8 @@ private final class QrStudioPillLabelView: View {
         self.isEventLess = true
         self.userInteractionEnabled = false
         self.layer?.masksToBounds = false
-        self.starLayer.anchorPoint = CGPoint()
-        self.starLayer.fillRule = .evenOdd
-        self.layer?.addSublayer(self.starLayer)
+        self.diamondLayer.anchorPoint = CGPoint()
+        self.layer?.addSublayer(self.diamondLayer)
         for textView in [self.titleView, self.detailView] {
             textView.isSelectable = false
             textView.userInteractionEnabled = false
@@ -149,8 +74,8 @@ private final class QrStudioPillLabelView: View {
     }
 
     private static func width(title: TextViewLayout, detail: TextViewLayout, slashed: Bool) -> CGFloat {
-        let spacing = slashed ? self.starSpacing + self.dotSpacing * 2.0 + self.dotSide : self.starSpacing * 2.0
-        return self.starSide + ceil(title.layoutSize.width) + spacing + ceil(detail.layoutSize.width)
+        let spacing = slashed ? self.diamondSpacing + self.dotSpacing * 2.0 + self.dotSide : self.diamondSpacing * 2.0
+        return self.diamondSide + ceil(title.layoutSize.width) + spacing + ceil(detail.layoutSize.width)
     }
 
     static func width(_ content: Content) -> CGFloat {
@@ -160,8 +85,23 @@ private final class QrStudioPillLabelView: View {
     func update(content: Content, color: NSColor, size: CGSize, transition: ContainedViewLayoutTransition) {
         let colorChanged = self.color.map { !$0.isEqual(color) } ?? true
         if self.content?.slashed != content.slashed || colorChanged {
-            self.starLayer.path = content.slashed ? QrStudioStarGlyph.slashed : QrStudioStarGlyph.star
-            self.starLayer.fillColor = color.cgColor
+            let diamond = TelegramThemeHooks.shared.image(.iconMenuStar).precomposed(color)
+            let side = Self.diamondSide
+            self.diamondLayer.contents = generateImage(CGSize(width: side, height: side), contextGenerator: { size, context in
+                context.clear(size.bounds)
+                context.draw(diamond, in: size.bounds)
+                if content.slashed {
+                    let slash = [CGPoint(x: 1, y: side - 1), CGPoint(x: side - 1, y: 1)]
+                    context.setLineCap(.round)
+                    context.setBlendMode(.clear)
+                    context.setLineWidth(3)
+                    context.strokeLineSegments(between: slash)
+                    context.setBlendMode(.normal)
+                    context.setStrokeColor(color.cgColor)
+                    context.setLineWidth(1)
+                    context.strokeLineSegments(between: slash)
+                }
+            })
         }
         if self.content?.title != content.title || self.content?.slashed != content.slashed || colorChanged || self.titleLayout == nil {
             let layout = QrStudioPillLabelView.title(content, color: color)
@@ -184,7 +124,7 @@ private final class QrStudioPillLabelView: View {
 
         let midY = size.height * 0.5
         var x = floor((size.width - QrStudioPillLabelView.width(title: titleLayout, detail: detailLayout, slashed: content.slashed)) * 0.5)
-        let starSide = QrStudioPillLabelView.starSide
+        let diamondSide = QrStudioPillLabelView.diamondSide
 
         func place(_ textView: TextView, layout: TextViewLayout) {
             let textSize = CGSize(width: ceil(layout.layoutSize.width), height: ceil(layout.layoutSize.height))
@@ -193,10 +133,10 @@ private final class QrStudioPillLabelView: View {
         }
         if !content.slashed {
             place(self.titleView, layout: titleLayout)
-            x += QrStudioPillLabelView.starSpacing
+            x += QrStudioPillLabelView.diamondSpacing
         }
-        transition.updateFrame(layer: self.starLayer, frame: CGRect(x: x, y: midY - starSide * 0.5, width: starSide, height: starSide))
-        x += starSide + QrStudioPillLabelView.starSpacing
+        transition.updateFrame(layer: self.diamondLayer, frame: CGRect(x: x, y: midY - diamondSide * 0.5, width: diamondSide, height: diamondSide))
+        x += diamondSide + QrStudioPillLabelView.diamondSpacing
         if content.slashed {
             place(self.titleView, layout: titleLayout)
             x += QrStudioPillLabelView.dotSpacing
@@ -212,6 +152,7 @@ private final class QrStudioPillLabelView: View {
 final class QrStudioCodePillView: View {
     struct Texts: Equatable {
         let free: String
+        static let currencyMarker: Character = "\u{fffc}"
         let removeFee: String
         let permanent: String
         let expiresIn: (String) -> String
@@ -245,7 +186,6 @@ final class QrStudioCodePillView: View {
     private var coreLayers: [SimpleShapeLayer] = []
 
     private var state = QrStudioCodeState()
-    private var price: Int64 = 0
     private var ink = QrStudioColor(0.5, 0.5, 0.5)
     private var isLight = false
     private var texts: Texts?
@@ -424,9 +364,13 @@ final class QrStudioCodePillView: View {
             return nil
         }
         if !self.state.removeFee {
-            let text = String(format: texts.removeFee, "\(self.price)")
-            let parts = text.components(separatedBy: "⭐")
-            return QrStudioPillLabelView.Content(slashed: false, title: parts[0].trimmingCharacters(in: .whitespaces), detail: parts.dropFirst().joined().trimmingCharacters(in: .whitespaces))
+            let parts = texts.removeFee.split(separator: Texts.currencyMarker, maxSplits: 1, omittingEmptySubsequences: false)
+            var title = String(parts[0]).trimmingCharacters(in: .whitespaces)
+            if let last = title.last, ["⭐", "⭐️", "💎"].contains(String(last)) {
+                title.removeLast()
+            }
+            let detail = parts.count == 2 ? String(parts[1]) : ""
+            return QrStudioPillLabelView.Content(slashed: false, title: title.trimmingCharacters(in: .whitespaces), detail: detail)
         }
         let detail: String
         if self.state.expires {
@@ -471,7 +415,7 @@ final class QrStudioCodePillView: View {
         layer.animate(from: NSNumber(value: from), to: NSNumber(value: alpha), keyPath: "opacity", timingFunction: .easeInEaseOut, duration: isTaken ? 0.16 / 3.0 : 0.25, delay: isTaken ? 0.0 : 0.2)
     }
 
-    func update(state: QrStudioCodeState, price: Int64, ink: QrStudioColor, isLight: Bool, texts: Texts, transition: ContainedViewLayoutTransition) -> CGSize {
+    func update(state: QrStudioCodeState, ink: QrStudioColor, isLight: Bool, texts: Texts, transition: ContainedViewLayoutTransition) -> CGSize {
         let previousState = self.state
         let colorsChanged = self.appliedSizeOnce && (self.isLight != isLight || self.ink != ink)
         if self.appliedSizeOnce && self.isLight != isLight && transition.isAnimated {
@@ -482,7 +426,6 @@ final class QrStudioCodePillView: View {
             self.glass.layer?.add(fade, forKey: "appearance")
         }
         self.state = state
-        self.price = price
         self.ink = ink
         self.isLight = isLight
         self.texts = texts

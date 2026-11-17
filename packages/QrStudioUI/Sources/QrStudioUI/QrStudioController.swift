@@ -1790,12 +1790,11 @@ final class QrStudioView: View {
             let isAppearing = self.codePill.superview == nil
             let codePillSize = self.codePill.update(
                 state: self.codeState,
-                price: price,
                 ink: ink,
                 isLight: backdrop.isLight,
                 texts: QrStudioCodePillView.Texts(
                     free: strings().qrStudioControllerPillFree,
-                    removeFee: strings().qrStudioControllerPillRemoveFee("%@"),
+                    removeFee: strings().qrStudioControllerPillRemoveFee("\(QrStudioCodePillView.Texts.currencyMarker)\(price)"),
                     permanent: strings().qrStudioControllerPillPermanent,
                     expiresIn: { value in
                         return strings().qrStudioControllerPillExpiresIn(value)
