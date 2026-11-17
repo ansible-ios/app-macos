@@ -21,9 +21,9 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
-                <menuItem title="AnsibleMac" identifier="1Xt-HY-uBw" id="1Xt-HY-uBw" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                <menuItem title="Ansible" identifier="1Xt-HY-uBw" id="1Xt-HY-uBw" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="AnsibleMac" systemMenu="apple" identifier="uQy-DD-JDr" id="uQy-DD-JDr" customClass="MMMenu" customModule="Telegram" customModuleProvider="target">
+                    <menu key="submenu" title="Ansible" systemMenu="apple" identifier="uQy-DD-JDr" id="uQy-DD-JDr" customClass="MMMenu" customModule="Telegram" customModuleProvider="target">
                         <items>
                             <menuItem title="About Ansible" identifier="5kV-Vb-QxS" id="5kV-Vb-QxS" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -55,7 +55,7 @@
                                     <action selector="closeWindow:" target="Voe-Tx-rLC" id="IKs-t5-kxH"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Hide Telegram" keyEquivalent="h" identifier="Cag-YX-WT6" id="Cag-YX-WT6" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                            <menuItem title="Hide Ansible" keyEquivalent="h" identifier="Cag-YX-WT6" id="Cag-YX-WT6" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
                                 <connections>
                                     <action selector="hide:" target="-1" id="KWr-rt-JTa"/>
                                 </connections>
@@ -73,7 +73,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                            <menuItem title="Quit Telegram" keyEquivalent="q" identifier="4sb-4s-VLi" id="4sb-4s-VLi" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                            <menuItem title="Quit Ansible" keyEquivalent="q" identifier="4sb-4s-VLi" id="4sb-4s-VLi" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
                                 <connections>
                                     <action selector="terminate:" target="-1" id="Te7-pn-YzF"/>
                                 </connections>

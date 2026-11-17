@@ -16045,7 +16045,7 @@ public final class L10n {
   public static var shareExtensionPasscodeNext: String  { return L10n.tr("Localizable", "ShareExtension.Passcode.Next") }
   /// passcode
   public static var shareExtensionPasscodePlaceholder: String  { return L10n.tr("Localizable", "ShareExtension.Passcode.Placeholder") }
-  /// To share via Telegram, please open the Telegram app and log in.
+  /// To share via Ansible, open the app and log in.
   public static var shareExtensionUnauthorizedDescription: String  { return L10n.tr("Localizable", "ShareExtension.Unauthorized.Description") }
   /// OK
   public static var shareExtensionUnauthorizedOK: String  { return L10n.tr("Localizable", "ShareExtension.Unauthorized.OK") }
