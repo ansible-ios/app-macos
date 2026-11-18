@@ -448,7 +448,10 @@ private final class HeaderItem : GeneralRowItem {
     }
     
     override var accessibilityValue: String? {
-        let parts = [infoLayout.attributedString.string, descLayout?.attributedString.string, refund?.attributedString.string].compactMap { $0?.replacingOccurrences(of: clown, with: "").trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
+        let isTon = purpose == .tonGift || transaction.count.currency == .ton
+        let currencyName = isTon ? TON : strings().starListTelegramStars
+        let amountInfo = infoLayout.attributedString.string.replacingOccurrences(of: TON + " " + clown, with: TON).replacingOccurrences(of: clown, with: currencyName)
+        let parts = [amountInfo, descLayout?.attributedString.string, refund?.attributedString.string].compactMap { $0?.replacingOccurrences(of: clown, with: "").trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
         return parts.isEmpty ? nil : parts.joined(separator: ", ")
     }
     

@@ -1,6 +1,5 @@
 import Cocoa
 import TelegramCore
-import TGCurrencyFormatter
 import Postbox
 import TGUIKit
 import SwiftSignalKit
@@ -416,24 +415,21 @@ public func chatListText(account:Account, for message:Message?, messagesCount: I
 //            }
            
         } else if let action = message.extendedMedia as? TelegramMediaAction {
-            let service = serviceMessageText(message, account:account, isReplied: isReplied)
+            let service = serviceMessageText(message, account:account, isReplied: isReplied, embedDiamond: !notifications)
             let gramTransferText = isReplied || folder ? nil : incomingGramTransferPreviewText(message, accountPeerId: account.peerId, includeDiamond: notifications)
             _ = attributedText.append(string: gramTransferText ?? service.0, color: theme.chatList.grayTextColor, font: .normal(.text))
             attributedText.detectBoldColorInString(with: .normal(.text))
             attributedText.setSelected(color: theme.colors.underSelectedColor, range: attributedText.range)
             
-            if case let .paymentSent(currency, _, _, _, _) = action.action {
-                if currency == XTR {
-                    attributedText.insertEmbedded(.embedded(name: XTR_ICON, color: theme.chatList.grayTextColor, resize: false), for: XTR)
+            switch action.action {
+            case let .paymentSent(currency, _, _, _, _), let .paymentRefunded(_, currency, _, _, _):
+                if currency == XTR && !notifications {
+                    attributedText.insertEmbedded(.embedded(name: XTR_ICON, color: theme.chatList.grayTextColor, resize: false), for: "\u{fffc}")
                 }
-            } else if case let .paymentRefunded(_, currency, _, _, _) = action.action {
-                if currency == XTR {
-                    attributedText.insertEmbedded(.embedded(name: XTR_ICON, color: theme.chatList.grayTextColor, resize: false), for: XTR)
-                }
+            default:
+                break
             }
-            
             InlineStickerItem.apply(to: attributedText, associatedMedia: service.2, entities: service.1, isPremium: isPremium)
-            
         } else if let media = message.anyMedia as? TelegramMediaExpiredContent {
             let text:String
             switch media.data {
@@ -622,7 +618,18 @@ func incomingGramTransferPreviewText(_ message: Message, accountPeerId: PeerId, 
     return nil
 }
 
-public func serviceMessageText(_ message:Message, account:Account, isReplied: Bool = false) -> (String, [MessageTextEntity], [MediaId : Media]) {
+public func servicePaymentAmount(_ amount: Int64, currency: String, embedDiamond: Bool) -> String {
+    guard currency == XTR else {
+        return formatReceiptAmount(amount, currency: currency)
+    }
+    let number = walletFormattedNumber(amount, walletGroupingSeparator)
+    if embedDiamond {
+        return "\u{fffc}\(TINY_SPACE)\(number)"
+    }
+    return "\(number) \(strings().starListTelegramStars)"
+}
+
+public func serviceMessageText(_ message:Message, account:Account, isReplied: Bool = false, embedDiamond: Bool = false) -> (String, [MessageTextEntity], [MediaId : Media]) {
     
     var authorName:String = ""
     if let displayTitle = message.author?.displayTitle {
@@ -788,7 +795,7 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
                 }
             }
         case let .paymentSent(currency, totalAmount, _,  _, _):
-            text = strings().chatListServicePaymentSent(TGCurrencyFormatter.shared().formatAmount(totalAmount, currency: currency))
+            text = strings().chatListServicePaymentSent(servicePaymentAmount(totalAmount, currency: currency, embedDiamond: embedDiamond))
         case .unknown:
             break
         case .customText(let value, _, _):
@@ -1104,7 +1111,7 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
             }
         case let .paymentRefunded(_, currency, totalAmount, _, _):
             let peerName = message.author?.compactDisplayTitle ?? ""
-            text = strings().chatServiceRefundedBackOther(peerName, currency + TINY_SPACE, Int(totalAmount))
+            text = strings().chatServiceRefund(peerName, servicePaymentAmount(totalAmount, currency: currency, embedDiamond: embedDiamond))
         case let .prizeStars(amount, _, _, _, _):
             text = strings().chatServiceStarsPrize(authorName, strings().channelBoostBoosterStarsOther(Int(amount)))
         case let .starGift(gift, _, _, _, _, _, _, _, _, upgradeStars, _, isPrepaidUpgrade, _, peerId, senderId, _, _, _, upgradeSeparate, auctionAcquired, _, _):

@@ -75,7 +75,7 @@ private final class HeaderItem : GeneralRowItem {
     }
     
     override var accessibilityValue: String? {
-        let price = infoLayout.attributedString.string.replacingOccurrences(of: clown, with: "")
+        let price = strings().starSubScreenPrice("\(subscription.amount.stringValue) \(strings().starListTelegramStars)")
         return [subscription.peer._asPeer().displayTitle, price].joined(separator: ", ")
     }
     

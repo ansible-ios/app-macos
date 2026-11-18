@@ -25,18 +25,18 @@ import InlineStickerLayer
 import AppAnalytics
 
 private final class SubscriptionFeeRowItem: GeneralRowItem {
-    private let pricing: StarsSubscriptionPricing
+    private let spokenPrice: String
     fileprivate let context: any AccountContextProtocol
     
     fileprivate let textLayout: TextViewLayout
     fileprivate let infoLayout: TextViewLayout
     
     init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, invitation: PeerInvitationImportersState, pricing: StarsSubscriptionPricing, viewType: GeneralViewType) {
-        self.pricing = pricing
+        self.spokenPrice = strings().starSubScreenPrice("\(pricing.amount.stringValue) \(strings().starListTelegramStars)") + " × \(invitation.count)"
         self.context = context
         
         let attr = NSMutableAttributedString()
-        attr.append(string: "\(clown_space)\(pricing.amount) / month x \(invitation.count)", color: theme.colors.text, font: .medium(.text))
+        attr.append(string: strings().starSubScreenPrice("\(clown_space)\(pricing.amount.stringValue)") + " × \(invitation.count)", color: theme.colors.text, font: .medium(.text))
         attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
         
         
@@ -72,7 +72,7 @@ private final class SubscriptionFeeRowItem: GeneralRowItem {
     }
 
     override var accessibilityLabel: String? {
-        return textLayout.attributedString.string.replacingOccurrences(of: clown, with: "").trimmingCharacters(in: .whitespaces)
+        return spokenPrice
     }
 
     override var accessibilityValue: String? {

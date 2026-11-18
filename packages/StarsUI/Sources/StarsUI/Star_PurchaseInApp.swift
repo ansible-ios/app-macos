@@ -152,7 +152,7 @@ private final class HeaderItem : GeneralRowItem {
     }
     
     override var accessibilityValue: String? {
-        let balance = balanceLayout.attributedString.string.replacingOccurrences(of: clown, with: "")
+        let balance = strings().starPurchaseBalance("\(myBalance.stringValue) \(strings().starListTelegramStars)")
         return [infoLayout.attributedString.string, balance].joined(separator: ", ")
     }
     
@@ -176,18 +176,24 @@ private final class AcceptView : Control {
     public func update(_ item: HeaderItem, animated: Bool) {
         let attr = NSMutableAttributedString()
         
+        let spokenLabel: String
         switch item.request.type {
         case .bot, .paidMedia:
+            spokenLabel = strings().starPurchasePay("\(item.request.count) \(strings().starListTelegramStars)")
             attr.append(string: strings().starPurchasePay("\(XTRSTAR)\(TINY_SPACE)\(item.request.count)"), color: theme.colors.underSelectedColor, font: .medium(.text))
             attr.insertEmbedded(.embedded(name: XTR_ICON, color: theme.colors.underSelectedColor, resize: false), for: XTRSTAR)
         case .subscription:
+            spokenLabel = strings().starsPurchaseSubscribeAction
             attr.append(string: strings().starsPurchaseSubscribeAction, color: theme.colors.underSelectedColor, font: .medium(.text))
         case let .botSubscription(invoice):
+            spokenLabel = strings().starsPurchaseBotSubscribeAcceptMonth("\(invoice.totalAmount.formattedWithSeparator) \(strings().starListTelegramStars)")
             attr.append(string: strings().starsPurchaseBotSubscribeAcceptMonth("\(XTRSTAR)\(TINY_SPACE)\(invoice.totalAmount.formattedWithSeparator)"), color: theme.colors.underSelectedColor, font: .medium(.text))
             attr.insertEmbedded(.embedded(name: XTR_ICON, color: theme.colors.underSelectedColor, resize: false), for: XTRSTAR)
         }
         
         
+        setAccessibilityRole(.button)
+        setAccessibilityLabel(spokenLabel)
         let layout = TextViewLayout(attr)
         layout.measure(width: item.width - 60)
         

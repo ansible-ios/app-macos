@@ -133,6 +133,16 @@ public func currencyToFractionalAmount(value: Double, currency: String) -> Doubl
     return Double(value) / factor
 }
 
+public func formatReceiptAmount(_ amount: Int64, currency: String) -> String {
+    if currency == "TON" {
+        return formatTonAmountText(amount, maxDecimalPositions: nil) + " TON"
+    }
+    guard currencyFormatterEntries[currency] != nil else {
+        return "\(amount) \(currency)"
+    }
+    return formatCurrencyAmount(amount, currency: currency)
+}
+
 public func formatCurrencyAmount(_ amount: Int64, currency: String) -> String {
     if let entry = currencyFormatterEntries[currency] ?? currencyFormatterEntries["USD"] {
         var result = ""
@@ -152,7 +162,7 @@ public func formatCurrencyAmount(_ amount: Int64, currency: String) -> String {
         }
         
         // Handle integer part with thousands separator
-        var integerPart = abs(amount)
+        var integerPart = amount.magnitude
         var fractional: [Character] = []
         
         // Extract fractional digits

@@ -61,7 +61,6 @@ let deps: [(String, String)] = [
     ("ExternalVideoUtils", "../ExternalVideoUtils"),
     ("InAppVideoServices", "../InAppVideoServices"),
     ("Reactions", "../Reactions"),
-    ("TGCurrencyFormatter", "../TGCurrencyFormatter"),
     ("TelegramIconsTheme", "../TelegramIconsTheme"),
     ("SecureIdUtils", "../SecureIdUtils"),
     ("DiceCache", "../DiceCache"),

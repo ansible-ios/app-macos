@@ -189,7 +189,7 @@ public final class Star_TransactionItem : GeneralRowItem {
         let currency: String
         switch transaction.currency {
         case .stars:
-            currency = strings().voiceOverCommonStars
+            currency = strings().starListTelegramStars
         case .ton:
             currency = "TON"
         }
@@ -420,7 +420,7 @@ private final class TransactionView : GeneralContainableRowView {
             case .premiumbot:
                 current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowPremiumBot).precomposed()
             case .unknown:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowFragment).precomposed()
+                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionPreviewUnknown).precomposed()
             case .apiLimitExtension:
                 current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowPaidBroadcast).precomposed()
             }

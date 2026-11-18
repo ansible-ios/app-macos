@@ -113,7 +113,7 @@ public final class Star_SubscriptionRowItem : GeneralRowItem {
         }
         switch subscription.state {
         case .active:
-            parts.append("\(amount) \(strings().voiceOverCommonStars)")
+            parts.append("\(amount) \(strings().starListTelegramStars)")
         default:
             parts.append(amount)
         }

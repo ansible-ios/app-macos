@@ -185,14 +185,14 @@
     "path": "Telegram-Mac/Assets.xcassets/Icon_Star_Refund.imageset/refund_30.png",
     "width": 30,
     "height": 30,
-    "role": "mono",
+    "role": "refund",
     "asset": "Icon_Star_Refund"
   },
   {
     "path": "Telegram-Mac/Assets.xcassets/Icon_Star_Refund.imageset/refund_30@2x.png",
     "width": 60,
     "height": 60,
-    "role": "mono",
+    "role": "refund",
     "asset": "Icon_Star_Refund"
   },
   {

@@ -36,12 +36,11 @@ func template(_ image:CGImage)->CGImage {
     return context.makeImage()!
 }
 let menuTemplate=template(variants["mono"]!)
+let refundDocument = CGPDFDocument(pack.appendingPathComponent("masters/diamond-refund.pdf") as CFURL)!
 var count=0
 for s in specs {
     let role=s["role"] as! String
     guard role != "preserved-app" else {continue}
-    let raw=variants[role]!
-    let source = ["mono","outline","premium"].contains(role) ? menuTemplate : raw
     let relative=s["path"] as! String
     let dest=client.appendingPathComponent(relative)
     precondition(FileManager.default.fileExists(atPath:dest.path))
@@ -56,11 +55,19 @@ for s in specs {
         let gradient=CGGradient(colorsSpace:CGColorSpaceCreateDeviceRGB(),colors:colors as CFArray,locations:[0,1])!
         c.drawLinearGradient(gradient,start:CGPoint(x:0,y:0),end:CGPoint(x:w,y:h),options:[]);c.restoreGState()
     }
-    let padding:CGFloat=CGFloat(min(w,h))*(tiled ? 0.15 : 0.067)
-    let area=CGRect(x:padding,y:padding,width:CGFloat(w)-2*padding,height:CGFloat(h)-2*padding)
-    let scale=min(area.width/CGFloat(source.width),area.height/CGFloat(source.height))
-    let size=CGSize(width:CGFloat(source.width)*scale,height:CGFloat(source.height)*scale)
-    c.interpolationQuality = .high;c.draw(source,in:CGRect(x:area.midX-size.width/2,y:area.midY-size.height/2,width:size.width,height:size.height))
+    if role == "refund" {
+        let page = refundDocument.page(at: 1)!
+        let bounds = CGRect(x: 0, y: 0, width: w, height: h)
+        c.concatenate(page.getDrawingTransform(.mediaBox, rect: bounds, rotate: 0, preserveAspectRatio: true))
+        c.drawPDFPage(page)
+    } else {
+        let source = ["mono","outline","premium"].contains(role) ? menuTemplate : variants[role]!
+        let padding:CGFloat=CGFloat(min(w,h))*(tiled ? 0.15 : 0.067)
+        let area=CGRect(x:padding,y:padding,width:CGFloat(w)-2*padding,height:CGFloat(h)-2*padding)
+        let scale=min(area.width/CGFloat(source.width),area.height/CGFloat(source.height))
+        let size=CGSize(width:CGFloat(source.width)*scale,height:CGFloat(source.height)*scale)
+        c.interpolationQuality = .high;c.draw(source,in:CGRect(x:area.midX-size.width/2,y:area.midY-size.height/2,width:size.width,height:size.height))
+    }
     let output=CGImageDestinationCreateWithURL(dest as CFURL,UTType.png.identifier as CFString,1,nil)!
     CGImageDestinationAddImage(output,c.makeImage()!,nil);precondition(CGImageDestinationFinalize(output));count+=1
 }

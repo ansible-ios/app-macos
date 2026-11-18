@@ -222,7 +222,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
 
     
     if let lastSaleDate = state.valueInfo.lastSaleDate {
-        rows.append(.init(left: .init(.initialize(string: "Last Sale", color: theme.colors.text, font: .normal(.text))), right: .init(name: .init(.initialize(string: stringForFullDate(timestamp: lastSaleDate), color: theme.colors.text, font: .normal(.text))))))
+        rows.append(.init(left: .init(.initialize(string: strings().starTransactionLastSale, color: theme.colors.text, font: .normal(.text))), right: .init(name: .init(.initialize(string: stringForFullDate(timestamp: lastSaleDate), color: theme.colors.text, font: .normal(.text))))))
     }
     
     _ = state.valueInfo.lastSalePrice
@@ -240,17 +240,17 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         rows.append(.init(left: .init(.initialize(string: "Last Price", color: theme.colors.text, font: .normal(.text))), right: .init(name: .init(.initialize(string: formatCurrencyAmount(lastSalePrice, currency: state.valueInfo.currency), color: theme.colors.text, font: .normal(.text))), badge: badge)))
     } else if let averagePrice = state.valueInfo.averagePrice {
         let currency = formatCurrencyAmount(averagePrice, currency: state.valueInfo.currency)
-        let tooltip = "\(currency) is the average sale price of \(state.uniqueGift.title)s on Ansible and Crystalpiece over the past month."
+        let tooltip = "\(currency) is the average sale price of \(state.uniqueGift.title) gifts on Ansible and Crystal Piece over the past month."
 
         
-        rows.append(.init(left: .init(.initialize(string: "Average Price", color: theme.colors.text, font: .normal(.text))), right: .init(name: .init(.initialize(string: currency, color: theme.colors.text, font: .normal(.text))), badge: .init(text: "?", tooltipText: tooltip, callback: { }))))
+        rows.append(.init(left: .init(.initialize(string: strings().starAuctionPreviewAveragePrice, color: theme.colors.text, font: .normal(.text))), right: .init(name: .init(.initialize(string: currency, color: theme.colors.text, font: .normal(.text))), badge: .init(text: "?", tooltipText: tooltip, callback: { }))))
     }
     
 
     if let floorPrice = state.valueInfo.floorPrice {
         let currency = formatCurrencyAmount(floorPrice, currency: state.valueInfo.currency)
         
-        let tooltip = "\(currency) is the floor price for \(state.uniqueGift.title) gifts listed on Ansible and Crystalpiece."
+        let tooltip = "\(currency) is the floor price for \(state.uniqueGift.title) gifts listed on Ansible and Crystal Piece."
         
         rows.append(.init(left: .init(.initialize(string: "Minimum Price", color: theme.colors.text, font: .normal(.text))), right: .init(name: .init(.initialize(string: currency, color: theme.colors.text, font: .normal(.text))), badge: .init(text: "?", tooltipText: tooltip, callback: { }))))
     }

@@ -1,7 +1,6 @@
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TGCurrencyFormatter
 import Postbox
 import SwiftSignalKit
 import InAppSettings
@@ -1068,6 +1067,7 @@ public class ChatServiceItem: ChatRowItem {
                     }
                     _ = attributedString.append(string: strings().chatListServiceGameScored1Other(Int(score), gameName), color: grayTextColor, font: NSFont.normal(theme.fontSize))
                 case let .paymentSent(currency, totalAmount, _, isRecurringInit, isRecurringUsed):
+                    let amount = servicePaymentAmount(totalAmount, currency: currency, embedDiamond: true)
                     var paymentMessage:Message?
                     for attr in message.attributes {
                         if let attr = attr as? ReplyMessageAttribute {
@@ -1080,11 +1080,11 @@ public class ChatServiceItem: ChatRowItem {
                     
                     if let paymentMessage = paymentMessage, let media = media, let peer = paymentMessage.peers[paymentMessage.id.peerId] {
                         if isRecurringInit {
-                            _ = attributedString.append(string: strings().chatServicePaymentSentRecurringInit(TGCurrencyFormatter.shared().formatAmount(totalAmount, currency: currency), peer.displayTitle, media.title), color: grayTextColor, font: NSFont.normal(theme.fontSize))
+                            _ = attributedString.append(string: strings().chatServicePaymentSentRecurringInit(amount, peer.displayTitle, media.title), color: grayTextColor, font: NSFont.normal(theme.fontSize))
                         } else if isRecurringUsed {
-                            _ = attributedString.append(string: strings().chatServicePaymentSentRecurringUsed(TGCurrencyFormatter.shared().formatAmount(totalAmount, currency: currency), peer.displayTitle, media.title), color: grayTextColor, font: NSFont.normal(theme.fontSize))
+                            _ = attributedString.append(string: strings().chatServicePaymentSentRecurringUsed(amount, peer.displayTitle, media.title), color: grayTextColor, font: NSFont.normal(theme.fontSize))
                         } else {
-                            _ = attributedString.append(string: strings().chatServicePaymentSent1(TGCurrencyFormatter.shared().formatAmount(totalAmount, currency: currency), peer.displayTitle, media.title), color: grayTextColor, font: NSFont.normal(theme.fontSize))
+                            _ = attributedString.append(string: strings().chatServicePaymentSent1(amount, peer.displayTitle, media.title), color: grayTextColor, font: NSFont.normal(theme.fontSize))
                         }
                         attributedString.detectBoldColorInString(with: .medium(theme.fontSize))
                         
@@ -1103,17 +1103,17 @@ public class ChatServiceItem: ChatRowItem {
                         }), for: attributedString.range, color: grayTextColor)
                     } else if let peer = coreMessageMainPeer(message) {
                         if isRecurringInit {
-                            _ = attributedString.append(string: strings().chatServicePaymentSentRecurringInitNoTitle(TGCurrencyFormatter.shared().formatAmount(totalAmount, currency: currency), peer.displayTitle), color: grayTextColor, font: NSFont.normal(theme.fontSize))
+                            _ = attributedString.append(string: strings().chatServicePaymentSentRecurringInitNoTitle(amount, peer.displayTitle), color: grayTextColor, font: NSFont.normal(theme.fontSize))
                         } else if isRecurringUsed {
-                            _ = attributedString.append(string: strings().chatServicePaymentSentRecurringUsedNoTitle(TGCurrencyFormatter.shared().formatAmount(totalAmount, currency: currency), peer.displayTitle), color: grayTextColor, font: NSFont.normal(theme.fontSize))
+                            _ = attributedString.append(string: strings().chatServicePaymentSentRecurringUsedNoTitle(amount, peer.displayTitle), color: grayTextColor, font: NSFont.normal(theme.fontSize))
                         } else {
-                            _ = attributedString.append(string: strings().chatServicePaymentSent1NoTitle(TGCurrencyFormatter.shared().formatAmount(totalAmount, currency: currency), peer.displayTitle), color: grayTextColor, font: NSFont.normal(theme.fontSize))
+                            _ = attributedString.append(string: strings().chatServicePaymentSent1NoTitle(amount, peer.displayTitle), color: grayTextColor, font: NSFont.normal(theme.fontSize))
                         }
                         attributedString.detectBoldColorInString(with: .medium(theme.fontSize))
                     }
                     
                     if currency == XTR {
-                        attributedString.insertEmbedded(.embedded(name: XTR_ICON, color: grayTextColor, resize: false), for: XTR)
+                        attributedString.insertEmbedded(.embedded(name: XTR_ICON, color: grayTextColor, resize: false), for: "\u{fffc}")
                     }
                 case let .botSentSecureValues(types):
                     let permissions = types.map({$0.rawValue}).joined(separator: ", ")
@@ -1742,13 +1742,17 @@ public class ChatServiceItem: ChatRowItem {
                             attributedString.addAttribute(.font, value: NSFont.medium(theme.fontSize), range: range)
                         }
                     }
-                case let .paymentRefunded(_, _, totalAmount, _, transactionId):
+                case let .paymentRefunded(_, currency, totalAmount, _, transactionId):
                     let peerName = message.author?.compactDisplayTitle ?? ""
 
-                    let _ = attributedString.append(string: strings().chatServiceRefund(peerName, "\(clown_space)\(totalAmount)"), color: grayTextColor, font: NSFont.normal(theme.fontSize))
-                    attributedString.insertEmbedded(.embedded(name: XTR_ICON, color: grayTextColor, resize: false), for: clown)
-                    
-                    if let peer = message.author {
+                    let isDiamondRefund = currency == XTR
+                    let amount = servicePaymentAmount(totalAmount, currency: currency, embedDiamond: true)
+                    _ = attributedString.append(string: strings().chatServiceRefund(peerName, amount), color: grayTextColor, font: NSFont.normal(theme.fontSize))
+                    if isDiamondRefund {
+                        attributedString.insertEmbedded(.embedded(name: XTR_ICON, color: grayTextColor, resize: false), for: "\u{fffc}")
+                    }
+
+                    if isDiamondRefund, let peer = message.author {
                         let transaction = StarsContext.State.Transaction(flags: [.isRefund], id: transactionId, count: .init(amount: .init(value: totalAmount, nanos: 0), currency: .stars), date: message.timestamp, peer: .peer(.init(peer)), title: nil, description: nil, photo: nil, transactionDate: nil, transactionUrl: nil, paidMessageId: nil, giveawayMessageId: nil, media: [], subscriptionPeriod: nil, starGift: nil, floodskipNumber: nil, starrefCommissionPermille: nil, starrefPeerId: nil, starrefAmount: nil, paidMessageCount: nil, premiumGiftMonths: nil, adsProceedsFromDate: nil, adsProceedsToDate: nil)
                         let link = LinkHooks.shared.callbackLink("", { _ in
                             showModal(with: Star_TransactionScreen(context: context, fromPeerId: context.peerId, peer: .init(peer), transaction: transaction), for: context.window)
