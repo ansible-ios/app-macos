@@ -115,5 +115,14 @@
     "width": 512,
     "height": 512,
     "frames": 150
+  },
+  {
+    "path": "Resources/tgs/menu_paid.tgs",
+    "role": "paid-menu",
+    "source": "iOS/PremiumStar.ass (Gem paths), macOS menu pulse",
+    "sha256": "3d3c046290c59e228da4565389bdce8b473e8c24a128b192a5b929460364f306",
+    "width": 180,
+    "height": 180,
+    "frames": 30
   }
 ]
