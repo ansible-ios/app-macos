@@ -178,5 +178,14 @@
     "width": 512,
     "height": 512,
     "frames": 180
+  },
+  {
+    "path": "Resources/tgs/menu/menu_send_now.tgs",
+    "role": "send-now-menu",
+    "source": "web/assets_font-icons__new-send.svg with macOS menu ring and timing",
+    "sha256": "c1262cd0a43c509f204a8950b0dbfeda7f61a85fb00ada9ea7faf99f6872308a",
+    "width": 180,
+    "height": 180,
+    "frames": 30
   }
 ]
