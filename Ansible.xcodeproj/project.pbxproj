@@ -205,6 +205,7 @@
 		2751E7A527F72078003E3937 /* menu_note_slash.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 2751E7A427F72078003E3937 /* menu_note_slash.tgs */; };
 		275549102747C24F0098A3CD /* device_chrome.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 275549052747C2380098A3CD /* device_chrome.tgs */; };
 		275549112747C24F0098A3CD /* device_firefox.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 275549062747C23B0098A3CD /* device_firefox.tgs */; };
+		CC7ADB6054274B099B45F716 /* ansible_devices.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 5ADBB2996ACF4642B4D84268 /* ansible_devices.tgs */; };
 		275549122747C24F0098A3CD /* device_mac.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 275549072747C23D0098A3CD /* device_mac.tgs */; };
 		275549132747C24F0098A3CD /* device_windows.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 275549082747C2400098A3CD /* device_windows.tgs */; };
 		275549142747C24F0098A3CD /* device_edge.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 275549092747C2430098A3CD /* device_edge.tgs */; };
@@ -1236,6 +1237,7 @@
 		2754D29827909668000DDAD3 /* libvpx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvpx.a; path = "core-xprojects/libvpx/build/libvpx/lib/libvpx.a"; sourceTree = "<group>"; };
 		275549052747C2380098A3CD /* device_chrome.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = device_chrome.tgs; sourceTree = "<group>"; };
 		275549062747C23B0098A3CD /* device_firefox.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = device_firefox.tgs; sourceTree = "<group>"; };
+		5ADBB2996ACF4642B4D84268 /* ansible_devices.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ansible_devices.tgs; sourceTree = "<group>"; };
 		275549072747C23D0098A3CD /* device_mac.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = device_mac.tgs; sourceTree = "<group>"; };
 		275549082747C2400098A3CD /* device_windows.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = device_windows.tgs; sourceTree = "<group>"; };
 		275549092747C2430098A3CD /* device_edge.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = device_edge.tgs; sourceTree = "<group>"; };
@@ -3269,6 +3271,7 @@
 				2755490A2747C2450098A3CD /* device_ipad.tgs */,
 				2755490C2747C2490098A3CD /* device_iphone.tgs */,
 				2755490F2747C24F0098A3CD /* device_linux.tgs */,
+				5ADBB2996ACF4642B4D84268 /* ansible_devices.tgs */,
 				275549072747C23D0098A3CD /* device_mac.tgs */,
 				2755490B2747C2470098A3CD /* device_safari.tgs */,
 				2755490E2747C24D0098A3CD /* device_ubuntu.tgs */,
@@ -4358,6 +4361,7 @@
 				27B8364B2B6396E600E82683 /* menu_hd.tgs in Resources */,
 				27803BF827A3E944007B0FA9 /* menu_folder_lock.tgs in Resources */,
 				27CE156F297966D8001F8CE8 /* emoji_category_home.tgs in Resources */,
+				CC7ADB6054274B099B45F716 /* ansible_devices.tgs in Resources */,
 				275549122747C24F0098A3CD /* device_mac.tgs in Resources */,
 				27803C0427A3E944007B0FA9 /* menu_folder_love.tgs in Resources */,
 				2786368227C8B55D00690B10 /* group_call_stream_empty in Resources */,

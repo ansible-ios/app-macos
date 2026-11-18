@@ -25,7 +25,7 @@ public func iconForSession(_ session: RecentAccountSession) -> (CGImage?, LocalA
     let device = session.deviceModel.lowercased()
     let systemVersion = session.systemVersion.lowercased()
     if session.isCurrent {
-        return (NSImage(named: "Icon_Device_Apple")!.precomposed(), LocalAnimatedSticker.device_mac, NSColor(rgb: 0x0079ff), nil)
+        return (NSImage(named: "Icon_Device_AnsibleMac")!.precomposed(), .ansible_devices, nil, nil)
     }
     if device.contains("xbox") {
         return (NSImage(named: "Icon_Device_Xbox")!.precomposed(), nil, NSColor(rgb: 0x35c759), nil)

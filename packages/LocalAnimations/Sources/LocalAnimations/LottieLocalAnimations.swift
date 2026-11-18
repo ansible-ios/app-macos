@@ -117,6 +117,7 @@ public enum LocalAnimatedSticker : String {
     case device_ipad
     case device_iphone
     case device_linux
+    case ansible_devices
     case device_mac
     case device_safari
     case device_ubuntu

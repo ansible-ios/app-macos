@@ -151,5 +151,14 @@
     "width": 512,
     "height": 512,
     "frames": 54
+  },
+  {
+    "path": "Resources/tgs/ansible_devices.tgs",
+    "role": "current-mac-session",
+    "source": "ios/Devices.ass",
+    "sha256": "2aa1fd9fec4ca052635189ec3aa70a03fa244460204bc6d625c3f182f8d9da08",
+    "width": 512,
+    "height": 512,
+    "frames": 180
   }
 ]
