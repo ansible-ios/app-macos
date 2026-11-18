@@ -224,7 +224,7 @@ final class UpdateTabController: GenericViewController<UpdateTabView> {
             })
         }))
         genericView.set(handler: { control in
-            execute(inapp: inAppLink.external(link: itunesAppLink, false))
+            NSWorkspace.shared.open(appStoreUpdatesURL)
             control.isHidden = true
         }, for: .Click)
         #else

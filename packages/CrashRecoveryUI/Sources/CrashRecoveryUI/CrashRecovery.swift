@@ -56,7 +56,7 @@ private func systemPalette() -> ColorPalette {
     return whitePalette
 }
 
-private let appStoreURL = URL(string: "macappstore://apps.apple.com/app/id747648890")!
+private let appStoreURL = URL(string: "macappstore://showUpdatesPage")!
 private let websiteURL = URL(string: "https://ansible.su")!
 
 private enum Text {

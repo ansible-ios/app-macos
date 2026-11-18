@@ -663,7 +663,7 @@ final class SharedNotificationManager : NSObject, NSUserNotificationCenterDelega
                                     let file = file ?? message.associatedMedia[mediaId] as? TelegramMediaFile
                                     reactionText = (file?.customEmojiText ?? file?.stickerText ?? "").normalizedEmoji
                                 case .stars:
-                                    reactionText = "⭐️"
+                                    reactionText = XTRSTAR
                                 }
                                 
                                 let msg = pullText(from: message).string as String

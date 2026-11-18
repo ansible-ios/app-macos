@@ -2310,7 +2310,7 @@ private func updateAppAsYouWish(text: String, updateApp: Bool) {
         verifyAlert_button(for: mainWindow, header: appName, information: text, ok: strings().alertButtonOKUpdateApp, cancel: strings().modalCancel, option: nil, successHandler: { _ in
             if updateApp {
                 #if APP_STORE
-                execute(inapp: inAppLink.external(link: itunesAppLink, false))
+                NSWorkspace.shared.open(appStoreUpdatesURL)
                 #else
                 (NSApp.delegate as? AppDelegate)?.checkForUpdates(updateApp)
                 #endif

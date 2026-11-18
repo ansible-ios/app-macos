@@ -1882,7 +1882,7 @@ private final class FullExportRun {
         let root = URL(fileURLWithPath: settings.path, isDirectory: true)
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        let base = "Telegram_Export_" + formatter.string(from: Date())
+        let base = "Ansible_Export_" + formatter.string(from: Date())
         var candidate = root.appendingPathComponent(base, isDirectory: true)
         var index = 2
         while FileManager.default.fileExists(atPath: candidate.path) {

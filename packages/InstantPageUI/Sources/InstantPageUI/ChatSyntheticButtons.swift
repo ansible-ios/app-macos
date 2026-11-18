@@ -110,7 +110,7 @@ public func syntheticButtonsInstantPage(peerId: PeerId) -> InstantPage {
                 syntheticButton("Profile", kind: .regular, action: .openUserProfile(peerId: peerId))
             ]),
             .buttonRow(alignment: .center, buttons: [
-                syntheticButton("Open", kind: .accent, action: .url("https://telegram.org"), isEnabled: false),
+                syntheticButton("Open", kind: .accent, action: .url("https://ansible.su"), isEnabled: false),
                 syntheticButton("Profile", kind: .regular, action: .openUserProfile(peerId: peerId), isEnabled: false)
             ]),
             .buttonRow(alignment: .right, buttons: [

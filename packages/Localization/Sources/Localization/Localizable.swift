@@ -7848,6 +7848,10 @@ public final class L10n {
   public static func deleteGroupMessagesDeleteAllFromPeer(_ p1: String) -> String {
     return L10n.tr("Localizable", "DeleteGroupMessages.DeleteAllFromPeer", p1)
   }
+  /// Delete all reactions from %@ on this message, including reactions paid for with Ansible Diamonds?
+  public static func deleteGroupMessagesConfirmPaidReactions(_ p1: String) -> String {
+    return L10n.tr("Localizable", "DeleteGroupMessages.ConfirmPaidReactions", p1)
+  }
   /// Delete All Reactions
   public static var deleteGroupMessagesDeleteAllReactions: String  { return L10n.tr("Localizable", "DeleteGroupMessages.DeleteAllReactions") }
   /// Delete Reaction
@@ -17162,6 +17166,10 @@ public final class L10n {
   public static var starGiftNftConfirmSale: String  { return L10n.tr("Localizable", "StarGift.Nft.ConfirmSale") }
   /// Offer to Buy
   public static var starGiftNftOfferToBuy: String  { return L10n.tr("Localizable", "StarGift.Nft.OfferToBuy") }
+  /// How many Ansible Diamonds would you like to offer for **%@**?
+  public static func starGiftOfferAmountDescription(_ p1: String) -> String {
+    return L10n.tr("Localizable", "StarGift.Offer.AmountDescription", p1)
+  }
   /// Do you want to offer **%1$@** to %2$@ for **%3$@**?
   public static func starGiftOfferConfirmInfo(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "StarGift.Offer.ConfirmInfo", p1, p2, p3)

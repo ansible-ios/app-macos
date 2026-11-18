@@ -47,7 +47,7 @@ public func canDeleteReactionsInChat(message: Message) -> Bool {
 }
 
 func reactionPeerModerationConfirmation(peer: Peer) -> String {
-    return "Delete all reactions from \(peer.displayTitle) on this message, including any paid Stars reactions?" //TODOLANG
+    return strings().deleteGroupMessagesConfirmPaidReactions(peer.displayTitle)
 }
 
 func reactionPeerModerationMessage(messageId: MessageId, message: Message?, peer: Peer?) -> Message? {

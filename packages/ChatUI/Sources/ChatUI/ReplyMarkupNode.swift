@@ -18,7 +18,11 @@ final class ReplyMarkupContainerView: View {
 func diamondPaymentButtonTitle(_ title: String) -> String {
     return replacingLegacyCurrencyStar(in: title, with: XTRSTAR)
         .replacingOccurrences(of: #"(?<![\p{L}_])XTR(?![\p{L}_])"#, with: XTRSTAR, options: .regularExpression)
-        .replacingOccurrences(of: "Telegram Stars", with: strings().starListAnsibleDiamonds)
+        .replacingOccurrences(
+            of: #"(?i)(?<![\p{L}\p{N}_])(?:Telegram|Ansible)\s+Stars\b|(?<=\d)(\s+)Stars\b|^\s*Stars\s*$"#,
+            with: "$1" + NSRegularExpression.escapedTemplate(for: strings().starListAnsibleDiamonds),
+            options: .regularExpression
+        )
 }
 
 public class ReplyMarkupButtonLayout {

@@ -311,7 +311,7 @@ private func entries(_ state: StarNftOfferState, arguments: Arguments) -> [Input
 
     
   
-    entries.append(.desc(sectionId: sectionId, index: index, text: .markdown("Enter the number of Diamonds you'd like to offer **\(giftString)**.", linkHandler: { _ in }), data: .init(color: theme.colors.listGrayText, viewType: .textBottomItem)))
+    entries.append(.desc(sectionId: sectionId, index: index, text: .markdown(strings().starGiftOfferAmountDescription(giftString), linkHandler: { _ in }), data: .init(color: theme.colors.listGrayText, viewType: .textBottomItem)))
     index += 1
     
     entries.append(.sectionId(sectionId, type: .normal))

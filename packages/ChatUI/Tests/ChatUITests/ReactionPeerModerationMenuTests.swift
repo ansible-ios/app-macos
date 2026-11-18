@@ -143,7 +143,7 @@ final class ReactionPeerModerationMenuTests: XCTestCase {
     }
 
     func testConfirmationDisclosesAuthorWideSingleMessageScopeIncludingStars() {
-        XCTAssertEqual(reactionPeerModerationConfirmation(peer: group()), "Delete all reactions from Group on this message, including any paid Stars reactions?")
+        XCTAssertEqual(reactionPeerModerationConfirmation(peer: group()), "Delete all reactions from Group on this message, including reactions paid for with Ansible Diamonds?")
     }
 
     func testMultipleReactionRowsAdvertiseTheSameAuthorWideAction() throws {
@@ -176,7 +176,7 @@ final class ReactionPeerModerationMenuTests: XCTestCase {
         XCTAssertTrue(canModerate(refreshed, reaction: .builtin("👍")))
         XCTAssertTrue(canModerate(refreshed, reaction: .custom(42)))
         XCTAssertFalse(canModerate(refreshed, reaction: .stars))
-        XCTAssertEqual(reactionPeerModerationConfirmation(peer: group()), "Delete all reactions from Group on this message, including any paid Stars reactions?")
+        XCTAssertEqual(reactionPeerModerationConfirmation(peer: group()), "Delete all reactions from Group on this message, including reactions paid for with Ansible Diamonds?")
     }
 
     func testRefreshedMessageUsesCurrentPermissionsRatherThanEmbeddedPermissions() throws {

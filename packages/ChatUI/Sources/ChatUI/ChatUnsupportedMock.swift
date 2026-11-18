@@ -51,9 +51,9 @@ private func unsupportedBlockInstantPage() -> InstantPage {
                 .text(.plain("4 astronauts on board"), nil, nil),
                 .text(.concat([
                     .plain("Includes "),
-                    .url(text: .plain("NASA"), url: "https://t.me/telegram", webpageId: nil),
+                    .url(text: .plain("NASA"), url: "https://www.nasa.gov/", webpageId: nil),
                     .plain(" and "),
-                    .url(text: .plain("CSA"), url: "https://t.me/telegram", webpageId: nil),
+                    .url(text: .plain("CSA"), url: "https://www.asc-csa.gc.ca/", webpageId: nil),
                     .plain(" members")
                 ]), nil, nil),
                 .text(.plain("First woman and first person of color"), nil, nil)

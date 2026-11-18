@@ -7,7 +7,7 @@ import FoundationUtils
 
 public let clown: String = "🤡"
 
-public let itunesAppLink = "https://apps.apple.com/us/app/telegram/id747648890"
+public let appStoreUpdatesURL = URL(string: "macappstore://showUpdatesPage")!
 public let XTRSTAR: String = "💎"
 public enum DiamondAppearance {
     public static var foreground: NSColor {

@@ -38,7 +38,7 @@ private func openCalendarWithEvent(date: Date, title: String) {
     let icsContent = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
-        "PRODID:-//Telegram//macOS//EN",
+        "PRODID:-//Ansible//macOS//EN",
         "BEGIN:VEVENT",
         "DTSTART:\(startDate)",
         "DTEND:\(endDate)",
@@ -47,7 +47,7 @@ private func openCalendarWithEvent(date: Date, title: String) {
         "END:VCALENDAR"
     ].joined(separator: "\r\n")
 
-    let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("telegram_event_\(UUID().uuidString).ics")
+    let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("ansible_event_\(UUID().uuidString).ics")
 
     do {
         try icsContent.write(to: tempURL, atomically: true, encoding: .utf8)
@@ -216,7 +216,7 @@ public class ChatMessageItem: ChatRowItem {
     /// inside one offers the same update.
     public func invokeUpdateApp() {
         #if APP_STORE
-        LinkHooks.shared.openExternalLink(itunesAppLink, false)
+        NSWorkspace.shared.open(appStoreUpdatesURL)
         #else
         ChatHistoryUIHooks.shared.checkForUpdates()
         #endif
