@@ -43,7 +43,7 @@ This is a development integration. A successful local build is not a release cer
 | Application identifier | `ru.keepcoder.Telegram` | `com.ansible.macos` |
 | Source | [TelegramMessenger/telegram-macos](https://github.com/TelegramMessenger/telegram-macos) | [ansible-ios/app-macos](https://github.com/ansible-ios/app-macos) |
 
-The initial upstream base is [`246e3e95`](https://github.com/TelegramMessenger/telegram-macos/commit/246e3e95). Updates from upstream are reviewed and integrated deliberately. Internal module names, protocol symbols and copyright headers retain upstream names where appropriate.
+The initial upstream base is [`246e3e95`](https://github.com/TelegramMessenger/telegram-macos/commit/246e3e95). The latest integrated upstream revision is [`38309ec9`](https://github.com/TelegramMessenger/telegram-macos/commit/38309ec9). Internal module names, protocol symbols and copyright headers retain upstream names where appropriate.
 
 ## Building from source
 

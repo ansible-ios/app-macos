@@ -631,8 +631,8 @@ class UserInfoArguments<Context: AccountContextProtocol> : PeerInfoArguments<Con
                 }), for: context.window)
             }
             let addSimple:()->Void = {
-                verifyAlert_button(for: context.window, information: strings().confirmAddBotToGroup(values.dest.displayTitle), successHandler: { [weak self] _ in
-                    addBotAsMember(context: context, peer: values.source, to: values.dest, completion: { [weak self] peerId in
+                verifyAlert_button(for: context.window, information: strings().confirmAddBotToGroup(values.source.displayTitle), successHandler: { [weak self] _ in
+                    addBotAsMember(context: context, peer: values.dest, to: values.source, completion: { [weak self] peerId in
                         self?.peerChat(peerId, postId: nil)
                     }, error: { error in 
                         alert(for: context.window, info: error)
@@ -1287,7 +1287,7 @@ private final class UnofficialWarningView: GeneralContainableRowView {
 }
 
 enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
-    case info(sectionId:Int, peerView: PeerView, editable:Bool, updatingPhotoState:PeerInfoUpdatingPhotoState?, stories: PeerExpiringStoryListContext.State?, savedMuicProfileState: ProfileSavedMusicContext.State?, viewType: GeneralViewType)
+    case info(sectionId:Int, peerView: PeerView, editable:Bool, updatingPhotoState:PeerInfoUpdatingPhotoState?, stories: PeerExpiringStoryListContext.State?, savedMuicProfileState: ProfileSavedMusicContext.State?, mutedByDefault: Bool, viewType: GeneralViewType)
     case personalChannelInfo(sectionId:Int, left: String, right: String, viewType: GeneralViewType)
     case personalChannel(sectionId:Int, item: UserInfoPersonalChannel, viewType: GeneralViewType)
     case setFirstName(sectionId:Int, text: String, viewType: GeneralViewType)
@@ -1354,7 +1354,7 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
     
     var viewType: GeneralViewType {
         switch self {
-        case .info(_, _, _, _, _, _, let viewType):
+        case .info(_, _, _, _, _, _, _, let viewType):
             return viewType
         case .personalChannelInfo(_, _, _, let viewType):
             return viewType
@@ -1487,7 +1487,7 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
     
     func withUpdatedViewType(_ viewType: GeneralViewType) -> UserInfoEntry {
         switch self {
-        case let .info(sectionId, peerView, editable, updatingPhotoState, stories, savedMusic, _): return .info(sectionId: sectionId, peerView: peerView, editable: editable, updatingPhotoState: updatingPhotoState, stories: stories, savedMuicProfileState: savedMusic, viewType: viewType)
+        case let .info(sectionId, peerView, editable, updatingPhotoState, stories, savedMusic, mutedByDefault, _): return .info(sectionId: sectionId, peerView: peerView, editable: editable, updatingPhotoState: updatingPhotoState, stories: stories, savedMuicProfileState: savedMusic, mutedByDefault: mutedByDefault, viewType: viewType)
         case let .personalChannelInfo(sectionId, left, right, _): return .personalChannelInfo(sectionId: sectionId, left: left, right: right, viewType: viewType)
         case let .personalChannel(sectionId, item, _): return .personalChannel(sectionId: sectionId, item: item, viewType: viewType)
         case let .setFirstName(sectionId, text, _): return .setFirstName(sectionId: sectionId, text: text, viewType: viewType)
@@ -1564,11 +1564,14 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
         }
         
         switch self {
-        case let .info(lhsSectionId, lhsPeerView, lhsEditable, lhsUpdatingPhotoState, lhsStories, lhsSavedMusic, lhsViewType):
+        case let .info(lhsSectionId, lhsPeerView, lhsEditable, lhsUpdatingPhotoState, lhsStories, lhsSavedMusic, lhsMutedByDefault, lhsViewType):
             switch entry {
-            case let .info(rhsSectionId, rhsPeerView, rhsEditable, rhsUpdatingPhotoState, rhsStories, rhsSavedMusic, rhsViewType):
+            case let .info(rhsSectionId, rhsPeerView, rhsEditable, rhsUpdatingPhotoState, rhsStories, rhsSavedMusic, rhsMutedByDefault, rhsViewType):
                 
                 if lhsSectionId != rhsSectionId {
+                    return false
+                }
+                if lhsMutedByDefault != rhsMutedByDefault {
                     return false
                 }
                 if lhsViewType != rhsViewType {
@@ -2202,7 +2205,7 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
     
     private var sortIndex:Int {
         switch self {
-        case let .info(sectionId, _, _, _, _, _, _):
+        case let .info(sectionId, _, _, _, _, _, _, _):
             return (sectionId * 1000) + stableIndex
         case let .personalChannelInfo(sectionId, _, _, _):
             return (sectionId * 1000) + stableIndex
@@ -2352,10 +2355,10 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
         }
         
         switch self {
-        case let .info(_, peerView, editable, updatingPhotoState, stories, savedMusic, viewType):
+        case let .info(_, peerView, editable, updatingPhotoState, stories, savedMusic, mutedByDefault, viewType):
             return PeerInfoHeadItem(initialSize, stableId:stableId.hashValue, context: arguments.context, arguments: arguments, peerView: peerView, threadData: nil, threadId: nil, stories: stories, viewType: viewType, editing: editable, updatingPhotoState: updatingPhotoState, updatePhoto: { image, control in
                 arguments.updateContactPhoto(image, control: control, type: .set)
-            }, giftsContext: arguments.getStarGiftsContext?(), savedMusic: savedMusic, profileSavedMusic: arguments.getSavedMusicContext?())
+            }, giftsContext: arguments.getStarGiftsContext?(), savedMusic: savedMusic, profileSavedMusic: arguments.getSavedMusicContext?(), mutedByDefault: mutedByDefault)
         case let .personalChannelInfo(_, left, right, viewType):
             return GeneralTextRowItem(initialSize, text: left, viewType: viewType, rightItem: .init(isLoading: false, text: .initialize(string: right, color: theme.colors.listGrayText, font: .normal(.small))))
         case let .personalChannel(_, item, viewType):
@@ -2695,7 +2698,7 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
 
 
 
-func userInfoEntries<Context: AccountContextProtocol>(view: PeerView, arguments: PeerInfoArguments<Context>, mediaTabsData: PeerMediaTabsData, source: PeerInfoController<Context>.Source, stories: PeerExpiringStoryListContext.State?, personalChannel: UserInfoPersonalChannel?, revenueState: StarsRevenueStatsContextState?, tonRevenueState: StarsRevenueStatsContextState?, webAppPermissionsState: WebAppPermissionsState?, savedMuicProfileState: ProfileSavedMusicContext.State?) -> [PeerInfoEntry] {
+func userInfoEntries<Context: AccountContextProtocol>(view: PeerView, arguments: PeerInfoArguments<Context>, mediaTabsData: PeerMediaTabsData, source: PeerInfoController<Context>.Source, stories: PeerExpiringStoryListContext.State?, personalChannel: UserInfoPersonalChannel?, revenueState: StarsRevenueStatsContextState?, tonRevenueState: StarsRevenueStatsContextState?, webAppPermissionsState: WebAppPermissionsState?, savedMuicProfileState: ProfileSavedMusicContext.State?, mutedByDefault: Bool) -> [PeerInfoEntry] {
     
     if savedMuicProfileState != nil {
         var bp = 0
@@ -2711,7 +2714,7 @@ func userInfoEntries<Context: AccountContextProtocol>(view: PeerView, arguments:
     
     let editing = state.editingState != nil
 
-    entries.append(UserInfoEntry<Context>.info(sectionId: sectionId, peerView: view, editable: editing, updatingPhotoState: state.updatingPhotoState, stories: stories, savedMuicProfileState: savedMuicProfileState, viewType: .singleItem))
+    entries.append(UserInfoEntry<Context>.info(sectionId: sectionId, peerView: view, editable: editing, updatingPhotoState: state.updatingPhotoState, stories: stories, savedMuicProfileState: savedMuicProfileState, mutedByDefault: mutedByDefault, viewType: .singleItem))
 
     
     if let personalChannel, !editing {
