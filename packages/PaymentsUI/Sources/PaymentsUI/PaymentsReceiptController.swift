@@ -74,6 +74,12 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             let viewType: GeneralViewType
         }
         
+        let isDiamondReceipt = receipt.invoice.currency == XTR
+        func priceText(_ amount: Int64) -> String {
+            let number = formatCurrencyAmount(amount, currency: receipt.invoice.currency)
+            return isDiamondReceipt ? "\(number) \(strings().starListTelegramStars)" : number
+        }
+
         var prices = receipt.invoice.prices
         if let shippingOption = receipt.shippingOption {
             prices += shippingOption.prices
@@ -98,7 +104,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                     viewType = GeneralViewType.firstItem.withUpdatedInsets(insets)
                 }
             }
-            let tuple = Tuple(label:price.label, price: formatCurrencyAmount(price.amount, currency: receipt.invoice.currency), viewType: viewType)
+            let tuple = Tuple(label:price.label, price: priceText(price.amount), viewType: viewType)
             
             entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_checkout_price(price.label, index: i), equatable: InputDataEquatable(tuple), comparable: nil, item: { initialSize, stableId in
                 return PaymentsCheckoutPriceItem(initialSize, stableId: stableId, title: tuple.label, price: tuple.price, font: .normal(.text), color: theme.colors.grayText, viewType: tuple.viewType)
@@ -106,10 +112,11 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             index += 1
         }
         
-        if !prices.isEmpty {
-            let viewType = GeneralViewType.lastItem.withUpdatedInsets(last)
+        if isDiamondReceipt || !prices.isEmpty {
+            let viewType = prices.isEmpty ? GeneralViewType.singleItem : GeneralViewType.lastItem.withUpdatedInsets(last)
 
-            let tuple = Tuple(label: strings().checkoutTotalAmount, price: formatCurrencyAmount(prices.reduce(0, { $0 + $1.amount}), currency: receipt.invoice.currency), viewType: viewType)
+            let total = isDiamondReceipt ? receipt.invoiceMedia.totalAmount : prices.reduce(0, { $0 + $1.amount })
+            let tuple = Tuple(label: strings().checkoutTotalAmount, price: priceText(total), viewType: viewType)
             
             entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_checkout_price(strings().checkoutTotalAmount, index: .max), equatable: InputDataEquatable(tuple), comparable: nil, item: { initialSize, stableId in
                 return PaymentsCheckoutPriceItem(initialSize, stableId: stableId, title: tuple.label, price: tuple.price, font: .medium(.text), color: theme.colors.text, viewType: tuple.viewType)
@@ -122,7 +129,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         }
         
         var fields = receipt.invoice.requestedFields.intersection([.shippingAddress, .email, .name, .phone])
-        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_checkout_payment_method, data: .init(name: strings().checkoutPaymentMethod, color: theme.colors.text, type: .context(receipt.credentialsTitle), viewType: fields.isEmpty ? .singleItem : .firstItem, enabled: false)))
+        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_checkout_payment_method, data: .init(name: strings().checkoutPaymentMethod, color: theme.colors.text, type: .context(isDiamondReceipt ? strings().starListTelegramStars : receipt.credentialsTitle), viewType: fields.isEmpty ? .singleItem : .firstItem, enabled: false)))
         index += 1
         
         

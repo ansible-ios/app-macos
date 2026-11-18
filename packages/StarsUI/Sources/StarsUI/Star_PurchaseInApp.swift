@@ -179,8 +179,9 @@ private final class AcceptView : Control {
         let spokenLabel: String
         switch item.request.type {
         case .bot, .paidMedia:
-            spokenLabel = strings().starPurchasePay("\(item.request.count) \(strings().starListTelegramStars)")
-            attr.append(string: strings().starPurchasePay("\(XTRSTAR)\(TINY_SPACE)\(item.request.count)"), color: theme.colors.underSelectedColor, font: .medium(.text))
+            let amount = item.request.count.formattedWithSeparator
+            spokenLabel = strings().starPurchasePay("\(amount) \(strings().starListTelegramStars)")
+            attr.append(string: strings().starPurchasePay("\(XTRSTAR)\(TINY_SPACE)\(amount)"), color: theme.colors.underSelectedColor, font: .medium(.text))
             attr.insertEmbedded(.embedded(name: XTR_ICON, color: theme.colors.underSelectedColor, resize: false), for: XTRSTAR)
         case .subscription:
             spokenLabel = strings().starsPurchaseSubscribeAction

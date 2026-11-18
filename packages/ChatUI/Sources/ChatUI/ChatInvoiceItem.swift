@@ -4,6 +4,7 @@ import InAppSettings
 import Postbox
 import SwiftSignalKit
 import CurrencyFormat
+import MessageTextUtils
 import AppKit
 import ChatHistoryModel
 import DustLayer
@@ -32,7 +33,7 @@ public class ChatInvoiceItem: ChatRowItem {
                 for row in attribute.rows {
                     for button in row.buttons {
                         if case .payment = button.action {
-                            paymentText = button.title
+                            paymentText = media.currency == XTR ? diamondPaymentButtonTitle(button.title) : button.title
                             break outer
                         }
                     }
@@ -42,35 +43,23 @@ public class ChatInvoiceItem: ChatRowItem {
         }
         self.paymentText = paymentText
         
-        if let _ = media.extendedMedia {
-            
-        } else {
+        if media.extendedMedia == nil {
             _ = attr.append(string: media.title, color: theme.chat.linkColor(isIncoming, object.renderType == .bubble), font: .medium(.text))
-            if media.currency != XTR {
-                _ = attr.append(string: "\n")
-            }
-            
+            _ = attr.append(string: "\n")
+            var label: String
             if media.receiptMessageId != nil {
-                var title = strings().checkoutReceiptTitle.uppercased()
-                if media.flags.contains(.isTest) {
-                    title += " (Test)"
-                }
-                _ = attr.append(string: title, color: theme.chat.textColor(isIncoming, object.renderType == .bubble), font: .medium(.text))
+                label = strings().checkoutReceiptTitle.uppercased()
             } else {
-                if media.currency != XTR {
-                    _ = attr.append(string: formatCurrencyAmount(media.totalAmount, currency: media.currency), color: theme.chat.textColor(isIncoming, object.renderType == .bubble), font: .medium(.text))
-                    _ = attr.append(string: " ")
-                    
-                    var title = strings().messageInvoiceLabel.uppercased()
-                    if media.flags.contains(.isTest) {
-                        title += " (Test)"
-                    }
-                    
-                    _ = attr.append(string: title, color: theme.chat.textColor(isIncoming, object.renderType == .bubble), font: .medium(.text))
-                }
-                
+                let amount = media.currency == XTR
+                    ? servicePaymentAmount(media.totalAmount, currency: XTR, embedDiamond: false)
+                    : formatCurrencyAmount(media.totalAmount, currency: media.currency)
+                _ = attr.append(string: amount + " ", color: theme.chat.textColor(isIncoming, object.renderType == .bubble), font: .medium(.text))
+                label = strings().messageInvoiceLabel.uppercased()
             }
-            
+            if media.flags.contains(.isTest) {
+                label += " (Test)"
+            }
+            _ = attr.append(string: label, color: theme.chat.textColor(isIncoming, object.renderType == .bubble), font: .medium(.text))
             _ = attr.append(string: "\n")
         }
         

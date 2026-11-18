@@ -8,7 +8,7 @@ import FoundationUtils
 public let clown: String = "🤡"
 
 public let itunesAppLink = "https://apps.apple.com/us/app/telegram/id747648890"
-public let XTRSTAR: String = "⭐️"
+public let XTRSTAR: String = "💎"
 public enum DiamondAppearance {
     public static var foreground: NSColor {
         return theme.colors.isDark ? NSColor(0x5DBBFF) : NSColor(0x087AC4)

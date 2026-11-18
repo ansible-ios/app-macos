@@ -15,10 +15,17 @@ final class ReplyMarkupContainerView: View {
     var accountIdentity: ObjectIdentifier?
 }
 
+func diamondPaymentButtonTitle(_ title: String) -> String {
+    return replacingLegacyCurrencyStar(in: title, with: XTRSTAR)
+        .replacingOccurrences(of: #"(?<![\p{L}_])XTR(?![\p{L}_])"#, with: XTRSTAR, options: .regularExpression)
+        .replacingOccurrences(of: "Telegram Stars", with: strings().starListTelegramStars)
+}
+
 public class ReplyMarkupButtonLayout {
 
     public private(set) var width:CGFloat = 0
     public let text:TextViewLayout
+    fileprivate let paymentAccessibilityLabel: String?
     public let button:ReplyMarkupButton
     public let presentation: TelegramPresentationTheme
     public let styleBackgroundColor: NSColor?
@@ -48,7 +55,27 @@ public class ReplyMarkupButtonLayout {
             color = theme.controllerBackgroundMode.hasWallpaper && !isInput ? theme.chatServiceItemTextColor : theme.colors.text
         }
 
-        attr.append(string: paid ? strings().messageReplyActionButtonShowReceipt : button.title.fixed, color: color, font: .semibold(.short))
+        var title = button.title.fixed
+        if case .payment = button.action {
+            if paid {
+                title = strings().messageReplyActionButtonShowReceipt
+            } else if xtrAmount != nil {
+                title = diamondPaymentButtonTitle(title)
+            }
+            self.paymentAccessibilityLabel = xtrAmount == nil ? title : title.replacingOccurrences(of: XTRSTAR, with: strings().starListTelegramStars)
+        } else {
+            self.paymentAccessibilityLabel = nil
+        }
+        if case .payment = button.action, xtrAmount != nil {
+            for (index, part) in title.components(separatedBy: XTRSTAR).enumerated() {
+                if index > 0 {
+                    attr.append(.embedded(name: XTR_ICON, color: color, resize: false))
+                }
+                attr.append(string: part, color: color, font: .semibold(.short))
+            }
+        } else {
+            attr.append(string: title, color: color, font: .semibold(.short))
+        }
 
         if let iconFileId = button.style?.iconFileId {
             attr.insert(.initialize(string: clown_space), at: 0)
@@ -224,6 +251,7 @@ public class ReplyMarkupNode: Node {
                     }
                 }
                 btnView.set(text: button.text, context: self.interactions.context)
+                btnView.setAccessibilityLabel(button.paymentAccessibilityLabel)
                 
                 if let actionImage {
                     let urlView = btnView.subviews.first(where: { $0 is ImageView }) as? ImageView ?? ImageView()
