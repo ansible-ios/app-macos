@@ -104,15 +104,8 @@ public class StatisticRowItem: GeneralRowItem {
                 case .xtr:
                     let image = TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed()
                     let size = image.backingSize
-                    let point = point
-                        
                     context.saveGState()
                     context.resetClip()
-                    context.translateBy(x: point.x, y: point.y)
-                    let angle: CGFloat = -35 * (.pi / 180)
-                    context.rotate(by: angle)
-                    context.translateBy(x: -point.x, y: -point.y)
-                    context.concatenate(CGAffineTransform.identity)
                     context.draw(image, in: CGRect(origin: point.offsetBy(dx: -size.width/2, dy: -size.height/2 + 2), size: size))
                     context.restoreGState()
                 case .ton:

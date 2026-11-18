@@ -61,14 +61,14 @@ private final class Arguments {
     let withdraw:()->Void
     let withdrawStars:()->Void
     let promo:()->Void
-    let loadDetailedGraph:(StatsGraph, Int64) -> Signal<StatsGraph?, NoError>
+    let loadDetailedGraph:(LocalTelegramCurrency, StatsGraph, Int64) -> Signal<StatsGraph?, NoError>
     let transaction:(Star_Transaction)->Void
     let toggleAds:()->Void
     let loadMore:(State.TransactionMode)->Void
     let toggleTransactionType:(State.TransactionMode)->Void
     let openStarsTransaction:(Star_Transaction)->Void
     let openAffiliate:()->Void
-    init(context: any AccountContextProtocol, interactions: TextView_Interactions, updateState:@escaping(Updated_ChatTextInputState)->Void, executeLink:@escaping(String)->Void, withdraw:@escaping()->Void, promo: @escaping()->Void, loadDetailedGraph:@escaping(StatsGraph, Int64) -> Signal<StatsGraph?, NoError>, transaction:@escaping(Star_Transaction)->Void, toggleAds:@escaping()->Void, loadMore:@escaping(State.TransactionMode)->Void, toggleTransactionType:@escaping(State.TransactionMode)->Void, openStarsTransaction:@escaping(Star_Transaction)->Void, withdrawStars:@escaping()->Void, openAffiliate:@escaping()->Void) {
+    init(context: any AccountContextProtocol, interactions: TextView_Interactions, updateState:@escaping(Updated_ChatTextInputState)->Void, executeLink:@escaping(String)->Void, withdraw:@escaping()->Void, promo: @escaping()->Void, loadDetailedGraph:@escaping(LocalTelegramCurrency, StatsGraph, Int64) -> Signal<StatsGraph?, NoError>, transaction:@escaping(Star_Transaction)->Void, toggleAds:@escaping()->Void, loadMore:@escaping(State.TransactionMode)->Void, toggleTransactionType:@escaping(State.TransactionMode)->Void, openStarsTransaction:@escaping(Star_Transaction)->Void, withdrawStars:@escaping()->Void, openAffiliate:@escaping()->Void) {
         self.context = context
         self.interactions = interactions
         self.updateState = updateState
@@ -224,6 +224,7 @@ private let _id_balance_ton = InputDataIdentifier("_id_ton_balance")
 
 private let _id_top_hours_graph = InputDataIdentifier("_id_top_hours_graph")
 private let _id_revenue_graph = InputDataIdentifier("_id_revenue_graph")
+private let _id_diamond_revenue_graph = InputDataIdentifier("_id_diamond_revenue_graph")
 
 private let _id_switch_ad = InputDataIdentifier("_id_switch_ad")
 
@@ -308,7 +309,7 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
                 ChartsDataManager.readChart(data: string.data(using: .utf8)!, sync: true, success: { collection in
                     entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: graph.identifier, equatable: InputDataEquatable(graph.graph), comparable: nil, item: { initialSize, stableId in
                         return StatisticRowItem(initialSize, stableId: stableId, context: arguments.context, collection: collection, viewType: .singleItem, type: graph.type, rate: graph.rate, title: graph.title, getDetailsData: { date, completion in
-                            detailedDisposable.set(arguments.loadDetailedGraph(graph.graph, Int64(date.timeIntervalSince1970) * 1000).start(next: { graph in
+                            detailedDisposable.set(arguments.loadDetailedGraph(.ton, graph.graph, Int64(date.timeIntervalSince1970) * 1000).start(next: { graph in
                                 if let graph = graph, case let .Loaded(_, data) = graph {
                                     completion(data)
                                 }
@@ -356,7 +357,7 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
             
             var graphs: [Graph] = []
             if let graph = state.revenueGraph, !graph.isEmpty {
-                graphs.append(Graph(graph: graph, title: strings().fragmentStarsRevenueTitle, identifier: _id_revenue_graph, type: .currency(XTR), rate: state.balance.usdRate, load: { identifier in
+                graphs.append(Graph(graph: graph, title: strings().fragmentStarsRevenueTitle, identifier: _id_diamond_revenue_graph, type: .currency(XTR), rate: state.balance.usdRate, load: { identifier in
                     
                 }))
             }
@@ -372,7 +373,7 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
                     ChartsDataManager.readChart(data: string.data(using: .utf8)!, sync: true, success: { collection in
                         entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: graph.identifier, equatable: InputDataEquatable(graph.graph), comparable: nil, item: { initialSize, stableId in
                             return StatisticRowItem(initialSize, stableId: stableId, context: arguments.context, collection: collection, viewType: .singleItem, type: graph.type, rate: graph.rate, title: graph.title, getDetailsData: { date, completion in
-                                detailedDisposable.set(arguments.loadDetailedGraph(graph.graph, Int64(date.timeIntervalSince1970) * 1000).start(next: { graph in
+                                detailedDisposable.set(arguments.loadDetailedGraph(.xtr, graph.graph, Int64(date.timeIntervalSince1970) * 1000).start(next: { graph in
                                     if let graph = graph, case let .Loaded(_, data) = graph {
                                         completion(data)
                                     }
@@ -910,8 +911,9 @@ public func FragmentMonetizationController(context: any AccountContextProtocol, 
     }, promo: {
         let isBot = stateValue.with { $0.peer?._asPeer().isBot ?? false }
         showModal(with: FragmentMonetizationPromoController(context: context, peerId: peerId, isBot: isBot), for: context.window)
-    }, loadDetailedGraph: { [weak contextObject] graph, x in
-        return contextObject?.stats.loadDetailedGraph(graph, x: x) ?? .complete()
+    }, loadDetailedGraph: { [weak contextObject] currency, graph, x in
+        let revenue = currency == .xtr ? contextObject?.starsRevenue : contextObject?.stats
+        return revenue?.loadDetailedGraph(graph, x: x) ?? .complete()
     }, transaction: { transaction in
         showModal(with: Star_TransactionScreen(context: context, fromPeerId: peerId, peer: stateValue.with { $0.peer }, transaction: transaction.native), for: context.window)
     }, toggleAds: {
@@ -1086,7 +1088,8 @@ private final class WithdrawInputView : GeneralRowView {
                         
             let min_withdraw = item.arguments.context.appConfiguration.getGeneralValue("stars_revenue_withdrawal_min", orElse: 1000)
             
-            attr.append(string: strings().fragmentStarsMinWithdraw(Int(min_withdraw)), color: theme.colors.text, font: .medium(.text))
+            attr.append(string: replacingLegacyCurrencyStar(in: strings().fragmentStarsMinWithdraw(Int(min_withdraw)), with: strings().starListTelegramStars), color: theme.colors.text, font: .medium(.text))
+            attr.detectBoldColorInString(with: .medium(.text))
             let layout = TextViewLayout(attr)
             layout.measure(width: frame.width - 70)
             
@@ -1334,7 +1337,7 @@ private func withdrawEntries(_ state: StarsState, arguments: WithdrawArguments) 
     var index: Int32 = 0
     
     entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: .init("header"), equatable: .init(state), comparable: nil, item: { initialSize, stableId in
-        return WithdrawHeaderItem(initialSize, stableId: stableId, balance: withdrawBalanceText(state.balance.stars), arguments: arguments)
+        return WithdrawHeaderItem(initialSize, stableId: stableId, balance: withdrawBalanceText(state.balance.stars), currency: .stars, arguments: arguments)
     }))
     
     entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().fragmentStarWithdrawPlaceholder), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))

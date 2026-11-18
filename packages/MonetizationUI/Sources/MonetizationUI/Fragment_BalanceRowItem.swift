@@ -88,7 +88,7 @@ final class Fragment_BalanceRowItem : GeneralRowItem {
     override var accessibilityLabel: String? {
         switch balance.currency {
         case .xtr:
-            return tonBalance.attributedString.string + " " + strings().voiceOverCommonStars
+            return tonBalance.attributedString.string + " " + strings().starListTelegramStars
         case .ton:
             return tonBalance.attributedString.string + " TON"
         }

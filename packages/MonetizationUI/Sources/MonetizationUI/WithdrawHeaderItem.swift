@@ -31,9 +31,11 @@ final class WithdrawArguments {
 
 final class WithdrawHeaderItem : GeneralRowItem {
     fileprivate let titleLayout: TextViewLayout
+    private let currencyName: String
     fileprivate let balance: TextViewLayout
     fileprivate let arguments: WithdrawArguments
-    init(_ initialSize: NSSize, stableId: AnyHashable, balance: NSAttributedString, arguments: WithdrawArguments) {
+    init(_ initialSize: NSSize, stableId: AnyHashable, balance: NSAttributedString, currency: CurrencyAmount.Currency, arguments: WithdrawArguments) {
+        self.currencyName = currency == .stars ? strings().starListTelegramStars : TON
         self.arguments = arguments
         self.titleLayout = .init(.initialize(string: strings().fragmentStarWithdraw, color: theme.colors.text, font: .medium(.text)), maximumNumberOfLines: 1)
         
@@ -54,7 +56,7 @@ final class WithdrawHeaderItem : GeneralRowItem {
     }
 
     override var accessibilityValue: String? {
-        return balance.attributedString.string.replacingOccurrences(of: clown, with: "").trimmingCharacters(in: .whitespaces)
+        return balance.attributedString.string.replacingOccurrences(of: clown, with: currencyName + " ").trimmingCharacters(in: .whitespaces)
     }
 }
 

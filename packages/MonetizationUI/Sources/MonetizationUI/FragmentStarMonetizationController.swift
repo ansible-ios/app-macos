@@ -689,9 +689,9 @@ private final class WithdrawInputView : GeneralRowView {
             switch value.currency {
             case .stars:
                 if value.amount.value < min_withdraw {
-                    attr.append(string: strings().fragmentStarsMinWithdraw(Int(min_withdraw)), color: theme.colors.text, font: .medium(.text))
+                    attr.append(string: replacingLegacyCurrencyStar(in: strings().fragmentStarsMinWithdraw(Int(min_withdraw)), with: strings().starListTelegramStars), color: theme.colors.text, font: .medium(.text))
                 } else {
-                    attr.append(string: strings().fragmentStarsMaxWithdraw(Int(max_withdraw)), color: theme.colors.text, font: .medium(.text))
+                    attr.append(string: replacingLegacyCurrencyStar(in: strings().fragmentStarsMaxWithdraw(Int(max_withdraw)), with: strings().starListTelegramStars), color: theme.colors.text, font: .medium(.text))
                 }
             case .ton:
                 if value.amount.value < min_withdraw {
@@ -701,6 +701,7 @@ private final class WithdrawInputView : GeneralRowView {
                 }
             }
             
+            attr.detectBoldColorInString(with: .medium(.text))
             let layout = TextViewLayout(attr)
             layout.measure(width: frame.width - 70)
             
@@ -773,7 +774,7 @@ private final class WithdrawInputView : GeneralRowView {
             self.starView.set(text: layout, context: item.arguments.context)
 
             
-            inputView.placeholder = strings().fragmentStarAmountPlaceholder
+            inputView.placeholder = item.balance.currency == .ton ? strings().voiceOverCommonTonAmount : strings().fragmentStarAmountPlaceholder
             
             inputView.context = item.arguments.context
             inputView.interactions.max_height = 500
@@ -994,7 +995,7 @@ private func withdrawEntries(_ state: State, arguments: WithdrawArguments) -> [I
     var index: Int32 = 0
     
     entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: .init("header"), equatable: .init(state), comparable: nil, item: { initialSize, stableId in
-        return WithdrawHeaderItem(initialSize, stableId: stableId, balance: withdrawBalanceText(state.balanceAmount), arguments: arguments)
+        return WithdrawHeaderItem(initialSize, stableId: stableId, balance: withdrawBalanceText(state.balanceAmount), currency: state.balanceAmount.currency, arguments: arguments)
     }))
     
     entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().fragmentStarWithdrawPlaceholder), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))
