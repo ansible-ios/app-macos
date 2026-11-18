@@ -82,6 +82,24 @@ public extension CurrencyAmount.Currency {
 
 
 public extension CurrencyAmount {
+    var suggestedPostAmountText: String {
+        switch currency {
+        case .stars:
+            let number = amount.nanos == 0 ? amount.value.formattedWithSeparator : NSDecimalNumber(decimal: Decimal(amount.value) + Decimal(Int(amount.nanos)) / 1_000_000_000).stringValue
+            return "\(number) \(strings().starListTelegramStars)"
+        case .ton:
+            return formatReceiptAmount(amount.value, currency: TON)
+        }
+    }
+
+    func suggestedPostProceeds(permille: Int32) -> CurrencyAmount {
+        let rate = Int64(min(1000, max(0, permille)))
+        let whole = amount.value / 1000 * rate
+        let remainder = amount.value % 1000 * rate
+        let rounding: Int64 = currency == .stars ? 999 : 0
+        return CurrencyAmount(amount: StarsAmount(value: whole + (remainder + rounding) / 1000, nanos: 0), currency: currency)
+    }
+
     var fullyFormatted: String {
         switch currency {
         case .ton:

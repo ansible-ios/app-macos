@@ -1513,27 +1513,15 @@ public final class ChatInteraction : InterfaceObserver  {
                                 action: .approve(timestamp: nil)
                             ).start()
                         } else {
-                            let comission = context.appConfiguration.getGeneralValue("ton_suggested_post_commission_permille", orElse: 850)
-                            
-                            let formatted: String
-                            if let amount {
-                                let totalAmount = "\(Double(formatCurrencyAmount(amount.amount.value, currency: TON))! * Double(comission.decemial / 100.0))".prettyCurrencyNumberUsd
-
-                                switch amount.currency {
-                                case .ton:
-                                    formatted = "\(totalAmount) \(TON)"
-                                case .stars:
-                                    formatted = strings().starListItemCountOther(Int(amount.amount.totalValue))
-                                }
-                            } else {
-                                formatted = strings().chatServiceSuggestPostHeaderPriceFree
-                            }
-                            
+                            let paidAmount = amount.flatMap { $0.amount.value > 0 ? $0 : nil }
+                            let rateKey = paidAmount?.currency == .ton ? "ton_suggested_post_commission_permille" : "stars_suggested_post_commission_permille"
+                            let permille = min(1000, max(0, context.appConfiguration.getGeneralValue(rateKey, orElse: 850)))
+                            let formatted = paidAmount?.suggestedPostProceeds(permille: permille).suggestedPostAmountText ?? strings().chatServiceSuggestPostHeaderPriceFree
 
                             if attribute.timestamp == nil {
                                 let infoText = TextViewLayout(
                                     .initialize(
-                                        string: amount != nil ? strings().chatSuggestPostPublishInfo(formatted, "\(comission.decemial.string)%") : strings().chatSuggestPostPublishInfoFree,
+                                        string: paidAmount != nil ? strings().chatSuggestPostPublishInfo(formatted, "\(permille.decemial.string)%") : strings().chatSuggestPostPublishInfoFree,
                                         color: theme.colors.text,
                                         font: .normal(.text)
                                     ),
@@ -1573,8 +1561,8 @@ public final class ChatInteraction : InterfaceObserver  {
                             } else {
                                 let author = keyboardMessage.author?.displayTitle ?? ""
                                 let info: String
-                                if amount != nil {
-                                    info = strings().chatSuggestPostPublishConfirmInfo(author, formatted, "\(comission.decemial.string)%")
+                                if paidAmount != nil {
+                                    info = strings().chatSuggestPostPublishConfirmInfo(author, formatted, "\(permille.decemial.string)%")
                                 } else {
                                     info = strings().chatSuggestPostPublishConfirmInfoFree(author)
                                 }

@@ -48,7 +48,7 @@ public class SuggestPostPanelModel: ChatAccessoryModel {
 
         if let amount = data.amount, amount.amount.value > 0 {
             let dateString = data.date.flatMap({ stringForDate(timestamp: $0) }) ?? strings().suggestPostPanelTextAnytime
-            let formatted = strings().suggestPostPanelTextPriceAndDate(amount.fullyFormatted, dateString)
+            let formatted = strings().suggestPostPanelTextPriceAndDate(amount.suggestedPostAmountText, dateString)
             text.append(string: "\(clown_space)\(formatted)", color: theme.colors.text, font: .normal(.text))
 
             switch amount.currency {
@@ -61,8 +61,7 @@ public class SuggestPostPanelModel: ChatAccessoryModel {
         } else if let time = data.date {
             let dateString = stringForDate(timestamp: time)
             let formatted = strings().suggestPostPanelTextFreeAndDate(dateString)
-            text.append(string: "\(clown_space)\(formatted)", color: theme.colors.text, font: .normal(.text))
-            text.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
+            text.append(string: formatted, color: theme.colors.text, font: .normal(.text))
         } else {
             text.append(string: strings().suggestPostPanelTextOfferPrice, color: theme.colors.text, font: .normal(.text))
         }

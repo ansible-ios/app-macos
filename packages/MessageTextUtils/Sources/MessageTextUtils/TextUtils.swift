@@ -618,6 +618,12 @@ func incomingGramTransferPreviewText(_ message: Message, accountPeerId: PeerId, 
     return nil
 }
 
+public func suggestedPostPayoutText(_ message: Message, amount: CurrencyAmount) -> String {
+    let channel = message.peers[message.id.peerId] as? TelegramChannel
+    let publisher = channel?.isMonoForum == true ? channel?.linkedMonoforumId.flatMap { message.peers[$0] as? TelegramChannel } : nil
+    return strings().chatServiceSuggestPostSuccessReceived(publisher?.title ?? channel?.title ?? "", amount.suggestedPostAmountText)
+}
+
 public func servicePaymentAmount(_ amount: Int64, currency: String, embedDiamond: Bool) -> String {
     guard currency == XTR else {
         return formatReceiptAmount(amount, currency: currency)
@@ -1427,18 +1433,7 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
                 text = dappName.map { strings().chatServiceWalletRequestFrom($0) } ?? strings().chatServiceWalletRequest
             }
         case let .suggestedPostSuccess(amount):
-            var isUser = true
-            var channelName: String = ""
-            if let peer = message.peers[message.id.peerId] as? TelegramChannel {
-                channelName = peer.title
-                if peer.isMonoForum, let linkedMonoforumId = peer.linkedMonoforumId, let mainChannel = message.peers[linkedMonoforumId] as? TelegramChannel, mainChannel.hasPermission(.manageDirect) {
-                    isUser = false
-                }
-            }
-            let _ = isUser
-            
-            let amountString: String = amount.fullyFormatted
-            text = strings().chatServiceSuggestPostSuccessReceived(channelName, amountString)
+            text = suggestedPostPayoutText(message, amount: amount)
 
         case let .suggestedPostRefund(info):
             var isUser = true

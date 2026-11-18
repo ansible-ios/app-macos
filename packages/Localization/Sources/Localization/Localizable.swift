@@ -5107,7 +5107,10 @@ public final class L10n {
   public static var chatServiceSuggestPostRefundedUser: String  { return L10n.tr("Localizable", "Chat.Service.SuggestPost.Refunded.User") }
   /// 🤝 Post approved.
   public static var chatServiceSuggestPostStatusApproved: String  { return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.Approved") }
-  /// 🔁 If %1$@ removes the post before it has been live for 24 hours, your Stars will be refunded.
+  public static func chatServiceSuggestPostStatusTonSettlement(_ peer: String) -> String {
+    return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.TonSettlement", peer)
+  }
+  /// 🔁 If %1$@ removes the post before it has been live for 24 hours, your Diamonds will be refunded.
   public static func chatServiceSuggestPostStatusRefundCondition(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.RefundCondition", p1)
   }

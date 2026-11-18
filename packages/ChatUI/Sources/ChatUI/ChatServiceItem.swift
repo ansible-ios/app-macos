@@ -400,13 +400,8 @@ public class ChatServiceItem: ChatRowItem {
             }
 
             let amountString: String
-            if let int = Int(amount), int > 0 {
-                switch currency {
-                case .stars:
-                    amountString = strings().starListItemCountOther(int)
-                case .ton:
-                    amountString = formatCurrencyAmount(Int64(int), currency: TON).prettyCurrencyNumberUsd + " " + TON
-                }
+            if let value = Int64(amount), value > 0 {
+                amountString = CurrencyAmount(amount: StarsAmount(value: value, nanos: 0), currency: currency).suggestedPostAmountText
             } else {
                 amountString = strings().chatServiceSuggestPostHeaderPriceFree
             }
@@ -454,36 +449,22 @@ public class ChatServiceItem: ChatRowItem {
                     alignment: .center
                 )
 
-                var text = ""
-
+                var paragraphs: [String] = []
                 if let timestamp {
                     let date = stringForDate(timestamp: timestamp)
-                    if !isIncoming {
-                        text += strings().chatServiceSuggestPostStatusPublishOutgoing(peer.displayTitle, date)
-                    } else {
-                        text += strings().chatServiceSuggestPostStatusPublishIncoming(peer.displayTitle, date)
-                    }
+                    paragraphs.append(isIncoming ? strings().chatServiceSuggestPostStatusPublishIncoming(peer.displayTitle, date) : strings().chatServiceSuggestPostStatusPublishOutgoing(peer.displayTitle, date))
                 }
-
                 if let amount, amount.amount.value > 0 {
-                    text += "\n\n"
-                    let formatted = amount.fullyFormatted
-                    if !isIncoming {
-                        text += strings().chatServiceSuggestPostStatusChargeOutgoing(formatted)
+                    let price = amount.suggestedPostAmountText
+                    paragraphs.append(isIncoming ? strings().chatServiceSuggestPostStatusChargeIncoming(price) : strings().chatServiceSuggestPostStatusChargeOutgoing(price))
+                    if amount.currency == .stars {
+                        paragraphs.append(isIncoming ? strings().chatServiceSuggestPostStatusReleaseIncoming(peer.displayTitle) : strings().chatServiceSuggestPostStatusReleaseOutgoing(peer.displayTitle))
+                        paragraphs.append(strings().chatServiceSuggestPostStatusRefundCondition(peer.displayTitle))
                     } else {
-                        text += strings().chatServiceSuggestPostStatusChargeIncoming(formatted)
+                        paragraphs.append(strings().chatServiceSuggestPostStatusTonSettlement(peer.displayTitle))
                     }
                 }
-
-                text += "\n\n"
-                if !isIncoming {
-                    text += strings().chatServiceSuggestPostStatusReleaseOutgoing(peer.displayTitle)
-                } else {
-                    text += strings().chatServiceSuggestPostStatusReleaseIncoming(peer.displayTitle)
-                }
-
-                text += "\n\n"
-                text += strings().chatServiceSuggestPostStatusRefundCondition(peer.displayTitle)
+                text = paragraphs.joined(separator: "\n\n")
 
             case .rejected(let reason, let comment):
                 let title: String
@@ -2614,19 +2595,7 @@ public class ChatServiceItem: ChatRowItem {
                         textColor: grayTextColor
                     )
                 case let .suggestedPostSuccess(amount):
-                    var isUser = true
-                    var channelName: String = ""
-                    if let peer = message.peers[message.id.peerId] as? TelegramChannel {
-                        channelName = peer.title
-                        if peer.isMonoForum, let linkedMonoforumId = peer.linkedMonoforumId, let mainChannel = message.peers[linkedMonoforumId] as? TelegramChannel, mainChannel.hasPermission(.manageDirect) {
-                            isUser = false
-                        }
-                    }
-                    let _ = isUser
-                    
-                    let amountString: String = amount.fullyFormatted
-                    
-                    attributedString.append(string: strings().chatServiceSuggestPostSuccessReceived(channelName, amountString), color: grayTextColor, font: .normal(.text))
+                    attributedString.append(string: suggestedPostPayoutText(message, amount: amount), color: grayTextColor, font: .normal(.text))
                 case let .suggestedPostRefund(info):
                     var isUser = true
                     if let peer = message.peers[message.id.peerId] as? TelegramChannel {
