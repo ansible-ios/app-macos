@@ -160,5 +160,23 @@
     "width": 512,
     "height": 512,
     "frames": 180
+  },
+  {
+    "path": "Resources/tgs/new_folder.tgs",
+    "role": "chat-folder-loading-and-creation",
+    "source": "ios/ChatListNewFolder.ass",
+    "sha256": "f33935a75651f69b8914d93fb3b8fa929f33116b9c8609eabe1a0af957f7017b",
+    "width": 512,
+    "height": 512,
+    "frames": 120
+  },
+  {
+    "path": "Resources/tgs/searching_duck.tgs",
+    "role": "empty-channel-and-bot-search",
+    "source": "web/assets_ass__SearchingDuck.ass",
+    "sha256": "609b5503a8b5b99242234639a43509d02b02c7630cb05b516a7d535f3d03a7a1",
+    "width": 512,
+    "height": 512,
+    "frames": 180
   }
 ]

@@ -544,7 +544,7 @@ fileprivate func prepareEntries(from:[AppearanceWrapperEntry<ChatListSearchEntry
                 attr.append(string: text1, color: theme.colors.darkGrayText, font: .medium(.header))
                 attr.append(string: "\n")
                 attr.append(string: text2, color: theme.colors.darkGrayText, font: .normal(.text))
-                return ChatListUIHooks.shared.makeStickerHeaderItem(initialSize, ChatListSearchEntryStableId.emptySearch, arguments.context, LocalAnimatedSticker.duck_empty, attr, .clear, true)
+                return ChatListUIHooks.shared.makeStickerHeaderItem(initialSize, ChatListSearchEntryStableId.emptySearch, arguments.context, LocalAnimatedSticker.searching_duck, attr, .clear, true)
             }
            
         case let .topPeers(_, articlesEnabled, unreadArticles, selfPeer, peers, unread, online):

@@ -633,6 +633,7 @@
 		27F4F18228463BF100A3B4D4 /* premium_double.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27F4F17F28463BF100A3B4D4 /* premium_double.tgs */; };
 		27F4F1882848CFCC00A3B4D4 /* premium_unlock.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27F4F1872848CFCC00A3B4D4 /* premium_unlock.tgs */; };
 		27F4F192284E401200A3B4D4 /* menu_gear.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27F4F191284E401200A3B4D4 /* menu_gear.tgs */; };
+		04B595DAB5354A54B0D00937 /* searching_duck.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 8CCC2D84D48E48BE80911F28 /* searching_duck.tgs */; };
 		27F674182976EC430014DCB9 /* duck_empty.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27F67415297680DC0014DCB9 /* duck_empty.tgs */; };
 		2A1C61EAF957F3B36BAE4530 /* MessageCustomTagsCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2355DF47ECDDD0EEB526DD /* MessageCustomTagsCompat.swift */; };
 		2D574D327DBA0E1F4FC42C6E /* AnsibleMediaFileResourceUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B91030E9C2A21147E3220E /* AnsibleMediaFileResourceUpdate.swift */; };
@@ -1652,6 +1653,7 @@
 		27F4F17F28463BF100A3B4D4 /* premium_double.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = premium_double.tgs; sourceTree = "<group>"; };
 		27F4F1872848CFCC00A3B4D4 /* premium_unlock.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = premium_unlock.tgs; sourceTree = "<group>"; };
 		27F4F191284E401200A3B4D4 /* menu_gear.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_gear.tgs; sourceTree = "<group>"; };
+		8CCC2D84D48E48BE80911F28 /* searching_duck.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = searching_duck.tgs; sourceTree = "<group>"; };
 		27F67415297680DC0014DCB9 /* duck_empty.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = duck_empty.tgs; sourceTree = "<group>"; };
 		2D6F8385102B4672919C2CAD /* RichTextEditorUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = RichTextEditorUI; path = packages/RichTextEditorUI; sourceTree = "<group>"; };
 		2DF2D64BBF1DE7316B147722 /* PhoneNumberUtils */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PhoneNumberUtils; path = packages/PhoneNumberUtils; sourceTree = "<group>"; };
@@ -3257,6 +3259,7 @@
 				27F3BB8F2B4C3D6500BC37C2 /* show_status_profile.tgs */,
 				27F3BB902B4C3D6600BC37C2 /* show_status_read.tgs */,
 				27994ED92A5EF7C30084D982 /* stories_archive.tgs */,
+				8CCC2D84D48E48BE80911F28 /* searching_duck.tgs */,
 				27F67415297680DC0014DCB9 /* duck_empty.tgs */,
 				27C6B65C29DC123500F7E7AC /* share_folder.tgs */,
 				276F9B892935FD7800E35997 /* pirate_flag.tgs */,
@@ -4026,6 +4029,7 @@
 				272934102778DFFA00F10D3C /* menu_file.tgs in Resources */,
 				27803C0127A3E944007B0FA9 /* menu_folder_student.tgs in Resources */,
 				27C6B65D29DC123500F7E7AC /* share_folder.tgs in Resources */,
+				04B595DAB5354A54B0D00937 /* searching_duck.tgs in Resources */,
 				27F674182976EC430014DCB9 /* duck_empty.tgs in Resources */,
 				27672EAE26F8D62600297DB4 /* 0.m4a in Resources */,
 				27672EAF26F8D62800297DB4 /* 1.m4a in Resources */,

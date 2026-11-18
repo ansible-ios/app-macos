@@ -37,6 +37,7 @@ public enum LocalAnimatedSticker : String {
     case global_autoremove
     case gigagroup
     case police
+    case searching_duck
     case duck_empty
     case ton_logo
     case bulb
