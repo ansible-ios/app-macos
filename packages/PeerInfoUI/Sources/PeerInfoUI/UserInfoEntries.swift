@@ -3063,25 +3063,19 @@ func userInfoEntries<Context: AccountContextProtocol>(view: PeerView, arguments:
                
                 
                 let starBalance = (revenueState?.stats?.balances.currentBalance.amount.value ?? 0)
-                let tonBalance = (tonRevenueState?.stats?.balances.currentBalance.amount.value ?? 0)
 
                 let hasStars = (revenueState?.stats?.balances.overallRevenue.amount.value ?? 0) > 0
-                let hasTon = (tonRevenueState?.stats?.balances.overallRevenue.amount.value ?? 0) > 0
 
                 
-                if hasStars || hasTon {
+                if hasStars {
                     entries.append(UserInfoEntry<Context>.section(sectionId: sectionId))
                     sectionId += 1
                     
 
                     if hasStars {
-                        entries.append(UserInfoEntry<Context>.botStarsBalance(sectionId: sectionId, text: starBalance == 0 ? "" : strings().peerInfoBotEditStarsCountOther(Int(starBalance)).replacingOccurrences(of: "\(starBalance)", with: starBalance.formattedWithSeparator), viewType: hasTon ? .firstItem : .singleItem))
+                        entries.append(UserInfoEntry<Context>.botStarsBalance(sectionId: sectionId, text: starBalance == 0 ? "" : strings().peerInfoBotEditStarsCountOther(Int(starBalance)).replacingOccurrences(of: "\(starBalance)", with: starBalance.formattedWithSeparator), viewType: .singleItem))
                     }
                     
-                    if hasTon {
-                        let balance = formatCurrencyAmount(tonBalance, currency: TON).prettyCurrencyNumberUsd
-                        entries.append(UserInfoEntry<Context>.botTonBalance(sectionId: sectionId, text: "\(balance)", viewType: hasStars ? .lastItem : .singleItem))
-                    }
                 }
                 
                 var addHeader: Bool = true

@@ -60,26 +60,12 @@ public final class Star_TransactionItem : GeneralRowItem {
         }
        
         let amountAttr = NSMutableAttributedString()
-        switch transaction.currency {
-        case .stars:
-            if transaction.amount.value < 0 {
-                amountAttr.append(string: "\(transaction.amount.string(transaction.currency)) \(clown)", color: theme.colors.redUI, font: .medium(.text))
-            } else {
-                amountAttr.append(string: "+\(transaction.amount.string(transaction.currency)) \(clown)", color: theme.colors.greenUI, font: .medium(.text))
-            }
-        case .ton:
-            if transaction.amount.value < 0 {
-                amountAttr.append(string: "\(transaction.amount.string(transaction.currency)) \(clown)", color: theme.colors.redUI, font: .medium(.text))
-            } else {
-                amountAttr.append(string: "+\(transaction.amount.string(transaction.currency)) \(clown)", color: theme.colors.greenUI, font: .medium(.text))
-            }
+        if transaction.amount.value < 0 {
+            amountAttr.append(string: "\(transaction.amount.string(transaction.currency)) \(clown)", color: theme.colors.redUI, font: .medium(.text))
+        } else {
+            amountAttr.append(string: "+\(transaction.amount.string(transaction.currency)) \(clown)", color: theme.colors.greenUI, font: .medium(.text))
         }
-        switch transaction.currency {
-        case .stars:
-            amountAttr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file, playPolicy: .onceEnd), for: clown)
-        case .ton:
-            amountAttr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.ton_logo.file, color: transaction.amount.value < 0 ? theme.colors.redUI : theme.colors.greenUI, playPolicy: .onceEnd), for: clown)
-        }
+        amountAttr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file, playPolicy: .onceEnd), for: clown)
         
         self.amountLayout = .init(amountAttr)
         
@@ -187,12 +173,7 @@ public final class Star_TransactionItem : GeneralRowItem {
     public override var accessibilityValue: String? {
         let amount = amountLayout.attributedString.string.replacingOccurrences(of: clown, with: "").trimmingCharacters(in: .whitespaces)
         let currency: String
-        switch transaction.currency {
-        case .stars:
-            currency = strings().starListTelegramStars
-        case .ton:
-            currency = "TON"
-        }
+        currency = strings().starListTelegramStars
         return ["\(amount) \(currency)", descLayout?.attributedString.string, dateLayout.attributedString.string].compactMap { $0 }.joined(separator: ", ")
     }
     
@@ -315,7 +296,7 @@ private final class TransactionView : GeneralContainableRowView {
             }
             current.layer?.cornerRadius = 10
                         
-            let reference = StarsTransactionReference(peerId: messageId.peerId, ton: item.transaction.currency == .ton, id: item.transaction.id, isRefund: item.transaction.native.flags.contains(.isRefund))
+            let reference = StarsTransactionReference(peerId: messageId.peerId, ton: false, id: item.transaction.id, isRefund: item.transaction.native.flags.contains(.isRefund))
             
             var updateImageSignal: Signal<ImageDataTransformation, NoError>?
             

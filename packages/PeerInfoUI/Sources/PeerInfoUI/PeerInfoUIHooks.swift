@@ -13,44 +13,6 @@ public protocol PeerInfoPremiumConfiguration {
     var minChannelAutotranslationLevel: Int32 { get }
 }
 
-@available(macOS 10.15, *)
-public struct PeerInfoWalletHooks {
-    public let hasWallet: (any AccountContextProtocol) -> Bool
-    public let sendMoney: (any AccountContextProtocol, Peer) -> Void
-    public let preloadPeerCard: (any AccountContextProtocol, WalletCard) -> Void
-    public let showPeerBalance: (any AccountContextProtocol, Peer, (() -> NSView?)?) -> Void
-
-    public var sendMoneyWithContext: ((any AccountContextProtocol, Peer, AnalyticsContext) -> Void)?
-    public var showPeerBalanceWithContext: ((any AccountContextProtocol, Peer, (() -> NSView?)?, AnalyticsContext) -> Void)?
-
-    public func sendMoneyObserved(_ context: any AccountContextProtocol, _ peer: Peer, analyticsContext: AnalyticsContext) {
-        if let sendMoneyWithContext {
-            sendMoneyWithContext(context, peer, analyticsContext)
-        } else {
-            let presentation = analyticsContext.beginPresentation()
-            withExtendedLifetime(presentation) { sendMoney(context, peer) }
-        }
-    }
-
-    public func showPeerBalanceObserved(_ context: any AccountContextProtocol, _ peer: Peer, _ morphSource: (() -> NSView?)?, analyticsContext: AnalyticsContext) {
-        if let showPeerBalanceWithContext {
-            showPeerBalanceWithContext(context, peer, morphSource, analyticsContext)
-        } else {
-            let presentation = analyticsContext.beginPresentation()
-            withExtendedLifetime(presentation) { showPeerBalance(context, peer, morphSource) }
-        }
-    }
-
-    public init(hasWallet: @escaping (any AccountContextProtocol) -> Bool,
-                sendMoney: @escaping (any AccountContextProtocol, Peer) -> Void,
-                preloadPeerCard: @escaping (any AccountContextProtocol, WalletCard) -> Void,
-                showPeerBalance: @escaping (any AccountContextProtocol, Peer, (() -> NSView?)?) -> Void) {
-        self.hasWallet = hasWallet
-        self.sendMoney = sendMoney
-        self.preloadPeerCard = preloadPeerCard
-        self.showPeerBalance = showPeerBalance
-    }
-}
 
 public struct PeerInfoUIHooks {
     public let freezeAlert: (any AccountContextProtocol) -> Void
@@ -74,7 +36,6 @@ public struct PeerInfoUIHooks {
             navigateToChat(navigation, context, location, mode, focus, holder)
         }
     }
-    public let wallet: Any?
 
     public init(freezeAlert: @escaping (any AccountContextProtocol) -> Void,
                 formatPhoneNumber: @escaping (any AccountContextProtocol, String) -> String,
@@ -85,8 +46,7 @@ public struct PeerInfoUIHooks {
                 showProfileMusicPlayerList: @escaping (any AccountContextProtocol, EnginePeer, TelegramMediaFile, ProfileSavedMusicContext.State, ProfileSavedMusicContext) -> Void,
                 activeProfileMusic: @escaping (any AccountContextProtocol, PeerId) -> (state: ProfileSavedMusicContext.State, context: ProfileSavedMusicContext, playing: TelegramMediaFile?)?,
                 executeNftLink: @escaping (String, String, any AccountContextProtocol) -> Void,
-                navigateToChat: @escaping (NavigationViewController?, any AccountContextProtocol, ChatLocation, ChatMode, ChatFocusTarget?, Atomic<ChatLocationContextHolder?>?) -> Void,
-                wallet: Any?) {
+                navigateToChat: @escaping (NavigationViewController?, any AccountContextProtocol, ChatLocation, ChatMode, ChatFocusTarget?, Atomic<ChatLocationContextHolder?>?) -> Void) {
         self.freezeAlert = freezeAlert
         self.formatPhoneNumber = formatPhoneNumber
         self.resolveUsername = resolveUsername
@@ -97,13 +57,8 @@ public struct PeerInfoUIHooks {
         self.activeProfileMusic = activeProfileMusic
         self.executeNftLink = executeNftLink
         self.navigateToChat = navigateToChat
-        self.wallet = wallet
     }
 
-    @available(macOS 10.15, *)
-    public var walletHooks: PeerInfoWalletHooks {
-        return wallet as! PeerInfoWalletHooks
-    }
 
     private static var _shared: PeerInfoUIHooks?
 
@@ -138,7 +93,7 @@ public struct PeerInfoUIHooks {
         nil
     }, executeNftLink: { _, _, _ in
     }, navigateToChat: { _, _, _, _, _, _ in
-    }, wallet: nil)
+    })
 }
 
 struct PeerInfoPlaceholderPremiumConfiguration: PeerInfoPremiumConfiguration {

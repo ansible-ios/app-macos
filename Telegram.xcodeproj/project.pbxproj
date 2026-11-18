@@ -651,7 +651,6 @@
 		44CA2DA9CAA980BF3DCC85DC /* TelegramThemeHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBEF6A73A2A8EABDCC2720 /* TelegramThemeHooksInstall.swift */; };
 		44FE857BF62B6691D5BE524F /* FilePanelsHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9DF469350C395CCC5F2E1 /* FilePanelsHooksInstall.swift */; };
 		4518F8F646BFF69AD02BEACD /* ChatListFilterPredicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50709F8105EA74A00964D55C /* ChatListFilterPredicate.swift */; };
-		47B0DD3615C85A822EF78058 /* WalletUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5914C6317AE131771C31258C /* WalletUI */; };
 		48FE28EECDE540AC8773E5E2 /* FolderSharingUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8308E4A0238F4910A2442132 /* FolderSharingUI */; };
 		49A4C19820630DE3402CCE37 /* BusinessUI in Frameworks */ = {isa = PBXBuildFile; productRef = 089EAF2CED6E1940E89E9C5F /* BusinessUI */; };
 		4BCEDF3FFC53B19F3C09DCB3 /* FilePanels in Frameworks */ = {isa = PBXBuildFile; productRef = 8586371AE023E25C3F729895 /* FilePanels */; };
@@ -685,7 +684,6 @@
 		949FD57F660632562D92AA10 /* CodeSyntaxKeyBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E78883C7C3C781E2B12AA7 /* CodeSyntaxKeyBridge.swift */; };
 		96DD590B1CDC5E01B72A242D /* PasscodeUI in Frameworks */ = {isa = PBXBuildFile; productRef = E9C8543E0B95C544D50B8DCE /* PasscodeUI */; };
 		9B11872F0C9171AA9F98E01A /* WebAppUI in Frameworks */ = {isa = PBXBuildFile; productRef = F5E77B7BE66D6255F0D65432 /* WebAppUI */; };
-		9C3D251712014DBDB798F464 /* WalletUIIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3576FEC2B401CA8A25439 /* WalletUIIntegration.swift */; };
 		9F03680F22771A9700456348 /* anim_unarchive.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F03680222771A9600456348 /* anim_unarchive.json */; };
 		9F03681022771A9700456348 /* anim_ungroup.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F03680322771A9600456348 /* anim_ungroup.json */; };
 		9F03681122771A9700456348 /* archiveAvatar.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F03680422771A9600456348 /* archiveAvatar.json */; };
@@ -821,7 +819,6 @@
 		D098C7191D7E175A007784E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D098C7181D7E175A007784E4 /* AppDelegate.swift */; };
 		D098C71B1D7E175A007784E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D098C71A1D7E175A007784E4 /* Assets.xcassets */; };
 		D098C71E1D7E175A007784E4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D098C71C1D7E175A007784E4 /* MainMenu.xib */; };
-		D0A1B2C3D4E5F60000000006 /* WalletContext in Frameworks */ = {isa = PBXBuildFile; productRef = D0A1B2C3D4E5F60000000004 /* WalletContext */; };
 		D0A1B2C3D4E5F60000000400 /* wallet_word_list.tgs in Resources */ = {isa = PBXBuildFile; fileRef = D0A1B2C3D4E5F60000000300 /* wallet_word_list.tgs */; };
 		D0A1B2C3D4E5F60000000401 /* wallet_word_check.tgs in Resources */ = {isa = PBXBuildFile; fileRef = D0A1B2C3D4E5F60000000301 /* wallet_word_check.tgs */; };
 		D0A1B2C3D4E5F60000000402 /* wallet_diamond.tgs in Resources */ = {isa = PBXBuildFile; fileRef = D0A1B2C3D4E5F60000000302 /* wallet_diamond.tgs */; };
@@ -931,8 +928,6 @@
 		1D27C94151414C919E7A2F0F /* GigagroupUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5C4531D880544E818C4AFF4E /* GigagroupUI */; };
 		D453551864204E23863FAC17 /* GigagroupHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D6036148B646A3BC3017EF /* GigagroupHooksInstall.swift */; };
 		F3CBAE20B1934EA1A49621A3 /* DeveloperHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C86F158B54DAB8A40AD7B /* DeveloperHooksInstall.swift */; };
-		73DCB846B74D4E12B9D080D1 /* AddTonBalanceUI in Frameworks */ = {isa = PBXBuildFile; productRef = E639FCC6788F471E9EBF7224 /* AddTonBalanceUI */; };
-		C73F81DAD9EA4DEAA40D4D5A /* AddTonBalanceHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8D28ED05E0406EA99ADE81 /* AddTonBalanceHooksInstall.swift */; };
 		27D250170933476EAE79FFC3 /* BlockedPeersHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE02C52DFB4A898677E9F0 /* BlockedPeersHooksInstall.swift */; };
 		5F6604A291A6471A8206E92E /* StatisticsUI in Frameworks */ = {isa = PBXBuildFile; productRef = A9BD06A78BF848C1B2CE8817 /* StatisticsUI */; };
 		89BE8B9480B348639A3A59E3 /* StatisticsHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DFF25C8A724E5ABFCBA9C8 /* StatisticsHooksInstall.swift */; };
@@ -978,7 +973,6 @@
 		26F8A3445EB870ACB07A9BAA /* PasscodeCore in Frameworks */ = {isa = PBXBuildFile; productRef = C0C39F69D94F71B3D37CE102 /* PasscodeCore */; };
 		9AB6DAD8DF0C1248CC621AFB /* PasscodeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8108E8A15C9EE293636E539F /* PasscodeCore */; };
 		4B9679F90FE2EF0F0FD21C7A /* PasscodeUIHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47318F78978A06BD3FA4B985 /* PasscodeUIHooksInstall.swift */; };
-		BE3536CA4246405D5520629A /* WalletUIHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A5FA781BD7994857138FCB /* WalletUIHooksInstall.swift */; };
 		C0DEBACC1000000000000001 /* AccountResetSupport in Frameworks */ = {isa = PBXBuildFile; productRef = C0DEBACC1000000000000003 /* AccountResetSupport */; };
 		C0DEBACC1000000000000002 /* AccountResetSupport in Frameworks */ = {isa = PBXBuildFile; productRef = C0DEBACC1000000000000004 /* AccountResetSupport */; };
 		CC1B7A5AF14F2E01D7424FED /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6E4B215D30D2FBCF08F22B /* main.swift */; };
@@ -1062,7 +1056,6 @@
 		56476F0CAFE1B8E84B91B0D2 /* InstantPageRenderHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantPageRenderHooksInstall.swift; sourceTree = "<group>"; };
 		8F8A6D0AEE41736F5602A06E /* FeatureNavigationHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureNavigationHooksInstall.swift; sourceTree = "<group>"; };
 		47318F78978A06BD3FA4B985 /* PasscodeUIHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeUIHooksInstall.swift; sourceTree = "<group>"; };
-		83A5FA781BD7994857138FCB /* WalletUIHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletUIHooksInstall.swift; sourceTree = "<group>"; };
 		0F8B44C354B3DF133BD84163 /* InputTextViewHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextViewHooksInstall.swift; sourceTree = "<group>"; };
 		116EC91C8D48B4AB71E9C94C /* CubeUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CubeUI; path = packages/CubeUI; sourceTree = "<group>"; };
 		161B04EAF32DFAF90529A800 /* PremiumUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PremiumUI; path = packages/PremiumUI; sourceTree = "<group>"; };
@@ -1676,7 +1669,6 @@
 		5D1C475964FAD1AA5BF7E679 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		5E19FC4A2C71FE3CC4A9F825 /* PassportUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PassportUI; path = packages/PassportUI; sourceTree = "<group>"; };
 		5E81C31524C90586F651FE81 /* ShortPeerRow */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ShortPeerRow; path = packages/ShortPeerRow; sourceTree = "<group>"; };
-		5F3C5423E0B32D3E889E5327 /* WalletUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WalletUI; path = packages/WalletUI; sourceTree = "<group>"; };
 		5FDEFB3D44947CFD3885C60A /* ReportUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ReportUI; path = packages/ReportUI; sourceTree = "<group>"; };
 		65A5BA380D1B6F76FA565FDF /* BrowserHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserHooksInstall.swift; sourceTree = "<group>"; };
 		6661CF3007FF4D908E6C7766 /* SidebarUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SidebarUI; path = packages/SidebarUI; sourceTree = "<group>"; };
@@ -1765,7 +1757,6 @@
 		B8D6B38CCB0BE5D904FBEC2C /* CommunityUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CommunityUI; path = packages/CommunityUI; sourceTree = "<group>"; };
 		BB5AC31385B44F4689A8C428 /* InputDataUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = InputDataUI; path = packages/InputDataUI; sourceTree = "<group>"; };
 		BFC1FBA976950789AFDC11F8 /* TelegramCallsCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramCallsCore; path = packages/TelegramCallsCore; sourceTree = "<group>"; };
-		C0C3576FEC2B401CA8A25439 /* WalletUIIntegration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletUIIntegration.swift; sourceTree = "<group>"; };
 		C2016F431EAA4967003AF981 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ShareViewController.strings"; sourceTree = "<group>"; };
 		C2016F451EAA4967003AF981 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		630698539D81BE44C1D2829C /* ChatExportHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatExportHooksInstall.swift; sourceTree = "<group>"; };
@@ -1909,7 +1900,6 @@
 		D098C71F1D7E175A007784E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D098C7381D7E1A62007784E4 /* Telegram-Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telegram-Mac.entitlements"; sourceTree = "<group>"; };
 		D09D836D24A6205500120F73 /* libtgvoip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = libtgvoip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0A1B2C3D4E5F60000000002 /* WalletContext */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WalletContext; path = "submodules/telegram-ios/submodules/WalletContext"; sourceTree = "<group>"; };
 		D0A1B2C3D4E5F60000000012 /* WalletBackupCrypto */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WalletBackupCrypto; path = "submodules/telegram-ios/submodules/WalletBackupCrypto"; sourceTree = "<group>"; };
 		D0A1B2C3D4E5F60000000300 /* wallet_word_list.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = wallet_word_list.tgs; sourceTree = "<group>"; };
 		D0A1B2C3D4E5F60000000301 /* wallet_word_check.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = wallet_word_check.tgs; sourceTree = "<group>"; };
@@ -1984,8 +1974,6 @@
 		4DB610A299E3416B8BC2D01C /* GigagroupUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GigagroupUI; path = packages/GigagroupUI; sourceTree = "<group>"; };
 		11D6036148B646A3BC3017EF /* GigagroupHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GigagroupHooksInstall.swift; sourceTree = "<group>"; };
 		2D9C86F158B54DAB8A40AD7B /* DeveloperHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperHooksInstall.swift; sourceTree = "<group>"; };
-		4BE3418BAB4E4B709EDBA013 /* AddTonBalanceUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AddTonBalanceUI; path = packages/AddTonBalanceUI; sourceTree = "<group>"; };
-		AC8D28ED05E0406EA99ADE81 /* AddTonBalanceHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTonBalanceHooksInstall.swift; sourceTree = "<group>"; };
 		20DE02C52DFB4A898677E9F0 /* BlockedPeersHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockedPeersHooksInstall.swift; sourceTree = "<group>"; };
 		46560A49C12C4555A5CA1C7B /* StatisticsUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = StatisticsUI; path = packages/StatisticsUI; sourceTree = "<group>"; };
 		10DFF25C8A724E5ABFCBA9C8 /* StatisticsHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsHooksInstall.swift; sourceTree = "<group>"; };
@@ -2100,7 +2088,6 @@
 				F4AB5D007D12469B89497570 /* PollResultsUI in Frameworks */,
 				071E416ECED049CF990D59DF /* DataUsageUI in Frameworks */,
 				5F6604A291A6471A8206E92E /* StatisticsUI in Frameworks */,
-				73DCB846B74D4E12B9D080D1 /* AddTonBalanceUI in Frameworks */,
 				1D27C94151414C919E7A2F0F /* GigagroupUI in Frameworks */,
 				8E38A44712FA4542A5CF8D80 /* VerifyAgeUI in Frameworks */,
 				07EDD2B662264351B2D102DE /* EditTagLabelUI in Frameworks */,
@@ -2188,7 +2175,6 @@
 				3920C67B9ACFB9760F57B251 /* CalendarUI in Frameworks */,
 				62D27F14BB61247BA3765961 /* TelegramMediaUtils in Frameworks */,
 				7E8466C5B161282397E216B9 /* InstantPageUI in Frameworks */,
-				47B0DD3615C85A822EF78058 /* WalletUI in Frameworks */,
 				EDCED24F7E84452EACF1D7FB /* TelegramLinks in Frameworks */,
 				F9BDA3E6C3D34B80915B5263 /* InputDataUI in Frameworks */,
 				48FE28EECDE540AC8773E5E2 /* FolderSharingUI in Frameworks */,
@@ -2252,7 +2238,6 @@
 				277C209827A2F6160070B3BF /* YuvConversion in Frameworks */,
 				2710886A2F0E924B003451BD /* CoreMedia.framework in Frameworks */,
 				27B6D05127393A3200C785C7 /* TelegramCore in Frameworks */,
-				D0A1B2C3D4E5F60000000006 /* WalletContext in Frameworks */,
 				2796FF1027424BA800DA653C /* DateUtils in Frameworks */,
 				277C209327A2F58E0070B3BF /* ManagedFile in Frameworks */,
 				27B6D05B27393A4700C785C7 /* TGUIKit in Frameworks */,
@@ -2770,7 +2755,6 @@
 				A19BAAEB6EBF40FB959381C9 /* PollResultsUI */,
 				A827B6990192459DB25F6F99 /* DataUsageUI */,
 				46560A49C12C4555A5CA1C7B /* StatisticsUI */,
-				4BE3418BAB4E4B709EDBA013 /* AddTonBalanceUI */,
 				4DB610A299E3416B8BC2D01C /* GigagroupUI */,
 				CBE224712F9F44AAA680D412 /* VerifyAgeUI */,
 				F70986F290D0462F9CEF770F /* EditTagLabelUI */,
@@ -2858,7 +2842,6 @@
 				ECBE6ABCDDAB68627982C9C9 /* CalendarUI */,
 				90B28FDFC126F6F1AA281438 /* TelegramMediaUtils */,
 				7A69F42A49B41E88B075051D /* InstantPageUI */,
-				5F3C5423E0B32D3E889E5327 /* WalletUI */,
 				21072C839D8A40CB997FF92F /* TelegramLinks */,
 				BB5AC31385B44F4689A8C428 /* InputDataUI */,
 				48E96302C1214EAC835B4BDA /* FolderSharingUI */,
@@ -2944,7 +2927,6 @@
 				27E5C3BB273975D600C52BA0 /* MurMurHash32 */,
 				27B6D0472739387500C785C7 /* TelegramApi */,
 				27B6D0462739382800C785C7 /* TelegramCore */,
-				D0A1B2C3D4E5F60000000002 /* WalletContext */,
 				D0A1B2C3D4E5F60000000012 /* WalletBackupCrypto */,
 				27F3B75F273933C800B81F10 /* GraphUI */,
 				27F3B75A2739300C00B81F10 /* SSignalKit */,
@@ -3415,7 +3397,6 @@
 				8D2355DF47ECDDD0EEB526DD /* MessageCustomTagsCompat.swift */,
 				58B91030E9C2A21147E3220E /* TelegramMediaFileResourceUpdate.swift */,
 				047835680ACB43C8BAE552A3 /* FolderSharingUIIntegration.swift */,
-				C0C3576FEC2B401CA8A25439 /* WalletUIIntegration.swift */,
 				8DE33C58072B4802BE646848 /* SidebarUIIntegration.swift */,
 			);
 			path = bridges;
@@ -3425,7 +3406,6 @@
 			isa = PBXGroup;
 			children = (
 				CCBF4A99D5A10A0B1C382FF5 /* AboutFeatureUIHooksInstall.swift */,
-				AC8D28ED05E0406EA99ADE81 /* AddTonBalanceHooksInstall.swift */,
 				080162D2AEFFAA5ABBB528F1 /* AffiliateHooksInstall.swift */,
 				3EF94D52412AB4BCE1C82301 /* AudioPlayerUIHooksInstall.swift */,
 				D4EF6BC857C2FB3AABF9461D /* AuthUIHooksInstall.swift */,
@@ -3465,7 +3445,6 @@
 				16897FF349A04D74845E06D4 /* GroupsInCommonHooksInstall.swift */,
 				85D7BB2C3B124A0F863F1660 /* InputDataUIHooksInstall.swift */,
 				0F8B44C354B3DF133BD84163 /* InputTextViewHooksInstall.swift */,
-				83A5FA781BD7994857138FCB /* WalletUIHooksInstall.swift */,
 				47318F78978A06BD3FA4B985 /* PasscodeUIHooksInstall.swift */,
 				8F8A6D0AEE41736F5602A06E /* FeatureNavigationHooksInstall.swift */,
 				56476F0CAFE1B8E84B91B0D2 /* InstantPageRenderHooksInstall.swift */,
@@ -3709,7 +3688,6 @@
 			buildPhases = (
 				C283C17922F10230C5D04880 /* Embed XPC Services */,
 				CE4D72C9B2A34D84A52D6A02 /* Check TelegramApi Sources */,
-				161B8B778DC5A90FA234F9E6 /* Check Wallet Engine Bindings */,
 				C20D5AB61DAA94500042616A /* Copy Files */,
 				D098C7121D7E175A007784E4 /* Frameworks */,
 				D098C7111D7E175A007784E4 /* Sources */,
@@ -3737,7 +3715,6 @@
 				B8C149921E324ED8BF75B94B /* PollResultsUI */,
 				AD2C957E6CB64CD39B36AF2B /* DataUsageUI */,
 				A9BD06A78BF848C1B2CE8817 /* StatisticsUI */,
-				E639FCC6788F471E9EBF7224 /* AddTonBalanceUI */,
 				5C4531D880544E818C4AFF4E /* GigagroupUI */,
 				63263708E31A48DE80557F02 /* VerifyAgeUI */,
 				7C9B791DE6E3430FADA989DF /* EditTagLabelUI */,
@@ -3826,7 +3803,6 @@
 				7A90B05BB68F1E1169134503 /* CalendarUI */,
 				A4E3C3A7FB92511ACDA24FFA /* TelegramMediaUtils */,
 				D67F7BB3735A3A6996E236D4 /* InstantPageUI */,
-				5914C6317AE131771C31258C /* WalletUI */,
 				8FA6B684E86A434A964AF09D /* TelegramLinks */,
 				8F9D13B4F3C94F7BB3E2A0AC /* InputDataUI */,
 				8308E4A0238F4910A2442132 /* FolderSharingUI */,
@@ -3844,7 +3820,6 @@
 				27F3B75327391E6B00B81F10 /* TelegramIconsTheme */,
 				27B6D04E27393A2A00C785C7 /* TelegramApi */,
 				27B6D05027393A3200C785C7 /* TelegramCore */,
-				D0A1B2C3D4E5F60000000004 /* WalletContext */,
 				27B6D05227393A3600C785C7 /* Postbox */,
 				27B6D05427393A3D00C785C7 /* GraphCore */,
 				27B6D05627393A3D00C785C7 /* GraphUI */,
@@ -4595,25 +4570,6 @@
 
 
 /* Begin PBXShellScriptBuildPhase section */
-		161B8B778DC5A90FA234F9E6 /* Check Wallet Engine Bindings */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Check Wallet Engine Bindings";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh \"$SRCROOT/scripts/check-wallet-engine-bindings.sh\" \"$SRCROOT\" xcode\n";
-		};
 		CE4D72C9B2A34D84A52D6A01 /* Check TelegramApi Sources */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -4672,7 +4628,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E29D9BCA23EC764A8C52357 /* WidgetEngineInstall.swift in Sources */,
-				BE3536CA4246405D5520629A /* WalletUIHooksInstall.swift in Sources */,
 				4B9679F90FE2EF0F0FD21C7A /* PasscodeUIHooksInstall.swift in Sources */,
 				E568F0911A11424B5B985A64 /* AccountManagerSetup.swift in Sources */,
 				A9BDB73AA29A9BFA116FCA8A /* FeatureNavigationHooksInstall.swift in Sources */,
@@ -4732,7 +4687,6 @@
 				132156DD341A4274A52C6C7E /* VerifyAgeHooksInstall.swift in Sources */,
 				D453551864204E23863FAC17 /* GigagroupHooksInstall.swift in Sources */,
 				F3CBAE20B1934EA1A49621A3 /* DeveloperHooksInstall.swift in Sources */,
-				C73F81DAD9EA4DEAA40D4D5A /* AddTonBalanceHooksInstall.swift in Sources */,
 				27D250170933476EAE79FFC3 /* BlockedPeersHooksInstall.swift in Sources */,
 				89BE8B9480B348639A3A59E3 /* StatisticsHooksInstall.swift in Sources */,
 				7F2E610C9C3F4AF49FA83CAE /* GlobalAutoremoveHooksInstall.swift in Sources */,
@@ -4772,7 +4726,6 @@
 				27A1B2C3D4E5F60718293A4B /* GeneralRowsHooksInstall.swift in Sources */,
 				12D364FFF19D45B18AA545D6 /* InputDataUIHooksInstall.swift in Sources */,
 				CD43762E46BA48F697A64271 /* FolderSharingUIIntegration.swift in Sources */,
-				9C3D251712014DBDB798F464 /* WalletUIIntegration.swift in Sources */,
 				AD3BD9CEA2704F31B1959842 /* SidebarUIIntegration.swift in Sources */,
 				F6679659E4D9A18FC9DBFF58 /* Exports.swift in Sources */,
 				AAFDB93441D554F4DDDD2A3C /* MMMenuItem.swift in Sources */,
@@ -5797,10 +5750,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = MessageTextUtils;
 		};
-		5914C6317AE131771C31258C /* WalletUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WalletUI;
-		};
 		5A62F6BDEB7EDB55D4C17A92 /* FoundationUtils */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FoundationUtils;
@@ -5936,10 +5885,6 @@
 		C6EAED5AD4185B0C5EBE5149 /* SecureIdUtils */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SecureIdUtils;
-		};
-		D0A1B2C3D4E5F60000000004 /* WalletContext */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WalletContext;
 		};
 		D1169B1E9AE6B5F668ED57D6 /* AffiliateUI */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -6145,10 +6090,6 @@
 		5C4531D880544E818C4AFF4E /* GigagroupUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GigagroupUI;
-		};
-		E639FCC6788F471E9EBF7224 /* AddTonBalanceUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AddTonBalanceUI;
 		};
 		A9BD06A78BF848C1B2CE8817 /* StatisticsUI */ = {
 			isa = XCSwiftPackageProductDependency;

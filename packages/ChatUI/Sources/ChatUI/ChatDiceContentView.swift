@@ -177,22 +177,7 @@ public class ChatDiceContentView: ChatMediaContentView {
                     view = playerView
                 }
 
-                if media.emoji == diceSymbol, case let .available(info) = context.emojiGameInfo {
-                    let text = strings().diceRollYourStake(formatCurrencyAmount(info.previousStake, currency: TON).prettyCurrencyNumber)
-                    let attr = parseMarkdownIntoAttributedString(text, attributes: MarkdownAttributes(body: MarkdownAttributeSet(font: .normal(.text), textColor: .white), bold: MarkdownAttributeSet(font: .bold(.text), textColor: .white), link: MarkdownAttributeSet(font: .normal(.text), textColor: .link), linkAttribute: { [weak item] _ in
-                        return (NSAttributedString.Key.link.rawValue, LinkHooks.shared.callbackLink("", { _ in
-                            item?.chatInteraction.diceRoll()
-                        }))
-                    }))
-
-                    tooltip(for: view, text: "", attributedText: attr, interactions: LinkHooks.shared.globalLinkExecutor(), button: (strings().chatEmojiSend, { [weak item] in
-                        if info.previousStake > 0 {
-                            item?.chatInteraction.sendDiceWithStake(info.previousStake)
-                        } else {
-                            item?.chatInteraction.sendPlainText(media.emoji)
-                        }
-                    }), offset: NSMakePoint(0, -30), buttonSpacing: 50)
-                } else {
+                do {
                     let text: String
                     switch media.emoji {
                     case diceSymbol:

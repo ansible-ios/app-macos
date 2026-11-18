@@ -46,7 +46,7 @@ private final class RowItem : GeneralRowItem {
         let headerText = NSAttributedString.initialize(string: isBot ? strings().monetizationIntroBotTitle : strings().monetizationIntroTitle, color: theme.colors.text, font: .medium(.title))
         
         let infoHeaderAttr = NSAttributedString.initialize(string: strings().monetizationIntroInfoTitle(clown), color: theme.colors.text, font: .medium(.title)).mutableCopy() as! NSMutableAttributedString
-        infoHeaderAttr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.ton_logo.file, color: theme.colors.text), for: clown)
+        infoHeaderAttr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
         
         
         let infoText = strings().monetizationIntroInfoText
@@ -76,7 +76,7 @@ private final class RowItem : GeneralRowItem {
         options.append(.init(image: MonetizationHooks.shared.iconFragmentSplitRevenue().precomposed(theme.colors.accent), header: .init(.initialize(string: strings().monetizationIntroSplitTitle, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().monetizationIntroSplitText("%"), color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
 
         
-        options.append(.init(image: MonetizationHooks.shared.iconFragmentTonPayment().precomposed(theme.colors.accent), header: .init(.initialize(string: strings().monetizationIntroWithdrawalTitle, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().monetizationIntroWithdrawalText, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
+        options.append(.init(image: TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed(theme.colors.accent), header: .init(.initialize(string: strings().monetizationIntroWithdrawalTitle, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().monetizationIntroWithdrawalText, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
 
         
         self.options = options

@@ -533,7 +533,7 @@ public class PeerInfoController<Context: AccountContextProtocol>: EditableViewCo
     private let mediaController: PeerMediaController<Context>
     
     private let revenueContext: StarsRevenueStatsContext?
-    private let tonRevenueContext: StarsRevenueStatsContext?
+    private let tonRevenueContext: StarsRevenueStatsContext? = nil
     
     private let starGiftsProfile: ProfileGiftsContext
     private let savedMuicProfile: ProfileSavedMusicContext?
@@ -752,22 +752,14 @@ public class PeerInfoController<Context: AccountContextProtocol>: EditableViewCo
         
         if peer.isBot, let botInfo = peer.botInfo, botInfo.flags.contains(.canEdit) || test {
             self.revenueContext = StarsRevenueStatsContext(account: context.account, peerId: peerId, ton: false)
-            self.tonRevenueContext = StarsRevenueStatsContext(account: context.account, peerId: peerId, ton: true)
         } else if peer.isChannel || peer.isSupergroup {
             if peer.isAdmin {
                 self.revenueContext = StarsRevenueStatsContext(account: context.account, peerId: peerId, ton: false)
-                if peer.isChannel {
-                    self.tonRevenueContext = StarsRevenueStatsContext(account: context.account, peerId: peerId, ton: true)
-                } else {
-                    self.tonRevenueContext = nil
-                }
             } else {
                 self.revenueContext = nil
-                self.tonRevenueContext = nil
             }
         } else {
             self.revenueContext = nil
-            self.tonRevenueContext = nil
         }
         
         if peer.isUser, !peer.isBot {

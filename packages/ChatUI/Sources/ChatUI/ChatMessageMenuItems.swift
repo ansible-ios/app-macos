@@ -873,11 +873,6 @@ public func chatMenuItems(for message: Message, entry: ChatHistoryEntry?, textLa
             }, itemImage: MenuAnimation.menu_gift.value))
         }
 
-        if #available(macOS 10.15, *), let action = data.message.media.first as? TelegramMediaAction, case let .gramTransfer(_, peerAddress, _, _, _) = action.action, context.appConfiguration.getBoolValue("wallet_available", orElse: false), let recipient = chatWalletTransferRecipient(chatPeer: message.peers[message.id.peerId], accountPeerId: context.peerId, peerAddress: peerAddress, normalizeAddress: ChatInputUIHooks.shared.walletHooks.normalizeTransferAddress) {
-            firstBlock.append(ContextMenuItem(strings().chatMessageMenuItemsSendMoney, handler: {
-                showWalletSendMoney(chatInteraction: data.chatInteraction, recipient: recipient, flyIntoChat: false)
-            }, itemImage: MenuAnimation.menu_gram.value))
-        }
         
         
         if let poll = data.message.anyMedia as? TelegramMediaPoll {

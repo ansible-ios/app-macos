@@ -2,7 +2,6 @@ import Cocoa
 import SwiftSignalKit
 import PasscodeUI
 import PasscodeCore
-import WalletContext
 import BuildConfig
 import ApiCredentials
 import LocalAuthentication
@@ -118,50 +117,6 @@ func installPasscodeUIHooks() {
         }
         Queue.concurrentDefaultQueue().async {
             syncPasscodeCredential(code: code, rootPath: rootPath)
-        }
-    }
-    hooks.walletProtection = {
-        guard #available(macOS 10.15, *) else {
-            return .single(nil)
-        }
-        return (Signal<Void, NoError>.single(Void()) |> then(PasscodeCredentialStore.shared.changes)) |> mapToSignal { _ -> Signal<PasscodeWalletProtection?, NoError> in
-            return Signal { subscriber in
-                let settings = try? walletProtectionSettings()
-                subscriber.putNext(settings.map { PasscodeWalletProtection(enabled: $0.enabled, biometricsEnabled: $0.biometricsEnabled) })
-                subscriber.putCompletion()
-                return EmptyDisposable
-            } |> runOn(Queue.concurrentDefaultQueue())
-        }
-    }
-    hooks.setWalletProtection = { enabled, code, completion in
-        guard #available(macOS 10.15, *) else {
-            completion(.failure(.failed))
-            return
-        }
-        passcodeCredentialOperation(completion) {
-            let session = try passcodeSettingsSession(code: code)
-            defer {
-                session.invalidate()
-            }
-            try setWalletProtectionEnabled(enabled, session: session)
-        }
-    }
-    hooks.setWalletBiometrics = { enabled, code, completion in
-        guard #available(macOS 10.15, *) else {
-            completion(.failure(.failed))
-            return
-        }
-        passcodeCredentialOperation(completion) {
-            let session = try passcodeSettingsSession(code: code)
-            let laContext = LAContext()
-            laContext.localizedReason = strings().walletBiometricsEnableReason
-            laContext.localizedFallbackTitle = ""
-            laContext.touchIDAuthenticationAllowableReuseDuration = 0
-            defer {
-                laContext.invalidate()
-                session.invalidate()
-            }
-            try setWalletBiometricsEnabled(enabled, session: session, context: laContext)
         }
     }
     PasscodeCredentialHooks.install(hooks)

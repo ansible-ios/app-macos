@@ -11,15 +11,11 @@ import Postbox
 import TelegramCore
 import SwiftSignalKit
 import WebAppUI
-import WalletContext
 
 func installBrowserUIHooks() {
     var hooks = BrowserHooks(classifyLink: { context, url in
         guard let context = context as? AccountContext else {
             return .other
-        }
-        if #available(macOS 10.15, *), WalletContext.isTonConnectUrl(normalizedTelegramLinkQuery(url)) {
-            return .tonConnect
         }
         let link = inApp(for: url.nsstring, context: context)
         switch link {

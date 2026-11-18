@@ -10,6 +10,14 @@ import TelegramCore
 import SwiftSignalKit
 import ObjcUtils
 
+public func unsupportedPaymentController() -> InputDataModalController {
+    let entry = InputDataEntry.desc(sectionId: 0, index: 0, text: .plain(strings().chatUnsupportedMessageTitle), data: .init(color: theme.colors.text, viewType: .singleItem))
+    let controller = InputDataController(dataSignal: .single(InputDataSignalValue(entries: [entry])), title: strings().checkoutReceiptTitle)
+    let modal = InputDataModalController(controller)
+    controller.leftModalHeader = ModalHeaderData(image: theme.icons.modalClose, handler: { [weak modal] in modal?.close() })
+    return modal
+}
+
 open class InputDataModalController : ModalViewController {
     private let controller: InputDataController
     private let _modalInteractions: ModalInteractions?

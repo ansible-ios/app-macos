@@ -11,7 +11,6 @@ import Translate
 import InputView
 import TelegramMedia
 import InAppSettings
-import WalletContext
 import AppAnalytics
 
 
@@ -1653,52 +1652,8 @@ func execute(inapp:inAppLink, window: Window? = nil, isExternal: Bool = false, a
             }
         })
         afterComplete(true)
-    case let .tonTransfer(link, context, _):
-        if #available(macOS 10.15, *), !WalletConfiguration.with(appConfiguration: context.appConfiguration).isAvailable {
-            showModalText(for: context.window, text: strings().inAppLinksWalletUnavailable)
-        } else if #available(macOS 10.15, *), let walletContext = context.walletContext {
-            showModal(with: WalletSendController(context: context, walletContext: walletContext, initialAddress: link), for: context.window)
-        }
-        afterComplete(true)
-    case let .sendGrams(_, context, data):
-        if #available(macOS 10.15, *), !WalletConfiguration.with(appConfiguration: context.appConfiguration).isAvailable {
-            showModalText(for: context.window, text: strings().inAppLinksWalletUnavailable)
-        } else if #available(macOS 10.15, *), let walletContext = context.walletContext {
-            let window = getWindow(context)
-            switch data {
-            case .invalid:
-                showModalText(for: window, text: strings().inAppLinksInvalidWalletLink)
-            case .wallet:
-                showWallet(context: context, for: window)
-            case let .send(recipient, amount):
-                switch walletContext.stateValue.phase {
-                case .empty, .creating, .failed:
-                    showWallet(context: context, for: window)
-                case .restoring, .wallet:
-                    switch recipient {
-                    case let .address(address):
-                        showModal(with: WalletSendController(context: context, walletContext: walletContext, initialAddress: address, initialAmount: amount), for: window)
-                    case let .username(username):
-                        let signal = context.engine.peers.resolvePeerByName(name: username, referrer: nil)
-                        |> filter { $0 != .progress }
-                        |> take(1)
-                        |> map { $0.result?._asPeer() as? TelegramUser }
-                        |> deliverOnMainQueue
-                        _ = showModalProgress(signal: signal, for: window).start(next: { user in
-                            guard let user else {
-                                showModalText(for: window, text: strings().alertUserDoesntExists)
-                                return
-                            }
-                            showModal(with: WalletSendController(context: context, walletContext: walletContext, peer: user, initialAmount: amount, completed: {
-                                closeAllModals(window: window)
-                                context.bindings.rootNavigation().push(ChatController(context: context, chatLocation: .peer(user.id)))
-                            }), for: window)
-                        })
-                    }
-                }
-            }
-        }
-        afterComplete(true)
+    case .tonTransfer, .sendGrams:
+        afterComplete(false)
     case .instantView:
         afterComplete(true)
     case let .settings(_, context, section):
@@ -1937,8 +1892,7 @@ func execute(inapp:inAppLink, window: Window? = nil, isExternal: Bool = false, a
                 controller = LanguageController(context, focusOnItemTag: .doNotTranslate)
             }
         case .ton:
-            showModal(with: Star_ListScreen(context: context, currency: .ton, source: .account), for: getWindow(context))
-            afterComplete(true)
+            afterComplete(false)
             return
         case let .appearance(subSection):
             switch subSection {
@@ -2215,9 +2169,8 @@ func execute(inapp:inAppLink, window: Window? = nil, isExternal: Bool = false, a
             }
         })
         afterComplete(true)
-    case let .tonsite(link, context):
-        BrowserStateContext.get(context).open(tab: .tonsite(url: link), analyticsContext: analyticsContext)
-        afterComplete(true)
+    case .tonsite:
+        afterComplete(false)
     case let .starsTopup(_, amount, purpose, context):
         let balance = context.starsContext.state |> map { $0?.balance } |> take(1) |> deliverOnMainQueue
         _ = balance.startStandalone(next: { balance in
@@ -2259,7 +2212,8 @@ func execute(inapp:inAppLink, window: Window? = nil, isExternal: Bool = false, a
         })
         afterComplete(true)
     case let .starsInfo(_, context, isTon):
-        showModal(with: Star_ListScreen(context: context, currency: isTon ? .ton : .stars, source: .account), for: getWindow(context))
+        guard !isTon else { afterComplete(false); return }
+        showModal(with: Star_ListScreen(context: context, source: .account), for: getWindow(context))
         afterComplete(true)
     case let .auction(_, slug, context):
         let signal = context.giftAuctionsManager.auctionContext(for: .slug(slug)) |> deliverOnMainQueue
@@ -2522,14 +2476,7 @@ enum inAppLink {
 func inApp(for url:NSString, context: AccountContext? = nil, peerId:PeerId? = nil, messageId: MessageId? = nil, openInfo:((PeerId, Bool, MessageId?, ChatInitialAction?)->Void)? = nil, hashtag:((String)->Void)? = nil, command:((String)->Void)? = nil, applyProxy:((ProxyServerSettings) -> Void)? = nil, confirm: Bool = false) -> inAppLink {
 
     let source = normalizedTelegramLinkQuery(url as String)
-    if #available(macOS 10.15, *), let context, let walletContext = context.walletContext, WalletContext.isTonConnectUrl(source) {
-        guard WalletConfiguration.with(appConfiguration: context.appConfiguration).isAvailable else {
-            return .callback(source, { _ in
-                showModalText(for: context.window, text: strings().inAppLinksWalletUnavailable)
-            })
-        }
-        return .callback(source, { walletProcessTonConnectUrl($0, context: context, walletContext: walletContext, window: context.window) })
-    }
+    if let scheme = URLComponents(string: source)?.scheme?.lowercased(), ["ton", "tonsite", "tc", "tonconnect"].contains(scheme) { return .nothing }
 
     let options = InAppLinkParsingOptions(
         peerId: peerId,
@@ -2545,9 +2492,8 @@ func inApp(for url:NSString, context: AccountContext? = nil, peerId:PeerId? = ni
     switch parseInAppLink(url, options: options) {
     case let .external(link, confirm):
         return .external(link: link, confirm)
-    case let .tonsite(link):
-        guard let context else { return .nothing }
-        return .tonsite(link: link, context: context)
+    case .tonsite:
+        return .nothing
     case let .followResolvedName(link, username, postId, forceProfile, action):
         guard let context, let openInfo else { return .nothing }
         return .followResolvedName(link: link, username: username, postId: postId, forceProfile: forceProfile, context: context, action: action.map(chatInitialAction), callback: openInfo)
@@ -2604,15 +2550,8 @@ func inApp(for url:NSString, context: AccountContext? = nil, peerId:PeerId? = ni
     case let .theme(link, name):
         guard let context else { return .nothing }
         return .theme(link: link, context: context, name: name)
-    case let .tonTransfer(link, data):
-        guard let context else { return .nothing }
-        if #available(macOS 10.15, *), WalletContext.transferAddress(from: link) == nil {
-            return .nothing
-        }
-        return .tonTransfer(link: link, context: context, data: data)
-    case let .sendGrams(link, data):
-        guard let context else { return .nothing }
-        return .sendGrams(link: link, context: context, data: data)
+    case .tonTransfer, .sendGrams:
+        return .nothing
     case let .settings(link, section):
         guard let context else { return .nothing }
         return .settings(link: link, context: context, section: section)

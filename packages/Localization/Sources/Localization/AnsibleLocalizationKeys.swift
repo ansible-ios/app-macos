@@ -2,6 +2,12 @@ import Foundation
 
 internal func localizationLookupKeys(_ key: String) -> [String] {
     let aliases = [
+        "ChannelReactions.EnableStars.Info": "Ansible.MacOS.Brand.ChannelReactions.EnableStars.Info",
+        "FragmentMonetization.Controller.WithdrawMinimum": "Ansible.MacOS.Brand.FragmentMonetization.Controller.WithdrawMinimum",
+        "Monetization.Intro.Info.Text": "Ansible.MacOS.Brand.Monetization.Intro.Info.Text",
+        "Monetization.Intro.Info.Title": "Ansible.MacOS.Brand.Monetization.Intro.Info.Title",
+        "Monetization.Intro.Withdrawal.Text": "Ansible.MacOS.Brand.Monetization.Intro.Withdrawal.Text",
+        "Monetization.Intro.Split.Text": "Ansible.MacOS.Brand.Monetization.Intro.Split.Text",
         "VoiceOver.Chat.PollVotes": "Ansible.MacOS.PollVotesLabel",
         "StarGift.ModelBuilder.CollectionFeatures": "Ansible.MacOS.CollectionModelsDescription",
         "Star.Auction.Preview.TopBidders": "Ansible.MacOS.AuctionWinnersDescription",

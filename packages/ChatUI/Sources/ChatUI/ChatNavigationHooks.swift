@@ -133,7 +133,6 @@ public struct ChatNewContactState: Equatable {
 public struct ChatNavigationHooks {
     public var widgetWalletAvailable: (any AccountContextProtocol) -> Bool = { _ in false }
     public var openWidgetWallet: (any AccountContextProtocol, Message, WalletCall, @escaping (Result<WidgetRequestAnswer, WidgetRequestFailure>) -> Void) -> Void = { _, _, _, complete in complete(.failure(.notAllowed)) }
-    public var showAddTonBalance: (any AccountContextProtocol, Int64, Window) -> Void = { _, _, _ in }
     public var makeCalendarModal: (any AccountContextProtocol, PeerId, Int64?, Date, @escaping (Date) -> Void) -> ModalViewController? = { _, _, _, _, _ in nil }
     public var makeSearchCalendar: (any AccountContextProtocol, PeerId, Int64?, Date, @escaping (Date) -> Void) -> ModalViewController? = { _, _, _, _, _ in nil }
     public var makeBirthdayCalendar: (Window, Date) -> (any ChatBirthdayCalendar)? = { _, _ in nil }

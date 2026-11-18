@@ -198,7 +198,6 @@ public struct ChatUIHooks {
     public let createVoiceChatCanBeScheduled: (any AccountContextProtocol, PeerId, Bool) -> Void
     public let makeCodeSyntaxKey: (MessageId, NSRange, String, ChatInterfaceSyntaxTheme) -> CodeSyntaxKey
     public let highlightCodeSyntax: (String, String, ChatInterfaceSyntaxTheme) -> NSAttributedString
-    public let makeDiceRollController: (any AccountContextProtocol, ChatInteraction) -> ModalViewController
     public let editForumTopic: (PeerId, MessageHistoryThreadData, Int64, any AccountContextProtocol) -> Void
     public let openForum: (PeerId, Bool, any AccountContextProtocol) -> Void
     public let createForumTopic: (PeerId, any AccountContextProtocol) -> Void
@@ -248,7 +247,6 @@ public struct ChatUIHooks {
                 createVoiceChatCanBeScheduled: @escaping (any AccountContextProtocol, PeerId, Bool) -> Void,
                 makeCodeSyntaxKey: @escaping (MessageId, NSRange, String, ChatInterfaceSyntaxTheme) -> CodeSyntaxKey,
                 highlightCodeSyntax: @escaping (String, String, ChatInterfaceSyntaxTheme) -> NSAttributedString,
-                makeDiceRollController: @escaping (any AccountContextProtocol, ChatInteraction) -> ModalViewController,
                 editForumTopic: @escaping (PeerId, MessageHistoryThreadData, Int64, any AccountContextProtocol) -> Void,
                 openForum: @escaping (PeerId, Bool, any AccountContextProtocol) -> Void,
                 createForumTopic: @escaping (PeerId, any AccountContextProtocol) -> Void,
@@ -293,7 +291,6 @@ public struct ChatUIHooks {
         self.createVoiceChatCanBeScheduled = createVoiceChatCanBeScheduled
         self.makeCodeSyntaxKey = makeCodeSyntaxKey
         self.highlightCodeSyntax = highlightCodeSyntax
-        self.makeDiceRollController = makeDiceRollController
         self.editForumTopic = editForumTopic
         self.openForum = openForum
         self.createForumTopic = createForumTopic
@@ -372,8 +369,6 @@ public struct ChatUIHooks {
         preconditionFailure("ChatUIHooks not installed")
     }, highlightCodeSyntax: { code, _, _ in
         NSAttributedString(string: code)
-    }, makeDiceRollController: { _, _ in
-        ModalViewController()
     }, editForumTopic: { _, _, _, _ in
     }, openForum: { _, _, _ in
     }, createForumTopic: { _, _ in

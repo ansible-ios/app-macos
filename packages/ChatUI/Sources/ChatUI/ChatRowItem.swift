@@ -2749,13 +2749,6 @@ public class ChatRowItem: TableRowItem {
                 paidMessage?.measure(width: .greatestFiniteMagnitude)
             }
 
-            if let dice = message.anyMedia as? TelegramMediaDice, let tonAmount = dice.tonAmount, tonAmount > 0 {
-                let tonValue = Double(tonAmount) / 1_000_000_000
-                let formattedAmount = String(format: "%.2f", tonValue)
-                let attr: NSAttributedString = .initialize(string: formattedAmount, color: isStateOverlayLayout ? stateOverlayTextColor : !hasBubble ? theme.colors.grayText : theme.chat.grayText(isIncoming, object.renderType == .bubble), font: renderType == .bubble ? .normal(.small) : .normal(.short))
-                diceStake = TextViewLayout(attr, maximumNumberOfLines: 1)
-                diceStake?.measure(width: .greatestFiniteMagnitude)
-            }
 
             if editedAttribute != nil || message.id.namespace == Namespaces.Message.Cloud {
                 if isEditMarkVisible || isUnsent, message.id.peerId != context.peerId, let editedAttribute {

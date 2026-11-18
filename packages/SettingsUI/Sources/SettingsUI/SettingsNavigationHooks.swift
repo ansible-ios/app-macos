@@ -122,7 +122,6 @@ public struct SettingsNavigationHooks {
     public var makePremiumBoardingController: (any AccountContextProtocol, SettingsPremiumSource) -> ViewController = { _, _ in ViewController() }
     public var makeBirthdayCalendarController: (Window, @escaping (Date) -> Void) -> ViewController = { _, _ in ViewController() }
     public var makeBoostInfoController: (any AccountContextProtocol, Peer, ChannelBoostStatus, MyBoostStatus?, SettingsBoostSource) -> ModalViewController = { _, _, _, _, _ in ModalViewController() }
-    public var makeAddTonBalanceController: (any AccountContextProtocol, Int64) -> ModalViewController = { _, _ in ModalViewController() }
     public var makePasskeysController: (any AccountContextProtocol, [TelegramPasskey]) -> ModalViewController = { _, _ in ModalViewController() }
     public var makeSetupEmailController: (any AccountContextProtocol, String?) -> ModalViewController = { _, _ in ModalViewController() }
     public var showPremiumBoarding: (any AccountContextProtocol, SettingsPremiumSource, Bool, Window, (() -> NSView?)?) -> Void = { _, _, _, _, _ in }

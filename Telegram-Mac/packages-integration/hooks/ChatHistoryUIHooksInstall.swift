@@ -8,8 +8,6 @@ import CodeSyntax
 import RichTextEditorUI
 import RichTextEditorCore
 import ChatUI
-import WalletContext
-import WalletUI
 
 extension ChatRowItem {
     var context: AccountContext {
@@ -95,152 +93,6 @@ private func mapChatHistoryEmojiSelectedItem(_ item: ChatHistoryEmojiSelectedIte
         type = .transparent
     }
     return .init(source: source, type: type)
-}
-
-private func makeChatHistoryWalletHooks() -> Any? {
-    if #available(macOS 10.15, *) {
-        return ChatHistoryWalletHooks(walletContext: { context in
-            return (context as! AccountContext).walletContext
-        }, makeWalletTransactionController: { context, walletContext, data, timestamp, decryptComment in
-            let walletContext = walletContext as! WalletContext
-            return WalletTransactionController(context: context as! AccountContext, walletContext: walletContext, subject: .transaction(chatWalletTransaction(walletContext, data: data, timestamp: timestamp)), origin: .chat, decryptCommentOnOpen: decryptComment)
-        }, makeWalletGramInfoController: { context, walletContext in
-            return WalletInfoController(context: context as! AccountContext, walletContext: walletContext as! WalletContext, mode: .gram)
-        }, makeCardView: { frame in
-            return WalletChatCardView(frame: frame)
-        }, resolveTonAddress: { context, walletContext, address in
-            return walletTonAddressActions(context: context as! AccountContext, walletContext: walletContext as! WalletContext, address: address)
-            |> map { actions in
-                actions.map { ChatWalletTonAddress(owner: $0.owner, send: $0.send, openExplorer: $0.openExplorer) }
-            }
-        })
-    } else {
-        return nil
-    }
-}
-
-@available(macOS 10.15, *)
-private func chatWalletTransaction(_ walletContext: WalletContext, data: ChatServiceItem.WalletTransferData, timestamp: Int32) -> WalletContext.Transaction {
-    let isLogicalTimeId = !data.transactionId.isEmpty && data.transactionId.allSatisfy(\.isNumber)
-    let pendingPresentationId = data.operationId.map { "pending:\($0)" }
-    let pendingTransactionId = data.pendingTransactionId.flatMap { $0.isEmpty ? nil : $0 }
-    if let current = walletContext.stateValue.transactions.items.first(where: { candidate in
-        if let pendingPresentationId, candidate.presentationId == pendingPresentationId {
-            return true
-        }
-        if let pendingTransactionId, walletTransactionHashMatches(candidate.transactionHash, pendingTransactionId) {
-            return true
-        }
-        guard !data.transactionId.isEmpty else {
-            return false
-        }
-        return candidate.id == data.transactionId || walletTransactionHashMatches(candidate.transactionHash, data.transactionId) || (isLogicalTimeId && candidate.logicalTime == data.transactionId)
-    }) {
-        return current
-    }
-    let peer: WalletContext.Transaction.Peer
-    if let enginePeer = data.peer, enginePeer.id.namespace == Namespaces.Peer.CloudUser, !enginePeer.id.isTelegramNotifications {
-        peer = .user(enginePeer, address: data.peerAddress, domain: nil)
-    } else if !data.peerAddress.isEmpty {
-        peer = .address(data.peerAddress, domain: nil)
-    } else {
-        peer = .unsupported
-    }
-    if let operationId = data.operationId, !data.isIncoming {
-        return WalletContext.Transaction(
-            id: "pending:\(operationId)",
-            logicalTime: "0",
-            timestamp: timestamp,
-            direction: .outgoing,
-            amount: -data.amount,
-            fee: 0,
-            peer: peer,
-            comment: data.comment,
-            commentEncrypted: data.commentEncrypted,
-            status: .pending
-        )
-    }
-    let logicalTime = data.transactionId.split(separator: ":", maxSplits: 1).first.map(String.init) ?? data.transactionId
-    return WalletContext.Transaction(
-        id: data.transactionId,
-        logicalTime: logicalTime,
-        timestamp: timestamp,
-        direction: data.isIncoming ? .incoming : .outgoing,
-        amount: data.amount,
-        fee: 0,
-        peer: peer,
-        comment: data.comment,
-        commentEncrypted: data.commentEncrypted
-    )
-}
-
-@available(macOS 10.15, *)
-private func chatWalletTransferSnapshot(_ state: WalletContext.State) -> ChatWalletTransferSnapshot {
-    return ChatWalletTransferSnapshot(transactions: state.transactions.items.map { transaction in
-        let status: ChatWalletTransferSnapshot.TransactionStatus
-        switch transaction.status {
-        case .pending:
-            status = .pending
-        case .completed:
-            status = .completed
-        case .failed:
-            status = .failed
-        }
-        return ChatWalletTransferSnapshot.Transaction(
-            id: transaction.id,
-            presentationId: transaction.presentationId,
-            transactionHash: transaction.transactionHash,
-            isOutgoingTransfer: transaction.direction == .outgoing && transaction.collectible == nil && transaction.kind == .transfer,
-            status: status
-        )
-    }, pendingTransfers: state.pendingTransfers.map { pending in
-        let status: ChatWalletTransferSnapshot.PendingStatus
-        switch pending.status {
-        case .broadcasting:
-            status = .broadcasting
-        case .pending:
-            status = .pending
-        case .submissionUnknown:
-            status = .submissionUnknown
-        case .confirmed:
-            status = .confirmed
-        }
-        return ChatWalletTransferSnapshot.PendingTransfer(id: pending.id, transactionHash: pending.transactionHash, isCollectible: pending.collectibleAddress != nil, status: status)
-    })
-}
-
-@available(macOS 10.15, *)
-extension WalletContext: @retroactive ChatWalletContext {
-    public func openChatTonConnectRequest(sessionId: Int64, messageId: MessageId) {
-        self.openTonConnectRequest(sessionId: sessionId, messageId: messageId)
-    }
-
-    public var chatFiatRate: ChatWalletFiatRate? {
-        let fiat = self.stateValue.fiat
-        guard let rate = fiat.rates.currentValue?[fiat.selectedCurrency] else {
-            return nil
-        }
-        return ChatWalletFiatRate(unitsPerGram: rate.unitsPerGram, currencySymbol: fiat.selectedCurrency.symbol)
-    }
-
-    public var chatFiatRateState: Signal<ChatWalletFiatRate?, NoError> {
-        return self.state
-        |> map { state -> ChatWalletFiatRate? in
-            guard let rate = state.fiat.selectedRate else {
-                return nil
-            }
-            return ChatWalletFiatRate(unitsPerGram: rate.unitsPerGram, currencySymbol: state.fiat.selectedCurrency.symbol)
-        }
-        |> distinctUntilChanged
-    }
-
-    public var chatTransferSnapshot: ChatWalletTransferSnapshot {
-        return chatWalletTransferSnapshot(self.stateValue)
-    }
-
-    public var chatTransferState: Signal<ChatWalletTransferSnapshot, NoError> {
-        return self.state |> map { chatWalletTransferSnapshot($0) }
-    }
 }
 
 private func makeChatHistoryRichTextHooks() -> Any? {
@@ -399,7 +251,7 @@ func installChatHistoryUIHooks() {
         showCommunityView(context, communityId: communityId)
     }, emptyChatControllerType: {
         return EmptyChatViewController.self
-    }, wallet: makeChatHistoryWalletHooks(), richText: makeChatHistoryRichTextHooks())
+    }, richText: makeChatHistoryRichTextHooks())
     hooks.makeShareMessagesModalWithContext = { context, message, groupedMessages, analyticsContext in
         let journey = AnalyticsShareJourney(context: analyticsContext, entry: groupedMessages == nil ? .messageAction : .albumAction)
         let controller = ShareModalController(ShareMessageObject(context.concrete, message, groupedMessages ?? []), analyticsContext: analyticsContext)
@@ -434,6 +286,3 @@ func installChatHistoryUIHooks() {
     }
     ChatHistoryUIHooks.install(hooks)
 }
-
-@available(macOS 10.15, *)
-extension WalletChatCardView: @retroactive ChatWalletCardView {}

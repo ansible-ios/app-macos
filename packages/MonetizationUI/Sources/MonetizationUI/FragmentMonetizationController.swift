@@ -274,75 +274,6 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
         return entries
     }
     
-    do {
-        
-        struct Graph {
-            let graph: StatsGraph
-            let title: String
-            let identifier: InputDataIdentifier
-            let type: ChartItemType
-            let rate: Double
-            let load:(InputDataIdentifier)->Void
-        }
-        
-        var graphs: [Graph] = []
-        if let graph = state.topHoursGraph, !graph.isEmpty {
-            graphs.append(Graph(graph: graph, title: strings().monetizationImpressionsTitle, identifier: _id_top_hours_graph, type: .hourlyStep, rate: 1.0, load: { identifier in
-               
-            }))
-        }
-        if let graph = state.revenueGraph, !graph.isEmpty {
-            graphs.append(Graph(graph: graph, title: strings().monetizationAdRevenueTitle, identifier: _id_revenue_graph, type: .currency(TON), rate: state.balance.usdRate, load: { identifier in
-                
-            }))
-        }
-        
-        
-        for graph in graphs {
-            entries.append(.sectionId(sectionId, type: .normal))
-            sectionId += 1
-            entries.append(.desc(sectionId: sectionId, index: index, text: .plain(graph.title), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))
-            index += 1
-            
-            switch graph.graph {
-            case let .Loaded(_, string):
-                ChartsDataManager.readChart(data: string.data(using: .utf8)!, sync: true, success: { collection in
-                    entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: graph.identifier, equatable: InputDataEquatable(graph.graph), comparable: nil, item: { initialSize, stableId in
-                        return StatisticRowItem(initialSize, stableId: stableId, context: arguments.context, collection: collection, viewType: .singleItem, type: graph.type, rate: graph.rate, title: graph.title, getDetailsData: { date, completion in
-                            detailedDisposable.set(arguments.loadDetailedGraph(.ton, graph.graph, Int64(date.timeIntervalSince1970) * 1000).start(next: { graph in
-                                if let graph = graph, case let .Loaded(_, data) = graph {
-                                    completion(data)
-                                }
-                            }), forKey: graph.identifier)
-                        })
-                    }))
-                }, failure: { error in
-                    entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: graph.identifier, equatable: InputDataEquatable(graph.graph), comparable: nil, item: { initialSize, stableId in
-                        return StatisticLoadingRowItem(initialSize, stableId: stableId, error: error.localizedDescription)
-                    }))
-                })
-                                
-                index += 1
-            case .OnDemand:
-                entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: graph.identifier, equatable: InputDataEquatable(graph.graph), comparable: nil, item: { initialSize, stableId in
-                    return statisticsGraphPlaceholderItem(initialSize, stableId: stableId, seriesCount: 1)
-                }))
-                index += 1
-//                if !uiState.loading.contains(graph.identifier) {
-//                    graph.load(graph.identifier)
-//                }
-            case let .Failed(error):
-                entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: graph.identifier, equatable: InputDataEquatable(graph.graph), comparable: nil, item: { initialSize, stableId in
-                    return StatisticLoadingRowItem(initialSize, stableId: stableId, error: error)
-                }))
-                index += 1
-               // updateIsLoading(graph.identifier, false)
-            case .Empty:
-                break
-            }
-        }
-        
-    }
     
     do {
         if let state = state.starsState {
@@ -405,7 +336,7 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
     }
     
     
-    do {
+    if let state = state.starsState {
         entries.append(.sectionId(sectionId, type: .normal))
         sectionId += 1
         
@@ -415,8 +346,8 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
         }
         
         let tuples: [Tuple] = [
-            .init(overview: .init(amount: state.overview.balance.ton, usdAmount: state.overview.balance.usd, info: strings().monetizationOverviewAvailable, stars: state.starsState.flatMap { .init(amount: $0.overview.balance.stars, usdRate: $0.overview.balance.usdRate) }), viewType: .firstItem),
-            .init(overview: .init(amount: state.overview.all.ton, usdAmount: state.overview.all.usd, info: strings().monetizationOverviewTotal, stars: state.starsState.flatMap { .init(amount: $0.overview.all.stars, usdRate: $0.overview.all.usdRate) }), viewType: .lastItem)
+            .init(overview: .init(amount: state.overview.balance.stars.value, usdAmount: state.overview.balance.usd, info: strings().monetizationOverviewAvailable, stars: nil), viewType: .firstItem),
+            .init(overview: .init(amount: state.overview.all.stars.value, usdAmount: state.overview.all.usd, info: strings().monetizationOverviewTotal, stars: nil), viewType: .lastItem)
         ]
         
         entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().monetizationOverviewTitle), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))
@@ -424,33 +355,12 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
         
         for (i, tuple) in tuples.enumerated() {
             entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_overview(i), equatable: .init(tuple), comparable: nil, item: { initialSize, stableId in
-                return Fragment_OverviewRowItem(initialSize, stableId: stableId, context: arguments.context, overview: tuple.overview, currency: .ton, viewType: tuple.viewType)
+                return Fragment_OverviewRowItem(initialSize, stableId: stableId, context: arguments.context, overview: tuple.overview, currency: .stars, viewType: tuple.viewType)
             }))
         }
     }
     
     
-    if state.balance.ton > 0 {
-        entries.append(.sectionId(sectionId, type: .normal))
-        sectionId += 1
-      
-        entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().monetizationBalanceTitle), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))
-        index += 1
-        entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_balance_ton, equatable: .init(state), comparable: nil, item: { initialSize, stableId in
-            return Fragment_BalanceRowItem(initialSize, stableId: stableId, context: arguments.context, balance: .init(amount: Double(state.balance.ton), usd: state.balance.usd, currency: .ton), canWithdraw: state.canWithdraw, viewType: .singleItem, transfer: arguments.withdraw)
-        }))
-        
-        let text: String
-        if state.config_withdraw {
-            text = strings().monetizationBalanceInfo
-        } else {
-            text = strings().monetizationBalanceComingLaterInfo
-        }
-        entries.append(.desc(sectionId: sectionId, index: index, text: .markdown(text, linkHandler: { link in
-            arguments.executeLink(link)
-        }), data: .init(color: theme.colors.listGrayText, viewType: .textBottomItem)))
-        index += 1
-    }
     
     if let state = state.starsState {
         entries.append(.sectionId(sectionId, type: .normal))
@@ -486,76 +396,7 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
     }
         
 
-    if let transactionsState = state.transactionsState, let starsState = state.starsState, let starsTransactionsState = starsState.transactionsState {
-       
-        
-        var modes: [State.TransactionMode] = []
-        if !state.transactions.isEmpty {
-            modes.append(.ton)
-        }
-        if !starsState.transactions.isEmpty {
-            modes.append(.xtr)
-        }
-        
-        var mode = state.transactionMode
-        if state.transactionMode == .ton, !modes.contains(.ton) {
-            mode = .xtr
-        }
-        if state.transactionMode == .xtr, !modes.contains(.xtr) {
-            mode = .ton
-        }
-        if !modes.isEmpty {
-            entries.append(.sectionId(sectionId, type: .normal))
-            sectionId += 1
-          
-            entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().monetizationTransactionsTitle), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))
-            index += 1
-            
-            entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_transaction_mode, equatable: .init(state), comparable: nil, item: { initialSize, stableId in
-                return SegmentTypesRowItem(initialSize, stableId: stableId, items: transactionSegments(modes, transactionMode: mode), viewType: .firstItem, callback: { uniqueId in
-                    if let mode = State.TransactionMode(rawValue: Int(uniqueId)) {
-                        arguments.toggleTransactionType(mode)
-                    }
-                })
-            }))
-        }
-        
-        
-        switch mode {
-        case .ton:
-            
-            struct Tuple : Equatable {
-                let transaction: Star_Transaction
-                let viewType: GeneralViewType
-            }
-            
-            var tuples: [Tuple] = []
-            for (i, transaction) in state.transactions.enumerated() {
-                var viewType = bestGeneralViewTypeAfterFirst(state.transactions, for: i)
-                if transactionsState.canLoadMore || transactionsState.isLoading {
-                    if i == state.transactions.count - 1 {
-                        viewType = .innerItem
-                    }
-                }
-                tuples.append(.init(transaction: transaction, viewType: viewType))
-            }
-            
-            for (i, tuple) in tuples.enumerated() {
-                entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_transaction(i), equatable: .init(tuple), comparable: nil, item: { initialSize, stableId in
-                    return Star_TransactionItem(initialSize, stableId: stableId, context: arguments.context, viewType: tuple.viewType, transaction: tuple.transaction, callback: arguments.transaction)
-                }))
-            }
-            
-            if transactionsState.isLoading {
-                entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_loading, equatable: nil, comparable: nil, item: { initialSize, stableId in
-                    return LoadingTableItem(initialSize, height: 40, stableId: stableId, viewType: .lastItem)
-                }))
-            } else if transactionsState.canLoadMore {
-                entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_load_more, data: .init(name: strings().starListTransactionsShowMore, color: theme.colors.accent, type: .none, viewType: .lastItem, action: {
-                    arguments.loadMore(.ton)
-                })))
-            }
-        case .xtr:
+    if let starsState = state.starsState, let starsTransactionsState = starsState.transactionsState {
             struct Tuple : Equatable {
                 let transaction: Star_Transaction
                 let viewType: GeneralViewType
@@ -579,7 +420,7 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
             
             if starsTransactionsState.isLoading {
                 
-                if modes.isEmpty {
+                if starsState.transactions.isEmpty {
                     entries.append(.sectionId(sectionId, type: .normal))
                     sectionId += 1
                 }
@@ -592,7 +433,6 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
                     arguments.loadMore(.xtr)
                 })))
             }
-        }
 
     }
     
@@ -620,7 +460,7 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
     return entries
 }
 
-public func FragmentMonetizationController(context: any AccountContextProtocol, peerId: PeerId, onlyTonContext: StarsRevenueStatsContext? = nil) -> InputDataController {
+public func FragmentMonetizationController(context: any AccountContextProtocol, peerId: PeerId) -> InputDataController {
 
     let actionsDisposable = DisposableSet()
     
@@ -637,14 +477,10 @@ public func FragmentMonetizationController(context: any AccountContextProtocol, 
     }
     
     class ContextObject {
-        let stats: StarsRevenueStatsContext
-        let transactions: StarsTransactionsContext
         let starsRevenue: StarsRevenueStatsContext?
         let starsTransactions: StarsTransactionsContext?
 
-        init(stats: StarsRevenueStatsContext, transactions: StarsTransactionsContext, starsRevenue: StarsRevenueStatsContext?, starsTransactions: StarsTransactionsContext?) {
-            self.stats = stats
-            self.transactions = transactions
+        init(starsRevenue: StarsRevenueStatsContext?, starsTransactions: StarsTransactionsContext?) {
             self.starsRevenue = starsRevenue
             self.starsTransactions = starsTransactions
         }
@@ -665,72 +501,20 @@ public func FragmentMonetizationController(context: any AccountContextProtocol, 
         }
     }
     
-    let stats = onlyTonContext ?? StarsRevenueStatsContext(account: context.account, peerId: peerId, ton: true)
-    let transactions = context.engine.payments.peerStarsTransactionsContext(subject: .peer(peerId: peerId, ton: true), mode: .all)
-    let starsTransactions = onlyTonContext != nil ? nil : context.engine.payments.peerStarsTransactionsContext(subject: .peer(peerId: peerId, ton: false), mode: .all)
-    
-    starsTransactions?.loadMore()
-    
-    let revenueContext = onlyTonContext != nil ? nil : StarsRevenueStatsContext(account: context.account, peerId: peerId, ton: false)
-    revenueContext?.reload()
-    
-    let contextObject = ContextObject(stats: stats, transactions: transactions, starsRevenue: revenueContext, starsTransactions: starsTransactions)
+    let starsTransactions = context.engine.payments.peerStarsTransactionsContext(subject: .peer(peerId: peerId, ton: false), mode: .all)
+    starsTransactions.loadMore()
+    let revenueContext = StarsRevenueStatsContext(account: context.account, peerId: peerId, ton: false)
+    revenueContext.reload()
+    let contextObject = ContextObject(starsRevenue: revenueContext, starsTransactions: starsTransactions)
         
     let peer = context.engine.data.get(TelegramEngine.EngineData.Item.Peer.Peer(id: peerId))
     let adsUrl: Signal<String?, NoError> = .single(nil) |> then(context.engine.peers.requestStarsRevenueAdsAccountlUrl(peerId: peerId))
 
-    actionsDisposable.add(combineLatest(contextObject.stats.state, contextObject.transactions.state, peer, contextObject.starsStateValue, contextObject.starsTransactionsValue, adsUrl).start(next: { state, transactions, peer, starsRevenue, starsTransactions, adsUrl in
-        if let stats = state.stats {
+    actionsDisposable.add(combineLatest(peer, contextObject.starsStateValue, contextObject.starsTransactionsValue, adsUrl).start(next: { peer, starsRevenue, starsTransactions, adsUrl in
             updateState { current in
                 var current = current
-                
                 current.peer = peer
-                
-                current.balance = .init(ton: stats.balances.availableBalance.amount.value, usdRate: stats.usdRate)
-                current.overview.balance = .init(ton: stats.balances.availableBalance.amount.value, usdRate: stats.usdRate)
-                current.overview.all = .init(ton: stats.balances.overallRevenue.amount.value, usdRate: stats.usdRate)
-                current.overview.last = .init(ton: stats.balances.currentBalance.amount.value, usdRate: stats.usdRate)
-                
-                current.revenueGraph = stats.revenueGraph
-                current.loaded = true
-                current.topHoursGraph = stats.topHoursGraph
-                                                
-                current.transactions = transactions.transactions.map { value in
-                    let type: Star_TransactionType
-                    var botPeer: EnginePeer?
-                    let incoming: Bool = value.count.amount.totalValue > 0
-                    let source: Star_TransactionType.Source
-                    switch value.peer {
-                    case let .peer(peer):
-                        source = .peer
-                        botPeer = peer
-                    case .appStore:
-                        source = .appstore
-                    case .fragment:
-                        source = .fragment
-                    case .playMarket:
-                        source = .playmarket
-                    case .premiumBot:
-                        source = .premiumbot
-                    case .unsupported:
-                        source = .unknown
-                    case .ads:
-                        source = .ads
-                    case .apiLimitExtension:
-                        source = .apiLimitExtension
-                    }
-                    if incoming {
-                        type = .incoming(source)
-                    } else {
-                        type = .outgoing(source)
-                    }
-                    
-                    return Star_Transaction(id: value.id, currency: value.count.currency, amount: value.count.amount, date: value.date, name: "", peer: botPeer, type: type, native: value)
-                }
-                
-                current.transactionsState = transactions
-                
-                
+                current.loaded = starsRevenue?.stats != nil
                 if let revenue = starsRevenue?.stats {
                     var starsState = StarsState(config_withdraw: false)
                     starsState.balance = .init(stars: revenue.balances.availableBalance.amount, usdRate: revenue.usdRate)
@@ -743,7 +527,7 @@ public func FragmentMonetizationController(context: any AccountContextProtocol, 
                     starsState.adsUrl = adsUrl
                     
                     starsState.revenueGraph = revenue.revenueGraph
-                    starsState.transactions = starsTransactions?.transactions.map { value in
+                    starsState.transactions = starsTransactions?.transactions.filter { $0.count.currency == .stars }.map { value in
                         let type: Star_TransactionType
                         var botPeer: EnginePeer?
                         let incoming: Bool = value.count.amount.totalValue > 0
@@ -780,7 +564,6 @@ public func FragmentMonetizationController(context: any AccountContextProtocol, 
                 
                 return current
             }
-        }
         
         
     }))
@@ -841,7 +624,7 @@ public func FragmentMonetizationController(context: any AccountContextProtocol, 
                 alert(for: context.window, info: strings().monetizationWithdrawErrorText)
             case .requestPassword:
                 showModal(with: InputPasswordController(context: context, title: strings().monetizationWithdrawEnterPasswordTitle, desc: strings().monetizationWithdrawEnterPasswordText, checker: { value in
-                    return context.engine.peers.requestStarsRevenueWithdrawalUrl(peerId: peerId, ton: true, amount: amount, password: value)
+                    return context.engine.peers.requestStarsRevenueWithdrawalUrl(peerId: peerId, ton: false, amount: amount, password: value)
                     |> deliverOnMainQueue
                     |> afterNext { url in
                         LinkHooks.shared.openExternalLink(url, false)
@@ -876,43 +659,11 @@ public func FragmentMonetizationController(context: any AccountContextProtocol, 
     }, executeLink: { link in
         LinkHooks.shared.openExternalLink(link, false)
     }, withdraw: {
-        let error = stateValue.with { $0.withdrawError }
-        if let error {
-            switch error {
-            case .authSessionTooFresh, .twoStepAuthTooFresh, .twoStepAuthMissing:
-                alert(for: context.window, info: strings().monetizationWithdrawErrorText)
-            case .requestPassword:
-                showModal(with: InputPasswordController(context: context, title: strings().monetizationWithdrawEnterPasswordTitle, desc: strings().monetizationWithdrawEnterPasswordText, checker: { value in
-                    return context.engine.peers.requestStarsRevenueWithdrawalUrl(peerId: peerId, ton: true, amount: nil, password: value)
-                    |> deliverOnMainQueue
-                    |> afterNext { url in
-                        LinkHooks.shared.openExternalLink(url, false)
-                    } 
-                    |> ignoreValues
-                    |> mapError { error in
-                        switch error {
-                        case .invalidPassword:
-                            return .wrong
-                        case .limitExceeded:
-                            return .custom(strings().loginFloodWait)
-                        case .amountTooSmall:
-                            return .custom(strings().fragmentMonetizationControllerWithdrawMinimum)
-                        case .generic:
-                            return .generic
-                        default:
-                            return .custom(strings().monetizationWithdrawErrorText)
-                        }
-                    }
-                }), for: context.window)
-            default:
-                alert(for: context.window, info: strings().unknownError)
-            }
-        }
     }, promo: {
         let isBot = stateValue.with { $0.peer?._asPeer().isBot ?? false }
         showModal(with: FragmentMonetizationPromoController(context: context, peerId: peerId, isBot: isBot), for: context.window)
     }, loadDetailedGraph: { [weak contextObject] currency, graph, x in
-        let revenue = currency == .xtr ? contextObject?.starsRevenue : contextObject?.stats
+        let revenue = contextObject?.starsRevenue
         return revenue?.loadDetailedGraph(graph, x: x) ?? .complete()
     }, transaction: { transaction in
         showModal(with: Star_TransactionScreen(context: context, fromPeerId: peerId, peer: stateValue.with { $0.peer }, transaction: transaction.native), for: context.window)
@@ -933,12 +684,7 @@ public func FragmentMonetizationController(context: any AccountContextProtocol, 
             }
         }
     }, loadMore: { [weak contextObject] mode in
-        switch mode {
-        case .ton:
-            contextObject?.transactions.loadMore()
-        case .xtr:
-            contextObject?.starsTransactions?.loadMore()
-        }
+        contextObject?.starsTransactions?.loadMore()
     }, toggleTransactionType: { mode in
         updateState { current in
             var current = current
@@ -966,7 +712,7 @@ public func FragmentMonetizationController(context: any AccountContextProtocol, 
         return InputDataSignalValue(entries: entries(state, arguments: arguments, detailedDisposable: detailedDisposable))
     }
     
-    let controller = InputDataController(dataSignal: signal, title: onlyTonContext == nil ?  strings().statsMonetization : strings().statsTon, hasDone: false)
+    let controller = InputDataController(dataSignal: signal, title: strings().statsMonetization, hasDone: false)
     controller.analyticsScreen = .peerInfoMonetization
     getController = { [weak controller] in controller }
     

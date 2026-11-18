@@ -15,7 +15,6 @@ import SettingsUI
 import StoriesUI
 import PrivateCallScreen
 import DetectSpeech
-import WalletContext
 import AppKit
 
 
@@ -375,14 +374,6 @@ final class AuthorizedApplicationContext: NSObject, SplitViewDelegate {
     private let appUpdateDisposable = MetaDisposable()
     private let updateFoldersDisposable = MetaDisposable()
     private let globalPeerDisposable = MetaDisposable()
-    private let tonConnectPresentationDisposable = MetaDisposable()
-    private let tonConnectOperationDisposable = MetaDisposable()
-    private var tonConnectRequestId: String?
-    private var tonConnectDismiss: (() -> Void)?
-    private var tonConnectDiagnosticId: UUID?
-    private var tonConnectClosing = false
-    private var tonConnectCancelled = false
-    private var tonConnectHolderStorage: Any?
     private var isInFullScreenTransition: Bool = false
     private var pendingApplyWindowChrome: Bool = false
 
@@ -422,22 +413,6 @@ final class AuthorizedApplicationContext: NSObject, SplitViewDelegate {
         }
     }
     
-    @available(macOS 10.15, *)
-    private final class TonConnectHolder {
-        var completion: ((Result<Void, WalletContext.WalletError>) -> Void)?
-        var latestState: WalletContext.TonConnectState?
-        var returnTarget: WalletContext.TonConnectReturn?
-    }
-
-    @available(macOS 10.15, *)
-    private var tonConnectHolder: TonConnectHolder {
-        if let existing = self.tonConnectHolderStorage as? TonConnectHolder {
-            return existing
-        }
-        let holder = TonConnectHolder()
-        self.tonConnectHolderStorage = holder
-        return holder
-    }
 
     private var launchAction: ApplicationContextLaunchAction?
     
@@ -577,12 +552,6 @@ final class AuthorizedApplicationContext: NSObject, SplitViewDelegate {
         closeAllModals(window: context.window)
         AppMenu.closeAll()
 
-        if #available(macOS 10.15, *), let walletContext = context.walletContext {
-            tonConnectPresentationDisposable.set((walletContext.tonConnectState
-            |> deliverOnMainQueue).start(next: { [weak self] state in
-                self?.handleTonConnectState(state, walletContext: walletContext)
-            }))
-        }
       
        // var forceNotice:Bool = false
         if FastSettings.isMinimisize {
@@ -1311,165 +1280,6 @@ final class AuthorizedApplicationContext: NSObject, SplitViewDelegate {
         
     }
 
-    @available(macOS 10.15, *)
-    private func handleTonConnectState(_ state: WalletContext.TonConnectState, walletContext: WalletContext) {
-        let isWalletAvailable = WalletConfiguration.with(appConfiguration: self.context.appConfiguration).isAvailable
-        self.tonConnectHolder.latestState = state
-        if isWalletAvailable, state.presentationEnabled, let diagnostic = state.diagnostic, self.tonConnectDiagnosticId != diagnostic.id {
-            self.tonConnectDiagnosticId = diagnostic.id
-            if let requestId = diagnostic.requestId {
-                let data = ModalAlertData(title: nil, info: diagnostic.failure.message, ok: strings().walletTonConnectRetry, mode: .confirm(text: strings().alertCancel, isThird: false))
-                showModalAlert(for: self.window, data: data, completion: { [weak walletContext] _ in
-                    walletContext?.retryTonConnectRequest(id: requestId)
-                }, cancel: { [weak walletContext] in
-                    walletContext?.closeTonConnectPresentation(id: requestId)
-                })
-            } else {
-                alert(for: self.window, header: nil, info: diagnostic.failure.message)
-            }
-        }
-        guard state.presentationEnabled, let active = state.active else {
-            self.dismissTonConnectController(walletContext: walletContext)
-            return
-        }
-        if self.tonConnectClosing {
-            return
-        }
-        if let previousId = self.tonConnectRequestId, previousId != active.id {
-            self.dismissTonConnectController(walletContext: walletContext)
-            return
-        }
-        guard isWalletAvailable || self.tonConnectRequestId == active.id else {
-            return
-        }
-        switch active.status {
-        case .ready:
-            guard self.tonConnectRequestId == nil else {
-                return
-            }
-            let subject: WalletTonConnectSubject
-            switch active.content {
-            case let .connect(request):
-                subject = .connection(request)
-            case let .operation(request): subject = .operation(request)
-            case let .signData(request):
-                subject = .operation(WalletContext.TonConnectOperationRequest(
-                    id: request.id,
-                    applicationName: request.applicationName,
-                    domain: request.domain,
-                    icon: request.icon,
-                    method: .signData,
-                    messages: [],
-                    feeNanograms: nil,
-                    validUntil: nil,
-                    relayerWillSubmit: false,
-                    needsWalletStateInit: false,
-                    warnings: [],
-                    actions: [],
-                    signData: request
-                ))
-            }
-            self.tonConnectRequestId = active.id
-            self.tonConnectCancelled = false
-            let result = WalletTonConnectController(context: self.context, walletContext: walletContext, subject: subject, showConnectionSuccess: BrowserStateContext.focusedWindow(for: self.context) == nil, approve: { [weak self, weak walletContext] completion in
-                guard let self, let walletContext, self.tonConnectRequestId == active.id else {
-                    completion(.failure(.unavailable))
-                    return
-                }
-                self.tonConnectHolder.completion = completion
-                let signal = walletContext.decideTonConnectRequest(id: active.id, approve: true)
-                self.tonConnectOperationDisposable.set((signal |> deliverOnMainQueue).start(error: { [weak self] error in
-                    guard let self, self.tonConnectRequestId == active.id else {
-                        return
-                    }
-                    let completion = self.tonConnectHolder.completion
-                    self.tonConnectHolder.completion = nil
-                    completion?(.failure(error))
-                }))
-            }, cancelled: { [weak self] in
-                guard let self, self.tonConnectRequestId == active.id else {
-                    return
-                }
-                self.tonConnectCancelled = true
-            }, closed: { [weak self, weak walletContext] in
-                guard let self, let walletContext else {
-                    return
-                }
-                self.tonConnectControllerClosed(id: active.id, walletContext: walletContext)
-            })
-            self.tonConnectDismiss = result.1
-            showModal(with: result.0, for: self.window)
-        case .processing:
-            break
-        case let .completed(decision):
-            guard self.tonConnectRequestId == active.id else {
-                walletContext.closeTonConnectPresentation(id: active.id)
-                return
-            }
-            if decision.approved, let completion = self.tonConnectHolder.completion {
-                self.tonConnectHolder.completion = nil
-                self.tonConnectClosing = true
-                self.tonConnectHolder.returnTarget = decision.returnTarget
-                completion(.success(Void()))
-            } else {
-                self.dismissTonConnectController(walletContext: walletContext)
-            }
-        case .invalidated:
-            if self.tonConnectRequestId == active.id {
-                self.dismissTonConnectController(walletContext: walletContext)
-            } else {
-                walletContext.closeTonConnectPresentation(id: active.id)
-            }
-        }
-    }
-
-    @available(macOS 10.15, *)
-    private func dismissTonConnectController(walletContext: WalletContext) {
-        guard !self.tonConnectClosing, let id = self.tonConnectRequestId else {
-            return
-        }
-        self.tonConnectClosing = true
-        self.tonConnectHolder.completion = nil
-        self.tonConnectOperationDisposable.set(nil)
-        if let dismiss = self.tonConnectDismiss {
-            dismiss()
-        } else {
-            self.tonConnectControllerClosed(id: id, walletContext: walletContext)
-        }
-    }
-
-    @available(macOS 10.15, *)
-    private func tonConnectControllerClosed(id: String, walletContext: WalletContext) {
-        guard self.tonConnectRequestId == id else {
-            return
-        }
-        let rejected = self.tonConnectCancelled
-        let target = self.tonConnectHolder.returnTarget
-        self.tonConnectRequestId = nil
-        self.tonConnectDismiss = nil
-        self.tonConnectHolder.completion = nil
-        self.tonConnectClosing = false
-        self.tonConnectCancelled = false
-        self.tonConnectHolder.returnTarget = nil
-        self.tonConnectOperationDisposable.set(nil)
-        if rejected {
-            walletContext.rejectTonConnectRequest(id: id)
-        }
-        walletContext.closeTonConnectPresentation(id: id)
-        if let latest = self.tonConnectHolder.latestState, let active = latest.active, active.id != id {
-            self.handleTonConnectState(latest, walletContext: walletContext)
-        }
-        guard self.tonConnectRequestId == nil else {
-            return
-        }
-        guard let target else { return }
-        switch target {
-        case .back, .none, .url("as://resolve"):
-            break
-        case let .url(url):
-            execute(inapp: .external(link: url, false), window: self.window)
-        }
-    }
 
     func splitViewDidNeedFullsize(controller: ViewController) {
         
@@ -1499,8 +1309,6 @@ final class AuthorizedApplicationContext: NSObject, SplitViewDelegate {
         updateFoldersDisposable.dispose()
         foldersReadyDisposable.dispose()
         globalPeerDisposable.dispose()
-        tonConnectPresentationDisposable.dispose()
-        tonConnectDismiss?()
         context.cleanup()
         NotificationCenter.default.removeObserver(self)
     }

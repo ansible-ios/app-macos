@@ -95,7 +95,7 @@ private func <(lhs:PasscodeEntry, rhs:PasscodeEntry) -> Bool {
 
 
 
-private func passcodeSettinsEntry(_ passcode: PostboxAccessChallengeData, passcodeSettings: PasscodeSettings, _ additional: AdditionalSettings, walletProtection: PasscodeWalletProtection?, walletAvailable: Bool) -> [PasscodeEntry] {
+private func passcodeSettinsEntry(_ passcode: PostboxAccessChallengeData, passcodeSettings: PasscodeSettings, _ additional: AdditionalSettings) -> [PasscodeEntry] {
     var entries:[PasscodeEntry] = []
     
     var sectionId:Int = 1
@@ -121,22 +121,6 @@ private func passcodeSettinsEntry(_ passcode: PostboxAccessChallengeData, passco
             entries.append(.turnTouchId(sectionId: sectionId, enabled: additional.useTouchId, viewType: .lastItem))
         }
 
-        if walletAvailable {
-            entries.append(.section(sectionId: sectionId))
-            sectionId += 1
-
-            let available = walletProtection != nil
-            let protectionEnabled = walletProtection?.enabled == true
-            let biometricsEnabled = walletProtection?.biometricsEnabled == true
-            let canUseBiometrics = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
-            let showBiometrics = protectionEnabled && (canUseBiometrics || biometricsEnabled)
-            entries.append(.lockWalletHeader(sectionId: sectionId, viewType: .textTopItem))
-            entries.append(.walletPasscode(sectionId: sectionId, enabled: protectionEnabled, available: available, viewType: showBiometrics ? .firstItem : .singleItem))
-            if showBiometrics {
-                entries.append(.walletBiometrics(sectionId: sectionId, enabled: biometricsEnabled, available: available, viewType: .lastItem))
-            }
-            entries.append(.walletInfo(sectionId: sectionId, viewType: .textBottomItem))
-        }
     }
     
     entries.append(.section(sectionId: sectionId))
@@ -319,11 +303,9 @@ open class PasscodeSettingsViewController<Context: AccountContextProtocol>: Tabl
        
         let previous:Atomic<[AppearanceWrapperEntry<PasscodeEntry>]> = Atomic(value: [])
 
-        let walletProtection = PasscodeCredentialHooks.shared.walletProtection()
-        let walletAvailable = context.appConfiguration.getBoolValue("wallet_available", orElse: false)
 
-        genericView.merge(with: combineLatest(queue: prepareQueue, context.sharedContext.accountManager.accessChallengeData(), passcodeSettingsView(context.sharedContext.accountManager), appearanceSignal, additionalSettings(accountManager: context.sharedContext.accountManager), walletProtection) |> map { passcode, passcodeSettings, appearance, additional, walletProtection in
-            let entries = passcodeSettinsEntry(passcode.data, passcodeSettings: passcodeSettings, additional, walletProtection: walletProtection, walletAvailable: walletAvailable).map{AppearanceWrapperEntry(entry: $0, appearance: appearance)}
+        genericView.merge(with: combineLatest(queue: prepareQueue, context.sharedContext.accountManager.accessChallengeData(), passcodeSettingsView(context.sharedContext.accountManager), appearanceSignal, additionalSettings(accountManager: context.sharedContext.accountManager)) |> map { passcode, passcodeSettings, appearance, additional in
+            let entries = passcodeSettinsEntry(passcode.data, passcodeSettings: passcodeSettings, additional).map{AppearanceWrapperEntry(entry: $0, appearance: appearance)}
             return prepareTransition(left: previous.swap(entries), right: entries, initialSize: initialSize, arguments: arguments)
         } |> deliverOnMainQueue)
         

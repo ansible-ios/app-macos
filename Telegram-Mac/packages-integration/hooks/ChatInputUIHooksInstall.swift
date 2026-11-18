@@ -7,8 +7,6 @@ import CodeSyntax
 import RichTextEditorUI
 import RichTextEditorCore
 import ChatUI
-import WalletUI
-import WalletContext
 import AppAnalytics
 import InputDataUI
 import InAppSettings
@@ -38,41 +36,6 @@ private func mapChatInputInAppLink(_ value: Any?) -> ChatInputInAppLink? {
     }
 }
 
-private func makeChatInputWalletHooks() -> Any? {
-    if #available(macOS 10.15, *) {
-        var hooks = ChatInputWalletHooks(walletContext: { context in
-            return (context as! AccountContext).walletContext
-        }, makeWalletSendController: { context, walletContext, recipient, handlers in
-            let transferAnimation: WalletSendTransferAnimation? = handlers.transferAnimation.map { transferAnimation in
-                return { (id: String, source: WalletSendTransferAnimationSource?) -> Bool in
-                    return transferAnimation(id, source.flatMap { source in
-                        return source.window.map { ChatWalletTransferFlightSource(diamond: source.diamond, window: $0, center: source.center, width: source.width) }
-                    })
-                }
-            }
-            switch recipient {
-            case let .peer(peer):
-                return WalletSendController(context: context as! AccountContext, walletContext: walletContext as! WalletContext, peer: peer, transferAnimation: transferAnimation, transferAnimationWillStart: handlers.transferAnimationWillStart, completed: handlers.completed)
-            case let .address(address):
-                return WalletSendController(context: context as! AccountContext, walletContext: walletContext as! WalletContext, initialAddress: address)
-            }
-        })
-        hooks.normalizeTransferAddress = { address in
-            WalletContext.transferAddress(from: address, preserveBounce: true)
-        }
-        let makeController = hooks.makeWalletSendController
-        hooks.makeWalletSendControllerWithContext = { context, walletContext, peer, handlers, analyticsContext in
-            let controller = makeController(context, walletContext, peer, handlers)
-            controller.analyticsContext = analyticsContext
-            if let controller = controller as? InputDataModalController {
-                controller.current.analyticsContext = analyticsContext
-            }
-            return controller
-        }
-        return hooks
-    }
-    return nil
-}
 
 func installChatInputUIHooks() {
     var hooks = ChatInputUIHooks(makeEntertainmentsPopover: { chatInteraction in
@@ -102,7 +65,7 @@ func installChatInputUIHooks() {
         return TranslateModalController(context: context as! AccountContext, from: from, toLang: toLang, text: draft.inputText, entities: draft.messageTextEntities(), draft: draft, onUse: onUse, onSend: onSend)
     }, makeRichTranslateModal: { context, from, toLang, text, entities, richBlocks, onUseRich in
         return TranslateModalController(context: context as! AccountContext, from: from, toLang: toLang, text: text, entities: entities, richBlocks: richBlocks, onUseRich: onUseRich)
-    }, wallet: makeChatInputWalletHooks(), getAudioPlayer: { context in
+    }, getAudioPlayer: { context in
         return (context as? AccountContext)?.sharedContext.getAudioPlayer()
     }, makeStickerPackPreview: { context, peerId, references in
         return StickerPackPreviewModalController(context as! AccountContext, peerId: peerId, references: references.map(mapChatInputStickerPackPreviewSource))

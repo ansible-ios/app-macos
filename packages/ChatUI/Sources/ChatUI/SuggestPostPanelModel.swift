@@ -46,17 +46,14 @@ public class SuggestPostPanelModel: ChatAccessoryModel {
         
         let text: NSMutableAttributedString = NSMutableAttributedString()
 
-        if let amount = data.amount, amount.amount.value > 0 {
+        if data.amount?.currency == .ton {
+            text.append(string: strings().chatUnsupportedMessageTitle, color: theme.colors.text, font: .normal(.text))
+        } else if let amount = data.amount, amount.amount.value > 0 {
             let dateString = data.date.flatMap({ stringForDate(timestamp: $0) }) ?? strings().suggestPostPanelTextAnytime
             let formatted = strings().suggestPostPanelTextPriceAndDate(amount.suggestedPostAmountText, dateString)
             text.append(string: "\(clown_space)\(formatted)", color: theme.colors.text, font: .normal(.text))
 
-            switch amount.currency {
-            case .stars:
-                text.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
-            case .ton:
-                text.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.ton_logo.file, color: theme.colors.accent), for: clown)
-            }
+            text.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
 
         } else if let time = data.date {
             let dateString = stringForDate(timestamp: time)

@@ -139,41 +139,14 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
         return .nothing
     }
 
-    if let initialURL, initialURL.scheme == "ton" {
-        if options.hasContext, initialURL.host == "transfer", let data = parseWalletUrl(initialURL) {
-            return .tonTransfer(link: urlString, data: data)
-        }
-        return .nothing
-    }
+    if let scheme = initialURL?.scheme?.lowercased(), ["ton", "tonsite", "tonconnect", "tc"].contains(scheme) { return .nothing }
 
     if let settings = webProxySettings(from: urlString), options.hasContext, options.hasApplyProxy {
         return .socks(link: urlString, settings)
     }
 
-    if var u = initialURL {
-        let eligible = u.scheme == "tonsite"
-        if options.hasContext {
-            if eligible {
-                return .tonsite(link: urlString)
-            } else {
-                if u.scheme == nil, let domain = URL(string: "https://" + u.absoluteString) {
-                    u = domain
-                }
-                let host = urlWithoutScheme(from: u)?.host
-                if let host, host.components(separatedBy: ".").last == "ton", urlString != "as://ton" {
-                    var components = URLComponents(url: u, resolvingAgainstBaseURL: false)
-                    components?.scheme = "tonsite"
-                    var urlString: String? = nil
-                    if let url = components?.url?.absoluteString {
-                        urlString = url
-                    }
-                    if let urlString {
-                        return .tonsite(link: urlString)
-                    }
-                }
-            }
-        }
-    }
+    let webURL = initialURL?.scheme == nil ? URL(string: "https://" + urlString) : initialURL
+    if webURL?.host?.lowercased().hasSuffix(".ton") == true { return .nothing }
 
     if let urlValue = initialURL, let host = urlValue.host?.lowercased(), options.hasContext {
 
@@ -190,8 +163,8 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
         let range = url.range(of: domain)
         if range.location != NSNotFound && (range.location == 0 || (range.location <= 8 && url.substring(from: range.location - 1).hasPrefix("/"))) {
             let string = external.substring(from: range.location + range.length)
-            if options.hasContext, isSendGramsWebPath(string) {
-                return .sendGrams(link: urlString, data: parseSendGramsLink(urlVars(with: string).0))
+            if isSendGramsWebPath(string) {
+                return .nothing
             }
             for action in actions_me {
                 if string.hasPrefix(action) {
@@ -980,7 +953,7 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
                     }
                 case known_scheme[27]:
                     if options.hasContext {
-                        return .starsInfo(link: urlString, isTon: true)
+                        return .nothing
                     }
                 case known_scheme[28]:
                     if options.hasContext, let slug = vars[keyURLSlug] {
@@ -1002,11 +975,11 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
                     }
                 case known_scheme[32]:
                     if options.hasContext {
-                        return .starsInfo(link: urlString, isTon: true)
+                        return .nothing
                     }
                 case known_scheme[34]:
-                    if options.hasContext, isSendGramsSchemeAction(action) {
-                        return .sendGrams(link: urlString, data: parseSendGramsLink(vars))
+                    if isSendGramsSchemeAction(action) {
+                        return .nothing
                     }
                 default:
                     break

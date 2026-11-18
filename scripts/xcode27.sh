@@ -16,7 +16,6 @@ PROJECTS=(
     core-xprojects/ffmpeg/ffmpeg.xcodeproj/project.pbxproj
     core-xprojects/webrtc/webrtc.xcodeproj/project.pbxproj
     core-xprojects/tde2e/tde2e.xcodeproj/project.pbxproj
-    core-xprojects/wallet-engine/WalletEngine.xcodeproj/project.pbxproj
     core-xprojects/mtproto-engine/MTProtoEngine.xcodeproj/project.pbxproj
 )
 TELEGRAM_CORE_MANIFEST=submodules/telegram-ios/submodules/TelegramCore/Package.swift

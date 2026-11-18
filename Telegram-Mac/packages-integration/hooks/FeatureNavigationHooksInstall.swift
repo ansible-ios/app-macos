@@ -131,11 +131,13 @@ func installFeatureNavigationHooks() {
         return PremiumLockModalController()
     }
     hooks.showStarsPurchase = { context, window, currency, suffix, amount in
-        showModal(with: Star_ListScreen(context: context, currency: currency, source: .buy(suffix: suffix, amount: amount)), for: window)
+        guard currency == .stars else { return }
+        showModal(with: Star_ListScreen(context: context, source: .buy(suffix: suffix, amount: amount)), for: window)
     }
     hooks.showStarsPurchaseWithContext = { context, window, currency, suffix, amount, analyticsContext in
+        guard currency == .stars else { return }
         let presentation = analyticsContext.beginPresentation()
-        let controller = Star_ListScreen(context: context, currency: currency, source: .buy(suffix: suffix, amount: amount))
+        let controller = Star_ListScreen(context: context, source: .buy(suffix: suffix, amount: amount))
         controller.analyticsContext = analyticsContext
         controller.current.analyticsContext = analyticsContext
         let onDeinit = controller.onDeinit
@@ -148,7 +150,7 @@ func installFeatureNavigationHooks() {
     hooks.showStarsPurchaseForStoryReply = { context, window, amount, analyticsContext, completed in
         let presentation = analyticsContext.beginPresentation()
         var purchased = false
-        let controller = Star_ListScreen(context: context, currency: .stars, source: .buy(suffix: nil, amount: amount), analyticsContext: analyticsContext, onPurchased: {
+        let controller = Star_ListScreen(context: context, source: .buy(suffix: nil, amount: amount), analyticsContext: analyticsContext, onPurchased: {
             guard !purchased else { return }
             purchased = true
             completed(true)

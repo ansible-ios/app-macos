@@ -203,6 +203,8 @@ public func PaymentsReceiptController(context: (any AccountContextProtocol), mes
 }
 
 public func PaymentsReceiptController(context: (any AccountContextProtocol), messageId: MessageId, invoice: TelegramMediaInvoice, analyticsContext: AnalyticsContext?) -> InputDataModalController {
+    guard !unsupportedPaymentCurrency(invoice.currency) else { return unsupportedPaymentController() }
+
     let origin = Analytics.shared.captureContext(engine: context.engine, peerId: messageId.peerId, inherited: analyticsContext ?? Analytics.shared.unresolvedContext())
     let presentation = origin.beginPresentation()
     defer { presentation.end() }
@@ -271,6 +273,11 @@ public func PaymentsReceiptController(context: (any AccountContextProtocol), mes
         return peerOrigin.preservingPresentation(context.account.postbox.transaction { $0.getPeer(value.botPaymentId) }) |> map { (value, $0) }
     }
     actionsDisposable.add(origin.preservingPresentation(receiptAndPeer |> deliverOnMainQueue).start(next: { receipt, botPeer in
+        guard !unsupportedPaymentCurrency(receipt.invoice.currency) else {
+            close?()
+            showModalText(for: context.window, text: strings().chatUnsupportedMessageTitle)
+            return
+        }
         updateState { current in
             var current = current
             current.receipt = receipt

@@ -2,9 +2,6 @@ import Foundation
 import TelegramCore
 import PasscodeCore
 import BuildConfig
-#if !SHARE
-import WalletContext
-#endif
 
 let unscopedWalletPasscodeCredentialManagedKey = "wallet.passcodeCredentialManaged"
 
@@ -26,14 +23,9 @@ func makeAccountManagerAccessChallenge(basePath: String, isTemporary: Bool, isRe
         _ = try PasscodeEnvironment.shared.sharedAccessGroup()
         PasscodeCredentialStore.shared.configureLock(directory: basePath)
         #if !SHARE
-        if isMainProcess && !isTemporary && !isReadOnly && isFreshInstallation {
-            try resetWalletLocalSecrets()
-        }
         if isMainProcess, UserDefaults.standard.bool(forKey: walletPasscodeCredentialManagedKey) {
             if try PasscodeCredentialStore.shared.hasStoredCredential() {
                 PasscodeCredentialStore.shared.requireExistingCredential()
-            } else if !isTemporary && !isReadOnly {
-                try resetWalletLocalSecrets()
             }
         }
         #endif

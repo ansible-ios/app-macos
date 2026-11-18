@@ -18,100 +18,6 @@ import StarsUI
 import InlineStickerLayer
 import AppAnalytics
 
-private final class SegmentItem : GeneralRowItem {
-    fileprivate let currency: CurrencyAmount.Currency
-    fileprivate let callback:(CurrencyAmount.Currency)->Void
-    init(_ initialSize: NSSize, stableId: AnyHashable, currency: CurrencyAmount.Currency, callback:@escaping(CurrencyAmount.Currency)->Void) {
-        self.callback = callback
-        self.currency = currency
-        super.init(initialSize, stableId: stableId)
-    }
-    
-    var selectedIndex: Int {
-        return currency == .stars ? 0 : 1
-    }
-    
-    override func viewClass() -> AnyClass {
-        return SegmentItemView.self
-    }
-
-    override var accessibilityLabel: String? {
-        return strings().voiceOverCommonCurrency
-    }
-
-    override var accessibilityValue: String? {
-        return currency == .stars ? strings().starListTelegramStars : strings().editPostSuggestionCurrencyTon
-    }
-
-    override var accessibilityIncludesChildren: Bool {
-        return false
-    }
-
-    override var accessibilityCustomActions: [NSAccessibilityCustomAction]? {
-        let callback = self.callback
-        return [NSAccessibilityCustomAction(name: strings().starListTelegramStars, handler: {
-            callback(.stars)
-            return true
-        }), NSAccessibilityCustomAction(name: strings().editPostSuggestionCurrencyTon, handler: {
-            callback(.ton)
-            return true
-        })]
-    }
-    
-    override var height: CGFloat {
-        return 30
-    }
-}
-
-private final class SegmentItemView : GeneralRowView {
-    fileprivate let segmentControl: CatalinaStyledSegmentController
-
-    required init(frame frameRect: NSRect) {
-        self.segmentControl = CatalinaStyledSegmentController(frame: NSMakeRect(0, 0, 240, 30))
-        super.init(frame: frameRect)
-      
-        let items: [CatalinaSegmentedItem] = [.init(title: strings().starListTelegramStars, handler: { [weak self] in
-            if let item = self?.item as? SegmentItem  {
-                item.callback(.stars)
-            }
-        }), .init(title: strings().editPostSuggestionCurrencyTon, handler: { [weak self] in
-            if let item = self?.item as? SegmentItem  {
-                item.callback(.ton)
-            }
-        })]
-        
-        segmentControl.set(items: items)
-        
-        addSubview(segmentControl.view)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func set(item: TableRowItem, animated: Bool) {
-        super.set(item: item, animated: animated)
-        
-        guard let item = item as? SegmentItem else {
-            return
-        }
-        
-        segmentControl.set(selected: item.selectedIndex, animated: animated)
-        segmentControl.theme = CatalinaSegmentTheme(backgroundColor: theme.colors.background, foregroundColor: theme.colors.listBackground, activeTextColor: theme.colors.text, inactiveTextColor: theme.colors.listGrayText)
-    }
-    
-    override func layout() {
-        super.layout()
-        
-        segmentControl.view.center()
-    }
-    
-    override var backdorColor: NSColor {
-        return .clear
-    }
-}
-
-
 private final class HeaderItem : GeneralRowItem {
     fileprivate let titleLayout: TextViewLayout
     fileprivate let balance: TextViewLayout
@@ -124,21 +30,11 @@ private final class HeaderItem : GeneralRowItem {
         self.titleLayout = .init(.initialize(string: title, color: theme.colors.text, font: .medium(.text)), maximumNumberOfLines: 1)
         let attr = NSMutableAttributedString()
         
-        let formatted: String
-        switch currency {
-        case .stars:
-            formatted = balance.formattedWithSeparator
-        case .ton:
-            formatted = formatTonAmountText(balance, maxDecimalPositions: nil)
-        }
+        let formatted = balance.formattedWithSeparator
         
-        self.spokenBalance = strings().starPurchaseBalance("\(formatted) \(currency == .stars ? strings().starListTelegramStars : TON)")
+        self.spokenBalance = strings().starPurchaseBalance("\(formatted) \(strings().starListTelegramStars)")
         attr.append(string: strings().starPurchaseBalance("\(clown + TINY_SPACE)\(formatted)"), color: theme.colors.text, font: .normal(.text))
-        if currency == .ton {
-            attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.ton_logo.file, color: theme.colors.accent), for: clown)
-        } else {
-            attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
-        }
+        attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
         
         self.balance = .init(attr)
         self.balance.measure(width: .greatestFiniteMagnitude)
@@ -240,14 +136,9 @@ private final class InputItem : GeneralRowItem {
         self.interactions = arguments.interactions
         
         let usd_rate: Double
-        switch currency {
-        case .ton:
-            usd_rate = arguments.context.appConfiguration.getGeneralValueDouble("ton_usd_rate", orElse: 3)
-        case .stars:
-            usd_rate = arguments.context.appConfiguration.getGeneralValueDouble("star_usd_rate", orElse: 0.013)
-        }
+        usd_rate = arguments.context.appConfiguration.getGeneralValueDouble("star_usd_rate", orElse: 0.013)
         
-        let units = currency == .ton ? Double(value) / 1_000_000_000 : Double(value)
+        let units = Double(value)
         self.usdLayout = .init(.initialize(string: "~\("\(units * usd_rate)".prettyCurrencyNumberUsd)", color: theme.colors.grayText, font: .normal(.short)))
         self.usdLayout.measure(width: .greatestFiniteMagnitude)
         super.init(initialSize, stableId: stableId)
@@ -262,7 +153,7 @@ private final class InputItem : GeneralRowItem {
     }
 
     override var accessibilityLabel: String? {
-        return currency == .stars ? strings().fragmentStarAmountPlaceholder : strings().voiceOverCommonTonAmount
+        return strings().fragmentStarAmountPlaceholder
     }
 
     override var accessibilityValue: String? {
@@ -299,11 +190,7 @@ private final class InputView : GeneralRowView {
             
             let attr = NSMutableAttributedString()
             attr.append(string: clown)
-            if item.currency == .ton {
-                attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.ton_logo.file, color: theme.colors.accent), for: clown)
-            } else {
-                attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
-            }
+            attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
             
             let layout = TextViewLayout(attr)
             layout.measure(width: .greatestFiniteMagnitude)
@@ -331,8 +218,8 @@ private final class InputView : GeneralRowView {
             inputView.inputTheme = inputView.inputTheme.withUpdatedTextColor(value > max && item.hasBalance ? theme.colors.redUI : theme.colors.text)
             
             
-            item.interactions.filterEvent = { [currency = item.currency] event in
-                return digitsOnlyFilterEvent(event) || (currency == .ton && (event.characters == "." || event.characters == ","))
+            item.interactions.filterEvent = { event in
+                return digitsOnlyFilterEvent(event)
             }
 
             self.inputView.set(item.interactions.presentation.textInputState())
@@ -437,68 +324,28 @@ private final class Arguments {
     let updateState: (Updated_ChatTextInputState)->Void
     let close:()->Void
     let date:()->Void
-    let currency:(CurrencyAmount.Currency)->Void
-    init(context: any AccountContextProtocol, interactions: TextView_Interactions, updateState: @escaping(Updated_ChatTextInputState)->Void, close:@escaping()->Void, date:@escaping()->Void, currency:@escaping(CurrencyAmount.Currency)->Void) {
+    init(context: any AccountContextProtocol, interactions: TextView_Interactions, updateState: @escaping(Updated_ChatTextInputState)->Void, close:@escaping()->Void, date:@escaping()->Void) {
         self.context = context
         self.interactions = interactions
         self.updateState = updateState
         self.close = close
         self.date = date
-        self.currency = currency
     }
-}
-
-private func offerInputText(_ units: Int64, currency: CurrencyAmount.Currency) -> String {
-    guard currency == .ton else { return String(units) }
-    return NSDecimalNumber(decimal: Decimal(units) / 1_000_000_000).stringValue
-}
-
-private func offerUnits(_ text: String, currency: CurrencyAmount.Currency) -> Int64? {
-    guard currency == .ton else { return Int64(text) }
-    let parts = text.replacingOccurrences(of: ",", with: ".").components(separatedBy: ".")
-    guard parts.count <= 2, parts.allSatisfy({ $0.utf8.allSatisfy { (48...57).contains($0) } }) else { return nil }
-    let fraction = parts.count == 2 ? parts[1] : ""
-    guard fraction.count <= 9 else { return nil }
-    return Int64(parts[0] + fraction + String(repeating: "0", count: 9 - fraction.count))
 }
 
 private struct State : Equatable {
     var starAmount: Int64 = 0
-    var tonAmount: Int64 = 0
-    var currency: CurrencyAmount.Currency
+    let currency: CurrencyAmount.Currency = .stars
     var inputState: Updated_ChatTextInputState = .init()
     var date: Int32?
     var mode: ChatInterfaceState.ChannelSuggestPost.Mode
     var starsState: StarsContext.State?
-    var tonState: StarsContext.State?
     var peer: EnginePeer?
     
-    var effectiveState: StarsContext.State? {
-        switch currency {
-        case .stars:
-            return starsState
-        case .ton:
-            return tonState
-        }
-    }
-    
+    var effectiveState: StarsContext.State? { starsState }
     var amount: Int64 {
-        get {
-            switch currency {
-            case .stars:
-                return starAmount
-            case .ton:
-                return tonAmount
-            }
-        }
-        set {
-            switch currency {
-            case .stars:
-                starAmount = newValue
-            case .ton:
-                tonAmount = newValue
-            }
-        }
+        get { starAmount }
+        set { starAmount = newValue }
     }
     
     var starsAmount: StarsAmount {
@@ -525,7 +372,6 @@ private struct State : Equatable {
 
 private let _id_input = InputDataIdentifier("_id_input")
 private let _id_date = InputDataIdentifier("_id_date")
-private let _id_currency = InputDataIdentifier("_id_currency")
 
 private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
     var entries:[InputDataEntry] = []
@@ -556,25 +402,11 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         entries.append(.sectionId(sectionId, type: .customModern(10)))
         sectionId += 1
         
-        if state.mode == .new {
-            entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_currency, equatable: .init(state.currency), comparable: nil, item: { initialSize, stableId in
-                return SegmentItem(initialSize, stableId: stableId, currency: state.currency, callback: arguments.currency)
-            }))
-            
-            entries.append(.sectionId(sectionId, type: .normal))
-            sectionId += 1
-        }
         
         let inputHeader: String
         let inputInfo: String
-        switch state.currency {
-        case .stars:
-            inputHeader = strings().editPostSuggestionPriceLabel
-            inputInfo = strings().editPostSuggestionPriceDescription(peer._asPeer().displayTitle)
-        case .ton:
-            inputHeader = strings().editPostSuggestionPriceTonLabel
-            inputInfo = strings().editPostSuggestionPriceTonDescription(peer._asPeer().displayTitle)
-        }
+        inputHeader = strings().editPostSuggestionPriceLabel
+        inputInfo = strings().editPostSuggestionPriceDescription(peer._asPeer().displayTitle)
               
         entries.append(.desc(sectionId: sectionId, index: index, text: .plain(inputHeader), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))
         index += 1
@@ -606,22 +438,20 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
     return entries
 }
 
-public func EditPostSuggestionController(chatInteraction: ChatInteraction, data: ChatInterfaceState.ChannelSuggestPost) -> InputDataModalController {
+public func EditPostSuggestionController(chatInteraction: ChatInteraction, data: ChatInterfaceState.ChannelSuggestPost) -> InputDataModalController? {
+    guard data.amount?.currency != .ton else { return nil }
     
     let context = chatInteraction.context
 
     let actionsDisposable = DisposableSet()
     
     let min_stars = context.appConfiguration.getGeneralValue64("stars_suggested_post_amount_min", orElse: 5)
-    let min_ton = context.appConfiguration.getGeneralValue64("ton_suggested_post_amount_min", orElse: 1_000_000_000)
 
     
     let amount = data.amount ?? .init(amount: .init(value: min_stars, nanos: 0), currency: .stars)
 
     let starAmount = amount.currency == .stars ? amount.amount.value : min_stars
-    let tonAmount = amount.currency == .ton ? amount.amount.value : min_ton
-    let initialText = offerInputText(amount.amount.value, currency: amount.currency)
-    let initialState = State(starAmount: starAmount, tonAmount: tonAmount, currency: amount.currency, inputState: .init(inputText: .initialize(string: initialText)), date: data.date, mode: data.mode)
+    let initialState = State(starAmount: starAmount, inputState: .init(inputText: .initialize(string: String(starAmount))), date: data.date, mode: data.mode)
 
     let statePromise = ValuePromise(initialState, ignoreRepeated: true)
     let stateValue = Atomic(value: initialState)
@@ -640,11 +470,10 @@ public func EditPostSuggestionController(chatInteraction: ChatInteraction, data:
     
     let peer = context.engine.data.get(TelegramEngine.EngineData.Item.Peer.RenderedPeer(id: chatInteraction.peerId))
     
-    actionsDisposable.add(combineLatest(context.starsContext.state, context.tonContext.state, peer).startStrict(next: { state, tonState, peer in
+    actionsDisposable.add(combineLatest(context.starsContext.state, peer).startStrict(next: { state, peer in
         updateState { current in
             var current = current
             current.starsState = state
-            current.tonState = tonState
             current.peer = peer?.chatOrMonoforumMainPeer
             return current
         }
@@ -653,27 +482,17 @@ public func EditPostSuggestionController(chatInteraction: ChatInteraction, data:
     let interactions = TextView_Interactions(presentation: initialState.inputState)
     
     let max_stars = context.appConfiguration.getGeneralValue64("stars_suggested_post_amount_max", orElse: 10000)
-    let max_ton = context.appConfiguration.getGeneralValue64("ton_suggested_post_amount_max", orElse: 10000000000000)
     
 
     let arguments = Arguments(context: context, interactions: interactions, updateState: { [weak interactions] value in
                 
         let previous = value.string
-        let currency = stateValue.with { $0.currency }
-        let maximum: Int64
-        let minimum: Int64
-        switch currency {
-        case .ton:
-            maximum = max_ton
-            minimum = min_ton
-        case .stars:
-            maximum = max_stars
-            minimum = min_stars
-        }
+        let maximum = max_stars
+        let minimum = min_stars
         
-        let parsed = previous.isEmpty ? 0 : offerUnits(previous, currency: currency)
+        let parsed = previous.isEmpty ? 0 : Int64(previous)
         let number = parsed.map { max(min($0, maximum), minimum) } ?? stateValue.with { $0.amount }
-        let input = parsed == number ? previous : offerInputText(number, currency: currency)
+        let input = parsed == number ? previous : String(number)
                 
         let value = Updated_ChatTextInputState(inputText: .initialize(string: input))
         
@@ -724,15 +543,6 @@ public func EditPostSuggestionController(chatInteraction: ChatInteraction, data:
                 return current
             }
         }), for: context.window)
-    }, currency: { [weak interactions] value in
-        updateState { current in
-            var current = current
-            current.currency = value
-            current.inputState = .init(inputText: .initialize(string: offerInputText(current.amount, currency: value)))
-            return current
-        }
-        let inputState = stateValue.with { $0.inputState }
-        interactions?.update { _ in inputState }
     })
     
     let signal = statePromise.get() |> deliverOnPrepareQueue |> map { state in
@@ -754,12 +564,7 @@ public func EditPostSuggestionController(chatInteraction: ChatInteraction, data:
         switch data.mode {
         case .new, .edit:
             if starsState.balance.value < state.starsAmount.value {
-                switch state.currency {
-                case .stars:
-                    showModal(with: Star_ListScreen(context: context, source: .buy(suffix: nil, amount: state.amount)), for: window)
-                case .ton:
-                    ChatNavigationHooks.shared.showAddTonBalance(context, state.starsAmount.value - starsState.balance.value, window)
-                }
+                showModal(with: Star_ListScreen(context: context, source: .buy(suffix: nil, amount: state.amount)), for: window)
                 return .fail(.fields([_id_input : .shake]))
             }
         case .suggest:

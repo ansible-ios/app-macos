@@ -25,45 +25,6 @@ import MessageTextUtils
 import PremiumUI
 import StarsUI
 
-@available(macOS 10.15, *)
-func showWalletSendMoney(chatInteraction: ChatInteraction, user: TelegramUser, flyIntoChat: Bool, morphSource: (() -> NSView?)? = nil) {
-    showWalletSendMoney(chatInteraction: chatInteraction, recipient: .peer(user), flyIntoChat: flyIntoChat, morphSource: morphSource)
-}
-
-@available(macOS 10.15, *)
-func showWalletSendMoney(chatInteraction: ChatInteraction, recipient: ChatWalletSendRecipient, flyIntoChat: Bool, morphSource: (() -> NSView?)? = nil) {
-    let context = chatInteraction.context
-    let peerId: PeerId
-    switch recipient {
-    case let .peer(user):
-        peerId = user.id
-    case .address:
-        peerId = chatInteraction.peerId
-    }
-    let analyticsContext = chatInteraction.captureAnalyticsContext().restricting(peerId: peerId)
-    let presentation = analyticsContext.beginPresentation()
-    defer { withExtendedLifetime(presentation) {} }
-    guard let walletContext = ChatInputUIHooks.shared.walletHooks.walletContext(context) else {
-        return
-    }
-    var acceptedTransferAnimation = false
-    let handlers = ChatWalletSendHandlers(transferAnimationWillStart: !flyIntoChat ? nil : { [weak chatInteraction] id in
-        let presentation = analyticsContext.beginPresentation()
-        withExtendedLifetime(presentation) { chatInteraction?.walletTransferAnimation?.prepare(id: id) }
-    }, transferAnimation: !flyIntoChat ? nil : { [weak chatInteraction] id, source in
-        let presentation = analyticsContext.beginPresentation()
-        defer { withExtendedLifetime(presentation) {} }
-        acceptedTransferAnimation = chatInteraction?.walletTransferAnimation?.receive(id: id, source: source) ?? false
-        return acceptedTransferAnimation
-    }, completed: { [weak chatInteraction] in
-        let presentation = analyticsContext.beginPresentation()
-        defer { withExtendedLifetime(presentation) {} }
-        if !acceptedTransferAnimation {
-            chatInteraction?.scrollToLatest(true)
-        }
-    })
-    showModal(with: ChatInputUIHooks.shared.walletHooks.makeWalletSendControllerObserved(context, walletContext, recipient, handlers, analyticsContext: analyticsContext), for: context.window, morphSource: morphSource)
-}
 
 public final class ChatInputAttachButton: View, MorphHoldObserving {
 
@@ -309,12 +270,6 @@ public final class ChatInputAttachButton: View, MorphHoldObserving {
                     }
                 }
 
-                if #available(macOS 10.15, *), context.appConfiguration.getBoolValue("wallet_available", orElse: false), chatMode != .scheduled, let user = peer as? TelegramUser,
-                   user.canBeDirectRecipient(accountPeerId: context.peerId) {
-                    items.append(ContextMenuItem(strings().chatInputAttachViewMoney, handler: { [weak self] in
-                        showWalletSendMoney(chatInteraction: chatInteraction, user: user, flyIntoChat: true, morphSource: { [weak self] in self?.button })
-                    }, itemImage: MenuAnimation.menu_gram.value))
-                }
 
                 if acceptMode, let peer = chatInteraction.presentation.peer {
                     for attach in chatInteraction.presentation.attachItems {

@@ -35,8 +35,7 @@ public func fetchFavicon(context: (any AccountContextProtocol), url: String, siz
         return .single(icon)
     }
     let cacheKey = url
-    let proxyServerHost = context.appConfiguration.getStringValue("ton_proxy_address", orElse: "magic.org")
-    let url = mapTonUrl(url, proxyServerHost: proxyServerHost, context: context)
+    guard !isUnsupportedWalletNavigation(URL(string: url)) else { return .single(nil) }
     
     return context.engine.resources.httpData(url: url)
     |> map(Optional.init)
@@ -229,135 +228,6 @@ public final class BrowserContentState: Equatable {
 
 
 
-private func mapTonUrl(_ url: String, proxyServerHost: String, context: (any AccountContextProtocol)) -> String {
-    
-    switch BrowserHooks.shared.classifyLink(context, url) {
-    case .tonsite:
-        guard let url = URL(string: url) else {
-            return url
-        }
-        
-        var mappedHost: String = ""
-        if let host = url.host {
-            mappedHost = host
-            mappedHost = mappedHost.replacingOccurrences(of: "-", with: "-h")
-            mappedHost = mappedHost.replacingOccurrences(of: ".", with: "-d")
-        }
-        
-        var mappedPath = ""
-        if  !url.path.isEmpty {
-            mappedPath = url.path
-            if !url.path.hasPrefix("/") {
-                mappedPath = "/\(mappedPath)"
-            }
-        }
-        let mappedUrl = "https://\(mappedHost).\(proxyServerHost)\(mappedPath)"
-        return mappedUrl
-    default:
-        return url
-    }
-    
-}
-
-
-
-private final class TonSchemeHandler: NSObject, WKURLSchemeHandler {
-    private final class PendingTask {
-        public let sourceTask: any WKURLSchemeTask
-        public var urlSessionTask: URLSessionTask?
-        public let isCompleted = Atomic<Bool>(value: false)
-        
-        public init(proxyServerHost: String, sourceTask: any WKURLSchemeTask) {
-            self.sourceTask = sourceTask
-            
-            let requestUrl = sourceTask.request.url
-            
-            var mappedHost: String = ""
-            if let host = sourceTask.request.url?.host {
-                mappedHost = host
-                mappedHost = mappedHost.replacingOccurrences(of: "-", with: "-h")
-                mappedHost = mappedHost.replacingOccurrences(of: ".", with: "-d")
-            }
-            
-            var mappedPath = ""
-            if let path = sourceTask.request.url?.path, !path.isEmpty {
-                mappedPath = path
-                if !path.hasPrefix("/") {
-                    mappedPath = "/\(mappedPath)"
-                }
-            }
-            let mappedUrl = "https://\(mappedHost).\(proxyServerHost)\(mappedPath)"
-            let isCompleted = self.isCompleted
-            self.urlSessionTask = URLSession.shared.dataTask(with: URLRequest(url: URL(string: mappedUrl)!), completionHandler: { data, response, error in
-                if isCompleted.swap(true) {
-                    return
-                }
-                
-                if let error {
-                    sourceTask.didFailWithError(error)
-                } else {
-                    if let response {
-                        if let response = response as? HTTPURLResponse, let requestUrl {
-                            if let updatedResponse = HTTPURLResponse(
-                                url: requestUrl,
-                                statusCode: response.statusCode,
-                                httpVersion: "HTTP/1.1",
-                                headerFields: response.allHeaderFields as? [String: String] ?? [:]
-                            ) {
-                                sourceTask.didReceive(updatedResponse)
-                            } else {
-                                sourceTask.didReceive(response)
-                            }
-                        } else {
-                            sourceTask.didReceive(response)
-                        }
-                    }
-                    if let data {
-                        sourceTask.didReceive(data)
-                    }
-                    sourceTask.didFinish()
-                }
-            })
-            self.urlSessionTask?.resume()
-        }
-        
-        public func cancel() {
-            if let urlSessionTask = self.urlSessionTask {
-                self.urlSessionTask = nil
-                if !self.isCompleted.swap(true) {
-                    switch urlSessionTask.state {
-                    case .running, .suspended:
-                        urlSessionTask.cancel()
-                    default:
-                        break
-                    }
-                }
-            }
-        }
-    }
-    
-    private let proxyServerHost: String
-    
-    private var pendingTasks: [PendingTask] = []
-    
-    public init(proxyServerHost: String) {
-        self.proxyServerHost = proxyServerHost
-    }
-    
-    public func webView(_ webView: WKWebView, start urlSchemeTask: any WKURLSchemeTask) {
-        self.pendingTasks.append(PendingTask(proxyServerHost: self.proxyServerHost, sourceTask: urlSchemeTask))
-    }
-    
-    public func webView(_ webView: WKWebView, stop urlSchemeTask: any WKURLSchemeTask) {
-        if let index = self.pendingTasks.firstIndex(where: { $0.sourceTask === urlSchemeTask }) {
-            let task = self.pendingTasks[index]
-            self.pendingTasks.remove(at: index)
-            task.cancel()
-        }
-    }
-}
-
-
 private class WebsiteView : View {
     fileprivate let webView: WKWebView
     fileprivate init(frame frameRect: NSRect, configration: WKWebViewConfiguration) {
@@ -511,10 +381,6 @@ public final class WebsiteController : ModalViewController, WKNavigationDelegate
         
         let configuration = WKWebViewConfiguration()
 
-        let proxyServerHost = context.appConfiguration.getStringValue("ton_proxy_address", orElse: "magic.org")
-
-
-        configuration.setURLSchemeHandler(TonSchemeHandler(proxyServerHost: proxyServerHost), forURLScheme: "tonsite")
 
         let contentController = WKUserContentController()
         let videoScript = WKUserScript(source: videoSource, injectionTime: .atDocumentStart, forMainFrameOnly: false)
@@ -722,10 +588,11 @@ public final class WebsiteController : ModalViewController, WKNavigationDelegate
     
     @available(macOS 10.15, *)
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, preferences: WKWebpagePreferences, decisionHandler: @escaping (WKNavigationActionPolicy, WKWebpagePreferences) -> Void) {
-        decisionHandler(.allow, preferences)
+        decisionHandler(isUnsupportedWalletNavigation(navigationAction.request.url) ? .cancel : .allow, preferences)
     }
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if isUnsupportedWalletNavigation(navigationAction.request.url) { decisionHandler(.cancel); return }
         if let _ = navigationAction.request.url?.absoluteString {
             decisionHandler(.allow)
         } else {
@@ -773,8 +640,8 @@ public final class WebsiteController : ModalViewController, WKNavigationDelegate
             let context = self.context
             if let url = navigationAction.request.url?.absoluteString {
                 switch BrowserHooks.shared.classifyLink(context, url) {
-                case let .tonsite(link):
-                    self.browser.open(.tonsite(url: link))
+                case .tonsite:
+                    break
                 default:
                     BrowserHooks.shared.openLink(context, url, self.window, false, {})
                 }

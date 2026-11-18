@@ -167,7 +167,7 @@ private func entries(_ view: MultiplePeersView, state: State, arguments: Argumen
                     
                     entries.append(.desc(sectionId: sectionId, index: 300, text: .markdown(text, linkHandler: { link in
                         if link == "fragment" {
-                            let link: String = "fragment.com/username/\(addressName)"
+                            let link: String = "crystalpiece.su/username/\(addressName)"
                             ComposeUIHooks.shared.openInAppLink(link)
                         }
                     }), data: .init(color: color, viewType: .modern(position: .single, insets: NSEdgeInsetsMake(5, 16, 0, 0)))))

@@ -4213,16 +4213,6 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
         
         
        
-        if #available(macOS 10.15, *), let walletContext = ChatHistoryUIHooks.shared.walletHooks.walletContext(context) {
-            presentationDisposable.add((walletContext.chatFiatRateState
-            |> deliverOnMainQueue).start(next: { [weak self] rate in
-                self?.updateState { current in
-                    var current = current
-                    current.walletFiatRate = rate.map { WalletFiatRateProjection(unitsPerGram: $0.unitsPerGram, currencySymbol: $0.currencySymbol) }
-                    return current
-                }
-            }))
-        }
 
         let historyUiState: Signal<State, NoError> = stateValue.get() |> filter { $0.presentationResolved } |> distinctUntilChanged(isEqual: { lhs, rhs in
             return lhs.transribe == rhs.transribe &&
@@ -5063,7 +5053,7 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
                 guard let strongSelf = self else { return false }
                 let p = strongSelf.chatInteraction.presentation
                 guard p.state == .normal else { return false }
-                if let suggestPost = p.interfaceState.suggestPost, suggestPost.amount == nil { return false }
+                if let suggestPost = p.interfaceState.suggestPost, suggestPost.amount?.currency != .stars { return false }
                 if let slowMode = p.slowMode, slowMode.hasLocked || p.slowModeMultipleLocked { return false }
                 return true
             }()
@@ -5829,9 +5819,6 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
             }
         }
 
-        if #available(macOS 10.15, *) {
-            chatInteraction.walletTransferAnimation = ChatWalletTransferAnimation(chatInteraction: chatInteraction, tableView: genericView.tableView)
-        }
         chatInteraction.voiceSendFlight = ChatVoiceSendFlight(tableView: genericView.tableView)
         chatInteraction.voiceTranscription = ChatVoiceTranscription(chatInteraction: chatInteraction, host: genericView)
         self.textSendFlight = ChatTextSendFlight(view: genericView)
@@ -6059,18 +6046,12 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
                                     verifyAlert(for: context.window, header: title, information: info, ok: strings().confirmDelete, cancel: strings().modalCancel, successHandler: successHandler)
                                 } else {
                                     
-                                    if messages.count == 1, messages[0].timestamp > context.timestamp + .secondsInDay, let attr = messages[0].publishedSuggestedPostMessageAttribute {
+                                    if messages.count == 1, messages[0].timestamp > context.timestamp + .secondsInDay, let attr = messages[0].publishedSuggestedPostMessageAttribute, attr.currency == .stars {
                                         let header: String
                                         let info: String
 
-                                        switch attr.currency {
-                                        case .ton:
-                                            header = strings().chatDeleteMessageSuggestedPostHeaderTon
-                                            info = strings().chatDeleteMessageSuggestedPostInfoTon
-                                        case .stars:
-                                            header = strings().chatDeleteMessageSuggestedPostHeaderStars
-                                            info = strings().chatDeleteMessageSuggestedPostInfoStars
-                                        }
+                                        header = strings().chatDeleteMessageSuggestedPostHeaderStars
+                                        info = strings().chatDeleteMessageSuggestedPostInfoStars
 
                                         verifyAlert(for: context.window, header: header, information: info, ok: strings().chatDeleteMessageSuggestedPostActionDeleteAnyway, successHandler: successHandler)
                                     } else {
@@ -8270,38 +8251,6 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
             }
         }
         
-        chatInteraction.openTonAddressContextMenu = { [weak self] address in
-            guard #available(macOS 10.15, *), let walletContext = ChatHistoryUIHooks.shared.walletHooks.walletContext(context) else {
-                return
-            }
-            guard let event = NSApp.currentEvent, let window = event.window, let view = window.contentView?.hitTest(window.mouseLocationOutsideOfEventStream) else {
-                return
-            }
-            self?.tonAddressMenuDisposable.set((ChatHistoryUIHooks.shared.walletHooks.resolveTonAddress(context, walletContext, address)
-            |> take(1)
-            |> deliverOnMainQueue).start(next: { [weak self, weak view] resolved in
-                guard let view, let resolved else {
-                    return
-                }
-                let menu = ContextMenu()
-                if context.appConfiguration.getBoolValue("wallet_available", orElse: false) {
-                    menu.addItem(ContextMenuItem(strings().chatControllerSendMoney, handler: resolved.send, itemImage: MenuAnimation.menu_gram.value))
-                }
-                menu.addItem(ContextMenuItem(strings().chatControllerCopyAddress, handler: {
-                    copyToClipboard(address)
-                    showModalText(for: context.window, text: strings().chatControllerAddressCopied)
-                }, itemImage: MenuAnimation.menu_copy.value))
-                menu.addItem(ContextMenuItem(strings().chatControllerViewInExplorer, handler: resolved.openExplorer, itemImage: MenuAnimation.menu_search.value))
-                if let owner = resolved.owner {
-                    menu.addItem(ContextSeparatorItem())
-                    menu.addItem(ReactionPeerMenu(title: owner._asPeer().displayTitle, handler: { [weak self] in
-                        self?.chatInteraction.openInfo(owner.id, false, nil, nil)
-                    }, peer: owner._asPeer(), context: context, reaction: nil, message: nil))
-                }
-                AppMenu.show(menu: menu, event: event, for: view)
-            }))
-        }
-        
         chatInteraction.updatePinned = { [weak self] pinnedId, dismiss, silent, forThisPeerOnlyIfPossible in
             if let `self` = self {
                 
@@ -8425,26 +8374,13 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
             showModal(with: GiftingController(context: context, peerId: peerId, isBirthday: false), for: context.window, morphSource: morphSource)
         }
 
-        chatInteraction.diceRoll = { [weak self] in
-            if let chatInteraction = self?.chatInteraction {
-                showModal(with: ChatUIHooks.shared.makeDiceRollController(context, chatInteraction), for: context.window)
-            }
-        }
-
-        chatInteraction.sendDiceWithStake = { [weak self] stake in
-            _ = (context.tonContext.state |> deliverOnMainQueue |> take(1)).startStandalone(next: { tonState in
-                if let balance = tonState?.balance.value, balance >= stake {
-                    self?.chatInteraction.sendMedias([TelegramMediaDice(emoji: "🎲", tonAmount: stake)], ChatTextInputState(), false, nil, false, nil, false, nil, false)
-                } else {
-                    let needed = stake - (tonState?.balance.value ?? 0)
-                    ChatNavigationHooks.shared.showAddTonBalance(context, needed, context.window)
-                }
-            })
-        }
-
         chatInteraction.editPostSuggestion = { [weak self] data in
             if let chatInteraction = self?.chatInteraction {
-                showModal(with: EditPostSuggestionController(chatInteraction: chatInteraction, data: data), for: context.window)
+                if let editor = EditPostSuggestionController(chatInteraction: chatInteraction, data: data) {
+                    showModal(with: editor, for: context.window)
+                } else {
+                    showModalText(for: context.window, text: strings().chatUnsupportedMessageTitle)
+                }
             }
         }
         
@@ -10615,13 +10551,6 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
                         self.currentDeleteAnimationCorrelationIds.remove(entryId)
                         foundItemViews.append(view.rowView)
                     }
-                } else if #available(macOS 10.15, *), let view = view as? ChatServiceRowView, let item = view.item as? ChatServiceItem, item.height < 300, let transferView = view.walletTransferView {
-                    let entryId = item.entry.stableId
-                    if self.currentDeleteAnimationCorrelationIds.contains(entryId) {
-                        appliedDeleteAnimationCorrelationIds.insert(entryId)
-                        self.currentDeleteAnimationCorrelationIds.remove(entryId)
-                        foundItemViews.append(transferView)
-                    }
                 }
                 return true
             })
@@ -10678,9 +10607,6 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
         
         let _ = nextTransaction.execute()
 
-        if #available(macOS 10.15, *) {
-            chatInteraction.walletTransferAnimation?.updateOpenReadStates(processedView.originalView?.fixedReadStates)
-        }
         #if DEBUG
         let mergeProbe = ChatMergeProbe.begin(table: genericView.tableView, transition: transition)
         #endif
@@ -12122,7 +12048,7 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
                     guard let item = self.genericView.tableView.item(at: row) as? ChatRowItem else {
                         return .failed
                     }
-                    if let item = item as? ChatServiceItem, item.walletTransferData == nil {
+                    if item is ChatServiceItem {
                         return .failed
                     }
                     if !item.isSharable {

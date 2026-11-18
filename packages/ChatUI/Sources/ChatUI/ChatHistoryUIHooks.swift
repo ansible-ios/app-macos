@@ -154,44 +154,6 @@ public enum ChatHistoryLink {
     }
 }
 
-@available(macOS 10.15, *)
-public protocol ChatWalletCardView: View {
-    var onDiamondLanding: ((CGFloat) -> Void)? { get set }
-    func update(amount: Int64, isIncoming: Bool, name: String, address: String)
-    func updateShimmer(visible: Bool, repeating: Bool, animated: Bool, completion: (() -> Void)?)
-    func updateTransferState(isSending: Bool, isPending: Bool, animateCompletion: Bool)
-    func resetTransferState()
-    func setAwaitingTransferFlight(_ awaiting: Bool, animated: Bool)
-    func transferDiamondTarget(in view: NSView) -> (center: NSPoint, width: CGFloat)?
-    func acceptTransferDiamond(_ diamond: InteractiveDiamondView)
-    func setCovered(_ covered: Bool)
-    var onArrivalInterrupted: (() -> Void)? { get set }
-    var isDiamondExpanded: Bool { get }
-    func prepareIncomingTransferAnimation()
-    func updateIncomingTransferAnimation(startTime: CFTimeInterval, at timestamp: CFTimeInterval) -> Double
-    func finishIncomingTransferAnimation()
-}
-
-@available(macOS 10.15, *)
-public struct ChatHistoryWalletHooks {
-    public let walletContext: (any AccountContextProtocol) -> (any ChatWalletContext)?
-    public let makeWalletTransactionController: (any AccountContextProtocol, any ChatWalletContext, ChatServiceItem.WalletTransferData, Int32, Bool) -> InputDataModalController
-    public let makeWalletGramInfoController: (any AccountContextProtocol, any ChatWalletContext) -> InputDataModalController
-    public let makeCardView: (NSRect) -> any ChatWalletCardView
-    public let resolveTonAddress: (any AccountContextProtocol, any ChatWalletContext, String) -> Signal<ChatWalletTonAddress?, NoError>
-
-    public init(walletContext: @escaping (any AccountContextProtocol) -> (any ChatWalletContext)?,
-                makeWalletTransactionController: @escaping (any AccountContextProtocol, any ChatWalletContext, ChatServiceItem.WalletTransferData, Int32, Bool) -> InputDataModalController,
-                makeWalletGramInfoController: @escaping (any AccountContextProtocol, any ChatWalletContext) -> InputDataModalController,
-                makeCardView: @escaping (NSRect) -> any ChatWalletCardView,
-                resolveTonAddress: @escaping (any AccountContextProtocol, any ChatWalletContext, String) -> Signal<ChatWalletTonAddress?, NoError>) {
-        self.walletContext = walletContext
-        self.makeWalletTransactionController = makeWalletTransactionController
-        self.makeWalletGramInfoController = makeWalletGramInfoController
-        self.makeCardView = makeCardView
-        self.resolveTonAddress = resolveTonAddress
-    }
-}
 
 @available(macOS 12, *)
 public struct ChatHistoryRichTextHooks {
@@ -384,7 +346,6 @@ public struct ChatHistoryUIHooks {
     public let chatListFilterTitle: (ChatListFilter) -> String
     public let showCommunityView: (any AccountContextProtocol, PeerId) -> Void
     public let emptyChatControllerType: () -> ViewController.Type
-    public let wallet: Any?
     public let richText: Any?
 
     public init(peerInfoLink: @escaping (String, PeerId, ChatInitialAction?, Bool, Int32?, @escaping (PeerId, Bool, MessageId?, ChatInitialAction?) -> Void) -> Any,
@@ -437,7 +398,6 @@ public struct ChatHistoryUIHooks {
                 chatListFilterTitle: @escaping (ChatListFilter) -> String,
                 showCommunityView: @escaping (any AccountContextProtocol, PeerId) -> Void,
                 emptyChatControllerType: @escaping () -> ViewController.Type,
-                wallet: Any?,
                 richText: Any?) {
         self.peerInfoLink = peerInfoLink
         self.followResolvedNameLink = followResolvedNameLink
@@ -489,14 +449,9 @@ public struct ChatHistoryUIHooks {
         self.chatListFilterTitle = chatListFilterTitle
         self.showCommunityView = showCommunityView
         self.emptyChatControllerType = emptyChatControllerType
-        self.wallet = wallet
         self.richText = richText
     }
 
-    @available(macOS 10.15, *)
-    public var walletHooks: ChatHistoryWalletHooks {
-        return wallet as! ChatHistoryWalletHooks
-    }
 
     @available(macOS 12, *)
     public var richTextHooks: ChatHistoryRichTextHooks {

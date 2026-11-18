@@ -58,7 +58,6 @@ public class ChatServiceItem: ChatRowItem {
             case premium(days: Int32)
             case starGift(amount: Int64, date: Int32, from: EnginePeer?, to: EnginePeer?, purpose: Star_TransactionPurpose)
             case stars(amount: Int64, date: Int32, transactionId: String?, peer: EnginePeer?)
-            case ton(amount: Int64, date: Int32, transactionId: String?, peer: EnginePeer?)
         }
         
         public struct UniqueAttributes {
@@ -461,7 +460,7 @@ public class ChatServiceItem: ChatRowItem {
                         paragraphs.append(isIncoming ? strings().chatServiceSuggestPostStatusReleaseIncoming(peer.displayTitle) : strings().chatServiceSuggestPostStatusReleaseOutgoing(peer.displayTitle))
                         paragraphs.append(strings().chatServiceSuggestPostStatusRefundCondition(peer.displayTitle))
                     } else {
-                        paragraphs.append(strings().chatServiceSuggestPostStatusTonSettlement(peer.displayTitle))
+                        paragraphs = [strings().chatUnsupportedMessageTitle]
                     }
                 }
                 text = paragraphs.joined(separator: "\n\n")
@@ -579,78 +578,6 @@ public class ChatServiceItem: ChatRowItem {
     }
     
     
-    public struct WalletTransferData {
-        public static let cardSize = NSMakeSize(216, 148)
-        public static let outerInset: CGFloat = 4
-        public static let captionSpacing: CGFloat = 7
-        public static let captionBottomInset: CGFloat = 4
-        public static let textOverlap: CGFloat = 4
-
-        public let amount: Int64
-        public let isIncoming: Bool
-        public let transactionId: String
-        public let comment: String?
-        public let commentEncrypted: Bool
-        public let hasEncryptedComment: Bool
-        public let peer: EnginePeer?
-        public let peerAddress: String
-        public let name: String
-        public let operationId: String?
-        public let pendingTransactionId: String?
-        public let captionLayout: TextViewLayout?
-
-        public init(amount: Int64, isIncoming: Bool, transactionId: String, comment: String?, commentEncrypted: Bool = false, peer: EnginePeer?, peerAddress: String, name: String, operationId: String? = nil, pendingTransactionId: String? = nil, textColor: NSColor) {
-            self.amount = amount
-            self.isIncoming = isIncoming
-            self.transactionId = transactionId
-            self.comment = comment
-            self.commentEncrypted = commentEncrypted
-            self.peer = peer
-            self.peerAddress = peerAddress
-            self.name = name
-            self.operationId = operationId
-            self.pendingTransactionId = pendingTransactionId
-            self.hasEncryptedComment = commentEncrypted
-            if self.hasEncryptedComment {
-                let placeholder = NSMutableAttributedString()
-                placeholder.append(string: strings().chatServiceItemEncryptedComment, color: textColor, font: .normal(13))
-                placeholder.addAttribute(TextInputAttributes.spoiler, value: true as NSNumber, range: placeholder.range)
-                let layout = TextViewLayout(placeholder, alignment: .center, spoilerColor: textColor, isSpoilerRevealed: false)
-                layout.measure(width: WalletTransferData.cardSize.width - 24)
-                self.captionLayout = layout
-            } else if !commentEncrypted, let comment, !comment.isEmpty {
-                let layout = TextViewLayout(.initialize(string: comment, color: textColor, font: .normal(13)), alignment: .center)
-                layout.measure(width: WalletTransferData.cardSize.width - 24)
-                self.captionLayout = layout
-            } else {
-                self.captionLayout = nil
-            }
-        }
-
-        public var width: CGFloat {
-            return WalletTransferData.cardSize.width + WalletTransferData.outerInset * 2
-        }
-
-        public var height: CGFloat {
-            var height = WalletTransferData.cardSize.height + WalletTransferData.outerInset * 2
-            if let captionLayout {
-                height += WalletTransferData.captionSpacing + captionLayout.layoutSize.height + WalletTransferData.captionBottomInset
-            }
-            return height
-        }
-    }
-
-    @available(macOS 10.15, *)
-    public func openWalletTransfer(decryptComment: Bool, morphSource: (() -> NSView?)? = nil) {
-        guard let data = self.walletTransferData, let walletContext = ChatHistoryUIHooks.shared.walletHooks.walletContext(context) else {
-            return
-        }
-        guard context.appConfiguration.getBoolValue("wallet_available", orElse: false) else {
-            showModalText(for: context.window, text: strings().chatServiceItemWalletUnavailable)
-            return
-        }
-        showModal(with: ChatHistoryUIHooks.shared.walletHooks.makeWalletTransactionController(context, walletContext, data, self.message?.timestamp ?? 0, decryptComment), for: context.window, morphSource: morphSource)
-    }
 
     public func previewGift(morphSource: (() -> NSView?)? = nil) {
         if let offerData = offerData {
@@ -670,9 +597,6 @@ public class ChatServiceItem: ChatRowItem {
             case let .stars(amount, date, _, from):
                 let transaction = StarsContext.State.Transaction(flags: [], id: "", count: .init(amount: .init(value: amount, nanos: 0), currency: .stars), date: date, peer: .unsupported, title: "", description: nil, photo: nil, transactionDate: nil, transactionUrl: nil, paidMessageId: nil, giveawayMessageId: nil, media: [], subscriptionPeriod: nil, starGift: nil, floodskipNumber: nil, starrefCommissionPermille: nil, starrefPeerId: nil, starrefAmount: nil, paidMessageCount: nil, premiumGiftMonths: nil, adsProceedsFromDate: nil, adsProceedsToDate: nil)
                 showModal(with: Star_TransactionScreen(context: context, fromPeerId: context.peerId, peer: from, transaction: transaction, purpose: .gift), for: context.window, morphSource: morphSource)
-            case let .ton(amount, date, _, from):
-                let transaction = StarsContext.State.Transaction(flags: [], id: "", count: .init(amount: .init(value: amount, nanos: 0), currency: .ton), date: date, peer: .unsupported, title: "", description: nil, photo: nil, transactionDate: nil, transactionUrl: nil, paidMessageId: nil, giveawayMessageId: nil, media: [], subscriptionPeriod: nil, starGift: nil, floodskipNumber: nil, starrefCommissionPermille: nil, starrefPeerId: nil, starrefAmount: nil, paidMessageCount: nil, premiumGiftMonths: nil, adsProceedsFromDate: nil, adsProceedsToDate: nil)
-                showModal(with: Star_TransactionScreen(context: context, fromPeerId: context.peerId, peer: from, transaction: transaction, purpose: .tonGift), for: context.window, morphSource: morphSource)
             case let .starGift(amount, date, from, to, purpose):
                 let transaction: StarsContext.State.Transaction = StarsContext.State.Transaction(flags: [], id: "", count: .init(amount: .init(value: amount, nanos: 0), currency: .stars), date: date, peer: to.flatMap { .peer($0) } ?? .unsupported, title: "", description: nil, photo: nil, transactionDate: nil, transactionUrl: nil, paidMessageId: nil, giveawayMessageId: nil, media: [], subscriptionPeriod: nil, starGift: purpose.gift, floodskipNumber: nil, starrefCommissionPermille: nil, starrefPeerId: nil, starrefAmount: nil, paidMessageCount: nil, premiumGiftMonths: nil, adsProceedsFromDate: nil, adsProceedsToDate: nil)
                 
@@ -705,7 +629,6 @@ public class ChatServiceItem: ChatRowItem {
     
     
     public private(set) var giftData: GiftData? = nil
-    public private(set) var walletTransferData: WalletTransferData? = nil
     public private(set) var offerData: OfferData? = nil
 
     public private(set) var suggestPhotoData: SuggestPhotoData? = nil
@@ -1048,6 +971,10 @@ public class ChatServiceItem: ChatRowItem {
                     }
                     _ = attributedString.append(string: strings().chatListServiceGameScored1Other(Int(score), gameName), color: grayTextColor, font: NSFont.normal(theme.fontSize))
                 case let .paymentSent(currency, totalAmount, _, isRecurringInit, isRecurringUsed):
+                    guard !unsupportedPaymentCurrency(currency) else {
+                        attributedString.append(string: strings().chatUnsupportedMessageTitle, color: grayTextColor, font: .normal(theme.fontSize))
+                        break
+                    }
                     let amount = servicePaymentAmount(totalAmount, currency: currency, embedDiamond: true)
                     var paymentMessage:Message?
                     for attr in message.attributes {
@@ -1724,6 +1651,10 @@ public class ChatServiceItem: ChatRowItem {
                         }
                     }
                 case let .paymentRefunded(_, currency, totalAmount, _, transactionId):
+                    guard !unsupportedPaymentCurrency(currency) else {
+                        attributedString.append(string: strings().chatUnsupportedMessageTitle, color: grayTextColor, font: .normal(theme.fontSize))
+                        break
+                    }
                     let peerName = message.author?.compactDisplayTitle ?? ""
 
                     let isDiamondRefund = currency == XTR
@@ -2475,125 +2406,8 @@ public class ChatServiceItem: ChatRowItem {
                     }
                     
                     self.suggestPostStatus = SuggestPostData(status: status, messageId: postId, peer: peer, isIncoming: isIncoming)
-                case let .giftTon(currency, amount, cryptoCurrency, cryptoAmount, transactionId):
-                    
-                    let cryptoAmount = cryptoAmount ?? 0
-                    
-                    let info = NSMutableAttributedString()
-                    let header = NSMutableAttributedString()
-                    let formatted: String
-                    if let cryptoCurrency {
-                        formatted = formatCurrencyAmount(cryptoAmount, currency: cryptoCurrency).prettyCurrencyNumberUsd + " " + cryptoCurrency
-                    } else {
-                        formatted = formatCurrencyAmount(amount, currency: currency)
-                    }
-                    
-                    header.append(string: formatted, color: grayTextColor, font: .medium(theme.fontSize + 1))
-                    
-                    
-                    _ = info.append(
-                        string: strings().chatServiceTonGiftInfo,
-                        color: grayTextColor,
-                        font: .normal(theme.fontSize)
-                    )
-                    info.detectBoldColorInString(with: .medium(theme.fontSize))
-                    
-                    
-                    self.giftData = .init(from: authorId ?? message.id.peerId, to: message.id.peerId, text: TextViewLayout(header, alignment: .center), info: TextViewLayout(info, alignment: .center), source: .ton(amount: isIncoming ? cryptoAmount : -cryptoAmount, date: message.timestamp, transactionId: transactionId, peer: isIncoming ? message.author.flatMap(EnginePeer.init) : message.peers[message.id.peerId].flatMap(EnginePeer.init)), ribbon: nil, uniqueAttributes: nil, giftMessage: nil, authorLayout: nil, author: nil, isPrepaidUpgrade: false)
-                    
-                    
-                    let text: String
-                    if authorId == context.peerId {
-                        text = strings().chatServicePremiumGiftSentYou(formatCurrencyAmount(amount, currency: currency))
-                    } else {
-                        if authorId == servicePeerId {
-                            text = strings().chatServicePremiumGiftSent(strings().chatServicePremiumUnknown, formatCurrencyAmount(amount, currency: currency))
-                        } else {
-                            text = strings().chatServicePremiumGiftSent(authorName, formatCurrencyAmount(amount, currency: currency))
-                        }
-                    }
-                    let _ =  attributedString.append(string: text, color: grayTextColor, font: NSFont.normal(theme.fontSize))
-                    
-                    if let authorId = authorId {
-                        let range = attributedString.string.nsstring.range(of: authorName)
-                        if range.location != NSNotFound {
-                            let link = ChatHistoryLink.peerInfo(link: "", peerId:authorId, action:nil, openChat: false, postId: nil, callback: chatInteraction.openInfo)
-                            attributedString.add(link: link, for: range, color: nameColor(authorId))
-                            attributedString.addAttribute(.font, value: NSFont.medium(theme.fontSize), range: range)
-                        }
-                    }
-                case let .walletTonConnectRequest(flags, sessionId, _, _, _, dappName):
-                    let text: String
-                    if flags & (1 << 3) != 0 {
-                        text = dappName.map { strings().chatServiceItemWalletRequestFromDeclined($0) } ?? strings().chatServiceItemWalletRequestDeclined
-                    } else if flags & (1 << 2) != 0 {
-                        text = dappName.map { strings().chatServiceItemWalletRequestFromAccepted($0) } ?? strings().chatServiceItemWalletRequestAccepted
-                    } else {
-                        text = dappName.map { strings().chatServiceItemWalletRequestFrom($0) } ?? strings().chatServiceItemWalletRequest
-                    }
-                    let _ = attributedString.append(string: text, color: grayTextColor, font: NSFont.normal(theme.fontSize))
-                    let servicePeerId = PeerId(namespace: Namespaces.Peer.CloudUser, id: PeerId.Id._internalFromInt64Value(777000))
-                    let messageId = message.id
-                    if #available(macOS 10.15, *), messageId.namespace == Namespaces.Message.Cloud, messageId.peerId == servicePeerId, message.author?.id == servicePeerId, isIncoming {
-                        let link = ChatHistoryLink.code(text, { _ in
-                            ChatHistoryUIHooks.shared.walletHooks.walletContext(context)?.openChatTonConnectRequest(sessionId: sessionId, messageId: messageId)
-                        })
-                        attributedString.add(link: link, for: NSMakeRange(0, attributedString.length), color: grayTextColor)
-                    }
-                case let .gramTransfer(amount, peerAddress, transactionId, comment, commentEncrypted):
-                    let conversationPeer = message.peers[message.id.peerId]
-                    let isUnknownSender = message.id.peerId == servicePeerId
-                    let peerName = conversationPeer?.compactDisplayTitle ?? authorName
-                    let amountText = formatGramsText(amount, maxDecimalPositions: 3)
-                    let text: String
-                    if isIncoming && isUnknownSender {
-                        text = strings().chatServiceItemGramTransferUnknown(amountText)
-                    } else if isIncoming {
-                        text = strings().chatServiceItemGramTransfer(peerName, amountText)
-                    } else {
-                        text = strings().chatServiceItemGramTransferYou(peerName, amountText)
-                    }
-                    let _ = attributedString.append(string: text, color: grayTextColor, font: NSFont.normal(theme.fontSize))
-                    if let conversationPeer {
-                        let range = attributedString.string.nsstring.range(of: peerName)
-                        if range.location != NSNotFound {
-                            let link = ChatHistoryLink.peerInfo(link: "", peerId: conversationPeer.id, action: nil, openChat: false, postId: nil, callback: chatInteraction.openInfo)
-                            attributedString.add(link: link, for: range, color: nameColor(conversationPeer.id))
-                            attributedString.addAttribute(.font, value: NSFont.medium(theme.fontSize), range: range)
-                        }
-                    }
-                    let amountRange = attributedString.string.nsstring.range(of: amountText, options: .backwards)
-                    if amountRange.location != NSNotFound {
-                        attributedString.addAttribute(.font, value: NSFont.medium(theme.fontSize), range: amountRange)
-                    }
-                    let fiatText: String?
-                    if let fiat = entry.additionalData.walletFiatRate {
-                        fiatText = formatTonFiatValue(amount, rate: fiat.unitsPerGram, currencySymbol: fiat.currencySymbol)
-                    } else if #available(macOS 10.15, *), let fiat = ChatHistoryUIHooks.shared.walletHooks.walletContext(context)?.chatFiatRate {
-                        fiatText = formatTonFiatValue(amount, rate: fiat.unitsPerGram, currencySymbol: fiat.currencySymbol)
-                    } else if let rate = context.appConfiguration.data?["ton_usd_rate"] as? Double, rate.isFinite, rate > 0 {
-                        fiatText = formatTonUsdValue(amount, rate: rate)
-                    } else {
-                        fiatText = nil
-                    }
-                    if let fiatText {
-                        let _ = attributedString.append(string: strings().chatServiceItemGramTransferFiat(fiatText), color: grayTextColor, font: NSFont.normal(theme.fontSize))
-                    }
-                    let trimmedComment = comment?.trimmingCharacters(in: .whitespacesAndNewlines)
-                    let pendingAttribute = message.attributes.first { $0 is PendingWalletTransferMessageAttribute } as? PendingWalletTransferMessageAttribute
-                    self.walletTransferData = WalletTransferData(
-                        amount: amount,
-                        isIncoming: isIncoming,
-                        transactionId: transactionId,
-                        comment: trimmedComment?.isEmpty == false ? trimmedComment : nil,
-                        commentEncrypted: commentEncrypted,
-                        peer: conversationPeer.flatMap(EnginePeer.init),
-                        peerAddress: peerAddress,
-                        name: isUnknownSender ? strings().chatServiceItemUnknownUser : peerName,
-                        operationId: pendingAttribute?.operationId,
-                        pendingTransactionId: pendingAttribute?.transactionId,
-                        textColor: grayTextColor
-                    )
+                case .giftTon, .walletTonConnectRequest, .gramTransfer:
+                    attributedString.append(string: strings().chatUnsupportedMessageTitle, color: grayTextColor, font: .normal(theme.fontSize))
                 case let .suggestedPostSuccess(amount):
                     attributedString.append(string: suggestedPostPayoutText(message, amount: amount), color: grayTextColor, font: .normal(.text))
                 case let .suggestedPostRefund(info):
@@ -2658,6 +2472,10 @@ public class ChatServiceItem: ChatRowItem {
                         }
                     }
                 case let .starGiftPurchaseOfferDeclined(gift, amount, hasExpired):
+                    guard amount.currency == .stars else {
+                        attributedString.append(string: strings().chatUnsupportedMessageTitle, color: grayTextColor, font: .normal(theme.fontSize))
+                        break
+                    }
                     if let gift = gift.unique {
                         let text: String
                         let giftString = "\(gift.title) #\(gift.number)"
@@ -2681,6 +2499,10 @@ public class ChatServiceItem: ChatRowItem {
                     }
                     
                 case let .starGiftPurchaseOffer(gift, amount, expireDate, isAccepted, isDeclined):
+                    guard amount.currency == .stars else {
+                        attributedString.append(string: strings().chatUnsupportedMessageTitle, color: grayTextColor, font: .normal(theme.fontSize))
+                        break
+                    }
                     if let gift = gift.unique {
                         let text: String
                         let info: String
@@ -2700,7 +2522,7 @@ public class ChatServiceItem: ChatRowItem {
 
                         } else if isDeclined {
                             info = strings().chatServiceOfferRejected
-                        } else if expireDate < context.timestamp {
+                        } else if expireDate <= context.timestamp {
                             info = strings().chatServiceOfferExpired
                         } else {
                             info = strings().chatServiceOfferExpiresIn(timerText(Int(expireDate - context.timestamp)))
@@ -2725,17 +2547,11 @@ public class ChatServiceItem: ChatRowItem {
                                     let offerUsdValue: Double
                                     let giftUsdValue = Double(valueAmount) / 100.0
 
-                                    switch amount.currency {
-                                    case .ton:
-                                        usd_rate = context.appConfiguration.getGeneralValueDouble("ton_usd_rate", orElse: 3)
-                                        offerUsdValue = Double(amount.amount.value) / 1_000_000_000 * usd_rate
-                                    case .stars:
-                                        usd_rate = context.appConfiguration.getGeneralValueDouble("star_usd_rate", orElse: 0.013)
-                                        offerUsdValue = Double(amount.amount.value) * usd_rate
-                                    }
+                                    usd_rate = context.appConfiguration.getGeneralValueDouble("star_usd_rate", orElse: 0.013)
+                                    offerUsdValue = Double(amount.amount.value) * usd_rate
                                     
                                     let fraction = giftUsdValue / offerUsdValue
-                                    let percentage = Int(fraction * 100) - 100
+                                    let percentage = Int(min(Double(Int32.max), max(0, fraction * 100))) - 100
 
                                     var text: String?
                                     var color: NSColor?
@@ -2760,10 +2576,12 @@ public class ChatServiceItem: ChatRowItem {
                                 }), footer1: priceFooter)
                                 
                                 showModalAlert(for: context.window, data: data, completion: { result in
+                                    guard isActive, expireDate > context.timestamp else { return }
                                     _ = showModalProgress(signal: context.engine.payments.resolveStarGiftOffer(messageId: message.id, accept: true), for: context.window).startStandalone()
                                 })
                             }, reject: {
                                 verifyAlert(for: context.window, information: strings().chatServiceOfferRejectConfirm, ok: strings().chatServiceOfferReject, successHandler: { _ in
+                                    guard isActive, expireDate > context.timestamp else { return }
                                     _ = showModalProgress(signal: context.engine.payments.resolveStarGiftOffer(messageId: message.id, accept: false), for: context.window).startStandalone()
                                 })
                             })
@@ -3092,9 +2910,6 @@ public class ChatServiceItem: ChatRowItem {
         return presentation.wallpaper.wallpaper != .none && super.isBubbled
     }
 
-    public var walletTransferSpacing: CGFloat {
-        return (isBubbled ? 0 : 6) - WalletTransferData.textOverlap
-    }
     
     public override var height: CGFloat {
         var height:CGFloat = text.layoutSize.height + (isBubbled ? 0 : 12)
@@ -3103,9 +2918,6 @@ public class ChatServiceItem: ChatRowItem {
         }
         if let data = self.giftData {
             height += data.height + (isBubbled ? 9 : 6)
-        }
-        if let data = self.walletTransferData {
-            height += data.height + walletTransferSpacing + (isBubbled ? 9 : 0)
         }
         if let data = self.suggestPhotoData {
             height += data.height + (isBubbled ? 9 : 6)
@@ -3150,19 +2962,7 @@ public class ChatServiceItem: ChatRowItem {
     }
     
     fileprivate var serviceBackgroundColor: NSColor {
-        guard walletTransferData != nil else {
-            return presentation.chatServiceItemColor
-        }
-        let backgroundColor: NSColor
-        switch presentation.controllerBackgroundMode {
-        case .plain:
-            backgroundColor = presentation.colors.chatBackground
-        case let .color(color):
-            backgroundColor = color
-        default:
-            return presentation.chatServiceItemColor
-        }
-        return backgroundColor.blended(withFraction: 0.12, of: backgroundColor.brightnessAdjustedColor) ?? presentation.chatServiceItemColor
+        return presentation.chatServiceItemColor
     }
 
     public override func makeSize(_ width: CGFloat, oldWidth:CGFloat) -> Bool {
@@ -3173,7 +2973,7 @@ public class ChatServiceItem: ChatRowItem {
         }
         
         
-        if isBubbled || walletTransferData != nil {
+        if isBubbled {
             if shouldBlurService {
                 text.generateAutoBlock(backgroundColor: serviceBackgroundColor.withAlphaComponent(1))
             } else {
@@ -3420,903 +3220,6 @@ public class UniqueAttributesView : View {
     }
 }
 
-private enum ChatWalletTransferStatus: Equatable {
-    case waiting
-    case pending
-    case completed
-    case unavailable
-}
-
-private struct ChatWalletTransferWalletState: Equatable {
-    let status: ChatWalletTransferStatus
-    let operationId: String?
-    let transactionHash: Data?
-}
-
-func chatWalletTransferTransactionHash(_ value: String?) -> Data? {
-    guard let value else {
-        return nil
-    }
-    let parts = value.split(separator: ":", maxSplits: 1, omittingEmptySubsequences: false)
-    if parts.count == 2 && UInt64(parts[0]) == nil {
-        return nil
-    }
-    guard let hash = parts.last.flatMap({ Data(base64Encoded: String($0)) }), hash.count == 32 else {
-        return nil
-    }
-    return hash
-}
-
-@available(macOS 10.15, *)
-private func chatWalletTransferWalletState(_ state: ChatWalletTransferSnapshot, operationId: String?, transactionHash: Data?) -> ChatWalletTransferWalletState? {
-    if let transaction = state.transactions.first(where: { transaction in
-        guard transaction.isOutgoingTransfer else {
-            return false
-        }
-        return operationId.map { transaction.presentationId == "pending:\($0)" } == true
-            || (transactionHash != nil && chatWalletTransferTransactionHash(transaction.transactionHash ?? transaction.id) == transactionHash)
-    }) {
-        let status: ChatWalletTransferStatus
-        switch transaction.status {
-        case .pending:
-            status = .pending
-        case .completed:
-            status = .completed
-        case .failed:
-            status = .unavailable
-        }
-        return ChatWalletTransferWalletState(
-            status: status,
-            operationId: operationId ?? (transaction.presentationId.hasPrefix("pending:") ? String(transaction.presentationId.dropFirst("pending:".count)) : nil),
-            transactionHash: chatWalletTransferTransactionHash(transaction.transactionHash ?? transaction.id) ?? transactionHash
-        )
-    }
-    if let pending = state.pendingTransfers.first(where: { pending in
-        !pending.isCollectible && (pending.id == operationId
-            || (transactionHash != nil && chatWalletTransferTransactionHash(pending.transactionHash) == transactionHash))
-    }) {
-        let status: ChatWalletTransferStatus
-        switch pending.status {
-        case .broadcasting:
-            status = .waiting
-        case .pending, .submissionUnknown:
-            status = .pending
-        case .confirmed:
-            status = .completed
-        }
-        return ChatWalletTransferWalletState(status: status, operationId: pending.id, transactionHash: chatWalletTransferTransactionHash(pending.transactionHash) ?? transactionHash)
-    }
-    return nil
-}
-
-private let chatWalletTransferRibbonSize = NSMakeSize(54.8, 54.8)
-private let chatWalletTransferRibbonCenter = NSMakePoint(33.057, 21.744)
-private let chatWalletTransferRibbonOverhang: CGFloat = 2
-
-private let chatWalletTransferRibbonPath: CGPath = {
-    let path = CGMutablePath()
-    path.move(to: NSMakePoint(50.115, 24.659))
-    path.addLine(to: NSMakePoint(30.142, 4.686))
-    path.addCurve(to: NSMakePoint(26.539, 1.474), control1: NSMakePoint(28.413, 2.957), control2: NSMakePoint(27.548, 2.092))
-    path.addCurve(to: NSMakePoint(23.648, 0.276), control1: NSMakePoint(25.644, 0.925), control2: NSMakePoint(24.669, 0.521))
-    path.addCurve(to: NSMakePoint(18.828, 0), control1: NSMakePoint(22.497, 0), control2: NSMakePoint(21.274, 0))
-    path.addLine(to: NSMakePoint(4.897, 0))
-    path.addCurve(to: NSMakePoint(0.701, 0.479), control1: NSMakePoint(2.474, 0), control2: NSMakePoint(1.262, 0))
-    path.addCurve(to: NSMakePoint(0.006, 2.157), control1: NSMakePoint(0.214, 0.895), control2: NSMakePoint(-0.044, 1.519))
-    path.addCurve(to: NSMakePoint(2.634, 5.463), control1: NSMakePoint(0.064, 2.892), control2: NSMakePoint(0.921, 3.749))
-    path.addLine(to: NSMakePoint(49.338, 52.166))
-    path.addCurve(to: NSMakePoint(52.644, 54.795), control1: NSMakePoint(51.052, 53.880), control2: NSMakePoint(51.908, 54.737))
-    path.addCurve(to: NSMakePoint(54.322, 54.100), control1: NSMakePoint(53.282, 54.845), control2: NSMakePoint(53.906, 54.586))
-    path.addCurve(to: NSMakePoint(54.8, 49.904), control1: NSMakePoint(54.8, 53.539), control2: NSMakePoint(54.8, 52.327))
-    path.addLine(to: NSMakePoint(54.8, 35.972))
-    path.addCurve(to: NSMakePoint(54.525, 31.153), control1: NSMakePoint(54.8, 33.526), control2: NSMakePoint(54.8, 32.303))
-    path.addCurve(to: NSMakePoint(53.327, 28.262), control1: NSMakePoint(54.280, 30.132), control2: NSMakePoint(53.876, 29.157))
-    path.addCurve(to: NSMakePoint(50.115, 24.659), control1: NSMakePoint(52.709, 27.253), control2: NSMakePoint(51.844, 26.388))
-    path.closeSubpath()
-    return path
-}()
-
-private let chatWalletTransferRibbonImage: CGImage? = generateImage(chatWalletTransferRibbonSize, rotatedContext: { size, ctx in
-    ctx.clear(size.bounds)
-    ctx.setFillColor(NSColor.white.cgColor)
-    ctx.addPath(chatWalletTransferRibbonPath)
-    ctx.fillPath()
-})
-
-private func chatWalletTransferRibbon(color: NSColor) -> CGImage? {
-    return generateGradientTintedImage(image: chatWalletTransferRibbonImage, colors: [color])
-}
-
-private func chatWalletTransferRibbonText(_ text: String) -> CGImage? {
-    let maxWidth: CGFloat = 52
-    var line = CTLineCreateWithAttributedString(NSAttributedString(string: text, attributes: [.font: NSFont.semibold(11), .foregroundColor: NSColor.white]))
-    let width = ceil(CGFloat(CTLineGetTypographicBounds(line, nil, nil, nil)))
-    if width > maxWidth {
-        line = CTLineCreateWithAttributedString(NSAttributedString(string: text, attributes: [.font: NSFont.semibold(11 * maxWidth / width), .foregroundColor: NSColor.white]))
-    }
-    let glyphBounds = CTLineGetBoundsWithOptions(line, .useGlyphPathBounds)
-    return generateImage(chatWalletTransferRibbonSize, rotatedContext: { size, ctx in
-        ctx.clear(size.bounds)
-        ctx.translateBy(x: chatWalletTransferRibbonCenter.x, y: chatWalletTransferRibbonCenter.y)
-        ctx.rotate(by: .pi / 4)
-        ctx.textMatrix = CGAffineTransform(scaleX: 1, y: -1)
-        ctx.textPosition = NSMakePoint(-glyphBounds.midX, glyphBounds.midY)
-        CTLineDraw(line, ctx)
-    })
-}
-
-private final class ChatWalletTransferBadgeView: View {
-    enum Status: Equatable {
-        case sending
-        case sent
-        case received
-    }
-
-    private static let clockRadius: CGFloat = 7
-    private static let clockInset: CGFloat = 12 + (1 - 1 / System.backingScale)
-    private static let clockCenter = NSMakePoint(chatWalletTransferRibbonSize.width - chatWalletTransferRibbonOverhang - clockInset - clockRadius, clockInset + clockRadius + chatWalletTransferRibbonOverhang)
-    private static let clockLineWidth: CGFloat = 4 / 3
-    private static let clockColor = NSColor.white
-    private static let morphRadius: CGFloat = 43
-    private static let morphFrameDuration: Double = 1 / 60
-    private static let textSlideOffset = NSMakePoint(-14.5 / sqrt(2), 14.5 / sqrt(2))
-
-    private let clockLayer = SimpleLayer()
-    private let ringLayer = SimpleShapeLayer()
-    private let handsLayer = SimpleLayer()
-    private let minuteHandLayer = SimpleShapeLayer()
-    private let hourHandLayer = SimpleShapeLayer()
-    private let ribbonClipLayer = SimpleLayer()
-    private let ribbonMaskLayer = SimpleLayer()
-    private let morphLayer = SimpleLayer()
-    private let morphMaskLayer = SimpleShapeLayer()
-    private let ribbonLayer = SimpleLayer()
-    private let tintLayer = SimpleLayer()
-    private let glintLayer = SimpleGradientLayer()
-    private let textLayer = SimpleLayer()
-
-    private var status: Status?
-
-    required init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        isEventLess = true
-
-        let clockBounds = NSMakeRect(0, 0, Self.clockRadius * 2, Self.clockRadius * 2)
-        let clockMid = NSMakePoint(clockBounds.midX, clockBounds.midY)
-        let minutePath = CGMutablePath()
-        minutePath.move(to: clockMid)
-        minutePath.addLine(to: NSMakePoint(clockMid.x, clockMid.y - 11 / 3))
-        let hourPath = CGMutablePath()
-        hourPath.move(to: clockMid)
-        hourPath.addLine(to: NSMakePoint(clockMid.x + 3, clockMid.y))
-        let ringPath = CGPath(ellipseIn: clockBounds.insetBy(dx: Self.clockLineWidth / 2, dy: Self.clockLineWidth / 2), transform: nil)
-        let shapes: [(SimpleShapeLayer, CGPath)] = [(ringLayer, ringPath), (minuteHandLayer, minutePath), (hourHandLayer, hourPath)]
-        for (shape, path) in shapes {
-            shape.frame = clockBounds
-            shape.path = path
-            shape.fillColor = nil
-            shape.strokeColor = Self.clockColor.cgColor
-            shape.lineWidth = Self.clockLineWidth
-            shape.lineCap = .round
-        }
-        handsLayer.frame = clockBounds
-        handsLayer.addSublayer(minuteHandLayer)
-        handsLayer.addSublayer(hourHandLayer)
-        clockLayer.frame = clockBounds.offsetBy(dx: Self.clockCenter.x - Self.clockRadius, dy: Self.clockCenter.y - Self.clockRadius)
-        clockLayer.addSublayer(ringLayer)
-        clockLayer.addSublayer(handsLayer)
-
-        let ribbonBounds = chatWalletTransferRibbonSize.bounds
-        ribbonMaskLayer.frame = ribbonBounds
-        ribbonMaskLayer.contents = chatWalletTransferRibbonImage
-        ribbonClipLayer.frame = ribbonBounds
-        ribbonClipLayer.mask = ribbonMaskLayer
-        morphMaskLayer.frame = ribbonBounds
-        morphMaskLayer.fillRule = .evenOdd
-        morphLayer.frame = ribbonBounds
-        tintLayer.backgroundColor = Self.clockColor.cgColor
-        glintLayer.colors = [NSColor.white.withAlphaComponent(0).cgColor, NSColor.white.withAlphaComponent(0.7).cgColor, NSColor.white.withAlphaComponent(0).cgColor]
-        glintLayer.locations = [0, 0.5, 1]
-        glintLayer.opacity = 0
-        glintLayer.compositingFilter = "plusL"
-        for sublayer in [ribbonLayer, tintLayer, glintLayer, textLayer] {
-            sublayer.frame = ribbonBounds
-            morphLayer.addSublayer(sublayer)
-        }
-        ribbonClipLayer.addSublayer(morphLayer)
-
-        clockLayer.isHidden = true
-        ribbonClipLayer.isHidden = true
-        layer?.addSublayer(ribbonClipLayer)
-        layer?.addSublayer(clockLayer)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidMoveToWindow() {
-        super.viewDidMoveToWindow()
-        if window == nil {
-            glintLayer.removeAllAnimations()
-            applyStatus()
-        } else {
-            updateClockAnimation()
-        }
-    }
-
-    func update(status: Status, animated: Bool) {
-        guard self.status != status else {
-            return
-        }
-        let previousStatus = self.status
-        self.status = status
-        glintLayer.removeAllAnimations()
-        if status != .sending {
-            ribbonLayer.contents = chatWalletTransferRibbon(color: status == .received ? NSColor(rgb: 0x42b0ff) : NSColor(rgb: 0x00cf00))
-            textLayer.contents = chatWalletTransferRibbonText(status == .received ? strings().chatServiceItemRibbonReceived : strings().chatServiceItemRibbonSent)
-        }
-        if animated, previousStatus == .sending, status == .sent, window != nil {
-            removeSentAnimations()
-            animateSent()
-        } else {
-            applyStatus()
-        }
-    }
-
-    func updateArrival(finish: Double) {
-        guard finish >= 0 else {
-            ribbonClipLayer.opacity = 0
-            return
-        }
-        let ribbon = ChatWalletTransferArrivalMotion.ribbon(finish: finish)
-        let pivot = NSMakePoint(200 - frame.minX, 24 - frame.minY)
-        ribbonClipLayer.setAffineTransform(ChatWalletTransferArrivalMotion.ribbonTransform(length: ribbon.length, width: ribbon.width, pivot: pivot, center: ribbonClipLayer.position))
-        ribbonClipLayer.opacity = Float(ChatWalletTransferArrivalMotion.ribbonAlpha(length: ribbon.length))
-        textLayer.opacity = Float(ChatWalletTransferArrivalMotion.ribbonTextAlpha(length: ribbon.length))
-    }
-
-    func resetArrival() {
-        glintLayer.removeAllAnimations()
-        ribbonClipLayer.setAffineTransform(.identity)
-        ribbonClipLayer.opacity = 1
-        textLayer.opacity = 1
-    }
-
-    func playArrivalGlint() {
-        glintLayer.removeAllAnimations()
-        animateGlint()
-    }
-
-    private func applyStatus() {
-        removeSentAnimations()
-        clockLayer.isHidden = status != .sending
-        ringLayer.isHidden = false
-        ribbonClipLayer.isHidden = status == nil || status == .sending
-        morphLayer.mask = nil
-        tintLayer.opacity = 0
-        updateClockAnimation()
-    }
-
-    private func removeSentAnimations() {
-        let layers: [CALayer] = [morphMaskLayer, handsLayer, tintLayer, textLayer]
-        for sublayer in layers {
-            sublayer.removeAllAnimations()
-        }
-    }
-
-    private func updateClockAnimation() {
-        let hands: [(SimpleShapeLayer, Double)] = [(minuteHandLayer, 2 / 3), (hourHandLayer, 2)]
-        if status == .sending, window != nil {
-            for (hand, duration) in hands where hand.animation(forKey: "rotation") == nil {
-                let rotation = CABasicAnimation(keyPath: "transform.rotation.z")
-                rotation.fromValue = 0
-                rotation.toValue = Double.pi * 2
-                rotation.duration = duration
-                rotation.repeatCount = .infinity
-                rotation.timingFunction = CAMediaTimingFunction(name: .linear)
-                hand.add(rotation, forKey: "rotation")
-            }
-        } else {
-            for (hand, _) in hands {
-                hand.removeAnimation(forKey: "rotation")
-            }
-        }
-    }
-
-    private func animateSent() {
-        let frameDuration = Self.morphFrameDuration
-        let holeRadius = Self.clockRadius - Self.clockLineWidth
-        let paths = (0 ... 11).map { index -> CGPath in
-            let radius = Self.clockRadius + (Self.morphRadius - Self.clockRadius) * bezierPoint(0.2, 0.05, 0.8, 1, CGFloat(index) / 11)
-            return Self.morphPath(radius: radius, holeRadius: holeRadius * max(0, 1 - CGFloat(index) / 3))
-        }
-
-        clockLayer.isHidden = false
-        ringLayer.isHidden = true
-        ribbonClipLayer.isHidden = false
-        morphMaskLayer.path = paths.last
-        morphLayer.mask = morphMaskLayer
-        tintLayer.opacity = 0
-
-        morphMaskLayer.animateKeyframes(values: paths, duration: 11 * frameDuration, keyPath: "path", timingFunction: .linear)
-        handsLayer.animateScale(from: 1, to: 0, duration: 3 * frameDuration, timingFunction: .linear, removeOnCompletion: false)
-        textLayer.animatePosition(from: Self.textSlideOffset, to: .zero, duration: 11 * frameDuration, timingFunction: .default, additive: true)
-        textLayer.animate(from: NSNumber(value: 0), to: NSNumber(value: 1), keyPath: "opacity", timingFunction: .default, duration: 12 * frameDuration, delay: frameDuration)
-        tintLayer.animateAlpha(from: 1, to: 0, duration: 13 * frameDuration, timingFunction: .easeOut, completion: { [weak self] completed in
-            if completed {
-                self?.applyStatus()
-            }
-        })
-        animateGlint()
-    }
-
-    private func animateGlint() {
-        let size = chatWalletTransferRibbonSize
-        let origin = NSMakePoint(ChatServiceItem.WalletTransferData.outerInset + ChatServiceItem.WalletTransferData.cardSize.width - size.width + chatWalletTransferRibbonOverhang, ChatServiceItem.WalletTransferData.outerInset - chatWalletTransferRibbonOverhang)
-        func point(_ x: CGFloat, _ y: CGFloat) -> NSPoint {
-            return NSMakePoint((x - origin.x) / size.width, (y - origin.y) / size.height)
-        }
-        let delay = 0.6
-        let duration = 0.55
-        glintLayer.startPoint = point(226, 0)
-        glintLayer.endPoint = point(254, 12)
-        glintLayer.animate(from: NSValue(point: point(136, 0)), to: NSValue(point: glintLayer.startPoint), keyPath: "startPoint", timingFunction: .linear, duration: duration, delay: delay)
-        glintLayer.animate(from: NSValue(point: point(164, 12)), to: NSValue(point: glintLayer.endPoint), keyPath: "endPoint", timingFunction: .linear, duration: duration, delay: delay)
-
-        let frameCount = Int(ceil(duration * 120))
-        var values: [NSNumber] = [0]
-        var keyTimes: [NSNumber] = [0]
-        for index in 0 ... frameCount {
-            let progress = Double(index) / Double(frameCount)
-            values.append(NSNumber(value: index == frameCount ? 0 : sin(.pi * progress)))
-            keyTimes.append(NSNumber(value: (delay + duration * progress) / (delay + duration)))
-        }
-        let opacity = CAKeyframeAnimation(keyPath: "opacity")
-        opacity.values = values
-        opacity.keyTimes = keyTimes
-        opacity.duration = delay + duration
-        opacity.timingFunction = CAMediaTimingFunction(name: .linear)
-        glintLayer.add(opacity, forKey: "opacity")
-    }
-
-    private static func morphPath(radius: CGFloat, holeRadius: CGFloat) -> CGPath {
-        let path = CGMutablePath()
-        path.addEllipse(in: NSMakeRect(clockCenter.x - radius, clockCenter.y - radius, radius * 2, radius * 2))
-        path.addEllipse(in: NSMakeRect(clockCenter.x - holeRadius, clockCenter.y - holeRadius, holeRadius * 2, holeRadius * 2))
-        return path
-    }
-}
-
-@available(macOS 10.15, *)
-final class ChatWalletTransferView: Control, MorphHoldObserving {
-    private static let bounceKey = "bounce"
-    private static let landingKey = "landing"
-    private static let flightLandingKey = "flightLanding"
-
-    private var visualEffect: VisualEffect?
-    private let cardView: any ChatWalletCardView = ChatHistoryUIHooks.shared.walletHooks.makeCardView(CGRect(origin: .zero, size: ChatServiceItem.WalletTransferData.cardSize))
-    // Morph from the whole transfer view (card + ribbon + background), not just the inner card: holding
-    // only the card left the ribbon and background on screen while the card morphed away, and on close the
-    // card came back dark under a still-visible ribbon. The snapshot crossfade and the removed modal border
-    // absorb the `outerInset` margin, so the card no longer overshoots at the hand-off.
-    var morphSourceView: NSView? { return self }
-    private let badgeView = ChatWalletTransferBadgeView(frame: chatWalletTransferRibbonSize.bounds)
-    private var captionView: TextView?
-    private var hasEncryptedCaption = false
-
-    private var walletContext: (any ChatWalletContext)?
-    private let walletStateDisposable = MetaDisposable()
-    private var isObservingWalletState = false
-    private weak var item: ChatServiceItem?
-    private(set) var messageId: MessageId?
-    private(set) var messageStableId: UInt32?
-    private(set) var transferOperationId: String?
-    private(set) var transferTransactionHash: Data?
-    private var transferStatus: ChatWalletTransferStatus?
-    private(set) var isIncomingTransfer = false
-    private var isPlayingHighlightShimmer = false
-    private(set) var isAwaitingTransferFlight = false
-    private var isPreparedForArrival = false
-    private var arrivalDidGlint = false
-
-    required init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        addSubview(cardView)
-        addSubview(badgeView)
-        cardView.isEventLess = true
-        cardView.onDiamondLanding = { [weak self] power in
-            self?.animateDiamondLandingBump(power: power)
-        }
-        cardView.onArrivalInterrupted = { [weak self] in
-            self?.cancelIncomingTransferAnimation()
-        }
-        scaleOnClick = true
-        layer?.cornerRadius = 24
-        layer?.masksToBounds = true
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    deinit {
-        walletStateDisposable.dispose()
-    }
-
-    override func viewDidMoveToWindow() {
-        super.viewDidMoveToWindow()
-        if window == nil {
-            layer?.removeAnimation(forKey: Self.bounceKey)
-            layer?.removeAnimation(forKey: Self.landingKey)
-            layer?.removeAnimation(forKey: Self.flightLandingKey)
-            cancelIncomingTransferAnimation()
-        }
-        updateShimmer(animated: false)
-        if window != nil {
-            updateIncomingTransferVisibility()
-        }
-    }
-
-    var isMouseInsideEncryptedCaption: Bool {
-        guard hasEncryptedCaption, let captionView, let window else {
-            return false
-        }
-        return captionView.frame.insetBy(dx: -3, dy: -3).contains(convert(window.mouseLocationOutsideOfEventStream, from: nil))
-    }
-
-    func update(item: ChatServiceItem, data: ChatServiceItem.WalletTransferData, animated: Bool) {
-        cardView.update(amount: data.amount, isIncoming: data.isIncoming, name: data.name, address: data.peerAddress)
-
-        isIncomingTransfer = data.isIncoming
-        hasEncryptedCaption = data.hasEncryptedComment
-
-        if let captionLayout = data.captionLayout {
-            let current: TextView
-            if let view = self.captionView {
-                current = view
-            } else {
-                current = TextView()
-                current.userInteractionEnabled = false
-                current.isSelectable = false
-                current.isEventLess = true
-                self.captionView = current
-                addSubview(current)
-            }
-            current.update(captionLayout)
-        } else if let view = self.captionView {
-            performSubviewRemoval(view, animated: animated)
-            self.captionView = nil
-        }
-
-        if item.shouldBlurService {
-            let current: VisualEffect
-            if let view = self.visualEffect {
-                current = view
-            } else {
-                current = VisualEffect(frame: bounds)
-                self.visualEffect = current
-                addSubview(current, positioned: .below, relativeTo: self.subviews.first)
-            }
-            current.bgColor = item.presentation.blurServiceColor
-            current.layer?.opacity = item.presentation.colors.isDark ? 0.6 : 1.0
-            self.backgroundColor = .clear
-        } else {
-            if let view = self.visualEffect {
-                performSubviewRemoval(view, animated: animated)
-                self.visualEffect = nil
-            }
-            self.backgroundColor = item.serviceBackgroundColor
-        }
-
-        let walletContext = ChatHistoryUIHooks.shared.walletHooks.walletContext(item.context)
-        let stableId = item.message?.stableId
-        let isSameMessage = stableId != nil && self.messageStableId == stableId && self.walletContext === walletContext
-        if !isSameMessage {
-            cancelIncomingTransferAnimation()
-        }
-        self.item = item
-        self.messageId = item.message?.id
-        self.messageStableId = stableId
-        updateWalletSubscription(walletContext: walletContext, data: data, isSameMessage: isSameMessage)
-        setAwaitingTransferFlight(!data.isIncoming && item.chatInteraction.walletTransferAnimation?.isAwaitingFlight(self) == true)
-        updateIncomingTransferVisibility()
-
-        needsLayout = true
-    }
-
-    private func updateWalletSubscription(walletContext: (any ChatWalletContext)?, data: ChatServiceItem.WalletTransferData, isSameMessage: Bool) {
-        if !isSameMessage {
-            walletStateDisposable.set(nil)
-            isObservingWalletState = false
-            transferOperationId = nil
-            transferTransactionHash = nil
-            transferStatus = nil
-            layer?.removeAnimation(forKey: Self.bounceKey)
-            layer?.removeAnimation(forKey: Self.landingKey)
-            layer?.removeAnimation(forKey: Self.flightLandingKey)
-            isAwaitingTransferFlight = false
-            badgeView.isHidden = false
-            isPlayingHighlightShimmer = false
-            cardView.updateShimmer(visible: false, repeating: true, animated: false, completion: nil)
-            cardView.resetTransferState()
-        }
-        if self.walletContext !== walletContext {
-            walletStateDisposable.set(nil)
-            isObservingWalletState = false
-            self.walletContext = walletContext
-        }
-
-        if data.isIncoming {
-            updateTransferStatus(.completed, animated: false)
-            return
-        }
-        transferOperationId = data.operationId ?? transferOperationId
-        transferTransactionHash = chatWalletTransferTransactionHash(data.pendingTransactionId)
-            ?? chatWalletTransferTransactionHash(data.transactionId)
-            ?? transferTransactionHash
-        applyWalletState(walletContext.flatMap {
-            chatWalletTransferWalletState($0.chatTransferSnapshot, operationId: transferOperationId, transactionHash: transferTransactionHash)
-        }, animated: isSameMessage)
-
-        guard !isObservingWalletState, transferStatus != .completed, let walletContext else {
-            return
-        }
-        isObservingWalletState = true
-        walletStateDisposable.set((walletContext.chatTransferState
-        |> deliverOnMainQueue).start(next: { [weak self] state in
-            guard let self, self.transferStatus != .completed else {
-                return
-            }
-            self.applyWalletState(
-                chatWalletTransferWalletState(state, operationId: self.transferOperationId, transactionHash: self.transferTransactionHash),
-                animated: true
-            )
-        }))
-    }
-
-    private func applyWalletState(_ state: ChatWalletTransferWalletState?, animated: Bool) {
-        if let state {
-            transferOperationId = state.operationId ?? transferOperationId
-            transferTransactionHash = state.transactionHash ?? transferTransactionHash
-            updateTransferStatus(state.status, animated: animated)
-        } else if transferStatus == .pending || transferStatus == .unavailable {
-            updateTransferStatus(.unavailable, animated: animated)
-        } else {
-            updateTransferStatus(transferOperationId == nil ? .completed : .waiting, animated: animated)
-        }
-    }
-
-    private func updateTransferStatus(_ status: ChatWalletTransferStatus, animated: Bool) {
-        guard transferStatus != .completed else {
-            return
-        }
-        let previousStatus = transferStatus
-        transferStatus = status
-        updateTransferAppearance(previousStatus: previousStatus, animated: animated)
-    }
-
-    private func updateTransferAppearance(previousStatus: ChatWalletTransferStatus?, animated: Bool) {
-        let status = transferStatus
-        if isPreparedForArrival {
-            return
-        }
-        if isAwaitingTransferFlight {
-            updateShimmer(animated: false)
-            return
-        }
-        if previousStatus == status {
-            if status == .pending {
-                updateShimmer(animated: false)
-            }
-            return
-        }
-        updateShimmer(animated: animated && previousStatus != nil)
-        let badgeStatus = self.badgeStatus
-        cardView.updateTransferState(isSending: badgeStatus == .sending, isPending: status == .pending, animateCompletion: !isIncomingTransfer && status == .completed && previousStatus != nil && animated && window != nil)
-        let animateSent = status == .completed && previousStatus != nil && animated && window != nil && !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
-        badgeView.update(status: badgeStatus, animated: animateSent)
-        if animateSent {
-            animateSentBounce()
-        }
-    }
-
-    private var badgeStatus: ChatWalletTransferBadgeView.Status {
-        if isIncomingTransfer {
-            return .received
-        } else if transferStatus == .completed {
-            return .sent
-        } else {
-            return .sending
-        }
-    }
-
-    func setAwaitingTransferFlight(_ awaiting: Bool, animated: Bool = false) {
-        guard isAwaitingTransferFlight != awaiting else {
-            return
-        }
-        isAwaitingTransferFlight = awaiting
-        cardView.setAwaitingTransferFlight(awaiting, animated: animated)
-        if awaiting {
-            layer?.removeAnimation(forKey: Self.flightLandingKey)
-            badgeView.isHidden = true
-            updateShimmer(animated: false)
-        } else {
-            badgeView.isHidden = false
-            updateTransferAppearance(previousStatus: nil, animated: false)
-            if animated {
-                badgeView.layer?.animateAlpha(from: 0, to: 1, duration: 0.15)
-            }
-        }
-    }
-
-    func transferDiamondTarget(in view: NSView) -> (center: NSPoint, width: CGFloat)? {
-        guard window != nil else {
-            return nil
-        }
-        return cardView.transferDiamondTarget(in: view)
-    }
-
-    func acceptTransferDiamond(_ diamond: InteractiveDiamondView) {
-        isAwaitingTransferFlight = false
-        cardView.acceptTransferDiamond(diamond)
-        badgeView.isHidden = false
-        updateTransferAppearance(previousStatus: .pending, animated: true)
-        animateTransferFlightLanding()
-    }
-
-    func morphHoldDidChange(_ isHeld: Bool) {
-        cardView.setCovered(isHeld)
-    }
-
-    private func animateTransferFlightLanding() {
-        guard window != nil, !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion else {
-            return
-        }
-        let center = NSMakePoint(frame.width / 2, frame.height / 2)
-        let duration = ChatWalletTransferFlightMotion.landingDuration
-        let frameCount = Int(duration * 120)
-        let landing = CAKeyframeAnimation(keyPath: "transform")
-        landing.values = (0 ... frameCount).map { index -> NSValue in
-            let impact = ChatWalletTransferFlightMotion.landing(at: duration * Double(index) / Double(frameCount), isLast: index == frameCount)
-            var transform = CATransform3DMakeTranslation(center.x, center.y + impact.offset, 0)
-            transform = CATransform3DScale(transform, impact.scale, impact.scale, 1)
-            transform = CATransform3DTranslate(transform, -center.x, -center.y, 0)
-            return NSValue(caTransform3D: transform)
-        }
-        landing.duration = duration
-        landing.timingFunction = CAMediaTimingFunction(name: .linear)
-        layer?.add(landing, forKey: Self.flightLandingKey)
-    }
-
-    var canPlayIncomingTransferAnimation: Bool {
-        guard isIncomingTransfer, let window, window.isKeyWindow, NSApp.isActive, frame.width > 0, let item, let table = item.table else {
-            return false
-        }
-        return NSLocationInRange(item.index, table.visibleRows()) && !cardView.isDiamondExpanded
-    }
-
-    func updateIncomingTransferVisibility() {
-        guard let item, let message = item.message, isIncomingTransfer, frame.width > 0, let animation = item.chatInteraction.walletTransferAnimation else {
-            return
-        }
-        var state = animation.arrivalState(message.id)
-        if state == nil, canPlayIncomingTransferAnimation {
-            animation.requestArrival(message)
-            state = animation.arrivalState(message.id)
-        }
-        if NSWorkspace.shared.accessibilityDisplayShouldReduceMotion {
-            finishIncomingTransferAnimation()
-            return
-        }
-        switch state {
-        case let .queued(rise):
-            prepareIncomingTransferAnimation(rise: rise)
-        case let .playing(startTime, rise):
-            prepareIncomingTransferAnimation(rise: rise)
-            updateIncomingTransferAnimation(startTime: startTime, rise: rise, at: CACurrentMediaTime())
-        case .finished:
-            finishIncomingTransferAnimation()
-        case nil:
-            if let rise = animation.arrivalRise(message), !cardView.isDiamondExpanded {
-                prepareIncomingTransferAnimation(rise: rise)
-            } else {
-                finishIncomingTransferAnimation()
-            }
-        }
-    }
-
-    private func prepareIncomingTransferAnimation(rise: Bool) {
-        guard !isPreparedForArrival else {
-            return
-        }
-        isPreparedForArrival = true
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        superview?.layer?.masksToBounds = false
-        superview?.layer?.zPosition = 1
-        layer?.removeAnimation(forKey: Self.bounceKey)
-        layer?.removeAnimation(forKey: Self.landingKey)
-        isPlayingHighlightShimmer = false
-        cardView.prepareIncomingTransferAnimation()
-        badgeView.updateArrival(finish: -1)
-        layer?.opacity = rise ? 0 : 1
-        CATransaction.commit()
-    }
-
-    @discardableResult
-    func updateIncomingTransferAnimation(startTime: CFTimeInterval, rise: Bool, at timestamp: CFTimeInterval) -> Double? {
-        guard canPlayIncomingTransferAnimation else {
-            return nil
-        }
-        if NSWorkspace.shared.accessibilityDisplayShouldReduceMotion {
-            cancelIncomingTransferAnimation()
-            return nil
-        }
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        defer {
-            CATransaction.commit()
-        }
-        prepareIncomingTransferAnimation(rise: rise)
-        let finish = cardView.updateIncomingTransferAnimation(startTime: startTime, at: timestamp)
-        let motion = ChatWalletTransferArrivalMotion.card(time: max(0, timestamp - startTime), finish: finish, rise: rise, height: frame.height)
-        layer?.opacity = Float(motion.opacity)
-        let center = NSMakePoint(frame.width / 2, frame.height / 2)
-        var transform = CATransform3DMakeTranslation(center.x, center.y + motion.offset, 0)
-        transform = CATransform3DScale(transform, motion.scale, motion.scale, 1)
-        transform = CATransform3DTranslate(transform, -center.x, -center.y, 0)
-        layer?.transform = transform
-        badgeView.updateArrival(finish: finish)
-        if finish >= ChatWalletTransferArrivalMotion.glintDelay && !arrivalDidGlint {
-            arrivalDidGlint = true
-            badgeView.playArrivalGlint()
-        }
-        return finish
-    }
-
-    private func cancelIncomingTransferAnimation() {
-        guard isPreparedForArrival, let messageId else {
-            return
-        }
-        item?.chatInteraction.walletTransferAnimation?.cancelArrival(messageId)
-        finishIncomingTransferAnimation()
-    }
-
-    func finishIncomingTransferAnimation() {
-        guard isPreparedForArrival else {
-            return
-        }
-        isPreparedForArrival = false
-        arrivalDidGlint = false
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        cardView.finishIncomingTransferAnimation()
-        layer?.opacity = 1
-        layer?.transform = CATransform3DIdentity
-        superview?.layer?.masksToBounds = true
-        superview?.layer?.zPosition = 0
-        badgeView.resetArrival()
-        updateShimmer(animated: false)
-        CATransaction.commit()
-    }
-
-    func playHighlight() {
-        guard window != nil, !isPreparedForArrival else {
-            return
-        }
-        isPlayingHighlightShimmer = true
-        cardView.updateShimmer(visible: false, repeating: true, animated: false, completion: nil)
-        updateShimmer(animated: false)
-        animateHighlightBump()
-    }
-
-    private func updateShimmer(animated: Bool) {
-        if window == nil {
-            isPlayingHighlightShimmer = false
-        }
-        let visible = !isAwaitingTransferFlight && (transferStatus == .pending || isPlayingHighlightShimmer) && window != nil
-        cardView.updateShimmer(visible: visible, repeating: !isPlayingHighlightShimmer, animated: animated && window != nil, completion: { [weak self] in
-            self?.isPlayingHighlightShimmer = false
-            self?.updateShimmer(animated: false)
-        })
-    }
-
-    private func animateSentBounce() {
-        let center = NSMakePoint(frame.width / 2, frame.height / 2)
-        let duration = 1.2
-        let frameCount = Int(duration * 120)
-        let bounce = CAKeyframeAnimation(keyPath: "transform")
-        bounce.values = (0 ... frameCount).map { index -> NSValue in
-            let time = duration * Double(index) / Double(frameCount)
-            let offset = index == frameCount ? 0 : -sin(2 * Double.pi * 2 * time) * exp(-time / 0.25)
-            let scale = CGFloat(1 + 0.045 * offset)
-            var transform = CATransform3DMakeTranslation(center.x, center.y, 0)
-            transform = CATransform3DScale(transform, scale, scale, 1)
-            transform = CATransform3DTranslate(transform, -center.x, -center.y, 0)
-            return NSValue(caTransform3D: transform)
-        }
-        bounce.duration = duration
-        bounce.timingFunction = CAMediaTimingFunction(name: .linear)
-        layer?.add(bounce, forKey: Self.bounceKey)
-    }
-
-    private func animateDiamondLandingBump(power: CGFloat) {
-        guard window != nil, !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion else {
-            return
-        }
-        let center = NSMakePoint(frame.width / 2, frame.height / 2)
-        let duration = 1.0
-        let frameCount = Int(duration * 120)
-        let bump = CAKeyframeAnimation(keyPath: "transform")
-        bump.values = (0 ... frameCount).map { index -> NSValue in
-            let time = duration * Double(index) / Double(frameCount)
-            let bounce = index == frameCount ? 0 : sin(2 * Double.pi * 2.4 * time) * exp(-time / 0.2)
-            let scale = 1 - 0.05 * power * CGFloat(bounce)
-            var transform = CATransform3DMakeTranslation(center.x, center.y, 0)
-            transform = CATransform3DScale(transform, scale, scale, 1)
-            transform = CATransform3DTranslate(transform, -center.x, -center.y, 0)
-            return NSValue(caTransform3D: transform)
-        }
-        bump.duration = duration
-        bump.timingFunction = CAMediaTimingFunction(name: .linear)
-        bump.isAdditive = true
-        layer?.add(bump, forKey: Self.landingKey)
-    }
-
-    private func animateHighlightBump() {
-        guard window != nil, !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion else {
-            return
-        }
-        let center = NSMakePoint(frame.width / 2, frame.height / 2)
-        let delay = 0.18
-        let durationFactor = 1.7
-        let duration = 0.9 * durationFactor
-        let frameCount = Int(ceil(duration * 120))
-        var values: [NSValue] = [NSValue(caTransform3D: CATransform3DIdentity)]
-        var keyTimes: [NSNumber] = [0]
-        for index in 0 ... frameCount {
-            let progress = Double(index) / Double(frameCount)
-            let time = duration * progress / durationFactor
-            let offset = index == frameCount ? 0 : sin(2 * Double.pi * 1.6 * time) * exp(-time / 0.2)
-            let scale = CGFloat(1 + 0.06 * offset)
-            var transform = CATransform3DMakeTranslation(center.x, center.y, 0)
-            transform = CATransform3DScale(transform, scale, scale, 1)
-            transform = CATransform3DTranslate(transform, -center.x, -center.y, 0)
-            values.append(NSValue(caTransform3D: transform))
-            keyTimes.append(NSNumber(value: (delay + duration * progress) / (delay + duration)))
-        }
-        let bump = CAKeyframeAnimation(keyPath: "transform")
-        bump.values = values
-        bump.keyTimes = keyTimes
-        bump.duration = delay + duration
-        bump.timingFunction = CAMediaTimingFunction(name: .linear)
-        layer?.add(bump, forKey: Self.bounceKey)
-    }
-
-    func updateLayout(size: NSSize, transition: ContainedViewLayoutTransition) {
-        typealias Metrics = ChatServiceItem.WalletTransferData
-        if let visualEffect {
-            transition.updateFrame(view: visualEffect, frame: size.bounds)
-        }
-        let cardFrame = CGRect(origin: CGPoint(x: Metrics.outerInset, y: Metrics.outerInset), size: Metrics.cardSize)
-        transition.updateFrame(view: cardView, frame: cardFrame)
-        let ribbonSize = chatWalletTransferRibbonSize
-        transition.updateFrame(view: badgeView, frame: CGRect(origin: CGPoint(x: cardFrame.maxX - ribbonSize.width + chatWalletTransferRibbonOverhang, y: cardFrame.minY - chatWalletTransferRibbonOverhang), size: ribbonSize))
-        if let captionView {
-            let captionOrigin = CGPoint(
-                x: floorToScreenPixels(backingScaleFactor, (size.width - captionView.frame.width) / 2),
-                y: cardFrame.maxY + Metrics.captionSpacing
-            )
-            transition.updateFrame(view: captionView, frame: CGRect(origin: captionOrigin, size: captionView.frame.size))
-        }
-    }
-
-    override func layout() {
-        super.layout()
-        updateLayout(size: frame.size, transition: .immediate)
-    }
-}
 
 public class ChatServiceRowView: TableRowView, RevealTableView {
     
@@ -4460,8 +3363,6 @@ public class ChatServiceRowView: TableRowView, RevealTableView {
                 |> deliverOnMainQueue
             case let .stars(amount, _, _, _):
                 stickerFile = .single(LocalAnimatedSticker.bestForStarsGift(abs(amount)).file)
-            case let .ton(amount, _, _, _):
-                stickerFile = .single(LocalAnimatedSticker.bestForTonGift(abs(amount)).file)
             case let .starGift(_, _, _, _, purpose):
                 switch purpose {
                 case let .starGift(gift, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _):
@@ -6174,16 +5075,6 @@ public class ChatServiceRowView: TableRowView, RevealTableView {
     private var videoRepresentation: TelegramMediaImage.VideoRepresentation?
     
     private var giftView: GiftView?
-    private var walletTransferViewStorage: Any?
-    @available(macOS 10.15, *)
-    var walletTransferView: ChatWalletTransferView? {
-        get {
-            return self.walletTransferViewStorage as? ChatWalletTransferView
-        }
-        set {
-            self.walletTransferViewStorage = newValue
-        }
-    }
     private var storyView: _StoryView?
     private var suggestPostView: SuggestPostView?
     private var suggestPostHeaderView: SuggestPostHeaderView?
@@ -6260,13 +5151,6 @@ public class ChatServiceRowView: TableRowView, RevealTableView {
     
     
     
-    public override func focusAnimation(_ innerId: AnyHashable?, text: String?) {
-        if #available(macOS 10.15, *), let view = walletTransferView {
-            view.playHighlight()
-        } else {
-            super.focusAnimation(innerId, text: text)
-        }
-    }
 
     public override func doubleClick(in location: NSPoint) {
         if let item = self.item as? ChatRowItem, item.chatInteraction.presentation.state == .normal {
@@ -6437,31 +5321,6 @@ public class ChatServiceRowView: TableRowView, RevealTableView {
             self.giftView = nil
         }
 
-        if #available(macOS 10.15, *) {
-            if let data = item.walletTransferData {
-                let current: ChatWalletTransferView
-                if let view = self.walletTransferView {
-                    current = view
-                } else {
-                    current = ChatWalletTransferView(frame: NSMakeRect(0, 0, data.width, data.height))
-                    self.walletTransferView = current
-                    addSubview(current)
-                }
-                current.setFrameSize(NSMakeSize(data.width, data.height))
-                current.removeAllHandlers()
-                current.set(handler: { [weak item] control in
-                    // Re-resolve the current card view at morph time: the table can reload, replacing the
-                    // row view, so capturing `control`/`self` would go stale by the time the modal closes.
-                    item?.openWalletTransfer(decryptComment: (control as? ChatWalletTransferView)?.isMouseInsideEncryptedCaption == true, morphSource: { [weak item] in
-                        (item?.view as? ChatServiceRowView)?.walletTransferView?.morphSourceView
-                    })
-                }, for: .Click)
-                current.update(item: item, data: data, animated: animated)
-            } else if let view = self.walletTransferView {
-                performSubviewRemoval(view, animated: animated)
-                self.walletTransferView = nil
-            }
-        }
         
         if let data = item.suggestPhotoData {
             let current: SuggestView
@@ -6789,10 +5648,6 @@ public class ChatServiceRowView: TableRowView, RevealTableView {
         
         if let view = giftView {
             transition.updateFrame(view: view, frame: view.centerFrameX(y: baseY).offsetBy(dx: offset, dy: 0))
-            view.updateLayout(size: view.frame.size, transition: transition)
-        }
-        if #available(macOS 10.15, *), let view = walletTransferView {
-            transition.updateFrame(view: view, frame: view.centerFrameX(y: textView.frame.maxY + item.walletTransferSpacing).offsetBy(dx: offset, dy: 0))
             view.updateLayout(size: view.frame.size, transition: transition)
         }
         if let view = suggestView {

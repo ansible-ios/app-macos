@@ -251,8 +251,6 @@ public final class L10n {
   public static var accountSettingsTelegramBusiness: String  { return L10n.tr("Localizable", "AccountSettings.TelegramBusiness") }
   /// Appearance
   public static var accountSettingsTheme: String  { return L10n.tr("Localizable", "AccountSettings.Theme") }
-  /// My TON
-  public static var accountSettingsTon: String  { return L10n.tr("Localizable", "AccountSettings.Ton") }
   /// Update Status
   public static var accountSettingsUpdateStatus: String  { return L10n.tr("Localizable", "AccountSettings.UpdateStatus") }
   /// Username
@@ -5190,8 +5188,6 @@ public final class L10n {
   public static var chatServiceTodoMarkedDoneYou: String  { return L10n.tr("Localizable", "Chat.Service.Todo.Marked.Done.You") }
   /// You marked {values} as not done.
   public static var chatServiceTodoMarkedUndoneYou: String  { return L10n.tr("Localizable", "Chat.Service.Todo.Marked.Undone.You") }
-  /// Use TON to buy gifts and suggest posts to channels.
-  public static var chatServiceTonGiftInfo: String  { return L10n.tr("Localizable", "Chat.Service.TonGift.Info") }
   /// You changed the chat theme to %@
   public static func chatServiceUpdateThemeYou(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.UpdateTheme.You", p1)
@@ -8042,8 +8038,6 @@ public final class L10n {
   public static var editPostSuggestionActionUpdate: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Action.Update") }
   /// Stars
   public static var editPostSuggestionCurrencyStars: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Currency.Stars") }
-  /// TON
-  public static var editPostSuggestionCurrencyTon: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Currency.Ton") }
   /// OK
   public static var editPostSuggestionDateDone: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Date.Done") }
   /// Reset to Anytime
@@ -8062,8 +8056,6 @@ public final class L10n {
   public static func editPostSuggestionPriceTonDescription(_ p1: String) -> String {
     return L10n.tr("Localizable", "Edit.PostSuggestion.Price.Ton.Description", p1)
   }
-  /// ENTER PRICE IN TON
-  public static var editPostSuggestionPriceTonLabel: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Price.Ton.Label") }
   /// Anytime
   public static var editPostSuggestionTimeAnytime: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Time.Anytime") }
   /// Select the date and time you want the post to be published.
@@ -9076,18 +9068,10 @@ public final class L10n {
   public static func fragmentTonMinWithdraw(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Fragment.Ton.MinWithdraw", p1)
   }
-  /// Add funds via Fragment
-  public static var fragmentTonAddFundsAction: String  { return L10n.tr("Localizable", "Fragment.Ton.AddFunds.Action") }
-  /// https://fragment.com/ads/topup
-  public static var fragmentTonAddFundsLink: String  { return L10n.tr("Localizable", "Fragment.Ton.AddFunds.Link") }
-  /// Add funds
-  public static var fragmentTonAddFundsTitle: String  { return L10n.tr("Localizable", "Fragment.Ton.AddFunds.Title") }
   /// %1$@ TON Needed
   public static func fragmentTonAddFundsHeaderAmount(_ p1: String) -> String {
     return L10n.tr("Localizable", "Fragment.Ton.AddFunds.Header.Amount", p1)
   }
-  /// You can add funds to your balance via the third-party platform Fragment.
-  public static var fragmentTonAddFundsHeaderInfo: String  { return L10n.tr("Localizable", "Fragment.Ton.AddFunds.Header.Info") }
   /// You cannot withdraw less than 10 Grams.
   public static var fragmentMonetizationControllerWithdrawMinimum: String  { return L10n.tr("Localizable", "FragmentMonetization.Controller.WithdrawMinimum") }
   /// Click to view details
@@ -16812,12 +16796,6 @@ public final class L10n {
   public static func starPurchaseTextInOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Star.Purchase.Text.In_other", p1)
   }
-  /// If the buyer pays you in TON, there's no risk of refunds, unlike Star payments.
-  public static var starSellTonDescription: String  { return L10n.tr("Localizable", "Star.Sell.Ton.Description") }
-  /// Only Accept TON
-  public static var starSellTonOnlyAccept: String  { return L10n.tr("Localizable", "Star.Sell.Ton.OnlyAccept") }
-  /// Pay with TON to skip the 21-day wait\nbefore transferring the gift again.
-  public static var starSellTonTooltip: String  { return L10n.tr("Localizable", "Star.Sell.Ton.Tooltip") }
   /// %@ / month
   public static func starSubScreenPrice(_ p1: String) -> String {
     return L10n.tr("Localizable", "Star.SubScreen.Price", p1)
@@ -17278,12 +17256,6 @@ public final class L10n {
   public static func starGiftNftResaleMinPriceInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "StarGiftNft.ResaleMinPriceInfo", p1)
   }
-  /// TON
-  public static var starListTon: String  { return L10n.tr("Localizable", "StarList.Ton") }
-  /// Offer TON to submit post suggestions to channels on Telegram
-  public static var starListTonInfo: String  { return L10n.tr("Localizable", "StarList.TonInfo") }
-  /// Collect your TON using Fragment. [Learn More >](telegram.org)
-  public static var starListTonWithdrawInfo: String  { return L10n.tr("Localizable", "StarList.Ton.Withdraw.Info") }
   /// This gift was downgraded because a request to refund the payment related to this gift was made, and the money was returned.
   public static var starTransactionGiftRefundedInfo: String  { return L10n.tr("Localizable", "StarTransaction.GiftRefundedInfo") }
   /// %@ Gift Stars to Friends
@@ -17596,8 +17568,6 @@ public final class L10n {
   public static var statsStars: String  { return L10n.tr("Localizable", "Stats.Stars") }
   /// Statistics
   public static var statsStatistics: String  { return L10n.tr("Localizable", "Stats.Statistics") }
-  /// TON
-  public static var statsTon: String  { return L10n.tr("Localizable", "Stats.Ton") }
   /// %d BOOSTERS
   public static func statsBoostsBoostersOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Stats.Boosts.Boosters_other", p1)
@@ -20856,354 +20826,46 @@ public final class L10n {
   public static var voiecChatSettingsReduceMotionDesc: String  { return L10n.tr("Localizable", "VoiecChat.Settings.ReduceMotion.Desc") }
   /// Edit
   public static var w486f4DlTitle: String  { return L10n.tr("Localizable", "W48-6f-4Dl.title") }
-  /// GRAM
-  public static var walletAmountRowItemGram: String  { return L10n.tr("Localizable", "Wallet.AmountRowItem.Gram") }
-  /// Please enter your Telegram passcode to access your wallet.
-  public static var walletAuthorizeControllerDescription: String  { return L10n.tr("Localizable", "Wallet.AuthorizeController.Description") }
-  /// Enter Passcode
-  public static var walletAuthorizeControllerEnterPasscode: String  { return L10n.tr("Localizable", "Wallet.AuthorizeController.EnterPasscode") }
-  /// Passcode
-  public static var walletAuthorizeControllerPasscode: String  { return L10n.tr("Localizable", "Wallet.AuthorizeController.Passcode") }
   /// Too many attempts. Try again in %1$d seconds.
   public static func walletAuthorizeControllerTooManyAttemptsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Wallet.AuthorizeController.TooManyAttempts_other", p1)
   }
-  /// Couldn't verify the passcode. Please try again.
-  public static var walletAuthorizeControllerVerifyFailed: String  { return L10n.tr("Localizable", "Wallet.AuthorizeController.VerifyFailed") }
-  /// Enable encrypted backup before restoring the secret phrase from Telegram.
-  public static var walletAuthorizedOperationBackupDisabledInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.BackupDisabledInfo") }
-  /// Backup Is Disabled
-  public static var walletAuthorizedOperationBackupDisabledTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.BackupDisabledTitle") }
-  /// The wallet verification request expired. Please try enabling backup again.
-  public static var walletAuthorizedOperationBackupProofExpiredInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.BackupProofExpiredInfo") }
-  /// Telegram couldn’t confirm the secret phrase change on the blockchain yet. Wait a moment and retry, or enter the current secret phrase.
-  public static var walletAuthorizedOperationBackupRotationPendingInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.BackupRotationPendingInfo") }
-  /// Encrypted backup is not available for this wallet.
-  public static var walletAuthorizedOperationBackupUnavailableInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.BackupUnavailableInfo") }
-  /// Backup Unavailable
-  public static var walletAuthorizedOperationBackupUnavailableTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.BackupUnavailableTitle") }
-  /// This secret phrase may be outdated for your wallet. Enter the current secret phrase to enable backup.
-  public static var walletAuthorizedOperationBackupVerifyFailedInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.BackupVerifyFailedInfo") }
-  /// Couldn’t Verify Secret Phrase
-  public static var walletAuthorizedOperationBackupVerifyFailedTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.BackupVerifyFailedTitle") }
-  /// Cancel
-  public static var walletAuthorizedOperationCancel: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.Cancel") }
-  /// Check the network connection and try again.
-  public static var walletAuthorizedOperationCheckNetworkInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.CheckNetworkInfo") }
-  /// The encrypted comment is too long. Shorten it and try again.
-  public static var walletAuthorizedOperationCommentTooLongInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.CommentTooLongInfo") }
-  /// Comment Too Long
-  public static var walletAuthorizedOperationCommentTooLongTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.CommentTooLongTitle") }
-  /// Continue
-  public static var walletAuthorizedOperationContinue: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.Continue") }
-  /// The comment could not be decrypted.
-  public static var walletAuthorizedOperationDecryptFailedInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.DecryptFailedInfo") }
-  /// Couldn’t Decrypt Comment
-  public static var walletAuthorizedOperationDecryptFailedTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.DecryptFailedTitle") }
-  /// Couldn’t Enable Backup
-  public static var walletAuthorizedOperationEnableBackupFailedTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.EnableBackupFailedTitle") }
-  /// The comment could not be encrypted for this wallet. Check the network connection and try again.
-  public static var walletAuthorizedOperationEncryptFailedInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.EncryptFailedInfo") }
-  /// Couldn’t Encrypt Comment
-  public static var walletAuthorizedOperationEncryptFailedTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.EncryptFailedTitle") }
-  /// This wallet can’t receive encrypted comments now.
-  public static var walletAuthorizedOperationEncryptRecipientUnavailableInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.EncryptRecipientUnavailableInfo") }
-  /// Enter Current Secret Phrase
-  public static var walletAuthorizedOperationEnterCurrentPhrase: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.EnterCurrentPhrase") }
-  /// Invalid password. Please try again.
-  public static var walletAuthorizedOperationInvalidPassword: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.InvalidPassword") }
-  /// Check all words of your current secret phrase and try again.
-  public static var walletAuthorizedOperationInvalidPhraseInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.InvalidPhraseInfo") }
-  /// Invalid Secret Phrase
-  public static var walletAuthorizedOperationInvalidPhraseTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.InvalidPhraseTitle") }
-  /// The new secret phrase was not activated. Your previous phrase and encrypted backup are still valid.
-  public static var walletAuthorizedOperationKeyRotationFailedInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.KeyRotationFailedInfo") }
-  /// Couldn’t Update Secret Phrase
-  public static var walletAuthorizedOperationKeyRotationFailedTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.KeyRotationFailedTitle") }
-  /// Enter your Telegram 2-Step Verification password to continue.
-  public static var walletAuthorizedOperationPasswordInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.PasswordInfo") }
-  /// Password
-  public static var walletAuthorizedOperationPasswordPlaceholder: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.PasswordPlaceholder") }
-  /// Telegram Password
-  public static var walletAuthorizedOperationPasswordTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.PasswordTitle") }
   /// Try again in %1$@.
   public static func walletAuthorizedOperationPasswordTooNewInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.AuthorizedOperation.PasswordTooNewInfo", p1)
   }
-  /// Password Is Too New
-  public static var walletAuthorizedOperationPasswordTooNewTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.PasswordTooNewTitle") }
-  /// The key for this wallet has changed. Enter the current 24-word secret phrase.
-  public static var walletAuthorizedOperationPhraseChangedInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.PhraseChangedInfo") }
-  /// Secret Phrase Has Changed
-  public static var walletAuthorizedOperationPhraseChangedTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.PhraseChangedTitle") }
-  /// The wallet verification request expired. Please try importing it again.
-  public static var walletAuthorizedOperationProofExpiredInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.ProofExpiredInfo") }
-  /// Verification Expired
-  public static var walletAuthorizedOperationProofExpiredTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.ProofExpiredTitle") }
-  /// Telegram couldn’t verify that you own this wallet. Please try importing it again.
-  public static var walletAuthorizedOperationProofInvalidInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.ProofInvalidInfo") }
-  /// Couldn’t Verify Wallet
-  public static var walletAuthorizedOperationProofInvalidTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.ProofInvalidTitle") }
-  /// Retry
-  public static var walletAuthorizedOperationRetry: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.Retry") }
-  /// Telegram couldn’t confirm the secret phrase change on the blockchain yet. Wait a moment and try again.
-  public static var walletAuthorizedOperationRotationPendingInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.RotationPendingInfo") }
-  /// Secret Phrase Update Pending
-  public static var walletAuthorizedOperationRotationPendingTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.RotationPendingTitle") }
   /// For your security, try again in %1$@.
   public static func walletAuthorizedOperationSessionTooNewInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.AuthorizedOperation.SessionTooNewInfo", p1)
   }
-  /// Session Is Too New
-  public static var walletAuthorizedOperationSessionTooNewTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.SessionTooNewTitle") }
-  /// Set up a Telegram password before changing this wallet.
-  public static var walletAuthorizedOperationTwoStepRequiredInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.TwoStepRequiredInfo") }
-  /// Two-Step Verification Required
-  public static var walletAuthorizedOperationTwoStepRequiredTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.TwoStepRequiredTitle") }
-  /// The wallet changed while enabling backup. Open its settings and try again.
-  public static var walletAuthorizedOperationWalletChangedInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.WalletChangedInfo") }
-  /// Wallet Changed
-  public static var walletAuthorizedOperationWalletChangedTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.WalletChangedTitle") }
-  /// The wallet key has changed. Refresh the wallet and restore access with its current secret phrase if needed, then confirm the transfer again.
-  public static var walletAuthorizedOperationWalletKeyChangedInfo: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.WalletKeyChangedInfo") }
-  /// Wallet Key Changed
-  public static var walletAuthorizedOperationWalletKeyChangedTitle: String  { return L10n.tr("Localizable", "Wallet.AuthorizedOperation.WalletKeyChangedTitle") }
-  /// Confirm access to your wallet
-  public static var walletBiometricsConfirmAccess: String  { return L10n.tr("Localizable", "Wallet.Biometrics.ConfirmAccess") }
-  /// Enable biometrics for your wallets
-  public static var walletBiometricsEnableReason: String  { return L10n.tr("Localizable", "Wallet.Biometrics.EnableReason") }
-  ///  Grams
-  public static var walletCardViewGramsUnit: String  { return L10n.tr("Localizable", "Wallet.CardView.GramsUnit") }
-  ///  Gram
-  public static var walletCardViewGramUnit: String  { return L10n.tr("Localizable", "Wallet.CardView.GramUnit") }
-  /// Add to Card
-  public static var walletCollectablesAddToCard: String  { return L10n.tr("Localizable", "Wallet.Collectables.AddToCard") }
-  /// Apply Color
-  public static var walletCollectablesApplyColor: String  { return L10n.tr("Localizable", "Wallet.Collectables.ApplyColor") }
-  /// Remove Color
-  public static var walletCollectablesRemoveColor: String  { return L10n.tr("Localizable", "Wallet.Collectables.RemoveColor") }
-  /// Remove from Card
-  public static var walletCollectablesRemoveFromCard: String  { return L10n.tr("Localizable", "Wallet.Collectables.RemoveFromCard") }
-  /// also show in my gifts
-  public static var walletCollectibleAlsoShowInMyGifts: String  { return L10n.tr("Localizable", "Wallet.Collectible.AlsoShowInMyGifts") }
-  /// add to card
-  public static var walletCollectibleHeaderAddToCard: String  { return L10n.tr("Localizable", "Wallet.Collectible.Header.AddToCard") }
-  /// apply color
-  public static var walletCollectibleHeaderApplyColor: String  { return L10n.tr("Localizable", "Wallet.Collectible.Header.ApplyColor") }
-  /// remove color
-  public static var walletCollectibleHeaderRemoveColor: String  { return L10n.tr("Localizable", "Wallet.Collectible.Header.RemoveColor") }
-  /// remove from card
-  public static var walletCollectibleHeaderRemoveFromCard: String  { return L10n.tr("Localizable", "Wallet.Collectible.Header.RemoveFromCard") }
-  /// sell
-  public static var walletCollectibleDetailsControllerActionSell: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.ActionSell") }
-  /// transfer
-  public static var walletCollectibleDetailsControllerActionTransfer: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.ActionTransfer") }
-  /// wear
-  public static var walletCollectibleDetailsControllerActionWear: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.ActionWear") }
-  /// Address
-  public static var walletCollectibleDetailsControllerAddress: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.Address") }
-  /// Anonymous Number
-  public static var walletCollectibleDetailsControllerAnonymousNumber: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.AnonymousNumber") }
-  /// Backdrop
-  public static var walletCollectibleDetailsControllerBackdrop: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.Backdrop") }
-  /// Collectible
-  public static var walletCollectibleDetailsControllerCollectible: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.Collectible") }
-  /// Collectible Gift
-  public static var walletCollectibleDetailsControllerCollectibleGift: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.CollectibleGift") }
-  /// Collection
-  public static var walletCollectibleDetailsControllerCollection: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.Collection") }
-  /// Sell
-  public static var walletCollectibleDetailsControllerContextSell: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.ContextSell") }
-  /// Model
-  public static var walletCollectibleDetailsControllerModel: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.Model") }
-  /// Next Collectible
-  public static var walletCollectibleDetailsControllerNextCollectible: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.NextCollectible") }
-  /// OK
-  public static var walletCollectibleDetailsControllerOK: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.OK") }
-  /// Owner
-  public static var walletCollectibleDetailsControllerOwner: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.Owner") }
-  /// You
-  public static var walletCollectibleDetailsControllerOwnerYou: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.OwnerYou") }
-  /// Previous Collectible
-  public static var walletCollectibleDetailsControllerPreviousCollectible: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.PreviousCollectible") }
-  /// Replay Gift Animation
-  public static var walletCollectibleDetailsControllerReplayGiftAnimation: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.ReplayGiftAnimation") }
-  /// The wallet is still syncing. Please try again in a moment.
-  public static var walletCollectibleDetailsControllerStillSyncing: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.StillSyncing") }
-  /// Symbol
-  public static var walletCollectibleDetailsControllerSymbol: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.Symbol") }
-  /// Type
-  public static var walletCollectibleDetailsControllerType: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.Type") }
-  /// Username
-  public static var walletCollectibleDetailsControllerUsername: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.Username") }
-  /// View in Explorer
-  public static var walletCollectibleDetailsControllerViewInExplorer: String  { return L10n.tr("Localizable", "Wallet.CollectibleDetailsController.ViewInExplorer") }
-  /// ACTIVE CONNECTIONS
-  public static var walletConnectedAppsControllerActiveConnections: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.ActiveConnections") }
-  /// All apps disconnected.
-  public static var walletConnectedAppsControllerAllAppsDisconnected: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.AllAppsDisconnected") }
   /// %1$@ disconnected.
   public static func walletConnectedAppsControllerAppDisconnected(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.ConnectedAppsController.AppDisconnected", p1)
   }
-  /// This app can see your wallet address, balance and activity. It can't move funds without your approval.
-  public static var walletConnectedAppsControllerAppInfoDescription: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.AppInfoDescription") }
-  /// Cancel
-  public static var walletConnectedAppsControllerCancel: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.Cancel") }
-  /// Disconnect
-  public static var walletConnectedAppsControllerDisconnect: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.Disconnect") }
-  /// Disconnect All
-  public static var walletConnectedAppsControllerDisconnectAll: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.DisconnectAll") }
-  /// Disconnect All Apps
-  public static var walletConnectedAppsControllerDisconnectAllApps: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.DisconnectAllApps") }
-  /// These apps will lose access to your wallet. You can connect them again at any time.
-  public static var walletConnectedAppsControllerDisconnectAllConfirmInfo: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.DisconnectAllConfirmInfo") }
-  /// Disconnect All Apps?
-  public static var walletConnectedAppsControllerDisconnectAllConfirmTitle: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.DisconnectAllConfirmTitle") }
-  /// Unable to disconnect these apps. Please try again.
-  public static var walletConnectedAppsControllerDisconnectAllFailed: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.DisconnectAllFailed") }
-  /// Unable to disconnect this app. Please try again.
-  public static var walletConnectedAppsControllerDisconnectFailed: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.DisconnectFailed") }
-  /// Disconnecting…
-  public static var walletConnectedAppsControllerDisconnecting: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.Disconnecting") }
-  /// Connected apps can see your wallet address, balance and activity. They can't move funds without your approval.
-  public static var walletConnectedAppsControllerFooter: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.Footer") }
-  /// Connected Apps
-  public static var walletConnectedAppsControllerTitle: String  { return L10n.tr("Localizable", "Wallet.ConnectedAppsController.Title") }
-  /// Your account is now protected.
-  public static var walletControllerAccountProtected: String  { return L10n.tr("Localizable", "Wallet.Controller.AccountProtected") }
-  /// Add Funds
-  public static var walletControllerAddFunds: String  { return L10n.tr("Localizable", "Wallet.Controller.AddFunds") }
-  /// Blockchain Verified
-  public static var walletControllerBlockchainVerified: String  { return L10n.tr("Localizable", "Wallet.Controller.BlockchainVerified") }
-  /// All transactions are recorded\nand verifiable on a public ledger.
-  public static var walletControllerBlockchainVerifiedInfo: String  { return L10n.tr("Localizable", "Wallet.Controller.BlockchainVerifiedInfo") }
-  /// Call Contract
-  public static var walletControllerCallContract: String  { return L10n.tr("Localizable", "Wallet.Controller.CallContract") }
-  /// Cancel
-  public static var walletControllerCancel: String  { return L10n.tr("Localizable", "Wallet.Controller.Cancel") }
-  /// Collectibles
-  public static var walletControllerCollectibles: String  { return L10n.tr("Localizable", "Wallet.Controller.Collectibles") }
-  /// Confirm
-  public static var walletControllerConfirm: String  { return L10n.tr("Localizable", "Wallet.Controller.Confirm") }
-  /// Confirm Action
-  public static var walletControllerConfirmAction: String  { return L10n.tr("Localizable", "Wallet.Controller.ConfirmAction") }
-  /// Connect
-  public static var walletControllerConnect: String  { return L10n.tr("Localizable", "Wallet.Controller.Connect") }
-  /// Connect an App
-  public static var walletControllerConnectApp: String  { return L10n.tr("Localizable", "Wallet.Controller.ConnectApp") }
-  /// Connected Apps
-  public static var walletControllerConnectedApps: String  { return L10n.tr("Localizable", "Wallet.Controller.ConnectedApps") }
   /// You are now connected to %1$@.
   public static func walletControllerConnectedTo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.Controller.ConnectedTo", p1)
   }
-  /// Unable to connect this app. Please try again.
-  public static var walletControllerConnectFailed: String  { return L10n.tr("Localizable", "Wallet.Controller.ConnectFailed") }
-  /// Connection Successful
-  public static var walletControllerConnectionSuccessful: String  { return L10n.tr("Localizable", "Wallet.Controller.ConnectionSuccessful") }
-  /// Open the app in your browser, choose Telegram Wallet, then copy the connection link and paste it here.
-  public static var walletControllerConnectLinkInfo: String  { return L10n.tr("Localizable", "Wallet.Controller.ConnectLinkInfo") }
-  /// This isn’t a valid TON Connect link or wallet address.
-  public static var walletControllerConnectLinkInvalid: String  { return L10n.tr("Localizable", "Wallet.Controller.ConnectLinkInvalid") }
-  /// TON Connect link or address
-  public static var walletControllerConnectLinkPlaceholder: String  { return L10n.tr("Localizable", "Wallet.Controller.ConnectLinkPlaceholder") }
   /// Connect to %1$@
   public static func walletControllerConnectTo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.Controller.ConnectTo", p1)
   }
-  /// Currency
-  public static var walletControllerCurrency: String  { return L10n.tr("Localizable", "Wallet.Controller.Currency") }
-  /// Deploy Contract
-  public static var walletControllerDeployContract: String  { return L10n.tr("Localizable", "Wallet.Controller.DeployContract") }
-  /// Deposit
-  public static var walletControllerDeposit: String  { return L10n.tr("Localizable", "Wallet.Controller.Deposit") }
-  /// You have 
-  public static var walletControllerEarningsBannerPrefix: String  { return L10n.tr("Localizable", "Wallet.Controller.EarningsBannerPrefix") }
-  ///  in Gram Earnings
-  public static var walletControllerEarningsBannerSuffix: String  { return L10n.tr("Localizable", "Wallet.Controller.EarningsBannerSuffix") }
-  /// This wallet’s stored data doesn’t match the wallet on the server, so it can’t be opened. You can delete this wallet and restore it from your secret phrase.
-  public static var walletControllerErrorDataMismatch: String  { return L10n.tr("Localizable", "Wallet.Controller.ErrorDataMismatch") }
-  /// The stored wallet data can’t be read. You can delete this wallet and restore it from your secret phrase.
-  public static var walletControllerErrorDataUnreadable: String  { return L10n.tr("Localizable", "Wallet.Controller.ErrorDataUnreadable") }
-  /// The wallet storage is unavailable. Please restart the app and try again.
-  public static var walletControllerErrorStorageUnavailable: String  { return L10n.tr("Localizable", "Wallet.Controller.ErrorStorageUnavailable") }
-  /// Excess
-  public static var walletControllerExcess: String  { return L10n.tr("Localizable", "Wallet.Controller.Excess") }
-  /// Failed
-  public static var walletControllerFailed: String  { return L10n.tr("Localizable", "Wallet.Controller.Failed") }
   /// %1$@ · Failed
   public static func walletControllerFailedSuffix(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.Controller.FailedSuffix", p1)
   }
-  /// How It Works
-  public static var walletControllerHowItWorks: String  { return L10n.tr("Localizable", "Wallet.Controller.HowItWorks") }
-  /// Send Money Instantly
-  public static var walletControllerInstantTransfers: String  { return L10n.tr("Localizable", "Wallet.Controller.InstantTransfers") }
-  /// Send Grams in any chat, just like\nsharing a photo.
-  public static var walletControllerInstantTransfersInfo: String  { return L10n.tr("Localizable", "Wallet.Controller.InstantTransfersInfo") }
-  /// Keys & Backup
-  public static var walletControllerKeysAndBackup: String  { return L10n.tr("Localizable", "Wallet.Controller.KeysAndBackup") }
-  /// Money
-  public static var walletControllerMoney: String  { return L10n.tr("Localizable", "Wallet.Controller.Money") }
   /// %1$@ won’t be able to move funds without permission.
   public static func walletControllerNoFundsWithoutPermission(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.Controller.NoFundsWithoutPermission", p1)
   }
-  /// Passcode & Touch ID
-  public static var walletControllerPasscodeAndTouchId: String  { return L10n.tr("Localizable", "Wallet.Controller.PasscodeAndTouchId") }
-  /// Password set
-  public static var walletControllerPasswordSet: String  { return L10n.tr("Localizable", "Wallet.Controller.PasswordSet") }
   /// It will ask you to prove ownership of this wallet to %1$@.
   public static func walletControllerPermissionProof(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.Controller.PermissionProof", p1)
   }
-  /// It will be able to view your wallet address, balance and activity.
-  public static var walletControllerPermissionViewWallet: String  { return L10n.tr("Localizable", "Wallet.Controller.PermissionViewWallet") }
-  /// PREVIEW
-  public static var walletControllerPreviewHeader: String  { return L10n.tr("Localizable", "Wallet.Controller.PreviewHeader") }
-  /// You also have 
-  public static var walletControllerPreviousWalletsBannerPrefix: String  { return L10n.tr("Localizable", "Wallet.Controller.PreviousWalletsBannerPrefix") }
-  ///  in old wallets
-  public static var walletControllerPreviousWalletsBannerSuffix: String  { return L10n.tr("Localizable", "Wallet.Controller.PreviousWalletsBannerSuffix") }
-  /// Proceed
-  public static var walletControllerProceed: String  { return L10n.tr("Localizable", "Wallet.Controller.Proceed") }
-  /// Protect Your Account
-  public static var walletControllerProtectAccount: String  { return L10n.tr("Localizable", "Wallet.Controller.ProtectAccount") }
-  /// Unable to complete this request. Please try again.
-  public static var walletControllerRequestFailed: String  { return L10n.tr("Localizable", "Wallet.Controller.RequestFailed") }
-  /// Couldn’t Save Card
-  public static var walletControllerSaveCardFailed: String  { return L10n.tr("Localizable", "Wallet.Controller.SaveCardFailed") }
-  /// Secret Phrase Required
-  public static var walletControllerSecretPhraseRequired: String  { return L10n.tr("Localizable", "Wallet.Controller.SecretPhraseRequired") }
-  /// To send funds, you’ll need to enter your 12- or 24-word secret phrase to restore access to this wallet.
-  public static var walletControllerSecretPhraseRequiredToSend: String  { return L10n.tr("Localizable", "Wallet.Controller.SecretPhraseRequiredToSend") }
-  /// Send
-  public static var walletControllerSend: String  { return L10n.tr("Localizable", "Wallet.Controller.Send") }
-  /// Setting up your wallet. This usually takes a few seconds...
-  public static var walletControllerSettingUp: String  { return L10n.tr("Localizable", "Wallet.Controller.SettingUp") }
-  /// Sign
-  public static var walletControllerSign: String  { return L10n.tr("Localizable", "Wallet.Controller.Sign") }
-  /// Sign Data
-  public static var walletControllerSignData: String  { return L10n.tr("Localizable", "Wallet.Controller.SignData") }
-  /// Data
-  public static var walletControllerSigningData: String  { return L10n.tr("Localizable", "Wallet.Controller.SigningData") }
   /// Transactions under %1$@ are hidden.
   public static func walletControllerSmallTransactionsHidden(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.Controller.SmallTransactionsHidden", p1)
   }
-  /// This gift can’t be set as your card’s background.
-  public static var walletControllerStickerBackgroundNotAllowedError: String  { return L10n.tr("Localizable", "Wallet.Controller.StickerBackgroundNotAllowedError") }
-  /// Hold a gift to peel it off and stick it on your card. Hold a sticker on the card to peel it again; use trackpad rotate and pinch gestures to turn and resize it.
-  public static var walletControllerStickerGridFooter: String  { return L10n.tr("Localizable", "Wallet.Controller.StickerGridFooter") }
-  /// One of these stickers can’t be used on the card. Only gifts owned by this wallet are supported.
-  public static var walletControllerStickerInvalidError: String  { return L10n.tr("Localizable", "Wallet.Controller.StickerInvalidError") }
-  /// A gift displayed on your profile can’t also be a card sticker. Hide it from your profile first.
-  public static var walletControllerStickerProfileError: String  { return L10n.tr("Localizable", "Wallet.Controller.StickerProfileError") }
-  /// Couldn’t Save Card
-  public static var walletControllerStickerSaveErrorTitle: String  { return L10n.tr("Localizable", "Wallet.Controller.StickerSaveErrorTitle") }
-  /// The wallet is still syncing. Please try again in a moment.
-  public static var walletControllerStillSyncing: String  { return L10n.tr("Localizable", "Wallet.Controller.StillSyncing") }
   /// By using this service, you agree to the [Terms](%1$@).
   public static func walletControllerTermsAgreement(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.Controller.TermsAgreement", p1)
@@ -21212,72 +20874,10 @@ public final class L10n {
   public static func walletControllerToAddress(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.Controller.ToAddress", p1)
   }
-  /// Transactions
-  public static var walletControllerTransactions: String  { return L10n.tr("Localizable", "Wallet.Controller.Transactions") }
-  /// Transfer
-  public static var walletControllerTransfer: String  { return L10n.tr("Localizable", "Wallet.Controller.Transfer") }
-  /// TRANSFER
-  public static var walletControllerTransferHeader: String  { return L10n.tr("Localizable", "Wallet.Controller.TransferHeader") }
-  /// TRANSFERS
-  public static var walletControllerTransfersHeader: String  { return L10n.tr("Localizable", "Wallet.Controller.TransfersHeader") }
-  /// Unknown Operation
-  public static var walletControllerUnknownOperation: String  { return L10n.tr("Localizable", "Wallet.Controller.UnknownOperation") }
-  /// Wallet Imported
-  public static var walletControllerWalletImported: String  { return L10n.tr("Localizable", "Wallet.Controller.WalletImported") }
-  /// Your wallet was restored from your secret phrase.
-  public static var walletControllerWalletImportedInfo: String  { return L10n.tr("Localizable", "Wallet.Controller.WalletImportedInfo") }
-  /// You also have funds in Walt
-  public static var walletControllerWaltFundsBanner: String  { return L10n.tr("Localizable", "Wallet.Controller.WaltFundsBanner") }
-  /// Withdrawal
-  public static var walletControllerWithdrawal: String  { return L10n.tr("Localizable", "Wallet.Controller.Withdrawal") }
-  /// No Fees
-  public static var walletControllerZeroFees: String  { return L10n.tr("Localizable", "Wallet.Controller.ZeroFees") }
   /// The first %1$d transfers each day are free. The rest cost almost nothing.
   public static func walletControllerZeroFeesInfoOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Wallet.Controller.ZeroFeesInfo_other", p1)
   }
-  /// Cancel
-  public static var walletFlowAuthorizationCancel: String  { return L10n.tr("Localizable", "Wallet.FlowAuthorization.Cancel") }
-  /// Check the network connection and try again.
-  public static var walletFlowAuthorizationCheckConnection: String  { return L10n.tr("Localizable", "Wallet.FlowAuthorization.CheckConnection") }
-  /// Confirm access to your wallet
-  public static var walletFlowAuthorizationConfirmAccessReason: String  { return L10n.tr("Localizable", "Wallet.FlowAuthorization.ConfirmAccessReason") }
-  /// Couldn’t Restore Wallet
-  public static var walletFlowAuthorizationRestoreFailedTitle: String  { return L10n.tr("Localizable", "Wallet.FlowAuthorization.RestoreFailedTitle") }
-  /// Restore wallet
-  public static var walletFlowAuthorizationRestoreReason: String  { return L10n.tr("Localizable", "Wallet.FlowAuthorization.RestoreReason") }
-  /// Retry
-  public static var walletFlowAuthorizationRetry: String  { return L10n.tr("Localizable", "Wallet.FlowAuthorization.Retry") }
-  /// TON address copied to clipboard
-  public static var walletFormatAddressCopied: String  { return L10n.tr("Localizable", "Wallet.Format.AddressCopied") }
-  /// Gram — Digital currency for Telegram
-  public static var walletGramTooltipDigitalCurrency: String  { return L10n.tr("Localizable", "Wallet.GramTooltip.DigitalCurrency") }
-  /// Since you disabled backups for your wallet, you have to manually enter your Secret Phrase in every new Telegram session.
-  public static var walletImportControllerBackupDisabledInfo: String  { return L10n.tr("Localizable", "Wallet.ImportController.BackupDisabledInfo") }
-  /// Cancel
-  public static var walletImportControllerCancel: String  { return L10n.tr("Localizable", "Wallet.ImportController.Cancel") }
-  /// Continue
-  public static var walletImportControllerContinue: String  { return L10n.tr("Localizable", "Wallet.ImportController.Continue") }
-  /// Enable Backup
-  public static var walletImportControllerEnableBackup: String  { return L10n.tr("Localizable", "Wallet.ImportController.EnableBackup") }
-  /// Enter your wallet's current 12- or 24-word secret phrase to enable encrypted backup.
-  public static var walletImportControllerEnableBackupInfo: String  { return L10n.tr("Localizable", "Wallet.ImportController.EnableBackupInfo") }
-  /// Import
-  public static var walletImportControllerImport: String  { return L10n.tr("Localizable", "Wallet.ImportController.Import") }
-  /// Check the secret phrase and network connection, then try again.
-  public static var walletImportControllerImportFailedInfo: String  { return L10n.tr("Localizable", "Wallet.ImportController.ImportFailedInfo") }
-  /// Couldn’t Import Wallet
-  public static var walletImportControllerImportFailedTitle: String  { return L10n.tr("Localizable", "Wallet.ImportController.ImportFailedTitle") }
-  /// Enter the 12- or 24-word secret phrase from another wallet you own.
-  public static var walletImportControllerImportWalletInfo: String  { return L10n.tr("Localizable", "Wallet.ImportController.ImportWalletInfo") }
-  /// Import Wallet
-  public static var walletImportControllerImportWalletTitle: String  { return L10n.tr("Localizable", "Wallet.ImportController.ImportWalletTitle") }
-  /// Check the word order.\n\nOnly a secret phrase created in Telegram can be imported here.
-  public static var walletImportControllerInvalidPhraseInfo: String  { return L10n.tr("Localizable", "Wallet.ImportController.InvalidPhraseInfo") }
-  /// Invalid Secret Phrase
-  public static var walletImportControllerInvalidPhraseTitle: String  { return L10n.tr("Localizable", "Wallet.ImportController.InvalidPhraseTitle") }
-  /// Invalid word
-  public static var walletImportControllerInvalidWord: String  { return L10n.tr("Localizable", "Wallet.ImportController.InvalidWord") }
   /// A secret phrase must contain exactly 12 or 24 words. The pasted phrase contains %1$d.
   public static func walletImportControllerInvalidWordCountOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Wallet.ImportController.InvalidWordCount_other", p1)
@@ -21286,238 +20886,42 @@ public final class L10n {
   public static func walletImportControllerInvalidWordCountCurrentOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Wallet.ImportController.InvalidWordCountCurrent_other", p1)
   }
-  /// OK
-  public static var walletImportControllerOk: String  { return L10n.tr("Localizable", "Wallet.ImportController.Ok") }
-  /// Paste
-  public static var walletImportControllerPaste: String  { return L10n.tr("Localizable", "Wallet.ImportController.Paste") }
-  /// The key for this wallet has changed. Enter the current 24-word secret phrase.
-  public static var walletImportControllerPhraseChangedInfo: String  { return L10n.tr("Localizable", "Wallet.ImportController.PhraseChangedInfo") }
-  /// Secret Phrase Has Changed
-  public static var walletImportControllerPhraseChangedTitle: String  { return L10n.tr("Localizable", "Wallet.ImportController.PhraseChangedTitle") }
-  /// Proceed
-  public static var walletImportControllerProceed: String  { return L10n.tr("Localizable", "Wallet.ImportController.Proceed") }
-  /// Replace
-  public static var walletImportControllerReplace: String  { return L10n.tr("Localizable", "Wallet.ImportController.Replace") }
-  /// This secret phrase belongs to a different wallet. Replacing the current wallet will remove access to it on this device. Make sure you’ve saved its secret phrase before continuing.
-  public static var walletImportControllerReplaceWalletInfo: String  { return L10n.tr("Localizable", "Wallet.ImportController.ReplaceWalletInfo") }
-  /// Replace Wallet
-  public static var walletImportControllerReplaceWalletTitle: String  { return L10n.tr("Localizable", "Wallet.ImportController.ReplaceWalletTitle") }
-  /// Couldn’t Restore Wallet
-  public static var walletImportControllerRestoreFailedTitle: String  { return L10n.tr("Localizable", "Wallet.ImportController.RestoreFailedTitle") }
-  /// Unlock the device and try again.
-  public static var walletImportControllerSaveFailedInfo: String  { return L10n.tr("Localizable", "Wallet.ImportController.SaveFailedInfo") }
-  /// Couldn’t Save Wallet
-  public static var walletImportControllerSaveFailedTitle: String  { return L10n.tr("Localizable", "Wallet.ImportController.SaveFailedTitle") }
-  /// Enter your wallet's Secret Phrase to continue. 
-  public static var walletImportControllerSecretPhraseInfo: String  { return L10n.tr("Localizable", "Wallet.ImportController.SecretPhraseInfo") }
-  /// Secret Phrase
-  public static var walletImportControllerSecretPhraseTitle: String  { return L10n.tr("Localizable", "Wallet.ImportController.SecretPhraseTitle") }
   /// %1$d. %2$@
   public static func walletImportControllerSuggestion(_ p1: Int, _ p2: String) -> String {
     return L10n.tr("Localizable", "Wallet.ImportController.Suggestion", p1, p2)
   }
-  /// Make sure you wrote your secret phrase down correctly.
-  public static var walletImportControllerTestTimeInfo: String  { return L10n.tr("Localizable", "Wallet.ImportController.TestTimeInfo") }
-  /// Make sure you wrote your secret phrase down correctly.\nEnter words 
-  public static var walletImportControllerTestTimeInfoPrefix: String  { return L10n.tr("Localizable", "Wallet.ImportController.TestTimeInfoPrefix") }
-  /// .
-  public static var walletImportControllerTestTimeInfoSuffix: String  { return L10n.tr("Localizable", "Wallet.ImportController.TestTimeInfoSuffix") }
-  /// Test Time
-  public static var walletImportControllerTestTimeTitle: String  { return L10n.tr("Localizable", "Wallet.ImportController.TestTimeTitle") }
-  ///  and 
-  public static var walletImportControllerTestTimeWordsAnd: String  { return L10n.tr("Localizable", "Wallet.ImportController.TestTimeWordsAnd") }
-  /// , 
-  public static var walletImportControllerTestTimeWordsSeparator: String  { return L10n.tr("Localizable", "Wallet.ImportController.TestTimeWordsSeparator") }
-  /// Wallet
-  public static var walletImportControllerTitle: String  { return L10n.tr("Localizable", "Wallet.ImportController.Title") }
-  /// 12 words
-  public static var walletImportControllerTwelveWords: String  { return L10n.tr("Localizable", "Wallet.ImportController.TwelveWords") }
-  /// 24 words
-  public static var walletImportControllerTwentyFourWords: String  { return L10n.tr("Localizable", "Wallet.ImportController.TwentyFourWords") }
-  /// Why?
-  public static var walletImportControllerWhy: String  { return L10n.tr("Localizable", "Wallet.ImportController.Why") }
-  /// The words you entered don't match the wallet.
-  public static var walletImportControllerWrongPhraseInfo: String  { return L10n.tr("Localizable", "Wallet.ImportController.WrongPhraseInfo") }
-  /// Wrong Secret Phrase
-  public static var walletImportControllerWrongPhraseTitle: String  { return L10n.tr("Localizable", "Wallet.ImportController.WrongPhraseTitle") }
-  /// Blockchain Verified
-  public static var walletInfoControllerBlockchainVerified: String  { return L10n.tr("Localizable", "Wallet.InfoController.BlockchainVerified") }
-  /// All transactions are recorded\nand verifiable on a public ledger.
-  public static var walletInfoControllerBlockchainVerifiedInfo: String  { return L10n.tr("Localizable", "Wallet.InfoController.BlockchainVerifiedInfo") }
-  /// If someone has your Secret Phrase, they **can steal your funds**.
-  public static var walletInfoControllerCanSteal: String  { return L10n.tr("Localizable", "Wallet.InfoController.CanSteal") }
-  /// Cheap
-  public static var walletInfoControllerCheap: String  { return L10n.tr("Localizable", "Wallet.InfoController.Cheap") }
-  /// Fees are nearly zero, even on large transfers.
-  public static var walletInfoControllerCheapInfo: String  { return L10n.tr("Localizable", "Wallet.InfoController.CheapInfo") }
-  /// Fast
-  public static var walletInfoControllerFast: String  { return L10n.tr("Localizable", "Wallet.InfoController.Fast") }
-  /// Transfers confirm in seconds, anywhere in the world.
-  public static var walletInfoControllerFastInfo: String  { return L10n.tr("Localizable", "Wallet.InfoController.FastInfo") }
-  /// Your first Grams!
-  public static var walletInfoControllerFirstGrams: String  { return L10n.tr("Localizable", "Wallet.InfoController.FirstGrams") }
-  /// You can:
-  public static var walletInfoControllerFirstGramsInfo: String  { return L10n.tr("Localizable", "Wallet.InfoController.FirstGramsInfo") }
   /// **1 Gram** currently equals **%1$@**.\nYou can:
   public static func walletInfoControllerFirstGramsRateInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.InfoController.FirstGramsRateInfo", p1)
   }
-  /// Got it
-  public static var walletInfoControllerGotIt: String  { return L10n.tr("Localizable", "Wallet.InfoController.GotIt") }
-  /// Gram
-  public static var walletInfoControllerGram: String  { return L10n.tr("Localizable", "Wallet.InfoController.Gram") }
-  /// The native currency of the TON blockchain.
-  public static var walletInfoControllerGramInfo: String  { return L10n.tr("Localizable", "Wallet.InfoController.GramInfo") }
   /// The native currency of the TON blockchain. **1 Gram** currently equals **%1$@**.
   public static func walletInfoControllerGramRateInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.InfoController.GramRateInfo", p1)
   }
-  /// How It Works
-  public static var walletInfoControllerHowItWorks: String  { return L10n.tr("Localizable", "Wallet.InfoController.HowItWorks") }
-  /// Only you control your funds —\nno one else has access.
-  public static var walletInfoControllerHowItWorksInfo: String  { return L10n.tr("Localizable", "Wallet.InfoController.HowItWorksInfo") }
-  /// Instant Transfers
-  public static var walletInfoControllerInstantTransfers: String  { return L10n.tr("Localizable", "Wallet.InfoController.InstantTransfers") }
-  /// Send Grams in any chat, just like\nsharing a photo.
-  public static var walletInfoControllerInstantTransfersInfo: String  { return L10n.tr("Localizable", "Wallet.InfoController.InstantTransfersInfo") }
-  /// **Never share** your Secret Phrase with anyone.
-  public static var walletInfoControllerNeverShare: String  { return L10n.tr("Localizable", "Wallet.InfoController.NeverShare") }
-  /// Secret Phrase
-  public static var walletInfoControllerSecretPhrase: String  { return L10n.tr("Localizable", "Wallet.InfoController.SecretPhrase") }
-  /// Your Secret Phrase is the key to back up your wallet. Keep it secret and secure at all times.
-  public static var walletInfoControllerSecretPhraseInfo: String  { return L10n.tr("Localizable", "Wallet.InfoController.SecretPhraseInfo") }
-  /// Send
-  public static var walletInfoControllerSend: String  { return L10n.tr("Localizable", "Wallet.InfoController.Send") }
-  /// Transfer Grams to anyone.\nClick  # → Money in chats.
-  public static var walletInfoControllerSendInfo: String  { return L10n.tr("Localizable", "Wallet.InfoController.SendInfo") }
-  /// Show Secret Phrase
-  public static var walletInfoControllerShowSecretPhrase: String  { return L10n.tr("Localizable", "Wallet.InfoController.ShowSecretPhrase") }
-  /// Store
-  public static var walletInfoControllerStore: String  { return L10n.tr("Localizable", "Wallet.InfoController.Store") }
-  /// Keep your Grams in Telegram (#→ Money) or other wallets.
-  public static var walletInfoControllerStoreInfo: String  { return L10n.tr("Localizable", "Wallet.InfoController.StoreInfo") }
-  /// Telegram Support **will never ask you** for your Secret Phrase.
-  public static var walletInfoControllerSupportNeverAsks: String  { return L10n.tr("Localizable", "Wallet.InfoController.SupportNeverAsks") }
-  /// Trade
-  public static var walletInfoControllerTrade: String  { return L10n.tr("Localizable", "Wallet.InfoController.Trade") }
-  /// Convert Grams to cash or crypto on exchanges.
-  public static var walletInfoControllerTradeInfo: String  { return L10n.tr("Localizable", "Wallet.InfoController.TradeInfo") }
-  /// Useful
-  public static var walletInfoControllerUseful: String  { return L10n.tr("Localizable", "Wallet.InfoController.Useful") }
-  /// Pay for apps, services, and fees across the TON ecosystem.
-  public static var walletInfoControllerUsefulInfo: String  { return L10n.tr("Localizable", "Wallet.InfoController.UsefulInfo") }
-  /// Zero Fees
-  public static var walletInfoControllerZeroFees: String  { return L10n.tr("Localizable", "Wallet.InfoController.ZeroFees") }
   /// The first %1$d transfers each day are free. The rest cost almost nothing.
   public static func walletInfoControllerZeroFeesInfoOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Wallet.InfoController.ZeroFeesInfo_other", p1)
   }
-  /// Gram Wallet
-  public static var walletLinkedRecipientRowItemGramWallet: String  { return L10n.tr("Localizable", "Wallet.LinkedRecipientRowItem.GramWallet") }
   /// This TON Blockchain address is linked to %1$@ on Telegram.
   public static func walletLinkedRecipientRowItemLinkedTo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.LinkedRecipientRowItem.LinkedTo", p1)
   }
-  /// This TON Blockchain address has no linked Telegram account.
-  public static var walletLinkedRecipientRowItemNotLinked: String  { return L10n.tr("Localizable", "Wallet.LinkedRecipientRowItem.NotLinked") }
   /// %1$@’s wallet
   public static func walletLinkedRecipientRowItemPeerWallet(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.LinkedRecipientRowItem.PeerWallet", p1)
   }
-  /// Unlinked wallet
-  public static var walletLinkedRecipientRowItemUnlinkedWallet: String  { return L10n.tr("Localizable", "Wallet.LinkedRecipientRowItem.UnlinkedWallet") }
-  /// Show More
-  public static var walletLoadMoreRowItemShowMore: String  { return L10n.tr("Localizable", "Wallet.LoadMoreRowItem.ShowMore") }
   /// This will cancel all your Secret Chats and **delete wallet backups holding %1$@**. You will lose access to these funds if you haven't saved their recovery phrases.\n\nYou can use Telegram on all your devices at once and use several accounts in the same app.
   public static func walletLogoutWarningBackupsWillBeDeleted(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.LogoutWarning.BackupsWillBeDeleted", p1)
   }
-  /// How does it work?
-  public static var walletPeerBalanceControllerHowDoesItWork: String  { return L10n.tr("Localizable", "Wallet.PeerBalanceController.HowDoesItWork") }
   /// %1$@ owns %2$@ on the TON blockchain.
   public static func walletPeerBalanceControllerPeerBalanceNotice(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Wallet.PeerBalanceController.PeerBalanceNotice", p1, p2)
   }
-  /// Your balance is public due to blockchain transparency.
-  public static var walletPeerBalanceControllerPublicBalanceNotice: String  { return L10n.tr("Localizable", "Wallet.PeerBalanceController.PublicBalanceNotice") }
-  /// ✓ Address copied
-  public static var walletReceiveControllerAddressCopied: String  { return L10n.tr("Localizable", "Wallet.ReceiveController.AddressCopied") }
-  /// Buy with cash or crypto
-  public static var walletReceiveControllerBuy: String  { return L10n.tr("Localizable", "Wallet.ReceiveController.Buy") }
-  /// Share your address or this\nQR code to receive GRAM.
-  public static var walletReceiveControllerCaption: String  { return L10n.tr("Localizable", "Wallet.ReceiveController.Caption") }
-  /// Copy my address
-  public static var walletReceiveControllerCopyAddress: String  { return L10n.tr("Localizable", "Wallet.ReceiveController.CopyAddress") }
-  /// Copy Address
-  public static var walletReceiveControllerCopyPeerAddress: String  { return L10n.tr("Localizable", "Wallet.ReceiveController.CopyPeerAddress") }
-  /// Send GRAM to this address\nor scan this QR code.
-  public static var walletReceiveControllerPeerCaption: String  { return L10n.tr("Localizable", "Wallet.ReceiveController.PeerCaption") }
-  /// The purchase couldn’t be started. Please try again.
-  public static var walletReceiveControllerPurchaseFailedInfo: String  { return L10n.tr("Localizable", "Wallet.ReceiveController.PurchaseFailedInfo") }
-  /// Purchase Failed
-  public static var walletReceiveControllerPurchaseFailedTitle: String  { return L10n.tr("Localizable", "Wallet.ReceiveController.PurchaseFailedTitle") }
-  /// Purchasing is currently unavailable. Please try again later.
-  public static var walletReceiveControllerPurchaseUnavailableInfo: String  { return L10n.tr("Localizable", "Wallet.ReceiveController.PurchaseUnavailableInfo") }
-  /// Purchase Unavailable
-  public static var walletReceiveControllerPurchaseUnavailableTitle: String  { return L10n.tr("Localizable", "Wallet.ReceiveController.PurchaseUnavailableTitle") }
-  /// Show QR
-  public static var walletReceiveControllerShowPeerQr: String  { return L10n.tr("Localizable", "Wallet.ReceiveController.ShowPeerQr") }
-  /// Show my QR
-  public static var walletReceiveControllerShowQr: String  { return L10n.tr("Localizable", "Wallet.ReceiveController.ShowQr") }
-  /// Name or wallet address
-  public static var walletRecipientControllerAddressPlaceholder: String  { return L10n.tr("Localizable", "Wallet.RecipientController.AddressPlaceholder") }
-  /// Continue
-  public static var walletRecipientControllerContinue: String  { return L10n.tr("Localizable", "Wallet.RecipientController.Continue") }
-  /// Deposit funds
-  public static var walletRecipientControllerDepositFunds: String  { return L10n.tr("Localizable", "Wallet.RecipientController.DepositFunds") }
-  /// Invalid address
-  public static var walletRecipientControllerInvalidAddress: String  { return L10n.tr("Localizable", "Wallet.RecipientController.InvalidAddress") }
-  /// PEOPLE
-  public static var walletRecipientControllerPeopleHeader: String  { return L10n.tr("Localizable", "Wallet.RecipientController.PeopleHeader") }
-  /// RECENT
-  public static var walletRecipientControllerRecentHeader: String  { return L10n.tr("Localizable", "Wallet.RecipientController.RecentHeader") }
-  /// RECIPIENT
-  public static var walletRecipientControllerRecipientHeader: String  { return L10n.tr("Localizable", "Wallet.RecipientController.RecipientHeader") }
-  /// Looking up recipient…
-  public static var walletRecipientControllerResolving: String  { return L10n.tr("Localizable", "Wallet.RecipientController.Resolving") }
-  /// Show More
-  public static var walletRecipientControllerShowMore: String  { return L10n.tr("Localizable", "Wallet.RecipientController.ShowMore") }
-  /// Choose Recipient
-  public static var walletRecipientControllerTitle: String  { return L10n.tr("Localizable", "Wallet.RecipientController.Title") }
-  /// An unknown error occurred. Please try again later.
-  public static var walletRecipientControllerUnknownError: String  { return L10n.tr("Localizable", "Wallet.RecipientController.UnknownError") }
-  /// This wallet address is invalid.\nCheck it or try another address.
-  public static var walletRecipientNoResultsItemInvalidAddress: String  { return L10n.tr("Localizable", "Wallet.RecipientNoResultsItem.InvalidAddress") }
   /// There were no results for “%1$@”.\nTry another name or address.
   public static func walletRecipientNoResultsItemNoResultsFor(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.RecipientNoResultsItem.NoResultsFor", p1)
   }
-  /// No Results
-  public static var walletRecipientNoResultsItemTitle: String  { return L10n.tr("Localizable", "Wallet.RecipientNoResultsItem.Title") }
-  /// Check the network connection and try again.
-  public static var walletReplaceControllerCheckConnection: String  { return L10n.tr("Localizable", "Wallet.ReplaceController.CheckConnection") }
-  /// Your new wallet is ready to use.
-  public static var walletReplaceControllerCreatedInfo: String  { return L10n.tr("Localizable", "Wallet.ReplaceController.CreatedInfo") }
-  /// Wallet Created
-  public static var walletReplaceControllerCreatedTitle: String  { return L10n.tr("Localizable", "Wallet.ReplaceController.CreatedTitle") }
-  /// Create a New Wallet
-  public static var walletReplaceControllerCreateNew: String  { return L10n.tr("Localizable", "Wallet.ReplaceController.CreateNew") }
-  /// How do you want to replace the old wallet?
-  public static var walletReplaceControllerHeader: String  { return L10n.tr("Localizable", "Wallet.ReplaceController.Header") }
-  /// Your wallet was restored from your secret phrase.
-  public static var walletReplaceControllerImportedInfo: String  { return L10n.tr("Localizable", "Wallet.ReplaceController.ImportedInfo") }
-  /// Wallet Imported
-  public static var walletReplaceControllerImportedTitle: String  { return L10n.tr("Localizable", "Wallet.ReplaceController.ImportedTitle") }
-  /// Import an Existing Wallet
-  public static var walletReplaceControllerImportExisting: String  { return L10n.tr("Localizable", "Wallet.ReplaceController.ImportExisting") }
-  /// Couldn’t Replace Wallet
-  public static var walletReplaceControllerReplaceFailedTitle: String  { return L10n.tr("Localizable", "Wallet.ReplaceController.ReplaceFailedTitle") }
-  /// Replace Wallet
-  public static var walletReplaceControllerTitle: String  { return L10n.tr("Localizable", "Wallet.ReplaceController.Title") }
-  /// Add
-  public static var walletSendControllerAdd: String  { return L10n.tr("Localizable", "Wallet.SendController.Add") }
-  /// Add comment
-  public static var walletSendControllerAddComment: String  { return L10n.tr("Localizable", "Wallet.SendController.AddComment") }
   /// Balance: %1$@
   public static func walletSendControllerBalance(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.SendController.Balance", p1)
@@ -21526,182 +20930,18 @@ public final class L10n {
   public static func walletSendControllerCollectibleSent(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.SendController.CollectibleSent", p1)
   }
-  /// Optional message
-  public static var walletSendControllerCommentPlaceholder: String  { return L10n.tr("Localizable", "Wallet.SendController.CommentPlaceholder") }
-  /// Continue
-  public static var walletSendControllerContinue: String  { return L10n.tr("Localizable", "Wallet.SendController.Continue") }
-  /// Deposit funds
-  public static var walletSendControllerDepositFunds: String  { return L10n.tr("Localizable", "Wallet.SendController.DepositFunds") }
-  /// Deposit funds ›
-  public static var walletSendControllerDepositFundsLink: String  { return L10n.tr("Localizable", "Wallet.SendController.DepositFundsLink") }
-  /// Discard this transfer?
-  public static var walletSendControllerDiscardTransfer: String  { return L10n.tr("Localizable", "Wallet.SendController.DiscardTransfer") }
-  /// Edit Comment
-  public static var walletSendControllerEditComment: String  { return L10n.tr("Localizable", "Wallet.SendController.EditComment") }
-  /// Grams
-  public static var walletSendControllerGrams: String  { return L10n.tr("Localizable", "Wallet.SendController.Grams") }
-  /// Insufficient funds.
-  public static var walletSendControllerInsufficientFunds: String  { return L10n.tr("Localizable", "Wallet.SendController.InsufficientFunds") }
   /// You need %1$@ including the network fee to send this transfer.
   public static func walletSendControllerInsufficientFundsInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.SendController.InsufficientFundsInfo", p1)
   }
-  /// Insufficient Funds
-  public static var walletSendControllerInsufficientFundsTitle: String  { return L10n.tr("Localizable", "Wallet.SendController.InsufficientFundsTitle") }
-  /// Make comment public
-  public static var walletSendControllerMakeCommentPublic: String  { return L10n.tr("Localizable", "Wallet.SendController.MakeCommentPublic") }
-  /// Network fee:
-  public static var walletSendControllerNetworkFee: String  { return L10n.tr("Localizable", "Wallet.SendController.NetworkFee") }
-  /// Open Chat
-  public static var walletSendControllerOpenChat: String  { return L10n.tr("Localizable", "Wallet.SendController.OpenChat") }
-  /// Public comments can be read by anyone on the blockchain. Otherwise only you and the recipient can read it.
-  public static var walletSendControllerPublicCommentInfo: String  { return L10n.tr("Localizable", "Wallet.SendController.PublicCommentInfo") }
-  /// Looking up recipient…
-  public static var walletSendControllerResolving: String  { return L10n.tr("Localizable", "Wallet.SendController.Resolving") }
-  /// Save
-  public static var walletSendControllerSave: String  { return L10n.tr("Localizable", "Wallet.SendController.Save") }
-  /// The transfer could not be sent. Check the balance and network connection, then try again.
-  public static var walletSendControllerSendFailedInfo: String  { return L10n.tr("Localizable", "Wallet.SendController.SendFailedInfo") }
-  /// Sending…
-  public static var walletSendControllerSending: String  { return L10n.tr("Localizable", "Wallet.SendController.Sending") }
-  /// Send 
-  public static var walletSendControllerSendPrefix: String  { return L10n.tr("Localizable", "Wallet.SendController.SendPrefix") }
-  /// The wallet is still syncing. Please try again in a moment.
-  public static var walletSendControllerStillSyncing: String  { return L10n.tr("Localizable", "Wallet.SendController.StillSyncing") }
-  /// Send Money to
-  public static var walletSendControllerTitle: String  { return L10n.tr("Localizable", "Wallet.SendController.Title") }
-  /// The transfer could not be prepared or sent. Check the address, balance and network connection, then try again.
-  public static var walletSendControllerTransferFailedDetailedInfo: String  { return L10n.tr("Localizable", "Wallet.SendController.TransferFailedDetailedInfo") }
-  /// The transfer could not be prepared or sent.
-  public static var walletSendControllerTransferFailedInfo: String  { return L10n.tr("Localizable", "Wallet.SendController.TransferFailedInfo") }
-  /// Transfer Failed
-  public static var walletSendControllerTransferFailedTitle: String  { return L10n.tr("Localizable", "Wallet.SendController.TransferFailedTitle") }
-  /// The transfer may have been sent. Don’t send it again while its status is being checked.
-  public static var walletSendControllerTransferPendingInfo: String  { return L10n.tr("Localizable", "Wallet.SendController.TransferPendingInfo") }
-  /// Transfer Pending
-  public static var walletSendControllerTransferPendingTitle: String  { return L10n.tr("Localizable", "Wallet.SendController.TransferPendingTitle") }
-  /// Backup Disabled
-  public static var walletSettingsControllerBackupDisabled: String  { return L10n.tr("Localizable", "Wallet.SettingsController.BackupDisabled") }
-  /// Your encrypted key backup will be split into three parts and stored across three continents.\n\nIt can only be reassembled on your devices, so no one — not even Telegram — can access your key.
-  public static var walletSettingsControllerBackupDisabledInfo: String  { return L10n.tr("Localizable", "Wallet.SettingsController.BackupDisabledInfo") }
-  /// Your secret phrase is now the only way to restore your wallet.
-  public static var walletSettingsControllerBackupDisabledNotice: String  { return L10n.tr("Localizable", "Wallet.SettingsController.BackupDisabledNotice") }
-  /// Backup Enabled
-  public static var walletSettingsControllerBackupEnabled: String  { return L10n.tr("Localizable", "Wallet.SettingsController.BackupEnabled") }
-  /// Your encrypted key backup is split into three parts and stored across three continents.\n\nIt can only be reassembled on your devices, so no one — not even Telegram — can access your key.
-  public static var walletSettingsControllerBackupEnabledInfo: String  { return L10n.tr("Localizable", "Wallet.SettingsController.BackupEnabledInfo") }
-  /// Your keys are now stored encrypted across Telegram’s datacenters.
-  public static var walletSettingsControllerBackupEnabledNotice: String  { return L10n.tr("Localizable", "Wallet.SettingsController.BackupEnabledNotice") }
-  /// Cancel
-  public static var walletSettingsControllerCancel: String  { return L10n.tr("Localizable", "Wallet.SettingsController.Cancel") }
-  /// Check the network connection and try again.
-  public static var walletSettingsControllerCheckNetwork: String  { return L10n.tr("Localizable", "Wallet.SettingsController.CheckNetwork") }
-  /// The stored wallet data can’t be read on this device, so the secret phrase and backup settings are unavailable. You can delete this wallet and restore it from your secret phrase.
-  public static var walletSettingsControllerDataUnreadable: String  { return L10n.tr("Localizable", "Wallet.SettingsController.DataUnreadable") }
-  /// Delete Anyway
-  public static var walletSettingsControllerDeleteAnyway: String  { return L10n.tr("Localizable", "Wallet.SettingsController.DeleteAnyway") }
-  /// Delete Wallet
-  public static var walletSettingsControllerDeleteWallet: String  { return L10n.tr("Localizable", "Wallet.SettingsController.DeleteWallet") }
-  /// You'll lose access to your funds unless you've saved your secret phrase.
-  public static var walletSettingsControllerDeleteWalletConfirm: String  { return L10n.tr("Localizable", "Wallet.SettingsController.DeleteWalletConfirm") }
-  /// Delete Wallet?
-  public static var walletSettingsControllerDeleteWalletConfirmTitle: String  { return L10n.tr("Localizable", "Wallet.SettingsController.DeleteWalletConfirmTitle") }
-  /// Disable
-  public static var walletSettingsControllerDisable: String  { return L10n.tr("Localizable", "Wallet.SettingsController.Disable") }
-  /// Disable Backup
-  public static var walletSettingsControllerDisableBackup: String  { return L10n.tr("Localizable", "Wallet.SettingsController.DisableBackup") }
-  /// Your distributed encrypted backup will be deleted. Your secret phrase will be the only way to recover this wallet.
-  public static var walletSettingsControllerDisableBackupConfirm: String  { return L10n.tr("Localizable", "Wallet.SettingsController.DisableBackupConfirm") }
-  /// Disable Backup?
-  public static var walletSettingsControllerDisableBackupConfirmTitle: String  { return L10n.tr("Localizable", "Wallet.SettingsController.DisableBackupConfirmTitle") }
-  /// Your distributed encrypted backup will be deleted. Your wallet will switch to the new secret phrase. This secret phrase will be the only way to recover this wallet.
-  public static var walletSettingsControllerDisableBackupConfirmUpdatePhrase: String  { return L10n.tr("Localizable", "Wallet.SettingsController.DisableBackupConfirmUpdatePhrase") }
-  /// The only way to recover your funds will be to manually enter your secret phrase.
-  public static var walletSettingsControllerDisableBackupManualRecovery: String  { return L10n.tr("Localizable", "Wallet.SettingsController.DisableBackupManualRecovery") }
-  /// You need a non-zero balance to update your secret phrase.
-  public static var walletSettingsControllerDisableBackupZeroBalance: String  { return L10n.tr("Localizable", "Wallet.SettingsController.DisableBackupZeroBalance") }
-  /// Enable Backup
-  public static var walletSettingsControllerEnableBackup: String  { return L10n.tr("Localizable", "Wallet.SettingsController.EnableBackup") }
-  /// ENCRYPTED BACKUP
-  public static var walletSettingsControllerEncryptedBackupHeader: String  { return L10n.tr("Localizable", "Wallet.SettingsController.EncryptedBackupHeader") }
-  /// Enter Secret Phrase
-  public static var walletSettingsControllerEnterSecretPhrase: String  { return L10n.tr("Localizable", "Wallet.SettingsController.EnterSecretPhrase") }
-  /// Enter your secret phrase to restore access to this wallet.
-  public static var walletSettingsControllerEnterSecretPhraseInfo: String  { return L10n.tr("Localizable", "Wallet.SettingsController.EnterSecretPhraseInfo") }
-  /// Couldn’t confirm that backup was disabled. Check the network connection and try again.
-  public static var walletSettingsControllerErrorDisableBackup: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ErrorDisableBackup") }
-  /// Couldn’t Disable Backup
-  public static var walletSettingsControllerErrorDisableBackupTitle: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ErrorDisableBackupTitle") }
   /// You need %1$@ to update your secret phrase. Add funds and try again.
   public static func walletSettingsControllerErrorInsufficientBalance(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.SettingsController.ErrorInsufficientBalance", p1)
   }
-  /// Not Enough Grams
-  public static var walletSettingsControllerErrorInsufficientBalanceTitle: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ErrorInsufficientBalanceTitle") }
-  /// The secret phrase change could not be completed. Check your wallet state and try again.
-  public static var walletSettingsControllerErrorKeyRotationFailed: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ErrorKeyRotationFailed") }
-  /// Couldn’t Update Secret Phrase
-  public static var walletSettingsControllerErrorKeyRotationFailedTitle: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ErrorKeyRotationFailedTitle") }
-  /// The wallet verification request expired. Click Disable to try again.
-  public static var walletSettingsControllerErrorProofExpired: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ErrorProofExpired") }
-  /// Verification Expired
-  public static var walletSettingsControllerErrorProofExpiredTitle: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ErrorProofExpiredTitle") }
-  /// Telegram couldn’t verify that you own this wallet. Please try again.
-  public static var walletSettingsControllerErrorProofInvalid: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ErrorProofInvalid") }
-  /// Couldn’t Verify Wallet
-  public static var walletSettingsControllerErrorProofInvalidTitle: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ErrorProofInvalidTitle") }
-  /// Telegram couldn’t confirm the secret phrase change on the blockchain yet. Wait a moment and click Disable again.
-  public static var walletSettingsControllerErrorRotationPending: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ErrorRotationPending") }
-  /// Secret Phrase Update Pending
-  public static var walletSettingsControllerErrorRotationPendingTitle: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ErrorRotationPendingTitle") }
-  /// Top up
-  public static var walletSettingsControllerInsufficientBalanceTopUp: String  { return L10n.tr("Localizable", "Wallet.SettingsController.InsufficientBalanceTopUp") }
-  /// Keys & Backup
-  public static var walletSettingsControllerKeysAndBackup: String  { return L10n.tr("Localizable", "Wallet.SettingsController.KeysAndBackup") }
-  /// today
-  public static var walletSettingsControllerLastUsedToday: String  { return L10n.tr("Localizable", "Wallet.SettingsController.LastUsedToday") }
-  /// yesterday
-  public static var walletSettingsControllerLastUsedYesterday: String  { return L10n.tr("Localizable", "Wallet.SettingsController.LastUsedYesterday") }
-  /// Not now
-  public static var walletSettingsControllerNotNow: String  { return L10n.tr("Localizable", "Wallet.SettingsController.NotNow") }
-  /// PREVIOUS WALLETS
-  public static var walletSettingsControllerPreviousWalletsHeader: String  { return L10n.tr("Localizable", "Wallet.SettingsController.PreviousWalletsHeader") }
-  /// Wallets you used before on this device. Save their secret phrases — they'll be removed if you log out or reinstall the app.
-  public static var walletSettingsControllerPreviousWalletsInfo: String  { return L10n.tr("Localizable", "Wallet.SettingsController.PreviousWalletsInfo") }
   /// %1$@ — last used %2$@
   public static func walletSettingsControllerPreviousWalletSubtitle(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Wallet.SettingsController.PreviousWalletSubtitle", p1, p2)
   }
-  /// Proceed
-  public static var walletSettingsControllerProceed: String  { return L10n.tr("Localizable", "Wallet.SettingsController.Proceed") }
-  /// SECRET PHRASE
-  public static var walletSettingsControllerSecretPhraseHeader: String  { return L10n.tr("Localizable", "Wallet.SettingsController.SecretPhraseHeader") }
-  /// This wallet’s secret phrase is no longer stored on this device.
-  public static var walletSettingsControllerSecretPhraseNotStored: String  { return L10n.tr("Localizable", "Wallet.SettingsController.SecretPhraseNotStored") }
-  /// Secret Phrase Required
-  public static var walletSettingsControllerSecretPhraseRequired: String  { return L10n.tr("Localizable", "Wallet.SettingsController.SecretPhraseRequired") }
-  /// To change backup settings, enter your 12- or 24-word secret phrase to restore access to this wallet.
-  public static var walletSettingsControllerSecretPhraseRequiredForBackup: String  { return L10n.tr("Localizable", "Wallet.SettingsController.SecretPhraseRequiredForBackup") }
-  /// Setting up your wallet. This usually takes a few seconds...\n\nYour secret phrase and backup settings will appear here once it is ready.
-  public static var walletSettingsControllerSettingUp: String  { return L10n.tr("Localizable", "Wallet.SettingsController.SettingUp") }
-  /// Show Secret Phrase
-  public static var walletSettingsControllerShowSecretPhrase: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ShowSecretPhrase") }
-  /// Couldn’t Show Secret Phrase
-  public static var walletSettingsControllerShowSecretPhraseFailed: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ShowSecretPhraseFailed") }
-  /// You can transfer your wallet to another device by copying your 12- or 24-word secret phrase.
-  public static var walletSettingsControllerShowSecretPhraseInfo: String  { return L10n.tr("Localizable", "Wallet.SettingsController.ShowSecretPhraseInfo") }
-  /// Top Up
-  public static var walletSettingsControllerTopUp: String  { return L10n.tr("Localizable", "Wallet.SettingsController.TopUp") }
-  /// Update Secret Phrase
-  public static var walletSettingsControllerUpdateSecretPhrase: String  { return L10n.tr("Localizable", "Wallet.SettingsController.UpdateSecretPhrase") }
-  /// Wallet Changed
-  public static var walletSettingsControllerWalletChanged: String  { return L10n.tr("Localizable", "Wallet.SettingsController.WalletChanged") }
-  /// The wallet’s secret phrase changed while you were updating backup settings. Restore access using the current secret phrase and try again.
-  public static var walletSettingsControllerWalletChangedInfo: String  { return L10n.tr("Localizable", "Wallet.SettingsController.WalletChangedInfo") }
-  /// Wallet Imported
-  public static var walletSettingsControllerWalletImported: String  { return L10n.tr("Localizable", "Wallet.SettingsController.WalletImported") }
-  /// Your wallet was restored from your secret phrase.
-  public static var walletSettingsControllerWalletImportedInfo: String  { return L10n.tr("Localizable", "Wallet.SettingsController.WalletImportedInfo") }
   /// Only %@ can be used to change the color of your card.
   public static func walletStickerColorRestricted(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.Sticker.ColorRestricted", p1)
@@ -21710,214 +20950,22 @@ public final class L10n {
   public static func walletStickerColorRestrictedCollection(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.Sticker.ColorRestrictedCollection", p1)
   }
-  /// Drag this collectible here.
-  public static var walletStickerTutorialCard: String  { return L10n.tr("Localizable", "Wallet.StickerTutorial.Card") }
-  /// You can add multiple collectibles.
-  public static var walletStickerTutorialDone: String  { return L10n.tr("Localizable", "Wallet.StickerTutorial.Done") }
-  /// Drag this collectible onto your card to decorate it.
-  public static var walletStickerTutorialTile: String  { return L10n.tr("Localizable", "Wallet.StickerTutorial.Tile") }
-  /// Retry
-  public static var walletTonConnectRetry: String  { return L10n.tr("Localizable", "Wallet.TonConnect.Retry") }
-  /// Enter your secret phrase to restore access to this wallet and connect the app.
-  public static var walletTonConnectSecretPhraseRequiredInfo: String  { return L10n.tr("Localizable", "Wallet.TonConnect.SecretPhraseRequiredInfo") }
-  /// Binary content
-  public static var walletTonConnectSigningRowItemBinaryTitle: String  { return L10n.tr("Localizable", "Wallet.TonConnectSigningRowItem.BinaryTitle") }
-  /// You are signing blindly. Only sign data from trusted sources.
-  public static var walletTonConnectSigningRowItemBinaryWarning: String  { return L10n.tr("Localizable", "Wallet.TonConnectSigningRowItem.BinaryWarning") }
-  /// Failed
-  public static var walletTransactionAmountRowItemFailed: String  { return L10n.tr("Localizable", "Wallet.TransactionAmountRowItem.Failed") }
-  /// GRAM
-  public static var walletTransactionAmountRowItemGram: String  { return L10n.tr("Localizable", "Wallet.TransactionAmountRowItem.Gram") }
-  /// Processing...
-  public static var walletTransactionAmountRowItemProcessing: String  { return L10n.tr("Localizable", "Wallet.TransactionAmountRowItem.Processing") }
-  /// USDT
-  public static var walletTransactionAmountRowItemUsdt: String  { return L10n.tr("Localizable", "Wallet.TransactionAmountRowItem.Usdt") }
-  /// Address
-  public static var walletTransactionControllerAddress: String  { return L10n.tr("Localizable", "Wallet.TransactionController.Address") }
-  /// Anonymous Number
-  public static var walletTransactionControllerAnonymousNumber: String  { return L10n.tr("Localizable", "Wallet.TransactionController.AnonymousNumber") }
-  /// Cancel
-  public static var walletTransactionControllerCancel: String  { return L10n.tr("Localizable", "Wallet.TransactionController.Cancel") }
-  /// Collectible Gift
-  public static var walletTransactionControllerCollectibleGift: String  { return L10n.tr("Localizable", "Wallet.TransactionController.CollectibleGift") }
-  /// You need at least 0.1 Grams in your wallet to transfer an NFT. Top up your balance and try again.
-  public static var walletTransactionControllerCollectibleTopUpInfo: String  { return L10n.tr("Localizable", "Wallet.TransactionController.CollectibleTopUpInfo") }
-  /// Visible only to you and the recipient.
-  public static var walletTransactionControllerCommentEncryptedPrivacy: String  { return L10n.tr("Localizable", "Wallet.TransactionController.CommentEncryptedPrivacy") }
-  /// Optional message
-  public static var walletTransactionControllerCommentPlaceholder: String  { return L10n.tr("Localizable", "Wallet.TransactionController.CommentPlaceholder") }
-  /// The comment is visible to everyone.
-  public static var walletTransactionControllerCommentPublicPrivacy: String  { return L10n.tr("Localizable", "Wallet.TransactionController.CommentPublicPrivacy") }
-  /// The encrypted comment is too long. Shorten it and try again.
-  public static var walletTransactionControllerCommentTooLongInfo: String  { return L10n.tr("Localizable", "Wallet.TransactionController.CommentTooLongInfo") }
-  /// Comment Too Long
-  public static var walletTransactionControllerCommentTooLongTitle: String  { return L10n.tr("Localizable", "Wallet.TransactionController.CommentTooLongTitle") }
-  /// Confirmation
-  public static var walletTransactionControllerConfirmation: String  { return L10n.tr("Localizable", "Wallet.TransactionController.Confirmation") }
-  /// Date
-  public static var walletTransactionControllerDate: String  { return L10n.tr("Localizable", "Wallet.TransactionController.Date") }
-  /// The comment could not be decrypted.
-  public static var walletTransactionControllerDecryptFailedInfo: String  { return L10n.tr("Localizable", "Wallet.TransactionController.DecryptFailedInfo") }
-  /// Couldn’t Decrypt Comment
-  public static var walletTransactionControllerDecryptFailedTitle: String  { return L10n.tr("Localizable", "Wallet.TransactionController.DecryptFailedTitle") }
-  /// Encrypted comment
-  public static var walletTransactionControllerEncryptedComment: String  { return L10n.tr("Localizable", "Wallet.TransactionController.EncryptedComment") }
-  /// The comment could not be encrypted for this wallet. Check the network connection and try again.
-  public static var walletTransactionControllerEncryptFailedInfo: String  { return L10n.tr("Localizable", "Wallet.TransactionController.EncryptFailedInfo") }
-  /// Couldn’t Encrypt Comment
-  public static var walletTransactionControllerEncryptFailedTitle: String  { return L10n.tr("Localizable", "Wallet.TransactionController.EncryptFailedTitle") }
-  /// This wallet can’t receive encrypted comments now.
-  public static var walletTransactionControllerEncryptRecipientUnavailableInfo: String  { return L10n.tr("Localizable", "Wallet.TransactionController.EncryptRecipientUnavailableInfo") }
-  /// Fee
-  public static var walletTransactionControllerFee: String  { return L10n.tr("Localizable", "Wallet.TransactionController.Fee") }
-  /// Free (paid by Telegram)
-  public static var walletTransactionControllerFeeFree: String  { return L10n.tr("Localizable", "Wallet.TransactionController.FeeFree") }
   /// .\n\nTelegram covers your first %1$d transfers each day.
   public static func walletTransactionControllerNetworkFeeGaslessOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Wallet.TransactionController.NetworkFeeGasless_other", p1)
   }
-  /// Every transfer costs a small network fee
-  public static var walletTransactionControllerNetworkFeeInfo: String  { return L10n.tr("Localizable", "Wallet.TransactionController.NetworkFeeInfo") }
-  /// Network fees
-  public static var walletTransactionControllerNetworkFeesTitle: String  { return L10n.tr("Localizable", "Wallet.TransactionController.NetworkFeesTitle") }
-  /// NFT
-  public static var walletTransactionControllerNft: String  { return L10n.tr("Localizable", "Wallet.TransactionController.Nft") }
-  /// Not Enough Grams
-  public static var walletTransactionControllerNotEnoughGramsTitle: String  { return L10n.tr("Localizable", "Wallet.TransactionController.NotEnoughGramsTitle") }
-  /// OK
-  public static var walletTransactionControllerOk: String  { return L10n.tr("Localizable", "Wallet.TransactionController.Ok") }
-  /// Open My Money
-  public static var walletTransactionControllerOpenMyMoney: String  { return L10n.tr("Localizable", "Wallet.TransactionController.OpenMyMoney") }
-  /// Proceed
-  public static var walletTransactionControllerProceed: String  { return L10n.tr("Localizable", "Wallet.TransactionController.Proceed") }
-  /// Recipient
-  public static var walletTransactionControllerRecipient: String  { return L10n.tr("Localizable", "Wallet.TransactionController.Recipient") }
-  /// Enter your secret phrase to restore access to this wallet and decrypt the comment.
-  public static var walletTransactionControllerSecretPhraseRequiredInfo: String  { return L10n.tr("Localizable", "Wallet.TransactionController.SecretPhraseRequiredInfo") }
-  /// Secret Phrase Required
-  public static var walletTransactionControllerSecretPhraseRequiredTitle: String  { return L10n.tr("Localizable", "Wallet.TransactionController.SecretPhraseRequiredTitle") }
-  /// send
-  public static var walletTransactionControllerSend: String  { return L10n.tr("Localizable", "Wallet.TransactionController.Send") }
   /// Send %1$@
   public static func walletTransactionControllerSendAmount(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.TransactionController.SendAmount", p1)
   }
-  /// Send Collectible
-  public static var walletTransactionControllerSendCollectible: String  { return L10n.tr("Localizable", "Wallet.TransactionController.SendCollectible") }
-  /// Sender
-  public static var walletTransactionControllerSender: String  { return L10n.tr("Localizable", "Wallet.TransactionController.Sender") }
-  /// Show more
-  public static var walletTransactionControllerShowMore: String  { return L10n.tr("Localizable", "Wallet.TransactionController.ShowMore") }
-  /// Top Up
-  public static var walletTransactionControllerTopUp: String  { return L10n.tr("Localizable", "Wallet.TransactionController.TopUp") }
-  /// Transaction
-  public static var walletTransactionControllerTransaction: String  { return L10n.tr("Localizable", "Wallet.TransactionController.Transaction") }
-  /// The transfer could not be prepared or sent. Check the address, balance and network connection, then try again.
-  public static var walletTransactionControllerTransferFailedInfo: String  { return L10n.tr("Localizable", "Wallet.TransactionController.TransferFailedInfo") }
-  /// Transfer Failed
-  public static var walletTransactionControllerTransferFailedTitle: String  { return L10n.tr("Localizable", "Wallet.TransactionController.TransferFailedTitle") }
-  /// Unknown Address
-  public static var walletTransactionControllerUnknownAddress: String  { return L10n.tr("Localizable", "Wallet.TransactionController.UnknownAddress") }
-  /// Username
-  public static var walletTransactionControllerUsername: String  { return L10n.tr("Localizable", "Wallet.TransactionController.Username") }
-  /// View in Explorer
-  public static var walletTransactionControllerViewInExplorer: String  { return L10n.tr("Localizable", "Wallet.TransactionController.ViewInExplorer") }
-  /// What is Gram?
-  public static var walletTransactionControllerWhatIsGram: String  { return L10n.tr("Localizable", "Wallet.TransactionController.WhatIsGram") }
-  /// What’s Gram?
-  public static var walletTransactionControllerWhatsGram: String  { return L10n.tr("Localizable", "Wallet.TransactionController.WhatsGram") }
-  /// Key Update
-  public static var walletTransactionKeyUpdateRowItemTitle: String  { return L10n.tr("Localizable", "Wallet.TransactionKeyUpdateRowItem.Title") }
-  /// Anonymous Number
-  public static var walletTransactionRowItemAnonymousNumber: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.AnonymousNumber") }
-  /// Card top-up
-  public static var walletTransactionRowItemCardTopUp: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.CardTopUp") }
-  /// Collectible
-  public static var walletTransactionRowItemCollectible: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.Collectible") }
-  /// Collectible Gift
-  public static var walletTransactionRowItemCollectibleGift: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.CollectibleGift") }
-  /// Crypto top-up
-  public static var walletTransactionRowItemCryptoTopUp: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.CryptoTopUp") }
-  /// Deposit
-  public static var walletTransactionRowItemDeposit: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.Deposit") }
-  /// Failed
-  public static var walletTransactionRowItemFailed: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.Failed") }
-  /// Incoming collectible
-  public static var walletTransactionRowItemIncomingCollectible: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.IncomingCollectible") }
-  /// +1 item
-  public static var walletTransactionRowItemIncomingItem: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.IncomingItem") }
-  /// Incoming transfer
-  public static var walletTransactionRowItemIncomingTransfer: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.IncomingTransfer") }
-  /// Key Update
-  public static var walletTransactionRowItemKeyUpdate: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.KeyUpdate") }
-  /// moved from profile
-  public static var walletTransactionRowItemMovedFromProfile: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.MovedFromProfile") }
-  /// moved to profile
-  public static var walletTransactionRowItemMovedToProfile: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.MovedToProfile") }
-  /// Outgoing collectible
-  public static var walletTransactionRowItemOutgoingCollectible: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.OutgoingCollectible") }
-  /// –1 item
-  public static var walletTransactionRowItemOutgoingItem: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.OutgoingItem") }
-  /// Outgoing transfer
-  public static var walletTransactionRowItemOutgoingTransfer: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.OutgoingTransfer") }
-  /// Sending
-  public static var walletTransactionRowItemSending: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.Sending") }
-  /// Telegram
-  public static var walletTransactionRowItemTelegram: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.Telegram") }
-  /// Telegram User
-  public static var walletTransactionRowItemTelegramUser: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.TelegramUser") }
-  /// Unknown Address
-  public static var walletTransactionRowItemUnknownAddress: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.UnknownAddress") }
-  /// Username
-  public static var walletTransactionRowItemUsername: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.Username") }
-  /// Withdrawal
-  public static var walletTransactionRowItemWithdrawal: String  { return L10n.tr("Localizable", "Wallet.TransactionRowItem.Withdrawal") }
-  /// All Balance
-  public static var walletTransferPresentationAllBalance: String  { return L10n.tr("Localizable", "Wallet.TransferPresentation.AllBalance") }
-  /// Fee
-  public static var walletTransferPresentationFee: String  { return L10n.tr("Localizable", "Wallet.TransferPresentation.Fee") }
   /// %1$d recipients
   public static func walletTransferPresentationRecipientsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Wallet.TransferPresentation.Recipients_other", p1)
   }
-  /// Review the message details and sign if you agree.
-  public static var walletTransferPresentationSignMessageExplanation: String  { return L10n.tr("Localizable", "Wallet.TransferPresentation.SignMessageExplanation") }
-  /// Carefully review the message and, if you agree, sign the data.
-  public static var walletTransferPresentationSignTextExplanation: String  { return L10n.tr("Localizable", "Wallet.TransferPresentation.SignTextExplanation") }
   /// The app can submit this transfer until %1$@.
   public static func walletTransferPresentationSubmitUntil(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.TransferPresentation.SubmitUntil", p1)
   }
-  /// Unavailable
-  public static var walletTransferPresentationUnavailable: String  { return L10n.tr("Localizable", "Wallet.TransferPresentation.Unavailable") }
-  /// The app will submit this transfer.
-  public static var walletTransferPresentationWillSubmit: String  { return L10n.tr("Localizable", "Wallet.TransferPresentation.WillSubmit") }
-  /// You didn’t have enough time to write these words down.
-  public static var walletWordsControllerAllDoneInfo: String  { return L10n.tr("Localizable", "Wallet.WordsController.AllDoneInfo") }
-  /// All Done?
-  public static var walletWordsControllerAllDoneTitle: String  { return L10n.tr("Localizable", "Wallet.WordsController.AllDoneTitle") }
-  /// Cancel Disabling
-  public static var walletWordsControllerCancelDisabling: String  { return L10n.tr("Localizable", "Wallet.WordsController.CancelDisabling") }
-  /// Your secret phrase will not be updated.
-  public static var walletWordsControllerCancelDisablingInfo: String  { return L10n.tr("Localizable", "Wallet.WordsController.CancelDisablingInfo") }
-  /// Cancel Disabling Backup?
-  public static var walletWordsControllerCancelDisablingTitle: String  { return L10n.tr("Localizable", "Wallet.WordsController.CancelDisablingTitle") }
-  /// Continue
-  public static var walletWordsControllerContinue: String  { return L10n.tr("Localizable", "Wallet.WordsController.Continue") }
-  /// Done
-  public static var walletWordsControllerDone: String  { return L10n.tr("Localizable", "Wallet.WordsController.Done") }
-  /// A new secret phrase for your wallet has been generated. Write it down and keep it secret.
-  public static var walletWordsControllerNewPhraseInfo: String  { return L10n.tr("Localizable", "Wallet.WordsController.NewPhraseInfo") }
-  /// New Secret Phrase
-  public static var walletWordsControllerNewPhraseTitle: String  { return L10n.tr("Localizable", "Wallet.WordsController.NewPhraseTitle") }
-  /// OK, sorry
-  public static var walletWordsControllerOkSorry: String  { return L10n.tr("Localizable", "Wallet.WordsController.OkSorry") }
-  /// Your Secret Phrase is the key to back up your wallet. Keep it secret and secure at all times.
-  public static var walletWordsControllerPhraseInfo: String  { return L10n.tr("Localizable", "Wallet.WordsController.PhraseInfo") }
-  /// Your Secret Phrase
-  public static var walletWordsControllerPhraseTitle: String  { return L10n.tr("Localizable", "Wallet.WordsController.PhraseTitle") }
-  /// Wallet
-  public static var walletWordsControllerTitle: String  { return L10n.tr("Localizable", "Wallet.WordsController.Title") }
   /// %1$@ will be able to apply this wallpaper
   public static func wallpaperBackgroundNoApplyToPeer(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallpaper.Background.NoApplyToPeer", p1)

@@ -34,5 +34,11 @@
   "StarGift.ActionLockedText": "Ansible.MacOS.Brand.StarGift.ActionLockedText",
   "Monetization.BalanceWithdraw": "Ansible.MacOS.Brand.Monetization.BalanceWithdraw",
   "BotUsername.Info": "Ansible.MacOS.Brand.BotUsername.Info",
-  "StarGift.ActionLockedOpen": "Ansible.MacOS.Brand.StarGift.ActionLockedOpen"
+  "StarGift.ActionLockedOpen": "Ansible.MacOS.Brand.StarGift.ActionLockedOpen",
+  "Monetization.Intro.Split.Text": "Ansible.MacOS.Brand.Monetization.Intro.Split.Text",
+  "Monetization.Intro.Withdrawal.Text": "Ansible.MacOS.Brand.Monetization.Intro.Withdrawal.Text",
+  "Monetization.Intro.Info.Title": "Ansible.MacOS.Brand.Monetization.Intro.Info.Title",
+  "Monetization.Intro.Info.Text": "Ansible.MacOS.Brand.Monetization.Intro.Info.Text",
+  "FragmentMonetization.Controller.WithdrawMinimum": "Ansible.MacOS.Brand.FragmentMonetization.Controller.WithdrawMinimum",
+  "ChannelReactions.EnableStars.Info": "Ansible.MacOS.Brand.ChannelReactions.EnableStars.Info"
 }

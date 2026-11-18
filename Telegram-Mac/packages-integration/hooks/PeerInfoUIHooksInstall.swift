@@ -3,7 +3,6 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import WalletContext
 import AudioPlayerUI
 import AudioPlayerCore
 import PeerInfoUI
@@ -13,40 +12,6 @@ extension PremiumConfiguration: PeerInfoPremiumConfiguration {
 
 }
 
-private func makePeerInfoWalletHooks() -> Any? {
-    if #available(macOS 10.15, *) {
-        var hooks = PeerInfoWalletHooks(hasWallet: { context in
-            return (context as! AccountContext).walletContext != nil
-        }, sendMoney: { context, peer in
-            let context = context as! AccountContext
-            guard let walletContext = context.walletContext else {
-                return
-            }
-            showWalletSendMoney(context: context, walletContext: walletContext, peer: peer)
-        }, preloadPeerCard: { context, card in
-            preloadWalletPeerCard(context: context as! AccountContext, card: card)
-        }, showPeerBalance: { context, peer, morphSource in
-            let context = context as! AccountContext
-            guard let walletContext = context.walletContext else {
-                return
-            }
-            showWalletPeerBalance(context: context, walletContext: walletContext, peer: peer, morphSource: morphSource)
-        })
-        hooks.sendMoneyWithContext = { context, peer, analyticsContext in
-            let context = context as! AccountContext
-            guard let walletContext = context.walletContext else { return }
-            showWalletSendMoney(context: context, walletContext: walletContext, peer: peer, analyticsContext: analyticsContext)
-        }
-        hooks.showPeerBalanceWithContext = { context, peer, morphSource, analyticsContext in
-            let context = context as! AccountContext
-            guard let walletContext = context.walletContext else { return }
-            showWalletPeerBalance(context: context, walletContext: walletContext, peer: peer, morphSource: morphSource, analyticsContext: analyticsContext)
-        }
-        return hooks
-    } else {
-        return nil
-    }
-}
 
 private func makePeerInfoNavigationHooks() -> PeerInfoNavigationHooks {
     var hooks = PeerInfoNavigationHooks()
@@ -129,9 +94,6 @@ private func makePeerInfoNavigationHooks() -> PeerInfoNavigationHooks {
     hooks.makeStarMonetizationController = { context, peerId, revenueContext in
         return FragmentStarMonetizationController(context: context as! AccountContext, peerId: peerId, revenueContext: revenueContext)
     }
-    hooks.makeTonMonetizationController = { context, peerId, revenueContext in
-        return FragmentMonetizationController(context: context as! AccountContext, peerId: peerId, onlyTonContext: revenueContext)
-    }
     hooks.showRestrictMember = { context, peerId, memberId, participant, updated in
         let context = context as! AccountContext
         showModal(with: RestrictedModalController(context, peerId: peerId, memberId: memberId, initialParticipant: participant, updated: updated), for: context.window)
@@ -213,7 +175,7 @@ func installPeerInfoUIHooks() {
         execute(inapp: .nft(link: link, slug: slug, context: context as! AccountContext))
     }, navigateToChat: { navigation, context, chatLocation, mode, focusTarget, chatLocationContextHolder in
         navigateToChat(navigation: navigation, context: context as! AccountContext, chatLocation: chatLocation, mode: mode, focusTarget: focusTarget, chatLocationContextHolder: chatLocationContextHolder)
-    }, wallet: makePeerInfoWalletHooks())
+    })
     hooks.navigateToChatWithContext = { navigation, context, location, mode, focus, holder, analyticsContext in
         navigateToChat(navigation: navigation, context: context as! AccountContext, chatLocation: location, mode: mode, focusTarget: focus, chatLocationContextHolder: holder, analyticsContext: analyticsContext)
     }

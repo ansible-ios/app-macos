@@ -12,6 +12,6 @@ func installLogoutUIHooks() {
         openFaq: { context in
         openFaq(context: context as! AccountContext) },
         logoutConfirmationText: { context in
-        walletLogoutConfirmationText(context: context as! AccountContext) }
+        .single(strings().accountConfirmLogoutText) }
     ))
 }

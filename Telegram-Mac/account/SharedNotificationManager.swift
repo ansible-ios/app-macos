@@ -7,7 +7,6 @@ import TGUIKit
 import ObjcUtils
 import InAppSettings
 import PasscodeCore
-import WalletContext
 
 func getNotificationMessageId(userInfo:[AnyHashable: Any], for prefix: String) -> MessageId? {
     if let msgId = userInfo["\(prefix).message.id"] as? Int32, let msgNamespace = userInfo["\(prefix).message.namespace"] as? Int32, let namespace = userInfo["\(prefix).peer.namespace"] as? Int32, let id = userInfo["\(prefix).peer.id"] as? Int64 {
@@ -322,9 +321,6 @@ final class SharedNotificationManager : NSObject, NSUserNotificationCenterDelega
         let accountManager = self.accountManager
         let signal = combineLatest(self.activeAccounts.accounts.map { logoutFromAccount(id: $0.0, accountManager: self.accountManager, alreadyLoggedOutRemotely: false) }) |> deliverOnMainQueue
         appEncryption.remove()
-        if #available(macOS 10.15, *) {
-            _ = try? resetWalletLocalSecrets()
-        }
         let removePasscode = accountManager.transaction { $0.setAccessChallengeData(.none) }  |> deliverOnMainQueue
         return combineLatest(removePasscode, signal) |> ignoreValues
     }

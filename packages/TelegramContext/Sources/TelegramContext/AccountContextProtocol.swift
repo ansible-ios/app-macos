@@ -77,7 +77,6 @@ public protocol AccountContextProtocol: AnyObject {
     var privacy: Signal<AccountPrivacySettings?, NoError> { get }
     var premiumProductsAndPrice: ([PremiumGiftProduct], (Int64, NSDecimalNumber)) { get }
     func updateMessagesPrivacy(noPaidMessages: SelectivePrivacySettings, globalSettings: GlobalPrivacySettings)
-    func currencyContext(_ currency: CurrencyAmount.Currency) -> StarsContext
     func marketComission(_ currency: CurrencyAmount.Currency) -> Double
     var emoticonThemes: [(ChatTheme, TelegramPresentationTheme)] { get }
     var temporaryPassword: String? { get }
@@ -92,7 +91,6 @@ public protocol AccountContextProtocol: AnyObject {
     var fetchManager: FetchManager { get }
     var inAppPurchaseManager: any InAppPurchaseManagerProtocol { get }
     var starsContext: StarsContext { get }
-    var tonContext: StarsContext { get }
     var starsSubscriptionsContext: StarsSubscriptionsContext { get }
     var reactions: Reactions { get }
     var activeSessionsContext: ActiveSessionsContext { get }

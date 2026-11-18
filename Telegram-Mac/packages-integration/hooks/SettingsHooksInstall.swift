@@ -12,7 +12,6 @@ import TGUIKit
 import TelegramCore
 import TelegramLinks
 import ThemeSettings
-import WalletContext
 
 extension ChatInteraction: @retroactive AppearanceChatPreviewContext {
 
@@ -120,29 +119,6 @@ private func mapSettingsSearchInAppLink(_ link: inAppLink) -> SettingsSearchInAp
         return .instantView(link: link, webpage: webpage, anchor: anchor)
     default:
         return .other
-    }
-}
-private func makeSettingsWalletHooks() -> Any? {
-    if #available(macOS 10.15, *) {
-        return SettingsWalletHooks(hasWallet: { context in
-            return (context as! AccountContext).walletContext != nil
-        }, showWallet: { context, window, morphSource in
-            showWallet(context: context as! AccountContext, for: window, morphSource: morphSource)
-        }, balance: { context in
-            guard let walletContext = (context as! AccountContext).walletContext else {
-                return .single(nil)
-            }
-            return walletContext.state
-            |> map { state -> Int64? in
-                guard case .wallet = state.phase else {
-                    return nil
-                }
-                return state.balance.currentValue
-            }
-            |> distinctUntilChanged
-        })
-    } else {
-        return nil
     }
 }
 
@@ -397,7 +373,7 @@ func installSettingsUIHooks() {
         StoryModalController.ShowStories(context: context, isHidden: isHidden, initialId: initialId, singlePeer: singlePeer)
     }, authorizationStatus: { context in
         return UNUserNotifications.recurrentAuthorizationStatus(context as! AccountContext) |> map { NotificationAuthorizationStatus(rawValue: $0.rawValue) ?? .notDetermined }
-    }, wallet: makeSettingsWalletHooks())
+    })
     hooks.showStoriesWithContext = { context, isHidden, initialId, singlePeer, analyticsContext in
         guard let context = context as? AccountContext else { return }
         StoryModalController.ShowStories(context: context, isHidden: isHidden, initialId: initialId, singlePeer: singlePeer, analyticsContext: analyticsContext)
@@ -525,12 +501,8 @@ private func makeSettingsNavigationHooks() -> SettingsNavigationHooks {
     }
     hooks.showStarsList = { context, currency, morphSource in
         let context = context as! AccountContext
-        switch currency {
-        case .stars:
-            showModal(with: Star_ListScreen(context: context, source: .account), for: context.window, morphSource: morphSource)
-        case .ton:
-            showModal(with: Star_ListScreen(context: context, currency: .ton, source: .account), for: context.window, morphSource: morphSource)
-        }
+        guard currency == .stars else { return }
+        showModal(with: Star_ListScreen(context: context, source: .account), for: context.window, morphSource: morphSource)
     }
     hooks.newBadgeFlippedIcon = { bgColor, textColor in
         generateTextIcon_NewBadge_Flipped(bgColor: bgColor, textColor: textColor)
@@ -543,9 +515,6 @@ private func makeSettingsNavigationHooks() -> SettingsNavigationHooks {
     }
     hooks.makeBoostInfoController = { context, peer, boosts, myStatus, source in
         return BoostChannelModalController(context: context, peer: peer, boosts: boosts, myStatus: myStatus, infoOnly: true, source: mapSettingsBoostSource(source))
-    }
-    hooks.makeAddTonBalanceController = { context, tonAmount in
-        return AddTonBalanceController(context: context, tonAmount: tonAmount)
     }
     hooks.makePasskeysController = { context, passkeys in
         if #available(macOS 12.0, *) {

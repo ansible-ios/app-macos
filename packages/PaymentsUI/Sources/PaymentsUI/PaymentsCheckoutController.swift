@@ -445,6 +445,10 @@ public func PaymentsCheckoutController(context: (any AccountContextProtocol), so
 }
 
 public func PaymentsCheckoutController(context: (any AccountContextProtocol), source: BotPaymentInvoiceSource, invoice: TelegramMediaInvoice, analyticsContext inheritedAnalyticsContext: AnalyticsContext, completion:((PaymentCheckoutCompletionStatus)->Void)? = nil) -> InputDataModalController {
+    guard !unsupportedPaymentCurrency(invoice.currency) else {
+        completion?(.failed)
+        return unsupportedPaymentController()
+    }
     let analyticsContext: AnalyticsContext = {
         if case let .message(messageId) = source {
             return inheritedAnalyticsContext.restricting(peerId: messageId.peerId)
@@ -747,7 +751,14 @@ public func PaymentsCheckoutController(context: (any AccountContextProtocol), so
 
     
     let formAndMaybeValidatedInfo = context.engine.payments.fetchBotPaymentForm(source: source, themeParams: themeParams)
+           |> deliverOnMainQueue
            |> mapToSignal { paymentForm -> Signal<(BotPaymentForm, BotPaymentValidatedFormInfo?), BotPaymentFormRequestError> in
+               guard !unsupportedPaymentCurrency(paymentForm.invoice.currency) else {
+                   invokeCompletion(.failed)
+                   close?()
+                   showModalText(for: context.window, text: strings().chatUnsupportedMessageTitle)
+                   return .fail(.generic)
+               }
                if let current = paymentForm.savedInfo {
                    return context.engine.payments.validateBotPaymentForm(saveInfo: true, source: source, formInfo: current)
                        |> mapError { _ -> BotPaymentFormRequestError in

@@ -130,20 +130,6 @@ public protocol SettingsChatController: ViewController {
     var mode: ChatMode { get }
 }
 
-@available(macOS 10.15, *)
-public struct SettingsWalletHooks {
-    public let hasWallet: (any AccountContextProtocol) -> Bool
-    public let showWallet: (any AccountContextProtocol, Window, (() -> NSView?)?) -> Void
-    public let balance: (any AccountContextProtocol) -> Signal<Int64?, NoError>
-
-    public init(hasWallet: @escaping (any AccountContextProtocol) -> Bool,
-                showWallet: @escaping (any AccountContextProtocol, Window, (() -> NSView?)?) -> Void,
-                balance: @escaping (any AccountContextProtocol) -> Signal<Int64?, NoError>) {
-        self.hasWallet = hasWallet
-        self.showWallet = showWallet
-        self.balance = balance
-    }
-}
 private final class PlaceholderChatPreviewContext: AppearanceChatPreviewContext {
     var getGradientOffsetRect: () -> NSRect = { return .zero }
 }
@@ -204,7 +190,6 @@ public struct SettingsHooks {
         }
     }
     public let authorizationStatus: (any AccountContextProtocol) -> Signal<NotificationAuthorizationStatus, NoError>
-    public let wallet: Any?
 
     public init(shareLink: @escaping (any AccountContextProtocol, String) -> Void,
                 updateBirthday: @escaping (Date, any AccountContextProtocol) -> Void,
@@ -249,8 +234,7 @@ public struct SettingsHooks {
                 pushAppUpdate: @escaping (MajorNavigationController) -> Void,
                 openFaq: @escaping (any AccountContextProtocol) -> Void,
                 showStories: @escaping (any AccountContextProtocol, Bool, StoryInitialIndex?, Bool) -> Void,
-                authorizationStatus: @escaping (any AccountContextProtocol) -> Signal<NotificationAuthorizationStatus, NoError>,
-                wallet: Any?) {
+                authorizationStatus: @escaping (any AccountContextProtocol) -> Signal<NotificationAuthorizationStatus, NoError>) {
         self.shareLink = shareLink
         self.updateBirthday = updateBirthday
         self.makeResetPhotoItem = makeResetPhotoItem
@@ -295,13 +279,8 @@ public struct SettingsHooks {
         self.openFaq = openFaq
         self.showStories = showStories
         self.authorizationStatus = authorizationStatus
-        self.wallet = wallet
     }
 
-    @available(macOS 10.15, *)
-    public var walletHooks: SettingsWalletHooks {
-        return wallet as! SettingsWalletHooks
-    }
 
     private static var _shared: SettingsHooks?
 
@@ -402,7 +381,7 @@ public struct SettingsHooks {
     }, showStories: { _, _, _, _ in
     }, authorizationStatus: { _ in
         .single(.authorized)
-    }, wallet: nil)
+    })
 }
 
 private final class SettingsPlaceholderBadgeNode: ShortPeerBadgeNode {

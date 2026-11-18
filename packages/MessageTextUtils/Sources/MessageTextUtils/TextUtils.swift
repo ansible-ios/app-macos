@@ -175,7 +175,7 @@ public func pullText(from message:Message, mediaViewType: MessageTextMediaViewTy
         case let game as TelegramMediaGame:
             messageText = "🎮 \(game.title)"
         case let invoice as TelegramMediaInvoice:
-            messageText = invoice.title
+            messageText = unsupportedPaymentCurrency(invoice.currency) ? strings().chatUnsupportedMessageTitle : invoice.title
         case let poll as TelegramMediaPoll:
             if case let .pollOption(opaqueIdentifier) = innerSubject, let option = poll.options.first(where: { $0.opaqueIdentifier == opaqueIdentifier }) {
                 messageText = "📊 \(option.text)"
@@ -416,8 +416,7 @@ public func chatListText(account:Account, for message:Message?, messagesCount: I
            
         } else if let action = message.extendedMedia as? TelegramMediaAction {
             let service = serviceMessageText(message, account:account, isReplied: isReplied, embedDiamond: !notifications)
-            let gramTransferText = isReplied || folder ? nil : incomingGramTransferPreviewText(message, accountPeerId: account.peerId, includeDiamond: notifications)
-            _ = attributedText.append(string: gramTransferText ?? service.0, color: theme.chatList.grayTextColor, font: .normal(.text))
+            _ = attributedText.append(string: service.0, color: theme.chatList.grayTextColor, font: .normal(.text))
             attributedText.detectBoldColorInString(with: .normal(.text))
             attributedText.setSelected(color: theme.colors.underSelectedColor, range: attributedText.range)
             
@@ -601,24 +600,9 @@ public func chatListText(account:Account, for message:Message?, messagesCount: I
     return NSAttributedString()
 }
 
-func incomingGramTransferPreviewText(_ message: Message, accountPeerId: PeerId, includeDiamond: Bool) -> String? {
-    guard message.effectivelyIncoming(accountPeerId) else {
-        return nil
-    }
-    for media in message.media {
-        guard let action = media as? TelegramMediaAction, case let .gramTransfer(amount, _, _, _, _) = action.action else {
-            continue
-        }
-        let amountText = (includeDiamond ? "💎" : "") + formatGramsText(amount, maxDecimalPositions: 3)
-        if message.id.peerId == servicePeerId {
-            return strings().chatServiceGramTransferUnknown(amountText)
-        }
-        return strings().chatServiceGramTransferIncoming(amountText)
-    }
-    return nil
-}
 
 public func suggestedPostPayoutText(_ message: Message, amount: CurrencyAmount) -> String {
+    guard amount.currency == .stars else { return strings().chatUnsupportedMessageTitle }
     let channel = message.peers[message.id.peerId] as? TelegramChannel
     let publisher = channel?.isMonoForum == true ? channel?.linkedMonoforumId.flatMap { message.peers[$0] as? TelegramChannel } : nil
     return strings().chatServiceSuggestPostSuccessReceived(publisher?.title ?? channel?.title ?? "", amount.suggestedPostAmountText)
@@ -801,6 +785,7 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
                 }
             }
         case let .paymentSent(currency, totalAmount, _,  _, _):
+            guard !unsupportedPaymentCurrency(currency) else { text = strings().chatUnsupportedMessageTitle; break }
             text = strings().chatListServicePaymentSent(servicePaymentAmount(totalAmount, currency: currency, embedDiamond: embedDiamond))
         case .unknown:
             break
@@ -1116,6 +1101,7 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
                 text = strings().chatServicePremiumGiftSent(authorName, formatted)
             }
         case let .paymentRefunded(_, currency, totalAmount, _, _):
+            guard !unsupportedPaymentCurrency(currency) else { text = strings().chatUnsupportedMessageTitle; break }
             let peerName = message.author?.compactDisplayTitle ?? ""
             text = strings().chatServiceRefund(peerName, servicePaymentAmount(totalAmount, currency: currency, embedDiamond: embedDiamond))
         case let .prizeStars(amount, _, _, _, _):
@@ -1401,37 +1387,8 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
             case .rejected:
                 text = strings().chatServiceSuggestPostStatusRejected
             }
-        case let .giftTon(currency, amount, cryptoCurrency, cryptoAmount, _):
-            let formatted: String
-            
-            if let cryptoCurrency, let cryptoAmount {
-                formatted = formatCurrencyAmount(cryptoAmount, currency: cryptoCurrency).prettyCurrencyNumberUsd + " " + cryptoCurrency
-            } else {
-                formatted = formatCurrencyAmount(amount, currency: currency)
-            }
-            
-            if authorId == account.peerId {
-                text = strings().chatServicePremiumGiftSentYou(formatted)
-            } else {
-                text = strings().chatServicePremiumGiftSent(authorName, formatted)
-            }
-        case let .gramTransfer(amount, _, _, _, _):
-            let amountText = formatGramsText(amount, maxDecimalPositions: 3)
-            if authorId == account.peerId {
-                text = strings().chatServiceGramTransferYou(peer.compactDisplayTitle, amountText)
-            } else if message.id.peerId == servicePeerId {
-                text = strings().chatServiceGramTransferUnknown(amountText)
-            } else {
-                text = strings().chatServiceGramTransfer(authorName, amountText)
-            }
-        case let .walletTonConnectRequest(flags, _, _, _, _, dappName):
-            if flags & (1 << 3) != 0 {
-                text = dappName.map { strings().chatServiceWalletRequestFromDeclined($0) } ?? strings().chatServiceWalletRequestDeclined
-            } else if flags & (1 << 2) != 0 {
-                text = dappName.map { strings().chatServiceWalletRequestFromAccepted($0) } ?? strings().chatServiceWalletRequestAccepted
-            } else {
-                text = dappName.map { strings().chatServiceWalletRequestFrom($0) } ?? strings().chatServiceWalletRequest
-            }
+        case .giftTon, .gramTransfer, .walletTonConnectRequest:
+            text = strings().chatUnsupportedMessageTitle
         case let .suggestedPostSuccess(amount):
             text = suggestedPostPayoutText(message, amount: amount)
 
@@ -1460,6 +1417,7 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
                 text = ""
             }
         case let .starGiftPurchaseOfferDeclined(gift, amount, hasExpired):
+            guard amount.currency == .stars else { text = strings().chatUnsupportedMessageTitle; break }
             if let gift = gift.unique {
                 let giftString = "\(gift.title) #\(gift.number)"
                 let peerName = message.peers[message.id.peerId]?.compactDisplayTitle ?? ""
@@ -1478,6 +1436,7 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
                 }
             }
         case let .starGiftPurchaseOffer(gift, amount, _, _, _):
+            guard amount.currency == .stars else { text = strings().chatUnsupportedMessageTitle; break }
             if let gift = gift.unique {
                 let giftString = "\(gift.title) #\(gift.number)"
                 let peerName = message.peers[message.id.peerId]?.compactDisplayTitle ?? ""

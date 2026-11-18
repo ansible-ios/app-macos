@@ -673,16 +673,6 @@ public final class ChatInteraction : InterfaceObserver  {
     var voiceTranscription: ChatVoiceTranscription?
     public var mediaSendFlight: ChatMediaSendFlight?
 
-    private var walletTransferAnimationStorage: AnyObject?
-    @available(macOS 10.15, *)
-    var walletTransferAnimation: ChatWalletTransferAnimation? {
-        get {
-            return self.walletTransferAnimationStorage as? ChatWalletTransferAnimation
-        }
-        set {
-            self.walletTransferAnimationStorage = newValue
-        }
-    }
     
     public var freezeAccountAlert:()->Void = { }
     
@@ -812,7 +802,11 @@ public final class ChatInteraction : InterfaceObserver  {
             }
         })
         if let data = self.presentation.interfaceState.suggestPost {
-            showModal(with: EditPostSuggestionController(chatInteraction: self, data: data), for: self.context.window)
+            if let editor = EditPostSuggestionController(chatInteraction: self, data: data) {
+                showModal(with: editor, for: self.context.window)
+            } else {
+                showModalText(for: self.context.window, text: strings().chatUnsupportedMessageTitle)
+            }
         }
     }
     
@@ -1506,6 +1500,7 @@ public final class ChatInteraction : InterfaceObserver  {
                 case let .url(url):
                     switch url {
                     case SuggestedPostMessageAttribute.commandApprove:
+                        guard amount?.currency != .ton else { return }
                         
                         if let peer, !peer.groupAccess.canPostMessages {
                             _ = context.engine.messages.monoforumPerformSuggestedPostAction(
@@ -1514,7 +1509,7 @@ public final class ChatInteraction : InterfaceObserver  {
                             ).start()
                         } else {
                             let paidAmount = amount.flatMap { $0.amount.value > 0 ? $0 : nil }
-                            let rateKey = paidAmount?.currency == .ton ? "ton_suggested_post_commission_permille" : "stars_suggested_post_commission_permille"
+                            let rateKey = "stars_suggested_post_commission_permille"
                             let permille = min(1000, max(0, context.appConfiguration.getGeneralValue(rateKey, orElse: 850)))
                             let formatted = paidAmount?.recipientProceeds(permille: permille).suggestedPostAmountText ?? strings().chatServiceSuggestPostHeaderPriceFree
 

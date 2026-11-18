@@ -6,6 +6,12 @@ import TelegramCore
 import SwiftSignalKit
 import TelegramContext
 
+func isUnsupportedWalletNavigation(_ url: URL?) -> Bool {
+    guard let url else { return false }
+    if ["ton", "tonsite", "tc", "tonconnect"].contains(url.scheme?.lowercased() ?? "") { return true }
+    return url.host?.lowercased().hasSuffix(".ton") == true
+}
+
 public enum BrowserLinkKind {
     case external
     case shareUrl

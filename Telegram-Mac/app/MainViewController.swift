@@ -866,10 +866,7 @@ class MainViewController: TelegramGenericViewController<MainController_View> {
         
         let navigation = context.bindings.rootNavigation()
         
-        if let controller = navigation.controller as? InputDataController, controller.identifier == "wallet-create" {
-            self.previousTabController = tabController.tab(at: index).controller
-            quickController?.popover?.hide()
-        } else {
+        do {
             if previousTabController === settings || isSettings {
                 if isSettings && context.layout != .single {
                     settingsReturnController = nil

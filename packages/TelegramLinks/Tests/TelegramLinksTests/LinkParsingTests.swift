@@ -301,16 +301,10 @@ final class LinkParsingTests: XCTestCase {
         XCTAssertNil(proxySettings(from: "https://asme.su/socks?server=localhost&port=1080").0)
     }
 
-    func testWalletTransferDataAndMissingContext() {
-        let value = "ton://transfer/address?amount=123&text=hello%20world"
-        guard case let .tonTransfer(_, data) = parse(value) else { return XCTFail("Expected transfer") }
-        XCTAssertEqual(data.address, "address")
-        XCTAssertEqual(data.amount, 123)
-        XCTAssertEqual(data.comment, "hello world")
-        guard case .nothing = parse(value, options: InAppLinkParsingOptions()) else { return XCTFail("Context required") }
-        XCTAssertNil(parseWalletUrl(URL(string: "ton://transfer/")!))
-        XCTAssertNil(parseWalletUrl(URL(string: "https://transfer/address")!))
-        XCTAssertNil(parseWalletUrl(URL(string: "ton://transfer/address?amount=bad")!)?.amount)
+    func testUnsupportedWalletRoutes() {
+        for link in ["ton://transfer/address?amount=123", "tc://connect", "tonsite://alice.ton", "https://alice.ton/path", "as://grams", "as://sendgrams?to=@alice", "https://asme.su/sendgrams"] {
+            guard case .nothing = parse(link) else { return XCTFail(link) }
+        }
     }
 
     func testTelegramLinkQueryNormalization() {
@@ -332,53 +326,8 @@ final class LinkParsingTests: XCTestCase {
         }
     }
 
-    func testSendGramsLinks() {
-        let address = "UQA4a56Xk3ZyZ8Hn0fbrkDsGqfvlBkq1pX9hC2uWhvbZcyGL"
-        let cases: [(String, ParsedSendGramsLink)] = [
-            ("", .wallet),
-            ("?to=@monk", .send(recipient: .username("monk"), amount: nil)),
-            ("?to=%40monk", .send(recipient: .username("monk"), amount: nil)),
-            ("?to=\(address)", .send(recipient: .address(address), amount: nil)),
-            ("?to=@monk&amount=200", .send(recipient: .username("monk"), amount: 200_000_000_000)),
-            ("?to=@monk&amount=200.5", .send(recipient: .username("monk"), amount: 200_500_000_000)),
-            ("?to=@monk&amount=0.000000001", .send(recipient: .username("monk"), amount: 1)),
-            ("?amount=200", .invalid),
-            ("?to=@monk&amount=200,5", .invalid),
-            ("?to=@monk&amount=200.", .invalid),
-            ("?to=@monk&amount=.5", .invalid),
-            ("?to=@monk&amount=0", .invalid),
-            ("?to=@monk&amount=-1", .invalid),
-            ("?to=@monk&amount=1.0000000001", .invalid),
-            ("?to=@monk&amount=99999999999", .invalid),
-            ("?to=@", .invalid),
-            ("?to=@bad-name", .invalid),
-            ("?to=not%20an%20address", .invalid),
-            ("?to=https://example.com", .invalid),
-            ("?to=short", .invalid),
-        ]
-        for (query, expected) in cases {
-            for base in ["https://asme.su/sendgrams", "as://sendgrams"] {
-                guard case let .sendGrams(_, data) = parse(base + query) else {
-                    XCTFail("Expected sendgrams: \(base + query)")
-                    continue
-                }
-                XCTAssertEqual(data, expected, base + query)
-            }
-        }
-        guard case .sendGrams(_, .wallet) = parse("https://asme.su/SendGrams/") else { return XCTFail("Expected sendgrams") }
-        let tonConnectStart = "https://asme.su/sendgrams?startapp=tonconnect-v__2-id__ca7fa7bada33f4040f13abd9d1bcbfa9404f23ae250df0bfbfb9a209bd421706-ret__back"
-        guard case .sendGrams(_, .wallet) = parse(tonConnectStart) else {
-            return XCTFail("A TON Connect start parameter must not be read as a transfer")
-        }
-        assertPeer("https://asme.su/sendgramsbot", username: "sendgramsbot")
-        guard case .nothing = parse("as://sendgramsbot") else { return XCTFail("Only the exact action matches") }
-        guard case .external = parse("https://asme.su/sendgrams?to=@monk", options: InAppLinkParsingOptions()) else { return XCTFail("Context required") }
-        guard case .nothing = parse("as://sendgrams?to=@monk", options: InAppLinkParsingOptions()) else { return XCTFail("Context required") }
-    }
 
-    func testTonSitesAndURLAuthenticationPrecedence() {
-        guard case let .tonsite(value) = parse("https://alice.ton/path") else { return XCTFail("Expected tonsite") }
-        XCTAssertEqual(value, "tonsite://alice.ton/path")
+    func testURLAuthenticationPrecedence() {
         var options = enabled
         options.urlAuthDomains = ["t.me"]
         guard case .urlAuth = parse("https://asme.su/alice", options: options) else { return XCTFail("Authentication precedes peer parsing") }

@@ -974,7 +974,7 @@ public class ChatPresentationInterfaceState: Equatable {
     
     public var abilityToSend:Bool {
         if state == .normal {
-            if let suggestPost = interfaceState.suggestPost, suggestPost.amount == nil {
+            if let suggestPost = interfaceState.suggestPost, suggestPost.amount?.currency != .stars {
                 return false
             }
             if let slowMode = self.slowMode {

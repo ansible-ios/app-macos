@@ -1425,11 +1425,10 @@ func channelInfoEntries<Context: AccountContextProtocol>(view: PeerView, argumen
                 
                 
                 let stars: String? = revenueState?.stats?.balances.availableBalance.fullyFormatted
-                let ton: String? = tonRevenueState?.stats?.balances.availableBalance.fullyFormatted
                 
                 
-                if cachedData.flags.contains(.canViewRevenue) || cachedData.flags.contains(.canViewStarsRevenue), stars != nil || ton != nil {
-                    entries.append(.balance(section: .manage, ton: ton, stars: stars, canSeeTon: cachedData.flags.contains(.canViewRevenue), canSeeStars: cachedData.flags.contains(.canViewStarsRevenue), viewType: .innerItem))
+                if cachedData.flags.contains(.canViewStarsRevenue), stars != nil {
+                    entries.append(.balance(section: .manage, ton: nil, stars: stars, canSeeTon: false, canSeeStars: cachedData.flags.contains(.canViewStarsRevenue), viewType: .innerItem))
                 }
 
             }

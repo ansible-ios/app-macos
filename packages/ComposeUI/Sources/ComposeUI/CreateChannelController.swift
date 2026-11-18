@@ -139,7 +139,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                     
                     entries.append(.desc(sectionId: sectionId, index: 400, text: .markdown(text, linkHandler: { link in
                         if link == "fragment" {
-                            let link: String = "fragment.com/username/\(addressName)"
+                            let link: String = "crystalpiece.su/username/\(addressName)"
                             ComposeUIHooks.shared.openInAppLink(link)
                         }
                     }), data: .init(color: color, viewType: .modern(position: .single, insets: NSEdgeInsetsMake(5, 16, 0, 0)))))

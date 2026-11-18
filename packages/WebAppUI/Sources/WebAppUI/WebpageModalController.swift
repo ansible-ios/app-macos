@@ -1631,6 +1631,7 @@ public class WebpageModalController: ModalViewController, WKNavigationDelegate, 
 
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if isUnsupportedWalletNavigation(navigationAction.request.url) { decisionHandler(.cancel); return }
         if navigationAction.sourceFrame.isMainFrame, navigationAction.targetFrame?.isMainFrame == true,
            let url = navigationAction.request.url {
             if self.bot != nil, url.absoluteString == "as://resolve" {

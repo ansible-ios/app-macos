@@ -1128,23 +1128,6 @@ private final class ChatListRowContentDrawer: ViewDisplayDelegate {
     }
 }
 
-func chatListGramBadgeIcon(highlighted: Bool, muted: Bool) -> CGImage {
-    let color: NSColor
-    if highlighted {
-        color = theme.chatList.badgeSelectedBackgroundColor
-    } else if muted {
-        color = theme.chatList.badgeMutedBackgroundColor
-    } else {
-        color = theme.chatList.badgeBackgroundColor
-    }
-    let background = NSImage(named: "Icon_ChatList_GramBadgeBackground")!.precomposed(color)
-    let foreground = NSImage(named: "Icon_ChatList_GramBadgeForeground")!.precomposed(highlighted ? theme.chatList.badgeSelectedTextColor : nil)
-    return generateImage(background.backingSize, contextGenerator: { size, ctx in
-        ctx.clear(size.bounds)
-        ctx.draw(background, in: size.bounds)
-        ctx.draw(foreground, in: size.bounds)
-    })!
-}
 
 public class ChatListRowView: TableRowView {
     
@@ -2468,9 +2451,7 @@ public class ChatListRowView: TableRowView {
                  
                  let highlighted = self.highlighed
                  let icon: CGImage
-                 if item.hasGramBadge {
-                     icon = chatListGramBadgeIcon(highlighted: highlighted, muted: item.badgeMuted)
-                 } else if item.associatedGroupId == .root {
+                 if item.associatedGroupId == .root {
                      icon = highlighted ? theme.icons.chatListMentionActive : theme.icons.chatListMention
                  } else {
                      icon = highlighted ? theme.icons.chatListMentionArchivedActive : theme.icons.chatListMentionArchived

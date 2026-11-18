@@ -51,11 +51,10 @@ final class ChatGiftMessageLayoutTests: XCTestCase {
         }
     }
 
-    func testPremiumStarsAndTonKeepTheirOriginalGeometry() {
+    func testPremiumAndDiamondsKeepTheirOriginalGeometry() {
         let sources: [ChatServiceItem.GiftData.Source] = [
             .premium(days: 90),
-            .stars(amount: 100, date: 1, transactionId: nil, peer: nil),
-            .ton(amount: 100, date: 1, transactionId: nil, peer: nil)
+            .stars(amount: 100, date: 1, transactionId: nil, peer: nil)
         ]
         for source in sources {
             let gift = data(source: source)

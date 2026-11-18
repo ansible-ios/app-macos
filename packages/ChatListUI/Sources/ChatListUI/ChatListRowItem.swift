@@ -122,24 +122,6 @@ public enum ChatListRowState : Equatable {
 }
 
 
-func chatListHasUnreadIncomingGramTransfer(_ messages: [Message], readState: EnginePeerReadCounters?, accountPeerId: PeerId) -> Bool {
-    return messages.last.map { message in
-        guard let readState, readState.count > 0, !readState.isIncomingMessageIndexRead(MessageIndex(message)) else {
-            return false
-        }
-        return message.effectivelyIncoming(accountPeerId) && message.media.contains(where: { media in
-            if let media = media as? TelegramMediaAction, case .gramTransfer = media.action {
-                return true
-            }
-            return false
-        })
-    } ?? false
-}
-
-func chatListGramBadgeHidesUnreadCounter(hasGramBadge: Bool, unreadCount: Int32?) -> Bool {
-    return hasGramBadge && unreadCount == 1
-}
-
 public class ChatListRowItem: TableRowItem {
     static let playsVideoAvatars = false
     
@@ -247,10 +229,9 @@ public class ChatListRowItem: TableRowItem {
     public let mentionsCount: Int32?
     public let reactionsCount: Int32?
     public let pollVotesCount: Int32?
-    public let hasGramBadge: Bool
 
     public var showsMentionSlot: Bool {
-        return mentionsCount != nil || hasGramBadge
+        return mentionsCount != nil
     }
 
     private var displayLayout:TextViewLayout?
@@ -510,7 +491,6 @@ public class ChatListRowItem: TableRowItem {
         self.mentionsCount = nil
         self.reactionsCount = nil
         self.pollVotesCount = nil
-        self.hasGramBadge = false
         self.selectedForum = nil
         self.story = nil
         self.displayAsTopics = false
@@ -821,9 +801,8 @@ public class ChatListRowItem: TableRowItem {
         self.canPreviewChat = canPreviewChat
         
         
-        self.hasGramBadge = chatListHasUnreadIncomingGramTransfer(messages, readState: readState, accountPeerId: context.peerId)
 
-        if let peer, let botInfo = peer.botInfo, botInfo.flags.contains(.hasWebApp), readState == nil || readState?.count == 0, !hasGramBadge, splitState != .minimisize {
+        if let peer, let botInfo = peer.botInfo, botInfo.flags.contains(.hasWebApp), readState == nil || readState?.count == 0, splitState != .minimisize {
             self.openMiniApp = .init(.initialize(string: strings().chatListOpenMiniApp, color: theme.colors.underSelectedColor, font: .medium(.text)), alignment: .center)
             self.openMiniApp?.measure(width: .greatestFiniteMagnitude)
             
@@ -1085,18 +1064,18 @@ public class ChatListRowItem: TableRowItem {
             textLeftCutout += 20
         }
 
-        if hasUnreadMentions && !hasGramBadge {
+        if hasUnreadMentions {
             self.mentionsCount = 1
         } else {
             self.mentionsCount = nil
         }
        
-        if hasUnreadReactions && !hasGramBadge {
+        if hasUnreadReactions {
             self.reactionsCount = 1
         } else {
             self.reactionsCount = nil
         }
-        if hasUnreadVotes && !hasGramBadge {
+        if hasUnreadVotes {
             self.pollVotesCount = 1
         } else {
             self.pollVotesCount = nil
@@ -1130,7 +1109,7 @@ public class ChatListRowItem: TableRowItem {
             hideItem(animated: false, reload: false)
         }
 
-        if showBadge, !chatListGramBadgeHidesUnreadCounter(hasGramBadge: hasGramBadge, unreadCount: readState?.count) {
+        if showBadge {
             
             let isMuted = isMuted || (readState?.isMuted ?? false)
             

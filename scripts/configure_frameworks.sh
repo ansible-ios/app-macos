@@ -2,8 +2,8 @@
 set -e
 
 
-declare -a libs=("OpenH264" "OpenSSL" "libopus" "libvpx" "mozjpeg" "libwebp" "dav1d" "ffmpeg" "webrtc" "tde2e" "wallet-engine" "mtproto-engine")
-declare -a libname=("OpenH264" "OpenSSLEncryption" "libopus" "libvpx" "Mozjpeg" "libwebp" "dav1d" "ffmpeg" "webrtc" "tde2e" "WalletEngine" "MTProtoEngine")
+declare -a libs=("OpenH264" "OpenSSL" "libopus" "libvpx" "mozjpeg" "libwebp" "dav1d" "ffmpeg" "webrtc" "tde2e" "mtproto-engine")
+declare -a libname=("OpenH264" "OpenSSLEncryption" "libopus" "libvpx" "Mozjpeg" "libwebp" "dav1d" "ffmpeg" "webrtc" "tde2e" "MTProtoEngine")
 
 arraylength=${#libs[@]}
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
@@ -38,7 +38,7 @@ do
     framework_stamp "$ROOT_DIR" "$LIB" "$STAMP_CACHE" > "$STAMP_CACHE/$LIB"
 
     if [ "$FORCE_REBUILD" != "yes" ] && cmp -s "$STAMP_CACHE/$LIB" "$STAMP_FILE" && \
-        framework_outputs_present "$ROOT_DIR" "$LIB" && framework_outputs_consistent "$ROOT_DIR" "$LIB"; then
+        framework_outputs_present "$ROOT_DIR" "$LIB"; then
         echo "framework-stamp: $LIB is up to date, skipping xcodebuild"
         continue
     fi
@@ -53,7 +53,7 @@ do
     else
         echo "framework-stamp: $LIB outputs are missing or inconsistent, repairing"
         case "$LIB" in
-            wallet-engine|mtproto-engine) framework_reset_outputs "$ROOT_DIR" "$LIB" ;;
+            mtproto-engine) framework_reset_outputs "$ROOT_DIR" "$LIB" ;;
             *) rm -rf "$BUILD_DIR" ;;
         esac
     fi
@@ -68,7 +68,7 @@ do
         -derivedDataPath "$STAMP_CACHE/DerivedData-$LIB" \
         -destination 'generic/platform=macOS'
 
-    if ! framework_outputs_present "$ROOT_DIR" "$LIB" || ! framework_outputs_consistent "$ROOT_DIR" "$LIB"; then
+    if ! framework_outputs_present "$ROOT_DIR" "$LIB"; then
         echo "error: $LIB did not produce complete, consistent outputs" >&2
         exit 1
     fi

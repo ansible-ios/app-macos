@@ -88,7 +88,7 @@ public extension CurrencyAmount {
             let number = amount.nanos == 0 ? amount.value.formattedWithSeparator : NSDecimalNumber(decimal: Decimal(amount.value) + Decimal(Int(amount.nanos)) / 1_000_000_000).stringValue
             return "\(number) \(strings().starListTelegramStars)"
         case .ton:
-            return formatReceiptAmount(amount.value, currency: TON)
+            return strings().chatUnsupportedMessageTitle
         }
     }
 
@@ -103,7 +103,7 @@ public extension CurrencyAmount {
     var fullyFormatted: String {
         switch currency {
         case .ton:
-            return self.amount.string(currency) + " " + "TON"
+            return strings().chatUnsupportedMessageTitle
         case .stars:
             return strings().starListItemCountOther(Int(self.amount.value)).replacingOccurrences(of: "\(self.amount.value)", with: self.amount.value.separatedNumber)
         }

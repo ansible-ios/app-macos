@@ -80,8 +80,6 @@ fileprivate final class AccountInfoArguments<Context: AccountContextProtocol> {
     let openPremium:(Bool)->Void
     let giftPremium:()->Void
     let stars:()->Void
-    let ton:()->Void
-    let openWallet:()->Void
     let addAccount:([AccountWithInfo])->Void
     let setStatus:(Control, TelegramUser)->Void
     let runStatusPopover:()->Void
@@ -89,7 +87,7 @@ fileprivate final class AccountInfoArguments<Context: AccountContextProtocol> {
     let set2Fa:(TwoStepVeriticationAccessConfiguration?)->Void
     let openStory:(StoryInitialIndex?)->Void
     let openWebBot:(AttachMenuBot)->Void
-    init(context: Context, storyList: PeerStoryListContext, presentController:@escaping(ViewController, Bool)->Void, openFaq: @escaping()->Void, ask:@escaping()->Void, openUpdateApp: @escaping() -> Void, openPremium:@escaping(Bool)->Void, giftPremium:@escaping()->Void, addAccount:@escaping([AccountWithInfo])->Void, setStatus:@escaping(Control, TelegramUser)->Void, runStatusPopover:@escaping()->Void, set2Fa:@escaping(TwoStepVeriticationAccessConfiguration?)->Void, openStory:@escaping(StoryInitialIndex?)->Void, openWebBot:@escaping(AttachMenuBot)->Void, stars:@escaping()->Void, ton:@escaping()->Void, openWallet:@escaping()->Void, setProfileColor:@escaping(Peer)->Void) {
+    init(context: Context, storyList: PeerStoryListContext, presentController:@escaping(ViewController, Bool)->Void, openFaq: @escaping()->Void, ask:@escaping()->Void, openUpdateApp: @escaping() -> Void, openPremium:@escaping(Bool)->Void, giftPremium:@escaping()->Void, addAccount:@escaping([AccountWithInfo])->Void, setStatus:@escaping(Control, TelegramUser)->Void, runStatusPopover:@escaping()->Void, set2Fa:@escaping(TwoStepVeriticationAccessConfiguration?)->Void, openStory:@escaping(StoryInitialIndex?)->Void, openWebBot:@escaping(AttachMenuBot)->Void, stars:@escaping()->Void, setProfileColor:@escaping(Peer)->Void) {
         self.context = context
         self.storyList = storyList
         self.presentController = presentController
@@ -105,8 +103,6 @@ fileprivate final class AccountInfoArguments<Context: AccountContextProtocol> {
         self.openStory = openStory
         self.openWebBot = openWebBot
         self.stars = stars
-        self.ton = ton
-        self.openWallet = openWallet
         self.setProfileColor = setProfileColor
     }
 }
@@ -163,8 +159,6 @@ private enum AccountInfoEntry<Context: AccountContextProtocol> : TableItemListNo
     case business(index: Int, viewType: GeneralViewType)
     case giftPremium(index: Int, viewType: GeneralViewType)
     case stars(index: Int, count: StarsAmount, viewType: GeneralViewType)
-    case ton(index: Int, count: StarsAmount, viewType: GeneralViewType)
-    case wallet(index: Int, balance: Int64?, viewType: GeneralViewType)
     case about(index: Int, viewType: GeneralViewType)
     case faq(index: Int, viewType: GeneralViewType)
     case ask(index: Int, viewType: GeneralViewType)
@@ -221,14 +215,10 @@ private enum AccountInfoEntry<Context: AccountContextProtocol> : TableItemListNo
             return .index(21)
         case .stars:
             return .index(22)
-        case .ton:
-            return .index(23)
         case .faq:
             return .index(24)
         case .ask:
             return .index(25)
-        case .wallet:
-            return .index(999)
         case .about:
             return .index(26)
         case let .attach(index, _, _):
@@ -289,10 +279,6 @@ private enum AccountInfoEntry<Context: AccountContextProtocol> : TableItemListNo
         case let .giftPremium(index, _):
             return index
         case let .stars(index, _, _):
-            return index
-        case let .ton(index, _, _):
-            return index
-        case let .wallet(index, _, _):
             return index
         case let .faq(index, _):
             return index
@@ -460,23 +446,6 @@ private enum AccountInfoEntry<Context: AccountContextProtocol> : TableItemListNo
             return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountSettingsSendGift, icon: theme.icons.settingsGiftPremium, activeIcon: theme.icons.settingsGiftPremium, type: .next, viewType: viewType, action: arguments.giftPremium, inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear))
         case let .stars(_, stars, viewType):
             return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountSettingsStars, icon: theme.icons.settingsStars, activeIcon: theme.icons.settingsStars, type: .nextContext(stars.value > 0 ? "\(stars.stringValue)" : ""), viewType: viewType, action: arguments.stars, inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear))
-        case let .ton(_, ton, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountViewControllerGramEarnings, icon: theme.icons.settingsWallet, activeIcon: theme.icons.settingsWalletActive, type: .nextContext(ton.value > 0 ? "\(ton.string(.ton))" : ""), viewType: viewType, action: arguments.ton, inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear))
-        case let .wallet(_, balance, viewType):
-            let icon = settingsMoneyIcon()
-            var balanceText: String
-            if let balance, balance > 10_000_000 {
-                balanceText = formatTonAmountText(balance)
-                if let decimalRange = balanceText.range(of: walletDecimalSeparator) {
-                    let fractionalDigitsCount = balanceText[decimalRange.upperBound...].count
-                    balanceText += String(repeating: "0", count: max(0, 2 - fractionalDigitsCount))
-                } else {
-                    balanceText += walletDecimalSeparator + "00"
-                }
-            } else {
-                balanceText = ""
-            }
-            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountViewControllerMoney, icon: icon, activeIcon: icon, type: .nextContext(balanceText), viewType: viewType, action: arguments.openWallet, inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear), afterNameImage: SettingsNavigationHooks.shared.newBadgeFlippedIcon(theme.colors.accent, theme.colors.underSelectedColor))
         case let .faq(_, viewType):
             return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountSettingsFAQ, icon: theme.icons.settingsFaq, activeIcon: theme.icons.settingsFaqActive, type: .next, viewType: viewType, action: arguments.openFaq, inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear))
         case let .ask(_, viewType):
@@ -522,7 +491,7 @@ private func settingsMoneyIcon() -> CGImage? {
     return image.precomposed(flipVertical: true)
 }
 
-private func accountInfoEntries<Context: AccountContextProtocol>(peerView:PeerView, context: Context, accounts: [AccountWithInfo], language: TelegramLocalization, privacySettings: AccountPrivacySettings?, webSessions: WebSessionsContextState, proxySettings: (ProxySettings, ConnectionStatus), passportVisible: Bool, appUpdateState: Any?, hasFilters: Bool, sessionsCount: Int, unAuthStatus: NotificationAuthorizationStatus, has2fa: Bool, twoStepConfiguration: TwoStepVeriticationAccessConfiguration?, storyStats: EngineStorySubscriptions?, attachMenuBots: [AttachMenuBot], stars: StarsContext.State?, ton: StarsContext.State?, walletBalance: Int64?) -> [AccountInfoEntry<Context>] {
+private func accountInfoEntries<Context: AccountContextProtocol>(peerView:PeerView, context: Context, accounts: [AccountWithInfo], language: TelegramLocalization, privacySettings: AccountPrivacySettings?, webSessions: WebSessionsContextState, proxySettings: (ProxySettings, ConnectionStatus), passportVisible: Bool, appUpdateState: Any?, hasFilters: Bool, sessionsCount: Int, unAuthStatus: NotificationAuthorizationStatus, has2fa: Bool, twoStepConfiguration: TwoStepVeriticationAccessConfiguration?, storyStats: EngineStorySubscriptions?, attachMenuBots: [AttachMenuBot], stars: StarsContext.State?) -> [AccountInfoEntry<Context>] {
     var entries:[AccountInfoEntry<Context>] = []
     
     var index:Int = 0
@@ -611,18 +580,12 @@ private func accountInfoEntries<Context: AccountContextProtocol>(peerView:PeerVi
     entries.append(.stories(index: index, viewType: .singleItem))
     index += 1
 
-    if #available(macOS 10.15, *) {
-        if SettingsHooks.shared.walletHooks.hasWallet(context), context.appConfiguration.getBoolValue("wallet_available", orElse: false) {
-            entries.append(.wallet(index: index, balance: walletBalance, viewType: .singleItem))
-            index += 1
-        }
-    }
 
     entries.append(.whiteSpace(index: index, height: 10))
     index += 1
 
     for bot in attachMenuBots {
-        if #available(macOS 10.15, *), SettingsHooks.shared.walletHooks.hasWallet(context), context.account.testingEnvironment, bot.peer.addressName?.lowercased() == "wallet" {
+        if bot.peer.addressName?.lowercased() == "wallet" {
             continue
         }
         if bot.flags.contains(.showInSettings) {
@@ -702,10 +665,6 @@ private func accountInfoEntries<Context: AccountContextProtocol>(peerView:PeerVi
             index += 1
         }
         
-        if let ton, ton.balance.value > 0 || !ton.transactions.isEmpty  {
-            entries.append(.ton(index: index, count: ton.balance, viewType: .singleItem))
-            index += 1
-        }
 
         entries.append(.business(index: index, viewType: .singleItem))
         index += 1
@@ -1107,21 +1066,6 @@ open class AccountViewController<Context: AccountContextProtocol> : TelegramGene
             SettingsNavigationHooks.shared.openWebBotObserved(context, bot, analyticsContext: analyticsContext)
         }, stars: { [weak self] in
             SettingsNavigationHooks.shared.showStarsList(context, .stars, { [weak self] in (self?.tableView.item(stableId: AccountInfoEntryId.index(22))?.view as? GeneralContainableRowView)?.containerView })
-        }, ton: { [weak self] in
-            SettingsNavigationHooks.shared.showStarsList(context, .ton, { [weak self] in (self?.tableView.item(stableId: AccountInfoEntryId.index(23))?.view as? GeneralContainableRowView)?.containerView })
-        }, openWallet: { [weak self] in
-            if #available(macOS 10.15, *) {
-                guard context.appConfiguration.getBoolValue("wallet_available", orElse: false) else {
-                    showModalText(for: context.window, text: strings().accountViewControllerWalletUnavailable)
-                    return
-                }
-                // Re-resolve the current wallet row view at morph time: the settings table reloads
-                // (balance updates etc.), replacing the row view, so look it up live by its stableId.
-                // Morph from the rounded inset container (the visible pill), not the full-width row.
-                SettingsHooks.shared.walletHooks.showWallet(context, context.window, { [weak self] in
-                    (self?.tableView.item(stableId: AccountInfoEntryId.index(999))?.view as? GeneralContainableRowView)?.containerView
-                })
-            }
         }, setProfileColor: { [weak self] peer in
             self?.navigation?.push(SettingsHooks.shared.makeSelectColorParentController(context, peer))
         })
@@ -1191,15 +1135,9 @@ open class AccountViewController<Context: AccountContextProtocol> : TelegramGene
         }))
         
         
-        let walletBalance: Signal<Int64?, NoError>
-        if #available(macOS 10.15, *) {
-            walletBalance = SettingsHooks.shared.walletHooks.balance(context)
-        } else {
-            walletBalance = .single(nil)
-        }
 
-        let apply = combineLatest(queue: prepareQueue, context.account.viewTracker.peerView(context.account.peerId), context.sharedContext.activeAccountsWithInfo, appearanceSignal, settings.get(), appUpdateState, hasFilters.get(), sessionsCount, SettingsHooks.shared.authorizationStatus(context), twoStep, storyStats, acceptBots.get(), context.starsContext.state, context.tonContext.state, walletBalance) |> map { peerView, accounts, appearance, settings, appUpdateState, hasFilters, sessionsCount, unAuthStatus, twoStepConfiguration, storyStats, attachMenuBots, stars, ton, walletBalance -> TableUpdateTransition in
-            let entries = accountInfoEntries(peerView: peerView, context: context, accounts: accounts.accounts, language: appearance.language, privacySettings: settings.0, webSessions: settings.1, proxySettings: settings.2, passportVisible: settings.3.0, appUpdateState: appUpdateState, hasFilters: hasFilters, sessionsCount: sessionsCount, unAuthStatus: unAuthStatus, has2fa: settings.3.1, twoStepConfiguration: twoStepConfiguration, storyStats: storyStats, attachMenuBots: attachMenuBots, stars: stars, ton: ton, walletBalance: walletBalance).map {AppearanceWrapperEntry(entry: $0, appearance: appearance)}
+        let apply = combineLatest(queue: prepareQueue, context.account.viewTracker.peerView(context.account.peerId), context.sharedContext.activeAccountsWithInfo, appearanceSignal, settings.get(), appUpdateState, hasFilters.get(), sessionsCount, SettingsHooks.shared.authorizationStatus(context), twoStep, storyStats, acceptBots.get(), context.starsContext.state) |> map { peerView, accounts, appearance, settings, appUpdateState, hasFilters, sessionsCount, unAuthStatus, twoStepConfiguration, storyStats, attachMenuBots, stars -> TableUpdateTransition in
+            let entries = accountInfoEntries(peerView: peerView, context: context, accounts: accounts.accounts, language: appearance.language, privacySettings: settings.0, webSessions: settings.1, proxySettings: settings.2, passportVisible: settings.3.0, appUpdateState: appUpdateState, hasFilters: hasFilters, sessionsCount: sessionsCount, unAuthStatus: unAuthStatus, has2fa: settings.3.1, twoStepConfiguration: twoStepConfiguration, storyStats: storyStats, attachMenuBots: attachMenuBots, stars: stars).map {AppearanceWrapperEntry(entry: $0, appearance: appearance)}
             var size = atomicSize.modify {$0}
             size.width = max(size.width, 280)
             return prepareEntries(left: previous.swap(entries), right: entries, arguments: arguments, initialSize: size)
@@ -1333,7 +1271,6 @@ open class AccountViewController<Context: AccountContextProtocol> : TelegramGene
         }, with: self, for: .Escape, priority:.low)
 
         context.starsContext.load(force: true)
-        context.tonContext.load(force: true)
     }
     
     open override func viewWillDisappear(_ animated: Bool) {

@@ -88,7 +88,6 @@ private struct State : Equatable {
         var all: Balance
     }
     
-    var ton: Bool = false
     
     var config_withdraw: Bool
         
@@ -122,7 +121,7 @@ private struct State : Equatable {
     }
     
     var balanceAmount: CurrencyAmount {
-        return .init(amount: balance.stars, currency: ton ? .ton : .stars)
+        return .init(amount: balance.stars, currency: .stars)
     }
     
     var revenueGraph: StatsGraph?
@@ -487,9 +486,9 @@ public func FragmentStarMonetizationController(context: any AccountContextProtoc
                 
                 current.revenueGraph = revenue.revenueGraph
                 current.loaded = true
-                current.allTransactions = allTransactions.transactions.map(map)
-                current.incomingTransactions = incomingTransactions.transactions.map(map)
-                current.outgoingTransactions = outgoingTransactions.transactions.map(map)
+                current.allTransactions = allTransactions.transactions.filter { $0.count.currency == .stars }.map(map)
+                current.incomingTransactions = incomingTransactions.transactions.filter { $0.count.currency == .stars }.map(map)
+                current.outgoingTransactions = outgoingTransactions.transactions.filter { $0.count.currency == .stars }.map(map)
 
                 return current
             }
@@ -628,12 +627,7 @@ private final class WithdrawInputView : GeneralRowView {
             
             attr.append(string: strings().fragmentStarWithdrawInput("\(clown + TINY_SPACE)\(item.inputState.inputText.string)") , color: theme.colors.underSelectedColor, font: .medium(.text))
             
-            switch item.balance.currency {
-            case .stars:
-                attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
-            case .ton:
-                attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.ton_logo.file, color: theme.colors.underSelectedColor), for: clown)
-            }
+            attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
             
             let layout = TextViewLayout(attr)
             layout.measure(width: item.width - 60)
@@ -675,30 +669,15 @@ private final class WithdrawInputView : GeneralRowView {
             let min_withdraw: Int64
             let max_withdraw: Int64
             
-            switch value.currency {
-            case .stars:
-                min_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("stars_revenue_withdrawal_min", orElse: 1000)
-                max_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("stars_revenue_withdrawal_max", orElse: 10_000_000)
-            case .ton:
-                min_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("ton_revenue_withdrawal_min", orElse: 1 * 1_000_000_000)
-                max_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("ton_revenue_withdrawal_max", orElse: 100000 * 1_000_000_000)
-            }
+            min_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("stars_revenue_withdrawal_min", orElse: 1000)
+            max_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("stars_revenue_withdrawal_max", orElse: 10_000_000)
             
             
 
-            switch value.currency {
-            case .stars:
-                if value.amount.value < min_withdraw {
-                    attr.append(string: replacingLegacyCurrencyStar(in: strings().fragmentStarsMinWithdraw(Int(min_withdraw)), with: strings().starListTelegramStars), color: theme.colors.text, font: .medium(.text))
-                } else {
-                    attr.append(string: replacingLegacyCurrencyStar(in: strings().fragmentStarsMaxWithdraw(Int(max_withdraw)), with: strings().starListTelegramStars), color: theme.colors.text, font: .medium(.text))
-                }
-            case .ton:
-                if value.amount.value < min_withdraw {
-                    attr.append(string: strings().fragmentTonMinWithdraw(Int(Double(min_withdraw) / 1_000_000_000)), color: theme.colors.text, font: .medium(.text))
-                } else {
-                    attr.append(string: strings().fragmentTonMaxWithdraw(Int(Double(max_withdraw) / 1_000_000_000)), color: theme.colors.text, font: .medium(.text))
-                }
+            if value.amount.value < min_withdraw {
+                attr.append(string: replacingLegacyCurrencyStar(in: strings().fragmentStarsMinWithdraw(Int(min_withdraw)), with: strings().starListTelegramStars), color: theme.colors.text, font: .medium(.text))
+            } else {
+                attr.append(string: replacingLegacyCurrencyStar(in: strings().fragmentStarsMaxWithdraw(Int(max_withdraw)), with: strings().starListTelegramStars), color: theme.colors.text, font: .medium(.text))
             }
             
             attr.detectBoldColorInString(with: .medium(.text))
@@ -710,12 +689,7 @@ private final class WithdrawInputView : GeneralRowView {
             
             let iconAttr = NSMutableAttributedString()
             iconAttr.append(string: clown, color: theme.colors.text, font: .medium(.text))
-            switch value.currency {
-            case .stars:
-                iconAttr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
-            case .ton:
-                iconAttr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.ton_logo.file, color: theme.colors.accent), for: clown)
-            }
+            iconAttr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
             
             let iconLayout = TextViewLayout(iconAttr)
             iconLayout.measure(width: frame.width - 70)
@@ -761,12 +735,7 @@ private final class WithdrawInputView : GeneralRowView {
             
             let attr = NSMutableAttributedString()
             attr.append(string: clown)
-            switch item.balance.currency {
-            case .stars:
-                attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
-            case .ton:
-                attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.ton_logo.file, color: theme.colors.accent), for: clown)
-            }
+            attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
             
             let layout = TextViewLayout(attr)
             layout.measure(width: .greatestFiniteMagnitude)
@@ -774,7 +743,7 @@ private final class WithdrawInputView : GeneralRowView {
             self.starView.set(text: layout, context: item.arguments.context)
 
             
-            inputView.placeholder = item.balance.currency == .ton ? strings().voiceOverCommonTonAmount : strings().fragmentStarAmountPlaceholder
+            inputView.placeholder = strings().fragmentStarAmountPlaceholder
             
             inputView.context = item.arguments.context
             inputView.interactions.max_height = 500
@@ -788,24 +757,13 @@ private final class WithdrawInputView : GeneralRowView {
             item.interactions.canTransform = false
             
             let value: Int64
-            switch item.balance.currency {
-            case .stars:
-                value = Int64(item.inputState.string) ?? 0
-            case .ton:
-                value = (Int64(item.inputState.string) ?? 0) * 1_000_000_000
-            }
+            value = Int64(item.inputState.string) ?? 0
             
             let min_withdraw: Int64
             let max_withdraw: Int64
             
-            switch item.balance.currency {
-            case .stars:
-                min_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("stars_revenue_withdrawal_min", orElse: 1000)
-                max_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("stars_revenue_withdrawal_max", orElse: 10_000_000)
-            case .ton:
-                min_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("ton_revenue_withdrawal_min", orElse: 1 * 1_000_000_000)
-                max_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("ton_revenue_withdrawal_max", orElse: 100000 * 1_000_000_000)
-            }
+            min_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("stars_revenue_withdrawal_min", orElse: 1000)
+            max_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("stars_revenue_withdrawal_max", orElse: 10_000_000)
             
             inputView.inputTheme = inputView.inputTheme.withUpdatedTextColor(value < min_withdraw || value > max_withdraw || value > item.balance.amount.value ? theme.colors.redUI : theme.colors.text)
             
@@ -886,22 +844,11 @@ private final class WithdrawInputView : GeneralRowView {
         let min_withdraw: Int64
         let max_withdraw: Int64
         
-        switch item.balance.currency {
-        case .stars:
-            min_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("stars_revenue_withdrawal_min", orElse: 1000)
-            max_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("stars_revenue_withdrawal_max", orElse: 10_000_000)
-        case .ton:
-            min_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("ton_revenue_withdrawal_min", orElse: 1 * 1_000_000_000)
-            max_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("ton_revenue_withdrawal_max", orElse: 100000 * 1_000_000_000)
-        }
+        min_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("stars_revenue_withdrawal_min", orElse: 1000)
+        max_withdraw = item.arguments.context.appConfiguration.getGeneralValue64("stars_revenue_withdrawal_max", orElse: 10_000_000)
         
         let value: Int64
-        switch item.balance.currency {
-        case .stars:
-            value = Int64(item.inputState.string) ?? 0
-        case .ton:
-            value = (Int64(item.inputState.string) ?? 0) * 1_000_000_000
-        }
+        value = Int64(item.inputState.string) ?? 0
                 
         if value < min_withdraw || value > max_withdraw {
             if let acceptView {
@@ -980,11 +927,7 @@ private let _id_input = InputDataIdentifier("_id_input")
 private func withdrawBalanceText(_ balance: CurrencyAmount) -> NSAttributedString {
     let attr = NSMutableAttributedString()
     attr.append(string: strings().starPurchaseBalance("\(clown + TINY_SPACE)\(balance.formatted)"), color: theme.colors.text, font: .normal(.text))
-    if balance.currency == .ton {
-        attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.ton_logo.file, color: theme.colors.accent), for: clown)
-    } else {
-        attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
-    }
+    attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
     return attr
 }
 
@@ -1063,10 +1006,7 @@ private func withdraw(context: any AccountContextProtocol, state: State, stateVa
     
     controller.validateData = { _ in
         
-        if var value = Int64(interactions.presentation.string) {
-            if state.ton {
-                value = value * 1_000_000_000
-            }
+        if let value = Int64(interactions.presentation.string), value > 0 {
             if state.balance.stars.value < value {
                 return .fail(.fields([_id_input : .shake]))
             }
@@ -1100,8 +1040,8 @@ private func withdraw(context: any AccountContextProtocol, state: State, stateVa
 
 
 
-public func withdrawStarBalance(context: any AccountContextProtocol, stars: StarsContext, state: StarsContext.State, ton: Bool = false, callback:@escaping(Int64)->Void = { _ in }) -> InputDataModalController {
-    let initialState = State(ton: ton, config_withdraw: context.appConfiguration.getBoolValue("bot_revenue_withdrawal_enabled", orElse: true), balance: .init(stars: state.balance, usdRate: state.usdRate))
+public func withdrawStarBalance(context: any AccountContextProtocol, stars: StarsContext, state: StarsContext.State, callback:@escaping(Int64)->Void = { _ in }) -> InputDataModalController {
+    let initialState = State(config_withdraw: context.appConfiguration.getBoolValue("bot_revenue_withdrawal_enabled", orElse: true), balance: .init(stars: state.balance, usdRate: state.usdRate))
 
     let statePromise = ValuePromise(initialState, ignoreRepeated: true)
     let stateValue = Atomic(value: initialState)

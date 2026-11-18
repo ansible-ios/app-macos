@@ -107,8 +107,6 @@ func installChatUIHooks() {
         return CodeSyntaxKey(messageId: messageId, range: range, language: language, theme: theme as! SyntaxterTheme)
     }, highlightCodeSyntax: { code, language, theme in
         return CodeSyntax.syntax(code: code, language: language, theme: theme as! SyntaxterTheme)
-    }, makeDiceRollController: { context, chatInteraction in
-        return DiceRollController(context: context.concrete, interactions: chatInteraction)
     }, editForumTopic: { peerId, data, threadId, context in
         ForumUI.editTopic(peerId, data: data, threadId: threadId, context: context.concrete)
     }, openForum: { peerId, addition, context in
@@ -219,17 +217,6 @@ func installChatUIHooks() {
 
 private func makeChatNavigationHooks() -> ChatNavigationHooks {
     var hooks = ChatNavigationHooks()
-    hooks.widgetWalletAvailable = { context in
-        guard #available(macOS 10.15, *), let context = context as? AccountContext else { return false }
-        return widgetWalletAvailable(context)
-    }
-    hooks.openWidgetWallet = { context, message, call, complete in
-        guard #available(macOS 10.15, *), let context = context as? AccountContext else { complete(.failure(.notAllowed)); return }
-        openWidgetWallet(context: context, message: message, call: call, complete: complete)
-    }
-    hooks.showAddTonBalance = { context, amount, window in
-        showModal(with: AddTonBalanceController(context: context, tonAmount: amount), for: window)
-    }
     hooks.makeCalendarModal = { context, peerId, threadId, current, select in
         if threadId != nil || peerId.namespace == Namespaces.Peer.SecretChat {
             return PlainCalendarModalController(window: context.window, current: current, select: select)

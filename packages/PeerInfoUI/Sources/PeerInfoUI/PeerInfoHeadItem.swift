@@ -126,16 +126,6 @@ private func actionItems<Context: AccountContextProtocol>(item: PeerInfoHeadItem
                     }))
                 }
             }
-            if #available(macOS 10.15, *), item.context.appConfiguration.getBoolValue("wallet_available", orElse: false), item.peerView.peerId.namespace == Namespaces.Peer.CloudUser,
-               peer.id != item.context.peerId, !peer.isDeleted, peer.botInfo == nil, !peer.flags.contains(.isSupport) {
-                let context = item.context
-                items.append(ActionItem(text: strings().peerInfoHeadItemSendMoney, color: item.accentColor, image: theme.icons.profile_share, animation: .menu_gram, action: {
-                    guard PeerInfoUIHooks.shared.walletHooks.hasWallet(context) else {
-                        return
-                    }
-                    PeerInfoUIHooks.shared.walletHooks.sendMoneyObserved(context, peer, analyticsContext: arguments.captureAnalyticsContext())
-                }))
-            }
             if !(item.peerView.peers[item.peerView.peerId] is TelegramSecretChat), let cachedData = item.peerView.cachedData as? CachedUserData {
                 let copyProtectionEnabled = cachedData.flags.contains(.myCopyProtectionEnabled)
                 items.append(ActionItem(text: copyProtectionEnabled ? strings().peerInfoCopyProtectionEnableSharing : strings().peerInfoCopyProtectionDisableSharing, color: item.accentColor, image: theme.icons.profile_share, animation: copyProtectionEnabled ? .menu_enable_sharing :  .menu_disable_sharing, action: {
@@ -831,13 +821,7 @@ class PeerInfoHeadItem<Context: AccountContextProtocol>: GeneralRowItem {
             self.musicFile = nil
         }
 
-        if #available(macOS 10.15, *), !editing, threadId == nil, peer is TelegramUser, peerView.peerId.namespace == Namespaces.Peer.CloudUser,
-           let walletHooks = PeerInfoUIHooks.shared.wallet as? PeerInfoWalletHooks, walletHooks.hasWallet(context),
-           let walletCard = (peerView.cachedData as? CachedUserData)?.walletCard, walletCard.balance >= 100_000_000 {
-            self.walletBalance = walletCard.balance
-        } else {
-            self.walletBalance = nil
-        }
+        self.walletBalance = nil
         
         self.rating = (peerView.cachedData as? CachedUserData)?.starRating
         
@@ -997,9 +981,6 @@ class PeerInfoHeadItem<Context: AccountContextProtocol>: GeneralRowItem {
     }
 
     func openWalletBalance(morphSource: (() -> NSView?)? = nil) {
-        if #available(macOS 10.15, *), let peer {
-            PeerInfoUIHooks.shared.walletHooks.showPeerBalanceObserved(context, peer, morphSource, analyticsContext: arguments.captureAnalyticsContext())
-        }
     }
     
     var colorfulProfile: Bool {
@@ -2822,10 +2803,6 @@ private final class PeerInfoHeadView<Context: AccountContextProtocol> : GeneralC
         }
 
         if let walletBalance = item.walletBalance, !item.editing {
-            if #available(macOS 10.15, *), let card = (item.peerView.cachedData as? CachedUserData)?.walletCard, card != self.preloadedWalletCard {
-                self.preloadedWalletCard = card
-                PeerInfoUIHooks.shared.walletHooks.preloadPeerCard(item.context, card)
-            }
             let current: PeerInfoBalanceView
             if let view = self.balanceView {
                 current = view

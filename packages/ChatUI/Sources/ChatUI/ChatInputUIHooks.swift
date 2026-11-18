@@ -35,37 +35,6 @@ public enum ChatInputStickerPackPreviewSource : Hashable {
     case emoji(StickerPackReference)
 }
 
-@available(macOS 10.15, *)
-public struct ChatInputWalletHooks {
-    public var normalizeTransferAddress: (String) -> String? = { _ in nil }
-    public let walletContext: (any AccountContextProtocol) -> (any ChatWalletContext)?
-    public let makeWalletSendController: (any AccountContextProtocol, any ChatWalletContext, ChatWalletSendRecipient, ChatWalletSendHandlers) -> ModalViewController
-
-    public var makeWalletSendControllerWithContext: ((any AccountContextProtocol, any ChatWalletContext, ChatWalletSendRecipient, ChatWalletSendHandlers, AnalyticsContext) -> ModalViewController)?
-
-    public func makeWalletSendControllerObserved(_ context: any AccountContextProtocol, _ walletContext: any ChatWalletContext, _ recipient: ChatWalletSendRecipient, _ handlers: ChatWalletSendHandlers, analyticsContext: AnalyticsContext) -> ModalViewController {
-        let presentation = analyticsContext.beginPresentation()
-        let controller: ModalViewController
-        if let makeWalletSendControllerWithContext {
-            controller = makeWalletSendControllerWithContext(context, walletContext, recipient, handlers, analyticsContext)
-        } else {
-            controller = makeWalletSendController(context, walletContext, recipient, handlers)
-        }
-        controller.analyticsContext = analyticsContext
-        let onDeinit = controller.onDeinit
-        controller.onDeinit = {
-            onDeinit?()
-            presentation.end()
-        }
-        return controller
-    }
-
-    public init(walletContext: @escaping (any AccountContextProtocol) -> (any ChatWalletContext)?,
-                makeWalletSendController: @escaping (any AccountContextProtocol, any ChatWalletContext, ChatWalletSendRecipient, ChatWalletSendHandlers) -> ModalViewController) {
-        self.walletContext = walletContext
-        self.makeWalletSendController = makeWalletSendController
-    }
-}
 
 public struct ChatInputUIHooks {
     public let makeEntertainmentsPopover: (ChatInteraction) -> ViewController
@@ -120,7 +89,6 @@ public struct ChatInputUIHooks {
             return makeRichTranslateModal(context, from, toLang, text, entities, blocks, guarded(unresolved))
         }
     }
-    public let wallet: Any?
     public let getAudioPlayer: ((any AccountContextProtocol)?) -> APController?
     public let makeStickerPackPreview: (any AccountContextProtocol, PeerId?, [ChatInputStickerPackPreviewSource]) -> ModalViewController
     public let resolveInAppLink: (Any?) -> ChatInputInAppLink?
@@ -168,7 +136,6 @@ public struct ChatInputUIHooks {
                 makeForwardMessagesModal: @escaping (any AccountContextProtocol, [Message]) -> ModalViewController,
                 makeTranslateModal: @escaping (any AccountContextProtocol, String?, String, ChatTextInputState, @escaping (NSAttributedString) -> Void, @escaping (NSAttributedString) -> Void) -> ModalViewController,
                 makeRichTranslateModal: @escaping (any AccountContextProtocol, String?, String, String, [MessageTextEntity], [Block], @escaping ([Block]) -> Void) -> ModalViewController,
-                wallet: Any?,
                 getAudioPlayer: @escaping ((any AccountContextProtocol)?) -> APController?,
                 makeStickerPackPreview: @escaping (any AccountContextProtocol, PeerId?, [ChatInputStickerPackPreviewSource]) -> ModalViewController,
                 resolveInAppLink: @escaping (Any?) -> ChatInputInAppLink?,
@@ -185,7 +152,6 @@ public struct ChatInputUIHooks {
         self.makeForwardMessagesModal = makeForwardMessagesModal
         self.makeTranslateModal = makeTranslateModal
         self.makeRichTranslateModal = makeRichTranslateModal
-        self.wallet = wallet
         self.getAudioPlayer = getAudioPlayer
         self.makeStickerPackPreview = makeStickerPackPreview
         self.resolveInAppLink = resolveInAppLink
@@ -196,10 +162,6 @@ public struct ChatInputUIHooks {
         self.isEntertainmentSidebarVisible = isEntertainmentSidebarVisible
     }
 
-    @available(macOS 10.15, *)
-    public var walletHooks: ChatInputWalletHooks {
-        return wallet as! ChatInputWalletHooks
-    }
 
     private static var _shared: ChatInputUIHooks?
 
@@ -236,7 +198,7 @@ public struct ChatInputUIHooks {
         ModalViewController()
     }, makeRichTranslateModal: { _, _, _, _, _, _, _ in
         ModalViewController()
-    }, wallet: nil, getAudioPlayer: { _ in
+    }, getAudioPlayer: { _ in
         nil
     }, makeStickerPackPreview: { _, _, _ in
         ModalViewController()

@@ -31,7 +31,6 @@
 @_exported import PasscodeUI
 @_exported import MediaRecorderUI
 @_exported import DustLayer
-@_exported import WalletUI
 @_exported import InstantPageUI
 @_exported import PaymentsUI
 @_exported import CalendarUI
@@ -78,7 +77,6 @@
 @_exported import EditTagLabelUI
 @_exported import VerifyAgeUI
 @_exported import GigagroupUI
-@_exported import AddTonBalanceUI
 @_exported import StatisticsUI
 @_exported import DataUsageUI
 @_exported import PollResultsUI

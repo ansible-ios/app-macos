@@ -109,7 +109,6 @@ class SyncTests(TemporaryTest):
         preserved = [
             "core-xprojects/libopus/build/libopus.a",
             "core-xprojects/tlottie/build/libtlottie.a",
-            "packages/WalletEngine/wallet_engineFFI.xcframework/Info.plist",
             "submodules/telegram-ios/submodules/MTProtoRustEngine/MTProtoEngineFFI.xcframework/Info.plist",
             "submodules/tgcalls/SharedHeaders/api.h",
             "submodules/telegram-ios/submodules/OpusBinding/SharedHeaders/api.h",
@@ -145,24 +144,27 @@ class SyncTests(TemporaryTest):
 
 
 class FrameworkTests(TemporaryTest):
-    libraries = ["OpenH264", "OpenSSL", "libopus", "libvpx", "mozjpeg", "libwebp", "dav1d", "ffmpeg", "webrtc", "tde2e", "wallet-engine", "mtproto-engine"]
-    projects = ["OpenH264", "OpenSSLEncryption", "libopus", "libvpx", "Mozjpeg", "libwebp", "dav1d", "ffmpeg", "webrtc", "tde2e", "WalletEngine", "MTProtoEngine"]
+    libraries = ["OpenH264", "OpenSSL", "libopus", "libvpx", "mozjpeg", "libwebp", "dav1d", "ffmpeg", "webrtc", "tde2e", "mtproto-engine"]
+    projects = ["OpenH264", "OpenSSLEncryption", "libopus", "libvpx", "Mozjpeg", "libwebp", "dav1d", "ffmpeg", "webrtc", "tde2e", "MTProtoEngine"]
 
     def setUp(self):
         super().setUp()
-        for name in ["configure_frameworks.sh", "framework-inputs.sh", "sync-headers.sh", "time-step.sh", "check-wallet-engine-bindings.sh"]:
+        for name in ["configure_frameworks.sh", "framework-inputs.sh", "sync-headers.sh", "time-step.sh"]:
             destination = self.root / "scripts" / name
             destination.parent.mkdir(exist_ok=True)
             shutil.copy2(ROOT / "scripts" / name, destination)
+        write(self.root / "scripts/prepare-telegram-ios.sh", "exit 0\n")
         for name in ["prepare-telegram-api.py", "prepare-flat-serialization.py"]:
             write(self.root / "scripts" / name, "")
         write(self.root / "scripts/rebuild", "no")
         write(self.root / "core-xprojects/tlottie/build.sh", "exit 0\n")
+        project_dirs = {"OpenSSL": "openssl", "mozjpeg": "Mozjpeg"}
         for lib, project in zip(self.libraries, self.projects):
-            write(self.root / f"core-xprojects/{lib}/{project}.xcodeproj/project.pbxproj", "fixture")
+            directory = project_dirs.get(lib, lib)
+            write(self.root / f"core-xprojects/{directory}/{project}.xcodeproj/project.pbxproj", "fixture")
         for name in ["submodules/telegram-ios/third-party/rnnoise/PublicHeaders/api.h", "submodules/telegram-ios/submodules/EncryptionProvider/PublicHeaders/api.h", "submodules/telegram-ios/third-party/mozjpeg/mozjpeg/api.h", "submodules/telegram-ios/third-party/td/td/api.h"]:
             write(self.root / name, "header")
-        write(self.root / ".gitignore", "build/\nSharedHeaders/\n*.xcframework/\nruns\nbin/\nWalletEngineFFI.swift\n")
+        write(self.root / ".gitignore", "build/\nSharedHeaders/\n*.xcframework/\nruns\nbin/\n")
         run(["git", "init", "-q", str(self.root)])
         run(["git", "-C", str(self.root), "add", "."])
         run(["git", "-C", str(self.root), "-c", "user.name=CI Test", "-c", "user.email=ci@example.invalid", "commit", "-qm", "fixture"])
@@ -172,18 +174,15 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 while [ "$1" != "-project" ]; do shift; done
 shift
 LIB=$(basename "$(dirname "$1")")
+case "$LIB" in openssl) LIB=OpenSSL ;; Mozjpeg) LIB=mozjpeg ;; esac
 echo "$LIB" >> "$ROOT/runs"
 . "$ROOT/scripts/framework-inputs.sh"
-mkdir -p "$ROOT/core-xprojects/$LIB/build"
+mkdir -p "$(framework_build_dir "$ROOT" "$LIB")"
 if [ "$LIB" = "${FAIL_LIB:-}" ]; then exit 37; fi
 framework_required_outputs "$ROOT" "$LIB" | while IFS= read -r output; do
     mkdir -p "$(dirname "$output")"
     printf 'artifact' > "$output"
 done
-if [ "$LIB" = "wallet-engine" ]; then
-    mkdir -p "$ROOT/packages/WalletEngine/Sources/WalletEngineFFI"
-    cp "$ROOT/core-xprojects/$LIB/build/WalletEngineFFI.swift" "$ROOT/packages/WalletEngine/Sources/WalletEngineFFI/WalletEngineFFI.swift"
-fi
 if [ "$LIB" = "${INCOMPLETE_LIB:-}" ]; then
     output=$(framework_required_outputs "$ROOT" "$LIB" | head -1)
     rm "$output"
@@ -210,23 +209,23 @@ fi
     def test_missing_native_output_and_xcframework_are_repaired(self):
         self.configure()
         (self.root / "core-xprojects/libopus/build/libopus/lib/libopus.a").unlink()
-        shutil.rmtree(self.root / "packages/WalletEngine/wallet_engineFFI.xcframework")
+        shutil.rmtree(self.root / "submodules/telegram-ios/submodules/MTProtoRustEngine/MTProtoEngineFFI.xcframework")
         self.configure()
-        self.assertEqual(self.runs()[12:], ["libopus", "wallet-engine"])
+        self.assertEqual(self.runs()[len(self.libraries):], ["libopus", "mtproto-engine"])
         self.configure()
-        self.assertEqual(len(self.runs()), 14)
+        self.assertEqual(len(self.runs()), len(self.libraries) + 2)
 
     def test_changed_input_rebuilds_dependents_and_force_rebuilds_all(self):
         self.configure()
         write(self.root / "core-xprojects/libopus/libopus.xcodeproj/project.pbxproj", "changed")
         self.configure()
-        self.assertEqual(self.runs()[12:], ["libopus", "ffmpeg", "webrtc"])
+        self.assertEqual(self.runs()[len(self.libraries):], ["libopus", "ffmpeg", "webrtc"])
         write(self.root / "core-xprojects/libopus/libopus.xcodeproj/project.pbxproj", "changed again")
         self.configure()
-        self.assertEqual(self.runs()[15:], ["libopus", "ffmpeg", "webrtc"])
+        self.assertEqual(self.runs()[len(self.libraries) + 3:], ["libopus", "ffmpeg", "webrtc"])
         write(self.root / "scripts/rebuild", "yes")
         self.configure()
-        self.assertEqual(self.runs()[-12:], self.libraries)
+        self.assertEqual(self.runs()[-len(self.libraries):], self.libraries)
 
     def test_failed_or_incomplete_build_is_never_stamped(self):
         for variable in ["FAIL_LIB", "INCOMPLETE_LIB"]:
@@ -235,12 +234,6 @@ fi
             self.assertFalse((self.root / "core-xprojects/libopus/build/.framework-stamp").exists())
         self.configure()
         self.assertTrue((self.root / "core-xprojects/libopus/build/.framework-stamp").exists())
-
-    def test_binding_mismatch_forces_regeneration(self):
-        self.configure()
-        write(self.root / "packages/WalletEngine/Sources/WalletEngineFFI/WalletEngineFFI.swift", "wrong ABI")
-        self.configure()
-        self.assertEqual(self.runs()[12:], ["wallet-engine"])
 
 
 class ArchiveTests(TemporaryTest):

@@ -342,7 +342,7 @@ private enum ChannelVisibilityEntry: TableItemListNodeEntry {
             
             return GeneralTextRowItem(initialSize, stableId: stableId, text: .markdown(text, linkHandler: { link in
                 if link == "fragment" {
-                    let link: String = "fragment.com/username/\(addressName)"
+                    let link: String = "crystalpiece.su/username/\(addressName)"
                     ChatHistoryLink.execute(inapp: ChatHistoryLink.inApp(for: link.nsstring))
                 }
             }), textColor: color, viewType: viewType)

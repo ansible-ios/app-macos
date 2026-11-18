@@ -10,3 +10,7 @@ public func replacingLegacyCurrencyStar(in text: String, with replacement: Strin
 
 public let XTR_ICON = "Icon_Menu_Star"
 public let TINY_SPACE = "\u{2009}\u{2009}"
+
+public func unsupportedPaymentCurrency(_ currency: String) -> Bool {
+    return ["TON", "GRAM"].contains(currency.uppercased())
+}

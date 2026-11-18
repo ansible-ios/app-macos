@@ -54,7 +54,6 @@ public struct StarsHooks {
     public let makeCraftAboutFeatureItem: (NSSize, AnyHashable, [GiftCraftFeature]) -> TableRowItem
     public let makeCraftingAreaItem: (NSSize, AnyHashable, GiftCraftingAreaData) -> TableRowItem
     public let makeAvatarMenuItem: (any AccountContextProtocol, Peer) -> ContextMenuItem?
-    public let openTonBalance: (any AccountContextProtocol, Int64?) -> Void
     public let giftTransferBlockchainOption: (any AccountContextProtocol, Window, StarGift.UniqueGift, StarGiftReference, ProfileGiftsContext) -> (title: String, icon: NSImage, action: () -> Void)?
     public let giftMoveToGiftsAction: (any AccountContextProtocol, Window, StarGift.UniqueGift) -> (() -> Void)?
     public var giftTransferBlockchainOptionWithContext: ((any AccountContextProtocol, Window, StarGift.UniqueGift, StarGiftReference, ProfileGiftsContext, AnalyticsContext) -> (title: String, icon: NSImage, action: () -> Void)?)?
@@ -103,7 +102,6 @@ public struct StarsHooks {
                 inputTextViewSize: @escaping (NSView, CGFloat) -> (NSSize, CGFloat),
                 openMiniApp: @escaping (any AccountContextProtocol, EnginePeer) -> Void,
                 makeAvatarMenuItem: @escaping (any AccountContextProtocol, Peer) -> ContextMenuItem?,
-                openTonBalance: @escaping (any AccountContextProtocol, Int64?) -> Void,
                 giftTransferBlockchainOption: @escaping (any AccountContextProtocol, Window, StarGift.UniqueGift, StarGiftReference, ProfileGiftsContext) -> (title: String, icon: NSImage, action: () -> Void)?,
                 giftMoveToGiftsAction: @escaping (any AccountContextProtocol, Window, StarGift.UniqueGift) -> (() -> Void)?,
                 selectContact: @escaping (any AccountContextProtocol, Window, String, @escaping ([PeerId]) -> Signal<Bool, NoError>) -> Signal<[PeerId], NoError>,
@@ -142,7 +140,6 @@ public struct StarsHooks {
         self.makeCraftAboutFeatureItem = makeCraftAboutFeatureItem
         self.makeCraftingAreaItem = makeCraftingAreaItem
         self.makeAvatarMenuItem = makeAvatarMenuItem
-        self.openTonBalance = openTonBalance
         self.giftTransferBlockchainOption = giftTransferBlockchainOption
         self.giftMoveToGiftsAction = giftMoveToGiftsAction
         self.selectContact = selectContact

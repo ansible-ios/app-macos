@@ -12,7 +12,6 @@ import FetchManager
 #if !SHARE
 import InAppPurchaseManager
 import CurrencyFormat
-import WalletContext
 import HTMLBubbles
 #endif
 import ApiCredentials
@@ -231,12 +230,6 @@ final class AccountContext {
     let networkStatusManager: NetworkStatusManager
     lazy var inAppPurchaseManager: any InAppPurchaseManagerProtocol = InAppPurchaseManager(engine: self.engine)
     let starsContext: StarsContext
-    let tonContext: StarsContext
-    private let walletContextStorage: Any?
-    @available(macOS 10.15, *)
-    var walletContext: WalletContext? {
-        return walletContextStorage as? WalletContext
-    }
     lazy var giftAuctionsManager: GiftAuctionsManager = GiftAuctionsManager(account: self.account)
     let starsSubscriptionsContext: StarsSubscriptionsContext
     let captureExclusionManager = CaptureExclusionManager()
@@ -252,14 +245,6 @@ final class AccountContext {
         return self._countriesConfiguration.get()
     }
     
-    func currencyContext(_ currency: CurrencyAmount.Currency) -> StarsContext {
-        switch currency {
-        case .stars:
-            return starsContext
-        case .ton:
-            return tonContext
-        }
-    }
 
     #endif
     private(set) var timeDifference:TimeInterval  = 0
@@ -552,47 +537,8 @@ final class AccountContext {
         self.reactions = Reactions(engine)
         self.dockControl = DockControl(engine, accountManager: sharedContext.accountManager)
         self.starsContext = engine.payments.peerStarsContext()
-        self.tonContext = engine.payments.peerTonContext()
         self.starsSubscriptionsContext = engine.payments.peerStarsSubscriptionsContext(starsContext: self.starsContext)
 
-        if #available(macOS 10.15, *), !isSupport && !isExternal {
-            let accountIsCurrent = sharedContext.activeAccounts
-            |> map { primary, _, _ in
-                return primary?.id == account.id
-            }
-            |> distinctUntilChanged
-            let networkAvailable = account.networkState
-            |> map { state -> Bool in
-                if case .waitingForNetwork = state {
-                    return false
-                } else {
-                    return true
-                }
-            }
-            |> distinctUntilChanged
-            let environment = account.testingEnvironment ? "test" : "production"
-            self.walletContextStorage = WalletContext(
-                engine: self.engine,
-                storageNamespace: "telegram.\(environment).\(UInt64(bitPattern: account.peerId.toInt64()))",
-                applicationInForeground: AccountContext.applicationIsVisible(),
-                accountIsCurrent: accountIsCurrent,
-                networkAvailable: networkAvailable,
-                applicationIsPasscodeLocked: (NSApp.delegate as? AppDelegate)?.isPasscodeLocked ?? .single(false),
-                log: { message in
-                    Logger.shared.log("WalletContext", message)
-                    #if DEBUG
-                    print("[Wallet] \(message)")
-                    #endif
-                }
-            )
-        } else {
-            self.walletContextStorage = nil
-        }
-        if #available(macOS 10.15, *), let walletContext = self.walletContext {
-            walletContext.setAuthorizationPresenter { [weak self] request in
-                return try await requestWalletPasscodeAuthorization(context: self, request: request)
-            }
-        }
 
         self.reactions.checkStarsAmount = { [weak self] amount, peerId in
             if let self {
