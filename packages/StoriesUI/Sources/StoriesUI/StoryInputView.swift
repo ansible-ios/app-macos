@@ -419,8 +419,8 @@ final class StoryReplyActionButton : View {
                             ctx.round(size, size.height / 2)
                             ctx.setFillColor((hasPending ? NSColor(0xFFAC04) : bgColor).cgColor)
                             ctx.fill(size.bounds)
-                            let star = AnsibleThemeHooks.shared.image(.iconPeerPremium).precomposed(.white)
-                            ctx.draw(star, in: size.bounds.focus(star.backingSize))
+                            let diamond = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
+                            ctx.draw(diamond, in: size.bounds.focus(diamond.backingSize))
                         })!
                         
                         let myStars = generateStarsTextIcon(text: "\(value.prettyNumber)", bgColor: hasPending ? NSColor(0xFFAC04) : bgColor, textColor: .white, fontSize: .text, round: true, small: true)
@@ -466,8 +466,8 @@ final class StoryReplyActionButton : View {
                             ctx.round(size, size.height / 2)
                             ctx.setFillColor(bgColor.cgColor)
                             ctx.fill(size.bounds)
-                            let star = AnsibleThemeHooks.shared.image(.iconPeerPremium).precomposed(.white)
-                            ctx.draw(star, in: size.bounds.focus(star.backingSize))
+                            let diamond = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
+                            ctx.draw(diamond, in: size.bounds.focus(diamond.backingSize))
                         })!
                     }
                     current.set(image: badge, for: .Normal)
