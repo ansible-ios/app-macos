@@ -108,10 +108,12 @@ public enum TelegramThemeImage {
     case iconStarTransactionPreviewAndroid
     case iconStarTransactionPreviewAppStore
     case iconStarTransactionPreviewFragment
+    case iconStarTransactionPreviewAds
     case iconStarTransactionPreviewPremiumBot
     case iconStarTransactionPreviewUnknown
     case iconStarTransactionRowAndroid
     case iconStarTransactionRowFragment
+    case iconStarTransactionRowAds
     case iconStarTransactionRowPaidBroadcast
     case iconStarTransactionRowPremiumBot
     case iconStarTransactionRowStars

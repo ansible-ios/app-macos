@@ -940,7 +940,7 @@ private final class HeaderView : GeneralContainableRowView {
             case .unsupported:
                 current.image = TelegramThemeHooks.shared.image(.iconStarTransactionPreviewUnknown).precomposed()
             case .ads:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionPreviewFragment).precomposed()
+                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionPreviewAds).precomposed()
             case .apiLimitExtension:
                 current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowPaidBroadcast).precomposed()
             }

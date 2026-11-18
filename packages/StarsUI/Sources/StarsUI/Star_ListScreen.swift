@@ -111,6 +111,12 @@ private func transactionSegments(_ transactionMode: State.TransactionMode) -> [S
     return items
 }
 
+private extension StarsAmount {
+    var diamondBalanceText: String {
+        return nanos == 0 ? value.formattedWithSeparator : stringValue
+    }
+}
+
 private final class FloatingHeaderView : Control {
     private let blurView = EdgeEffectView()
     private let textView = TextView()
@@ -186,7 +192,7 @@ private final class FloatingHeaderView : Control {
     public func update(myBalance: StarsAmount, context: (any AccountContextProtocol)) {
         
         let balance = NSMutableAttributedString()
-        balance.append(string: strings().starListMyBalance(clown + TINY_SPACE, myBalance.value.formattedWithSeparator), color: theme.colors.text, font: .normal(.text))
+        balance.append(string: strings().starListMyBalance(clown + TINY_SPACE, currency == .stars ? myBalance.diamondBalanceText : myBalance.value.formattedWithSeparator), color: theme.colors.text, font: .normal(.text))
         balance.detectBoldColorInString(with: .medium(.text))
         switch currency {
         case .ton:
@@ -249,7 +255,7 @@ private final class BalanceItem : GeneralRowItem {
         let attr = NSMutableAttributedString()
         switch currency {
         case .stars:
-            attr.append(string: myBalance.value.formattedWithSeparator, color: theme.colors.text, font: .medium(40))
+            attr.append(string: myBalance.diamondBalanceText, color: theme.colors.text, font: .medium(40))
         case .ton:
             attr.append(string: formatCurrencyAmount(myBalance.value, currency: TON).prettyCurrencyNumberUsd, color: theme.colors.text, font: .medium(40))
         }
@@ -313,7 +319,7 @@ private final class BalanceItem : GeneralRowItem {
     override var accessibilityValue: String? {
         switch currency {
         case .stars:
-            return "\(myBalanceLayout.attributedString.string) \(strings().voiceOverCommonStars)"
+            return "\(myBalanceLayout.attributedString.string) \(strings().starListTelegramStars)"
         case .ton:
             return "\(myBalanceLayout.attributedString.string) TON, \(infoLayout.attributedString.string)"
         }
@@ -716,14 +722,14 @@ private final class Star_Item : GeneralRowItem {
     fileprivate let price: TextViewLayout
     fileprivate let textLayout: TextViewLayout
     
-    fileprivate let starsCount: Int64
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: (any AccountContextProtocol), option: State.Option, viewType: GeneralViewType, action:@escaping()->Void) {
+    fileprivate let diamondCount: Int
+    public init(_ initialSize: NSSize, stableId: AnyHashable, context: (any AccountContextProtocol), option: State.Option, diamondCount: Int, viewType: GeneralViewType, action:@escaping()->Void) {
         self.context = context
         self.option = option
         self.price = .init(.initialize(string: option.formattedPrice, color: theme.colors.grayText, font: .normal(.text)))
         self.textLayout = .init(.initialize(string: strings().starListItemCountOther(Int(option.amount)).replacingOccurrences(of: "\(option.amount)", with: option.amount.formattedWithSeparator), color: theme.colors.text, font: .medium(.text)))
         
-        self.starsCount = min(5, (Int64(option.id) ?? 0) + 1)
+        self.diamondCount = diamondCount
         
         super.init(initialSize, stableId: stableId, viewType: viewType, action: action)
         
@@ -812,11 +818,11 @@ private final class Star_ItemView : GeneralContainableRowView {
         textView.update(item.textLayout)
         price.update(item.price)
         
-        while stars.subviews.count > item.starsCount {
+        while stars.subviews.count > item.diamondCount {
             stars.subviews.last?.removeFromSuperview()
         }
         
-        for i in Int64(stars.subviews.count) ..< item.starsCount {
+        for i in stars.subviews.count ..< item.diamondCount {
             if i == 0 {
                 let view = InlineStickerView(account: item.context.account, file: LocalAnimatedSticker.star_currency_new.file, size: NSMakeSize(20, 20))
                 stars.addSubview(view)
@@ -1016,6 +1022,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             
             struct Tuple : Equatable {
                 let option: State.Option
+                let diamondCount: Int
                 let viewType: GeneralViewType
             }
             
@@ -1025,6 +1032,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
 
 
             if var options = state.options {
+                let smallestAmounts = Set(options.map(\.amount)).sorted().prefix(4)
                 
                 switch arguments.source {
                 case let .purchase(_, amount):
@@ -1041,13 +1049,14 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                 
                 for option in options {
                     if revealed || alwaysShow.contains(option.amount) {
-                        tuples.append(.init(option: option, viewType: .singleItem))
+                        let diamondCount = 1 + smallestAmounts.prefix { $0 < option.amount }.count
+                        tuples.append(.init(option: option, diamondCount: diamondCount, viewType: .singleItem))
                     }
                 }
                 
                 for tuple in tuples {
                     entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_option(tuple.option), equatable: .init(tuple), comparable: nil, item: { initialSize, stableId in
-                        return Star_Item(initialSize, stableId: stableId, context: arguments.context, option: tuple.option, viewType: tuple.viewType, action: {
+                        return Star_Item(initialSize, stableId: stableId, context: arguments.context, option: tuple.option, diamondCount: tuple.diamondCount, viewType: tuple.viewType, action: {
                             arguments.buy(tuple.option)
                         })
                     }))

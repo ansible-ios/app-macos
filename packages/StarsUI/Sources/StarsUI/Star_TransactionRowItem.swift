@@ -412,7 +412,7 @@ private final class TransactionView : GeneralContainableRowView {
             case .fragment:
                 current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowFragment).precomposed()
             case .ads:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowFragment).precomposed()
+                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowAds).precomposed()
             case .playmarket:
                 current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowAndroid).precomposed()
             case .peer:
