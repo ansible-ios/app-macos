@@ -1,6 +1,7 @@
 enum StickerPackPreviewModalSource { case install, installGroupEmojiPack, removeGroupEmojiPack }
 enum PackStickerReference { case stickerPack(stickerPack: StickerPackReference, media: TelegramMediaFile), standalone(media: TelegramMediaFile) }
 extension CommonStrings {
+    var unknownError: String { "Unknown error" }
     var messageContextDelete: String { "Delete" }
     var stickerPackAddedTitle: String { "Added" }
     var emojiPackAddedTitle: String { "Added emoji" }
@@ -46,6 +47,7 @@ func makePackActions(context: any AccountContextProtocol, controllerSource: Stic
     let updateState: ((PackState) -> PackState) -> Void = { f in PackMutationProbe.check?(); _ = stateValue.modify(f) }
     let close: (() -> Void)? = { PackMutationProbe.check?(); PackMutationProbe.closes += 1 }
     let onAdd: (() -> Void)? = { PackMutationProbe.check?(); PackMutationProbe.addCallbacks += 1 }
+    let reload = { PackMutationProbe.reloads += 1 }
 __PACK_ITEM_HELPERS__
 __PACK_DELETE_STICKER__
 __PACK_DELETE_SET__
@@ -60,6 +62,7 @@ enum PackMutationProbe {
     static var positions: [Int] = []
     static var sinks: [Subscriber<Void, NoError>] = []
     static var disposals = 0
+    static var reloads = 0
     static var closes = 0
     static var addCallbacks = 0
     static var feedback: [(String, String)] = []
@@ -72,7 +75,7 @@ enum PackMutationProbe {
     static func finish() { for sink in sinks { sink.putNext(()); sink.putCompletion() }; sinks = [] }
     static func reset() {
         check = nil; finish(); confirm = nil; dismiss?(); dismiss = nil
-        calls = []; positions = []; disposals = 0; closes = 0; addCallbacks = 0; feedback = []
+        calls = []; positions = []; disposals = 0; reloads = 0; closes = 0; addCallbacks = 0; feedback = []
     }
 }
 final class PackMutationContextTests: XCTestCase {
@@ -116,18 +119,22 @@ final class PackMutationContextTests: XCTestCase {
     func testDeleteStickerDistinguishesRemainingItemFromLastItem() {
         let actions = actions(origin(.excluded)); expectExcluded()
         actions.deleteSticker(collection(), TelegramMediaFile(fileId: 1))
-        actions.deleteSticker(collection(), TelegramMediaFile(fileId: 2))
+        XCTAssertEqual(PackMutationProbe.reloads, 0)
+        PackMutationProbe.finish()
+        XCTAssertEqual(PackMutationProbe.reloads, 1)
+        let remaining = collection(items: [2])
+        self.actions(origin(.excluded), collections: [remaining]).deleteSticker(remaining, TelegramMediaFile(fileId: 2))
         XCTAssertEqual(PackMutationProbe.calls.map(\.0), ["delete_sticker", "delete_pack"])
-        XCTAssertEqual(PackMutationProbe.calls.map(\.1), [1, 42]); XCTAssertEqual(PackMutationProbe.closes, 1)
-        PackMutationProbe.finish(); XCTAssertFalse(hub.policy.hasExclusions)
+        XCTAssertEqual(PackMutationProbe.calls.map(\.1), [1, 42]); XCTAssertEqual(PackMutationProbe.closes, 0)
+        PackMutationProbe.finish(); XCTAssertEqual(PackMutationProbe.closes, 1); XCTAssertFalse(hub.policy.hasExclusions)
     }
     func testPackDeletionConfirmationSurvivesActionsReleaseAndGuardsLateCommit() {
         var actions: PackActions? = actions(origin(.excluded)); expectExcluded()
         actions?.deletePack(collection()); actions = nil
         XCTAssertTrue(PackMutationProbe.calls.isEmpty); XCTAssertTrue(hub.policy.hasExclusions)
         PackMutationProbe.confirm?(0); PackMutationProbe.dismiss?(); PackMutationProbe.dismiss = nil
-        XCTAssertEqual(PackMutationProbe.calls.map(\.0), ["delete_pack"]); XCTAssertEqual(PackMutationProbe.closes, 1)
-        PackMutationProbe.finish(); PackMutationProbe.confirm = nil; XCTAssertFalse(hub.policy.hasExclusions)
+        XCTAssertEqual(PackMutationProbe.calls.map(\.0), ["delete_pack"]); XCTAssertEqual(PackMutationProbe.closes, 0)
+        PackMutationProbe.finish(); XCTAssertEqual(PackMutationProbe.closes, 1); PackMutationProbe.confirm = nil; XCTAssertFalse(hub.policy.hasExclusions)
     }
     func testCancelledDeleteConfirmationDoesNotStartRequest() {
         let actions = actions(origin(.excluded)); expectExcluded(); actions.deletePack(collection())

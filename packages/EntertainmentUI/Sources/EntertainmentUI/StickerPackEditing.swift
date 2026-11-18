@@ -18,7 +18,7 @@ let stickerPackMaxStickers = 120
 private let stickerPackDefaultEmoji = "🫥"
 
 func isOwnStickerPack(_ info: StickerPackCollectionInfo) -> Bool {
-    return info.id.namespace == Namespaces.ItemCollection.CloudStickerPacks && info.flags.contains(.isCreator) && !info.flags.contains(.isEmoji)
+    return info.flags.contains(.isCreator) && [Namespaces.ItemCollection.CloudStickerPacks, Namespaces.ItemCollection.CloudEmojiPacks].contains(info.id.namespace)
 }
 
 private extension EntertainmentStickerImage {
@@ -84,7 +84,8 @@ private func uploadedStickerFile(context: any AccountContextProtocol, image: Ent
 
 func showAddedToStickerPack(context: any AccountContextProtocol, info: StickerPackCollectionInfo, analyticsContext: AnalyticsContext) {
     let presentation = analyticsContext.beginPresentation()
-    let controller = StickerPackPreviewModalController(context, peerId: nil, references: [.stickers(.id(id: info.id.id, accessHash: info.accessHash))], analyticsContext: analyticsContext)
+    let reference = StickerPackReference.id(id: info.id.id, accessHash: info.accessHash)
+    let controller = StickerPackPreviewModalController(context, peerId: nil, references: [info.flags.contains(.isEmoji) ? .emoji(reference) : .stickers(reference)], analyticsContext: analyticsContext)
     controller.analyticsContext = analyticsContext
     let onDeinit = controller.onDeinit
     controller.onDeinit = {
@@ -134,11 +135,13 @@ private func addStickerToFavorites(context: any AccountContextProtocol, image: E
     })
 }
 
-private func createStickerPack(context: any AccountContextProtocol, title: String, image: EntertainmentStickerImage, analyticsContext: AnalyticsContext, journey: AnalyticsStickerJourney?, done: @escaping () -> Void) {
+private func createStickerPack(context: any AccountContextProtocol, title: String, emoji: Bool, image: EntertainmentStickerImage, analyticsContext: AnalyticsContext, journey: AnalyticsStickerJourney?, done: @escaping () -> Void) {
     let presentation = analyticsContext.beginPresentation()
     defer { withExtendedLifetime(presentation) {} }
     let submission = journey?.beginSubmission()
-    let signal = context.engine.stickers.createStickerSet(title: title, shortName: "", stickers: [importSticker(image)], thumbnail: nil, type: .stickers(content: image.isAnimated ? .animation : .image), software: nil)
+    let content: CreateStickerSetType.ContentType = image.isAnimated ? .animation : .image
+    let type: CreateStickerSetType = emoji ? .emoji(content: content, textColored: false) : .stickers(content: content)
+    let signal = context.engine.stickers.createStickerSet(title: title, shortName: "", stickers: [importSticker(image)], thumbnail: nil, type: type, software: nil)
     |> map { status -> StickerPackCollectionInfo? in
         if case let .complete(info, _) = status {
             return info
@@ -174,25 +177,29 @@ private func addStickerToPack(context: any AccountContextProtocol, info: Sticker
     |> deliverOnMainQueue
     _ = analyticsContext.preservingPresentation(showModalProgress(signal: signal, for: context.window)).start(next: { accepted in
         submission?.complete { accepted ? .accepted : .retryableFailure(.requestFailed) }
+        if accepted {
+            done()
+            showAddedToStickerPack(context: context, info: info, analyticsContext: analyticsContext)
+        } else {
+            showModalText(for: context.window, text: strings().unknownError)
+        }
     }, error: { _ in
         submission?.complete { .retryableFailure(.requestFailed) }
         showModalText(for: context.window, text: strings().unknownError)
     }, completed: {
         submission?.end()
-        done()
-        showAddedToStickerPack(context: context, info: info, analyticsContext: analyticsContext)
     })
 }
 
-func showNewStickerPackTitle(context: any AccountContextProtocol, analyticsContext: AnalyticsContext, journey: AnalyticsStickerJourney?, apply: @escaping (String) -> Void) {
-    showModal(with: StickerPackTitleController(context: context, title: strings().stickerPackEditingNewSet, text: strings().stickerPackEditingNewSetText, value: "", analyticsContext: analyticsContext, journey: journey, apply: apply), for: context.window)
+func showNewStickerPackTitle(context: any AccountContextProtocol, title: String, analyticsContext: AnalyticsContext, journey: AnalyticsStickerJourney?, apply: @escaping (String) -> Void) {
+    showModal(with: StickerPackTitleController(context: context, title: title, text: strings().stickerPackEditingNewSetText, value: "", analyticsContext: analyticsContext, journey: journey, apply: apply), for: context.window)
 }
 
 func presentCreateSticker(context: any AccountContextProtocol, chatInteraction: (any ChatInteractionProtocol)?, analyticsContext: AnalyticsContext) {
     let journey = AnalyticsStickerJourney(context: analyticsContext, entry: .composerCreate, source: .chatInputStickers)
     let myPacks = Atomic<[StickerPackCollectionInfo]>(value: [])
     _ = context.engine.stickers.getMyStickerSets().start(next: { sets in
-        _ = myPacks.swap(sets.map { $0.0 }.filter { $0.id.namespace == Namespaces.ItemCollection.CloudStickerPacks && !$0.flags.contains(.isEmoji) })
+        _ = myPacks.swap(sets.map { $0.0 }.filter(isOwnStickerPack))
     })
 
     EntertainmentUIHooks.shared.makeStickerImageObserved(context, context.window, analyticsContext: analyticsContext, journey: journey, doneMenu: { image, close in
@@ -213,12 +220,15 @@ func presentCreateSticker(context: any AccountContextProtocol, chatInteraction: 
         }, itemImage: MenuAnimation.menu_add_to_favorites.value))
 
         let packs = ContextMenu()
-        packs.addItem(ContextMenuItem(strings().stickerPackEditingNewSet, handler: {
-            journey.chooseDestination(.newPack)
-            showNewStickerPackTitle(context: context, analyticsContext: analyticsContext, journey: journey, apply: { title in
-                createStickerPack(context: context, title: title, image: image, analyticsContext: analyticsContext, journey: journey, done: close)
-            })
-        }, itemImage: MenuAnimation.menu_plus.value))
+        for emoji in [false, true] {
+            let label = emoji ? strings().stickerPackEditingNewEmojiSet : strings().stickerPackEditingNewSet
+            packs.addItem(ContextMenuItem(label, handler: {
+                journey.chooseDestination(.newPack)
+                showNewStickerPackTitle(context: context, title: label, analyticsContext: analyticsContext, journey: journey, apply: { title in
+                    createStickerPack(context: context, title: title, emoji: emoji, image: image, analyticsContext: analyticsContext, journey: journey, done: close)
+                })
+            }, itemImage: MenuAnimation.menu_plus.value))
+        }
         let available = myPacks.with { $0 }
         if !available.isEmpty {
             packs.addItem(ContextSeparatorItem())

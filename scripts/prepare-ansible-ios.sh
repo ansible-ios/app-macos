@@ -11,10 +11,10 @@ fi
 
 case "$#:${1:-}" in
     0:)
-        patches="ansible-ios-macos.patch ansible-network.patch ansible-media.patch ansible-sticker-upload.patch ansible-sticker-playback.patch ansible-pack-covers.patch"
+        patches="ansible-ios-macos.patch ansible-network.patch ansible-media.patch ansible-sticker-upload.patch ansible-sticker-playback.patch ansible-pack-covers.patch ansible-pack-editing.patch"
         ;;
     1:--reverse)
-        patches="ansible-pack-covers.patch ansible-sticker-playback.patch ansible-sticker-upload.patch ansible-media.patch ansible-network.patch ansible-ios-macos.patch"
+        patches="ansible-pack-editing.patch ansible-pack-covers.patch ansible-sticker-playback.patch ansible-sticker-upload.patch ansible-media.patch ansible-network.patch ansible-ios-macos.patch"
         ;;
     *)
         printf 'Usage: %s [--reverse]\n' "$0" >&2

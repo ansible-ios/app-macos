@@ -1,0 +1,123 @@
+--- a/submodules/TelegramCore/Sources/TelegramEngine/Stickers/ImportStickers.swift
++++ b/submodules/TelegramCore/Sources/TelegramEngine/Stickers/ImportStickers.swift
+@@ -192,0 +193,25 @@
++private func storeEditedStickerPack(transaction: Transaction, info: StickerPackCollectionInfo, items: [StickerPackItem]) {
++    var installed = transaction.getItemCollectionsInfos(namespace: info.id.namespace)
++    if let index = installed.firstIndex(where: { $0.0 == info.id }) {
++        installed[index] = (info.id, info)
++        transaction.replaceItemCollectionInfos(namespace: info.id.namespace, itemCollectionInfos: installed)
++        transaction.replaceItemCollectionItems(collectionId: info.id, items: items)
++    }
++    cacheStickerPack(transaction: transaction, info: info, items: items)
++}
++
++func _internal_setStickerPackCover(account: Account, packReference: StickerPackReference, fileId: Int64) -> Signal<Never, ReplaceStickerError> {
++    return account.network.request(Api.functions.stickers.setStickerSetThumb(flags: 2, stickerset: packReference.apiInputStickerSet, thumb: nil, thumbDocumentId: fileId))
++    |> mapError { _ -> ReplaceStickerError in .generic }
++    |> mapToSignal { result -> Signal<Never, ReplaceStickerError> in
++        guard let (info, items) = parseStickerSetInfoAndItems(apiStickerSet: result) else {
++            return .fail(.generic)
++        }
++        return account.postbox.transaction { transaction in
++            storeEditedStickerPack(transaction: transaction, info: info, items: items)
++        }
++        |> castError(ReplaceStickerError.self)
++        |> ignoreValues
++    }
++}
++
+@@ -266,3 +291,7 @@
+-                        return .complete()
+-                    }
+-                    return .single(.complete(info, items))
++                        return .fail(.generic)
++                    }
++                    return account.postbox.transaction { transaction -> CreateStickerSetStatus in
++                        storeEditedStickerPack(transaction: transaction, info: info, items: items)
++                        return .complete(info, items)
++                    }
++                    |> castError(CreateStickerSetError.self)
+@@ -308 +337 @@
+-            return .complete()
++            return .fail(.generic)
+@@ -311,7 +340 @@
+-            let collectionNamespace = Namespaces.ItemCollection.CloudStickerPacks
+-            var currentInfos = transaction.getItemCollectionsInfos(namespace: collectionNamespace).map { $0.1 as! StickerPackCollectionInfo }
+-            if let index = currentInfos.firstIndex(where: { $0.id == info.id }) {
+-                currentInfos[index] = info
+-            }
+-            transaction.replaceItemCollectionInfos(namespace: collectionNamespace, itemCollectionInfos: currentInfos.map { ($0.id, $0) })
+-            cacheStickerPack(transaction: transaction, info: info, items: items)
++            storeEditedStickerPack(transaction: transaction, info: info, items: items)
+@@ -333 +356,2 @@
+-    |> mapToSignal { _ in
++    |> mapToSignal { result -> Signal<Void, DeleteStickerSetError> in
++        guard case .boolTrue = result else { return .fail(.generic) }
+@@ -335,0 +360 @@
++                transaction.removeItemCollection(collectionId: info.id)
+@@ -340,3 +364,0 @@
+-            if case let .id(id, _) = packReference {
+-                transaction.removeItemCollection(collectionId: ItemCollectionId(namespace: Namespaces.ItemCollection.CloudStickerPacks, id: id))
+-            }
+@@ -426 +447 @@
+-                return .complete()
++                return .fail(.generic)
+@@ -429,4 +450 @@
+-                if transaction.getItemCollectionInfo(collectionId: info.id) != nil {
+-                    transaction.replaceItemCollectionItems(collectionId: info.id, items: items)
+-                }
+-                cacheStickerPack(transaction: transaction, info: info, items: items)
++                storeEditedStickerPack(transaction: transaction, info: info, items: items)
+@@ -453 +471 @@
+-            return .complete()
++            return .fail(.generic)
+@@ -456,4 +474 @@
+-            if transaction.getItemCollectionInfo(collectionId: info.id) != nil {
+-                transaction.replaceItemCollectionItems(collectionId: info.id, items: items)
+-            }
+-            cacheStickerPack(transaction: transaction, info: info, items: items)
++            storeEditedStickerPack(transaction: transaction, info: info, items: items)
+@@ -480 +495 @@
+-            return .complete()
++            return .fail(.generic)
+@@ -483,4 +498 @@
+-            if transaction.getItemCollectionInfo(collectionId: info.id) != nil {
+-                transaction.replaceItemCollectionItems(collectionId: info.id, items: items)
+-            }
+-            cacheStickerPack(transaction: transaction, info: info, items: items)
++            storeEditedStickerPack(transaction: transaction, info: info, items: items)
+@@ -534 +546 @@
+-                return .complete()
++                return .fail(.generic)
+@@ -537,4 +549 @@
+-                if transaction.getItemCollectionInfo(collectionId: info.id) != nil {
+-                    transaction.replaceItemCollectionItems(collectionId: info.id, items: items)
+-                }
+-                cacheStickerPack(transaction: transaction, info: info, items: items)
++                storeEditedStickerPack(transaction: transaction, info: info, items: items)
+--- a/submodules/TelegramCore/Sources/TelegramEngine/Stickers/TelegramEngineStickers.swift
++++ b/submodules/TelegramCore/Sources/TelegramEngine/Stickers/TelegramEngineStickers.swift
+@@ -130,0 +131,4 @@
++        public func setStickerPackCover(packReference: StickerPackReference, fileId: Int64) -> Signal<Never, ReplaceStickerError> {
++            return _internal_setStickerPackCover(account: self.account, packReference: packReference, fileId: fileId)
++        }
++
+--- a/submodules/TelegramCore/Sources/ApiUtils/TelegramMediaFile.swift
++++ b/submodules/TelegramCore/Sources/ApiUtils/TelegramMediaFile.swift
+@@ -194,0 +195,11 @@
++private func canonicalStickerDocument(mimeType: String, attributes: inout [TelegramMediaFileAttribute]) -> String {
++    guard mimeType == "application/x-ansible-sticker" || mimeType == "application/x-tgsticker" else {
++        return mimeType
++    }
++    let original = fileNameFromFileAttributes(attributes) ?? ""
++    let stem = ((original as NSString).lastPathComponent as NSString).deletingPathExtension
++    attributes.removeAll { if case .FileName = $0 { return true }; return false }
++    attributes.append(.FileName(fileName: (stem.isEmpty ? "sticker" : stem) + ".ass"))
++    return "application/x-ansible-sticker"
++}
++
+@@ -198 +209 @@
+-            let (id, accessHash, fileReference, mimeType, size, thumbs, videoThumbs, dcId, attributes) = (documentData.id, documentData.accessHash, documentData.fileReference, documentData.mimeType, documentData.size, documentData.thumbs, documentData.videoThumbs, documentData.dcId, documentData.attributes)
++            let (id, accessHash, fileReference, wireMimeType, size, thumbs, videoThumbs, dcId, attributes) = (documentData.id, documentData.accessHash, documentData.fileReference, documentData.mimeType, documentData.size, documentData.thumbs, documentData.videoThumbs, documentData.dcId, documentData.attributes)
+@@ -199,0 +211 @@
++            let mimeType = canonicalStickerDocument(mimeType: wireMimeType, attributes: &parsedAttributes)

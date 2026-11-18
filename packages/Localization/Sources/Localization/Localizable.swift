@@ -17668,6 +17668,8 @@ public final class L10n {
   public static var stickerPackEditingAddToSet: String  { return L10n.tr("Localizable", "StickerPack.Editing.AddToSet") }
   /// Name
   public static var stickerPackEditingNamePlaceholder: String  { return L10n.tr("Localizable", "StickerPack.Editing.NamePlaceholder") }
+  public static var stickerPackEditingNewEmojiSet: String  { return L10n.tr("Localizable", "StickerPack.Editing.NewEmojiSet") }
+  public static var stickerPackEditingUseAsCover: String  { return L10n.tr("Localizable", "StickerPack.Editing.UseAsCover") }
   /// New Sticker Set
   public static var stickerPackEditingNewSet: String  { return L10n.tr("Localizable", "StickerPack.Editing.NewSet") }
   /// Choose a name for your sticker set.

@@ -465,7 +465,10 @@ private final class StickerPackRowView : HorizontalRowView {
             
             var file: TelegramMediaFile?
             var fileId: Int64?
-            if let cover = item.info.coverFile {
+            if let fid = item.info.thumbnailFileId, let selected = item.allItems.first(where: { $0.file.fileId.id == fid }) {
+                file = selected.file._parse()
+                fileId = fid
+            } else if let cover = item.info.coverFile {
                 file = cover
                 fileId = file?.fileId.id
             } else if let fid = item.info.thumbnailFileId {

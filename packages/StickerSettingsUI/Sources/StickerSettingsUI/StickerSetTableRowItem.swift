@@ -248,11 +248,29 @@ public class StickerSetTableRowView : TableRowView, ViewDisplayDelegate {
             removeControl.set(image: theme.icons.stickerPackDelete, for: .Normal)
             _ = removeControl.sizeToFit()
             
-            let file = item.info.coverFile ?? item.topItem?.file._parse()
-            if let file = file {
+            loadedStickerPackDisposable.set(nil)
+            let display: (TelegramMediaFile?) -> Void = { [weak self] file in
+                guard let self else { return }
+                self.contentView.isHidden = file == nil
+                guard let file else { return }
                 self.contentView.updateStickerSettingsSticker(with: file, size: NSMakeSize(35, 35), context: item.context, parent: nil, table: item.table, animated: animated, positionFlags: nil, approximateSynchronousValue: false)
             }
            
+            display(item.info.coverFile ?? item.topItem?.file._parse())
+            if let id = item.info.thumbnailFileId {
+                if item.topItem?.file.fileId.id == id {
+                    display(item.topItem?.file._parse())
+                } else {
+                    let selected = item.context.account.postbox.transaction { transaction in
+                        transaction.getItemCollectionItems(collectionId: item.info.id)
+                            .lazy.compactMap { $0 as? StickerPackItem }
+                            .first { $0.file.fileId.id == id }?.file._parse()
+                    }
+                    loadedStickerPackDisposable.set((selected |> deliverOnMainQueue).start(next: { file in
+                        if let file { display(file) }
+                    }))
+                }
+            }
             nameView.update(item.nameLayout)
             countView.update(item.countLayout)
             switch item.control {

@@ -505,7 +505,7 @@ source = (root / 'packages/EntertainmentUI/Sources/EntertainmentUI/StickerPackPr
 a = source.index('    }, share: {') + len('    }, share: ')
 b = source.index('    }, close:', a)
 navigation = navigation.replace('__PACK_SHARE_CALLBACK__', source[a:b] + '    }')
-a = source.index('                    let analyticsContext =', source.index('Check @stickers bot for more options.'))
+a = source.index('                    let analyticsContext =', source.index('strings().stickerPackPreviewModalControllerStickersBotHint'))
 b = source.index('                }))', a)
 navigation = navigation.replace('__PACK_BOT_CALLBACK__', source[a:b])
 a = source.index('    }, setEmoji: {') + len('    }, setEmoji: ')
