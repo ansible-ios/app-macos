@@ -8,7 +8,7 @@ BUILD_CONFIGURATION=$1
 
 
 cd ~/build
-cp "configurations/${BUILD_CONFIGURATION}.xcconfig" "Telegram-Mac/Release.xcconfig"
+cp "configurations/${BUILD_CONFIGURATION}.xcconfig" "Ansible-Mac/Release.xcconfig"
 sh scripts/configure_frameworks.sh
          
 export FASTLANE_XCODE_LIST_TIMEOUT=120
@@ -23,7 +23,7 @@ tar cf  "./output/Telegram.tar" -C "./output" .
 #mkdir "${OUTPUT}"
 
 #xcrun xcodebuild archive \
-#                -workspace Telegram-Mac.xcworkspace \
+#                -workspace Ansible-Mac.xcworkspace \
 #                -scheme Release \
 #                -configuration Release \
 #                -archivePath "${OUTPUT}/Telegram.xcarchive"

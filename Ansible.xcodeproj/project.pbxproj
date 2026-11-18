@@ -1390,9 +1390,9 @@
 		278751582D91A8A50005D9F9 /* libtde2e.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtde2e.a; path = "core-xprojects/tde2e/build/tde2e/lib/libtde2e.a"; sourceTree = "<group>"; };
 		2787AD672BED0DCD0046578E /* menu_adult.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_adult.tgs; sourceTree = "<group>"; };
 		2787AD682BED0DCE0046578E /* menu_adult_slash.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_adult_slash.tgs; sourceTree = "<group>"; };
-		278926CD27551B4800923087 /* common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Telegram-Mac/common.xcconfig"; sourceTree = SOURCE_ROOT; };
-		278926CE27551B5600923087 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Telegram-Mac/Debug.xcconfig"; sourceTree = SOURCE_ROOT; };
-		278926CF2755222700923087 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Telegram-Mac/Release.xcconfig"; sourceTree = SOURCE_ROOT; };
+		278926CD27551B4800923087 /* common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Ansible-Mac/common.xcconfig"; sourceTree = SOURCE_ROOT; };
+		278926CE27551B5600923087 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Ansible-Mac/Debug.xcconfig"; sourceTree = SOURCE_ROOT; };
+		278926CF2755222700923087 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Ansible-Mac/Release.xcconfig"; sourceTree = SOURCE_ROOT; };
 		278B89A42791938600ECF71C /* libwebp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libwebp; path = submodules/libwebp; sourceTree = "<group>"; };
 		278C720325E67C2700F1B315 /* emoji1016.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emoji1016.txt; sourceTree = "<group>"; };
 		27916F20287D775F0046DB44 /* places.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = places.tgs; sourceTree = "<group>"; };
@@ -1838,7 +1838,7 @@
 		C250B0341DB78A0A004E9FBE /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		C250B0361DB7BB09004E9FBE /* mime-types.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mime-types.txt"; sourceTree = "<group>"; };
 		C250BA931E6E84880057CD96 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		C251FB501FEE300E0035E5D7 /* Telegram.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Telegram.xcodeproj; sourceTree = "<group>"; };
+		C251FB501FEE300E0035E5D7 /* Ansible.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Ansible.xcodeproj; sourceTree = "<group>"; };
 		C252532C1DF0440300ADBC98 /* begin_record.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = begin_record.caf; sourceTree = "<group>"; };
 		C253A9661D92E3AE00CDC850 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C253A9711D92F9F100CDC850 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1859,7 +1859,7 @@
 		C2CFCABB1EBB4A2200843F6A /* voip_fail.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = voip_fail.caf; sourceTree = "<group>"; };
 		C2CFCABC1EBB4A2200843F6A /* voip_ringback.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = voip_ringback.caf; sourceTree = "<group>"; };
 		C2CFCABD1EBB4A4D00843F6A /* voip_connecting.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = voip_connecting.mp3; sourceTree = "<group>"; };
-		C2D70AF11F2BFB3700AE768E /* Telegram.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Telegram.xcodeproj; sourceTree = "<group>"; };
+		C2D70AF11F2BFB3700AE768E /* Ansible.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Ansible.xcodeproj; sourceTree = "<group>"; };
 		C2DDA04D1EC0C024003531BB /* opening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = opening.mp3; sourceTree = "<group>"; };
 		C2DDA04F1EC0C19A003531BB /* opening.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = opening.m4a; sourceTree = "<group>"; };
 		C2DF47D41DE82524003AA6C0 /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "usr/lib/libc++.1.tbd"; sourceTree = SDKROOT; };
@@ -3026,7 +3026,7 @@
 			name = left;
 			sourceTree = "<group>";
 		};
-		C232EA921E1D07E700C4D38C /* TelegramShare */ = {
+		C232EA921E1D07E700C4D38C /* AnsibleShare */ = {
 			isa = PBXGroup;
 			children = (
 				C232EAB11E1D113C00C4D38C /* ui */,
@@ -3034,7 +3034,7 @@
 				C232EA931E1D07E700C4D38C /* Supporting Files */,
 				C291E2721E8AFA2C00D397BA /* ShareApplicationContext.swift */,
 			);
-			path = TelegramShare;
+			path = AnsibleShare;
 			sourceTree = "<group>";
 		};
 		C232EA931E1D07E700C4D38C /* Supporting Files */ = {
@@ -3356,8 +3356,8 @@
 			isa = PBXGroup;
 			children = (
 				27F3B7592739300C00B81F10 /* Packages */,
-				D098C7171D7E175A007784E4 /* Telegram-Mac */,
-				C232EA921E1D07E700C4D38C /* TelegramShare */,
+				D098C7171D7E175A007784E4 /* Ansible-Mac */,
+				C232EA921E1D07E700C4D38C /* AnsibleShare */,
 				43BAAD307E34D5A7D9B68645 /* WidgetEngineService */,
 				D098C7161D7E175A007784E4 /* Products */,
 				D098C7311D7E18CB007784E4 /* Frameworks */,
@@ -3505,7 +3505,7 @@
 			name = "supporting-files";
 			sourceTree = "<group>";
 		};
-		D098C7171D7E175A007784E4 /* Telegram-Mac */ = {
+		D098C7171D7E175A007784E4 /* Ansible-Mac */ = {
 			isa = PBXGroup;
 			children = (
 						C1E231744A8C6382F8B53308 /* app */,
@@ -3516,7 +3516,7 @@
 				C252532B1DF043D800ADBC98 /* resources */,
 				28D4C289FEDE86E24FD6F44D /* supporting-files */,
 			);
-			path = "Telegram-Mac";
+			path = "Ansible-Mac";
 			sourceTree = "<group>";
 		};
 		D098C7311D7E18CB007784E4 /* Frameworks */ = {
@@ -3576,7 +3576,7 @@
 				9FFAE510205AB4AB000C028E /* libbz2.tbd */,
 				9FFAE50E205AB4A3000C028E /* libiconv.tbd */,
 				9F0E6F77203ED1380086699C /* AppKit.framework */,
-				C251FB501FEE300E0035E5D7 /* Telegram.xcodeproj */,
+				C251FB501FEE300E0035E5D7 /* Ansible.xcodeproj */,
 				C256A9131FB9CBF10043D497 /* LocalAuthentication.framework */,
 				9F0BCD9C2087BA81001D8D8A /* Sparkle.framework */,
 				C2EBBEA01FB5CA94009AD8ED /* CoreServices.framework */,
@@ -3605,7 +3605,7 @@
 		F050574E30202ABC006E48EA /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				C2D70AF11F2BFB3700AE768E /* Telegram.xcodeproj */,
+				C2D70AF11F2BFB3700AE768E /* Ansible.xcodeproj */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -3618,7 +3618,7 @@
 				528B2F559B52BB3D94E4DFF5 /* WidgetEngineService.entitlements */,
 			);
 			name = WidgetEngineService;
-			path = "Telegram-Mac/WidgetEngineService";
+			path = "Ansible-Mac/WidgetEngineService";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3984,11 +3984,11 @@
 			projectReferences = (
 				{
 					ProductGroup = C2D70AF21F2BFB3700AE768E /* Products */;
-					ProjectRef = C2D70AF11F2BFB3700AE768E /* Telegram.xcodeproj */;
+					ProjectRef = C2D70AF11F2BFB3700AE768E /* Ansible.xcodeproj */;
 				},
 				{
 					ProductGroup = C251FB511FEE300E0035E5D7 /* Products */;
-					ProjectRef = C251FB501FEE300E0035E5D7 /* Telegram.xcodeproj */;
+					ProjectRef = C251FB501FEE300E0035E5D7 /* Ansible.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -4882,7 +4882,7 @@
 				CLANG_WARN_INT_CONVERSION = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "Telegram-Mac/Telegram-Sandbox.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Ansible-Mac/Telegram-Sandbox.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -4907,7 +4907,7 @@
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
 				HEADERMAP_USES_VFS = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/submodules/libtgvoip";
-				INFOPLIST_FILE = "Telegram-Mac/Info.plist";
+				INFOPLIST_FILE = "Ansible-Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -4949,7 +4949,7 @@
 			baseConfigurationReference = 278926CE27551B5600923087 /* Debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
-				CODE_SIGN_ENTITLEMENTS = TelegramShare/TelegramShare.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AnsibleShare/TelegramShare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -4962,7 +4962,7 @@
 				GCC_C_LANGUAGE_STANDARD = c17;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "SHARE=1";
-				INFOPLIST_FILE = TelegramShare/Info.plist;
+				INFOPLIST_FILE = AnsibleShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -5001,7 +5001,7 @@
 			baseConfigurationReference = 278926CF2755222700923087 /* Release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
-				CODE_SIGN_ENTITLEMENTS = TelegramShare/TelegramShare.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AnsibleShare/TelegramShare.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -5014,7 +5014,7 @@
 				GCC_C_LANGUAGE_STANDARD = c17;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "SHARE=1";
-				INFOPLIST_FILE = TelegramShare/Info.plist;
+				INFOPLIST_FILE = AnsibleShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -5106,7 +5106,7 @@
 				CLANG_WARN_INT_CONVERSION = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "Telegram-Mac/Telegram-Mac.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Ansible-Mac/Telegram-Mac.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -5133,7 +5133,7 @@
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
 				HEADERMAP_USES_VFS = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/submodules/libtgvoip";
-				INFOPLIST_FILE = "Telegram-Mac/Info.plist";
+				INFOPLIST_FILE = "Ansible-Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -5173,7 +5173,7 @@
 		9472475D95A60FFE6EA72B20 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Telegram-Mac/WidgetEngineService/WidgetEngineService.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Ansible-Mac/WidgetEngineService/WidgetEngineService.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -5183,7 +5183,7 @@
 				ENABLE_DEBUG_DYLIB = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "Telegram-Mac/WidgetEngineService/Info.plist";
+				INFOPLIST_FILE = "Ansible-Mac/WidgetEngineService/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -5204,7 +5204,7 @@
 		372C029CB572B0DF7815324F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Telegram-Mac/WidgetEngineService/WidgetEngineService.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Ansible-Mac/WidgetEngineService/WidgetEngineService.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -5214,7 +5214,7 @@
 				ENABLE_DEBUG_DYLIB = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
-				INFOPLIST_FILE = "Telegram-Mac/WidgetEngineService/Info.plist";
+				INFOPLIST_FILE = "Ansible-Mac/WidgetEngineService/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

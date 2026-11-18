@@ -1998,7 +1998,7 @@
       "references": [
         "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/PeerNameColorScreen/Sources/UserApperanceScreen.swift",
         "packages/EntertainmentUI/Sources/EntertainmentUI/PremiumStatusController.swift",
-        "Telegram-Mac/packages-integration/hooks/SettingsHooksInstall.swift"
+        "Ansible-Mac/packages-integration/hooks/SettingsHooksInstall.swift"
       ]
     },
     {
@@ -2010,7 +2010,7 @@
       "references": [
         "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/PeerNameColorScreen/Sources/UserApperanceScreen.swift",
         "packages/EntertainmentUI/Sources/EntertainmentUI/PremiumStatusController.swift",
-        "Telegram-Mac/packages-integration/hooks/SettingsHooksInstall.swift"
+        "Ansible-Mac/packages-integration/hooks/SettingsHooksInstall.swift"
       ]
     },
     {
@@ -2022,7 +2022,7 @@
       "references": [
         "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/PeerNameColorScreen/Sources/UserApperanceScreen.swift",
         "packages/EntertainmentUI/Sources/EntertainmentUI/PremiumStatusController.swift",
-        "Telegram-Mac/packages-integration/hooks/SettingsHooksInstall.swift"
+        "Ansible-Mac/packages-integration/hooks/SettingsHooksInstall.swift"
       ]
     },
     {
@@ -2034,7 +2034,7 @@
       "references": [
         "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/PeerNameColorScreen/Sources/UserApperanceScreen.swift",
         "packages/EntertainmentUI/Sources/EntertainmentUI/PremiumStatusController.swift",
-        "Telegram-Mac/packages-integration/hooks/SettingsHooksInstall.swift"
+        "Ansible-Mac/packages-integration/hooks/SettingsHooksInstall.swift"
       ]
     },
     {

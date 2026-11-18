@@ -14,7 +14,7 @@ enum TestStrings {
             .deletingLastPathComponent()
             .deletingLastPathComponent()
             .deletingLastPathComponent()
-        let url = root.appendingPathComponent("Telegram-Mac/en.lproj/Localizable.strings")
+        let url = root.appendingPathComponent("Ansible-Mac/en.lproj/Localizable.strings")
         guard let dict = NSDictionary(contentsOf: url) as? [String: String] else {
             return false
         }

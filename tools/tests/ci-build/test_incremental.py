@@ -118,7 +118,7 @@ class SyncTests(TemporaryTest):
             "submodules/telegram-ios/submodules/TelegramApi/ObjC/SwiftPMGenerated/Schema.m",
             "submodules/telegram-ios/submodules/TelegramApi/Tests/SwiftPMGenerated/Tests.swift",
             "submodules/telegram-ios/submodules/TelegramCore/FlatSerialization/Sources/Sample_generated.swift",
-            "Telegram-Mac/Release.xcconfig",
+            "Ansible-Mac/Release.xcconfig",
         ]
         for name in preserved:
             write(target / name, "cached")
@@ -245,7 +245,7 @@ class ArchiveTests(TemporaryTest):
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(ROOT / name, destination)
         write(self.source / "scripts/configure_frameworks.sh", 'exit "${PREPARE_RESULT:-0}"\n')
-        write(self.source / "Telegram-Mac/Release.xcconfig", "STABLE")
+        write(self.source / "Ansible-Mac/Release.xcconfig", "STABLE")
         for channel in ["Beta", "Alpha", "Stable", "Appstore", "AppStore"]:
             write(self.source / "configurations" / (channel + ".xcconfig"), channel)
         self.record = self.root / "archive-arguments.json"
@@ -294,7 +294,7 @@ print("Build Timing Summary\\nCompileSwift: fixture")
 
     def test_warm_archive_preserves_channel_config_and_cache_is_opt_in(self):
         self.build()
-        config = self.root / "builds/build-Beta/telegrammacos/Telegram-Mac/Release.xcconfig"
+        config = self.root / "builds/build-Beta/telegrammacos/Ansible-Mac/Release.xcconfig"
         before = config.stat().st_mtime_ns
         self.build(TELEGRAM_COMPILATION_CACHE="YES")
         self.assertEqual(before, config.stat().st_mtime_ns)

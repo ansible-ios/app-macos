@@ -19,7 +19,7 @@ context = read('packages/AppAnalytics/Sources/AppAnalytics/AnalyticsContext.swif
 fixture = fixture.replace('__SIGNAL__', section(context, '    public func preservingPresentation<', '\n}\n\npublic final class AnalyticsPresentation'))
 hooks = read('packages/ChatUI/Sources/ChatUI/ChatNavigationHooks.swift')
 fixture = fixture.replace('__HOOKS__', section(hooks, '    public var showPaymentsReceipt:', '    public var applyExternalProxy:'))
-installer = read('Telegram-Mac/packages-integration/hooks/ChatUIHooksInstall.swift')
+installer = read('Ansible-Mac/packages-integration/hooks/ChatUIHooksInstall.swift')
 fixture = fixture.replace('__INSTALL__', section(installer, '    hooks.showPaymentsReceipt =', '    hooks.applyExternalProxy ='))
 row = read('packages/ChatUI/Sources/ChatUI/ChatMediaPaidContentItem.swift')
 fixture = fixture.replace('__ROW__', section(row, '    public func buyProduct(image:', '\n}\n\nprivate class PreviewMediaView'))

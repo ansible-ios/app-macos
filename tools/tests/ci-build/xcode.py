@@ -28,16 +28,16 @@ for kind in ["project", "target"]:
     obj(kind + "configs", "XCConfigurationList", buildConfigurations=[ids[kind + "config"]], defaultConfigurationIsVisible=0, defaultConfigurationName="Release")
 obj("projectconfig", "XCBuildConfiguration", buildSettings={"SDKROOT": "macosx", "MACOSX_DEPLOYMENT_TARGET": "12.0", "SWIFT_VERSION": "5.0", "SWIFT_COMPILATION_MODE": "wholemodule", "SWIFT_OPTIMIZATION_LEVEL": "-O", "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym", "ARCHS": "arm64 x86_64", "ONLY_ACTIVE_ARCH": "NO"}, name="Release")
 obj("targetconfig", "XCBuildConfiguration", buildSettings={"PRODUCT_NAME": "Telegram", "PRODUCT_BUNDLE_IDENTIFIER": "org.telegram.ci-build-smoke", "GENERATE_INFOPLIST_FILE": "YES", "CODE_SIGNING_ALLOWED": "NO", "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "PRODUCTION"}, name="Release")
-project = source / "Telegram.xcodeproj"
+project = source / "Ansible.xcodeproj"
 project.mkdir()
 (project / "project.pbxproj").write_bytes(plistlib.dumps(dict(archiveVersion="1", classes={}, objectVersion="56", objects=objects, rootObject=ids["project"])))
 write(source / "main.swift", 'import Foundation\n#if BETA\nprint("BETA")\n#else\nprint("wrong channel")\n#endif\n')
-write(source / "Telegram-Mac.xcworkspace/contents.xcworkspacedata", '<?xml version="1.0" encoding="UTF-8"?>\n<Workspace version="1.0"><FileRef location="group:Telegram.xcodeproj"/></Workspace>\n')
+write(source / "Ansible-Mac.xcworkspace/contents.xcworkspacedata", '<?xml version="1.0" encoding="UTF-8"?>\n<Workspace version="1.0"><FileRef location="group:Ansible.xcodeproj"/></Workspace>\n')
 write(project / "xcshareddata/xcschemes/Release.xcscheme", f'''<?xml version="1.0" encoding="UTF-8"?>
 <Scheme version="1.3">
 <BuildAction parallelizeBuildables="YES" buildImplicitDependencies="YES"><BuildActionEntries>
 <BuildActionEntry buildForArchiving="YES" buildForRunning="YES" buildForTesting="YES" buildForProfiling="YES" buildForAnalyzing="YES">
-<BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="{ids['target']}" BuildableName="Telegram.app" BlueprintName="Telegram" ReferencedContainer="container:Telegram.xcodeproj"/>
+<BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="{ids['target']}" BuildableName="Telegram.app" BlueprintName="Telegram" ReferencedContainer="container:Ansible.xcodeproj"/>
 </BuildActionEntry></BuildActionEntries></BuildAction>
 <ArchiveAction buildConfiguration="Release" revealArchiveInOrganizer="NO"/>
 </Scheme>''')

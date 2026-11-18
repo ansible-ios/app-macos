@@ -22,10 +22,10 @@ Read the matching document before starting the task.
 ## Architecture Overview
 
 ### Project Structure
-- **Telegram-Mac/** - Thin app target: launch and hook installation (`app/`), the concrete `AccountContext` (`account/`), hook installers and bridges (`packages-integration/`), strings (`en.lproj/Localizable.strings`)
+- **Ansible-Mac/** - Thin app target: launch and hook installation (`app/`), the concrete `AccountContext` (`account/`), hook installers and bridges (`packages-integration/`), strings (`en.lproj/Localizable.strings`)
 - **packages/** - Swift Package Manager modules; almost every feature and UI lives here
 - **packages/TGUIKit/** - UI Library
-- **TelegramShare/** - Share extension
+- **AnsibleShare/** - Share extension
 - **submodules/** - Core libraries and telegram-ios shared code (TelegramCore, Postbox, SSignalKit)
 - **core-xprojects/** - Native framework build projects (OpenH264, FFmpeg, WebRTC, etc.)
 - **docs/** - Guides and code templates, not part of any target
@@ -37,7 +37,7 @@ Only the modules you will touch most. Find anything else with `grep -rn "func Na
 |---|---|
 | `TGUIKit` | Views, `TableView`, `ViewController`, modals, `Window` |
 | `TelegramContext` | `AccountContextProtocol`; packages take `any AccountContextProtocol` |
-| `Localization` | `strings()`, generated from `Telegram-Mac/en.lproj/Localizable.strings` by `tools/swiftgen.sh` |
+| `Localization` | `strings()`, generated from `Ansible-Mac/en.lproj/Localizable.strings` by `tools/swiftgen.sh` |
 | `TelegramTheme` | The `theme` global, `TelegramPresentationTheme`, `deliverOnPrepareQueue` |
 | `ColorPalette`, `TelegramIconsTheme` | Palette colors and `theme.icons` |
 | `InAppSettings` | App preferences stored in Postbox, `FastSettings` |
@@ -56,7 +56,7 @@ Only the modules you will touch most. Find anything else with `grep -rn "func Na
 ### Adding a Feature
 - Add the screen to the package it belongs to; create a new package only for a standalone multi-file feature, copying `packages/GroupsInCommonUI/Package.swift`, then add it to the `Packages` group and link it to the `Telegram` target
 - Build screens by following [docs/swift/TemplateController](docs/swift/TemplateController/README.md)
-- App-only code (`AccountContext`, app singletons) is reached through a `<Name>Hooks` struct in the package, installed from `Telegram-Mac/packages-integration/hooks/` and `app/main.swift`
+- App-only code (`AccountContext`, app singletons) is reached through a `<Name>Hooks` struct in the package, installed from `Ansible-Mac/packages-integration/hooks/` and `app/main.swift`
 - Other features' screens are opened through `FeatureNavigationHooks`, never imported
 
 ### Dependencies
@@ -75,5 +75,5 @@ Only the modules you will touch most. Find anything else with `grep -rn "func Na
 A beta build starts when `beta` is pushed to `origin`.
 1. Commit all pending work on `beta`, including any submodule bumps (`submodules/telegram-ios` carries the Rust engine)
 2. Merge the feature branches being shipped into `beta`, e.g. `git merge origin/sam/new-wallet`
-3. Bump the build number: increment `CFBundleVersion` in `Telegram-Mac/Info.plist` and `TelegramShare/Info.plist`, commit as `Bump the build number to <N>`
+3. Bump the build number: increment `CFBundleVersion` in `Ansible-Mac/Info.plist` and `AnsibleShare/Info.plist`, commit as `Bump the build number to <N>`
 4. `git push origin beta`

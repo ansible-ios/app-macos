@@ -6,7 +6,7 @@ import tempfile
 
 
 root = Path(__file__).resolve().parents[3]
-strings_path = root / "Telegram-Mac/en.lproj/Localizable.strings"
+strings_path = root / "Ansible-Mac/en.lproj/Localizable.strings"
 english = strings_path.read_text(encoding="utf-16")
 ios_english = (root / "submodules/telegram-ios/Telegram/Telegram-iOS/en.lproj/Localizable.strings").read_text()
 templates = {}

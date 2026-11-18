@@ -3,7 +3,7 @@ import TGUIKit
 
 func paidBadgeStarImage() -> NSImage {
     let root = (0..<6).reduce(URL(fileURLWithPath: #filePath)) { path, _ in path.deletingLastPathComponent() }
-    let directory = root.appendingPathComponent("Telegram-Mac/Assets.xcassets/star_small.imageset")
+    let directory = root.appendingPathComponent("Ansible-Mac/Assets.xcassets/star_small.imageset")
     let image = NSImage(size: NSSize(width: 12, height: 12))
     for name in ["star_12.png", "star_12@2x.png"] {
         let representation = NSBitmapImageRep(data: try! Data(contentsOf: directory.appendingPathComponent(name)))!

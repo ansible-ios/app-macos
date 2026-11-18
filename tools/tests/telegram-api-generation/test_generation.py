@@ -143,7 +143,7 @@ printf 'probes\\n' > Tests/SwiftPMGenerated/SchemaAccessorProbes.swift
 class IntegrationTests(unittest.TestCase):
     def test_shared_app_schemes_prepare_before_build(self):
         for name in ["Telegram", "Release", "TelegramShare"]:
-            scheme = ET.parse(ROOT / f"Telegram.xcodeproj/xcshareddata/xcschemes/{name}.xcscheme")
+            scheme = ET.parse(ROOT / f"Ansible.xcodeproj/xcshareddata/xcschemes/{name}.xcscheme")
             actions = scheme.findall("BuildAction/PreActions/ExecutionAction/ActionContent")
             self.assertTrue(any('python3 "$SRCROOT/scripts/prepare-telegram-api.py"' in action.get("scriptText", "") and action.find("EnvironmentBuildable/BuildableReference") is not None for action in actions))
 
@@ -153,7 +153,7 @@ class IntegrationTests(unittest.TestCase):
         for name, build in [("build-mac.sh", "xcodebuild archive"), ("build-vm.sh", "fastlane Release")]:
             script = (ROOT / "buildbox" / name).read_text()
             self.assertLess(script.index("scripts/configure_frameworks.sh"), script.index(build))
-        project = json.loads(subprocess.check_output(["plutil", "-convert", "json", "-o", "-", str(ROOT / "Telegram.xcodeproj/project.pbxproj")]))
+        project = json.loads(subprocess.check_output(["plutil", "-convert", "json", "-o", "-", str(ROOT / "Ansible.xcodeproj/project.pbxproj")]))
         for target in project["objects"].values():
             if target.get("isa") == "PBXNativeTarget" and target["name"] in ["Telegram", "TelegramShare"]:
                 phase = project["objects"][target["buildPhases"][0]]

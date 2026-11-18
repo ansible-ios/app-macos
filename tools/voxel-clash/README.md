@@ -4,7 +4,7 @@ A real-time, two-player strategy game rendered with the repository’s Three.js 
 
 ## CEO demo
 
-1. Build and run the `Telegram` Debug scheme in `Telegram-Mac.xcworkspace` with Xcode 27. With the `dev` app-configuration flag enabled, open **Voxel Clash** at the top of the chat list. Any signed-in account can play.
+1. Build and run the `Telegram` Debug scheme in `Ansible-Mac.xcworkspace` with Xcode 27. With the `dev` app-configuration flag enabled, open **Voxel Clash** at the top of the chat list. Any signed-in account can play.
 2. Choose **Match → Create match**, then **Copy invitation**. Share the link with anyone you want to play with. For a local rehearsal, `/rival` opens another signed-in account in a second window.
 3. Your rival can open the link in a browser, or open Voxel Clash on their own dev-enabled Telegram account and choose **Match → Join link** with the invitation on the clipboard. Pasting the invitation into the local game chat also joins it.
 4. Choose **Copy spectator link** on either player. Open it in a browser to follow the same battle live without a player seat. Spectators can orbit and zoom, but cannot change the game.

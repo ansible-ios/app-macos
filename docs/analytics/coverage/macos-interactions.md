@@ -437,7 +437,7 @@ Outstanding: competing navigation requests can still finish out of order; no sup
 
 ### Internal-link provenance work order
 
-Initial source audit, before the integration checkpoint below: `PremiumBoardingController` had three legacy `openLink` invocations: non-store grace-period management, configured bot checkout URL and App Store grace-period management. The actual URLs are configuration inputs; do not assume all are plain bot links or serialize them. `PremiumHooksInstall` parses each URL and invokes the general `execute(inapp:)` function. The `followResolvedName` branch in `Telegram-Mac/utils/InAppLinks.swift` reports `afterComplete(true)` immediately after starting resolution. That callback is not resolution completion, successful display or a safe privacy-lifetime endpoint.
+Initial source audit, before the integration checkpoint below: `PremiumBoardingController` had three legacy `openLink` invocations: non-store grace-period management, configured bot checkout URL and App Store grace-period management. The actual URLs are configuration inputs; do not assume all are plain bot links or serialize them. `PremiumHooksInstall` parses each URL and invokes the general `execute(inapp:)` function. The `followResolvedName` branch in `Ansible-Mac/utils/InAppLinks.swift` reports `afterComplete(true)` immediately after starting resolution. That callback is not resolution completion, successful display or a safe privacy-lifetime endpoint.
 
 | Boundary in current source | Required propagation and acceptance evidence |
 |---|---|
@@ -1386,7 +1386,7 @@ Cases cover exact ordinary scope propagation, private parent/child owner release
 
 An in-memory negative control removes the participant signal guards and handoff provenance and ends confirmation protection early. Eight cases fail with 19 assertions; production files remain untouched. Its first attempt used nil at a required-context parameter and failed compilation; the corrected control uses unresolvedContext and reaches assertion failures. Final log: /tmp/telegram-analytics-member-actions-negative.log. All processes are terminal.
 
-Analytics remains disabled at Telegram-Mac/app/AppDelegate.swift:284. No native app build or live moderation/network/send/purchase/transport was performed. Member-list loading/actions and bridges still need complete source fixtures; administrator/restriction internal permission/date/password/ownership-transfer/save branches, gift/gallery/menu and other interaction families remain incomplete. Native account/window/private-source behavior and broader route/outcome instrumentation are still required. This checkpoint establishes the audited participant callback boundaries, not whole-moderation or whole-app privacy or goal completion. The full goal remains active.
+Analytics remains disabled at Ansible-Mac/app/AppDelegate.swift:284. No native app build or live moderation/network/send/purchase/transport was performed. Member-list loading/actions and bridges still need complete source fixtures; administrator/restriction internal permission/date/password/ownership-transfer/save branches, gift/gallery/menu and other interaction families remain incomplete. Native account/window/private-source behavior and broader route/outcome instrumentation are still required. This checkpoint establishes the audited participant callback boundaries, not whole-moderation or whole-app privacy or goal completion. The full goal remains active.
 
 
 ### Member-list provider, rendering and delayed action provenance
@@ -1399,7 +1399,7 @@ The real list factory replaces the old member placeholder in media hierarchy tes
 
 An in-memory negative control removes list subscription guards and private resolution exclusion, releases recent-member ownership early, and drops pagination/visible-refresh guards. Seven cases fail with 13 assertions; production is never mutated. Negative log: /tmp/telegram-analytics-member-list-negative.log. Every process is terminal.
 
-Analytics remains disabled at Telegram-Mac/app/AppDelegate.swift:284. No native app build, real moderation/network/send/purchase/transport or bot enforcement ran. These changes add no member identity, activity, visible-row content, refresh-count or moderation-result events. Refresh is background maintenance, not user intent. Remaining work includes tag/badge and context-menu descendants, administrator/restriction editor internals, gift/gallery and other interaction families, route/outcome coverage and native privacy/account/window verification. The full goal remains active; this is not whole-app completion.
+Analytics remains disabled at Ansible-Mac/app/AppDelegate.swift:284. No native app build, real moderation/network/send/purchase/transport or bot enforcement ran. These changes add no member identity, activity, visible-row content, refresh-count or moderation-result events. Refresh is background maintenance, not user intent. Remaining work includes tag/badge and context-menu descendants, administrator/restriction editor internals, gift/gallery and other interaction families, route/outcome coverage and native privacy/account/window verification. The full goal remains active; this is not whole-app completion.
 
 
 ### Message and member-list badge information provenance
@@ -1414,7 +1414,7 @@ Verification: all 114 chat-profile-context cases pass, including 17 new badge/ta
 
 An in-memory negative control drops secret-media/author classification, lookup/rendering signal guards and the delivered-participant presentation guard. Twelve cases fail with 35 assertions; production files remain unchanged. Logs: /tmp/telegram-analytics-member-tag-final.log and /tmp/telegram-analytics-member-tag-negative.log. All processes are terminal. Changed Swift source parsing, runner syntax and targeted whitespace checks pass.
 
-Analytics remains disabled at Telegram-Mac/app/AppDelegate.swift:284. No native app build or real lookup/moderation/network/send/purchase/transport ran. Native badge hit testing, row reuse, menus, rendering and account/window lifetimes remain unverified. Saved Messages reaction-tag editing is a different route and remains outside this checkpoint, along with administrator/restriction internals, other interaction families and broader route/outcome instrumentation. The full goal remains active; no human/bot inference or enforcement is introduced.
+Analytics remains disabled at Ansible-Mac/app/AppDelegate.swift:284. No native app build or real lookup/moderation/network/send/purchase/transport ran. Native badge hit testing, row reuse, menus, rendering and account/window lifetimes remain unverified. Saved Messages reaction-tag editing is a different route and remains outside this checkpoint, along with administrator/restriction internals, other interaction families and broader route/outcome instrumentation. The full goal remains active; no human/bot inference or enforcement is introduced.
 
 
 ### Saved Messages tag-editor origins, delayed save and cached-menu privacy
@@ -1429,7 +1429,7 @@ Verification: all 133 chat-profile-context cases pass, including 19 new Saved Me
 
 An in-memory negative control removes editor signal guards, secret-media admission, reaction/search old-scope exclusion and synthetic search inheritance. Ten cases fail with 36 assertions; production files remain untouched. Logs: /tmp/telegram-analytics-saved-tag-final.log and /tmp/telegram-analytics-saved-tag-negative.log. All processes are terminal. Changed source parsing, runner syntax and targeted whitespace checks pass.
 
-Analytics remains disabled at Telegram-Mac/app/AppDelegate.swift:284. No native app build, actual tag save, network, send/purchase, transport or bot enforcement ran. Native cache reuse, menu/accessibility invocation, privacy changes before view updates, editor/window lifetimes and engine result semantics remain verification requirements. Route-event integration, other reaction/Premium flows, moderation internals and broader app families remain incomplete. The full goal stays active.
+Analytics remains disabled at Ansible-Mac/app/AppDelegate.swift:284. No native app build, actual tag save, network, send/purchase, transport or bot enforcement ran. Native cache reuse, menu/accessibility invocation, privacy changes before view updates, editor/window lifetimes and engine result semantics remain verification requirements. Route-event integration, other reaction/Premium flows, moderation internals and broader app families remain incomplete. The full goal stays active.
 
 
 ### Saved-tag edit selection route vocabulary
@@ -1442,7 +1442,7 @@ Verification: all 293 real AppAnalytics package tests pass in debug, including t
 
 An in-memory negative control removes inherited-context validation, invents a default entry and collapses search/accessibility labels to reaction_menu. Eighteen cases fail with 54 assertions; production files remain untouched. Positive logs: /tmp/telegram-analytics-saved-tag-routes-model.log and /tmp/telegram-analytics-saved-tag-routes-context.log. Negative log: /tmp/telegram-analytics-saved-tag-routes-negative.log. All processes are terminal.
 
-Registry lint, generated-file consistency, all 27 registry tooling tests and coverage pass. Registry: 35 events, 438 screens, four menus, 13 flows, 17 settings. Coverage: 485 decided items, with report /tmp/telegram-analytics-saved-tag-routes-coverage.md. Mapping coverage is not proof of route/privacy coverage. Changed source parsing, runner syntax and targeted whitespace checks pass. Analytics remains disabled at Telegram-Mac/app/AppDelegate.swift:284; no native app build, actual tag save/network/send/purchase/transport or enforcement ran.
+Registry lint, generated-file consistency, all 27 registry tooling tests and coverage pass. Registry: 35 events, 438 screens, four menus, 13 flows, 17 settings. Coverage: 485 decided items, with report /tmp/telegram-analytics-saved-tag-routes-coverage.md. Mapping coverage is not proof of route/privacy coverage. Changed source parsing, runner syntax and targeted whitespace checks pass. Analytics remains disabled at Ansible-Mac/app/AppDelegate.swift:284; no native app build, actual tag save/network/send/purchase/transport or enforcement ran.
 
 Native callback multiplicity, menu/cache/accessibility behavior, window/account privacy transitions, other reaction/Premium flows, moderation internals, interrupted recovery and broader interaction families remain incomplete. This event adds a narrow frontend intent distinction useful for product discovery; it is not a complete tag funnel or bot-detection evidence sufficient for enforcement. The full goal remains active.
 

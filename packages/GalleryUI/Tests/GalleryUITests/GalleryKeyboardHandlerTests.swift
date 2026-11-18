@@ -324,7 +324,7 @@ private enum GalleryKeyboardTestBootstrap {
         System.liquidGlass = false
         let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
         for name in ["Icon_SearchField", "Icon_SearchClear", "Icon_Quote", "Icon_Quote_Collapse", "Icon_Quote_Expand", "Icon_CopyCode", "Icon_Menu_More"] {
-            let directory = root.appendingPathComponent("Telegram-Mac/Assets.xcassets/\(name).imageset")
+            let directory = root.appendingPathComponent("Ansible-Mac/Assets.xcassets/\(name).imageset")
             guard let data = try? Data(contentsOf: directory.appendingPathComponent("Contents.json")), let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any], let entries = json["images"] as? [[String: Any]] else {
                 XCTFail("Missing image metadata: \(name)")
                 return

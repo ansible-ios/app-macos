@@ -177,14 +177,14 @@ items:
   "class:TGUIKit/ViewController": {ignore: base}
   "class:TGUIKit/VolumeControllerPopover": {ignore: transient}
   "class:TGUIKit/Window": {ignore: base}
-  "class:Telegram-Mac/AuthModalController": {ignore: container, note: "modal that hosts the auth.* steps"}
-  "class:Telegram-Mac/MainViewController": {ignore: container}
-  "class:Telegram-Mac/UpdateTabController": {ignore: embedded, note: "update bar under the chat list and on the login screen"}
+  "class:Ansible-Mac/AuthModalController": {ignore: container, note: "modal that hosts the auth.* steps"}
+  "class:Ansible-Mac/MainViewController": {ignore: container}
+  "class:Ansible-Mac/UpdateTabController": {ignore: embedded, note: "update bar under the chat list and on the login screen"}
   "class:TelegramMediaUtils/PreviewModalController": {ignore: transient, note: "long-press sticker or GIF preview"}
-  "class:TelegramShare/SEPasslockController": passcode.lock
-  "class:TelegramShare/SESelectController": share.extension
-  "class:TelegramShare/SEUnauthorizedViewController": share.extension_logged_out
-  "class:TelegramShare/ShareViewController": {ignore: container}
+  "class:AnsibleShare/SEPasslockController": passcode.lock
+  "class:AnsibleShare/SESelectController": share.extension
+  "class:AnsibleShare/SEUnauthorizedViewController": share.extension_logged_out
+  "class:AnsibleShare/ShareViewController": {ignore: container}
   "class:TelegramUtils/EditableViewController": {ignore: base}
   "class:TelegramUtils/TableViewController": {ignore: base}
   "class:TelegramUtils/TelegramGenericViewController": {ignore: base}
@@ -425,7 +425,7 @@ items:
   "inputdata:StoriesUI/StoryPrivacyModalController": [stories.privacy, stories.post]
   "inputdata:StoriesUI/StoryStreamStarMessageController": stories.live.star_message
   "inputdata:StoriesUI/StoryViewersModalController": stories.viewers
-  "inputdata:Telegram-Mac/AppUpdateViewController": settings.app_update
+  "inputdata:Ansible-Mac/AppUpdateViewController": settings.app_update
   "inputdata:TranslateUI/AIStyleModalController": chat.ai_editor.style
   "inputdata:TranslateUI/AiStylePreviewModalController": chat.ai_editor.style_preview
   "inputdata:TranslateUI/TranslateModalController": [chat.translation, chat.ai_editor]
@@ -456,7 +456,7 @@ items:
   "inputdata:WebAppUI/WebbotShareMessageModal": bot.mini_app.share_message
   "system_alert:CrashRecoveryUI/CrashRecoveryWindowController.confirmReset": app.crash_recovery.reset_confirmation
   "system_alert:DataUsageUI/showOutOfMemoryWarning": app.low_disk_space
-  "system_alert:Telegram-Mac/AuthorizedApplicationContext.init": app.server_notice
+  "system_alert:Ansible-Mac/AuthorizedApplicationContext.init": app.server_notice
   "system_alert:WebAppUI/WebpageModalController.handleScriptMessage": bot.mini_app.popup
   "system_panel:ChatUI/RichTextEditorCoordinator.presentAddToGroupPicker": system.file_picker
   "system_panel:ChatUI/RichTextEditorCoordinator.presentFilePicker": system.file_picker
@@ -495,7 +495,7 @@ items:
   "window_site:StoriesUI/StoryRecorderOverlayWindowController.init#2": {ignore: transient, note: "story reply recording lock overlay"}
   "window_site:StoriesUI/storyReactionsValues": {ignore: transient, note: "reaction picker in the story viewer"}
   "window_site:TGUIKit/AppMenuController.getView": {ignore: transient, note: "context menus; tracked with menu.* events"}
-  "window_site:Telegram-Mac/SupportAccountContext.open": {ignore: container, note: "another account in its own window"}
-  "window_site:Telegram-Mac/SupportAccountContext.openChat": {ignore: container, note: "a chat in its own window"}
-  "window_site:TelegramShare/ShareViewController.launchExtension": {ignore: helper, note: "hidden window backing the share extension"}
-  "xib_window:Telegram-Mac/MainMenu.xib": {ignore: container, note: "the main app window; hosts chat_list, chat and the other screens"}
+  "window_site:Ansible-Mac/SupportAccountContext.open": {ignore: container, note: "another account in its own window"}
+  "window_site:Ansible-Mac/SupportAccountContext.openChat": {ignore: container, note: "a chat in its own window"}
+  "window_site:AnsibleShare/ShareViewController.launchExtension": {ignore: helper, note: "hidden window backing the share extension"}
+  "xib_window:Ansible-Mac/MainMenu.xib": {ignore: container, note: "the main app window; hosts chat_list, chat and the other screens"}

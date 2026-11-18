@@ -18,7 +18,7 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_REPO = os.path.normpath(os.path.join(HERE, "..", "..", ".."))
-SCAN_DIRS = ["packages", "Telegram-Mac", "TelegramShare"]
+SCAN_DIRS = ["packages", "Ansible-Mac", "AnsibleShare"]
 SKIP_DIRS = {".build", ".swiftpm", "Tests"}
 SKIP_FILE = re.compile(r"(Lab|LabSession|PerfLab)[A-Za-z]*\.swift$")
 

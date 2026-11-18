@@ -30,8 +30,8 @@
     "tools/perflab/ShortPeerRowLab/ReferencePaidBadge.swift.txt": "a6bd6ea0867b71e4ccfbb847f5953eca47ca7c907a55c5b935d4f8276d3682e5",
     "tools/perflab/ShortPeerRowLab/prepare.py": "837dfd2b61b7a93191aaf6b1a7c9eeb1fc3dc12bea2d849fce0fa033a3fd2ca1",
     "tools/perflab/ShortPeerRowLab/Sources/PeerRows/GeneratedPaidBadge.swift": "5ada0e2501c3cf40fa458b134705f442311b6e251c6a0ebab14852943bd0617a",
-    "Telegram-Mac/Assets.xcassets/star_small.imageset/star_12.png": "e71c72addc8bbd9867946e913daa1226c451332f65b25dfb88f5bb671510d1c6",
-    "Telegram-Mac/Assets.xcassets/star_small.imageset/star_12@2x.png": "d229b6b10c0e2e0cb80dda8b566fdf967a3f4e3c0feb4e12d96cbaa042e3088d"
+    "Ansible-Mac/Assets.xcassets/star_small.imageset/star_12.png": "e71c72addc8bbd9867946e913daa1226c451332f65b25dfb88f5bb671510d1c6",
+    "Ansible-Mac/Assets.xcassets/star_small.imageset/star_12@2x.png": "d229b6b10c0e2e0cb80dda8b566fdf967a3f4e3c0feb4e12d96cbaa042e3088d"
   },
   "production_parse": [
     "normal",

@@ -6,7 +6,7 @@ if [ -z "$LAB" ] || [ -z "$LABEL" ]; then
     echo "usage: tools/perflab/run.sh <lab> <label> [-PerfLabScenarios a,b] [-PerfLabRuns n] [-PerfLabX value ...]"
     exit 1
 fi
-APP=${PERFLAB_APP:-$(ls -d ~/Library/Developer/Xcode/DerivedData/Telegram-Mac-*/Build/Products/Debug/Telegram.app 2>/dev/null | head -1)}
+APP=${PERFLAB_APP:-$(ls -d ~/Library/Developer/Xcode/DerivedData/Ansible-Mac-*/Build/Products/Debug/Telegram.app 2>/dev/null | head -1)}
 OUT="$HOME/Library/Group Containers/6N38VWS5BX.ru.keepcoder.Telegram/debug/perf-lab"
 RESULTS=${PERFLAB_RESULTS:-$DIR/results}
 mkdir -p "$RESULTS"

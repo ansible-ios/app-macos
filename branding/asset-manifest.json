@@ -1,398 +1,398 @@
 [
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Settings_Stars.imageset/stars.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Settings_Stars.imageset/stars.png",
     "width": 24,
     "height": 24,
     "role": "settings",
     "asset": "Icon_Settings_Stars"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Settings_Stars.imageset/stars@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Settings_Stars.imageset/stars@2x.png",
     "width": 48,
     "height": 48,
     "role": "settings",
     "asset": "Icon_Settings_Stars"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Star_Currency.imageset/Star_24 (2).png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Star_Currency.imageset/Star_24 (2).png",
     "width": 24,
     "height": 24,
     "role": "color",
     "asset": "Icon_Star_Currency"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Star_Currency.imageset/Star_24@2x (2).png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Star_Currency.imageset/Star_24@2x (2).png",
     "width": 48,
     "height": 48,
     "role": "color",
     "asset": "Icon_Star_Currency"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Star_Currency_BigSize.imageset/Star_30 (2).png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Star_Currency_BigSize.imageset/Star_30 (2).png",
     "width": 30,
     "height": 30,
     "role": "color",
     "asset": "Icon_Star_Currency_BigSize"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Star_Currency_BigSize.imageset/Star_30@2x (2).png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Star_Currency_BigSize.imageset/Star_30@2x (2).png",
     "width": 60,
     "height": 60,
     "role": "color",
     "asset": "Icon_Star_Currency_BigSize"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_PeerInfo_StarsBalance.imageset/stars_balance_24.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_PeerInfo_StarsBalance.imageset/stars_balance_24.png",
     "width": 24,
     "height": 24,
     "role": "color",
     "asset": "Icon_PeerInfo_StarsBalance"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_PeerInfo_StarsBalance.imageset/stars_balance_24@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_PeerInfo_StarsBalance.imageset/stars_balance_24@2x.png",
     "width": 48,
     "height": 48,
     "role": "color",
     "asset": "Icon_PeerInfo_StarsBalance"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_StarTransaction_Row_Stars.imageset/Icon_StarTransaction_Row_Stars.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_StarTransaction_Row_Stars.imageset/Icon_StarTransaction_Row_Stars.png",
     "width": 44,
     "height": 44,
     "role": "color",
     "asset": "Icon_StarTransaction_Row_Stars"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_StarTransaction_Row_Stars.imageset/Icon_StarTransaction_Row_Stars@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_StarTransaction_Row_Stars.imageset/Icon_StarTransaction_Row_Stars@2x.png",
     "width": 88,
     "height": 88,
     "role": "color",
     "asset": "Icon_StarTransaction_Row_Stars"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Sidebar_Star.imageset/ic_star.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Sidebar_Star.imageset/ic_star.png",
     "width": 32,
     "height": 32,
     "role": "mono",
     "asset": "Icon_Sidebar_Star"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Sidebar_Star.imageset/ic_star@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Sidebar_Star.imageset/ic_star@2x.png",
     "width": 64,
     "height": 64,
     "role": "mono",
     "asset": "Icon_Sidebar_Star"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/star_small.imageset/star_12.png",
+    "path": "Ansible-Mac/Assets.xcassets/star_small.imageset/star_12.png",
     "width": 12,
     "height": 12,
     "role": "mono",
     "asset": "star_small"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/star_small.imageset/star_12@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/star_small.imageset/star_12@2x.png",
     "width": 24,
     "height": 24,
     "role": "mono",
     "asset": "star_small"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Star_Outline.imageset/Star_Outline_24.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Star_Outline.imageset/Star_Outline_24.png",
     "width": 24,
     "height": 24,
     "role": "outline",
     "asset": "Icon_Star_Outline"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Star_Outline.imageset/Star_Outline_24@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Star_Outline.imageset/Star_Outline_24@2x.png",
     "width": 48,
     "height": 48,
     "role": "outline",
     "asset": "Icon_Star_Outline"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Star_Outline_BigSize.imageset/Star_Outline_30.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Star_Outline_BigSize.imageset/Star_Outline_30.png",
     "width": 30,
     "height": 30,
     "role": "outline",
     "asset": "Icon_Star_Outline_BigSize"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Star_Outline_BigSize.imageset/Star_Outline_30@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Star_Outline_BigSize.imageset/Star_Outline_30@2x.png",
     "width": 60,
     "height": 60,
     "role": "outline",
     "asset": "Icon_Star_Outline_BigSize"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Menu_Star.imageset/PremiumStar_18.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Menu_Star.imageset/PremiumStar_18.png",
     "width": 18,
     "height": 18,
     "role": "mono",
     "asset": "Icon_Menu_Star"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Menu_Star.imageset/PremiumStar_18@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Menu_Star.imageset/PremiumStar_18@2x.png",
     "width": 36,
     "height": 36,
     "role": "mono",
     "asset": "Icon_Menu_Star"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Menu_Star_Outline.imageset/PremiumStarOutline_18.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Menu_Star_Outline.imageset/PremiumStarOutline_18.png",
     "width": 18,
     "height": 18,
     "role": "outline",
     "asset": "Icon_Menu_Star_Outline"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Menu_Star_Outline.imageset/PremiumStarOutline_18@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Menu_Star_Outline.imageset/PremiumStarOutline_18@2x.png",
     "width": 36,
     "height": 36,
     "role": "outline",
     "asset": "Icon_Menu_Star_Outline"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_BotAffiliate_Star.imageset/star_24.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_BotAffiliate_Star.imageset/star_24.png",
     "width": 24,
     "height": 24,
     "role": "mono",
     "asset": "Icon_BotAffiliate_Star"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_BotAffiliate_Star.imageset/star_24@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_BotAffiliate_Star.imageset/star_24@2x.png",
     "width": 48,
     "height": 48,
     "role": "mono",
     "asset": "Icon_BotAffiliate_Star"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Affiliate_EarnStars.imageset/earnStars_24.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Affiliate_EarnStars.imageset/earnStars_24.png",
     "width": 24,
     "height": 24,
     "role": "mono",
     "asset": "Icon_Affiliate_EarnStars"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Affiliate_EarnStars.imageset/earnStars_24@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Affiliate_EarnStars.imageset/earnStars_24@2x.png",
     "width": 48,
     "height": 48,
     "role": "mono",
     "asset": "Icon_Affiliate_EarnStars"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Star_Refund.imageset/refund_30.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Star_Refund.imageset/refund_30.png",
     "width": 30,
     "height": 30,
     "role": "refund",
     "asset": "Icon_Star_Refund"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Star_Refund.imageset/refund_30@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Star_Refund.imageset/refund_30@2x.png",
     "width": 60,
     "height": 60,
     "role": "refund",
     "asset": "Icon_Star_Refund"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Gift_Stars.imageset/giftstars_24.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Gift_Stars.imageset/giftstars_24.png",
     "width": 24,
     "height": 24,
     "role": "mono",
     "asset": "Icon_Gift_Stars"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Gift_Stars.imageset/giftstars_24@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Gift_Stars.imageset/giftstars_24@2x.png",
     "width": 48,
     "height": 48,
     "role": "mono",
     "asset": "Icon_Gift_Stars"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Giveaway_Stars.imageset/stars_35.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Giveaway_Stars.imageset/stars_35.png",
     "width": 35,
     "height": 35,
     "role": "diamond-circle",
     "asset": "Icon_Giveaway_Stars"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Giveaway_Stars.imageset/stars_35@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Giveaway_Stars.imageset/stars_35@2x.png",
     "width": 70,
     "height": 70,
     "role": "diamond-circle",
     "asset": "Icon_Giveaway_Stars"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/star_reaction_particle.imageset/star 22x22.png",
+    "path": "Ansible-Mac/Assets.xcassets/star_reaction_particle.imageset/star 22x22.png",
     "width": 22,
     "height": 22,
     "role": "mono",
     "asset": "star_reaction_particle"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/star_reaction_particle.imageset/star 22x22@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/star_reaction_particle.imageset/star 22x22@2x.png",
     "width": 44,
     "height": 44,
     "role": "mono",
     "asset": "star_reaction_particle"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Option_Telegram.imageset/telegram_30.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Option_Telegram.imageset/telegram_30.png",
     "width": 30,
     "height": 30,
     "role": "logo-mono",
     "asset": "Icon_Option_Telegram"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Option_Telegram.imageset/telegram_30@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Option_Telegram.imageset/telegram_30@2x.png",
     "width": 60,
     "height": 60,
     "role": "logo-mono",
     "asset": "Icon_Option_Telegram"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Sidebar_Telegram.imageset/ic_telegram.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Sidebar_Telegram.imageset/ic_telegram.png",
     "width": 32,
     "height": 32,
     "role": "logo-mono",
     "asset": "Icon_Sidebar_Telegram"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Sidebar_Telegram.imageset/ic_telegram@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Sidebar_Telegram.imageset/ic_telegram@2x.png",
     "width": 64,
     "height": 64,
     "role": "logo-mono",
     "asset": "Icon_Sidebar_Telegram"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/menu_folder_telegram.imageset/menu_folder_telegram.png",
+    "path": "Ansible-Mac/Assets.xcassets/menu_folder_telegram.imageset/menu_folder_telegram.png",
     "width": 18,
     "height": 18,
     "role": "logo-mono",
     "asset": "menu_folder_telegram"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/menu_folder_telegram.imageset/menu_folder_telegram@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/menu_folder_telegram.imageset/menu_folder_telegram@2x.png",
     "width": 36,
     "height": 36,
     "role": "logo-mono",
     "asset": "menu_folder_telegram"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Verified_Telegram.imageset/verified_tg (2).png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Verified_Telegram.imageset/verified_tg (2).png",
     "width": 16,
     "height": 16,
     "role": "logo-mono",
     "asset": "Icon_Verified_Telegram"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Verified_Telegram.imageset/verified_tg@2x (2).png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Verified_Telegram.imageset/verified_tg@2x (2).png",
     "width": 32,
     "height": 32,
     "role": "logo-mono",
     "asset": "Icon_Verified_Telegram"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_loginQRCap.imageset/qrlogo.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_loginQRCap.imageset/qrlogo.png",
     "width": 60,
     "height": 60,
     "role": "logo-mono",
     "asset": "Icon_loginQRCap"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_loginQRCap.imageset/qrlogo@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_loginQRCap.imageset/qrlogo@2x.png",
     "width": 120,
     "height": 120,
     "role": "logo-mono",
     "asset": "Icon_loginQRCap"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/AppIcon.appiconset/Logo_16.png",
+    "path": "Ansible-Mac/Assets.xcassets/AppIcon.appiconset/Logo_16.png",
     "width": 16,
     "height": 16,
     "role": "preserved-app",
     "asset": "AppIcon"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/AppIcon.appiconset/Logo_32.png",
+    "path": "Ansible-Mac/Assets.xcassets/AppIcon.appiconset/Logo_32.png",
     "width": 32,
     "height": 32,
     "role": "preserved-app",
     "asset": "AppIcon"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/AppIcon.appiconset/Logo_32-1.png",
+    "path": "Ansible-Mac/Assets.xcassets/AppIcon.appiconset/Logo_32-1.png",
     "width": 32,
     "height": 32,
     "role": "preserved-app",
     "asset": "AppIcon"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/AppIcon.appiconset/Logo_64.png",
+    "path": "Ansible-Mac/Assets.xcassets/AppIcon.appiconset/Logo_64.png",
     "width": 64,
     "height": 64,
     "role": "preserved-app",
     "asset": "AppIcon"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/AppIcon.appiconset/Logo_128.png",
+    "path": "Ansible-Mac/Assets.xcassets/AppIcon.appiconset/Logo_128.png",
     "width": 128,
     "height": 128,
     "role": "preserved-app",
     "asset": "AppIcon"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/AppIcon.appiconset/Logo_256.png",
+    "path": "Ansible-Mac/Assets.xcassets/AppIcon.appiconset/Logo_256.png",
     "width": 256,
     "height": 256,
     "role": "preserved-app",
     "asset": "AppIcon"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/AppIcon.appiconset/Logo_256-1.png",
+    "path": "Ansible-Mac/Assets.xcassets/AppIcon.appiconset/Logo_256-1.png",
     "width": 256,
     "height": 256,
     "role": "preserved-app",
     "asset": "AppIcon"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/AppIcon.appiconset/Logo_512.png",
+    "path": "Ansible-Mac/Assets.xcassets/AppIcon.appiconset/Logo_512.png",
     "width": 512,
     "height": 512,
     "role": "preserved-app",
     "asset": "AppIcon"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/AppIcon.appiconset/Logo_512-1.png",
+    "path": "Ansible-Mac/Assets.xcassets/AppIcon.appiconset/Logo_512-1.png",
     "width": 512,
     "height": 512,
     "role": "preserved-app",
     "asset": "AppIcon"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/AppIcon.appiconset/Logo_1024.png",
+    "path": "Ansible-Mac/Assets.xcassets/AppIcon.appiconset/Logo_1024.png",
     "width": 1024,
     "height": 1024,
     "role": "preserved-app",
     "asset": "AppIcon"
   },
   {
-    "path": "Telegram-Mac/AppIcon.icon/Assets/Ansible.png",
+    "path": "Ansible-Mac/AppIcon.icon/Assets/Ansible.png",
     "width": 1024,
     "height": 1024,
     "role": "preserved-app",
     "asset": "AppIcon Composer"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Premium_Settings.imageset/premiumbadge_16.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Premium_Settings.imageset/premiumbadge_16.png",
     "width": 16,
     "height": 16,
     "role": "premium",
     "asset": "Icon_Premium_Settings"
   },
   {
-    "path": "Telegram-Mac/Assets.xcassets/Icon_Premium_Settings.imageset/premiumbadge_16@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Premium_Settings.imageset/premiumbadge_16@2x.png",
     "width": 32,
     "height": 32,
     "role": "premium",

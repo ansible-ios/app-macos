@@ -1,21 +1,21 @@
  M .gitignore
  M .gitlab-ci.yml
  M INSTALL.md
- M Telegram-Mac/app/ApplicationContext.swift
- M Telegram-Mac/en.lproj/Localizable.strings
- M Telegram-Mac/packages-integration/bridges/WalletUIIntegration.swift
- M Telegram-Mac/packages-integration/hooks/BrowserHooksInstall.swift
- M Telegram-Mac/packages-integration/hooks/ChatInputUIHooksInstall.swift
- M Telegram-Mac/packages-integration/hooks/ChatListUIHooksInstall.swift
- M Telegram-Mac/packages-integration/hooks/ChatUIHooksInstall.swift
- M Telegram-Mac/packages-integration/hooks/EntertainmentUIHooksInstall.swift
- M Telegram-Mac/packages-integration/hooks/FeatureNavigationHooksInstall.swift
- M Telegram-Mac/packages-integration/hooks/MediaRecorderHooksInstall.swift
- M Telegram-Mac/packages-integration/hooks/PeerInfoUIHooksInstall.swift
- M Telegram-Mac/packages-integration/hooks/PremiumHooksInstall.swift
- M Telegram-Mac/packages-integration/hooks/SettingsHooksInstall.swift
- M Telegram-Mac/packages-integration/hooks/StarsHooksInstall.swift
- M Telegram-Mac/utils/InAppLinks.swift
+ M Ansible-Mac/app/ApplicationContext.swift
+ M Ansible-Mac/en.lproj/Localizable.strings
+ M Ansible-Mac/packages-integration/bridges/WalletUIIntegration.swift
+ M Ansible-Mac/packages-integration/hooks/BrowserHooksInstall.swift
+ M Ansible-Mac/packages-integration/hooks/ChatInputUIHooksInstall.swift
+ M Ansible-Mac/packages-integration/hooks/ChatListUIHooksInstall.swift
+ M Ansible-Mac/packages-integration/hooks/ChatUIHooksInstall.swift
+ M Ansible-Mac/packages-integration/hooks/EntertainmentUIHooksInstall.swift
+ M Ansible-Mac/packages-integration/hooks/FeatureNavigationHooksInstall.swift
+ M Ansible-Mac/packages-integration/hooks/MediaRecorderHooksInstall.swift
+ M Ansible-Mac/packages-integration/hooks/PeerInfoUIHooksInstall.swift
+ M Ansible-Mac/packages-integration/hooks/PremiumHooksInstall.swift
+ M Ansible-Mac/packages-integration/hooks/SettingsHooksInstall.swift
+ M Ansible-Mac/packages-integration/hooks/StarsHooksInstall.swift
+ M Ansible-Mac/utils/InAppLinks.swift
  M buildbox/build-mac.sh
  M buildbox/internal.sh
  M buildbox/stop-leftover-builds.sh

@@ -8,7 +8,7 @@ if [ -z "$LABEL" ] || [ -z "$ACCOUNT" ] || [ -z "$ENGINE" ] || [ -z "$PROFILE" ]
     exit 1
 fi
 if [ -z "$NETWORKLAB_APP" ]; then
-    for data in ~/Library/Developer/Xcode/DerivedData/Telegram-Mac-*; do
+    for data in ~/Library/Developer/Xcode/DerivedData/Ansible-Mac-*; do
         if /usr/libexec/PlistBuddy -c "Print :WorkspacePath" "$data/info.plist" 2>/dev/null | grep -q "$ROOT/"; then
             NETWORKLAB_APP="$data/Build/Products/Debug/Telegram.app"
         fi

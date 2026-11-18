@@ -16,7 +16,7 @@ shutil.copy(repository / "scripts/prepare-telegram-api.py", root / "scripts/prep
 for relative in ["submodules/telegram-ios/submodules/TelegramApi", "submodules/telegram-ios/build-system/SwiftTL"]:
     shutil.copytree(repository / relative, root / relative, ignore=shutil.ignore_patterns(".build", ".swiftpm", "SwiftPMGenerated"))
 (root / "main.swift").write_text('import TelegramApi\nprint(Api.Peer.peerUser(.init(userId: 42)))\n')
-project = json.loads(subprocess.check_output(["plutil", "-convert", "json", "-o", "-", str(repository / "Telegram.xcodeproj/project.pbxproj")]))
+project = json.loads(subprocess.check_output(["plutil", "-convert", "json", "-o", "-", str(repository / "Ansible.xcodeproj/project.pbxproj")]))
 check_id = "CE4D72C9B2A34D84A52D6A02"
 check_phase = project["objects"][check_id]
 ids={s:f'{i:024X}' for i,s in enumerate(['project','group','products','main','product','target','sources','frameworks','mainbuild','pkgbuild','pkg','pkgproduct','projectconfigs','targetconfigs','projectconfig','targetconfig'],1)}
@@ -40,7 +40,7 @@ obj('projectconfig','XCBuildConfiguration',buildSettings={'SDKROOT':'macosx','MA
 obj('targetconfig','XCBuildConfiguration',buildSettings={'PRODUCT_NAME':'Probe','CODE_SIGNING_ALLOWED':'NO','ONLY_ACTIVE_ARCH':'YES'},name='Debug')
 (root/'Probe.xcodeproj/project.pbxproj').write_bytes(plistlib.dumps(dict(archiveVersion='1',classes={},objectVersion='56',objects=o,rootObject=ids['project'])))
 
-scheme = ET.parse(repository / "Telegram.xcodeproj/xcshareddata/xcschemes/Telegram.xcscheme")
+scheme = ET.parse(repository / "Ansible.xcodeproj/xcshareddata/xcschemes/Telegram.xcscheme")
 for reference in scheme.findall(".//BuildableReference"):
     reference.set("BlueprintIdentifier", ids["target"])
     reference.set("BuildableName", "Probe")

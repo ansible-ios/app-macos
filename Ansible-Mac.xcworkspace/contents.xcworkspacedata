@@ -8,6 +8,6 @@
       location = "group:submodules/Sparkle/Sparkle.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Telegram.xcodeproj">
+      location = "group:Ansible.xcodeproj">
    </FileRef>
 </Workspace>

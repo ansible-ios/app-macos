@@ -379,7 +379,7 @@ pre code { background: none; padding: 0; }
   <li>TelegramCore: <code>CdnPartValidationTests</code> 4/4. MtProtoKit: 87/87 (also at -Os), and the strict compile has 0 warnings.</li>
   <li>Hostile-CDN bench through TelegramCore: every row clean, including the new <code>truncated</code> and <code>bad-redirect-key</code> rows.</li>
   <li>Live, on production servers (Debug app, main account, 19:30): the hardened MtProtoKit handshake created a new DC2 media temp key on the first try in 0.55 s. The bind got a normal <code>rpc_result</code>, and the Rust media sessions installed the key. This report was then uploaded and sent through the engine.</li>
-  <li>App: Debug <code>xcodebuild</code> of <code>Telegram-Mac.xcworkspace</code>: BUILD SUCCEEDED. WalletUI was adapted to the upstream change that made <code>WalletUserAddress.userId</code> optional.</li>
+  <li>App: Debug <code>xcodebuild</code> of <code>Ansible-Mac.xcworkspace</code>: BUILD SUCCEEDED. WalletUI was adapted to the upstream change that made <code>WalletUserAddress.userId</code> optional.</li>
 </ul>
 <p><b>Commits.</b> First pass: mtproto-engine <code>df06acd</code>, telegram-ios <code>c371b688c7</code>, beta <code>40c326ddd</code> (build 283253).<br>
 Second pass: mtproto-engine <code>caa4880</code>, telegram-ios <code>f1c4dd0856</code>, beta <code>2f03382fb</code> (build 283255).<br>

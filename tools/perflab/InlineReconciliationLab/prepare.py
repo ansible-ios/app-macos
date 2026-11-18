@@ -7,7 +7,7 @@ root = lab.parents[2]
 layer_path = root / 'packages/InlineStickerLayer/Sources/InlineStickerLayer/InlineStickerItemLayer.swift'
 collection_path = root / 'packages/InlineStickerLayer/Sources/InlineStickerLayer/InlineStickerKeyCollection.swift'
 callers = [root / p for p in [
-    'Telegram-Mac/packages-integration/hooks/GeneralRowsHooksInstall.swift',
+    'Ansible-Mac/packages-integration/hooks/GeneralRowsHooksInstall.swift',
     'packages/InputTextView/Sources/InputTextView/FoldingTextView.swift',
     'packages/ChatHistoryModel/Sources/ChatHistoryModel/ChatAccessoryModel.swift'
 ]]

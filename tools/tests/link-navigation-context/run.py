@@ -4,7 +4,7 @@ import subprocess
 import tempfile
 
 root = Path(__file__).resolve().parents[3]
-source = (root / 'Telegram-Mac/utils/InAppLinks.swift').read_text()
+source = (root / 'Ansible-Mac/utils/InAppLinks.swift').read_text()
 context = (root / 'packages/AppAnalytics/Sources/AppAnalytics/AnalyticsContext.swift').read_text()
 fixture = Path(__file__).with_name('LinkTests.swift').read_text()
 enum_start = source.index('enum inAppLink {')
@@ -20,7 +20,7 @@ fixture = fixture.replace('__BROWSER_INVOICE__', invoice[invoice.index('final cl
 hooks = (root / 'packages/WebAppUI/Sources/WebAppUI/BrowserHooks.swift').read_text()
 hook_start = hooks.index('    public let openInvoice:')
 fixture = fixture.replace('__INVOICE_HOOK__', hooks[hook_start:hooks.index('    public let showLoginWidget:', hook_start)].replace('public ', ''))
-installer = (root / 'Telegram-Mac/packages-integration/hooks/BrowserHooksInstall.swift').read_text()
+installer = (root / 'Ansible-Mac/packages-integration/hooks/BrowserHooksInstall.swift').read_text()
 bridge_start = installer.index('    hooks.openInvoiceWithContext =')
 fixture = fixture.replace('__INVOICE_INSTALL__', installer[bridge_start:installer.index('    hooks.openChatWithContext =', bridge_start)])
 bridge_start = installer.index('private func presentBrowserInvoice(')

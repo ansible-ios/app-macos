@@ -2,7 +2,7 @@
 
 TextView cleared its remembered link as soon as the hover timer fired. The next movement over the same link disposed the preview subscription and scheduled another timer. This could repeat resolution work or abort an in-flight request. Layout replacement through update or set(layout:), and detachment from a window, did not cancel this work.
 
-The app's link-preview implementation in Telegram-Mac/utils/InAppLinks.swift resolves peer names or invite links, constructs menu items and avatars, and captures the source view in the result callback. An outstanding subscription can therefore retain its source view. The final baseline regression harness reproduces that retention after detachment, using a real SwiftSignalKit subscription with the same ownership pattern.
+The app's link-preview implementation in Ansible-Mac/utils/InAppLinks.swift resolves peer names or invite links, constructs menu items and avatars, and captures the source view in the result callback. An outstanding subscription can therefore retain its source view. The final baseline regression harness reproduces that retention after detachment, using a real SwiftSignalKit subscription with the same ownership pattern.
 
 ## Change
 

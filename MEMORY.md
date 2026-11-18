@@ -43,7 +43,7 @@
 6. `DiamondCurrencySceneView.swift`: currency hero использует готовый Lottie из Web вместо отдельной Metal модели, onceEnd, максимум 30 FPS. Это не замена всех Premium/TON сцен.
 7. `FragmentUsernameController.swift`: в collectible-info старый символ TON заменён готовым цветным алмазом.
 8. 36 aliases в `branding/localization-aliases.json` и `packages/Localization/Sources/Localization/AnsibleLocalizationKeys.swift`; lookup в `LocalizableExtension.swift` сначала ищет alias, сохраняет original fallback. Они разделяют legacy string/plural collisions и новые Crystal Piece тексты.
-9. Native fallback `Telegram-Mac/en.lproj/Localizable.strings` остаётся UTF-16. Исправлены recovery/support URLs и рекламная справка: без скопированных обещаний про сотни миллионов пользователей.
+9. Native fallback `Ansible-Mac/en.lproj/Localizable.strings` остаётся UTF-16. Исправлены recovery/support URLs и рекламная справка: без скопированных обещаний про сотни миллионов пользователей.
 
 ### Точные анимации, без самостоятельного перерисовывания
 

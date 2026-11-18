@@ -37,7 +37,7 @@ start = browser.index('private final class WebpageContainerController')
 fixture = fixture.replace('__CONTAINER_INIT__', section(browser, '    public init(data:', '    public func contextMenu', start))
 fixture = fixture.replace('__CONTAINER_ADD__', section(browser, '    public func add(_ tab:', '    deinit', start))
 fixture = fixture.replace('__LINK_MANAGER__', section(browser, 'public final class BrowserLinkManager', 'public final class WebappBrowserController'))
-installer = (root / 'Telegram-Mac/packages-integration/hooks/ChatUIHooksInstall.swift').read_text()
+installer = (root / 'Ansible-Mac/packages-integration/hooks/ChatUIHooksInstall.swift').read_text()
 fixture = fixture.replace('__INSTALL__', section(installer, '    let browserTabData:', '    hooks.installAttachMenuBot ='))
 with tempfile.TemporaryDirectory(prefix='browser-context-') as directory:
     directory = Path(directory)

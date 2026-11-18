@@ -47,7 +47,7 @@ enum TestImages {
         .deletingLastPathComponent()
         .deletingLastPathComponent()
         .deletingLastPathComponent()
-        .appendingPathComponent("Telegram-Mac/Assets.xcassets")
+        .appendingPathComponent("Ansible-Mac/Assets.xcassets")
 
     static func key(_ value: String) -> String {
         return value.lowercased().filter { $0.isLetter || $0.isNumber }

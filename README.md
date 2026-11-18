@@ -1,6 +1,6 @@
 # Ansible for macOS
 
-<img src="Telegram-Mac/Assets.xcassets/AppIcon.appiconset/Logo_128.png" width="96" alt="Ansible">
+<img src="Ansible-Mac/Assets.xcassets/AppIcon.appiconset/Logo_128.png" width="96" alt="Ansible">
 
 Native macOS client for the [Ansible](https://ansible.su) messaging service, built with Swift and AppKit.
 
@@ -84,7 +84,7 @@ swiftc packages/PhoneNumberUtils/Sources/PhoneNumberUtils/AnsiblePhoneNumber.swi
 python3 tools/tests/contact-free-links/run.py
 ```
 
-The native workspace and scheme retain their upstream names: `Telegram-Mac.xcworkspace` and `Telegram`.
+The native workspace and scheme retain their upstream names: `Ansible-Mac.xcworkspace` and `Telegram`.
 
 ## License and attribution
 

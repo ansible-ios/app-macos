@@ -11,7 +11,7 @@ Path prefixes used below:
 
 ## How the code fits together in the shipping macOS app
 
-- The macOS app passes `RustNetworkEngineFactory()` and `OpenSSLEncryptionProvider()` (`Telegram-Mac/app/AppDelegate.swift:829`).
+- The macOS app passes `RustNetworkEngineFactory()` and `OpenSSLEncryptionProvider()` (`Ansible-Mac/app/AppDelegate.swift:829`).
 - The Rust engine never creates keys in this configuration. `RE/RustNetworkSession.swift:191` sets `setup.generate_key = 0`, and `RE/RustNetworkSession.swift:573-574` ignores any key the engine creates.
 - Keys always come from `MTContext authInfoForDatacenterWithIdRequired` (`MTK/MTContext.m:1557-1596`). That builds an `MTDatacenterAuthAction` (`MTK/MTContext.m:1550-1555`; `authActionFactory` is set only in tests). The action runs `MTDatacenterAuthMessageService` on its own `MTProto` in unauthorized mode, over MtProtoKit's own `MTTcpTransport` and the same proxy settings. It then binds the temp key with `MTBindKeyMessageService` (`MTK/MTDatacenterAuthAction.m:59-185`).
 - The finished `MTDatacenterAuthInfo` is stored in the context and passed to Rust:

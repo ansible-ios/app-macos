@@ -21,7 +21,7 @@ Phase 1 is done when all of these hold:
 - Accessibility is computed lazily: override the `NSAccessibility` methods (`isAccessibilityElement()`, `accessibilityRole()`, `accessibilityLabel()`, `accessibilityValue()`, `accessibilityPerformPress()`) and never compute labels during layout. VoiceOver off means no cost.
 - A label is the product name of the thing ("Send", "Attach", "Back"), never the icon name.
 - Decorative images and spacers are marked decorative explicitly; an unlabeled image is a bug.
-- Strings use `VoiceOver.*` keys in `Telegram-Mac/en.lproj/Localizable.strings` (UTF-16), with the iOS key name when iOS has the same thing.
+- Strings use `VoiceOver.*` keys in `Ansible-Mac/en.lproj/Localizable.strings` (UTF-16), with the iOS key name when iOS has the same thing.
 
 ## Decisions
 

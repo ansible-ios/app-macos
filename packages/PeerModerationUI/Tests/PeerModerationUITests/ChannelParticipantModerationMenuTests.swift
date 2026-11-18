@@ -9,7 +9,7 @@ import SwiftSignalKit
 
 final class ChannelParticipantModerationMenuTests: XCTestCase {
     private static let themeImages: [NSImage] = {
-        let assets = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Telegram-Mac/Assets.xcassets")
+        let assets = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Ansible-Mac/Assets.xcassets")
         return [("Icon_SearchField", "search-icon@2x.png"), ("Icon_SearchClear", "ic_delete@2x.png"), ("Icon_Quote", "ic_quote_10@2x.png"), ("Icon_Quote_Collapse", "collapse_16@2x.png"), ("Icon_Quote_Expand", "expand_16@2x.png")].compactMap { name, file in
             guard let image = NSImage(contentsOf: assets.appendingPathComponent(name + ".imageset").appendingPathComponent(file)) else {
                 XCTFail("Missing theme image: \(name)")

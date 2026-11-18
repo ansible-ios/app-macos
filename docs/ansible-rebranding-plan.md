@@ -117,7 +117,7 @@ Share extension также берёт `ApiEnvironment.language`. Ключи macO
 
 | Поверхность | Что проверить/сделать | Где начинать |
 | --- | --- | --- |
-| Запуск и вход | Logo/intro, QR-центр, номер +777, code/2FA, ошибки, язык до входа | Telegram-Mac/app, login hooks, Resources/tgs/login_airplane.tgs |
+| Запуск и вход | Logo/intro, QR-центр, номер +777, code/2FA, ошибки, язык до входа | Ansible-Mac/app, login hooks, Resources/tgs/login_airplane.tgs |
 | Навигация | App menu, sidebar, поиск настроек, tooltips, account switcher | SettingsUI, ChatListUI, TelegramIconsTheme |
 | Настройки/About | Иконка, имя, версия, сайт, support, privacy/terms, fork attribution | SettingsUI, ApiCredentials, Info.plist, README/NOTICE/LICENSE |
 | Алмазы | Баланс, покупка, списание, возврат, платежи, история и транзакции | StarsUI, LocalAnimations, SceneEffects |

@@ -18,8 +18,8 @@ chat = (root / 'packages/ChatUI/Sources/ChatUI/ChatNavigationHooks.swift').read_
 feature = (root / 'packages/InputDataUI/Sources/InputDataUI/FeatureNavigationHooks.swift').read_text()
 fixture = fixture.replace('__CHAT_HOOK__', section(chat, '    public var showInactiveChannelsOnJoin:', '    public var showFrozenAccount:'))
 fixture = fixture.replace('__FEATURE_HOOK__', section(feature, '    public var showInactiveChannels:', '    public var reportContent:'))
-chat_install = (root / 'Telegram-Mac/packages-integration/hooks/ChatUIHooksInstall.swift').read_text()
-feature_install = (root / 'Telegram-Mac/packages-integration/hooks/FeatureNavigationHooksInstall.swift').read_text()
+chat_install = (root / 'Ansible-Mac/packages-integration/hooks/ChatUIHooksInstall.swift').read_text()
+feature_install = (root / 'Ansible-Mac/packages-integration/hooks/FeatureNavigationHooksInstall.swift').read_text()
 fixture = fixture.replace('__CHAT_INSTALL__', section(chat_install, '    hooks.showInactiveChannelsOnJoin =', '    hooks.showFrozenAccount ='))
 fixture = fixture.replace('__FEATURE_INSTALL__', section(feature_install, '    hooks.showInactiveChannels =', '    hooks.reportContent ='))
 with tempfile.TemporaryDirectory(prefix='inactive-channels-context-') as directory:

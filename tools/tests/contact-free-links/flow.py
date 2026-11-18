@@ -4,7 +4,7 @@ import subprocess
 import tempfile
 
 root = Path(__file__).resolve().parents[3]
-source = (root / "Telegram-Mac/utils/InAppLinks.swift").read_text()
+source = (root / "Ansible-Mac/utils/InAppLinks.swift").read_text()
 start = source.index("private func openNoPaidMessagesPeer(")
 helper = source[start:source.index("\nprivate final class InAppLinkOrigin", start)]
 start = source.index("    case let .contactToken(_, token, freeToken, context, callback):")

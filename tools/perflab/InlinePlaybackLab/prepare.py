@@ -6,7 +6,7 @@ lab = Path(__file__).resolve().parent
 root = lab.parents[2]
 source = root / 'packages/InlineStickerLayer/Sources/InlineStickerLayer/InlineStickerPlayback.swift'
 callers = [root / name for name in [
-    'Telegram-Mac/packages-integration/hooks/GeneralRowsHooksInstall.swift',
+    'Ansible-Mac/packages-integration/hooks/GeneralRowsHooksInstall.swift',
     'packages/InputTextView/Sources/InputTextView/FoldingTextView.swift',
     'packages/ChatHistoryModel/Sources/ChatHistoryModel/ChatAccessoryModel.swift'
 ]]

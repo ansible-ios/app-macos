@@ -79,7 +79,7 @@ screens:
     sources: ["class:SelectPeersUI/SelectPeersModalController", "class:ShareUI/ShareModalController"]
   app.server_notice:
     status: static
-    sources: ["system_alert:Telegram-Mac/AuthorizedApplicationContext.init"]
+    sources: ["system_alert:Ansible-Mac/AuthorizedApplicationContext.init"]
   app.sticker_picker:
     status: static
     sources: ["class:EntertainmentUI/NStickersViewController"]
@@ -565,7 +565,7 @@ screens:
     sources: ["class:GalleryUI/ModernPictureInPictureVideoWindow"]
   passcode.lock:
     status: static
-    sources: ["class:PasscodeUI/ColdStartPasslockController", "class:PasscodeUI/PasscodeLockController", "class:TelegramShare/SEPasslockController"]
+    sources: ["class:PasscodeUI/ColdStartPasslockController", "class:PasscodeUI/PasscodeLockController", "class:AnsibleShare/SEPasslockController"]
   passport:
     status: static
     sources: ["class:PassportUI/PassportController"]
@@ -856,7 +856,7 @@ screens:
     sources: ["inputdata:SettingsUI/UsernameController"]
   settings.app_update:
     status: static
-    sources: ["inputdata:Telegram-Mac/AppUpdateViewController"]
+    sources: ["inputdata:Ansible-Mac/AppUpdateViewController"]
   settings.appearance:
     status: static
     sources: ["inputdata:SettingsUI/AppAppearanceViewController"]
@@ -1105,10 +1105,10 @@ screens:
     sources: ["inputdata:DataUsageUI/DataStorageExceptions"]
   share.extension:
     status: static
-    sources: ["class:TelegramShare/SESelectController"]
+    sources: ["class:AnsibleShare/SESelectController"]
   share.extension_logged_out:
     status: static
-    sources: ["class:TelegramShare/SEUnauthorizedViewController"]
+    sources: ["class:AnsibleShare/SEUnauthorizedViewController"]
   share.peer_picker:
     status: static
     sources: ["class:ShareUI/ShareModalController"]

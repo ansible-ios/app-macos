@@ -62,10 +62,10 @@ class InventoryTests(unittest.TestCase):
                 }
             }
         """)
-        write(root, "Telegram-Mac/Base.lproj/MainMenu.xib", """
+        write(root, "Ansible-Mac/Base.lproj/MainMenu.xib", """
             <document><objects><window title="Telegram" customClass="AppWindow"/></objects></document>
         """)
-        write(root, "Telegram-Mac/de.lproj/MainMenu.xib", """
+        write(root, "Ansible-Mac/de.lproj/MainMenu.xib", """
             <document><objects><window title="Telegram" customClass="AppWindow"/></objects></document>
         """)
         write(root, "packages/FooUI/Tests/FooUITests/FooTests.swift", """
@@ -104,7 +104,7 @@ class InventoryTests(unittest.TestCase):
 
     def test_xib_windows_once_per_base_file(self):
         xibs = [k for k in self.items if k.startswith("xib_window:")]
-        self.assertEqual(xibs, ["xib_window:Telegram-Mac/MainMenu.xib"])
+        self.assertEqual(xibs, ["xib_window:Ansible-Mac/MainMenu.xib"])
         self.assertEqual(self.items[xibs[0]]["name"], "AppWindow")
 
     def test_direct_windows_alerts_and_panels(self):

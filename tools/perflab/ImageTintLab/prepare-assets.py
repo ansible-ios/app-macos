@@ -18,7 +18,7 @@ resources.mkdir(parents=True)
 names = ['Icon_CopyCode', 'Icon_Peer_Music_Chevron', 'Icon_Peer_Music_Waveform', 'Wallet_InfoWarning', 'Icon_SavedMessages_Premium_Tag', 'Wallet_Collectible_AddToCard']
 hashes = {}
 for name in names:
-    source = root / 'Telegram-Mac/Assets.xcassets' / (name + '.imageset')
+    source = root / 'Ansible-Mac/Assets.xcassets' / (name + '.imageset')
     shutil.copytree(source, assets / source.name)
     for path in source.rglob('*'):
         if path.is_file():

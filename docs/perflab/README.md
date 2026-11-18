@@ -8,14 +8,14 @@ PerfLab runs scripted performance scenarios inside the real Debug app, signed in
 |---|---|---|
 | `PerfLab` package | `packages/PerfLab` | Frame clock (display link gaps on the main thread), scroll driver (pixel scroll-wheel events at a scripted velocity), process monitor (CPU, main-thread CPU, footprint), report writer |
 | Labs | e.g. `packages/EntertainmentUI/Sources/EntertainmentUI/EmojiPanelLab.swift` | Host a real screen in its own window and run named scenarios |
-| Hook | `Telegram-Mac/app/AppDelegate.swift` (`#if DEBUG`) | Starts a lab when the app is launched with `-PerfLab <lab>` |
+| Hook | `Ansible-Mac/app/AppDelegate.swift` (`#if DEBUG`) | Starts a lab when the app is launched with `-PerfLab <lab>` |
 | Runner | `tools/perflab/run.sh` | Launches the Debug app outside Xcode, samples WindowServer CPU and GPU utilization next to it, waits for the lab to quit, prints a summary |
 
 Rendering happens in WindowServer, not in the app, so a placeholder or animation that is expensive to composite does not show up in the app's own CPU or main-thread numbers. `wsCores` and `gpu%` in the summary cover that side.
 
 ## Running
 
-1. Build the Debug app (`xcodebuild -workspace Telegram-Mac.xcworkspace -scheme Telegram -configuration Debug build`).
+1. Build the Debug app (`xcodebuild -workspace Ansible-Mac.xcworkspace -scheme Telegram -configuration Debug build`).
 2. Quit any running Debug Telegram. Do not run a lab under Xcode: queue debugging (backtrace recording) and attached lldb distort every number.
 3. Leave the Mac alone while it runs. Animated content only plays while the lab window is the key window.
 

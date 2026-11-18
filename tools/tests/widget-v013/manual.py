@@ -97,10 +97,10 @@ def find_app(override):
     else:
         candidates = []
         derived = Path.home() / 'Library/Developer/Xcode/DerivedData'
-        for info in derived.glob('Telegram-Mac-*/info.plist'):
+        for info in derived.glob('Ansible-Mac-*/info.plist'):
             with info.open('rb') as handle:
                 metadata = plistlib.load(handle)
-            if metadata.get('WorkspacePath') == str(ROOT / 'Telegram-Mac.xcworkspace'):
+            if metadata.get('WorkspacePath') == str(ROOT / 'Ansible-Mac.xcworkspace'):
                 candidates.append(info.parent / 'Build/Products/Debug/Telegram.app')
     candidates = [app for app in candidates if (app / 'Contents/MacOS/Telegram').is_file()]
     if not candidates:

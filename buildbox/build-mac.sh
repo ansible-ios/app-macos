@@ -35,8 +35,8 @@ if ! sh scripts/time-step.sh frameworks sh "scripts/configure_frameworks.sh" > "
     exit 1
 fi
 grep -E '^(framework-stamp:|build-timing:)' "$FRAMEWORK_LOG" || true
-if ! cmp -s "configurations/${BUILD_CONFIGURATION}.xcconfig" "Telegram-Mac/Release.xcconfig"; then
-    cp "configurations/${BUILD_CONFIGURATION}.xcconfig" "Telegram-Mac/Release.xcconfig"
+if ! cmp -s "configurations/${BUILD_CONFIGURATION}.xcconfig" "Ansible-Mac/Release.xcconfig"; then
+    cp "configurations/${BUILD_CONFIGURATION}.xcconfig" "Ansible-Mac/Release.xcconfig"
 fi
 
 case "${BUILD_CONFIGURATION}" in
@@ -59,7 +59,7 @@ esac
 
 XCODEBUILD_LOG="$BUILD_LOG_DIR/xcodebuild.log"
 echo "Archiving, full log: ${XCODEBUILD_LOG}"
-if ! sh scripts/time-step.sh archive xcodebuild archive -showBuildTimingSummary -workspace "Telegram-Mac.xcworkspace" \
+if ! sh scripts/time-step.sh archive xcodebuild archive -showBuildTimingSummary -workspace "Ansible-Mac.xcworkspace" \
 -scheme Release \
 -configuration Release \
 -archivePath ./ \

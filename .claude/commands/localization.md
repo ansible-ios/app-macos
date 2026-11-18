@@ -5,7 +5,7 @@ Process all `//TODOLANG` markers in Swift files and convert inline string litera
 ## Instructions
 
 ### 1. Discovery
-Find all `//TODOLANG` markers recursively in Swift files (Telegram-Mac/*). For each marker, capture the line itself plus 2 lines above and 2 lines below for context.
+Find all `//TODOLANG` markers recursively in Swift files (Ansible-Mac/*). For each marker, capture the line itself plus 2 lines above and 2 lines below for context.
 
 ### 2. Generate Localization Key Prefix
 
@@ -76,7 +76,7 @@ Usage: `strings().keyOther(count)` - the count determines plural form even if no
 
 ### 6. Write to Localizable.strings
 
-- File: `Telegram-Mac/en.lproj/Localizable.strings`
+- File: `Ansible-Mac/en.lproj/Localizable.strings`
 - Append new keys
 - Keep file sorted alphabetically
 - No duplicates
@@ -106,7 +106,7 @@ After updating Localizable.strings, execute:
 ```bash
 swiftgen strings -p ./tools/strings.stencil \
   --output ./packages/Localization/Sources/Localization/Localizable.swift \
-  ./Telegram-Mac/en.lproj/Localizable.strings
+  ./Ansible-Mac/en.lproj/Localizable.strings
 ```
 
 Report the command output.

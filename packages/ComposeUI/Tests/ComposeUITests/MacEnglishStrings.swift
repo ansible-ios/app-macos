@@ -4,7 +4,7 @@ import Localization
 
 func macEnglishStrings() -> [String: String] {
     let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
-    return NSDictionary(contentsOf: root.appendingPathComponent("Telegram-Mac/en.lproj/Localizable.strings")) as? [String: String] ?? [:]
+    return NSDictionary(contentsOf: root.appendingPathComponent("Ansible-Mac/en.lproj/Localizable.strings")) as? [String: String] ?? [:]
 }
 
 func applyMacEnglishStrings(_ strings: [String: String] = macEnglishStrings()) {

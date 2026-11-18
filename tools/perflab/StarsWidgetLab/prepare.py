@@ -29,7 +29,7 @@ target.parent.mkdir(parents=True, exist_ok=True)
 target.write_text(output)
 assets = {}
 for original_name, name in [('star 22x22.png', 'star.png'), ('star 22x22@2x.png', 'star@2x.png')]:
-    src = root / 'Telegram-Mac/Assets.xcassets/star_reaction_particle.imageset' / original_name
+    src = root / 'Ansible-Mac/Assets.xcassets/star_reaction_particle.imageset' / original_name
     dst = lab / 'Sources/Effects/Resources' / name
     dst.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(src, dst)

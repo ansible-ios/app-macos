@@ -7,7 +7,7 @@ DEST_DIR="$2"
 mkdir -p "$DEST_DIR"
 rsync -a --delete \
     --exclude='/core-xprojects/*/build/' \
-    --exclude='/Telegram-Mac/Release.xcconfig' \
+    --exclude='/Ansible-Mac/Release.xcconfig' \
     --exclude='/submodules/telegram-ios/submodules/MTProtoRustEngine/MTProtoEngineFFI.xcframework/' \
     --exclude='/submodules/**/SharedHeaders/' \
     --exclude='/.build/telegram-api-generation/' \

@@ -10,7 +10,7 @@ request = (base / 'RequestJoinChatModalController.swift').read_text()
 action = (base / 'InviteJoinAction.swift').read_text()
 context = (root / 'packages/AppAnalytics/Sources/AppAnalytics/AnalyticsContext.swift').read_text()
 feature = (root / 'packages/InputDataUI/Sources/InputDataUI/FeatureNavigationHooks.swift').read_text()
-install = (root / 'Telegram-Mac/packages-integration/hooks/FeatureNavigationHooksInstall.swift').read_text()
+install = (root / 'Ansible-Mac/packages-integration/hooks/FeatureNavigationHooksInstall.swift').read_text()
 fixture = Path(__file__).with_name('InviteTests.swift').read_text()
 def section(source, begin, end):
     start = source.index(begin)

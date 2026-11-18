@@ -1,6 +1,6 @@
 # Building Telegram for macOS
 
-The app is an Xcode workspace (`Telegram-Mac.xcworkspace`) that links a set of native
+The app is an Xcode workspace (`Ansible-Mac.xcworkspace`) that links a set of native
 libraries built once from `core-xprojects/` and a collection of local Swift packages
 from `packages/` and `submodules/telegram-ios/submodules/`. There are no remote Swift
 package dependencies, so once the submodules are checked out the build is offline.
@@ -120,22 +120,22 @@ committed; every machine builds it.
 
 ## 4. Build the app
 
-Open `Telegram-Mac.xcworkspace` in Xcode, not `Telegram.xcodeproj`. The workspace also
+Open `Ansible-Mac.xcworkspace` in Xcode, not `Ansible.xcodeproj`. The workspace also
 contains the `CodeSyntax` and `Sparkle` projects that the app links,
-and a bare `Telegram.xcodeproj` build cannot find them.
+and a bare `Ansible.xcodeproj` build cannot find them.
 
 Schemes:
 
 | Scheme | Use |
 |---|---|
-| `Telegram` | Day-to-day development, Debug configuration (`Telegram-Mac/Debug.xcconfig`) |
+| `Telegram` | Day-to-day development, Debug configuration (`Ansible-Mac/Debug.xcconfig`) |
 | `TelegramShare` | The share extension on its own |
-| `Release` | Release archives (`Telegram-Mac/Release.xcconfig`) |
+| `Release` | Release archives (`Ansible-Mac/Release.xcconfig`) |
 
 From the command line:
 
 ```
-xcodebuild -workspace Telegram-Mac.xcworkspace -scheme Telegram -configuration Debug build
+xcodebuild -workspace Ansible-Mac.xcworkspace -scheme Telegram -configuration Debug build
 ```
 
 The main app targets macOS 11.0 and the share extension macOS 10.13. Swift packages are
@@ -200,13 +200,13 @@ entitlements you cannot request.
 
 ## Build configurations and release channels
 
-`Telegram-Mac/common.xcconfig` holds the shared settings. The channel is selected by an
+`Ansible-Mac/common.xcconfig` holds the shared settings. The channel is selected by an
 xcconfig that defines `TYPE` (a Swift compiler flag) plus the Sparkle feed URL:
 
 | xcconfig | `TYPE` | Feed |
 |---|---|---|
-| `Telegram-Mac/Debug.xcconfig` | (none) | beta feed |
-| `Telegram-Mac/Release.xcconfig` | `STABLE` | `mac-updates.telegram.org/updates` |
+| `Ansible-Mac/Debug.xcconfig` | (none) | beta feed |
+| `Ansible-Mac/Release.xcconfig` | `STABLE` | `mac-updates.telegram.org/updates` |
 | `configurations/Stable.xcconfig` | `STABLE` | stable feed |
 | `configurations/Beta.xcconfig` | `BETA` | `mac-updates.telegram.org/beta` |
 | `configurations/Alpha.xcconfig` | `ALPHA` | AppCenter feed |
@@ -214,10 +214,10 @@ xcconfig that defines `TYPE` (a Swift compiler flag) plus the Sparkle feed URL:
 
 `buildbox/build-mac.sh <Alpha|Beta|Stable|AppStore>` is the release recipe: it copies the
 tree to `~/build-<channel>`, runs `scripts/configure_frameworks.sh`, copies the chosen
-`configurations/<channel>.xcconfig` over `Telegram-Mac/Release.xcconfig`, and runs
+`configurations/<channel>.xcconfig` over `Ansible-Mac/Release.xcconfig`, and runs
 
 ```
-xcodebuild archive -workspace Telegram-Mac.xcworkspace -scheme Release -configuration Release \
+xcodebuild archive -workspace Ansible-Mac.xcworkspace -scheme Release -configuration Release \
   'SWIFT_ACTIVE_COMPILATION_CONDITIONS=$(inherited) <CHANNEL>'
 ```
 
@@ -276,15 +276,15 @@ condition and dSYM with default settings and with compilation caching enabled.
 It does not replace validation of a signed Telegram archive on the release runner.
 
 Version numbers are bumped manually at release time, not per build: run
-`tools/bump_build_number.sh Telegram-Mac/Info.plist` to increment `CFBundleVersion`, then
-`tools/sync_share_version.sh Telegram-Mac/Info.plist TelegramShare/Info.plist` so the share
+`tools/bump_build_number.sh Ansible-Mac/Info.plist` to increment `CFBundleVersion`, then
+`tools/sync_share_version.sh Ansible-Mac/Info.plist AnsibleShare/Info.plist` so the share
 extension matches (App Store validation requires it). These used to run from a build phase on the
 `Telegram` target, which rewrote `Info.plist` on every build and so made every incremental build
 re-package and re-link the app.
 
 ## Localized strings
 
-`Telegram-Mac/en.lproj/Localizable.strings` is UTF-16; keep it that way when editing.
+`Ansible-Mac/en.lproj/Localizable.strings` is UTF-16; keep it that way when editing.
 After adding strings, regenerate the Swift accessors:
 
 ```
@@ -324,7 +324,7 @@ cd packages/TGUIKit && swift build
 - **`duplicate symbol '_rust_eh_personality'`**: tlottie was built with a different Rust
   toolchain than the engines. Delete `core-xprojects/tlottie/build` and rerun
   `sh core-xprojects/tlottie/build.sh`.
-- **CodeSyntax or Sparkle not found**: you opened `Telegram.xcodeproj`. Open the
+- **CodeSyntax or Sparkle not found**: you opened `Ansible.xcodeproj`. Open the
   workspace instead.
 - **"The macOS deployment target 'MACOSX_DEPLOYMENT_TARGET' is set to 10.13, but the range
   of supported deployment target versions is 12.0 to 27.0.x"**: you are building with

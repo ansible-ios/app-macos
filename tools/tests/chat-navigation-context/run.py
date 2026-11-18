@@ -4,10 +4,10 @@ import subprocess
 import tempfile
 
 root = Path(__file__).resolve().parents[3]
-app = (root / 'Telegram-Mac/app/ApplicationContext.swift').read_text()
+app = (root / 'Ansible-Mac/app/ApplicationContext.swift').read_text()
 chat = (root / 'packages/ChatUI/Sources/ChatUI/ChatController.swift').read_text()
 context = (root / 'packages/AppAnalytics/Sources/AppAnalytics/AnalyticsContext.swift').read_text()
-installer = (root / 'Telegram-Mac/packages-integration/hooks/PremiumHooksInstall.swift').read_text()
+installer = (root / 'Ansible-Mac/packages-integration/hooks/PremiumHooksInstall.swift').read_text()
 fixture = Path(__file__).with_name('NavigationTests.swift').read_text()
 start = app.index('func navigateToChat(')
 end = app.index('private final class AuthModalController', start)

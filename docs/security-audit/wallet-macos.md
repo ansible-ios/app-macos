@@ -7,7 +7,7 @@ Date: 2026-10-07. Branch: beta. telegram-ios pin ff054f7a10 (581 commits **ahead
 `WalletContext` / `WalletBackupCrypto` and the Rust `wallet-engine` directly from
 `submodules/telegram-ios`. So "compare with iOS" = (a) macOS-conditional divergences that weaken
 security, (b) genuine vulns in the surface the Mac exercises. The exact divergence set is the
-`#if os(macOS)` / `#if os(iOS)` branches plus the Mac-only `packages/WalletUI` + `Telegram-Mac/`
+`#if os(macOS)` / `#if os(iOS)` branches plus the Mac-only `packages/WalletUI` + `Ansible-Mac/`
 wiring + entitlements.
 
 Method: mechanical divergence scan + 3 read-only audit agents (secret leakage / auth gating /
