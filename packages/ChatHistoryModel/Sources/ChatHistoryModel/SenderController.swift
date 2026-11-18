@@ -262,7 +262,11 @@ public class Sender: NSObject {
         } else {
             
             if !mapped.isEmpty {
-                let inlineMedia = input.inlineMedia.map { $0.key }
+                let inlineMedia = input.inlineMedia
+                let recentEmojiIds = input.attributes.compactMap { attribute -> MediaId? in
+                    guard case let .animated(_, _, id, _, _) = attribute else { return nil }
+                    return MediaId(namespace: Namespaces.Media.CloudFile, id: id)
+                }
                 let preparedMessages: Signal<[EnqueueMessage], NoError>
                 if atDate == nil, suggestPost == nil, replyStoryId == nil {
                     if let ephemeralBotPeerId {
@@ -286,8 +290,8 @@ public class Sender: NSObject {
                     if !emojis.isEmpty {
                         saves.append(saveUsedEmoji(emojis, postbox: context.account.postbox))
                     }
-                    if !inlineMedia.isEmpty {
-                        saves.append(saveAnimatedUsedEmoji(inlineMedia, postbox: context.account.postbox))
+                    if !recentEmojiIds.isEmpty {
+                        saves.append(saveAnimatedUsedEmoji(recentEmojiIds, files: inlineMedia, postbox: context.account.postbox))
                     }
                     if !saves.isEmpty {
                         return combineLatest(saves) |> map { _ in

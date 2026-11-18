@@ -58,15 +58,15 @@ private final class FeaturedHorizontalItem : TableRowItem {
         return 30
     }
     var isAnimatedContent: Bool {
-        if let file = item.topItems.first?.file, file.isAnimatedSticker {
-            return true
-        } else {
-            return false
+        if let thumbnail = item.info._parse().thumbnail {
+            return thumbnail.typeHint == .animated || thumbnail.typeHint == .video
         }
+        guard let file = item.topItems.first?.file else { return false }
+        return file.isAnimatedSticker || file.isVideoSticker
     }
     
     override func viewClass() -> AnyClass {
-        if let file = item.topItems.first?.file, file.isAnimatedSticker {
+        if isAnimatedContent {
             return FeaturedAnimatedHorizontalView.self
         } else {
             return FeaturedHorizontalView.self
@@ -147,12 +147,7 @@ private final class FeaturedAnimatedHorizontalView : HorizontalRowView {
             unread.isHidden = !item.unread
             unread.backgroundColor = theme.colors.accent
             
-            var file: TelegramMediaFile?
-            if let thumbnail = item.item.info._parse().thumbnail {
-                file = TelegramMediaFile(fileId: MediaId(namespace: 0, id: item.item.info.id.id), partialReference: nil, resource: thumbnail.resource, previewRepresentations: [thumbnail], videoThumbnails: [], immediateThumbnailData: nil, mimeType: "application/x-ansible-sticker", size: nil, attributes: [.FileName(fileName: "sticker.ass"), .Sticker(displayText: "", packReference: .id(id: item.item.info.id.id, accessHash: item.item.info.accessHash), maskData: nil)], alternativeRepresentations: [])
-            } else if let item = item.item.topItems.first {
-                file = item.file._parse()
-            }
+            let file = item.item.info._parse().coverFile ?? item.item.topItems.first?.file._parse()
             self.contentNode?.userInteractionEnabled = false
             self.contentNode?.isEventLess = true
             if let file = file {
@@ -252,7 +247,7 @@ private final class FeaturedHorizontalView : HorizontalRowView {
         if let thumbnail = item.info._parse().thumbnail {
             thumbnailItem = thumbnail
             resourceReference = MediaResourceReference.stickerPackThumbnail(stickerPack: .id(id: item.info.id.id, accessHash: item.info.accessHash), resource: thumbnail.resource)
-            file = TelegramMediaFile(fileId: MediaId(namespace: 0, id: item.info.id.id), partialReference: nil, resource: thumbnail.resource, previewRepresentations: [thumbnail], videoThumbnails: [], immediateThumbnailData: nil, mimeType: thumbnail.typeHint == .video ? "video/webm" : "application/x-ansible-sticker", size: nil, attributes: [.FileName(fileName: "sticker.webp"), .Sticker(displayText: "", packReference: .id(id: item.info.id.id, accessHash: item.info.accessHash), maskData: nil)], alternativeRepresentations: [])
+            file = item.info._parse().coverFile
         } else if let item = item.topItems.first, let dimensions = item.file.dimensions, let resource = chatMessageStickerResource(file: item.file._parse(), small: true) as? TelegramMediaResource {
             thumbnailItem = TelegramMediaImageRepresentation(dimensions: dimensions, resource: resource, progressiveSizes: [], immediateThumbnailData: nil, hasVideo: false, isPersonal: false)
             resourceReference = MediaResourceReference.media(media: .standalone(media: item.file._parse()), resource: resource)

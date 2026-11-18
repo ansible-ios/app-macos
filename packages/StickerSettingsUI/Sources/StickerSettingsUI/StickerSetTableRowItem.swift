@@ -10,6 +10,7 @@ import AnsibleTheme
 import AnsibleIconsTheme
 import AnsibleContext
 import GeneralRows
+import AnsibleUtils
 
 
 public enum ItemListStickerPackItemControl: Equatable {
@@ -247,12 +248,7 @@ public class StickerSetTableRowView : TableRowView, ViewDisplayDelegate {
             removeControl.set(image: theme.icons.stickerPackDelete, for: .Normal)
             _ = removeControl.sizeToFit()
             
-            var file: TelegramMediaFile?
-            if let thumbnail = item.info.thumbnail {
-                file = TelegramMediaFile(fileId: MediaId(namespace: 0, id: item.info.id.id), partialReference: nil, resource: thumbnail.resource, previewRepresentations: [thumbnail], videoThumbnails: [], immediateThumbnailData: nil, mimeType: thumbnail.typeHint == .video ? "video/webm" : "application/x-ansible-sticker", size: nil, attributes: [.FileName(fileName: thumbnail.typeHint == .video ? "webm-preview" : "sticker.ass"), .Sticker(displayText: "", packReference: .id(id: item.info.id.id, accessHash: item.info.accessHash), maskData: nil)], alternativeRepresentations: [])
-            } else if let item = item.topItem {
-                file = item.file._parse()
-            }
+            let file = item.info.coverFile ?? item.topItem?.file._parse()
             if let file = file {
                 self.contentView.updateStickerSettingsSticker(with: file, size: NSMakeSize(35, 35), context: item.context, parent: nil, table: item.table, animated: animated, positionFlags: nil, approximateSynchronousValue: false)
             }

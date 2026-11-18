@@ -66,7 +66,7 @@ let package = Package(
             swiftSettings: [.define("SHARE")]),
         .testTarget(
             name: "AnsibleUtilsTests",
-            dependencies: ["AnsibleUtils", .product(name: "TelegramCore", package: "TelegramCore")],
+            dependencies: ["AnsibleUtils", .product(name: "TelegramCore", package: "TelegramCore"), .product(name: "Postbox", package: "Postbox")],
             path: "Tests/AnsibleUtilsTests"),
     ]
 )

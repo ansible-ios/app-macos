@@ -1,0 +1,37 @@
+--- a/submodules/TelegramCore/Sources/SyncCore/SyncCore_CloudFileMediaResource.swift
++++ b/submodules/TelegramCore/Sources/SyncCore/SyncCore_CloudFileMediaResource.swift
+@@ -343,0 +344 @@
++    private let packId: Int64?
+@@ -352 +353,2 @@
+-        return MediaResourceId(CloudStickerPackThumbnailMediaResourceId(datacenterId: Int32(self.datacenterId), thumbVersion: self.thumbVersion, volumeId: self.volumeId, localId: self.localId).uniqueId)
++        let base = CloudStickerPackThumbnailMediaResourceId(datacenterId: Int32(self.datacenterId), thumbVersion: self.thumbVersion, volumeId: self.volumeId, localId: self.localId).uniqueId
++        return MediaResourceId(packId.map { "\(base)-pack-\($0)" } ?? base)
+@@ -355 +357,2 @@
+-    public init(datacenterId: Int32, thumbVersion: Int32?, volumeId: Int64?, localId: Int32?) {
++    public init(datacenterId: Int32, thumbVersion: Int32?, volumeId: Int64?, localId: Int32?, packId: Int64? = nil) {
++        self.packId = packId
+@@ -362,0 +366 @@
++        self.packId = decoder.decodeOptionalInt64ForKey("pack")
+@@ -369,0 +374 @@
++        if let packId { encoder.encodeInt64(packId, forKey: "pack") }
+@@ -390 +395 @@
+-            return self.datacenterId == to.datacenterId && self.thumbVersion == to.thumbVersion && self.volumeId == to.volumeId && self.localId == to.localId
++            return self.packId == to.packId && self.datacenterId == to.datacenterId && self.thumbVersion == to.thumbVersion && self.volumeId == to.volumeId && self.localId == to.localId
+--- a/submodules/TelegramCore/Sources/SyncCore/SyncCore_StickerPackCollectionInfo.swift
++++ b/submodules/TelegramCore/Sources/SyncCore/SyncCore_StickerPackCollectionInfo.swift
+@@ -41,0 +42,6 @@
++}
++
++private func scopedPackThumbnail(_ thumbnail: TelegramMediaImageRepresentation?, packId: Int64) -> TelegramMediaImageRepresentation? {
++    guard let thumbnail, let cloud = thumbnail.resource as? CloudStickerPackThumbnailMediaResource, cloud.thumbVersion != nil else { return thumbnail }
++    let resource = CloudStickerPackThumbnailMediaResource(datacenterId: Int32(cloud.datacenterId), thumbVersion: cloud.thumbVersion, volumeId: cloud.volumeId, localId: cloud.localId, packId: packId)
++    return TelegramMediaImageRepresentation(dimensions: thumbnail.dimensions, resource: resource, progressiveSizes: thumbnail.progressiveSizes, immediateThumbnailData: thumbnail.immediateThumbnailData, hasVideo: thumbnail.hasVideo, isPersonal: thumbnail.isPersonal, typeHint: thumbnail.typeHint)
+@@ -62 +68 @@
+-        self.thumbnail = thumbnail
++        self.thumbnail = scopedPackThumbnail(thumbnail, packId: self.id.id)
+@@ -74 +80 @@
+-        self.thumbnail = decoder.decodeObjectForKey("th", decoder: { TelegramMediaImageRepresentation(decoder: $0) }) as? TelegramMediaImageRepresentation
++        self.thumbnail = scopedPackThumbnail(decoder.decodeObjectForKey("th", decoder: { TelegramMediaImageRepresentation(decoder: $0) }) as? TelegramMediaImageRepresentation, packId: self.id.id)
+@@ -125 +131 @@
+-        self.thumbnail = try flatBuffersObject.thumbnail.flatMap(TelegramMediaImageRepresentation.init(flatBuffersObject:))
++        self.thumbnail = scopedPackThumbnail(try flatBuffersObject.thumbnail.flatMap(TelegramMediaImageRepresentation.init(flatBuffersObject:)), packId: self.id.id)

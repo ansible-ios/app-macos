@@ -307,8 +307,7 @@ private func entries(_ state: State, controllerSource: StickerPackPreviewModalSo
                 let chunks = collection.items.chunks(32)
                 for (i, items) in chunks.enumerated() {
                     let info: StickerPackCollectionInfo? = i != 0 ? nil : collection.info
-                    let ids = items.map { $0.file.fileId.id }
-                    result.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: InputDataIdentifier("emoji_\(collection.info.id.id)_\(i)"), equatable: .init(EmojiChunkEquatable(ids: ids, installed: installed)), comparable: nil, item: { initialSize, stableId in
+                    result.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: InputDataIdentifier("emoji_\(collection.info.id.id)_\(i)"), equatable: .init(EmojiChunkEquatable(info: collection.info, items: items, installed: installed)), comparable: nil, item: { initialSize, stableId in
                         return EmojiesSectionRowItem(initialSize, stableId: stableId, context: arguments.context, revealed: true, installed: installed, info: info, items: items, mode: .preview, callback: { item, _, _, _ in
                             arguments.setEmoji(item.file._parse())
                         }, installPack: { _, _ in
@@ -319,7 +318,6 @@ private func entries(_ state: State, controllerSource: StickerPackPreviewModalSo
                 }
             case .stickers:
                 let files = collection.items.map { $0.file._parse() }
-                let ids = files.map { $0.fileId.id }
                 let isOwn = controllerSource == .install && collections.count == 1 && isOwnStickerPack(collection.info)
                 let canAdd = isOwn && collection.items.count < stickerPackMaxStickers
                 let isEditing = isOwn && state.isEditing
@@ -331,7 +329,7 @@ private func entries(_ state: State, controllerSource: StickerPackPreviewModalSo
                 }, reorder: { file, index in
                     arguments.reorderSticker(collection, file, index)
                 }) : nil
-                result.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: InputDataIdentifier("stickers_\(collection.info.id.id)"), equatable: .init(StickerChunkEquatable(ids: ids, installed: installed, canAdd: canAdd, isEditing: isEditing)), comparable: nil, item: { initialSize, stableId in
+                result.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: InputDataIdentifier("stickers_\(collection.info.id.id)"), equatable: .init(StickerChunkEquatable(info: collection.info, items: collection.items, installed: installed, canAdd: canAdd, isEditing: isEditing)), comparable: nil, item: { initialSize, stableId in
                     return StickerPackPanelRowItem(initialSize, context: arguments.context, arguments: stickerArguments, files: files, packInfo: .emojiRelated, collectionId: .pack(collection.info.id), canSend: EntertainmentUIHooks.shared.currentChatInteraction(arguments.context) != nil, isPreview: true, addTile: addTile, editing: editing)
                 }))
                 index += 1
@@ -346,12 +344,14 @@ private func entries(_ state: State, controllerSource: StickerPackPreviewModalSo
 }
 
 private struct EmojiChunkEquatable : Equatable {
-    let ids: [Int64]
+    let info: StickerPackCollectionInfo
+    let items: [StickerPackItem]
     let installed: Bool
 }
 
 private struct StickerChunkEquatable : Equatable {
-    let ids: [Int64]
+    let info: StickerPackCollectionInfo
+    let items: [StickerPackItem]
     let installed: Bool
     let canAdd: Bool
     let isEditing: Bool

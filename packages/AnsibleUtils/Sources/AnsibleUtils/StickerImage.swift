@@ -11,6 +11,27 @@ import AnsibleThemeShare
 #else
 import AnsibleTheme
 #endif
+public extension StickerPackCollectionInfo {
+    var coverFile: TelegramMediaFile? {
+        guard let thumbnail else { return nil }
+        let mimeType: String
+        let name: String
+        switch thumbnail.typeHint {
+        case .animated:
+            mimeType = AnsibleStickerFormat.mimeType
+            name = "sticker.ass"
+        case .video:
+            mimeType = "video/webm"
+            name = "webm-preview"
+        case .generic:
+            mimeType = "image/webp"
+            name = "sticker.webp"
+        }
+        let key = "pack-cover-\(id.namespace)-\(id.id)-\(thumbnail.resource.id.stringRepresentation)-\(thumbnail.typeHint.rawValue)"
+        return TelegramMediaFile(fileId: MediaId(namespace: 0, id: Int64(bitPattern: key.persistentHashValue)), partialReference: nil, resource: thumbnail.resource, previewRepresentations: [thumbnail], videoThumbnails: [], immediateThumbnailData: immediateThumbnailData, mimeType: mimeType, size: nil, attributes: [.FileName(fileName: name), .Sticker(displayText: "", packReference: .id(id: id.id, accessHash: accessHash), maskData: nil)], alternativeRepresentations: [])
+    }
+}
+
 public func chatMessageStickerResource(file: TelegramMediaFile, small: Bool) -> MediaResource {
     let resource: MediaResource
     if small, let smallest = file.previewRepresentations.first {

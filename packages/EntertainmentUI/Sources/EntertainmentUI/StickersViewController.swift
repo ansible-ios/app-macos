@@ -365,16 +365,7 @@ private enum StickerPackEntry : TableItemListNodeEntry {
             }
         case let .trending(index, lhsFeatured, collectionId):
             if case .trending(index, let rhsFeatured, collectionId) = rhs {
-                if lhsFeatured.count != rhsFeatured.count {
-                    return false
-                } else {
-                    for (i, lhsItem) in lhsFeatured.enumerated() {
-                        if lhsItem.info.id != rhsFeatured[i].info.id {
-                            return false
-                        }
-                    }
-                }
-                return true
+                return lhsFeatured == rhsFeatured
             } else {
                 return false
             }
@@ -441,10 +432,11 @@ private func stickersEntries(view: ItemCollectionsView?, context: any AccountCon
                 var files:[TelegramMediaFile] = []
                 for item in view.orderedItemListsViews[1].items {
                     if let entry = item.contents.get(SavedStickerItem.self) {
-                        if let id = entry.file._parse().id, ids[id] == nil {
+                        let file = entry.file._parse()
+                        if let id = file.id, ids[id] == nil {
                             if !entry.file.isPremiumSticker || !context.premiumIsBlocked {
                                 ids[id] = id
-                                files.append(entry.file._parse())
+                                files.append(file)
                             }
                         }
                     }
@@ -467,7 +459,7 @@ private func stickersEntries(view: ItemCollectionsView?, context: any AccountCon
                 for item in view.orderedItemListsViews[0].items {
                     if let entry = item.contents.get(RecentMediaItem.self) {
                         let file = entry.media._parse()
-                        if let id = file.id, ids[id] == nil, file.isStaticSticker || file.isAnimatedSticker {
+                        if let id = file.id, ids[id] == nil, file.isStaticSticker || file.isAnimatedSticker || file.isVideoSticker {
                             if !file.isPremiumSticker || !context.premiumIsBlocked {
                                 ids[id] = id
                                 files.append(file)
@@ -506,7 +498,7 @@ private func stickersEntries(view: ItemCollectionsView?, context: any AccountCon
                 for item in info.1 {
                     if let item = item as? StickerPackItem {
                         let file = item.file._parse()
-                        if let id = file.id, ids[id] == nil, file.isStaticSticker || file.isAnimatedSticker {
+                        if let id = file.id, ids[id] == nil, file.isStaticSticker || file.isAnimatedSticker || file.isVideoSticker {
                             if !file.isPremiumSticker || !context.premiumIsBlocked {
                                 ids[id] = id
                                 files.append(file)

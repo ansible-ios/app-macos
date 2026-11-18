@@ -345,7 +345,7 @@ private struct State : Equatable {
         if lhs.uniqueStarGiftsItems.count != rhs.uniqueStarGiftsItems.count {
             return false
         }
-        if lhs.recent != rhs.recent {
+        if lhs.recent != rhs.recent || lhs.recent.animated.contains(where: { lhs.itemsDict[$0] != rhs.itemsDict[$0] }) {
             return false
         }
         if lhs.reactionSettings != rhs.reactionSettings {
@@ -2833,10 +2833,28 @@ public final class EmojiesController<Context: AccountContextProtocol> : AnsibleG
             }))
         default:
             let orderedTags = self.orderedTags
-            let signal = combineLatest(queue: prepareQueue, emojies, featured, peer, search, reactions, recentUsedEmoji(postbox: context.account.postbox), reactionSettings, iconStatusEmoji, groupEmojiPack, forumTopic, searchCategories, context.reactions.stateValue, onStage.get()) |> filter { $0.12 }
-            actionsDisposable.add(signal.start(next: { view, featured, peer, search, reactions, recentEmoji, reactionSettings, iconStatusEmoji, groupEmojiPack, forumTopic, searchCategories, availableReactions, _ in
+            let recentDocuments = recentUsedEmoji(postbox: context.account.postbox)
+            |> distinctUntilChanged
+            |> mapToSignal { recent -> Signal<(RecentUsedEmoji, [Int64: TelegramMediaFile]), NoError> in
+                guard mode == .emoji || mode == .stories || mode == .forumTopic || mode == .selectAvatar else {
+                    return .single((recent, [:]))
+                }
+                let ids = recent.animated.filter { $0.namespace == Namespaces.Media.CloudFile }.map { $0.id }
+                return context.engine.stickers.resolveInlineStickersLocal(fileIds: ids)
+                |> mapToSignal { cached -> Signal<(RecentUsedEmoji, [Int64: TelegramMediaFile]), NoError> in
+                    let local = Signal<(RecentUsedEmoji, [Int64: TelegramMediaFile]), NoError>.single((recent, cached))
+                    let missing = ids.filter { cached[$0] == nil }
+                    guard !missing.isEmpty else { return local }
+                    return local |> then(context.engine.stickers.resolveInlineStickers(fileIds: missing) |> map { fetched in
+                        (recent, cached.merging(fetched) { _, updated in updated })
+                    })
+                }
+            }
+            let signal = combineLatest(queue: prepareQueue, emojies, featured, peer, search, reactions, recentDocuments, reactionSettings, iconStatusEmoji, groupEmojiPack, forumTopic, searchCategories, context.reactions.stateValue, onStage.get()) |> filter { $0.12 }
+            actionsDisposable.add(signal.start(next: { view, featured, peer, search, reactions, resolvedRecentEmoji, reactionSettings, iconStatusEmoji, groupEmojiPack, forumTopic, searchCategories, availableReactions, _ in
                 
                             
+                let (recentEmoji, recentFiles) = resolvedRecentEmoji
                 var featuredStatusEmoji: OrderedItemListView?
                 var recentStatusEmoji: OrderedItemListView?
                 var recentReactionsView: OrderedItemListView?
@@ -3028,6 +3046,11 @@ public final class EmojiesController<Context: AccountContextProtocol> : AnsibleG
                     current.recentStatusItems = recentStatusItems
                     current.forumTopicItems = forumTopic
                     current.sections = sections
+                    for id in recentEmoji.animated where itemsDict[id] == nil {
+                        if let file = recentFiles[id.id], file.fileId == id {
+                            itemsDict[id] = StickerPackItem(index: .init(index: 0, id: id.id), file: file, indexKeys: [])
+                        }
+                    }
                     current.itemsDict = itemsDict
                     current.search = search.values
                     current.searchLoading = search.isLoading

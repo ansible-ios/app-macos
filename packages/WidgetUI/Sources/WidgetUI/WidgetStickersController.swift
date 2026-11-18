@@ -30,12 +30,7 @@ private final class WidgetStickerView : Control {
             if let data = data {
                 let item = data.0
                 let context = data.1
-                var file: TelegramMediaFile?
-                if let thumbnail = item.info._parse().thumbnail {
-                    file = TelegramMediaFile(fileId: MediaId(namespace: 0, id: item.info.id.id), partialReference: nil, resource: thumbnail.resource, previewRepresentations: [thumbnail], videoThumbnails: [], immediateThumbnailData: nil, mimeType: thumbnail.typeHint == .video ? "video/webm" : "application/x-ansible-sticker", size: nil, attributes: [.FileName(fileName: thumbnail.typeHint == .video ? "webm-preview" : "sticker.ass"), .Sticker(displayText: "", packReference: .id(id: item.info.id.id, accessHash: item.info.accessHash), maskData: nil)], alternativeRepresentations: [])
-                } else if let item = item.topItems.first {
-                    file = item.file._parse()
-                }
+                let file = item.info._parse().coverFile ?? item.topItems.first?.file._parse()
                 if let file = file {
                     self.animatedView.updateWidgetCardsSticker(with: file, size: NSMakeSize(72, 72), context: context, parent: nil, table: nil, animated: true, positionFlags: nil, approximateSynchronousValue: false)
                 }

@@ -188,11 +188,16 @@ public func saveUsedEmoji(_ list:[String], postbox:Postbox) -> Signal<Void, NoEr
     }
 }
 
-public func saveAnimatedUsedEmoji(_ list:[MediaId], postbox:Postbox) -> Signal<Void, NoError> {
+public func saveAnimatedUsedEmoji(_ list:[MediaId], files: [MediaId: Media] = [:], postbox:Postbox) -> Signal<Void, NoError> {
     return postbox.transaction { transaction -> Void in
         transaction.updatePreferencesEntry(key: ApplicationSpecificPreferencesKeys.recentEmoji, { entry in
             let value: RecentUsedEmoji = entry?.get(RecentUsedEmoji.self) ?? RecentUsedEmoji.defaultSettings
 
+            for id in list {
+                if let file = files[id] as? TelegramMediaFile, file.fileId == id {
+                    transaction.storeMediaIfNotPresent(media: file)
+                }
+            }
             var animated: [MediaId] = value.animated
             
             animated.insert(contentsOf: list, at: 0)
