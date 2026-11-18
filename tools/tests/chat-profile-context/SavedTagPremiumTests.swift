@@ -22,10 +22,12 @@ struct SavedPremiumMenu {
     let reveal: () -> Void
     let add: () -> Void
 }
-func savedPremiumMenu(_ chatInteraction: ChatInteraction, message: Message, peer: Peer) -> Signal<SavedPremiumMenu, NoError> {
+func savedPremiumMenu(_ chatInteraction: ChatInteraction, message: Message, peer: Peer, selected: MessageReaction.Reaction? = nil) -> Signal<SavedPremiumMenu, NoError> {
     let context = chatInteraction.interactionContext
     let isTags = context.peerId == chatInteraction.peerId
 __PREMIUM_MENU_ORIGIN__
+    let value = MessageReaction.Reaction.builtin("🙂")
+    let isSelected: (MessageReaction.Reaction) -> Bool = { $0 == selected }
     let signal = savedPremiumInput()
     return __PREMIUM_MENU_SIGNAL__ |> map { _ in
         SavedPremiumProbe.check?()

@@ -2,6 +2,8 @@ enum StickerPackPreviewModalSource { case install, installGroupEmojiPack, remove
 enum PackStickerReference { case stickerPack(stickerPack: StickerPackReference, media: TelegramMediaFile), standalone(media: TelegramMediaFile) }
 extension CommonStrings {
     var unknownError: String { "Unknown error" }
+    var stickerPackPreviewModalControllerDeleteSetHeader: String { "Delete set" }
+    var stickerPackPreviewModalControllerDeleteSetInfo: String { "Delete this set?" }
     var messageContextDelete: String { "Delete" }
     var stickerPackAddedTitle: String { "Added" }
     var emojiPackAddedTitle: String { "Added emoji" }

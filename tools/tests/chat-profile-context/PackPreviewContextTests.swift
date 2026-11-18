@@ -33,6 +33,7 @@ struct PackState: Equatable {
     var preview: PreviewStateEquatable
     var installed: Set<StickerPackPreviewSource>
     var premiumFile: Int?
+__PACK_IS_INSTALLED__
     static func == (lhs: PackState, rhs: PackState) -> Bool { false }
 }
 extension CommonStrings { var stickerSetDontExist: String { "Not found" } }

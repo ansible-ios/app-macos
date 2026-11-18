@@ -7,6 +7,7 @@ struct MessageId: Equatable { let peerId: PeerId; let id: Int }
 class Peer { let id: PeerId; init(_ id: PeerId) { self.id = id } }
 final class TelegramUser: Peer {}
 struct Message {
+    static let newTopicThreadId = Int64(Int32.max - 1)
     struct ForwardInfo { let author: Peer? }
     let id: MessageId
     var author: Peer?
@@ -56,10 +57,14 @@ final class Bindings {
 }
 class ViewController { var analyticsContext: AnalyticsContext? }
 final class NavigationViewController {
+    var modal: TagModal?
     var pushed: [ViewController] = []
     func push(_ controller: ViewController) { pushed.append(controller) }
 }
 typealias ThreadInfo = Int
+extension ThreadInfo {
+    init(message: ThreadData, isChannelPost: Bool, isMonoforumPost: Bool, isEmpty: Bool, contextHolder: Int) { self = Int(message.threadId) }
+}
 typealias PeerExpiringStoryListContext = Int
 typealias PeerMediaCollectionMode = Int
 struct ThreadData { let peerId: PeerId; let threadId: Int64; var isMonoforumPost = false }
@@ -71,7 +76,7 @@ enum ChatLocation {
 enum ChatMode: Equatable {
     enum ThreadMode: Equatable { case topic(origin: MessageId) }
     case thread(mode: ThreadMode)
-    case history, saved, topic
+    case history, saved, topic, preview
     var isSavedMessagesThread: Bool { self == .saved }
     struct Custom { enum Kind { case searchHashtag, other }; let kind: Kind }
     var customChatContents: Custom? { nil }

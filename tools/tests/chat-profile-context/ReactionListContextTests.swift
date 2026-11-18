@@ -29,7 +29,7 @@ struct ReactionListFile {
 }
 final class ReactionPeerMenu: ContextMenuItem {
     enum Source { case builtin(ReactionListFile), custom(Int64, ReactionListFile?), stars(ReactionListFile, ReactionListFile?) }
-    init(title: String, handler: @escaping () -> Void, peer: Peer, context: any AccountContextProtocol, reaction: Source, readTimestamp: Int32?, message: Message, canDelete: Bool, analyticsContext: AnalyticsContext) { super.init(title, handler: handler) }
+    init(title: String, handler: @escaping () -> Void, peer: Peer, context: any AccountContextProtocol, reaction: Source, readTimestamp: Int32?, message: Message, reactionValue: MessageReaction.Reaction, analyticsContext: AnalyticsContext) { super.init(title, handler: handler) }
 }
 func canDeleteReactionsInChat(message: Message) -> Bool { false }
 enum ChatMediaStickerPackPreviewSource { case emoji(StickerPackReference), stickers(StickerPackReference) }

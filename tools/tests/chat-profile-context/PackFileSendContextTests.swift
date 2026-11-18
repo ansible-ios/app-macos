@@ -1,5 +1,6 @@
 struct ChatTextInputState { let text: String }
 struct FileSlowMode { let hasLocked: Bool }
+func chatPaidMessagePriceIsCurrent(_ interaction: FileChatInteraction, _ price: FileStars) -> Bool { interaction.presentation.sendPaidMessageStars?.value == price.value }
 struct FileStars { let value: Int64 }
 struct FileStarsState { let balance: FileStars }
 struct FileInterfaceState { var forwardMessageIds: [MessageId] = [] }
@@ -94,6 +95,12 @@ enum Sender {
     }
 }
 final class FileTransaction {
+    func execute() -> Bool {
+        guard let handler else { return false }
+        self.handler = nil
+        handler()
+        return true
+    }
     var handler: (() -> Void)?
     func set(handler: @escaping () -> Void) { FileProbe.check?(); self.handler = handler }
 }
