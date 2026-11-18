@@ -1,0 +1,10 @@
+--- a/submodules/TelegramCore/Sources/TelegramEngine/Stickers/ImportStickers.swift
++++ b/submodules/TelegramCore/Sources/TelegramEngine/Stickers/ImportStickers.swift
+@@ -79,4 +79,7 @@
+                             }
+                             var attributes: [Api.DocumentAttribute] = []
++                            if mimeType == "application/x-ansible-sticker" {
++                                attributes.append(.documentAttributeFilename(.init(fileName: "sticker.ass")))
++                            }
+                             attributes.append(.documentAttributeSticker(.init(flags: 0, alt: alt, stickerset: .inputStickerSetEmpty, maskCoords: nil)))
+                             if let duration {

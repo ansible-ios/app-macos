@@ -7,6 +7,7 @@ import Postbox
 import InAppSettings
 import InputView
 import ObjcUtils
+import AnsibleThemeShare
 
 
 private final class Container : Control {
@@ -751,13 +752,26 @@ class ShareObject {
                     var mimeType: String = "application/octet-stream"
                     let fileName: String
                     if let path = path {
-                        mimeType = MIMEType(path.path)
+                        if ["ass", "tgs"].contains(path.pathExtension.lowercased()) {
+                            mimeType = AnsibleStickerFormat.dimensions(in: data) == nil ? "application/octet-stream" : AnsibleStickerFormat.mimeType
+                        } else {
+                            mimeType = MIMEType(path.path)
+                        }
                         fileName = path.path.nsstring.lastPathComponent
+                    } else if AnsibleStickerFormat.dimensions(in: data) != nil {
+                        mimeType = AnsibleStickerFormat.mimeType
+                        fileName = "sticker.ass"
                     } else {
                         fileName = "Unnamed.file"
                     }
                     
-                    subscriber.putNext(StandaloneMedia.file(data: data, mimeType: mimeType, attributes: [.FileName(fileName: fileName)]))
+                    let attributes: [TelegramMediaFileAttribute]
+                    if AnsibleStickerFormat.matches(mimeType) {
+                        attributes = [.FileName(fileName: AnsibleStickerFormat.fileName(fileName)), .Animated, .Sticker(displayText: "", packReference: nil, maskData: nil)]
+                    } else {
+                        attributes = [.FileName(fileName: fileName)]
+                    }
+                    subscriber.putNext(StandaloneMedia.file(data: data, mimeType: mimeType, attributes: attributes))
                 }
                 
             }

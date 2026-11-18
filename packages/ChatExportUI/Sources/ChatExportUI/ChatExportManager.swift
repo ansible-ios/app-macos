@@ -515,7 +515,7 @@ private final class ChatExportRun {
             guard sizeWithinLimit else {
                 return nil
             }
-            let baseName = file.fileName ?? "file_\(message.id.id)_\(index)"
+            let baseName = file.exportFileName ?? "file_\(message.id.id)_\(index)"
             let sanitized = sanitize(baseName)
             let finalName: String
             if sanitized.contains(".") {
@@ -539,7 +539,7 @@ private final class ChatExportRun {
             }
             return .voice(src: downloadMain("voice_messages", ext: "ogg"), status: durationOrSize(file))
         }
-        if file.isSticker || file.isAnimatedSticker || file.isVideoSticker {
+        if file.isSticker || file.isAnimatedSticker || file.isVideoSticker || AnsibleStickerFormat.matches(file.mimeType) {
             guard settings.mediaTypes.contains(.stickers) else {
                 return .sticker(src: nil, width: nil, height: nil, emoji: stickerEmoji(file))
             }
@@ -1804,8 +1804,9 @@ private final class FullExportRun {
         var stickers: [OtherMediaItem] = []
         for (index, entry) in stickerFiles.enumerated() {
             if isCancelled { break }
-            let path = downloadOtherMedia(entry.0, subdir: "other_data/stickers", index: index, contentType: .sticker, defaultExtension: "webp")
-            stickers.append(OtherMediaItem(relativePath: path, emojis: entry.1, fileName: entry.0.fileName ?? "sticker_\(index).webp"))
+            let ext = entry.0.isVideoSticker ? "webm" : "webp"
+            let path = downloadOtherMedia(entry.0, subdir: "other_data/stickers", index: index, contentType: .sticker, defaultExtension: ext)
+            stickers.append(OtherMediaItem(relativePath: path, emojis: entry.1, fileName: entry.0.exportFileName ?? "sticker_\(index).\(ext)"))
         }
         return (gifs, stickers)
     }
@@ -1821,7 +1822,7 @@ private final class FullExportRun {
         }
         let directory = baseURL.appendingPathComponent(subdir, isDirectory: true)
         try? FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
-        let baseName = (file.fileName).flatMap { $0.isEmpty ? nil : sanitize($0) } ?? "media_\(index).\(defaultExtension)"
+        let baseName = file.exportFileName.flatMap { $0.isEmpty ? nil : sanitize($0) } ?? "media_\(index).\(defaultExtension)"
         let safeName = "\(index)_\(baseName)"
         let destination = directory.appendingPathComponent(safeName)
         if !FileManager.default.fileExists(atPath: destination.path) {

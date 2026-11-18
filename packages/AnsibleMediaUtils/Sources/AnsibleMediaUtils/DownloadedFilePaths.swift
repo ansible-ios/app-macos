@@ -74,7 +74,7 @@ public func copyToDownloads(_ file: TelegramMediaFile, postbox: Postbox, saveAny
 public func downloadFilePath(_ file: TelegramMediaFile, _ postbox: Postbox) -> Signal<(String, String)?, NoError> {
     return combineLatest(postbox.mediaBox.resourceData(file.resource), automaticDownloadSettings(postbox: postbox)) |> take(1) |> mapToSignal { data, settings -> Signal< (String, String)?, NoError> in
         if data.complete {
-            let fileName = (file.fileName ?? data.path.nsstring.lastPathComponent).fixedFileName
+            let fileName = (file.exportFileName ?? data.path.nsstring.lastPathComponent).fixedFileName
             var ext = fileName.nsstring.pathExtension
             if ext.isEmpty {
                 ext = fileExt(file.mimeType) ?? ""

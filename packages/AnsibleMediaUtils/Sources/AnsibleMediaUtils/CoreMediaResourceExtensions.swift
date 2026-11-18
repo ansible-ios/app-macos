@@ -119,11 +119,18 @@ public func mediaResourceName(from media:Media?, ext:String?) -> String {
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     let ext = ext ?? ".file"
     if let media = media as? TelegramMediaFile {
-        return media.fileName ?? "FILE " + dateFormatter.string(from: Date()) + "." + ext
+        return media.exportFileName ?? "FILE " + dateFormatter.string(from: Date()) + "." + ext
     } else if media is TelegramMediaImage {
         return "IMAGE " + dateFormatter.string(from: Date())  + "." + ext
     }
     return "FILE " + dateFormatter.string(from: Date())  + "." + ext
+}
+
+public extension TelegramMediaFile {
+    var exportFileName: String? {
+        guard AnsibleStickerFormat.matches(mimeType) else { return fileName }
+        return AnsibleStickerFormat.fileName(fileName, fallback: isCustomEmoji ? "emoji" : "sticker")
+    }
 }
 
 public func fileExtenstion(_ file: TelegramMediaFile) -> String {

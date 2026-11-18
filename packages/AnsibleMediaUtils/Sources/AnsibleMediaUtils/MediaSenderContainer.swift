@@ -22,11 +22,7 @@ open class MediaSenderContainer : Equatable {
 }
 
 public func resolvedMIMEType(for container: MediaSenderContainer) -> String {
-    let mimeType = MIMEType(container.path)
-    if container.isFile && mimeType == "application/x-ansible-sticker" {
-        return "application/binary"
-    }
-    return mimeType
+    return MIMEType(container.path)
 }
 
 open class ArchiverSenderContainer : MediaSenderContainer {

@@ -16,7 +16,7 @@ public func saveAs(_ file: TelegramMediaFile, account: Account) {
         guard data.complete else {
             return .complete()
         }
-        if let ext = file.fileName?.nsstring.pathExtension {
+        if let ext = file.exportFileName?.nsstring.pathExtension {
             return .single((data.path, ext))
         }
         let ext = data.path.nsstring.pathExtension
@@ -26,13 +26,13 @@ public func saveAs(_ file: TelegramMediaFile, account: Account) {
     } |> deliverOnMainQueue
 
     _ = name.start(next: { path, ext in
-        savePanel(file: path, ext: ext, for: mainWindow, defaultName: file.fileName)
+        savePanel(file: path, ext: ext, for: mainWindow, defaultName: file.exportFileName)
     })
 }
 
 public func saveAs(_ file: TelegramMediaFile, context: any AccountContextProtocol, message: Message) {
     let extSignal: Signal<String, NoError>
-    if let ext = file.fileName?.nsstring.pathExtension, !ext.isEmpty {
+    if let ext = file.exportFileName?.nsstring.pathExtension, !ext.isEmpty {
         extSignal = .single(ext)
     } else {
         extSignal = resourceType(mimeType: file.mimeType) |> map { type in
@@ -40,7 +40,7 @@ public func saveAs(_ file: TelegramMediaFile, context: any AccountContextProtoco
         }
     }
     _ = (extSignal |> take(1) |> deliverOnMainQueue).start(next: { ext in
-        saveMediaAs(resource: file.resource, reference: .message(message: MessageReference(message), media: file), context: context, message: message, ext: ext, defaultName: file.fileName, contentType: .init(file: file), statsCategory: statsCategoryForFileWithAttributes(file.attributes))
+        saveMediaAs(resource: file.resource, reference: .message(message: MessageReference(message), media: file), context: context, message: message, ext: ext, defaultName: file.exportFileName, contentType: .init(file: file), statsCategory: statsCategoryForFileWithAttributes(file.attributes))
     })
 }
 

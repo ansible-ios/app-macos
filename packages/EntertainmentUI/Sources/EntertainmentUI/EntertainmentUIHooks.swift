@@ -48,7 +48,10 @@ public struct EntertainmentStickerImage {
     public let url: URL
     public let dimensions: PixelDimensions
 
-    public init(url: URL, dimensions: PixelDimensions) {
+    public let isAnimated: Bool
+
+    public init(url: URL, dimensions: PixelDimensions, isAnimated: Bool = false) {
+        self.isAnimated = isAnimated
         self.url = url
         self.dimensions = dimensions
     }

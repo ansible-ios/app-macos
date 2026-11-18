@@ -6,6 +6,7 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 import AnsibleContext
+import AnsibleTheme
 import AnsibleMediaUtils
 import InlineMediaGrid
 import ChatModeTypes
@@ -55,13 +56,35 @@ private func makeWholeStickerImage(_ image: CGImage) -> Signal<EntertainmentStic
 
 private func presentStickerImageEditor(context: any AccountContextProtocol, window: Window, analyticsContext: AnalyticsContext, journey: AnalyticsStickerJourney? = nil, doneMenu: ((EntertainmentStickerImage, @escaping () -> Void) -> [ContextMenuItem])?, completion: @escaping (EntertainmentStickerImage) -> Void) {
     let presentation = analyticsContext.beginPresentation()
-    filePanel(with: photoExts + ["webp"], allowMultiple: false, for: window, analyticsContext: analyticsContext, cancelled: { journey?.cancel() }, completion: { paths in
+    filePanel(with: photoExts + ["webp", "ass", "tgs"], allowMultiple: false, for: window, analyticsContext: analyticsContext, cancelled: { journey?.cancel() }, completion: { paths in
         defer { withExtendedLifetime(presentation) {} }
         guard let paths else {
             journey?.discard()
             return
         }
-        guard let path = paths.first, let image = NSImage(contentsOfFile: path)?._cgImage else {
+        guard let path = paths.first else {
+            journey?.discard()
+            return
+        }
+        let url = URL(fileURLWithPath: path)
+        if ["ass", "tgs"].contains(url.pathExtension.lowercased()) {
+            guard let size = AnsibleStickerFormat.dimensions(at: path) else {
+                journey?.fail(.imageUnreadable)
+                return
+            }
+            let sticker = EntertainmentStickerImage(url: url, dimensions: PixelDimensions(width: size.width, height: size.height), isAnimated: true)
+            journey?.imageSelected()
+            journey?.preparedWithoutEditor()
+            if let doneMenu {
+                let menu = ContextMenu()
+                doneMenu(sticker, {}).forEach { menu.addItem($0) }
+                menu.popUp(positioning: nil, at: NSEvent.mouseLocation, in: nil)
+            } else {
+                completion(sticker)
+            }
+            return
+        }
+        guard let image = NSImage(contentsOfFile: path)?._cgImage else {
             journey?.fail(.imageUnreadable)
             return
         }

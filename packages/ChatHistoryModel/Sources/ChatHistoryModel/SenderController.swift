@@ -455,6 +455,9 @@ public class Sender: NSObject {
     public static func fileAttributes(for mime:String, path:String, isMedia:Bool = false, inCollage: Bool = false) -> [TelegramMediaFileAttribute] {
         var attrs:[TelegramMediaFileAttribute] = []
         
+        if AnsibleStickerFormat.matches(mime) {
+            return [.FileName(fileName: AnsibleStickerFormat.fileName(path)), .Animated, .Sticker(displayText: "", packReference: nil, maskData: nil)]
+        }
         if mime.hasPrefix("audio/") {
             //AVURLAsset* asset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:path] options:nil];
             let asset = AVURLAsset(url: URL(fileURLWithPath: path))

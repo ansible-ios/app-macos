@@ -21,9 +21,18 @@ func isOwnStickerPack(_ info: StickerPackCollectionInfo) -> Bool {
     return info.id.namespace == Namespaces.ItemCollection.CloudStickerPacks && info.flags.contains(.isCreator) && !info.flags.contains(.isEmoji)
 }
 
+private extension EntertainmentStickerImage {
+    var stickerMIMEType: String { isAnimated ? AnsibleStickerFormat.mimeType : "image/webp" }
+
+    func makeResource() -> LocalFileReferenceMediaResource {
+        // The image editor owns its WebP output. Imported animations belong to the user.
+        return LocalFileReferenceMediaResource(localFilePath: url.path, randomId: Int64.random(in: Int64.min ... Int64.max), isUniquelyReferencedTemporaryFile: !isAnimated)
+    }
+}
+
 func importSticker(_ image: EntertainmentStickerImage, emojis: [String] = []) -> ImportSticker {
-    let resource = LocalFileReferenceMediaResource(localFilePath: image.url.path, randomId: Int64.random(in: Int64.min ... Int64.max), isUniquelyReferencedTemporaryFile: true)
-    return ImportSticker(resource: .standalone(resource: resource), emojis: emojis.isEmpty ? [stickerPackDefaultEmoji] : emojis, dimensions: image.dimensions, duration: nil, mimeType: "image/webp", keywords: "")
+    let resource = image.makeResource()
+    return ImportSticker(resource: .standalone(resource: resource), emojis: emojis.isEmpty ? [stickerPackDefaultEmoji] : emojis, dimensions: image.dimensions, duration: nil, mimeType: image.stickerMIMEType, keywords: "")
 }
 
 func importSticker(existing file: TelegramMediaFile) -> ImportSticker {
@@ -34,7 +43,7 @@ func importSticker(existing file: TelegramMediaFile) -> ImportSticker {
         reference = .standalone(media: file)
     }
     let emoji = file.stickerText.flatMap { $0.isEmpty ? nil : $0 } ?? stickerPackDefaultEmoji
-    return ImportSticker(resource: reference.resourceReference(file.resource), emojis: [emoji], dimensions: file.dimensions ?? PixelDimensions(width: 512, height: 512), duration: file.isVideoSticker ? file.videoDuration : nil, mimeType: file.mimeType, keywords: "")
+    return ImportSticker(resource: reference.resourceReference(file.resource), emojis: [emoji], dimensions: file.dimensions ?? PixelDimensions(width: 512, height: 512), duration: file.isVideoSticker ? file.videoDuration : nil, mimeType: AnsibleStickerFormat.matches(file.mimeType) ? AnsibleStickerFormat.mimeType : file.mimeType, keywords: "")
 }
 
 private func stickerFile(_ resource: TelegramMediaResource, image: EntertainmentStickerImage) -> TelegramMediaFile {
@@ -44,7 +53,10 @@ private func stickerFile(_ resource: TelegramMediaResource, image: Entertainment
     } else {
         fileId = MediaId(namespace: Namespaces.Media.LocalFile, id: Int64.random(in: Int64.min ... Int64.max))
     }
-    return TelegramMediaFile(fileId: fileId, partialReference: nil, resource: resource, previewRepresentations: [], videoThumbnails: [], immediateThumbnailData: nil, mimeType: "image/webp", size: nil, attributes: [.FileName(fileName: "sticker.webp"), .Sticker(displayText: stickerPackDefaultEmoji, packReference: nil, maskData: nil), .ImageSize(size: image.dimensions)], alternativeRepresentations: [])
+    var attributes: [TelegramMediaFileAttribute] = [.Sticker(displayText: stickerPackDefaultEmoji, packReference: nil, maskData: nil), .ImageSize(size: image.dimensions)]
+    if image.isAnimated { attributes.append(.Animated) }
+    attributes.append(.FileName(fileName: image.isAnimated ? AnsibleStickerFormat.fileName(image.url.lastPathComponent) : "sticker.webp"))
+    return TelegramMediaFile(fileId: fileId, partialReference: nil, resource: resource, previewRepresentations: [], videoThumbnails: [], immediateThumbnailData: nil, mimeType: image.stickerMIMEType, size: nil, attributes: attributes, alternativeRepresentations: [])
 }
 
 private func uploadedStickerFile(context: any AccountContextProtocol, image: EntertainmentStickerImage) -> Signal<TelegramMediaFile?, NoError> {
@@ -54,8 +66,8 @@ private func uploadedStickerFile(context: any AccountContextProtocol, image: Ent
         guard let peer = peer else {
             return .fail(.generic)
         }
-        let resource = LocalFileReferenceMediaResource(localFilePath: image.url.path, randomId: Int64.random(in: Int64.min ... Int64.max), isUniquelyReferencedTemporaryFile: true)
-        return context.engine.stickers.uploadSticker(peer: peer, resource: EngineMediaResource(resource), thumbnail: nil, alt: stickerPackDefaultEmoji, dimensions: image.dimensions, duration: nil, mimeType: "image/webp")
+        let resource = image.makeResource()
+        return context.engine.stickers.uploadSticker(peer: peer, resource: EngineMediaResource(resource), thumbnail: nil, alt: stickerPackDefaultEmoji, dimensions: image.dimensions, duration: nil, mimeType: image.stickerMIMEType)
     }
     |> map { status -> TelegramMediaFile? in
         if case let .complete(resource, _) = status, let resource = resource._asResource() as? TelegramMediaResource {
@@ -126,7 +138,7 @@ private func createStickerPack(context: any AccountContextProtocol, title: Strin
     let presentation = analyticsContext.beginPresentation()
     defer { withExtendedLifetime(presentation) {} }
     let submission = journey?.beginSubmission()
-    let signal = context.engine.stickers.createStickerSet(title: title, shortName: "", stickers: [importSticker(image)], thumbnail: nil, type: .stickers(content: .image), software: nil)
+    let signal = context.engine.stickers.createStickerSet(title: title, shortName: "", stickers: [importSticker(image)], thumbnail: nil, type: .stickers(content: image.isAnimated ? .animation : .image), software: nil)
     |> map { status -> StickerPackCollectionInfo? in
         if case let .complete(info, _) = status {
             return info
@@ -192,7 +204,7 @@ func presentCreateSticker(context: any AccountContextProtocol, chatInteraction: 
                 let presentation = analyticsContext.beginPresentation()
                 defer { withExtendedLifetime(presentation) {} }
                 close()
-                EntertainmentUIHooks.shared.sendCreatedStickerObserved(chatInteraction, file: stickerFile(LocalFileReferenceMediaResource(localFilePath: image.url.path, randomId: Int64.random(in: Int64.min ... Int64.max), isUniquelyReferencedTemporaryFile: true), image: image), analyticsContext: analyticsContext, request: request)
+                EntertainmentUIHooks.shared.sendCreatedStickerObserved(chatInteraction, file: stickerFile(image.makeResource(), image: image), analyticsContext: analyticsContext, request: request)
             }, itemImage: MenuAnimation.menu_send_now.value))
         }
         items.append(ContextMenuItem(strings().chatContextAddFavoriteSticker, handler: {

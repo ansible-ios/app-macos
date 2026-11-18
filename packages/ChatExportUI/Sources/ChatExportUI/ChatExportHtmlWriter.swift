@@ -393,6 +393,9 @@ public final class ChatExportHtmlWriter {
             }
             return mediaBlock(type: "video", href: src, thumb: nil, title: "Video message", description: nil, status: duration)
         case let .sticker(src, width, height, emoji):
+            if let src = src, (src as NSString).pathExtension == "ass" {
+                return mediaBlock(type: "file", href: src, thumb: nil, title: (src as NSString).lastPathComponent, description: emoji, status: nil)
+            }
             if let src = src {
                 let style = sizeStyle(width ?? 128, height ?? 128)
                 return "<a class=\"sticker_wrap clearfix pull_left\" href=\"\(esc(src))\"><img class=\"sticker\" src=\"\(esc(src))\"\(style)></a>\n"

@@ -63,6 +63,7 @@ NSData * _Nullable TGGUnzipData(NSData *data, uint sizeLimit)
         output = [NSMutableData dataWithCapacity:data.length * 2];
         while (status == Z_OK) {
             if (sizeLimit > 0 && stream.total_out > sizeLimit) {
+                inflateEnd(&stream);
                 return nil;
             }
             
