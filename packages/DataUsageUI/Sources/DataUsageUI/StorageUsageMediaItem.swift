@@ -4,13 +4,13 @@ import TelegramCore
 import TGUIKit
 import SwiftSignalKit
 import Postbox
-import TelegramMedia
+import AnsibleMedia
 import Localization
 import FoundationUtils
-import TelegramContext
-import TelegramTheme
-import TelegramIconsTheme
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleIconsTheme
+import AnsibleMediaUtils
 import GeneralRows
 import AudioPlayerCore
 

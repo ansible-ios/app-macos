@@ -1,15 +1,15 @@
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramMedia
+import AnsibleMedia
 import Postbox
 import SwiftSignalKit
 import ChatModeTypes
 import GeneralRows
 import Localization
 import PremiumUI
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 // MARK: - Item

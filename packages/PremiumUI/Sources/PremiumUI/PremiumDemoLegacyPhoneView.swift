@@ -1,7 +1,7 @@
 import Cocoa
 import Foundation
 import TGUIKit
-import TelegramMedia
+import AnsibleMedia
 import AVFoundation
 import TelegramCore
 import Postbox
@@ -9,9 +9,9 @@ import SwiftSignalKit
 import Localization
 import ColorPalette
 import InAppSettings
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import AvatarUI

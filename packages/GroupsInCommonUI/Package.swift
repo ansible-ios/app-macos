@@ -6,9 +6,9 @@ let deps: [(String, String)] = [
     ("TGUIKit", "../TGUIKit"),
     ("GeneralRows", "../GeneralRows"),
     ("Localization", "../Localization"),
-    ("TelegramContext", "../TelegramContext"),
-    ("TelegramUtils", "../TelegramUtils"),
-    ("TelegramTheme", "../TelegramTheme"),
+    ("AnsibleContext", "../AnsibleContext"),
+    ("AnsibleUtils", "../AnsibleUtils"),
+    ("AnsibleTheme", "../AnsibleTheme"),
     ("ColorPalette", "../ColorPalette"),
     ("ShortPeerRow", "../ShortPeerRow"),
     ("InputDataUI", "../InputDataUI"),
@@ -22,9 +22,9 @@ let package = Package(
         .library(name: "GroupsInCommonUI", targets: ["GroupsInCommonUI"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
     ] + deps.map { .package(name: $0.0, path: $0.1) },
     targets: [
         .target(

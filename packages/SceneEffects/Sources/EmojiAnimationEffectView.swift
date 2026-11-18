@@ -1,7 +1,7 @@
 import Foundation
 import TGUIKit
 import AppKit
-import TelegramMedia
+import AnsibleMedia
 
 public final class EmojiAnimationEffectView : View {
     public enum Source {

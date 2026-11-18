@@ -2,7 +2,7 @@ import Cocoa
 import TGUIKit
 import GeneralRows
 import InputDataUI
-import TelegramTheme
+import AnsibleTheme
 import ColorPalette
 import GraphUI
 import Localization

@@ -168,7 +168,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ ! -d \"$PROJECT_DIR/build\" ]; then\nsh $PROJECT_DIR/ffmpeg/build.sh $PROJECT_DIR/../../submodules/telegram-ios/submodules/ffmpeg/Sources/FFMpeg\nfi\n";
+			shellScript = "if [ ! -d \"$PROJECT_DIR/build\" ]; then\nsh $PROJECT_DIR/ffmpeg/build.sh $PROJECT_DIR/../../submodules/ansible-ios/submodules/ffmpeg/Sources/FFMpeg\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

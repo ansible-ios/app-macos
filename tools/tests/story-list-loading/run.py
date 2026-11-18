@@ -6,7 +6,7 @@ import tempfile
 
 root = Path(__file__).resolve().parents[3]
 parser = argparse.ArgumentParser()
-parser.add_argument('--source', type=Path, default=root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift')
+parser.add_argument('--source', type=Path, default=root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift')
 args = parser.parse_args()
 source = args.source.read_text()
 def block(marker):
@@ -29,7 +29,7 @@ entity_helpers = '\n'.join(block(marker) for marker in ['private func _internal_
 fixture = fixture.replace('import SwiftSignalKit', 'import SwiftSignalKit\n' + entity_helpers, 1)
 with tempfile.TemporaryDirectory(prefix='story-list-loading-') as directory:
     directory=Path(directory)
-    dependency=json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency=json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))
     (directory/'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "StoryListLoading", platforms: [.macOS(.v10_13)], dependencies: [.package(path: '''+dependency+''')], targets: [.testTarget(name: "StoryListLoadingTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

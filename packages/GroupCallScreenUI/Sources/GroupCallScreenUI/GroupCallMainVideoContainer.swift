@@ -8,9 +8,9 @@ import ColorPalette
 import TgVoipWebrtc
 import CallsUI
 import Localization
-import TelegramCallsCore
-import TelegramTheme
-import TelegramUtils
+import AnsibleCallsCore
+import AnsibleTheme
+import AnsibleUtils
 
 private final class SelfPresentationPlaceholder : View {
     private let textView = TextView()

@@ -4,9 +4,9 @@ import TGUIKit
 import SwiftSignalKit
 import Postbox
 import TelegramCore
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import Localization
 import GeneralRows
 import InputDataUI

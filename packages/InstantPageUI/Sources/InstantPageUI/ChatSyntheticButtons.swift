@@ -3,9 +3,9 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 import TGUIKit
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 
 #if DEBUG
 

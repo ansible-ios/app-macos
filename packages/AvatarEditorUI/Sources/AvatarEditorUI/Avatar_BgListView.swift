@@ -7,9 +7,9 @@ import SwiftSignalKit
 import ThemeSettings
 import ColorPalette
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleMediaUtils
 import GeneralRows
 
 private final class Avatar_PatternListItem : GeneralRowItem {

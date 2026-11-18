@@ -4,9 +4,9 @@ import TelegramCore
 import SwiftSignalKit
 import TGUIKit
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 
 public func clearHistory(context: any AccountContextProtocol, peer: Peer, mainPeer: Peer, canDeleteForAll: Bool? = nil) {
     var thridTitle: String? = nil

@@ -6,9 +6,9 @@ import Postbox
 import Localization
 import ColorPalette
 import InAppSettings
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import AlertsUI
@@ -16,7 +16,7 @@ import LocalAnimations
 import AvatarUI
 import ShortPeerRow
 import FilePanels
-import TelegramMediaUtils
+import AnsibleMediaUtils
 import AvatarEditorUI
 import AppAnalytics
 

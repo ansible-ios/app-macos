@@ -5,7 +5,7 @@ import TelegramCore
 import SwiftSignalKit
 import StarsUI
 import GiftCraftingUI
-import TelegramMedia
+import AnsibleMedia
 import InputView
 import InputTextView
 import AppAnalytics

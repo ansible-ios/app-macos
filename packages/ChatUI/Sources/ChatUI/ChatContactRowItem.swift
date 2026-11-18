@@ -6,17 +6,17 @@ import Postbox
 import SwiftSignalKit
 import Contacts
 import ColorPalette
-import TelegramMedia
+import AnsibleMedia
 import AvatarUI
 import ChatHistoryModel
 import InputTextView
 import Localization
 import MessageUtils
 import PhoneNumberUtils
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 public class ChatContactRowItem: ChatRowItem {

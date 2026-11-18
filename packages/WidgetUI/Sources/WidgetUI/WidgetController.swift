@@ -3,9 +3,9 @@ import Cocoa
 import TGUIKit
 import SwiftSignalKit
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 
 private final class WidgetNavigationButton : Control {
 

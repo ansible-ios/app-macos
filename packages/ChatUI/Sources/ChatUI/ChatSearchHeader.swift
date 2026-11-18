@@ -11,9 +11,9 @@ import LocalAnimations
 import Localization
 import PremiumUI
 import ShortPeerRow
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 private final class CSearchContextState : Equatable {

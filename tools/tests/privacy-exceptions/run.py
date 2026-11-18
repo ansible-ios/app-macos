@@ -26,9 +26,9 @@ start = peers.index('return context.account.postbox.transaction { transaction ->
 start = peers.index('\n', start)
 end = peers.index('                            return updatedPeers', start) + len('                            return updatedPeers')
 apply_peers = 'private func applyPeers(_ peerIds: [PeerId], peers: [SelectivePrivacyPeer], transaction: Transaction) -> [SelectivePrivacyPeer] {\n' + peers[start:end] + '\n}\n'
-categories = (root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/ChatListFiltering.swift').read_text()
+categories = (root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/ChatListFiltering.swift').read_text()
 categories = categories[categories.index('public struct ChatListFilterPeerCategories:'):categories.index('private struct ChatListFilterPeerApiCategories:')]
-extensions = (root / 'packages/TelegramUtils/Sources/TelegramUtils/PeerDisplay.swift').read_text()
+extensions = (root / 'packages/AnsibleUtils/Sources/AnsibleUtils/PeerDisplay.swift').read_text()
 extensions = extensions[extensions.index('extension ChatListFilterPeerCategories'):extensions.index('public final class TelegramStoryRepostPeerObject')]
 package = pathlib.Path(tempfile.mkdtemp(prefix='telegram-privacy-exceptions-'))
 tests = package / 'Tests'

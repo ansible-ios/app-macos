@@ -5,13 +5,13 @@ import SwiftSignalKit
 import Postbox
 import TelegramCore
 import Localization
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 import InputDataUI
 import AlertsUI
 import FilePanels
 import MessageTextUtils
-import TelegramUtils
+import AnsibleUtils
 import GeneralRows
 import ColorPalette
 import AppAnalytics

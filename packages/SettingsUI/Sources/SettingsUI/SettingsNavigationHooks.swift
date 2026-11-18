@@ -3,9 +3,9 @@ import AppAnalytics
 import Postbox
 import SwiftSignalKit
 import TGUIKit
-import TelegramContext
+import AnsibleContext
 import TelegramCore
-import TelegramTheme
+import AnsibleTheme
 
 public enum SettingsSection {
     case dataAndStorage

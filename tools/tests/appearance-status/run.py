@@ -31,7 +31,7 @@ fixture=fixture.replace('__CHILD_SIGNAL_TYPE__','SelectColorSaveError' if 'Selec
 marker='        for controller in [self.profileController, self.nameController] {'
 fixture=fixture.replace('__LIFECYCLE__',block(parent,marker) if marker in parent else '')
 with tempfile.TemporaryDirectory(prefix='appearance-status-') as directory:
-    directory=Path(directory); dependency=json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))
+    directory=Path(directory); dependency=json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))
     (directory/'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "AppearanceStatus", platforms: [.macOS(.v10_13)], dependencies: [.package(path: '''+dependency+''')], targets: [.testTarget(name: "AppearanceStatusTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

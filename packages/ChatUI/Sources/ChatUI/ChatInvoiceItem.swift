@@ -9,10 +9,10 @@ import AppKit
 import ChatHistoryModel
 import DustLayer
 import Localization
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 
 public class ChatInvoiceItem: ChatRowItem {
     fileprivate let media:TelegramMediaInvoice

@@ -2,8 +2,8 @@ import Foundation
 import TGUIKit
 import SwiftSignalKit
 import TelegramCore
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 import Cocoa
 import InlineStickerLayer
 import Localization

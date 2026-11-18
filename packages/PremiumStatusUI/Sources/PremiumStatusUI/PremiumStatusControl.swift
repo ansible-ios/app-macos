@@ -5,11 +5,11 @@ import TelegramCore
 import Postbox
 import QuartzCore
 import AppKit
-import TelegramMedia
+import AnsibleMedia
 import ColorPalette
 import InlineStickers
-import TelegramUtils
-import TelegramTheme
+import AnsibleUtils
+import AnsibleTheme
 import InAppSettings
 import InlineStickerLayer
 

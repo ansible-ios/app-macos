@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 @_exported import UniqueGiftRenderer
 
 public enum UniqueGiftBackgroundStyle: Equatable {

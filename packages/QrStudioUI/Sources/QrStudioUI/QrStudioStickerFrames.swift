@@ -3,7 +3,7 @@ import Cocoa
 import TGUIKit
 import SwiftSignalKit
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 
 func qrStudioCrossfadeContents(_ layer: CALayer) {
     let transition = CATransition()

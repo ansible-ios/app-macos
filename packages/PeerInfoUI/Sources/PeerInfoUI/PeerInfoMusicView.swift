@@ -3,8 +3,8 @@ import TGUIKit
 import Postbox
 import SwiftSignalKit
 import TelegramCore
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 
 
 public final class PeerInfoMusicView : View {

@@ -15,10 +15,10 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "MetalEngine", path: "../../submodules/telegram-ios/submodules/MetalEngine"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "MetalEngine", path: "../../submodules/ansible-ios/submodules/MetalEngine"),
         .package(name: "TGUIKit", path: "../TGUIKit"),
-        .package(name: "TelegramTheme", path: "../TelegramTheme"),
+        .package(name: "AnsibleTheme", path: "../AnsibleTheme"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -28,7 +28,7 @@ let package = Package(
             dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
                            .product(name: "MetalEngine", package: "MetalEngine", condition: nil),
                            .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
-                           .product(name: "TelegramTheme", package: "TelegramTheme", condition: nil)],
+                           .product(name: "AnsibleTheme", package: "AnsibleTheme", condition: nil)],
             path: "Sources/",
             resources: [.copy("DustEffectShaders.metal"),
                         .copy("loki_header.metal"),

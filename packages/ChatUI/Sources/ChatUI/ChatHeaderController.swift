@@ -13,9 +13,9 @@ import GeneralRows
 import InAppSettings
 import LocalAnimations
 import PremiumUI
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import Strings
 import MessageUtils
 import InlineStickerLayer

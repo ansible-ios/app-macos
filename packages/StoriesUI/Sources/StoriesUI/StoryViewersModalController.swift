@@ -3,7 +3,7 @@ import TGUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox
-import TelegramMediaResources
+import AnsibleMediaResources
 import AvatarUI
 import ChatUI
 import GeneralRows
@@ -11,9 +11,9 @@ import InputDataUI
 import LocalAnimations
 import Localization
 import PremiumStatusUI
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 import AppAnalytics
 

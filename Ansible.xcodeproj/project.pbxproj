@@ -315,7 +315,7 @@
 		27803BF127A3E944007B0FA9 /* menu_folder_all_chats.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27803BD627A3E937007B0FA9 /* menu_folder_all_chats.tgs */; };
 		27803BF227A3E944007B0FA9 /* menu_folder_sport.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27803BD727A3E937007B0FA9 /* menu_folder_sport.tgs */; };
 		27803BF327A3E944007B0FA9 /* menu_folder_group.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27803BD827A3E938007B0FA9 /* menu_folder_group.tgs */; };
-		27803BF427A3E944007B0FA9 /* menu_folder_telegram.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27803BD927A3E938007B0FA9 /* menu_folder_telegram.tgs */; };
+		27803BF427A3E944007B0FA9 /* menu_folder_ansible.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27803BD927A3E938007B0FA9 /* menu_folder_ansible.tgs */; };
 		27803BF527A3E944007B0FA9 /* menu_folder_paint.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27803BDA27A3E939007B0FA9 /* menu_folder_paint.tgs */; };
 		27803BF627A3E944007B0FA9 /* menu_folder_coin.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27803BDB27A3E939007B0FA9 /* menu_folder_coin.tgs */; };
 		27803BF727A3E944007B0FA9 /* menu_folder_star.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27803BDC27A3E93A007B0FA9 /* menu_folder_star.tgs */; };
@@ -396,7 +396,7 @@
 		27A01AEA2BA07ACF00C59661 /* fragment.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27A01AE92BA07ACF00C59661 /* fragment.tgs */; };
 		27A08A2227E8B73D00284048 /* change_sim.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27A08A2127E8B73D00284048 /* change_sim.tgs */; };
 		27A1B2C3D4E5F60718293A4B /* GeneralRowsHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1B2C3D4E5F60718293A4C /* GeneralRowsHooksInstall.swift */; };
-		27A35BDB2F03C73E0001B63D /* TelegramShare.appex in CopyFiles */ = {isa = PBXBuildFile; fileRef = C232EA911E1D07E700C4D38C /* TelegramShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		27A35BDB2F03C73E0001B63D /* AnsibleShare.appex in CopyFiles */ = {isa = PBXBuildFile; fileRef = C232EA911E1D07E700C4D38C /* AnsibleShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		27A3F3186D8477CAC156B43F /* ProxyUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 7D600E220F3342D01F1516C2 /* ProxyUtils */; };
 		27A6978D273D192800B33415 /* libphonenumber in Frameworks */ = {isa = PBXBuildFile; productRef = 27A6978C273D192800B33415 /* libphonenumber */; };
 		27A69790273D1DE900B33415 /* FFMpegBinding in Frameworks */ = {isa = PBXBuildFile; productRef = 27A6978F273D1DE900B33415 /* FFMpegBinding */; };
@@ -621,11 +621,11 @@
 		27F2BBC927BE79ED00A37463 /* email_recovery.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27F2BBC827BE79ED00A37463 /* email_recovery.tgs */; };
 		27F2BBD127BF694800A37463 /* qrcode_matrix.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27F2BBD027BF694800A37463 /* qrcode_matrix.tgs */; };
 		27F37A262850F8F200AC8B90 /* voice_dots.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27F37A252850F8F200AC8B90 /* voice_dots.tgs */; };
-		27F3B75427391E6B00B81F10 /* TelegramIconsTheme in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3B75327391E6B00B81F10 /* TelegramIconsTheme */; };
-		27F3B75627391E9200B81F10 /* TelegramIconsTheme in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3B75527391E9200B81F10 /* TelegramIconsTheme */; };
+		27F3B75427391E6B00B81F10 /* AnsibleIconsTheme in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3B75327391E6B00B81F10 /* AnsibleIconsTheme */; };
+		27F3B75627391E9200B81F10 /* AnsibleIconsTheme in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3B75527391E9200B81F10 /* AnsibleIconsTheme */; };
 		27F3B75C2739320000B81F10 /* SwiftSignalKit in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3B75B2739320000B81F10 /* SwiftSignalKit */; };
 		27F3B75E2739320F00B81F10 /* TGUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3B75D2739320F00B81F10 /* TGUIKit */; };
-		27F3BB772B48375800BC37C2 /* TelegramMedia in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3BB762B48375800BC37C2 /* TelegramMedia */; };
+		27F3BB772B48375800BC37C2 /* AnsibleMedia in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3BB762B48375800BC37C2 /* AnsibleMedia */; };
 		27F3BB912B4C3D6600BC37C2 /* show_status_profile.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27F3BB8F2B4C3D6500BC37C2 /* show_status_profile.tgs */; };
 		27F3BB922B4C3D6600BC37C2 /* show_status_read.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27F3BB902B4C3D6600BC37C2 /* show_status_read.tgs */; };
 		27F4F18128463BF100A3B4D4 /* premium_addone.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27F4F17E28463BF000A3B4D4 /* premium_addone.tgs */; };
@@ -634,9 +634,9 @@
 		27F4F192284E401200A3B4D4 /* menu_gear.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27F4F191284E401200A3B4D4 /* menu_gear.tgs */; };
 		27F674182976EC430014DCB9 /* duck_empty.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27F67415297680DC0014DCB9 /* duck_empty.tgs */; };
 		2A1C61EAF957F3B36BAE4530 /* MessageCustomTagsCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2355DF47ECDDD0EEB526DD /* MessageCustomTagsCompat.swift */; };
-		2D574D327DBA0E1F4FC42C6E /* TelegramMediaFileResourceUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B91030E9C2A21147E3220E /* TelegramMediaFileResourceUpdate.swift */; };
+		2D574D327DBA0E1F4FC42C6E /* AnsibleMediaFileResourceUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B91030E9C2A21147E3220E /* AnsibleMediaFileResourceUpdate.swift */; };
 		2F06EB197370C8B6B685C79F /* LocationHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8C9CEE471B712CE891910 /* LocationHooksInstall.swift */; };
-		30960C87A818B3C5EDE7F67F /* TelegramLinksHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C84EEC6DE72CAF8FED0F1 /* TelegramLinksHooksInstall.swift */; };
+		30960C87A818B3C5EDE7F67F /* AnsibleLinksHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C84EEC6DE72CAF8FED0F1 /* AnsibleLinksHooksInstall.swift */; };
 		31864961DB5EA80D31BE47DB /* GeneralRowsShare in Frameworks */ = {isa = PBXBuildFile; productRef = 478591E264E224F9B26FA893 /* GeneralRowsShare */; };
 		3449B5D70C01135DD4256764 /* BrowserHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BA380D1B6F76FA565FDF /* BrowserHooksInstall.swift */; };
 		367BCDA1BC6451FF4CFD3829 /* BusinessHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09818036375031EC614E09B /* BusinessHooksInstall.swift */; };
@@ -648,25 +648,25 @@
 		3FBD07133FDDA4EBFDB73E9D /* ProxyUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4D88EC56FC7A2AC958338BA7 /* ProxyUI */; };
 		3FC85D3E30B33636E39FC402 /* EmojiReplacements in Frameworks */ = {isa = PBXBuildFile; productRef = 628D5AA4A6D72DB9D1FDCC23 /* EmojiReplacements */; };
 		401B096A174BB8966BF72D05 /* InlineMediaGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 90813221ECC20B2DC9E24F9D /* InlineMediaGrid */; };
-		44CA2DA9CAA980BF3DCC85DC /* TelegramThemeHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBEF6A73A2A8EABDCC2720 /* TelegramThemeHooksInstall.swift */; };
+		44CA2DA9CAA980BF3DCC85DC /* AnsibleThemeHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBEF6A73A2A8EABDCC2720 /* AnsibleThemeHooksInstall.swift */; };
 		44FE857BF62B6691D5BE524F /* FilePanelsHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9DF469350C395CCC5F2E1 /* FilePanelsHooksInstall.swift */; };
 		4518F8F646BFF69AD02BEACD /* ChatListFilterPredicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50709F8105EA74A00964D55C /* ChatListFilterPredicate.swift */; };
 		48FE28EECDE540AC8773E5E2 /* FolderSharingUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8308E4A0238F4910A2442132 /* FolderSharingUI */; };
 		49A4C19820630DE3402CCE37 /* BusinessUI in Frameworks */ = {isa = PBXBuildFile; productRef = 089EAF2CED6E1940E89E9C5F /* BusinessUI */; };
 		4BCEDF3FFC53B19F3C09DCB3 /* FilePanels in Frameworks */ = {isa = PBXBuildFile; productRef = 8586371AE023E25C3F729895 /* FilePanels */; };
-		4CDB128F111A388E89A4C588 /* TelegramUtils in Frameworks */ = {isa = PBXBuildFile; productRef = FC2A95D165DA8A9214690823 /* TelegramUtils */; };
+		4CDB128F111A388E89A4C588 /* AnsibleUtils in Frameworks */ = {isa = PBXBuildFile; productRef = FC2A95D165DA8A9214690823 /* AnsibleUtils */; };
 		525C3C1C7AA1F28772CA3D2D /* Exports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0622EFB547D10790F4F02F6D /* Exports.swift */; };
 		532033F7F48F391836787019 /* AccountContextConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64BED76F5F0416925F8157C /* AccountContextConformance.swift */; };
-		590406A596A7B20FA77A6D01 /* TelegramMediaResources in Frameworks */ = {isa = PBXBuildFile; productRef = 1A37193D6441404CE43644C8 /* TelegramMediaResources */; };
+		590406A596A7B20FA77A6D01 /* AnsibleMediaResources in Frameworks */ = {isa = PBXBuildFile; productRef = 1A37193D6441404CE43644C8 /* AnsibleMediaResources */; };
 		5AD81EA38DEDB6C06A9230F6 /* MessageTextUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 58453EF1665AFFF7ACD2618D /* MessageTextUtils */; };
 		5F5EE843E8379FAB35D02AB7 /* AlertsUI in Frameworks */ = {isa = PBXBuildFile; productRef = C37485D53854DD81BB9C5736 /* AlertsUI */; };
-		62D27F14BB61247BA3765961 /* TelegramMediaUtils in Frameworks */ = {isa = PBXBuildFile; productRef = A4E3C3A7FB92511ACDA24FFA /* TelegramMediaUtils */; };
+		62D27F14BB61247BA3765961 /* AnsibleMediaUtils in Frameworks */ = {isa = PBXBuildFile; productRef = A4E3C3A7FB92511ACDA24FFA /* AnsibleMediaUtils */; };
 		63CDEBCB582D5F44D0C67788 /* PremiumHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3207948EA9B8B9EFBC842BCD /* PremiumHooksInstall.swift */; };
 		678519A5951825488668D470 /* LocationUI in Frameworks */ = {isa = PBXBuildFile; productRef = FCCA59F669F765A3A6CA7F68 /* LocationUI */; };
 		6DBF99DB3394CBEB8EE12784 /* AffiliateHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080162D2AEFFAA5ABBB528F1 /* AffiliateHooksInstall.swift */; };
 		6EDF7C2F385AB0F0AC10D9B1 /* PremiumStatusUI in Frameworks */ = {isa = PBXBuildFile; productRef = A593B160FD2E37CD2CCF385E /* PremiumStatusUI */; };
 		7212AC04ED29591041120B0D /* LiteModeGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B3CC3FD251983FEBC2884 /* LiteModeGlobal.swift */; };
-		72C71783A0E1779049B81298 /* TelegramContextShare in Frameworks */ = {isa = PBXBuildFile; productRef = 44E83C8CAD7652510D91ABEA /* TelegramContextShare */; };
+		72C71783A0E1779049B81298 /* AnsibleContextShare in Frameworks */ = {isa = PBXBuildFile; productRef = 44E83C8CAD7652510D91ABEA /* AnsibleContextShare */; };
 		7415E10BDD9D893298084BAF /* GalleryUIHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848BED47AF8C1004C84493 /* GalleryUIHooksInstall.swift */; };
 		77CD25EDB586F36B49940EE7 /* CallsCoreHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694BC93769D0422AC9308ED5 /* CallsCoreHooksInstall.swift */; };
 		798A3CFCB30900B7BF695E20 /* MessageUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 08AB4F30B4BC01079CD4F35C /* MessageUtils */; };
@@ -677,7 +677,7 @@
 		7E8466C5B161282397E216B9 /* InstantPageUI in Frameworks */ = {isa = PBXBuildFile; productRef = D67F7BB3735A3A6996E236D4 /* InstantPageUI */; };
 		7EEAC0DF8C232D86C4AC318E /* PhoneNumberUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 4904FC383A3849531B7E21CF /* PhoneNumberUtils */; };
 		806699C5354386A72184AE84 /* SceneEffects in Frameworks */ = {isa = PBXBuildFile; productRef = AA6DADE92CDBC5CCCA400CEC /* SceneEffects */; };
-		83CE4F1885B257909FE6002D /* TelegramContext in Frameworks */ = {isa = PBXBuildFile; productRef = A205E46922CF55D36805E629 /* TelegramContext */; };
+		83CE4F1885B257909FE6002D /* AnsibleContext in Frameworks */ = {isa = PBXBuildFile; productRef = A205E46922CF55D36805E629 /* AnsibleContext */; };
 		862490BB1C10403C81783E13 /* RichTextEditorUI in Frameworks */ = {isa = PBXBuildFile; productRef = D1E52F3E99EF4E92A331E829 /* RichTextEditorUI */; };
 		8B4F9CAD44047EBA728F85DC /* CubeUI in Frameworks */ = {isa = PBXBuildFile; productRef = FAAF1CF59D8871C34B3C17C5 /* CubeUI */; };
 		937ADAB292FE6D34D00CB063 /* LottieRenderHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A290137C51BC0DCC4E64A4B0 /* LottieRenderHooksInstall.swift */; };
@@ -735,12 +735,12 @@
 		A7D08F48236AC9B6002DC240 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0BCD9E2087BABC001D8D8A /* Sparkle.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A9C15C11EF1D92CB50C3C49E /* AvatarUI in Frameworks */ = {isa = PBXBuildFile; productRef = F4B0D49190392E25D95F356C /* AvatarUI */; };
 		AAFDB93441D554F4DDDD2A3C /* MMMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18524B4FE5ADD178018D610 /* MMMenuItem.swift */; };
-		AD222865622A8F09AF07440F /* TelegramCallsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5BFC7C71CF642C3D445C46 /* TelegramCallsCore */; };
+		AD222865622A8F09AF07440F /* AnsibleCallsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5BFC7C71CF642C3D445C46 /* AnsibleCallsCore */; };
 		AD3BD9CEA2704F31B1959842 /* SidebarUIIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE33C58072B4802BE646848 /* SidebarUIIntegration.swift */; };
 		AE0AEBC4B16C8C659D4DB6B7 /* PaymentsUI in Frameworks */ = {isa = PBXBuildFile; productRef = 18CF8F593438CC8B1D04D500 /* PaymentsUI */; };
 		AE521DA8D88980730D7AAC9E /* ExternalVideoUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 3B17F420AC06201067FE96A3 /* ExternalVideoUtils */; };
 		B1D7EAFC2F064C633E223507 /* AuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 76598EE4D43D0B420129171B /* AuthUI */; };
-		B1FA9B51E5E4F05E194C4934 /* TelegramUtilsShare in Frameworks */ = {isa = PBXBuildFile; productRef = F3DD5977041CBCE33A98E464 /* TelegramUtilsShare */; };
+		B1FA9B51E5E4F05E194C4934 /* AnsibleUtilsShare in Frameworks */ = {isa = PBXBuildFile; productRef = F3DD5977041CBCE33A98E464 /* AnsibleUtilsShare */; };
 		B84A7663ED2EC1703C61889D /* FoundationUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 5A62F6BDEB7EDB55D4C17A92 /* FoundationUtils */; };
 		BB78705B9150B29EB2F50D4E /* PaymentsHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EBE4DBE4891EF6D05DB56D /* PaymentsHooksInstall.swift */; };
 		BD5ACD58E28E88F7076ED086 /* StarsUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4E8355E827939C5A984998FD /* StarsUI */; };
@@ -794,8 +794,8 @@
 		C2EBBEA11FB5CA94009AD8ED /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EBBEA01FB5CA94009AD8ED /* CoreServices.framework */; };
 		C2FD33F01E697EC2008D13D4 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FD33EF1E697EC2008D13D4 /* QuickLook.framework */; };
 		C2FD33FB1E6C169C008D13D4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FD33FA1E6C169C008D13D4 /* Security.framework */; };
-		C96F356D1A29E509EB4765EC /* TelegramThemeHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBEF6A73A2A8EABDCC2720 /* TelegramThemeHooksInstall.swift */; };
-		CCD1B8E49B25C1FDF7E58B20 /* TelegramTheme in Frameworks */ = {isa = PBXBuildFile; productRef = 73CE745EC0FEF1BD8F78477C /* TelegramTheme */; };
+		C96F356D1A29E509EB4765EC /* AnsibleThemeHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBEF6A73A2A8EABDCC2720 /* AnsibleThemeHooksInstall.swift */; };
+		CCD1B8E49B25C1FDF7E58B20 /* AnsibleTheme in Frameworks */ = {isa = PBXBuildFile; productRef = 73CE745EC0FEF1BD8F78477C /* AnsibleTheme */; };
 		CD43762E46BA48F697A64271 /* FolderSharingUIIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047835680ACB43C8BAE552A3 /* FolderSharingUIIntegration.swift */; };
 		D00746EE2577A6BE0000DF74 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C9B92A1E8011CD00380D79 /* Carbon.framework */; };
 		D0076EEB25685BB5007EF588 /* libbz2.1.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D0076EEA25685BB5007EF588 /* libbz2.1.0.tbd */; };
@@ -834,14 +834,14 @@
 		D13E1E3D2C433B0A6E580967 /* ChatModeTypes in Frameworks */ = {isa = PBXBuildFile; productRef = 19BF18CAA1E210A7A35B1223 /* ChatModeTypes */; };
 		D1EBDE8EBD231727BE0D0C5C /* InlineStickers in Frameworks */ = {isa = PBXBuildFile; productRef = 1E9743F5BBDD948D36BC61BA /* InlineStickers */; };
 		D2E446F2BA7F8C2BB16A3AED /* InputTextView in Frameworks */ = {isa = PBXBuildFile; productRef = 7345D34A5AE278F0DE6396B4 /* InputTextView */; };
-		D7B6E2D49B7BB627BA468E5C /* TelegramThemeShare in Frameworks */ = {isa = PBXBuildFile; productRef = 7C13C59242BA714DFE654DEC /* TelegramThemeShare */; };
+		D7B6E2D49B7BB627BA468E5C /* AnsibleThemeShare in Frameworks */ = {isa = PBXBuildFile; productRef = 7C13C59242BA714DFE654DEC /* AnsibleThemeShare */; };
 		DD8074802CF7FDDFD5BDF493 /* GeneralRows in Frameworks */ = {isa = PBXBuildFile; productRef = 48F9BDCCC398C9B0FC6BF7A9 /* GeneralRows */; };
 		DEB0B9691B5A733B8FE1E26A /* ChangePhoneNumberUI in Frameworks */ = {isa = PBXBuildFile; productRef = 208F8B84B41B78DDAAFF8C44 /* ChangePhoneNumberUI */; };
 		E10BCFA94FC9D8B59747ED2F /* ProxyHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CABEA4DDE47627AFF23E75E /* ProxyHooksInstall.swift */; };
 		E4A1D275EA80BBF95787896F /* ReportHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371F9C840FD0AB5E0099CC86 /* ReportHooksInstall.swift */; };
 		E4F3C45AD61D2DDA72FD62AC /* DiceCache in Frameworks */ = {isa = PBXBuildFile; productRef = 5A7B5A29CF4A290EA668ACCD /* DiceCache */; };
 		E999B3BF645609D61A8A1C80 /* CaptureExclusion in Frameworks */ = {isa = PBXBuildFile; productRef = EF919C395081AD37DF4EB193 /* CaptureExclusion */; };
-		EDCED24F7E84452EACF1D7FB /* TelegramLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 8FA6B684E86A434A964AF09D /* TelegramLinks */; };
+		EDCED24F7E84452EACF1D7FB /* AnsibleLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 8FA6B684E86A434A964AF09D /* AnsibleLinks */; };
 		F41C7BA10C5394E00696ADC0 /* MediaRecorderHooksInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3613FFCB2FFCD8C88AC786A /* MediaRecorderHooksInstall.swift */; };
 		F6679659E4D9A18FC9DBFF58 /* Exports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0622EFB547D10790F4F02F6D /* Exports.swift */; };
 		F85FA547433EBF28A90F130B /* AffiliateUI in Frameworks */ = {isa = PBXBuildFile; productRef = D1169B1E9AE6B5F668ED57D6 /* AffiliateUI */; };
@@ -988,7 +988,7 @@
 			containerPortal = D098C70D1D7E175A007784E4 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C232EA901E1D07E700C4D38C;
-			remoteInfo = TelegramShare;
+			remoteInfo = AnsibleShare;
 		};
 		D827F2DD47CE9F74A24B8BD8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1006,7 +1006,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				27A35BDB2F03C73E0001B63D /* TelegramShare.appex in CopyFiles */,
+				27A35BDB2F03C73E0001B63D /* AnsibleShare.appex in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1045,7 +1045,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FD784E303A88B94212763B13 /* MTProtoRustEngine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MTProtoRustEngine; path = "submodules/telegram-ios/submodules/MTProtoRustEngine"; sourceTree = "<group>"; };
+		FD784E303A88B94212763B13 /* MTProtoRustEngine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MTProtoRustEngine; path = "submodules/ansible-ios/submodules/MTProtoRustEngine"; sourceTree = "<group>"; };
 		00AE230B300112A4002DAD5B /* menu_article.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_article.tgs; sourceTree = "<group>"; };
 		6DF2B389CBB80EB29FD391E4 /* menu_message.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_message.tgs; sourceTree = "<group>"; };
 		020D35D47A7FBCCF522B829E /* AffiliateUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AffiliateUI; path = packages/AffiliateUI; sourceTree = "<group>"; };
@@ -1064,8 +1064,8 @@
 		1CABEA4DDE47627AFF23E75E /* ProxyHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyHooksInstall.swift; sourceTree = "<group>"; };
 		1E510B54D5A23360654F702A /* QRCodeUtils */ = {isa = PBXFileReference; lastKnownFileType = folder; name = QRCodeUtils; path = packages/QRCodeUtils; sourceTree = "<group>"; };
 		20848BED47AF8C1004C84493 /* GalleryUIHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryUIHooksInstall.swift; sourceTree = "<group>"; };
-		21072C839D8A40CB997FF92F /* TelegramLinks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramLinks; path = packages/TelegramLinks; sourceTree = "<group>"; };
-		241C84EEC6DE72CAF8FED0F1 /* TelegramLinksHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramLinksHooksInstall.swift; sourceTree = "<group>"; };
+		21072C839D8A40CB997FF92F /* AnsibleLinks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleLinks; path = packages/AnsibleLinks; sourceTree = "<group>"; };
+		241C84EEC6DE72CAF8FED0F1 /* AnsibleLinksHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsibleLinksHooksInstall.swift; sourceTree = "<group>"; };
 		24C7402F753180B03EBFF5D3 /* ChatModeTypes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ChatModeTypes; path = packages/ChatModeTypes; sourceTree = "<group>"; };
 		2523E27FD4BA86DE3CE59634 /* AudioPlayerUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AudioPlayerUI; path = packages/AudioPlayerUI; sourceTree = "<group>"; };
 		264AD8A3D9AD3219E7E4D8A9 /* StarsUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = StarsUI; path = packages/StarsUI; sourceTree = "<group>"; };
@@ -1140,13 +1140,13 @@
 		2713B9EC2F3F02AB00E37DE9 /* menu_enable_sharing.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_enable_sharing.tgs; sourceTree = "<group>"; };
 		27161A9B27EC98280069BCEF /* menu_drugs.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_drugs.tgs; sourceTree = "<group>"; };
 		2718244C2A0507A300AFBD4C /* menu_success.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_success.tgs; sourceTree = "<group>"; };
-		271891F62B08A7B70008B238 /* LokiRng */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LokiRng; path = "submodules/telegram-ios/submodules/Utils/LokiRng"; sourceTree = "<group>"; };
+		271891F62B08A7B70008B238 /* LokiRng */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LokiRng; path = "submodules/ansible-ios/submodules/Utils/LokiRng"; sourceTree = "<group>"; };
 		2718920D2B0DD1550008B238 /* grammars.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = grammars.dat; path = submodules/libprisma/libprisma/grammars.dat; sourceTree = SOURCE_ROOT; };
 		271892152B18D9CD0008B238 /* transcription_locked.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = transcription_locked.tgs; sourceTree = "<group>"; };
 		2718FF8127BFB28900196BC4 /* login_airplane.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = login_airplane.tgs; sourceTree = "<group>"; };
 		2718FF8B27C3CCC700196BC4 /* FetchManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FetchManager; path = packages/FetchManager; sourceTree = "<group>"; };
 		271999E62683C04B000DE2B7 /* MetalPerformanceShaders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalPerformanceShaders.framework; path = System/Library/Frameworks/MetalPerformanceShaders.framework; sourceTree = SDKROOT; };
-		271A195A2CF7485C00FAE5FB /* TelegramAudio */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TelegramAudio; path = "submodules/telegram-ios/submodules/TelegramAudio"; sourceTree = "<group>"; };
+		271A195A2CF7485C00FAE5FB /* TelegramAudio */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TelegramAudio; path = "submodules/ansible-ios/submodules/TelegramAudio"; sourceTree = "<group>"; };
 		271D4F3327689DF0004FD034 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		271D4F352769D07D004FD034 /* menu_reactions.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_reactions.tgs; sourceTree = "<group>"; };
 		271F78C728095A0E0040EE8F /* menu_smile.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_smile.tgs; sourceTree = "<group>"; };
@@ -1256,8 +1256,8 @@
 		275E4B422EEC31DF00BC1A68 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		275E4B482EF0287E00BC1A68 /* dice_roll.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice_roll.tgs; sourceTree = "<group>"; };
 		275E4B4A2EFA778C00BC1A68 /* menu_cocoon.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_cocoon.tgs; sourceTree = "<group>"; };
-		275E851A2B20C452007A72CA /* ShelfPack */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ShelfPack; path = "submodules/telegram-ios/submodules/Utils/ShelfPack"; sourceTree = "<group>"; };
-		275E851D2B20C61D007A72CA /* MetalEngine */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MetalEngine; path = "submodules/telegram-ios/submodules/MetalEngine"; sourceTree = "<group>"; };
+		275E851A2B20C452007A72CA /* ShelfPack */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ShelfPack; path = "submodules/ansible-ios/submodules/Utils/ShelfPack"; sourceTree = "<group>"; };
+		275E851D2B20C61D007A72CA /* MetalEngine */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MetalEngine; path = "submodules/ansible-ios/submodules/MetalEngine"; sourceTree = "<group>"; };
 		276143292BD7E2900034338C /* menu_ban.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_ban.tgs; sourceTree = "<group>"; };
 		2761432C2BD7EEC20034338C /* chatlist_poll.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = chatlist_poll.tgs; sourceTree = "<group>"; };
 		2761432D2BD7EEC30034338C /* chatlist_voice.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = chatlist_voice.tgs; sourceTree = "<group>"; };
@@ -1305,7 +1305,7 @@
 		276E76422B373E1B00440A4F /* libswiftAppKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftAppKit.tbd; path = usr/lib/swift/libswiftAppKit.tbd; sourceTree = SDKROOT; };
 		276F9B872931155D00E35997 /* menu_bio.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_bio.tgs; sourceTree = "<group>"; };
 		276F9B892935FD7800E35997 /* pirate_flag.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = pirate_flag.tgs; sourceTree = "<group>"; };
-		2771AC77273C2B1F00245A48 /* TelegramVoip */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramVoip; path = "submodules/telegram-ios/submodules/TelegramVoip"; sourceTree = "<group>"; };
+		2771AC77273C2B1F00245A48 /* TelegramVoip */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramVoip; path = "submodules/ansible-ios/submodules/TelegramVoip"; sourceTree = "<group>"; };
 		277335612ED48C0800E4BF4B /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		2773A53425F91E1500AB45E9 /* voice_chat_raise_hand_1.tgs */ = {isa = PBXFileReference; lastKnownFileType = text; path = voice_chat_raise_hand_1.tgs; sourceTree = "<group>"; };
 		2773A54025FA324900AB45E9 /* voice_chat_unmute.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = voice_chat_unmute.tgs; sourceTree = "<group>"; };
@@ -1328,8 +1328,8 @@
 		277C208827A2858D0070B3BF /* menu_speaker_muted.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_speaker_muted.tgs; sourceTree = "<group>"; };
 		277C208B27A2C4C40070B3BF /* menu_sharescreen_slash.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_sharescreen_slash.tgs; sourceTree = "<group>"; };
 		277C208C27A2C4C50070B3BF /* menu_sharescreen.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_sharescreen.tgs; sourceTree = "<group>"; };
-		277C209127A2F5680070B3BF /* ManagedFile */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ManagedFile; path = "submodules/telegram-ios/submodules/ManagedFile"; sourceTree = "<group>"; };
-		277C209627A2F6090070B3BF /* YuvConversion */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = YuvConversion; path = "submodules/telegram-ios/submodules/YuvConversion"; sourceTree = "<group>"; };
+		277C209127A2F5680070B3BF /* ManagedFile */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ManagedFile; path = "submodules/ansible-ios/submodules/ManagedFile"; sourceTree = "<group>"; };
+		277C209627A2F6090070B3BF /* YuvConversion */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = YuvConversion; path = "submodules/ansible-ios/submodules/YuvConversion"; sourceTree = "<group>"; };
 		277D28182AD02EF900CC6420 /* InputView */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = InputView; path = packages/InputView; sourceTree = "<group>"; };
 		277DFE5F27842E3A00F78396 /* Translate */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Translate; path = packages/Translate; sourceTree = "<group>"; };
 		277DFE672784842C00F78396 /* menu_sun.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_sun.tgs; sourceTree = "<group>"; };
@@ -1341,13 +1341,13 @@
 		277E228128E5DC9D00001689 /* forum_topic.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = forum_topic.tgs; sourceTree = "<group>"; };
 		277E228528EB330900001689 /* menu_add_member.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_add_member.tgs; sourceTree = "<group>"; };
 		277E228E28F2FE2E00001689 /* menu_topics.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_topics.tgs; sourceTree = "<group>"; };
-		277E8291273A805F0037118C /* MtProtoKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MtProtoKit; path = "submodules/telegram-ios/submodules/MtProtoKit"; sourceTree = "<group>"; };
+		277E8291273A805F0037118C /* MtProtoKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MtProtoKit; path = "submodules/ansible-ios/submodules/MtProtoKit"; sourceTree = "<group>"; };
 		27803BD427A3E936007B0FA9 /* menu_folder_like.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_folder_like.tgs; sourceTree = "<group>"; };
 		27803BD527A3E936007B0FA9 /* menu_folder_lamp.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_folder_lamp.tgs; sourceTree = "<group>"; };
 		27803BD627A3E937007B0FA9 /* menu_folder_all_chats.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_folder_all_chats.tgs; sourceTree = "<group>"; };
 		27803BD727A3E937007B0FA9 /* menu_folder_sport.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_folder_sport.tgs; sourceTree = "<group>"; };
 		27803BD827A3E938007B0FA9 /* menu_folder_group.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_folder_group.tgs; sourceTree = "<group>"; };
-		27803BD927A3E938007B0FA9 /* menu_folder_telegram.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_folder_telegram.tgs; sourceTree = "<group>"; };
+		27803BD927A3E938007B0FA9 /* menu_folder_ansible.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_folder_ansible.tgs; sourceTree = "<group>"; };
 		27803BDA27A3E939007B0FA9 /* menu_folder_paint.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_folder_paint.tgs; sourceTree = "<group>"; };
 		27803BDB27A3E939007B0FA9 /* menu_folder_coin.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_folder_coin.tgs; sourceTree = "<group>"; };
 		27803BDC27A3E93A007B0FA9 /* menu_folder_star.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_folder_star.tgs; sourceTree = "<group>"; };
@@ -1433,10 +1433,10 @@
 		27A01AE92BA07ACF00C59661 /* fragment.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = fragment.tgs; sourceTree = "<group>"; };
 		27A08A2127E8B73D00284048 /* change_sim.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = change_sim.tgs; sourceTree = "<group>"; };
 		27A1B2C3D4E5F60718293A4C /* GeneralRowsHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralRowsHooksInstall.swift; sourceTree = "<group>"; };
-		27A6978B273D191C00B33415 /* libphonenumber */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libphonenumber; path = "submodules/telegram-ios/submodules/libphonenumber"; sourceTree = "<group>"; };
-		27A6978E273D1DDE00B33415 /* FFMpegBinding */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FFMpegBinding; path = "submodules/telegram-ios/submodules/FFMpegBinding"; sourceTree = "<group>"; };
-		27A69791273D20E800B33415 /* OpusBinding */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OpusBinding; path = "submodules/telegram-ios/submodules/OpusBinding"; sourceTree = "<group>"; };
-		27A69794273D252800B33415 /* rnnoise */ = {isa = PBXFileReference; lastKnownFileType = folder; name = rnnoise; path = "submodules/telegram-ios/third-party/rnnoise"; sourceTree = "<group>"; };
+		27A6978B273D191C00B33415 /* libphonenumber */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libphonenumber; path = "submodules/ansible-ios/submodules/libphonenumber"; sourceTree = "<group>"; };
+		27A6978E273D1DDE00B33415 /* FFMpegBinding */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FFMpegBinding; path = "submodules/ansible-ios/submodules/FFMpegBinding"; sourceTree = "<group>"; };
+		27A69791273D20E800B33415 /* OpusBinding */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OpusBinding; path = "submodules/ansible-ios/submodules/OpusBinding"; sourceTree = "<group>"; };
+		27A69794273D252800B33415 /* rnnoise */ = {isa = PBXFileReference; lastKnownFileType = folder; name = rnnoise; path = "submodules/ansible-ios/third-party/rnnoise"; sourceTree = "<group>"; };
 		27A697A1273D311700B33415 /* Stripe */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Stripe; path = submodules/Stripe; sourceTree = "<group>"; };
 		27A697A7273D36A200B33415 /* Localization */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Localization; path = packages/Localization; sourceTree = "<group>"; };
 		27A697AA273D3B3D00B33415 /* NumberPluralization */ = {isa = PBXFileReference; lastKnownFileType = folder; name = NumberPluralization; path = packages/NumberPluralization; sourceTree = "<group>"; };
@@ -1453,16 +1453,16 @@
 		27ABFD292858C6F5006C3301 /* lightspeed.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = lightspeed.scn; sourceTree = "<group>"; };
 		27ABFD2E2858C838006C3301 /* badge.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = badge.scn; sourceTree = "<group>"; };
 		27ABFD2F2858C838006C3301 /* badgestar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = badgestar.png; sourceTree = "<group>"; };
-		27B10ED42FDA93A500788352 /* RichTextEditor */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = RichTextEditor; path = "submodules/telegram-ios/submodules/TelegramUI/Components/RichTextEditor"; sourceTree = "<group>"; };
+		27B10ED42FDA93A500788352 /* RichTextEditor */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = RichTextEditor; path = "submodules/ansible-ios/submodules/TelegramUI/Components/RichTextEditor"; sourceTree = "<group>"; };
 		27B29E462CB51432007FDA6B /* menu_edited.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_edited.tgs; sourceTree = "<group>"; };
 		27B4A8F02C2DA0340000F3DF /* emoji144.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emoji144.txt; sourceTree = "<group>"; };
 		27B57DBDDD10A42D0E0FAE32 /* emoji264.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emoji264.txt; sourceTree = "<group>"; };
 		27B6AFA52B4FB316001D0983 /* menu_tag_filter.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_tag_filter.tgs; sourceTree = "<group>"; };
 		27B6AFA62B4FB317001D0983 /* menu_tag_remove.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_tag_remove.tgs; sourceTree = "<group>"; };
 		27B6AFB22B555C03001D0983 /* CallVideoLayer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CallVideoLayer; path = packages/CallVideoLayer; sourceTree = "<group>"; };
-		27B6D0452739379900C785C7 /* Postbox */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Postbox; path = "submodules/telegram-ios/submodules/Postbox"; sourceTree = "<group>"; };
-		27B6D0462739382800C785C7 /* TelegramCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramCore; path = "submodules/telegram-ios/submodules/TelegramCore"; sourceTree = "<group>"; };
-		27B6D0472739387500C785C7 /* TelegramApi */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramApi; path = "submodules/telegram-ios/submodules/TelegramApi"; sourceTree = "<group>"; };
+		27B6D0452739379900C785C7 /* Postbox */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Postbox; path = "submodules/ansible-ios/submodules/Postbox"; sourceTree = "<group>"; };
+		27B6D0462739382800C785C7 /* TelegramCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramCore; path = "submodules/ansible-ios/submodules/TelegramCore"; sourceTree = "<group>"; };
+		27B6D0472739387500C785C7 /* TelegramApi */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramApi; path = "submodules/ansible-ios/submodules/TelegramApi"; sourceTree = "<group>"; };
 		27B836182B5FC1AE00E82683 /* emoji14.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emoji14.txt; sourceTree = "<group>"; };
 		27B8361F2B5FF51F00E82683 /* menu_tag_rename.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_tag_rename.tgs; sourceTree = "<group>"; };
 		27B836472B6396E500E82683 /* menu_hd_lock.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_hd_lock.tgs; sourceTree = "<group>"; };
@@ -1481,7 +1481,7 @@
 		27B8E7C42742523D001B8DF7 /* TGModernGrowingTextView */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TGModernGrowingTextView; path = packages/TGModernGrowingTextView; sourceTree = "<group>"; };
 		27BC34532DEB3C0100598C60 /* direct_messages.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = direct_messages.tgs; sourceTree = "<group>"; };
 		27BCE4102A41C1090015E5EE /* menu_save_to_profile.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_save_to_profile.tgs; sourceTree = "<group>"; };
-		27BE52402D9AC71600F40837 /* TdBinding */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TdBinding; path = "submodules/telegram-ios/third-party/td/TdBinding"; sourceTree = "<group>"; };
+		27BE52402D9AC71600F40837 /* TdBinding */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TdBinding; path = "submodules/ansible-ios/third-party/td/TdBinding"; sourceTree = "<group>"; };
 		27BE52452D9B0A8600F40837 /* libtdutils.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtdutils.a; path = "core-xprojects/tde2e/build/tde2e/lib/libtdutils.a"; sourceTree = "<group>"; };
 		27C1FF4F2B74C7B500B086E3 /* PrivateCallScreen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PrivateCallScreen; path = packages/PrivateCallScreen; sourceTree = "<group>"; };
 		27C50ADA2AC6F86D00FED2E4 /* premium_gift_3.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = premium_gift_3.tgs; sourceTree = "<group>"; };
@@ -1576,16 +1576,16 @@
 		27D43DB12791774A006968A6 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "core-xprojects/openssl/build/openssl/lib/libcrypto.a"; sourceTree = "<group>"; };
 		27D43DB327917798006968A6 /* libmac_framework_objc_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmac_framework_objc_static.a; path = "core-xprojects/webrtc/build/webrtc/libmac_framework_objc_static.a"; sourceTree = "<group>"; };
 		27D43DB527918ABB006968A6 /* Mozjpeg */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Mozjpeg; path = submodules/Mozjpeg; sourceTree = "<group>"; };
-		27D43DBD27919152006968A6 /* OpenSSLEncryptionProvider */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OpenSSLEncryptionProvider; path = "submodules/telegram-ios/submodules/OpenSSLEncryptionProvider"; sourceTree = "<group>"; };
+		27D43DBD27919152006968A6 /* OpenSSLEncryptionProvider */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OpenSSLEncryptionProvider; path = "submodules/ansible-ios/submodules/OpenSSLEncryptionProvider"; sourceTree = "<group>"; };
 		27D48B442A72739E00721995 /* menu_download_circle.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_download_circle.tgs; sourceTree = "<group>"; };
 		27D48B452A72739F00721995 /* menu_download_circle_lock.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_download_circle_lock.tgs; sourceTree = "<group>"; };
 		27D48B462A7273A000721995 /* menu_eye_locked.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_eye_locked.tgs; sourceTree = "<group>"; };
 		27D48B472A7273A200721995 /* menu_eye_slash.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_eye_slash.tgs; sourceTree = "<group>"; };
-		27D500E92B48035400587233 /* MediaPlayer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MediaPlayer; path = "submodules/telegram-ios/submodules/MediaPlayer"; sourceTree = "<group>"; };
+		27D500E92B48035400587233 /* MediaPlayer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MediaPlayer; path = "submodules/ansible-ios/submodules/MediaPlayer"; sourceTree = "<group>"; };
 		27D604282948A2DD00588C21 /* menu_send_spoiler.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_send_spoiler.tgs; sourceTree = "<group>"; };
 		27D604392955A20900588C21 /* menu_add.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_add.tgs; sourceTree = "<group>"; };
 		27D6043A2955A20A00588C21 /* menu_forever.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_forever.tgs; sourceTree = "<group>"; };
-		27D6044C2958647000588C21 /* DarwinDirStat */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DarwinDirStat; path = "submodules/telegram-ios/submodules/Utils/DarwinDirStat"; sourceTree = "<group>"; };
+		27D6044C2958647000588C21 /* DarwinDirStat */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DarwinDirStat; path = "submodules/ansible-ios/submodules/Utils/DarwinDirStat"; sourceTree = "<group>"; };
 		27D696EC274F7A17008A723E /* Colors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Colors; path = packages/Colors; sourceTree = "<group>"; };
 		27D696ED274F7AA2008A723E /* Strings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Strings; path = packages/Strings; sourceTree = "<group>"; };
 		27D696EE274F8108008A723E /* KeyboardKey */ = {isa = PBXFileReference; lastKnownFileType = folder; name = KeyboardKey; path = packages/KeyboardKey; sourceTree = "<group>"; };
@@ -1603,7 +1603,7 @@
 		27D8B5E12E12A68A0033136D /* ton_gift_blue.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = ton_gift_blue.tgs; sourceTree = "<group>"; };
 		27D8B5E22E12A68A0033136D /* ton_gift_green.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = ton_gift_green.tgs; sourceTree = "<group>"; };
 		27D8B5E32E12A68A0033136D /* ton_gift_red.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = ton_gift_red.tgs; sourceTree = "<group>"; };
-		27D912FB28323A50007CF40F /* RangeSet */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = RangeSet; path = "submodules/telegram-ios/submodules/Utils/RangeSet"; sourceTree = "<group>"; };
+		27D912FB28323A50007CF40F /* RangeSet */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = RangeSet; path = "submodules/ansible-ios/submodules/Utils/RangeSet"; sourceTree = "<group>"; };
 		27D913082833A1B0007CF40F /* InAppPurchaseManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = InAppPurchaseManager; path = packages/InAppPurchaseManager; sourceTree = "<group>"; };
 		27D913092833A1C9007CF40F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		27D91312283646CA007CF40F /* text_to_voice.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text_to_voice.tgs; sourceTree = "<group>"; };
@@ -1617,9 +1617,9 @@
 		27E070F1278D9A970026BFA1 /* menu_camera.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_camera.tgs; sourceTree = "<group>"; };
 		27E070F3278D9C0A0026BFA1 /* menu_location.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_location.tgs; sourceTree = "<group>"; };
 		27E070F5278D9C120026BFA1 /* menu_poll.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = menu_poll.tgs; sourceTree = "<group>"; };
-		27E5C3BB273975D600C52BA0 /* MurMurHash32 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MurMurHash32; path = "submodules/telegram-ios/submodules/MurMurHash32"; sourceTree = "<group>"; };
-		27E5C3BE27397C5200C52BA0 /* sqlcipher */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sqlcipher; path = "submodules/telegram-ios/submodules/sqlcipher"; sourceTree = "<group>"; };
-		27E60C0F29ED272800E10E39 /* Emoji */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Emoji; path = "submodules/telegram-ios/submodules/Emoji"; sourceTree = "<group>"; };
+		27E5C3BB273975D600C52BA0 /* MurMurHash32 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MurMurHash32; path = "submodules/ansible-ios/submodules/MurMurHash32"; sourceTree = "<group>"; };
+		27E5C3BE27397C5200C52BA0 /* sqlcipher */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sqlcipher; path = "submodules/ansible-ios/submodules/sqlcipher"; sourceTree = "<group>"; };
+		27E60C0F29ED272800E10E39 /* Emoji */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Emoji; path = "submodules/ansible-ios/submodules/Emoji"; sourceTree = "<group>"; };
 		27E60C1029ED35E200E10E39 /* menu_online.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_online.tgs; sourceTree = "<group>"; };
 		27E6DB092689C71E003D6164 /* MetalFunctions.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = MetalFunctions.metal; sourceTree = "<group>"; };
 		27E7BAF22DD7664A00B70368 /* topics.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = topics.tgs; sourceTree = "<group>"; };
@@ -1638,12 +1638,12 @@
 		27F2BBC827BE79ED00A37463 /* email_recovery.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = email_recovery.tgs; sourceTree = "<group>"; };
 		27F2BBD027BF694800A37463 /* qrcode_matrix.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = qrcode_matrix.tgs; sourceTree = "<group>"; };
 		27F37A252850F8F200AC8B90 /* voice_dots.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = voice_dots.tgs; sourceTree = "<group>"; };
-		27F3B75227391D7700B81F10 /* TelegramIconsTheme */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramIconsTheme; path = packages/TelegramIconsTheme; sourceTree = "<group>"; };
+		27F3B75227391D7700B81F10 /* AnsibleIconsTheme */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleIconsTheme; path = packages/AnsibleIconsTheme; sourceTree = "<group>"; };
 		27F3B7572739212200B81F10 /* TGUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TGUIKit; path = packages/TGUIKit; sourceTree = "<group>"; };
-		27F3B75A2739300C00B81F10 /* SSignalKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SSignalKit; path = "submodules/telegram-ios/submodules/SSignalKit"; sourceTree = "<group>"; };
+		27F3B75A2739300C00B81F10 /* SSignalKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SSignalKit; path = "submodules/ansible-ios/submodules/SSignalKit"; sourceTree = "<group>"; };
 		27F3B75F273933C800B81F10 /* GraphUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GraphUI; path = packages/GraphUI; sourceTree = "<group>"; };
-		27F3B7632739360100B81F10 /* GraphCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GraphCore; path = "submodules/telegram-ios/submodules/GraphCore"; sourceTree = "<group>"; };
-		27F3BB752B48373A00BC37C2 /* TelegramMedia */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TelegramMedia; path = packages/TelegramMedia; sourceTree = "<group>"; };
+		27F3B7632739360100B81F10 /* GraphCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GraphCore; path = "submodules/ansible-ios/submodules/GraphCore"; sourceTree = "<group>"; };
+		27F3BB752B48373A00BC37C2 /* AnsibleMedia */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AnsibleMedia; path = packages/AnsibleMedia; sourceTree = "<group>"; };
 		27F3BB8F2B4C3D6500BC37C2 /* show_status_profile.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = show_status_profile.tgs; sourceTree = "<group>"; };
 		27F3BB902B4C3D6600BC37C2 /* show_status_read.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = show_status_read.tgs; sourceTree = "<group>"; };
 		27F4F17E28463BF000A3B4D4 /* premium_addone.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = premium_addone.tgs; sourceTree = "<group>"; };
@@ -1665,7 +1665,7 @@
 		50709F8105EA74A00964D55C /* ChatListFilterPredicate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListFilterPredicate.swift; sourceTree = "<group>"; };
 		531C32BDD8F05FB32CAC6D9E /* DiceCache */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DiceCache; path = packages/DiceCache; sourceTree = "<group>"; };
 		565F248EAFCEB4B46AC3E7C7 /* LocalAnimations */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LocalAnimations; path = packages/LocalAnimations; sourceTree = "<group>"; };
-		58B91030E9C2A21147E3220E /* TelegramMediaFileResourceUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramMediaFileResourceUpdate.swift; sourceTree = "<group>"; };
+		58B91030E9C2A21147E3220E /* AnsibleMediaFileResourceUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsibleMediaFileResourceUpdate.swift; sourceTree = "<group>"; };
 		5D1C475964FAD1AA5BF7E679 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		5E19FC4A2C71FE3CC4A9F825 /* PassportUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PassportUI; path = packages/PassportUI; sourceTree = "<group>"; };
 		5E81C31524C90586F651FE81 /* ShortPeerRow */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ShortPeerRow; path = packages/ShortPeerRow; sourceTree = "<group>"; };
@@ -1684,13 +1684,13 @@
 		7AD0D55E31358C5FFD43F7B3 /* MediaRenderHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaRenderHooksInstall.swift; sourceTree = "<group>"; };
 		7C5491C4FE33FAE9B28F310C /* ChangePhoneNumberUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ChangePhoneNumberUI; path = packages/ChangePhoneNumberUI; sourceTree = "<group>"; };
 		7CDCF724D46ECA49786B658C /* CollageHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageHooksInstall.swift; sourceTree = "<group>"; };
-		8419BFAE02FB01038EBA5E3F /* TelegramUtils */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramUtils; path = packages/TelegramUtils; sourceTree = "<group>"; };
-		84DFBA1EB404DA53CD22A9AD /* TelegramMediaResources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramMediaResources; path = packages/TelegramMediaResources; sourceTree = "<group>"; };
+		8419BFAE02FB01038EBA5E3F /* AnsibleUtils */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleUtils; path = packages/AnsibleUtils; sourceTree = "<group>"; };
+		84DFBA1EB404DA53CD22A9AD /* AnsibleMediaResources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleMediaResources; path = packages/AnsibleMediaResources; sourceTree = "<group>"; };
 		85D7BB2C3B124A0F863F1660 /* InputDataUIHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDataUIHooksInstall.swift; sourceTree = "<group>"; };
 		87E78883C7C3C781E2B12AA7 /* CodeSyntaxKeyBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSyntaxKeyBridge.swift; sourceTree = "<group>"; };
 		8D2355DF47ECDDD0EEB526DD /* MessageCustomTagsCompat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCustomTagsCompat.swift; sourceTree = "<group>"; };
 		8DE33C58072B4802BE646848 /* SidebarUIIntegration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarUIIntegration.swift; sourceTree = "<group>"; };
-		90B28FDFC126F6F1AA281438 /* TelegramMediaUtils */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramMediaUtils; path = packages/TelegramMediaUtils; sourceTree = "<group>"; };
+		90B28FDFC126F6F1AA281438 /* AnsibleMediaUtils */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleMediaUtils; path = packages/AnsibleMediaUtils; sourceTree = "<group>"; };
 		9F03680222771A9600456348 /* anim_unarchive.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_unarchive.json; sourceTree = "<group>"; };
 		9F03680322771A9600456348 /* anim_ungroup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_ungroup.json; sourceTree = "<group>"; };
 		9F03680422771A9600456348 /* archiveAvatar.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = archiveAvatar.json; sourceTree = "<group>"; };
@@ -1756,7 +1756,7 @@
 		B6D631D58182DCD43C3A20FF /* ChatInteractionPermissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInteractionPermissions.swift; sourceTree = "<group>"; };
 		B8D6B38CCB0BE5D904FBEC2C /* CommunityUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CommunityUI; path = packages/CommunityUI; sourceTree = "<group>"; };
 		BB5AC31385B44F4689A8C428 /* InputDataUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = InputDataUI; path = packages/InputDataUI; sourceTree = "<group>"; };
-		BFC1FBA976950789AFDC11F8 /* TelegramCallsCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramCallsCore; path = packages/TelegramCallsCore; sourceTree = "<group>"; };
+		BFC1FBA976950789AFDC11F8 /* AnsibleCallsCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleCallsCore; path = packages/AnsibleCallsCore; sourceTree = "<group>"; };
 		C2016F431EAA4967003AF981 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ShareViewController.strings"; sourceTree = "<group>"; };
 		C2016F451EAA4967003AF981 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		630698539D81BE44C1D2829C /* ChatExportHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatExportHooksInstall.swift; sourceTree = "<group>"; };
@@ -1805,9 +1805,9 @@
 		C2203E9F1DDE040F001E6AB6 /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		C2303E891D9A76D800098E12 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C232EA3C1E1C06EF00C4D38C /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
-		C232EA911E1D07E700C4D38C /* TelegramShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelegramShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C232EA911E1D07E700C4D38C /* AnsibleShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AnsibleShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C232EA941E1D07E700C4D38C /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
-		C232EA961E1D07E700C4D38C /* TelegramShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelegramShare.entitlements; sourceTree = "<group>"; };
+		C232EA961E1D07E700C4D38C /* AnsibleShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnsibleShare.entitlements; sourceTree = "<group>"; };
 		C232EA971E1D07E700C4D38C /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		C232EA9A1E1D07E700C4D38C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShareViewController.xib; sourceTree = "<group>"; };
 		C232EA9C1E1D07E700C4D38C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1869,11 +1869,11 @@
 		C3F6EE5CA42EDA016F439B01 /* SceneEffects */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SceneEffects; path = packages/SceneEffects; sourceTree = "<group>"; };
 		C52B09F1AE8D10376F4CF0A1 /* ProxyUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ProxyUI; path = packages/ProxyUI; sourceTree = "<group>"; };
 		C5FB70AE2B510B41E9DBF81D /* InlineStickers */ = {isa = PBXFileReference; lastKnownFileType = folder; name = InlineStickers; path = packages/InlineStickers; sourceTree = "<group>"; };
-		C8E557CD29F61B19E1E36EA0 /* TelegramContext */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramContext; path = packages/TelegramContext; sourceTree = "<group>"; };
+		C8E557CD29F61B19E1E36EA0 /* AnsibleContext */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleContext; path = packages/AnsibleContext; sourceTree = "<group>"; };
 		CAE966DA56984311BA2F5233 /* StarsHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarsHooksInstall.swift; sourceTree = "<group>"; };
 		D0076EE725685A50007EF588 /* AppCenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0076EEA25685BB5007EF588 /* libbz2.1.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.1.0.tbd; path = usr/lib/libbz2.1.0.tbd; sourceTree = SDKROOT; };
-		D00CA6502281BB0900FFACAD /* Telegram-Sandbox.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Telegram-Sandbox.entitlements"; sourceTree = "<group>"; };
+		D00CA6502281BB0900FFACAD /* Ansible-Sandbox.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Ansible-Sandbox.entitlements"; sourceTree = "<group>"; };
 		D06E38AA24A5F3B700C7D03A /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		D06E38AB24A5F3B700C7D03A /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		D07450DC233D61B000769D7F /* brilliant_static.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = brilliant_static.tgs; sourceTree = "<group>"; };
@@ -1894,13 +1894,13 @@
 		D0830FC324127468006198E7 /* new_folder.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = new_folder.tgs; sourceTree = "<group>"; };
 		D0983E162568373E00467703 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0983E182568373E00467703 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D098C7151D7E175A007784E4 /* Telegram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ansible.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D098C7151D7E175A007784E4 /* Ansible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ansible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D098C7181D7E175A007784E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D098C71A1D7E175A007784E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D098C71F1D7E175A007784E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D098C7381D7E1A62007784E4 /* Telegram-Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telegram-Mac.entitlements"; sourceTree = "<group>"; };
+		D098C7381D7E1A62007784E4 /* Ansible-Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ansible-Mac.entitlements"; sourceTree = "<group>"; };
 		D09D836D24A6205500120F73 /* libtgvoip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = libtgvoip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0A1B2C3D4E5F60000000012 /* WalletBackupCrypto */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WalletBackupCrypto; path = "submodules/telegram-ios/submodules/WalletBackupCrypto"; sourceTree = "<group>"; };
+		D0A1B2C3D4E5F60000000012 /* WalletBackupCrypto */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WalletBackupCrypto; path = "submodules/ansible-ios/submodules/WalletBackupCrypto"; sourceTree = "<group>"; };
 		D0A1B2C3D4E5F60000000300 /* wallet_word_list.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = wallet_word_list.tgs; sourceTree = "<group>"; };
 		D0A1B2C3D4E5F60000000301 /* wallet_word_check.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = wallet_word_check.tgs; sourceTree = "<group>"; };
 		D0A1B2C3D4E5F60000000302 /* wallet_diamond.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = wallet_diamond.tgs; sourceTree = "<group>"; };
@@ -1913,7 +1913,7 @@
 		D0E7BE79256D56C90068644D /* group_call_member_mute.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = group_call_member_mute.json; sourceTree = "<group>"; };
 		D0E7BE7A256D56DA0068644D /* group_call_member_unmute.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = group_call_member_unmute.json; sourceTree = "<group>"; };
 		D0EF9701AD99956E9C74470A /* PremiumStatusUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PremiumStatusUI; path = packages/PremiumStatusUI; sourceTree = "<group>"; };
-		D1EFE4428B52C940362DA386 /* TelegramTheme */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelegramTheme; path = packages/TelegramTheme; sourceTree = "<group>"; };
+		D1EFE4428B52C940362DA386 /* AnsibleTheme */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleTheme; path = packages/AnsibleTheme; sourceTree = "<group>"; };
 		D5B08F4979BCB167ED5B75E4 /* BusinessUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BusinessUI; path = packages/BusinessUI; sourceTree = "<group>"; };
 		AC0C8FD904616523A51200FD /* MemoryPressureMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryPressureMonitor.swift; sourceTree = "<group>"; };
 		1A42B732BAF4538657345EDA /* TransformOutgoingMessageMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformOutgoingMessageMedia.swift; sourceTree = "<group>"; };
@@ -1924,7 +1924,7 @@
 		EDA4FB0CBB4B47E9B4C75FB9 /* AlertsUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AlertsUI; path = packages/AlertsUI; sourceTree = "<group>"; };
 		EF7B5B9BB6399CE3A601018A /* SecureIdUtils */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SecureIdUtils; path = packages/SecureIdUtils; sourceTree = "<group>"; };
 		F09818036375031EC614E09B /* BusinessHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessHooksInstall.swift; sourceTree = "<group>"; };
-		F0FBEF6A73A2A8EABDCC2720 /* TelegramThemeHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramThemeHooksInstall.swift; sourceTree = "<group>"; };
+		F0FBEF6A73A2A8EABDCC2720 /* AnsibleThemeHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsibleThemeHooksInstall.swift; sourceTree = "<group>"; };
 		F3613FFCB2FFCD8C88AC786A /* MediaRecorderHooksInstall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaRecorderHooksInstall.swift; sourceTree = "<group>"; };
 		F5D5F1325205542E4E04061F /* PaymentsUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PaymentsUI; path = packages/PaymentsUI; sourceTree = "<group>"; };
 		F9133FACC68CE82D63EE152D /* ProxyUtils */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ProxyUtils; path = packages/ProxyUtils; sourceTree = "<group>"; };
@@ -2005,7 +2005,7 @@
 		8BFFFE1642893AF390E041DA /* InlineStickerLayer */ = {isa = PBXFileReference; lastKnownFileType = folder; name = InlineStickerLayer; path = packages/InlineStickerLayer; sourceTree = "<group>"; };
 		345CA31BC0A2A11FA5B91D15 /* SelectColorUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SelectColorUI; path = packages/SelectColorUI; sourceTree = "<group>"; };
 		DC03D85B85DFD13971D4E5B3 /* GiftCraftingUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GiftCraftingUI; path = packages/GiftCraftingUI; sourceTree = "<group>"; };
-		7EFAFFDDB86A365C817F7F0A /* PasscodeCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PasscodeCore; path = "submodules/telegram-ios/submodules/PasscodeCore"; sourceTree = "<group>"; };
+		7EFAFFDDB86A365C817F7F0A /* PasscodeCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PasscodeCore; path = "submodules/ansible-ios/submodules/PasscodeCore"; sourceTree = "<group>"; };
 		A4413997759AB0FBF49F01F4 /* WidgetEngineService.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = WidgetEngineService.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F6E4B215D30D2FBCF08F22B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		ABF66411700BA1DDFC88C019 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2022,13 +2022,13 @@
 				9AB6DAD8DF0C1248CC621AFB /* PasscodeCore in Frameworks */,
 				C20617830079F8F7D835E5CB /* ShortPeerRowShare in Frameworks */,
 				2037C058F06EC3DBD00E2F08 /* AvatarUIShare in Frameworks */,
-				B1FA9B51E5E4F05E194C4934 /* TelegramUtilsShare in Frameworks */,
-				72C71783A0E1779049B81298 /* TelegramContextShare in Frameworks */,
+				B1FA9B51E5E4F05E194C4934 /* AnsibleUtilsShare in Frameworks */,
+				72C71783A0E1779049B81298 /* AnsibleContextShare in Frameworks */,
 				C0DEBACC1000000000000002 /* AccountResetSupport in Frameworks */,
 				31864961DB5EA80D31BE47DB /* GeneralRowsShare in Frameworks */,
-				D7B6E2D49B7BB627BA468E5C /* TelegramThemeShare in Frameworks */,
+				D7B6E2D49B7BB627BA468E5C /* AnsibleThemeShare in Frameworks */,
 				B84A7663ED2EC1703C61889D /* FoundationUtils in Frameworks */,
-				27F3B75627391E9200B81F10 /* TelegramIconsTheme in Frameworks */,
+				27F3B75627391E9200B81F10 /* AnsibleIconsTheme in Frameworks */,
 				270375FD2C9DBC13003EC235 /* InputView in Frameworks */,
 				278926C727550C8800923087 /* Strings in Frameworks */,
 				270376262CA1FD70003EC235 /* libsharpyuv.a in Frameworks */,
@@ -2145,7 +2145,7 @@
 				3FBD07133FDDA4EBFDB73E9D /* ProxyUI in Frameworks */,
 				FEC28EF2562E0139C8135CDE /* PremiumUI in Frameworks */,
 				F85FA547433EBF28A90F130B /* AffiliateUI in Frameworks */,
-				AD222865622A8F09AF07440F /* TelegramCallsCore in Frameworks */,
+				AD222865622A8F09AF07440F /* AnsibleCallsCore in Frameworks */,
 				9B11872F0C9171AA9F98E01A /* WebAppUI in Frameworks */,
 				799873465C2822D586832715 /* CommunityUI in Frameworks */,
 				16AABDE8D914DC1767ABA6C1 /* ShortPeerRow in Frameworks */,
@@ -2173,9 +2173,9 @@
 				7EEAC0DF8C232D86C4AC318E /* PhoneNumberUtils in Frameworks */,
 				AE0AEBC4B16C8C659D4DB6B7 /* PaymentsUI in Frameworks */,
 				3920C67B9ACFB9760F57B251 /* CalendarUI in Frameworks */,
-				62D27F14BB61247BA3765961 /* TelegramMediaUtils in Frameworks */,
+				62D27F14BB61247BA3765961 /* AnsibleMediaUtils in Frameworks */,
 				7E8466C5B161282397E216B9 /* InstantPageUI in Frameworks */,
-				EDCED24F7E84452EACF1D7FB /* TelegramLinks in Frameworks */,
+				EDCED24F7E84452EACF1D7FB /* AnsibleLinks in Frameworks */,
 				F9BDA3E6C3D34B80915B5263 /* InputDataUI in Frameworks */,
 				48FE28EECDE540AC8773E5E2 /* FolderSharingUI in Frameworks */,
 				9FEBEAF7BE0542B495A9F3ED /* SidebarUI in Frameworks */,
@@ -2183,11 +2183,11 @@
 				115A779A1DD7AE0D71E2AB8A /* ComponentsUI in Frameworks */,
 				8B4F9CAD44047EBA728F85DC /* CubeUI in Frameworks */,
 				A1C4E2F09B7D4A6E81530C11 /* ImageCanvasUI in Frameworks */,
-				4CDB128F111A388E89A4C588 /* TelegramUtils in Frameworks */,
-				83CE4F1885B257909FE6002D /* TelegramContext in Frameworks */,
+				4CDB128F111A388E89A4C588 /* AnsibleUtils in Frameworks */,
+				83CE4F1885B257909FE6002D /* AnsibleContext in Frameworks */,
 				DD8074802CF7FDDFD5BDF493 /* GeneralRows in Frameworks */,
-				CCD1B8E49B25C1FDF7E58B20 /* TelegramTheme in Frameworks */,
-				590406A596A7B20FA77A6D01 /* TelegramMediaResources in Frameworks */,
+				CCD1B8E49B25C1FDF7E58B20 /* AnsibleTheme in Frameworks */,
+				590406A596A7B20FA77A6D01 /* AnsibleMediaResources in Frameworks */,
 				806699C5354386A72184AE84 /* SceneEffects in Frameworks */,
 				27BE52462D9B0A8600F40837 /* libtdutils.a in Frameworks */,
 				27BE52442D9B05D600F40837 /* libtde2e.a in Frameworks */,
@@ -2264,7 +2264,7 @@
 				9FFAE50F205AB4A3000C028E /* libiconv.tbd in Frameworks */,
 				27D43DB027917748006968A6 /* libssl.a in Frameworks */,
 				27A7FBDD2CF73EE000AE9432 /* libdav1d.a in Frameworks */,
-				27F3B75427391E6B00B81F10 /* TelegramIconsTheme in Frameworks */,
+				27F3B75427391E6B00B81F10 /* AnsibleIconsTheme in Frameworks */,
 				9F0E6F78203ED1380086699C /* AppKit.framework in Frameworks */,
 				27BE52422D9AC72600F40837 /* TdBinding in Frameworks */,
 				271891F82B08A7DB0008B238 /* LokiRng in Frameworks */,
@@ -2279,7 +2279,7 @@
 				C2A8E14B1F7D2690000FD5E3 /* CoreVideo.framework in Frameworks */,
 				C2A8E1491F7D268B000FD5E3 /* CoreMedia.framework in Frameworks */,
 				2795578E2AB86A65007EC996 /* libsharpyuv.a in Frameworks */,
-				27F3BB772B48375800BC37C2 /* TelegramMedia in Frameworks */,
+				27F3BB772B48375800BC37C2 /* AnsibleMedia in Frameworks */,
 				2796FF082742484A00DA653C /* CalendarUtils in Frameworks */,
 				27D43D9F279176DC006968A6 /* libavcodec.a in Frameworks */,
 				27D43D9A27917641006968A6 /* libvpx.a in Frameworks */,
@@ -2399,7 +2399,7 @@
 				27803BD727A3E937007B0FA9 /* menu_folder_sport.tgs */,
 				27803BDC27A3E93A007B0FA9 /* menu_folder_star.tgs */,
 				27803BE627A3E940007B0FA9 /* menu_folder_student.tgs */,
-				27803BD927A3E938007B0FA9 /* menu_folder_telegram.tgs */,
+				27803BD927A3E938007B0FA9 /* menu_folder_ansible.tgs */,
 				27803BEE27A3E944007B0FA9 /* menu_folder_unread.tgs */,
 				27803BE027A3E93C007B0FA9 /* menu_folder_virus.tgs */,
 				27803BE327A3E93E007B0FA9 /* menu_folder_work.tgs */,
@@ -2812,7 +2812,7 @@
 				C52B09F1AE8D10376F4CF0A1 /* ProxyUI */,
 				161B04EAF32DFAF90529A800 /* PremiumUI */,
 				020D35D47A7FBCCF522B829E /* AffiliateUI */,
-				BFC1FBA976950789AFDC11F8 /* TelegramCallsCore */,
+				BFC1FBA976950789AFDC11F8 /* AnsibleCallsCore */,
 				6880A328CBF9E741E69F75CA /* WebAppUI */,
 				B8D6B38CCB0BE5D904FBEC2C /* CommunityUI */,
 				5E81C31524C90586F651FE81 /* ShortPeerRow */,
@@ -2840,9 +2840,9 @@
 				2DF2D64BBF1DE7316B147722 /* PhoneNumberUtils */,
 				F5D5F1325205542E4E04061F /* PaymentsUI */,
 				ECBE6ABCDDAB68627982C9C9 /* CalendarUI */,
-				90B28FDFC126F6F1AA281438 /* TelegramMediaUtils */,
+				90B28FDFC126F6F1AA281438 /* AnsibleMediaUtils */,
 				7A69F42A49B41E88B075051D /* InstantPageUI */,
-				21072C839D8A40CB997FF92F /* TelegramLinks */,
+				21072C839D8A40CB997FF92F /* AnsibleLinks */,
 				BB5AC31385B44F4689A8C428 /* InputDataUI */,
 				48E96302C1214EAC835B4BDA /* FolderSharingUI */,
 				6661CF3007FF4D908E6C7766 /* SidebarUI */,
@@ -2850,11 +2850,11 @@
 				A8A54700244F738A12C45A9D /* ComponentsUI */,
 				116EC91C8D48B4AB71E9C94C /* CubeUI */,
 				B2D5F3A17C8E5B7F92640D22 /* ImageCanvasUI */,
-				8419BFAE02FB01038EBA5E3F /* TelegramUtils */,
-				C8E557CD29F61B19E1E36EA0 /* TelegramContext */,
+				8419BFAE02FB01038EBA5E3F /* AnsibleUtils */,
+				C8E557CD29F61B19E1E36EA0 /* AnsibleContext */,
 				4E49FF1F6BB5664B73577652 /* GeneralRows */,
-				D1EFE4428B52C940362DA386 /* TelegramTheme */,
-				84DFBA1EB404DA53CD22A9AD /* TelegramMediaResources */,
+				D1EFE4428B52C940362DA386 /* AnsibleTheme */,
+				84DFBA1EB404DA53CD22A9AD /* AnsibleMediaResources */,
 				C3F6EE5CA42EDA016F439B01 /* SceneEffects */,
 				27B10ED42FDA93A500788352 /* RichTextEditor */,
 				279737C32FA0E643006E25B4 /* SwiftMath */,
@@ -2863,7 +2863,7 @@
 				271A195A2CF7485C00FAE5FB /* TelegramAudio */,
 				27C1FF4F2B74C7B500B086E3 /* PrivateCallScreen */,
 				27B6AFB22B555C03001D0983 /* CallVideoLayer */,
-				27F3BB752B48373A00BC37C2 /* TelegramMedia */,
+				27F3BB752B48373A00BC37C2 /* AnsibleMedia */,
 				27D500E92B48035400587233 /* MediaPlayer */,
 				27CFB01D2B3E978B00221DE7 /* DustLayer */,
 				275E851D2B20C61D007A72CA /* MetalEngine */,
@@ -2931,7 +2931,7 @@
 				27F3B75F273933C800B81F10 /* GraphUI */,
 				27F3B75A2739300C00B81F10 /* SSignalKit */,
 				27F3B7572739212200B81F10 /* TGUIKit */,
-				27F3B75227391D7700B81F10 /* TelegramIconsTheme */,
+				27F3B75227391D7700B81F10 /* AnsibleIconsTheme */,
 				27F3B7632739360100B81F10 /* GraphCore */,
 				279E8EC9274259B7000E1BD5 /* TGVideoCameraMovie */,
 				277460EC2FDAB60400AEA204 /* RichTextEditorUI */,
@@ -3043,7 +3043,7 @@
 				C232EA991E1D07E700C4D38C /* ShareViewController.xib */,
 				C232EA9C1E1D07E700C4D38C /* Info.plist */,
 				C232EA941E1D07E700C4D38C /* icon.icns */,
-				C232EA961E1D07E700C4D38C /* TelegramShare.entitlements */,
+				C232EA961E1D07E700C4D38C /* AnsibleShare.entitlements */,
 				C232EAC71E1D4BD700C4D38C /* Localizable.strings */,
 			);
 			name = "Supporting Files";
@@ -3369,8 +3369,8 @@
 			isa = PBXGroup;
 			children = (
 				A4413997759AB0FBF49F01F4 /* WidgetEngineService.xpc */,
-				D098C7151D7E175A007784E4 /* Telegram.app */,
-				C232EA911E1D07E700C4D38C /* TelegramShare.appex */,
+				D098C7151D7E175A007784E4 /* Ansible.app */,
+				C232EA911E1D07E700C4D38C /* AnsibleShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3395,7 +3395,7 @@
 				87E78883C7C3C781E2B12AA7 /* CodeSyntaxKeyBridge.swift */,
 				50709F8105EA74A00964D55C /* ChatListFilterPredicate.swift */,
 				8D2355DF47ECDDD0EEB526DD /* MessageCustomTagsCompat.swift */,
-				58B91030E9C2A21147E3220E /* TelegramMediaFileResourceUpdate.swift */,
+				58B91030E9C2A21147E3220E /* AnsibleMediaFileResourceUpdate.swift */,
 				047835680ACB43C8BAE552A3 /* FolderSharingUIIntegration.swift */,
 				8DE33C58072B4802BE646848 /* SidebarUIIntegration.swift */,
 			);
@@ -3481,8 +3481,8 @@
 				10DFF25C8A724E5ABFCBA9C8 /* StatisticsHooksInstall.swift */,
 				1F82B1F0D3F5C2735D5F3CA7 /* StickerSettingsHooksInstall.swift */,
 				5C067DC7CBBA6BF3CC30396D /* StoriesHooksInstall.swift */,
-				241C84EEC6DE72CAF8FED0F1 /* TelegramLinksHooksInstall.swift */,
-				F0FBEF6A73A2A8EABDCC2720 /* TelegramThemeHooksInstall.swift */,
+				241C84EEC6DE72CAF8FED0F1 /* AnsibleLinksHooksInstall.swift */,
+				F0FBEF6A73A2A8EABDCC2720 /* AnsibleThemeHooksInstall.swift */,
 				D168D8E98803869AF7AF64DF /* TranslateUIHooksInstall.swift */,
 				9AC79A1D596D41E895B4EA2D /* VerifyAgeHooksInstall.swift */,
 				B7331CC3BDF80D053699D742 /* WallpaperHooksInstall.swift */,
@@ -3495,8 +3495,8 @@
 			isa = PBXGroup;
 			children = (
 				D098C71F1D7E175A007784E4 /* Info.plist */,
-				D098C7381D7E1A62007784E4 /* Telegram-Mac.entitlements */,
-				D00CA6502281BB0900FFACAD /* Telegram-Sandbox.entitlements */,
+				D098C7381D7E1A62007784E4 /* Ansible-Mac.entitlements */,
+				D00CA6502281BB0900FFACAD /* Ansible-Sandbox.entitlements */,
 				D098C71C1D7E175A007784E4 /* MainMenu.xib */,
 				C253A9721D92F9F100CDC850 /* Localizable.strings */,
 				D098C71A1D7E175A007784E4 /* Assets.xcassets */,
@@ -3624,9 +3624,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C232EA901E1D07E700C4D38C /* TelegramShare */ = {
+		C232EA901E1D07E700C4D38C /* AnsibleShare */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C232EAA01E1D07E700C4D38C /* Build configuration list for PBXNativeTarget "TelegramShare" */;
+			buildConfigurationList = C232EAA01E1D07E700C4D38C /* Build configuration list for PBXNativeTarget "AnsibleShare" */;
 			buildPhases = (
 				CE4D72C9B2A34D84A52D6A01 /* Check TelegramApi Sources */,
 				C232EA8D1E1D07E700C4D38C /* Sources */,
@@ -3638,18 +3638,18 @@
 			);
 			dependencies = (
 			);
-			name = TelegramShare;
+			name = AnsibleShare;
 			packageProductDependencies = (
 				8108E8A15C9EE293636E539F /* PasscodeCore */,
 				14388EF519B427EE2034DD9C /* ShortPeerRowShare */,
 				2DBE492FD219DCD254A93957 /* AvatarUIShare */,
-				F3DD5977041CBCE33A98E464 /* TelegramUtilsShare */,
-				44E83C8CAD7652510D91ABEA /* TelegramContextShare */,
+				F3DD5977041CBCE33A98E464 /* AnsibleUtilsShare */,
+				44E83C8CAD7652510D91ABEA /* AnsibleContextShare */,
 				C0DEBACC1000000000000004 /* AccountResetSupport */,
 				478591E264E224F9B26FA893 /* GeneralRowsShare */,
-				7C13C59242BA714DFE654DEC /* TelegramThemeShare */,
+				7C13C59242BA714DFE654DEC /* AnsibleThemeShare */,
 				5A62F6BDEB7EDB55D4C17A92 /* FoundationUtils */,
-				27F3B75527391E9200B81F10 /* TelegramIconsTheme */,
+				27F3B75527391E9200B81F10 /* AnsibleIconsTheme */,
 				27F3B75B2739320000B81F10 /* SwiftSignalKit */,
 				27F3B75D2739320F00B81F10 /* TGUIKit */,
 				27B6D0482739388600C785C7 /* TelegramApi */,
@@ -3678,13 +3678,13 @@
 				2703762A2CA1FD92003EC235 /* libwebp */,
 				7110771E0000000000000003 /* TLottie */,
 			);
-			productName = TelegramShare;
-			productReference = C232EA911E1D07E700C4D38C /* TelegramShare.appex */;
+			productName = AnsibleShare;
+			productReference = C232EA911E1D07E700C4D38C /* AnsibleShare.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		D098C7141D7E175A007784E4 /* Telegram */ = {
+		D098C7141D7E175A007784E4 /* Ansible */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D098C7221D7E175A007784E4 /* Build configuration list for PBXNativeTarget "Telegram" */;
+			buildConfigurationList = D098C7221D7E175A007784E4 /* Build configuration list for PBXNativeTarget "Ansible" */;
 			buildPhases = (
 				C283C17922F10230C5D04880 /* Embed XPC Services */,
 				CE4D72C9B2A34D84A52D6A02 /* Check TelegramApi Sources */,
@@ -3700,7 +3700,7 @@
 				4F3B0F64E65A2AC4EEC0B039 /* PBXTargetDependency */,
 				275E4B3F2EEC24B700BC1A68 /* PBXTargetDependency */,
 			);
-			name = Telegram;
+			name = Ansible;
 			packageProductDependencies = (
 				44ADA01DFCFE7374EA00FD45 /* WidgetEngineXPC */,
 				65444FEC9F6C1C634AC14116 /* MTProtoRustEngine */,
@@ -3773,7 +3773,7 @@
 				4D88EC56FC7A2AC958338BA7 /* ProxyUI */,
 				E3D50C47F0CC1126057A48C2 /* PremiumUI */,
 				D1169B1E9AE6B5F668ED57D6 /* AffiliateUI */,
-				7E5BFC7C71CF642C3D445C46 /* TelegramCallsCore */,
+				7E5BFC7C71CF642C3D445C46 /* AnsibleCallsCore */,
 				F5E77B7BE66D6255F0D65432 /* WebAppUI */,
 				7040D3B94A8212C19CCB2142 /* CommunityUI */,
 				8734BDC847F1266C50F683E1 /* ShortPeerRow */,
@@ -3801,9 +3801,9 @@
 				4904FC383A3849531B7E21CF /* PhoneNumberUtils */,
 				18CF8F593438CC8B1D04D500 /* PaymentsUI */,
 				7A90B05BB68F1E1169134503 /* CalendarUI */,
-				A4E3C3A7FB92511ACDA24FFA /* TelegramMediaUtils */,
+				A4E3C3A7FB92511ACDA24FFA /* AnsibleMediaUtils */,
 				D67F7BB3735A3A6996E236D4 /* InstantPageUI */,
-				8FA6B684E86A434A964AF09D /* TelegramLinks */,
+				8FA6B684E86A434A964AF09D /* AnsibleLinks */,
 				8F9D13B4F3C94F7BB3E2A0AC /* InputDataUI */,
 				8308E4A0238F4910A2442132 /* FolderSharingUI */,
 				A96FEB6A8C65415489C32928 /* SidebarUI */,
@@ -3811,13 +3811,13 @@
 				7A3D123D9C19A618B28D77C9 /* ComponentsUI */,
 				FAAF1CF59D8871C34B3C17C5 /* CubeUI */,
 				C3E604B28D9F6C80A3751E33 /* ImageCanvasUI */,
-				FC2A95D165DA8A9214690823 /* TelegramUtils */,
-				A205E46922CF55D36805E629 /* TelegramContext */,
+				FC2A95D165DA8A9214690823 /* AnsibleUtils */,
+				A205E46922CF55D36805E629 /* AnsibleContext */,
 				48F9BDCCC398C9B0FC6BF7A9 /* GeneralRows */,
-				73CE745EC0FEF1BD8F78477C /* TelegramTheme */,
-				1A37193D6441404CE43644C8 /* TelegramMediaResources */,
+				73CE745EC0FEF1BD8F78477C /* AnsibleTheme */,
+				1A37193D6441404CE43644C8 /* AnsibleMediaResources */,
 				AA6DADE92CDBC5CCCA400CEC /* SceneEffects */,
-				27F3B75327391E6B00B81F10 /* TelegramIconsTheme */,
+				27F3B75327391E6B00B81F10 /* AnsibleIconsTheme */,
 				27B6D04E27393A2A00C785C7 /* TelegramApi */,
 				27B6D05027393A3200C785C7 /* TelegramCore */,
 				27B6D05227393A3600C785C7 /* Postbox */,
@@ -3880,7 +3880,7 @@
 				275E851B2B20C4EC007A72CA /* ShelfPack */,
 				275E851E2B20C79E007A72CA /* MetalEngine */,
 				27CFB01E2B3E986100221DE7 /* DustLayer */,
-				27F3BB762B48375800BC37C2 /* TelegramMedia */,
+				27F3BB762B48375800BC37C2 /* AnsibleMedia */,
 				27B6AFB32B557BEE001D0983 /* CallVideoLayer */,
 				27C1FF502B74CD2A00B086E3 /* PrivateCallScreen */,
 				273C04022C2B75E400AF2751 /* TelegramMediaPlayer */,
@@ -3888,8 +3888,8 @@
 				2739D49F2DBFC3C50086DAEF /* DetectSpeech */,
 				279737C42FA0E651006E25B4 /* SwiftMath */,
 			);
-			productName = "Telegram-Mac";
-			productReference = D098C7151D7E175A007784E4 /* Telegram.app */;
+			productName = "Ansible-Mac";
+			productReference = D098C7151D7E175A007784E4 /* Ansible.app */;
 			productType = "com.apple.product-type.application";
 		};
 		685F0F9AA720136F75F49A14 /* WidgetEngineService */ = {
@@ -3921,7 +3921,7 @@
 				DefaultBuildSystemTypeForWorkspace = Latest;
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1000;
-				ORGANIZATIONNAME = Telegram;
+				ORGANIZATIONNAME = Ansible;
 				TargetAttributes = {
 					C232EA901E1D07E700C4D38C = {
 						CreatedOnToolsVersion = 8.2;
@@ -3958,7 +3958,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D098C7101D7E175A007784E4 /* Build configuration list for PBXProject "Telegram" */;
+			buildConfigurationList = D098C7101D7E175A007784E4 /* Build configuration list for PBXProject "Ansible" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -3977,7 +3977,7 @@
 			mainGroup = D098C70C1D7E175A007784E4;
 			packageReferences = (
 				8412CCD8FD1ED53B957DC5A9 /* XCLocalSwiftPackageReference "packages/AvatarUI" */,
-				F0255D56305311A9001994C2 /* XCLocalSwiftPackageReference "packages/TelegramUtils" */,
+				F0255D56305311A9001994C2 /* XCLocalSwiftPackageReference "packages/AnsibleUtils" */,
 			);
 			productRefGroup = D098C7161D7E175A007784E4 /* Products */;
 			projectDirPath = "";
@@ -3994,8 +3994,8 @@
 			projectRoot = "";
 			targets = (
 				685F0F9AA720136F75F49A14 /* WidgetEngineService */,
-				D098C7141D7E175A007784E4 /* Telegram */,
-				C232EA901E1D07E700C4D38C /* TelegramShare */,
+				D098C7141D7E175A007784E4 /* Ansible */,
+				C232EA901E1D07E700C4D38C /* AnsibleShare */,
 			);
 		};
 /* End PBXProject section */
@@ -4457,7 +4457,7 @@
 				277840B02BB6F8660026CC3A /* business.scn in Resources */,
 				2761432A2BD7E2900034338C /* menu_ban.tgs in Resources */,
 				27916F2F287D77660046DB44 /* animals.tgs in Resources */,
-				27803BF427A3E944007B0FA9 /* menu_folder_telegram.tgs in Resources */,
+				27803BF427A3E944007B0FA9 /* menu_folder_ansible.tgs in Resources */,
 				9F03681A22771A9700456348 /* anim_unmute.json in Resources */,
 				27BC34542DEB3C0100598C60 /* direct_messages.tgs in Resources */,
 				27B4A8F12C2DA0340000F3DF /* emoji144.txt in Resources */,
@@ -4575,24 +4575,24 @@
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = ();
-			inputPaths = ("$(SRCROOT)/scripts/prepare-telegram-api.py", "$(SRCROOT)/submodules/telegram-ios/build-system/SwiftTL", "$(SRCROOT)/submodules/telegram-ios/submodules/TelegramApi", "$(SRCROOT)/.build/telegram-api-generation",);
+			inputPaths = ("$(SRCROOT)/scripts/prepare-ansible-api.py", "$(SRCROOT)/submodules/ansible-ios/build-system/SwiftTL", "$(SRCROOT)/submodules/ansible-ios/submodules/TelegramApi", "$(SRCROOT)/.build/ansible-api-generation",);
 			name = "Check TelegramApi Sources";
 			outputPaths = ();
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/env python3 \"$SRCROOT/scripts/prepare-telegram-api.py\" --check\n";
+			shellScript = "/usr/bin/env python3 \"$SRCROOT/scripts/prepare-ansible-api.py\" --check\n";
 		};
 		CE4D72C9B2A34D84A52D6A02 /* Check TelegramApi Sources */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = ();
-			inputPaths = ("$(SRCROOT)/scripts/prepare-telegram-api.py", "$(SRCROOT)/submodules/telegram-ios/build-system/SwiftTL", "$(SRCROOT)/submodules/telegram-ios/submodules/TelegramApi", "$(SRCROOT)/.build/telegram-api-generation",);
+			inputPaths = ("$(SRCROOT)/scripts/prepare-ansible-api.py", "$(SRCROOT)/submodules/ansible-ios/build-system/SwiftTL", "$(SRCROOT)/submodules/ansible-ios/submodules/TelegramApi", "$(SRCROOT)/.build/ansible-api-generation",);
 			name = "Check TelegramApi Sources";
 			outputPaths = ();
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/env python3 \"$SRCROOT/scripts/prepare-telegram-api.py\" --check\n";
+			shellScript = "/usr/bin/env python3 \"$SRCROOT/scripts/prepare-ansible-api.py\" --check\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4604,7 +4604,7 @@
 				6826413903BCC0373C2104AA /* AccountManagerSetup.swift in Sources */,
 				7BC3B425A94D1DE0F6DF48BB /* ChatListFilterPredicate.swift in Sources */,
 				7DDF34B321FE4083C8BC0512 /* AccountContextConformance.swift in Sources */,
-				C96F356D1A29E509EB4765EC /* TelegramThemeHooksInstall.swift in Sources */,
+				C96F356D1A29E509EB4765EC /* AnsibleThemeHooksInstall.swift in Sources */,
 				525C3C1C7AA1F28772CA3D2D /* Exports.swift in Sources */,
 				270375EE2C9CCEF3003EC235 /* SEFoldersRowItem.swift in Sources */,
 				270375FB2C9DB505003EC235 /* SELottiePlayer.swift in Sources */,
@@ -4713,16 +4713,16 @@
 				12E4F1FFC0B560D36DF1AA05 /* ChatInteractionPermissions.swift in Sources */,
 				FDE34138BF59E0DD0C79DE00 /* CollageHooksInstall.swift in Sources */,
 				2A1C61EAF957F3B36BAE4530 /* MessageCustomTagsCompat.swift in Sources */,
-				2D574D327DBA0E1F4FC42C6E /* TelegramMediaFileResourceUpdate.swift in Sources */,
+				2D574D327DBA0E1F4FC42C6E /* AnsibleMediaFileResourceUpdate.swift in Sources */,
 				937ADAB292FE6D34D00CB063 /* LottieRenderHooksInstall.swift in Sources */,
 				36D81971401C8EA12F05F694 /* MediaRenderHooksInstall.swift in Sources */,
 				370101C68805D67166055805 /* InputTextViewHooksInstall.swift in Sources */,
-				30960C87A818B3C5EDE7F67F /* TelegramLinksHooksInstall.swift in Sources */,
+				30960C87A818B3C5EDE7F67F /* AnsibleLinksHooksInstall.swift in Sources */,
 				44FE857BF62B6691D5BE524F /* FilePanelsHooksInstall.swift in Sources */,
 				4518F8F646BFF69AD02BEACD /* ChatListFilterPredicate.swift in Sources */,
 				532033F7F48F391836787019 /* AccountContextConformance.swift in Sources */,
 				05976A10C30DCDC2DE7A700B /* main.swift in Sources */,
-				44CA2DA9CAA980BF3DCC85DC /* TelegramThemeHooksInstall.swift in Sources */,
+				44CA2DA9CAA980BF3DCC85DC /* AnsibleThemeHooksInstall.swift in Sources */,
 				27A1B2C3D4E5F60718293A4B /* GeneralRowsHooksInstall.swift in Sources */,
 				12D364FFF19D45B18AA545D6 /* InputDataUIHooksInstall.swift in Sources */,
 				CD43762E46BA48F697A64271 /* FolderSharingUIIntegration.swift in Sources */,
@@ -4760,7 +4760,7 @@
 /* Begin PBXTargetDependency section */
 		275E4B3F2EEC24B700BC1A68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C232EA901E1D07E700C4D38C /* TelegramShare */;
+			target = C232EA901E1D07E700C4D38C /* AnsibleShare */;
 			targetProxy = 275E4B3E2EEC24B700BC1A68 /* PBXContainerItemProxy */;
 		};
 		4F3B0F64E65A2AC4EEC0B039 /* PBXTargetDependency */ = {
@@ -4882,7 +4882,7 @@
 				CLANG_WARN_INT_CONVERSION = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "Ansible-Mac/Telegram-Sandbox.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Ansible-Mac/Ansible-Sandbox.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -4949,7 +4949,7 @@
 			baseConfigurationReference = 278926CE27551B5600923087 /* Debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
-				CODE_SIGN_ENTITLEMENTS = AnsibleShare/TelegramShare.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AnsibleShare/AnsibleShare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -5001,7 +5001,7 @@
 			baseConfigurationReference = 278926CF2755222700923087 /* Release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
-				CODE_SIGN_ENTITLEMENTS = AnsibleShare/TelegramShare.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AnsibleShare/AnsibleShare.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -5106,7 +5106,7 @@
 				CLANG_WARN_INT_CONVERSION = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "Ansible-Mac/Telegram-Mac.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Ansible-Mac/Ansible-Mac.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -5235,7 +5235,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C232EAA01E1D07E700C4D38C /* Build configuration list for PBXNativeTarget "TelegramShare" */ = {
+		C232EAA01E1D07E700C4D38C /* Build configuration list for PBXNativeTarget "AnsibleShare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C232EAA21E1D07E700C4D38C /* Debug */,
@@ -5244,7 +5244,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		D098C7101D7E175A007784E4 /* Build configuration list for PBXProject "Telegram" */ = {
+		D098C7101D7E175A007784E4 /* Build configuration list for PBXProject "Ansible" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D098C7211D7E175A007784E4 /* Debug */,
@@ -5253,7 +5253,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		D098C7221D7E175A007784E4 /* Build configuration list for PBXNativeTarget "Telegram" */ = {
+		D098C7221D7E175A007784E4 /* Build configuration list for PBXNativeTarget "Ansible" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D098C7241D7E175A007784E4 /* Debug */,
@@ -5278,9 +5278,9 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = packages/AvatarUI;
 		};
-		F0255D56305311A9001994C2 /* XCLocalSwiftPackageReference "packages/TelegramUtils" */ = {
+		F0255D56305311A9001994C2 /* XCLocalSwiftPackageReference "packages/AnsibleUtils" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = packages/TelegramUtils;
+			relativePath = packages/AnsibleUtils;
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -5309,9 +5309,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = ChatModeTypes;
 		};
-		1A37193D6441404CE43644C8 /* TelegramMediaResources */ = {
+		1A37193D6441404CE43644C8 /* AnsibleMediaResources */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TelegramMediaResources;
+			productName = AnsibleMediaResources;
 		};
 		1E9743F5BBDD948D36BC61BA /* InlineStickers */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5685,13 +5685,13 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = CalendarUtils;
 		};
-		27F3B75327391E6B00B81F10 /* TelegramIconsTheme */ = {
+		27F3B75327391E6B00B81F10 /* AnsibleIconsTheme */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TelegramIconsTheme;
+			productName = AnsibleIconsTheme;
 		};
-		27F3B75527391E9200B81F10 /* TelegramIconsTheme */ = {
+		27F3B75527391E9200B81F10 /* AnsibleIconsTheme */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TelegramIconsTheme;
+			productName = AnsibleIconsTheme;
 		};
 		27F3B75B2739320000B81F10 /* SwiftSignalKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5701,9 +5701,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = TGUIKit;
 		};
-		27F3BB762B48375800BC37C2 /* TelegramMedia */ = {
+		27F3BB762B48375800BC37C2 /* AnsibleMedia */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TelegramMedia;
+			productName = AnsibleMedia;
 		};
 		2DBE492FD219DCD254A93957 /* AvatarUIShare */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5722,9 +5722,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = ExternalVideoUtils;
 		};
-		44E83C8CAD7652510D91ABEA /* TelegramContextShare */ = {
+		44E83C8CAD7652510D91ABEA /* AnsibleContextShare */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TelegramContextShare;
+			productName = AnsibleContextShare;
 		};
 		478591E264E224F9B26FA893 /* GeneralRowsShare */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5778,9 +5778,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = InputTextView;
 		};
-		73CE745EC0FEF1BD8F78477C /* TelegramTheme */ = {
+		73CE745EC0FEF1BD8F78477C /* AnsibleTheme */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TelegramTheme;
+			productName = AnsibleTheme;
 		};
 		76598EE4D43D0B420129171B /* AuthUI */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5794,17 +5794,17 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = CalendarUI;
 		};
-		7C13C59242BA714DFE654DEC /* TelegramThemeShare */ = {
+		7C13C59242BA714DFE654DEC /* AnsibleThemeShare */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TelegramThemeShare;
+			productName = AnsibleThemeShare;
 		};
 		7D600E220F3342D01F1516C2 /* ProxyUtils */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ProxyUtils;
 		};
-		7E5BFC7C71CF642C3D445C46 /* TelegramCallsCore */ = {
+		7E5BFC7C71CF642C3D445C46 /* AnsibleCallsCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TelegramCallsCore;
+			productName = AnsibleCallsCore;
 		};
 		8308E4A0238F4910A2442132 /* FolderSharingUI */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5826,9 +5826,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = InputDataUI;
 		};
-		8FA6B684E86A434A964AF09D /* TelegramLinks */ = {
+		8FA6B684E86A434A964AF09D /* AnsibleLinks */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TelegramLinks;
+			productName = AnsibleLinks;
 		};
 		90813221ECC20B2DC9E24F9D /* InlineMediaGrid */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5842,13 +5842,13 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = LocalAnimations;
 		};
-		A205E46922CF55D36805E629 /* TelegramContext */ = {
+		A205E46922CF55D36805E629 /* AnsibleContext */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TelegramContext;
+			productName = AnsibleContext;
 		};
-		A4E3C3A7FB92511ACDA24FFA /* TelegramMediaUtils */ = {
+		A4E3C3A7FB92511ACDA24FFA /* AnsibleMediaUtils */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TelegramMediaUtils;
+			productName = AnsibleMediaUtils;
 		};
 		A593B160FD2E37CD2CCF385E /* PremiumStatusUI */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5910,9 +5910,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = CaptureExclusion;
 		};
-		F3DD5977041CBCE33A98E464 /* TelegramUtilsShare */ = {
+		F3DD5977041CBCE33A98E464 /* AnsibleUtilsShare */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TelegramUtilsShare;
+			productName = AnsibleUtilsShare;
 		};
 		F4B0D49190392E25D95F356C /* AvatarUI */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5931,9 +5931,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = CubeUI;
 		};
-		FC2A95D165DA8A9214690823 /* TelegramUtils */ = {
+		FC2A95D165DA8A9214690823 /* AnsibleUtils */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TelegramUtils;
+			productName = AnsibleUtils;
 		};
 		FCCA59F669F765A3A6CA7F68 /* LocationUI */ = {
 			isa = XCSwiftPackageProductDependency;

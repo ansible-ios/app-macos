@@ -3,13 +3,13 @@ import AVFoundation
 import TGUIKit
 import TgVoipWebrtc
 import SwiftSignalKit
-import TelegramMedia
+import AnsibleMedia
 import Localization
 import InAppSettings
 import LocalAnimations
-import TelegramUtils
-import TelegramMediaUtils
-import TelegramCallsCore
+import AnsibleUtils
+import AnsibleMediaUtils
+import AnsibleCallsCore
 import SystemPermissions
 
 

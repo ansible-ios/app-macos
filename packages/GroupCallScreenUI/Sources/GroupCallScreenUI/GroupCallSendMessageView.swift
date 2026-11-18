@@ -1,5 +1,5 @@
 import Cocoa
-import TelegramCallsCore
+import AnsibleCallsCore
 import TGUIKit
 import InputView
 import TelegramCore
@@ -10,10 +10,10 @@ import EntertainmentUI
 import InAppSettings
 import InputTextView
 import Localization
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import MessageUtils
 import Strings
 import InlineStickerLayer

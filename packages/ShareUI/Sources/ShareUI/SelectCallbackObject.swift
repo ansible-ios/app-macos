@@ -5,8 +5,8 @@ import TelegramCore
 import Postbox
 import Localization
 import AlertsUI
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 import InputView
 import ChatModeTypes
 import InputDataUI

@@ -4,8 +4,8 @@ import Foundation
 import SwiftSignalKit
 import Postbox
 import TelegramCore
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 
 
 public final class InstantPageStoredDetailsState: Codable {

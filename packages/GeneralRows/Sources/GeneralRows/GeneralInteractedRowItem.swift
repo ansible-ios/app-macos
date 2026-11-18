@@ -3,11 +3,11 @@ import TGUIKit
 import SwiftSignalKit
 import Localization
 #if SHARE
-import TelegramThemeShare
-import TelegramContextShare
+import AnsibleThemeShare
+import AnsibleContextShare
 #else
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 import ColorPalette
 #endif
 

@@ -1,8 +1,8 @@
 import Foundation
 import TelegramCore
 import Postbox
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 
 extension Message {
     public func newReactions(with reaction: UpdateMessageReaction, isTags: Bool) -> [UpdateMessageReaction] {

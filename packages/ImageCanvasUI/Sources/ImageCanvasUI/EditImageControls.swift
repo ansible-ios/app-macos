@@ -3,8 +3,8 @@ import TGUIKit
 import SwiftSignalKit
 import ColorPalette
 import Localization
-import TelegramTheme
-import TelegramMediaUtils
+import AnsibleTheme
+import AnsibleMediaUtils
 
 public struct EditedImageData : Equatable {
 

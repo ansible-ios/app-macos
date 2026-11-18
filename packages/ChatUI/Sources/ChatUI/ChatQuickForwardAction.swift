@@ -1,7 +1,7 @@
 import AppAnalytics
 import Postbox
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 
 final class ChatQuickForwardAction {
     private typealias Spec = AnalyticsFlows.ChatQuickForward

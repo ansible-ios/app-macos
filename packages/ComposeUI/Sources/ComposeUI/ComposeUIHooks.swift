@@ -3,7 +3,7 @@ import TGUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 
 public protocol ComposeChannelVisibilityController: ViewController {
     var onComplete: Promise<PeerId?> { get }

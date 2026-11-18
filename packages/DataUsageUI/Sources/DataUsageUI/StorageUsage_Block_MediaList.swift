@@ -7,15 +7,15 @@ import TelegramCore
 import Postbox
 import Localization
 import InAppSettings
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import GeneralRows
 import InputDataUI
 import LocalAnimations
 import ChatModeTypes
 import AudioPlayerCore
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 private final class GallerySupplyment : InteractionContentViewProtocol {
     private weak var tableView: TableView?

@@ -1,9 +1,9 @@
 import Foundation
-import TelegramUtils
+import AnsibleUtils
 import InputView
 import Postbox
 import TelegramCore
-import TelegramLinks
+import AnsibleLinks
 
 public enum ChatInitialAction : Equatable {
     case start(parameter: String, behavior: ChatInitialActionBehavior)

@@ -2,8 +2,8 @@ import Cocoa
 import TGUIKit
 import SwiftSignalKit
 import InAppSettings
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleMediaUtils
+import AnsibleTheme
 
 private let xAdd:CGFloat = 41
 private let yAdd:CGFloat = 34

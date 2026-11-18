@@ -2,10 +2,10 @@ import Foundation
 import Cocoa
 import Postbox
 import TelegramCore
-import TelegramMediaResources
-import TelegramTheme
-import TelegramUtils
-import TelegramContext
+import AnsibleMediaResources
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleContext
 import MessageTextUtils
 
 private let markdownPresentationIntentAttribute = NSAttributedString.Key("NSPresentationIntent")

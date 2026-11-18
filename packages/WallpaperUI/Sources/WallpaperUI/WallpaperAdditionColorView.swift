@@ -2,14 +2,14 @@ import Cocoa
 import TGUIKit
 import TGModernGrowingTextView
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import GeneralRows
 import InputDataUI
 import AlertsUI
 import LocalAnimations
-import TelegramIconsTheme
+import AnsibleIconsTheme
 
 public final class WallpaperAdditionColorView : View, TGModernGrowingDelegate {
     public func textViewHeightChanged(_ height: CGFloat, animated: Bool) {

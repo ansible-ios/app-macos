@@ -7,11 +7,11 @@ import CurrencyFormat
 import ColorPalette
 import InputView
 import Localization
-import TelegramTheme
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleMediaUtils
 import MessageUtils
-import TelegramContext
+import AnsibleContext
 import SecureIdUtils
 import InlineStickerLayer
 

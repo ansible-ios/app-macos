@@ -8,10 +8,10 @@ let deps: [(String, String)] = [
     ("ColorPalette", "../ColorPalette"),
     ("InAppSettings", "../InAppSettings"),
     ("Localization", "../Localization"),
-    ("TelegramTheme", "../TelegramTheme"),
-    ("TelegramIconsTheme", "../TelegramIconsTheme"),
-    ("TelegramContext", "../TelegramContext"),
-    ("TelegramUtils", "../TelegramUtils"),
+    ("AnsibleTheme", "../AnsibleTheme"),
+    ("AnsibleIconsTheme", "../AnsibleIconsTheme"),
+    ("AnsibleContext", "../AnsibleContext"),
+    ("AnsibleUtils", "../AnsibleUtils"),
     ("GeneralRows", "../GeneralRows"),
     ("InputDataUI", "../InputDataUI"),
     ("AlertsUI", "../AlertsUI"),
@@ -29,9 +29,9 @@ let package = Package(
         .library(name: "StickerSettingsUI", targets: ["StickerSettingsUI"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
     ] + deps.map { .package(name: $0.0, path: $0.1) },
     targets: [
         .target(

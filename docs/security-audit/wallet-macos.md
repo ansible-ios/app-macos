@@ -5,7 +5,7 @@ Date: 2026-10-07. Branch: beta. telegram-ios pin ff054f7a10 (581 commits **ahead
 
 **Scope reality.** The hand-ported `packages/Wallet` is gone; the Mac links the shared
 `WalletContext` / `WalletBackupCrypto` and the Rust `wallet-engine` directly from
-`submodules/telegram-ios`. So "compare with iOS" = (a) macOS-conditional divergences that weaken
+`submodules/ansible-ios`. So "compare with iOS" = (a) macOS-conditional divergences that weaken
 security, (b) genuine vulns in the surface the Mac exercises. The exact divergence set is the
 `#if os(macOS)` / `#if os(iOS)` branches plus the Mac-only `packages/WalletUI` + `Ansible-Mac/`
 wiring + entitlements.
@@ -61,7 +61,7 @@ prefer a secure-text treatment or an explicit "read aloud" affordance rather tha
 `WalletVault.keychainAccessGroup()` returns nil on macOS (`WalletSecurity.swift:70`); all wallet items
 are stored via `PasscodeKeychainScope` with `kSecUseDataProtectionKeychain:false` +
 `WhenUnlockedThisDeviceOnly` + **no access group** (`WalletStorage.swift:121`,
-`PasscodeKeychainScope.swift:204/210`). The app is not sandboxed (`Telegram-Mac.entitlements`). iOS uses
+`PasscodeKeychainScope.swift:204/210`). The app is not sandboxed (`Ansible-Mac.entitlements`). iOS uses
 the DP keychain + app-group access group (+ biometry ACL) — verified from the `#else` branches
 (`WalletSecurity.swift:73`, `Passcode.swift:172-173`) — which has no cross-app "prompt and allow"
 escape hatch. With no wallet passcode (default), the wrapping key (`record.unprotectedKey`) sits in the

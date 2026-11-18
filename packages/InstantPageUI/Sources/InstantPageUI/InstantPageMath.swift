@@ -1,7 +1,7 @@
 import Cocoa
-import TelegramTheme
-import TelegramUtils
-import TelegramContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleContext
 
 public enum InstantPageMathMode {
     case inline

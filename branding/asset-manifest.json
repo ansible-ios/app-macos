@@ -238,60 +238,60 @@
     "asset": "star_reaction_particle"
   },
   {
-    "path": "Ansible-Mac/Assets.xcassets/Icon_Option_Telegram.imageset/telegram_30.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Option_Ansible.imageset/ansible_30.png",
     "width": 30,
     "height": 30,
     "role": "logo-mono",
-    "asset": "Icon_Option_Telegram"
+    "asset": "Icon_Option_Ansible"
   },
   {
-    "path": "Ansible-Mac/Assets.xcassets/Icon_Option_Telegram.imageset/telegram_30@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Option_Ansible.imageset/ansible_30@2x.png",
     "width": 60,
     "height": 60,
     "role": "logo-mono",
-    "asset": "Icon_Option_Telegram"
+    "asset": "Icon_Option_Ansible"
   },
   {
-    "path": "Ansible-Mac/Assets.xcassets/Icon_Sidebar_Telegram.imageset/ic_telegram.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Sidebar_Ansible.imageset/ic_ansible.png",
     "width": 32,
     "height": 32,
     "role": "logo-mono",
-    "asset": "Icon_Sidebar_Telegram"
+    "asset": "Icon_Sidebar_Ansible"
   },
   {
-    "path": "Ansible-Mac/Assets.xcassets/Icon_Sidebar_Telegram.imageset/ic_telegram@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Sidebar_Ansible.imageset/ic_ansible@2x.png",
     "width": 64,
     "height": 64,
     "role": "logo-mono",
-    "asset": "Icon_Sidebar_Telegram"
+    "asset": "Icon_Sidebar_Ansible"
   },
   {
-    "path": "Ansible-Mac/Assets.xcassets/menu_folder_telegram.imageset/menu_folder_telegram.png",
+    "path": "Ansible-Mac/Assets.xcassets/menu_folder_ansible.imageset/menu_folder_ansible.png",
     "width": 18,
     "height": 18,
     "role": "logo-mono",
-    "asset": "menu_folder_telegram"
+    "asset": "menu_folder_ansible"
   },
   {
-    "path": "Ansible-Mac/Assets.xcassets/menu_folder_telegram.imageset/menu_folder_telegram@2x.png",
+    "path": "Ansible-Mac/Assets.xcassets/menu_folder_ansible.imageset/menu_folder_ansible@2x.png",
     "width": 36,
     "height": 36,
     "role": "logo-mono",
-    "asset": "menu_folder_telegram"
+    "asset": "menu_folder_ansible"
   },
   {
-    "path": "Ansible-Mac/Assets.xcassets/Icon_Verified_Telegram.imageset/verified_tg (2).png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Verified_Ansible.imageset/verified_tg (2).png",
     "width": 16,
     "height": 16,
     "role": "logo-mono",
-    "asset": "Icon_Verified_Telegram"
+    "asset": "Icon_Verified_Ansible"
   },
   {
-    "path": "Ansible-Mac/Assets.xcassets/Icon_Verified_Telegram.imageset/verified_tg@2x (2).png",
+    "path": "Ansible-Mac/Assets.xcassets/Icon_Verified_Ansible.imageset/verified_tg@2x (2).png",
     "width": 32,
     "height": 32,
     "role": "logo-mono",
-    "asset": "Icon_Verified_Telegram"
+    "asset": "Icon_Verified_Ansible"
   },
   {
     "path": "Ansible-Mac/Assets.xcassets/Icon_loginQRCap.imageset/qrlogo.png",

@@ -5,13 +5,13 @@ import TelegramCore
 import InAppSettings
 import SwiftSignalKit
 import Postbox
-import TelegramMedia
+import AnsibleMedia
 import ChatHistoryModel
 import InputTextView
 import Localization
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
 
 
 public class ChatVoiceRowItem: ChatMediaItem {

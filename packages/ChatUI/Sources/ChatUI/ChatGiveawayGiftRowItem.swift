@@ -13,9 +13,9 @@ import LocalAnimations
 import Localization
 import PremiumUI
 import StarsUI
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 
 public final class ChatGiveawayGiftRowItem : ChatRowItem {
     

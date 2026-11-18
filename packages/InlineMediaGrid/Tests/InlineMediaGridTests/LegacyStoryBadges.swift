@@ -1,7 +1,7 @@
 import AppKit
 import TGUIKit
 import TelegramCore
-import TelegramTheme
+import AnsibleTheme
 
 private let story_privacy_some_users = TelegramThemeHooks.shared.image(.iconPeerStorySomeUsers).precomposed(.white)
 private let story_privacy_contacts = TelegramThemeHooks.shared.image(.iconPeerStoryContacts).precomposed(.white)

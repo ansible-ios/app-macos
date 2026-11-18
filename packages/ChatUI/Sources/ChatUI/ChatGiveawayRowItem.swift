@@ -13,9 +13,9 @@ import ChatHistoryModel
 import LocalAnimations
 import Localization
 import StarsUI
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 
 
 private func flagEmoji(countryCode: String) -> String {

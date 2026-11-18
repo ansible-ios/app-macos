@@ -2,7 +2,7 @@ import AppAnalytics
 import Foundation
 import ObjectiveC
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 import TGUIKit
 
 private var browserAnalyticsOriginKey: UInt8 = 0

@@ -5,7 +5,7 @@ import TelegramCore
 import SwiftSignalKit
 import CallsUI
 import PrivateCallScreen
-import TelegramCallsCore
+import AnsibleCallsCore
 
 extension SharedAccountContext: PhoneCallScreenHost {
 

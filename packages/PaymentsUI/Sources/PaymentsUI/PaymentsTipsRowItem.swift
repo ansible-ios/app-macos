@@ -5,11 +5,11 @@ import TelegramCore
 import SwiftSignalKit
 import CurrencyFormat
 import InAppSettings
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleMediaUtils
+import AnsibleTheme
 import Localization
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 

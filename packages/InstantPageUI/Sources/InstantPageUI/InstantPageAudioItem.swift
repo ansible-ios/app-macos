@@ -1,11 +1,11 @@
 import Cocoa
 import TGUIKit
-import TelegramContext
+import AnsibleContext
 import AudioPlayerCore
 import Localization
-import TelegramUtils
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleUtils
+import AnsibleMediaUtils
+import AnsibleTheme
 import Postbox
 import TelegramCore
 import SwiftSignalKit
@@ -13,9 +13,9 @@ import RangeSet
 import Localization
 import ColorPalette
 import InAppSettings
-import TelegramTheme
-import TelegramMediaUtils
-import TelegramMedia
+import AnsibleTheme
+import AnsibleMediaUtils
+import AnsibleMedia
 
 
 public final class InstantPageAudioItem: InstantPageItem {

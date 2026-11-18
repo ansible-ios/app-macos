@@ -5,8 +5,8 @@ import TGUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import AppAnalytics
 
 public enum PremiumBoardingSource: Equatable {

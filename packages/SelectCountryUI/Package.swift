@@ -8,8 +8,8 @@ let deps: [(String, String)] = [
     ("InputDataUI", "../InputDataUI"),
     ("GeneralRows", "../GeneralRows"),
     ("Localization", "../Localization"),
-    ("TelegramContext", "../TelegramContext"),
-    ("TelegramTheme", "../TelegramTheme"),
+    ("AnsibleContext", "../AnsibleContext"),
+    ("AnsibleTheme", "../AnsibleTheme"),
     ("ColorPalette", "../ColorPalette"),
     ("PhoneNumberUtils", "../PhoneNumberUtils"),
 ]
@@ -21,9 +21,9 @@ let package = Package(
         .library(name: "SelectCountryUI", targets: ["SelectCountryUI"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
     ] + deps.map { .package(name: $0.0, path: $0.1) },
     targets: [
         .target(

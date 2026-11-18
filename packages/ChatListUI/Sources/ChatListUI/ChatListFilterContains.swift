@@ -1,7 +1,7 @@
 import Cocoa
 import TelegramCore
 import Postbox
-import TelegramUtils
+import AnsibleUtils
 
 extension ChatListFilter {
     public func contains(_ peer: Peer, groupId: PeerGroupId, isRemovedFromTotalUnreadCount: Bool, isUnread: Bool, isContact: Bool, communityCategories: [PeerId: ChatListFilterPeerCategories]) -> Bool {

@@ -3,8 +3,8 @@ import subprocess
 import tempfile
 
 root = Path(__file__).resolve().parents[3]
-contact = (root / "packages/TelegramLinks/Sources/TelegramLinks/ContactTokenLink.swift").read_text()
-links = (root / "packages/TelegramLinks/Sources/TelegramLinks/LinkParsing.swift").read_text()
+contact = (root / "packages/AnsibleLinks/Sources/AnsibleLinks/ContactTokenLink.swift").read_text()
+links = (root / "packages/AnsibleLinks/Sources/AnsibleLinks/LinkParsing.swift").read_text()
 normalizer = links[links.index("public func normalizeURLScheme("):links.index("public func parseInAppLink(")]
 logic = (root / "packages/QrStudioUI/Sources/QrStudioUI/QrStudioCodePillLogic.swift").read_text()
 state = logic[:logic.index("struct QrStudioShatter")]

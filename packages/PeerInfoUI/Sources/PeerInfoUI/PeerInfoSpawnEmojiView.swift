@@ -3,8 +3,8 @@ import Cocoa
 import TGUIKit
 import SwiftSignalKit
 import LokiRng
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 import InlineStickerLayer
 
 

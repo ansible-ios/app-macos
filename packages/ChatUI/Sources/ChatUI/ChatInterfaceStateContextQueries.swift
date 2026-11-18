@@ -8,9 +8,9 @@ import InAppSettings
 import TGUIKit
 import InputView
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import AlertsUI
 import ShortPeerRow
 import HTMLBubbles

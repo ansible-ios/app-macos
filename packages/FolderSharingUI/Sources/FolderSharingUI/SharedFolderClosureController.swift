@@ -1,6 +1,6 @@
 import Cocoa
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import GeneralRows
 import InputDataUI
 import Localization

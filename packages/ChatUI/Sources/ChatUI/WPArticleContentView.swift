@@ -9,10 +9,10 @@ import ExternalVideoUtils
 import InlineMediaGrid
 import Localization
 import StarsUI
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 import InputView
 

@@ -15,7 +15,7 @@ Rendering happens in WindowServer, not in the app, so a placeholder or animation
 
 ## Running
 
-1. Build the Debug app (`xcodebuild -workspace Ansible-Mac.xcworkspace -scheme Telegram -configuration Debug build`).
+1. Build the Debug app (`xcodebuild -workspace Ansible-Mac.xcworkspace -scheme Ansible -configuration Debug build`).
 2. Quit any running Debug Telegram. Do not run a lab under Xcode: queue debugging (backtrace recording) and attached lldb distort every number.
 3. Leave the Mac alone while it runs. Animated content only plays while the lab window is the key window.
 
@@ -95,10 +95,10 @@ tools/perflab/run.sh gif-panel sw -PerfLabScenarios idle,scroll -PerfLabRuns 3 -
 
 `-PerfLab call-video` opens a window with a grid of `MetalCallVideoView` tiles, each fed at 30 fps (`-PerfLabFps`) from synthetic NV12 IOSurface buffers through the same texture path as decoded group-call video. Scenario name parts: `g<N>` (tile count, laid out as a square grid in a 1440 pt wide window, `-PerfLabWindowWidth`), a stream size (`180p`, `360p`, `720p`, `1080p`, `portrait` 540x960, `screen` 1660x1076), `fit` (tiles match the stream aspect, so the blurred background is hidden), `rot90`/`rot180`/`rot270`, `mirror`, and `still` (one frame, and the window is captured after warm-up to `call-video-<label>-<scenario>-<W>x<H>.rgba` next to the report). Reports add `deliveredFps`.
 
-Compare two builds by copying the baseline `Telegram.app` into a path that ends in `Debug/Telegram.app` and pointing `PERFLAB_APP` at it. Compare `still` captures with `tools/perflab/compare_rgba.py`, which prints mean and max difference and can write baseline, candidate and amplified-diff PNGs:
+Compare two builds by copying the baseline `Ansible.app` into a path that ends in `Debug/Ansible.app` and pointing `PERFLAB_APP` at it. Compare `still` captures with `tools/perflab/compare_rgba.py`, which prints mean and max difference and can write baseline, candidate and amplified-diff PNGs:
 
 ```sh
-PERFLAB_APP=/path/baseline/Debug/Telegram.app tools/perflab/run.sh call-video base -PerfLabScenarios g9-180p,g4-720p,g4-portrait
+PERFLAB_APP=/path/baseline/Debug/Ansible.app tools/perflab/run.sh call-video base -PerfLabScenarios g9-180p,g4-720p,g4-portrait
 tools/perflab/run.sh call-video new -PerfLabScenarios g9-180p,g4-720p,g4-portrait
 tools/perflab/run.sh call-video newStill -PerfLabScenarios g4-720p-still,g4-360p-still-rot90 -PerfLabSeconds 2
 python3 tools/perflab/compare_rgba.py base.rgba new.rgba /tmp/out
@@ -159,7 +159,7 @@ The grid's table sets `TGClipView.skipsDisplayOnScroll`. AppKit marks a clip vie
 
 ```sh
 tools/perflab/run.sh peer-media base -PerfLabScenarios enter,scroll,fling,deep,settle,verify -PerfLabRuns 2 -PerfLabWindowWidth 1000 -PerfLabWindowHeight 1000
-PERFLAB_APP=/path/baseline/Debug/Telegram.app tools/perflab/run.sh peer-media old -PerfLabScenarios scroll,verify -PerfLabWindowWidth 1000 -PerfLabWindowHeight 1000
+PERFLAB_APP=/path/baseline/Debug/Ansible.app tools/perflab/run.sh peer-media old -PerfLabScenarios scroll,verify -PerfLabWindowWidth 1000 -PerfLabWindowHeight 1000
 python3 tools/perflab/compare_rgba.py old-verify1.rgba new-verify1.rgba /tmp/out
 ```
 
@@ -167,7 +167,7 @@ The grid layout itself (month grouping, row chunking, display order and the diff
 
 ## DecodeBench (offline)
 
-`tools/perflab/DecodeBench` compiles the app's real decoder files (`SoftwareVideoSource`, `FFMpegMediaVideoFrameDecoder` and helpers, symlinked from `submodules/telegram-ios/submodules/MediaPlayer/Sources`) against the prebuilt FFmpeg in `core-xprojects`. Feed it files copied out of a media cache.
+`tools/perflab/DecodeBench` compiles the app's real decoder files (`SoftwareVideoSource`, `FFMpegMediaVideoFrameDecoder` and helpers, symlinked from `submodules/ansible-ios/submodules/MediaPlayer/Sources`) against the prebuilt FFmpeg in `core-xprojects`. Feed it files copied out of a media cache.
 
 ```sh
 cd tools/perflab/DecodeBench && swift build -c release

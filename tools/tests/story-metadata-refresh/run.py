@@ -28,7 +28,7 @@ feedprops=props if current else 'var pollStoryMetadataDisposables: [StoryId:Disp
 listprops=props if current else 'var pollStoryMetadataDisposables = DisposableSet()'
 for key,value in [('__SOURCE__',production),('__FEED__',feed),('__LIST__',listing),('__FEED_PROPERTIES__',feedprops),('__LIST_PROPERTIES__',listprops),('__INIT__',init if current else ''),('__FEED_DISPOSE__','storyMetadataRefresh.dispose()' if current else 'for d in pollStoryMetadataDisposables.values { d.dispose() }; pollStoryMetadataDisposables.removeAll()'),('__LIST_DISPOSE__','storyMetadataRefresh.dispose()' if current else 'pollStoryMetadataDisposables.dispose()'),('__MANAGER_TESTS__',Path(__file__).with_name('ManagerTests.swift').read_text() if current else '')]: fixture=fixture.replace(key,value)
 with tempfile.TemporaryDirectory(prefix='story-metadata-refresh-') as directory:
- p=Path(directory); dep=json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))
+ p=Path(directory); dep=json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))
  (p/'Package.swift').write_text('// swift-tools-version:5.9\nimport PackageDescription\nlet package = Package(name: "StoryMetadataRefresh", platforms: [.macOS(.v10_13)], dependencies: [.package(path: '+dep+')], targets: [.testTarget(name: "StoryMetadataRefreshTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])\n')
  (p/'Tests').mkdir(); (p/'Tests/StoryMetadataRefreshTests.swift').write_text(fixture)
  raise SystemExit(subprocess.run(['swift','test','--package-path',str(p),'--disable-sandbox','--jobs','4']).returncode)

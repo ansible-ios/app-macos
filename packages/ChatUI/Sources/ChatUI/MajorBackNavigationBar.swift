@@ -4,7 +4,7 @@ import SwiftSignalKit
 import TelegramCore
 
 import Postbox
-import TelegramContext
+import AnsibleContext
 class MajorBackNavigationBar: BackNavigationBar {
     private let disposable:MetaDisposable = MetaDisposable()
     private let context:any AccountContextProtocol

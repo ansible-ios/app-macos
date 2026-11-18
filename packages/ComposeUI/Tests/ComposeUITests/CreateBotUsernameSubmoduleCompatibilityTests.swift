@@ -247,7 +247,7 @@ final class CreateBotUsernameSubmoduleCompatibilityTests: XCTestCase {
         for _ in 0 ..< 5 {
             url.deleteLastPathComponent()
         }
-        url.appendPathComponent("submodules/telegram-ios/Telegram/Telegram-iOS/en.lproj/Localizable.strings")
+        url.appendPathComponent("submodules/ansible-ios/Telegram/Telegram-iOS/en.lproj/Localizable.strings")
         return try XCTUnwrap(NSDictionary(contentsOf: url) as? [String: String], url.path)
     }
 }

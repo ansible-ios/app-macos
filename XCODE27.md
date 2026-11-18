@@ -18,7 +18,7 @@ Set **macOS Deployment Target** (`MACOSX_DEPLOYMENT_TARGET`) to **12.0** for eve
 (target → Build Settings → macOS Deployment Target), or replace every `MACOSX_DEPLOYMENT_TARGET = 10.x;` with
 `MACOSX_DEPLOYMENT_TARGET = 12.0;` in their `project.pbxproj`:
 
-- `Ansible.xcodeproj` (Telegram, TelegramShare)
+- `Ansible.xcodeproj` (Telegram, AnsibleShare)
 - `submodules/CodeSyntax/CodeSyntax/CodeSyntax.xcodeproj`
 - `submodules/Sparkle/Sparkle.xcodeproj`
 - Before running `scripts/configure_frameworks.sh`, also the native library projects it builds:
@@ -30,7 +30,7 @@ missing `@available(macOS 10.15, *)`.
 ## 2. Keep ImplicitStrongCapture a warning
 
 Swift 6.4 adds the `ImplicitStrongCapture` warning, and `TelegramCore` treats warnings as errors. In
-`submodules/telegram-ios/submodules/TelegramCore/Package.swift`, replace
+`submodules/ansible-ios/submodules/TelegramCore/Package.swift`, replace
 `swiftSettings: [.unsafeFlags(["-warnings-as-errors"])]),` with:
 
 ```swift
@@ -49,7 +49,7 @@ runtime (call screen, dust effect). Delete the `resources: [.copy(...)]` argumen
 
 - `packages/CallVideoLayer/Package.swift`
 - `packages/DustLayer/Package.swift`
-- `submodules/telegram-ios/submodules/MetalEngine/Package.swift`
+- `submodules/ansible-ios/submodules/MetalEngine/Package.swift`
 
 Compiling shaders needs the Metal toolchain. If `xcodebuild -showComponent MetalToolchain` does not report it as
 installed, run `xcodebuild -downloadComponent MetalToolchain`.

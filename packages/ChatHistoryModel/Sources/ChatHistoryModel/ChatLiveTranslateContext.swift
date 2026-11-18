@@ -6,9 +6,9 @@ import TelegramCore
 import Translate
 import InAppSettings
 import TGUIKit
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import Localization
 
 

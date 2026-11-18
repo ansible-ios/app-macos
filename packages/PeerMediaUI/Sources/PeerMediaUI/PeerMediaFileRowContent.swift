@@ -9,9 +9,9 @@ import ChatUI
 import GalleryUI
 import GeneralRows
 import Localization
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import ChatModeTypes
 import Strings
 

@@ -7,9 +7,9 @@ import TGUIKit
 import InAppSettings
 import ColorPalette
 import ThemeSettings
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import AlertsUI
 import InputDataUI
 

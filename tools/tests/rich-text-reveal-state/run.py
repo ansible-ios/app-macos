@@ -28,7 +28,7 @@ else:
     start = tail.index('        _ = instantPageStreamRevealCursors.modify {')
     remove = tail[start:tail.index('\n        }', start) + len('\n        }')]
 fixture = Path(__file__).with_name('RevealStateTests.swift').read_text().replace('__DECLARATION__', declaration).replace('__GETTER__', getter).replace('__STORE__', store).replace('__REMOVE__', remove)
-atomic = (root / 'submodules/telegram-ios/submodules/SSignalKit/SwiftSignalKit/Source/Atomic.swift').read_text()
+atomic = (root / 'submodules/ansible-ios/submodules/SSignalKit/SwiftSignalKit/Source/Atomic.swift').read_text()
 args.evidence.mkdir(parents=True, exist_ok=True)
 (args.evidence / 'main.swift').write_text(atomic + '\n' + fixture)
 binary = str(args.evidence / 'tests')

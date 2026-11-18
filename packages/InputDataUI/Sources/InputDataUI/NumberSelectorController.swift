@@ -1,9 +1,9 @@
 import Cocoa
 import TGUIKit
 import SwiftSignalKit
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import AppAnalytics
 

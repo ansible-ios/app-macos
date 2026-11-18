@@ -36,7 +36,7 @@ class FlatSerializationTests(TemporaryTest):
         super().setUp()
         (self.root / "scripts").mkdir()
         (self.root / "scripts/flatc").symlink_to(ROOT / "scripts/flatc")
-        base = self.root / "submodules/telegram-ios/submodules/TelegramCore/FlatSerialization"
+        base = self.root / "submodules/ansible-ios/submodules/TelegramCore/FlatSerialization"
         self.model = write(base / "Models/Sample.fbs", "namespace Test;\ntable Sample { value:int (id: 0); }\n")
         self.output = base / "Sources/Sample_generated.swift"
 
@@ -109,15 +109,15 @@ class SyncTests(TemporaryTest):
         preserved = [
             "core-xprojects/libopus/build/libopus.a",
             "core-xprojects/tlottie/build/libtlottie.a",
-            "submodules/telegram-ios/submodules/MTProtoRustEngine/MTProtoEngineFFI.xcframework/Info.plist",
+            "submodules/ansible-ios/submodules/MTProtoRustEngine/MTProtoEngineFFI.xcframework/Info.plist",
             "submodules/tgcalls/SharedHeaders/api.h",
-            "submodules/telegram-ios/submodules/OpusBinding/SharedHeaders/api.h",
-            ".build/telegram-api-generation/state.json",
-            "submodules/telegram-ios/build-system/SwiftTL/.build/generator",
-            "submodules/telegram-ios/submodules/TelegramApi/Sources/SwiftPMGenerated/Api0.swift",
-            "submodules/telegram-ios/submodules/TelegramApi/ObjC/SwiftPMGenerated/Schema.m",
-            "submodules/telegram-ios/submodules/TelegramApi/Tests/SwiftPMGenerated/Tests.swift",
-            "submodules/telegram-ios/submodules/TelegramCore/FlatSerialization/Sources/Sample_generated.swift",
+            "submodules/ansible-ios/submodules/OpusBinding/SharedHeaders/api.h",
+            ".build/ansible-api-generation/state.json",
+            "submodules/ansible-ios/build-system/SwiftTL/.build/generator",
+            "submodules/ansible-ios/submodules/TelegramApi/Sources/SwiftPMGenerated/Api0.swift",
+            "submodules/ansible-ios/submodules/TelegramApi/ObjC/SwiftPMGenerated/Schema.m",
+            "submodules/ansible-ios/submodules/TelegramApi/Tests/SwiftPMGenerated/Tests.swift",
+            "submodules/ansible-ios/submodules/TelegramCore/FlatSerialization/Sources/Sample_generated.swift",
             "Ansible-Mac/Release.xcconfig",
         ]
         for name in preserved:
@@ -153,8 +153,8 @@ class FrameworkTests(TemporaryTest):
             destination = self.root / "scripts" / name
             destination.parent.mkdir(exist_ok=True)
             shutil.copy2(ROOT / "scripts" / name, destination)
-        write(self.root / "scripts/prepare-telegram-ios.sh", "exit 0\n")
-        for name in ["prepare-telegram-api.py", "prepare-flat-serialization.py"]:
+        write(self.root / "scripts/prepare-ansible-ios.sh", "exit 0\n")
+        for name in ["prepare-ansible-api.py", "prepare-flat-serialization.py"]:
             write(self.root / "scripts" / name, "")
         write(self.root / "scripts/rebuild", "no")
         write(self.root / "core-xprojects/tlottie/build.sh", "exit 0\n")
@@ -162,7 +162,7 @@ class FrameworkTests(TemporaryTest):
         for lib, project in zip(self.libraries, self.projects):
             directory = project_dirs.get(lib, lib)
             write(self.root / f"core-xprojects/{directory}/{project}.xcodeproj/project.pbxproj", "fixture")
-        for name in ["submodules/telegram-ios/third-party/rnnoise/PublicHeaders/api.h", "submodules/telegram-ios/submodules/EncryptionProvider/PublicHeaders/api.h", "submodules/telegram-ios/third-party/mozjpeg/mozjpeg/api.h", "submodules/telegram-ios/third-party/td/td/api.h"]:
+        for name in ["submodules/ansible-ios/third-party/rnnoise/PublicHeaders/api.h", "submodules/ansible-ios/submodules/EncryptionProvider/PublicHeaders/api.h", "submodules/ansible-ios/third-party/mozjpeg/mozjpeg/api.h", "submodules/ansible-ios/third-party/td/td/api.h"]:
             write(self.root / name, "header")
         write(self.root / ".gitignore", "build/\nSharedHeaders/\n*.xcframework/\nruns\nbin/\n")
         run(["git", "init", "-q", str(self.root)])
@@ -209,7 +209,7 @@ fi
     def test_missing_native_output_and_xcframework_are_repaired(self):
         self.configure()
         (self.root / "core-xprojects/libopus/build/libopus/lib/libopus.a").unlink()
-        shutil.rmtree(self.root / "submodules/telegram-ios/submodules/MTProtoRustEngine/MTProtoEngineFFI.xcframework")
+        shutil.rmtree(self.root / "submodules/ansible-ios/submodules/MTProtoRustEngine/MTProtoEngineFFI.xcframework")
         self.configure()
         self.assertEqual(self.runs()[len(self.libraries):], ["libopus", "mtproto-engine"])
         self.configure()
@@ -259,10 +259,10 @@ if os.environ.get("ARCHIVE_RESULT"):
     print("error: deliberate archive failure")
     sys.exit(int(os.environ["ARCHIVE_RESULT"]))
 archive = Path("../telegrammacos.xcarchive")
-app = archive / "Products/Applications/Telegram.app/Contents"
+app = archive / "Products/Applications/Ansible.app/Contents"
 app.mkdir(parents=True, exist_ok=True)
 (app / "Info.plist").write_text("fixture")
-symbols = archive / "dSYMs/Telegram.app.dSYM"
+symbols = archive / "dSYMs/Ansible.app.dSYM"
 symbols.mkdir(parents=True, exist_ok=True)
 (symbols / "symbols").write_text("symbols")
 print("Build Timing Summary\\nCompileSwift: fixture")
@@ -287,8 +287,8 @@ print("Build Timing Summary\\nCompileSwift: fixture")
             self.assertNotIn("-quiet", arguments)
             self.assertFalse(any(arg.startswith("COMPILATION_CACHE_ENABLE_CACHING=") for arg in arguments))
             output = self.root / "builds" / ("build-" + channel)
-            self.assertTrue((output / "Telegram.app/Contents/Info.plist").exists())
-            self.assertTrue((output / "Telegram.app.DSYM.zip").exists())
+            self.assertTrue((output / "Ansible.app/Contents/Info.plist").exists())
+            self.assertTrue((output / "Ansible.app.DSYM.zip").exists())
             self.assertIn("CompileSwift", (self.logs / "xcodebuild.log").read_text())
             self.assertTrue((self.logs / "frameworks.log").exists())
 
@@ -309,7 +309,7 @@ print("Build Timing Summary\\nCompileSwift: fixture")
         self.build()
         with self.assertRaises(subprocess.CalledProcessError):
             self.build(ARCHIVE_RESULT="37")
-        self.assertFalse((self.root / "builds/build-Beta/Telegram.app").exists())
+        self.assertFalse((self.root / "builds/build-Beta/Ansible.app").exists())
         self.assertIn("deliberate archive failure", (self.logs / "xcodebuild.log").read_text())
 
 
@@ -319,7 +319,7 @@ class TlottieTests(TemporaryTest):
         script.parent.mkdir(parents=True)
         shutil.copy2(ROOT / "core-xprojects/tlottie/build.sh", script)
         write(self.root / "submodules/tlottie/Cargo.toml", "fixture")
-        write(self.root / "submodules/telegram-ios/third-party/mtproto-engine/rust-toolchain.toml", 'channel = "fixture"\n')
+        write(self.root / "submodules/ansible-ios/third-party/mtproto-engine/rust-toolchain.toml", 'channel = "fixture"\n')
         cargo = write(self.root / "bin/cargo", '''#!/bin/sh
 set -e
 while [ "$1" != "--target" ]; do shift; done

@@ -3,23 +3,23 @@
 @_exported import InAppSettings
 
 #if SHARE
-@_exported import TelegramThemeShare
-@_exported import TelegramContextShare
+@_exported import AnsibleThemeShare
+@_exported import AnsibleContextShare
 @_exported import AvatarUIShare
-@_exported import TelegramUtilsShare
+@_exported import AnsibleUtilsShare
 @_exported import GeneralRowsShare
 @_exported import ShortPeerRowShare
 #else
-@_exported import TelegramTheme
-@_exported import TelegramContext
+@_exported import AnsibleTheme
+@_exported import AnsibleContext
 @_exported import InlineStickers
 @_exported import AvatarUI
-@_exported import TelegramUtils
+@_exported import AnsibleUtils
 @_exported import GeneralRows
 @_exported import ShortPeerRow
 @_exported import CommunityUI
 @_exported import WebAppUI
-@_exported import TelegramCallsCore
+@_exported import AnsibleCallsCore
 @_exported import AffiliateUI
 @_exported import SceneEffects
 @_exported import InAppPurchaseManager
@@ -35,7 +35,7 @@
 @_exported import PaymentsUI
 @_exported import CalendarUI
 @_exported import DiceCache
-@_exported import TelegramMediaUtils
+@_exported import AnsibleMediaUtils
 @_exported import InlineMediaGrid
 @_exported import CaptureExclusion
 @_exported import SystemPermissions
@@ -45,7 +45,7 @@
 @_exported import AuthUI
 @_exported import FilePanels
 @_exported import ExternalVideoUtils
-@_exported import TelegramLinks
+@_exported import AnsibleLinks
 @_exported import InputDataUI
 @_exported import SecureIdUtils
 @_exported import ProxyUtils

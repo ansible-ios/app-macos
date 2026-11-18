@@ -4,15 +4,15 @@ import SwiftSignalKit
 import TelegramCore
 import Postbox
 import AppKit
-import TelegramMedia
-import TelegramMediaResources
+import AnsibleMedia
+import AnsibleMediaResources
 import FoundationUtils
 import LocalAnimations
 import SceneEffects
-import TelegramContext
+import AnsibleContext
 import Strings
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleMediaUtils
+import AnsibleTheme
 
 public final class EmojiScreenEffect {
     fileprivate let context: any AccountContextProtocol

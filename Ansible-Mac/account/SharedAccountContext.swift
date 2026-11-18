@@ -9,10 +9,10 @@ import AccountResetSupport
 import ApiCredentials
 
 #if SHARE
-import TelegramContextShare
+import AnsibleContextShare
 #else
 import PrivateCallScreen
-import TelegramContext
+import AnsibleContext
 #endif
 
 

@@ -30,10 +30,10 @@ import SelectPeersUI
 import ShareUI
 import ShortPeerRow
 import StarsUI
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import WebAppUI
 import ChatModeTypes
 import InlineStickerLayer

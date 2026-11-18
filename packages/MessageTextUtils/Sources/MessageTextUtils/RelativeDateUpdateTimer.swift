@@ -1,5 +1,5 @@
 import AppKit
-import TelegramUtils
+import AnsibleUtils
 
 public final class RelativeDateUpdateTimer {
     private let timestamps: [Int32]

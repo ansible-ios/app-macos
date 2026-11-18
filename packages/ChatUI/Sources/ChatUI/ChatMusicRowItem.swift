@@ -5,9 +5,9 @@ import InAppSettings
 import SwiftSignalKit
 import Postbox
 import ChatHistoryModel
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
 public class ChatMusicRowItem: ChatMediaItem {
     
     

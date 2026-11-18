@@ -186,9 +186,9 @@ private final class RandomBox {
 }
 
 final class ChatRecordingBlobSubmoduleCompatibilityTests: XCTestCase {
-    private static let submoduleBlobPath = "submodules/telegram-ios/submodules/TelegramUI/Components/ChatTextInputMediaRecordingButton/Sources/ChatRecordingBlobMotion.swift"
-    private static let submoduleBlobViewPath = "submodules/telegram-ios/submodules/TelegramUI/Components/ChatTextInputMediaRecordingButton/Sources/ChatRecordingBlobView.swift"
-    private static let submoduleShapesPath = "submodules/telegram-ios/submodules/TelegramUI/Components/LiquidGlassShapes"
+    private static let submoduleBlobPath = "submodules/ansible-ios/submodules/TelegramUI/Components/ChatTextInputMediaRecordingButton/Sources/ChatRecordingBlobMotion.swift"
+    private static let submoduleBlobViewPath = "submodules/ansible-ios/submodules/TelegramUI/Components/ChatTextInputMediaRecordingButton/Sources/ChatRecordingBlobView.swift"
+    private static let submoduleShapesPath = "submodules/ansible-ios/submodules/TelegramUI/Components/LiquidGlassShapes"
 
     private func repositoryRoot() -> URL {
         return URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()

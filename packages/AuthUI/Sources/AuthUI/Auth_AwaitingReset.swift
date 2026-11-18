@@ -3,14 +3,14 @@ import TGUIKit
 import AppKit
 import TelegramCore
 import SwiftSignalKit
-import TelegramMedia
+import AnsibleMedia
 import FilePanels
 import PhoneNumberUtils
 import LocalAnimations
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import Localization
-import TelegramUtils
+import AnsibleUtils
 
 private func timerValueString(days: Int32, hours: Int32, minutes: Int32) -> String {
     var daysString = ""

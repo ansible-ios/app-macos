@@ -10,7 +10,7 @@ import StarsUI
 import SwiftSignalKit
 import TGUIKit
 import TelegramCore
-import TelegramLinks
+import AnsibleLinks
 import ThemeSettings
 
 extension ChatInteraction: @retroactive AppearanceChatPreviewContext {

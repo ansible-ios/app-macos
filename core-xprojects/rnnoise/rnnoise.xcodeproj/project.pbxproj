@@ -98,7 +98,7 @@
 				27D1D6022611F78F00684DEA /* rnnoise.h */,
 			);
 			name = PublicHeaders;
-			path = "../../submodules/telegram-ios/third-party/rnnoise/PublicHeaders";
+			path = "../../submodules/ansible-ios/third-party/rnnoise/PublicHeaders";
 			sourceTree = "<group>";
 		};
 		27D1D6032611F78F00684DEA /* Sources */ = {
@@ -124,7 +124,7 @@
 				27D1D6152611F78F00684DEA /* arch.h */,
 			);
 			name = Sources;
-			path = "../../submodules/telegram-ios/third-party/rnnoise/Sources";
+			path = "../../submodules/ansible-ios/third-party/rnnoise/Sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -24,7 +24,7 @@ markers = ['    public class CaptionView {', '    public func fillCaption(']
 reference = '\n\n'.join(extract(original, marker) for marker in markers) + '\n'
 reference = '\n'.join(line.rstrip() for line in reference.splitlines()) + '\n'
 assert (lab / 'Reference/ChatCaptionBinding.swift.txt').read_text() == reference
-output = 'import Cocoa\nimport TGUIKit\nimport TelegramContext\n\n'
+output = 'import Cocoa\nimport TGUIKit\nimport AnsibleContext\n\n'
 for name, text in [('ReplacementCaptionRow', original), ('ReusedCaptionRow', native)]:
     body = '\n\n'.join(extract(text, marker) for marker in markers).replace('public ', '').replace('func fillCaption(', 'override func fillCaption(')
     body = '\n'.join(line.rstrip() for line in body.splitlines())

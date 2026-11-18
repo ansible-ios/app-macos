@@ -17,29 +17,29 @@ let package = Package(
         .library(name: "AvatarUIShare", targets: ["AvatarUIShare"]),
     ],
     dependencies: [
-        .package(name: "rnoise", path: "../../submodules/telegram-ios/third-party/rnnoise"),
+        .package(name: "rnoise", path: "../../submodules/ansible-ios/third-party/rnnoise"),
         .package(name: "ColorPalette", path: "../ColorPalette"),
         .package(name: "TGUIKit", path: "../TGUIKit"),
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
-        .package(name: "TelegramUtils", path: "../TelegramUtils"),
-        .package(name: "TelegramTheme", path: "../TelegramTheme"),
-        .package(name: "TelegramContext", path: "../TelegramContext"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
+        .package(name: "AnsibleUtils", path: "../AnsibleUtils"),
+        .package(name: "AnsibleTheme", path: "../AnsibleTheme"),
+        .package(name: "AnsibleContext", path: "../AnsibleContext"),
     ],
     targets: [
         .target(
             name: "AvatarUI",
             dependencies: common + [
-                .product(name: "TelegramTheme", package: "TelegramTheme"),
-                .product(name: "TelegramContext", package: "TelegramContext"),
-                .product(name: "TelegramUtils", package: "TelegramUtils"),
+                .product(name: "AnsibleTheme", package: "AnsibleTheme"),
+                .product(name: "AnsibleContext", package: "AnsibleContext"),
+                .product(name: "AnsibleUtils", package: "AnsibleUtils"),
             ]),
         .target(
             name: "AvatarUIShare",
             dependencies: common + [
-                .product(name: "TelegramThemeShare", package: "TelegramTheme"),
-                .product(name: "TelegramUtilsShare", package: "TelegramUtils"),
+                .product(name: "AnsibleThemeShare", package: "AnsibleTheme"),
+                .product(name: "AnsibleUtilsShare", package: "AnsibleUtils"),
             ],
             swiftSettings: [.define("SHARE")]),
         .testTarget(name: "AvatarUITests", dependencies: [

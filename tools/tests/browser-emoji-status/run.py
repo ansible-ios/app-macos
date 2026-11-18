@@ -9,7 +9,7 @@ base = root / 'packages/WebAppUI/Sources/WebAppUI'
 parser = argparse.ArgumentParser()
 parser.add_argument('--action', type=Path, default=base / 'BrowserEmojiStatusAction.swift')
 parser.add_argument('--controller', type=Path, default=base / 'WebpageModalController.swift')
-parser.add_argument('--core', type=Path, default=root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/AccountData/TelegramEngineAccountData.swift')
+parser.add_argument('--core', type=Path, default=root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/AccountData/TelegramEngineAccountData.swift')
 parser.add_argument('--modal', type=Path, default=base / 'WebbotEmojisetModal.swift')
 parser.add_argument('--filter')
 args = parser.parse_args()
@@ -37,7 +37,7 @@ else:
 fixture = fixture.replace('__METHODS__', methods)
 with tempfile.TemporaryDirectory(prefix='browser-emoji-status-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "BrowserEmojiStatus", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "BrowserEmojiStatusTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

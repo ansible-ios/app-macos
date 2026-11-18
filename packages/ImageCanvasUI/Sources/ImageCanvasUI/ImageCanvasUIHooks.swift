@@ -1,6 +1,6 @@
 import Cocoa
 import TGUIKit
-import TelegramContext
+import AnsibleContext
 
 public struct EditImageCanvasStickerPick {
     public let image: CGImage

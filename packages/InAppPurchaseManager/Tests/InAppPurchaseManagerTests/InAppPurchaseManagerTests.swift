@@ -2,7 +2,7 @@ import XCTest
 import StoreKit
 import SwiftSignalKit
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 @testable import InAppPurchaseManager
 
 private let annual = "org.telegram.telegramPremium.annual"

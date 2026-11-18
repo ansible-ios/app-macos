@@ -10,9 +10,9 @@ import GeneralRows
 import InstantPageUI
 import LocalAnimations
 import Localization
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import Strings
 import InputDataUI
 

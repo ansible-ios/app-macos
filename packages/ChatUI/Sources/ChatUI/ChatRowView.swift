@@ -16,9 +16,9 @@ import LocalAnimations
 import Localization
 import MessageUtils
 import PremiumStatusUI
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 
 public final class ChatSwipeToReplyView : View {
 

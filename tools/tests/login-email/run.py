@@ -15,7 +15,7 @@ controller = source[source.index('public func SetupEmailController('):].replace(
 package = pathlib.Path(tempfile.mkdtemp(prefix='telegram-login-email-'))
 tests = package / 'Tests'
 tests.mkdir()
-dependency = root / 'submodules/telegram-ios/submodules/SSignalKit'
+dependency = root / 'submodules/ansible-ios/submodules/SSignalKit'
 (package / 'Package.swift').write_text(f'''// swift-tools-version:5.5
 import PackageDescription
 let package = Package(

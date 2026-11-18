@@ -5,7 +5,7 @@ import TelegramCore
 
 import SwiftSignalKit
 import Localization
-import TelegramUtils
+import AnsibleUtils
 import AlertsUI
 
 public class ShareInlineResultNavigationAction: NavigationModalAction {

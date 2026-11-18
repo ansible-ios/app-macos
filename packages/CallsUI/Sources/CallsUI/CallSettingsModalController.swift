@@ -7,16 +7,16 @@ import TGUIKit
 import Localization
 import ColorPalette
 import InAppSettings
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import AlertsUI
 import LocalAnimations
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import SystemPermissions
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 
 public func CallSettingsModalController(_ sharedContext: any SharedAccountContextProtocol, presentation: TelegramPresentationTheme = theme) -> InputDataModalController {

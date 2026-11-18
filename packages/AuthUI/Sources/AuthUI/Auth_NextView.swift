@@ -1,12 +1,12 @@
 import Foundation
 import TGUIKit
 import Localization
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 import FilePanels
 import PhoneNumberUtils
 import LocalAnimations
-import TelegramUtils
+import AnsibleUtils
 
 
 public final class Auth_NextView: TextButton {

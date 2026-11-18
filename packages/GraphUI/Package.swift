@@ -17,7 +17,7 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(name: "TGUIKit", path: "../TGUIKit"),
         .package(name: "GraphCore", path: "../GraphCore"),
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.

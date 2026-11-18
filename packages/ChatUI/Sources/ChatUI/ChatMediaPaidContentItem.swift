@@ -14,10 +14,10 @@ import LocalAnimations
 import Localization
 import MessageUtils
 import StarsUI
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 private enum Item {

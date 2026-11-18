@@ -1,8 +1,8 @@
 import Foundation
 import Postbox
 import TelegramCore
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 import Localization
 
 struct ChatSendFailure {

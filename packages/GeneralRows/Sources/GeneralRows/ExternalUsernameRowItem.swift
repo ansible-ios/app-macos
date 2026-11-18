@@ -4,7 +4,7 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 import Localization
-import TelegramTheme
+import AnsibleTheme
 import ColorPalette
 
 public final class ExternalUsernameRowItem : GeneralRowItem {

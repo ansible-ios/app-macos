@@ -7,16 +7,16 @@ import SwiftSignalKit
 import ThemeSettings
 import ColorPalette
 import ObjcUtils
-import TelegramMedia
+import AnsibleMedia
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramIconsTheme
+import AnsibleContext
+import AnsibleTheme
+import AnsibleIconsTheme
 import GeneralRows
 import InputDataUI
 import AlertsUI
 import LocalAnimations
-import TelegramMediaUtils
+import AnsibleMediaUtils
 import PremiumStatusUI
 
 private final class Arguments {

@@ -1,6 +1,6 @@
 import Cocoa
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 import Localization
 
 final class SearchShimmerRowItem: TableRowItem {

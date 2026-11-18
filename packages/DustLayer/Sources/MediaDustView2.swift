@@ -1,6 +1,6 @@
 import Cocoa
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 import SwiftSignalKit
 
 public class MediaDustView2: View {

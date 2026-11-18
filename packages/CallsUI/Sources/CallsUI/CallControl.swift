@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
-import TelegramMedia
-import TelegramTheme
+import AnsibleMedia
+import AnsibleTheme
 import LocalAnimations
 import ColorPalette
 import Localization

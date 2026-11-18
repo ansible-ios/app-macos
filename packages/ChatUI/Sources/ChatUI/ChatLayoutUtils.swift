@@ -4,9 +4,9 @@ import TelegramCore
 import Postbox
 import FoundationUtils
 import TGUIKit
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 
 extension TelegramMediaFile {
     var isChatStaticSticker: Bool {

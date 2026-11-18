@@ -6,7 +6,7 @@ import TelegramCore
 import ThemeSettings
 import TGUIKit
 import Postbox
-@testable import TelegramTheme
+@testable import AnsibleTheme
 
 final class PreparedChatThemesTests: XCTestCase {
     override func setUp() {
@@ -19,9 +19,9 @@ final class PreparedChatThemesTests: XCTestCase {
         return generateTheme(palette: nightAccentPalette, cloudTheme: nil, bubbled: true, fontSize: fontSize, wallpaper: ThemeWallpaper(), liquidGlass: false)
     }
 
-    static func cloudTheme(id: Int64 = 1, colour: UInt32 = 0x5588aa) -> TelegramTheme {
+    static func cloudTheme(id: Int64 = 1, colour: UInt32 = 0x5588aa) -> AnsibleTheme {
         let settings = TelegramThemeSettings(baseTheme: .tinted, accentColor: colour, outgoingAccentColor: nil, messageColors: [], animateMessageColors: false, wallpaper: .color(colour))
-        return TelegramTheme(id: id, accessHash: 0, slug: "test-\(id)", emoticon: "🎨\(id)", title: "Test", file: nil, settings: [settings], isCreator: false, isDefault: false, installCount: nil)
+        return AnsibleTheme(id: id, accessHash: 0, slug: "test-\(id)", emoticon: "🎨\(id)", title: "Test", file: nil, settings: [settings], isCreator: false, isDefault: false, installCount: nil)
     }
 
     func testPreparationRunsInBackgroundAndPublishesOnMain() {
@@ -83,7 +83,7 @@ final class PreparedChatThemesTests: XCTestCase {
     }
 
     func testCurrentThemesStayPublishedWhileReplacementWallpaperLoads() {
-        let input = ValuePromise<[TelegramTheme]>([Self.cloudTheme()], ignoreRepeated: false)
+        let input = ValuePromise<[AnsibleTheme]>([Self.cloudTheme()], ignoreRepeated: false)
         let pending = Promise<Wallpaper>()
         let initial = expectation(description: "Initial themes")
         let loading = expectation(description: "Replacement loading")
@@ -110,7 +110,7 @@ final class PreparedChatThemesTests: XCTestCase {
     }
 
     func testEmptyServerListClearsPreparedThemes() {
-        let input = ValuePromise<[TelegramTheme]>([Self.cloudTheme()], ignoreRepeated: false)
+        let input = ValuePromise<[AnsibleTheme]>([Self.cloudTheme()], ignoreRepeated: false)
         let initial = expectation(description: "Initial themes")
         let cleared = expectation(description: "Themes cleared")
         var counts: [Int] = []
@@ -126,7 +126,7 @@ final class PreparedChatThemesTests: XCTestCase {
     }
 
     func testObsoleteWallpaperCompletionCannotReplaceNewerThemes() {
-        let input = ValuePromise<[TelegramTheme]>([Self.cloudTheme()], ignoreRepeated: false)
+        let input = ValuePromise<[AnsibleTheme]>([Self.cloudTheme()], ignoreRepeated: false)
         let pending = Promise<Wallpaper>()
         let loading = expectation(description: "Old wallpaper loading")
         let prepared = expectation(description: "New themes ready")
@@ -220,7 +220,7 @@ final class PreparedChatThemesTests: XCTestCase {
     func testChatThemesSelectTheMatchingLightAndDarkSettings() {
         let dark = TelegramThemeSettings(baseTheme: .tinted, accentColor: 0xff0000, outgoingAccentColor: nil, messageColors: [], animateMessageColors: false, wallpaper: .color(0xff0000))
         let light = TelegramThemeSettings(baseTheme: .day, accentColor: 0x00ff00, outgoingAccentColor: nil, messageColors: [], animateMessageColors: false, wallpaper: .color(0x00ff00))
-        let theme = TelegramTheme(id: 1, accessHash: 0, slug: "test", emoticon: "🎨", title: "Test", file: nil, settings: [dark, light], isCreator: false, isDefault: false, installCount: nil)
+        let theme = AnsibleTheme(id: 1, accessHash: 0, slug: "test", emoticon: "🎨", title: "Test", file: nil, settings: [dark, light], isCreator: false, isDefault: false, installCount: nil)
         let input = ValuePromise<TelegramPresentationTheme>(Self.presentation(), ignoreRepeated: false)
         let darkReady = expectation(description: "Dark theme ready")
         let lightReady = expectation(description: "Light theme ready")

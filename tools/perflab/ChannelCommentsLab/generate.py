@@ -11,7 +11,7 @@ reference = lab / 'Reference/ChannelCommentsControls.swift.txt'
 assert hashlib.sha256(reference.read_bytes()).hexdigest() == json.loads((lab / 'Reference/provenance.json').read_text())['sha256']
 production = root / 'packages/ChatUI/Sources/ChatUI/ChannelCommentsControls.swift'
 helper = root / 'packages/ChatUI/Sources/ChatUI/ChatReactionTextLayer.swift'
-dropped = {'import Postbox', 'import SwiftSignalKit', 'import AvatarUI', 'import TelegramContext', 'import TelegramTheme'}
+dropped = {'import Postbox', 'import SwiftSignalKit', 'import AvatarUI', 'import AnsibleContext', 'import AnsibleTheme'}
 
 def strip_imports(text):
     lines = text.split('\n')
@@ -32,5 +32,5 @@ folder.mkdir(parents=True, exist_ok=True)
     'reference_sha256': hashlib.sha256(reference.read_bytes()).hexdigest(),
     'production_sha256': hashlib.sha256(production.read_bytes()).hexdigest(),
     'helper_sha256': hashlib.sha256(helper.read_bytes()).hexdigest(),
-    'changes': 'Removed Postbox/SwiftSignalKit/AvatarUI/TelegramContext/TelegramTheme imports (stand-ins in Stubs.swift); legacy public types prefixed with Legacy. No other edits.'
+    'changes': 'Removed Postbox/SwiftSignalKit/AvatarUI/AnsibleContext/AnsibleTheme imports (stand-ins in Stubs.swift); legacy public types prefixed with Legacy. No other edits.'
 }, indent=2) + '\n')

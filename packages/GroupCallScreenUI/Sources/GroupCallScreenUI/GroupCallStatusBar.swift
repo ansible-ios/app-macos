@@ -4,8 +4,8 @@ import SwiftSignalKit
 import TGUIKit
 import ColorPalette
 import Localization
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import GeneralRows
 
 private let statusAnimationStepCount = 12

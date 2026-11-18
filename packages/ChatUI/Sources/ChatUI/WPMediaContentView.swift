@@ -1,10 +1,10 @@
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import UniqueGiftBackground
 
 private final class GiftView: View {

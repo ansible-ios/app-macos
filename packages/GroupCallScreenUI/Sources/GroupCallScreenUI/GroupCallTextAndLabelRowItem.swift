@@ -6,8 +6,8 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 import GeneralRows
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 
 
 public class GroupCallTextAndLabelItem: GeneralRowItem {

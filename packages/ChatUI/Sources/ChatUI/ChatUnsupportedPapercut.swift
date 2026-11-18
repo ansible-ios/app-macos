@@ -2,7 +2,7 @@ import Cocoa
 import TGUIKit
 import TelegramCore
 import Postbox
-import TelegramTheme
+import AnsibleTheme
 
 private let papercutBandPanelGap: CGFloat = 4.0
 private let papercutPanelVerticalPadding: CGFloat = 8.0

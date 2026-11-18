@@ -3,7 +3,7 @@ import TGUIKit
 import ColorPalette
 import ThemeSettings
 import InAppSettings
-import TelegramTheme
+import AnsibleTheme
 import GeneralRows
 
 enum UITestBootstrap {

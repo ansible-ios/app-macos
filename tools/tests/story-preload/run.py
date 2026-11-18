@@ -25,8 +25,8 @@ production = '\n\n'.join(block(marker) for marker in markers if marker in source
 fixture = Path(__file__).with_name('StoryPreloadTests.swift').read_text().replace('__PRODUCTION__', production)
 with tempfile.TemporaryDirectory(prefix='story-preload-') as directory:
     directory = Path(directory)
-    ssk = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
-    ranges = json.dumps(str(root / 'submodules/telegram-ios/submodules/Utils/RangeSet'))
+    ssk = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
+    ranges = json.dumps(str(root / 'submodules/ansible-ios/submodules/Utils/RangeSet'))
     (directory / 'Package.swift').write_text('// swift-tools-version:5.9\nimport PackageDescription\nlet package = Package(name: "StoryPreload", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ' + ssk + '), .package(path: ' + ranges + ')], targets: [.testTarget(name: "StoryPreloadTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit"), .product(name: "RangeSet", package: "RangeSet")], path: "Tests")])\n')
     (directory / 'Tests').mkdir()
     (directory / 'Tests/StoryPreloadTests.swift').write_text(fixture)

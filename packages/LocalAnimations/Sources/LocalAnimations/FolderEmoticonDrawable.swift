@@ -76,7 +76,7 @@ extension FolderEmoticon {
             case "🎓":
                 return .menu_folder_student
             case "🛫":
-                return .menu_folder_telegram
+                return .menu_folder_ansible
             case "👨‍💼":
                 return .menu_folder_work
             default:

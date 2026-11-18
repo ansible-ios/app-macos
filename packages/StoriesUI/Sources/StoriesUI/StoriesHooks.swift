@@ -4,9 +4,9 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import GeneralRows
 import ColorPalette
 import ThemeSettings
@@ -49,7 +49,7 @@ public struct StoriesHooks {
     public let makeStoryMonthRowItem: (NSSize, AnyHashable, any AccountContextProtocol, Bool, PeerId, PeerReference, [StoryListContextState.Item], Set<StoryId>?, [Int32], Int, GeneralViewType, @escaping (StoryInitialIndex?) -> Void, @escaping (StoryId) -> Void, @escaping (StoryListContextState.Item) -> [ContextMenuItem], TelegramPresentationTheme) -> TableRowItem
     public let executeInApp: (StoriesInAppLink) -> Void
     public let showShareLink: (any AccountContextProtocol, String, Window) -> Void
-    public let generateTheme: (ColorPalette, TelegramTheme?, Bool, CGFloat, ThemeWallpaper) -> TelegramPresentationTheme
+    public let generateTheme: (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper) -> TelegramPresentationTheme
     public let pushPeerInfoIfNeeded: (any AccountContextProtocol, PeerId) -> Void
     public let showShareStory: (any AccountContextProtocol, TelegramMediaStory, Bool, StoryId, @escaping () -> Void, TelegramPresentationTheme) -> Void
     public let findShareModal: (ModalViewController?) -> ModalViewController?
@@ -66,7 +66,7 @@ public struct StoriesHooks {
                 makeStoryMonthRowItem: @escaping (NSSize, AnyHashable, any AccountContextProtocol, Bool, PeerId, PeerReference, [StoryListContextState.Item], Set<StoryId>?, [Int32], Int, GeneralViewType, @escaping (StoryInitialIndex?) -> Void, @escaping (StoryId) -> Void, @escaping (StoryListContextState.Item) -> [ContextMenuItem], TelegramPresentationTheme) -> TableRowItem,
                 executeInApp: @escaping (StoriesInAppLink) -> Void,
                 showShareLink: @escaping (any AccountContextProtocol, String, Window) -> Void,
-                generateTheme: @escaping (ColorPalette, TelegramTheme?, Bool, CGFloat, ThemeWallpaper) -> TelegramPresentationTheme,
+                generateTheme: @escaping (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper) -> TelegramPresentationTheme,
                 pushPeerInfoIfNeeded: @escaping (any AccountContextProtocol, PeerId) -> Void,
                 showShareStory: @escaping (any AccountContextProtocol, TelegramMediaStory, Bool, StoryId, @escaping () -> Void, TelegramPresentationTheme) -> Void,
                 findShareModal: @escaping (ModalViewController?) -> ModalViewController?,

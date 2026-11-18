@@ -8,8 +8,8 @@ import TGUIKit
 import InAppSettings
 import ColorPalette
 import ThemeSettings
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 import AlertsUI
 
 public func joinChannel(context: any AccountContextProtocol, peerId: PeerId) {

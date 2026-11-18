@@ -3,7 +3,7 @@ import TGUIKit
 import TelegramCore
 
 import Postbox
-import TelegramTheme
+import AnsibleTheme
 public class ContextSwitchPeerRowItem: TableRowItem {
     fileprivate let account:Account
     fileprivate let peerId:PeerId

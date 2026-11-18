@@ -1,7 +1,7 @@
 import AppKit
 import MediaPlayer
 import XCTest
-import TelegramMedia
+import AnsibleMedia
 @testable import AudioPlayerCore
 
 final class MediaPlaybackControlCenterTests: XCTestCase {

@@ -1,12 +1,12 @@
 import Foundation
 import TGUIKit
 import TelegramCore
-import TelegramMedia
+import AnsibleMedia
 import Cocoa
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import InlineStickers

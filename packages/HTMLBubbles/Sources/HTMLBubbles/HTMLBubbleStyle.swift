@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
 import ColorPalette
-import TelegramTheme
+import AnsibleTheme
 import WidgetSandbox
 
 public struct HTMLBubbleAppearance: Equatable {

@@ -6,14 +6,14 @@ import TGUIKit
 import SwiftSignalKit
 import InAppSettings
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import GeneralRows
 import InputDataUI
 import AlertsUI
 import LocalAnimations
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import FilePanels
 import AppAnalytics
 

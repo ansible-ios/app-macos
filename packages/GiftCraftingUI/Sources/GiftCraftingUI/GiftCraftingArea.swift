@@ -6,11 +6,11 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
-import TelegramMediaUtils
+import AnsibleMediaUtils
 import LokiRng
 import InlineStickerLayer
 import CubeUI

@@ -1,7 +1,7 @@
 import Foundation
 import TelegramCore
 import Postbox
-import TelegramContext
+import AnsibleContext
 import ChatModeTypes
 import MessageUtils
 

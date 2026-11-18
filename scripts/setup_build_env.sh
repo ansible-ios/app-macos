@@ -106,7 +106,7 @@ fi
 
 # ---------------------------------------------------------------------------
 # 5. Git submodules
-#    The framework projects build from submodule sources (tg_owt, telegram-ios
+#    The framework projects build from submodule sources (tg_owt, ansible-ios
 #    third-party: td/dav1d/mozjpeg/ffmpeg, etc.). Requires SSH access to
 #    github.com/gitlab.com, or HTTPS rewrites configured for those hosts.
 # ---------------------------------------------------------------------------

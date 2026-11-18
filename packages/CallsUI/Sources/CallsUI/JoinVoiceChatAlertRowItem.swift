@@ -7,7 +7,7 @@ import TGUIKit
 import AvatarUI
 import GeneralRows
 import Localization
-import TelegramTheme
+import AnsibleTheme
 import ColorPalette
 
 public final class JoinVoiceChatAlertRowItem : GeneralRowItem {

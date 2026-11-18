@@ -7,16 +7,16 @@ import Postbox
 import InputDataUI
 import GeneralRows
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import ColorPalette
 import AlertsUI
 import InAppSettings
 import AvatarUI
 import ShortPeerRow
 import PremiumUI
-import TelegramMedia
+import AnsibleMedia
 import AppAnalytics
 
 private final class Arguments {

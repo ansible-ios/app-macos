@@ -2,8 +2,8 @@ import Cocoa
 import TGUIKit
 import TelegramCore
 import Postbox
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 import LocalAnimations
 
 public protocol SelectBotRequestStickerView: View {

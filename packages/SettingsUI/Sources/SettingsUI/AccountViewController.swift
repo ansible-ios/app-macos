@@ -6,10 +6,10 @@ import Localization
 import Postbox
 import SwiftSignalKit
 import InAppSettings
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleMediaUtils
 import GeneralRows
 import ShortPeerRow
 import InputDataUI

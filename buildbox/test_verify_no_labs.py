@@ -16,14 +16,14 @@ class LabExclusionTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
-        self.app = self.root / "Telegram.app"
+        self.app = self.root / "Ansible.app"
         self.mac = self.app / "Contents" / "MacOS"
         self.mac.mkdir(parents=True)
 
     def compile(self, source, destination=None, debug=False, source_name="fixture.c"):
         path = self.root / source_name
         path.write_text(source)
-        destination = destination or self.mac / "Telegram"
+        destination = destination or self.mac / "Ansible"
         destination.parent.mkdir(parents=True, exist_ok=True)
         subprocess.run(["xcrun", "clang", *(["-g"] if debug else []), str(path), "-o", str(destination)], check=True, capture_output=True)
         symbols = Path(str(destination) + ".dSYM")

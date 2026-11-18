@@ -15,7 +15,7 @@ with tempfile.TemporaryDirectory(prefix='avatar-image-rendering-') as directory:
  directory=Path(directory)
  (directory/'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
-let package=Package(name:"AvatarImageRendering",platforms:[.macOS(.v10_13)],dependencies:[.package(path:'''+json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))+''')],targets:[.testTarget(name:"NativeRenderingTests",path:"Native"),.testTarget(name:"ControlledRenderingTests",path:"Controlled"),.testTarget(name:"PatternTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Pattern")])
+let package=Package(name:"AvatarImageRendering",platforms:[.macOS(.v10_13)],dependencies:[.package(path:'''+json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))+''')],targets:[.testTarget(name:"NativeRenderingTests",path:"Native"),.testTarget(name:"ControlledRenderingTests",path:"Controlled"),.testTarget(name:"PatternTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Pattern")])
 ''')
  for name in ['Native','Controlled','Pattern']:(directory/name).mkdir()
  (directory/'Native/AvatarImageRendering.swift').write_text(render)

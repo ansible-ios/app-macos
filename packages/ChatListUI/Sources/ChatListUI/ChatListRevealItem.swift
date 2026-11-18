@@ -5,9 +5,9 @@ import Postbox
 import SwiftSignalKit
 import InAppSettings
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import GeneralRows
 import StoriesUI
 import InlineStickerLayer

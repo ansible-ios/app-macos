@@ -1,6 +1,6 @@
 import Cocoa
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 import AppAnalytics
 
 public let mediaExts:[String] = ["png","jpg","jpeg","tiff", "heic","mp4","mov","avi", "gif", "m4v"]

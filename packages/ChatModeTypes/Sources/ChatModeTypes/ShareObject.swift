@@ -1,5 +1,5 @@
 import Cocoa
-import TelegramUtils
+import AnsibleUtils
 import InputView
 import TGUIKit
 import SwiftSignalKit
@@ -7,8 +7,8 @@ import TelegramCore
 import Postbox
 import Localization
 import InAppSettings
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 
 public final class ShareAdditionItem {
     public let peer: Peer

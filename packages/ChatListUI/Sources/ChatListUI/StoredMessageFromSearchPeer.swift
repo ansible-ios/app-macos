@@ -4,9 +4,9 @@ import TelegramCore
 
 import SwiftSignalKit
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 #else
-import TelegramTheme
+import AnsibleTheme
 #endif
 
 

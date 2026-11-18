@@ -3,7 +3,7 @@ import AVFoundation
 import ImageIO
 import CoreServices
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 import SwiftSignalKit
 
 enum AvatarMediaPreparationError: Error, Equatable {

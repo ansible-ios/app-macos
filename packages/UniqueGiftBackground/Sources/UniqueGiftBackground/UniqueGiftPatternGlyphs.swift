@@ -3,8 +3,8 @@ import TGUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TelegramUtils
-import TelegramContext
+import AnsibleUtils
+import AnsibleContext
 import UniqueGiftRenderer
 
 public final class UniqueGiftPatternGlyphs {

@@ -4,11 +4,11 @@ import InAppSettings
 import TelegramCore
 import Postbox
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 public class ContextClueRowItem: TableRowItem {
 

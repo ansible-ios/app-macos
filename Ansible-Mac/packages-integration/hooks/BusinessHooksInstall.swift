@@ -4,7 +4,7 @@ import Postbox
 import TelegramCore
 import SwiftSignalKit
 import BusinessUI
-import TelegramUtils
+import AnsibleUtils
 
 extension StickerMediaContentView: @retroactive BusinessStickerPreviewView {
     public func updateBusinessSticker(file: TelegramMediaFile, size: NSSize, context: any AccountContextProtocol) {

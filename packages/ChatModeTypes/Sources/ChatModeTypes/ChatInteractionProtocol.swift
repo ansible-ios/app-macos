@@ -2,8 +2,8 @@ import Foundation
 import TGUIKit
 import TelegramCore
 import Postbox
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 
 public protocol ChatPresentationSnapshot {
     var snapshotPeer: Peer? { get }

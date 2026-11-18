@@ -3,15 +3,15 @@ import TGUIKit
 import TelegramCore
 import AppKit
 import SwiftSignalKit
-import TelegramMedia
+import AnsibleMedia
 import FoundationUtils
 import FilePanels
 import PhoneNumberUtils
 import LocalAnimations
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import Localization
-import TelegramUtils
+import AnsibleUtils
 
 private final class Auth_CodeEntryHeaderView : View {
     

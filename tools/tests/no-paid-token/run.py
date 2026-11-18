@@ -5,7 +5,7 @@ import tempfile
 
 
 root = Path(__file__).resolve().parents[3]
-core = Path(sys.argv[1]) if len(sys.argv) > 1 else root / "submodules/telegram-ios"
+core = Path(sys.argv[1]) if len(sys.argv) > 1 else root / "submodules/ansible-ios"
 source = (core / "submodules/TelegramCore/Sources/TelegramEngine/Peers/NoPaidMessagesToken.swift").read_text()
 schema = (core / "submodules/TelegramApi/swift_scheme.tl").read_text()
 assert "exportedNoPaidMessagesToken#695dd042 flags:# token:string url:string" in schema

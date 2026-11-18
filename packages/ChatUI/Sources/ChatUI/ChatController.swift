@@ -8,7 +8,7 @@ import InAppSettings
 import ObjcUtils
 import ThemeSettings
 import DustLayer
-import TelegramMedia
+import AnsibleMedia
 import FoundationUtils
 import AlertsUI
 import BoostUI
@@ -28,12 +28,12 @@ import PremiumUI
 import ShortPeerRow
 import StarsUI
 import SystemPermissions
-import TelegramCallsCore
-import TelegramContext
-import TelegramLinks
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleCallsCore
+import AnsibleContext
+import AnsibleLinks
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import Strings
 import InputView
 import HTMLBubbles

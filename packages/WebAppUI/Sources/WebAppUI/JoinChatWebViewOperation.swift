@@ -4,10 +4,10 @@ import Foundation
 import Localization
 import Postbox
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 import TelegramCore
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 import TGUIKit
 
 final class JoinChatWebViewOperation {

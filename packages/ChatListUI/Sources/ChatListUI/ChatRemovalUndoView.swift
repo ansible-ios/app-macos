@@ -2,7 +2,7 @@ import Cocoa
 import TGUIKit
 import SwiftSignalKit
 import Localization
-import TelegramTheme
+import AnsibleTheme
 import ChatUI
 
 final class ChatRemovalUndoView: Control {

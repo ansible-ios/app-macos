@@ -3,7 +3,7 @@ import Cocoa
 import Postbox
 import TelegramCore
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 import Localization
 @testable import StoriesUI
 

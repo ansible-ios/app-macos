@@ -1,17 +1,17 @@
 import Cocoa
 import Localization
-import TelegramUtils
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramContext
+import AnsibleUtils
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleContext
 import AudioPlayerCore
 import TGUIKit
 import Postbox
 import TelegramCore
-import TelegramMedia
+import AnsibleMedia
 import SwiftSignalKit
 import RangeSet
-import TelegramMediaResources
+import AnsibleMediaResources
 
 public final class InstantPageMediaView: View, InstantPageView, SlideViewProtocol {
     private let context: any AccountContextProtocol

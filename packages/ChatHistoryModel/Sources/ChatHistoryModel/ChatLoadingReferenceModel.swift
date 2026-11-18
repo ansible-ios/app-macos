@@ -4,8 +4,8 @@ import InlineStickerLayer
 import TGUIKit
 import TelegramCore
 import MessageTextUtils
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 
 public enum ChatReferenceAvailability: Equatable {
     case available

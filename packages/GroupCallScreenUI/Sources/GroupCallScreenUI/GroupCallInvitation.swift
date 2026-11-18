@@ -1,5 +1,5 @@
 import Foundation
-import TelegramCallsCore
+import AnsibleCallsCore
 import TGUIKit
 import SwiftSignalKit
 import Postbox
@@ -9,9 +9,9 @@ import AlertsUI
 import Localization
 import SelectPeersUI
 import ShortPeerRow
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import InviteLinksUI
 
 private struct InvitationPeer : Equatable {

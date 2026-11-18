@@ -22,7 +22,7 @@ fixture=fixture.replace('__ACCEPT__',block(s,'accept: {').split('accept: ',1)[1]
 fixture=fixture.replace('__HIDE__',block(s,'bottomLayout?.interactions.processURL =').split(' = ',1)[1])
 fixture=fixture.replace('__LIFECYCLE__','\n'.join(block(s,'                override func '+name) for name in ['viewWillAppear(', 'viewWillDisappear(']))
 with tempfile.TemporaryDirectory(prefix='birthday-modal-') as directory:
-    directory=Path(directory);dependency=json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))
+    directory=Path(directory);dependency=json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))
     (directory/'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "BirthdayModal", platforms: [.macOS(.v10_13)], dependencies: [.package(path: '''+dependency+''')], targets: [.testTarget(name: "BirthdayModalTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

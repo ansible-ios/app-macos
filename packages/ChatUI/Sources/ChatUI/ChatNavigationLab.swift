@@ -6,11 +6,11 @@ import TGUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox
-import TelegramContext
+import AnsibleContext
 import PerfLab
 import InputView
 import InputTextView
-import TelegramTheme
+import AnsibleTheme
 import AvatarUI
 import PremiumStatusUI
 import ChatHistoryModel

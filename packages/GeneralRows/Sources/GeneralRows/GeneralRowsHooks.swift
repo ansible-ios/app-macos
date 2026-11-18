@@ -2,12 +2,12 @@ import Cocoa
 import TGUIKit
 import TelegramCore
 import Postbox
-import TelegramMedia
+import AnsibleMedia
 import LocalAnimations
 #if SHARE
-import TelegramContextShare
+import AnsibleContextShare
 #else
-import TelegramContext
+import AnsibleContext
 #endif
 
 public protocol InlineTextRenderer: AnyObject {

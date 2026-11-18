@@ -3,12 +3,12 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import InAppSettings
-import TelegramMediaResources
+import AnsibleMediaResources
 import ChatHistoryModel
 import Localization
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
 
 public class ChatMapRowItem: ChatMediaItem {
     fileprivate var liveText: TextViewLayout?

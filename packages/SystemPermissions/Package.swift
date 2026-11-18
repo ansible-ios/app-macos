@@ -9,7 +9,7 @@ let package = Package(
         .library(name: "SystemPermissions", targets: ["SystemPermissions"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
     ],
     targets: [
         .target(

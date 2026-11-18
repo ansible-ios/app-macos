@@ -31,7 +31,7 @@ for key, value in [
     fixture = fixture.replace(key, value.replace('public ', ''))
 with tempfile.TemporaryDirectory(prefix='audio-buffering-') as directory:
     directory = Path(directory)
-    dependencies = ', '.join('.package(path: ' + json.dumps(str(root / p)) + ')' for p in ['submodules/telegram-ios/submodules/SSignalKit', 'submodules/telegram-ios/submodules/Utils/RangeSet'])
+    dependencies = ', '.join('.package(path: ' + json.dumps(str(root / p)) + ')' for p in ['submodules/ansible-ios/submodules/SSignalKit', 'submodules/ansible-ios/submodules/Utils/RangeSet'])
     (directory / 'Package.swift').write_text('// swift-tools-version:5.9\nimport PackageDescription\nlet package = Package(name: "AudioBuffering", platforms: [.macOS(.v10_13)], dependencies: [' + dependencies + '], targets: [.testTarget(name: "BufferingTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit"), .product(name: "RangeSet", package: "RangeSet")], path: "Tests")])\n')
     (directory / 'Tests').mkdir()
     (directory / 'Tests/BufferingTests.swift').write_text(fixture)

@@ -4,11 +4,11 @@ import TGUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TelegramMedia
+import AnsibleMedia
 import AvatarUI
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import ChatModeTypes
 
 public final class ChatAvatarView : Control {

@@ -15,7 +15,7 @@ let package = Package(
             targets: ["Localization"]),
     ],
     dependencies: [
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
         .package(name: "NumberPluralization", path: "../NumberPluralization"),
         .package(name: "Strings", path: "../Strings"),
     ],

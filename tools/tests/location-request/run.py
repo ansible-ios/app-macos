@@ -17,7 +17,7 @@ if args.legacy:
 fixture = Path(__file__).with_name('LocationRequestTests.swift').read_text().replace('__SOURCE__', source).replace('__MODERN__', 'false' if args.legacy else 'true')
 with tempfile.TemporaryDirectory(prefix='location-request-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "LocationRequest", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "LocationRequestTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

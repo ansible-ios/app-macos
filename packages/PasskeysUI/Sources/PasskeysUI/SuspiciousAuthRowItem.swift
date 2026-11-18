@@ -4,14 +4,14 @@ import TelegramCore
 import InputDataUI
 import GeneralRows
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import ColorPalette
 import AlertsUI
 import LocalAnimations
 import DateUtils
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import SwiftSignalKit
 import Postbox
 

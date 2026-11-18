@@ -4,8 +4,8 @@ import TGUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox
-import TelegramMedia
-import TelegramContext
+import AnsibleMedia
+import AnsibleContext
 import PerfLab
 
 public enum VideoPlayerLab {

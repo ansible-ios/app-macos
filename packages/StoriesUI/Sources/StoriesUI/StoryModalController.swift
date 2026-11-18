@@ -20,11 +20,11 @@ import MediaRecorderUI
 import SceneEffects
 import ShortPeerRow
 import StarsUI
-import TelegramCallsCore
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleCallsCore
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import MessageUtils
 import Strings
 import ThemeSettings

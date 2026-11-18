@@ -4,11 +4,11 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 #if SHARE
-import TelegramThemeShare
-import TelegramContextShare
+import AnsibleThemeShare
+import AnsibleContextShare
 #else
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 #endif
 
 

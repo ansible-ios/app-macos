@@ -1,8 +1,8 @@
 import Foundation
 import XCTest
 import SwiftSignalKit
-import TelegramMediaResources
-@testable import TelegramMediaUtils
+import AnsibleMediaResources
+@testable import AnsibleMediaUtils
 
 final class VideoRenderUploadTests: XCTestCase {
     private func file(_ data: Data) throws -> URL {

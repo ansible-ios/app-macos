@@ -33,7 +33,7 @@ b = s.index('        case let .aboutCraft', a)
 fixture = fixture.replace('__DISMISS__', s[a:b])
 with tempfile.TemporaryDirectory(prefix='gift-wear-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "GiftWear", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "GiftWearTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

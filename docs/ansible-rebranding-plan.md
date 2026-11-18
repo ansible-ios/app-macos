@@ -6,7 +6,7 @@
 
 Рабочая база: `ansible-ios/app-macos`, master `28f988e7` поверх первоначального импорта `3732e65e`. Это Swift/AppKit-клиент, отдельный от Qt Desktop и мобильного iOS. Проверено по исходникам и публичным langpack RPC через существующие сессии Ansible/Telegram.
 
-Сохранить чужие изменения: dirty `submodules/telegram-ios` содержит применённые патчи; `.vscode/` не относится к ребрендингу. Сабмодуль не коммитить случайным gitlink. Перед реализацией повторить status/HEAD: этот документ не даёт права затереть последующую работу.
+Сохранить чужие изменения: dirty `submodules/ansible-ios` содержит применённые патчи; `.vscode/` не относится к ребрендингу. Сабмодуль не коммитить случайным gitlink. Перед реализацией повторить status/HEAD: этот документ не даёт права затереть последующую работу.
 
 | Область | Что уже есть | Что ещё требуется |
 | --- | --- | --- |
@@ -118,14 +118,14 @@ Share extension также берёт `ApiEnvironment.language`. Ключи macO
 | Поверхность | Что проверить/сделать | Где начинать |
 | --- | --- | --- |
 | Запуск и вход | Logo/intro, QR-центр, номер +777, code/2FA, ошибки, язык до входа | Ansible-Mac/app, login hooks, Resources/tgs/login_airplane.tgs |
-| Навигация | App menu, sidebar, поиск настроек, tooltips, account switcher | SettingsUI, ChatListUI, TelegramIconsTheme |
+| Навигация | App menu, sidebar, поиск настроек, tooltips, account switcher | SettingsUI, ChatListUI, AnsibleIconsTheme |
 | Настройки/About | Иконка, имя, версия, сайт, support, privacy/terms, fork attribution | SettingsUI, ApiCredentials, Info.plist, README/NOTICE/LICENSE |
 | Алмазы | Баланс, покупка, списание, возврат, платежи, история и транзакции | StarsUI, LocalAnimations, SceneEffects |
 | Платные взаимодействия | Реакции, сообщения, подписки, медиа, чаевые, affiliate и giveaways | StarsUI, ChatUI, PeerInfoUI, StoriesUI, backend-config hooks |
 | Подарки/коллекции | Каталог, цена, улучшение, продажа, transfer, auction/craft, пустые состояния | StarsUI, GalleryUI, PeerInfoUI |
 | Premium | Настройки, hero, подарки, paywall, ограничения, badges | PremiumUI, SceneEffects, LocalAnimations |
 | Кошелёк/Gram/TON | Сопоставить реальные backend capabilities и денежную модель; убрать неподдерживаемые точки входа | WalletUI, LocalTelegramCurrency, in-app links, app configuration |
-| Системная интеграция | Dock/Finder/Cmd-Tab, notification permissions, Share, URL handlers, open/save/export | app metadata, TelegramShare, localized plist/menu |
+| Системная интеграция | Dock/Finder/Cmd-Tab, notification permissions, Share, URL handlers, open/save/export | app metadata, AnsibleShare, localized plist/menu |
 | Ссылки и QR | Создание, разбор, копирование, sharing, login/proxy/sticker/theme/gift/invite/profile/message links | InAppLinks, Link/QR UI, meUrlPrefix callers |
 | Служебный контент | Уведомления, server notices, canned examples, bots, help links | langpacks, backend config, конкретные поставщики контента |
 | Ошибки и крайние состояния | Offline, empty, loading, forbidden, unsupported, receipt, refund, expired | Каждый feature module и его string/asset consumers |

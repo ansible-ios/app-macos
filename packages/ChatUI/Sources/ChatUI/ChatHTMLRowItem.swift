@@ -6,14 +6,14 @@ import SwiftSignalKit
 import Localization
 import LocalAnimations
 import ChatHistoryModel
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import AlertsUI
 import HTMLBubbles
 import WidgetSandbox
 import InputTextView
 import InlineStickerLayer
-import TelegramUtils
+import AnsibleUtils
 
 public final class ChatHTMLRowItem: ChatRowItem, HTMLTwidgetRow {
     public let state: HTMLBubbleState

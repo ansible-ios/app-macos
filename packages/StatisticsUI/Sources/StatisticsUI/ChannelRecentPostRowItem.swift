@@ -6,17 +6,17 @@ import TelegramCore
 import InputDataUI
 import GeneralRows
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import ColorPalette
 import AvatarUI
 import ShortPeerRow
 import LocalAnimations
 import GraphUI
 import DateUtils
-import TelegramIconsTheme
-import TelegramMediaUtils
+import AnsibleIconsTheme
+import AnsibleMediaUtils
 import MessageTextUtils
 
 

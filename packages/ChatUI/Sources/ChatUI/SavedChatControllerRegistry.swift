@@ -1,7 +1,7 @@
 import Cocoa
 import Postbox
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 import TGUIKit
 
 final class SavedChatControllerRegistry {

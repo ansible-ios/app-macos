@@ -9,8 +9,8 @@ let package = Package(
         .library(name: "EmojiReplacements", targets: ["EmojiReplacements"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
         .package(name: "TGUIKit", path: "../TGUIKit"),
         .package(name: "Strings", path: "../Strings"),
     ],

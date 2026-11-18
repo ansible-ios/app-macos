@@ -12,7 +12,7 @@ reference = reference.replace('private func generateMaskImage(size: NSSize, y: C
 reference = reference.replace('generateImage(size, rotatedContext:', 'generateImage(size, scale: scale, rotatedContext:')
 reference = reference.replace('generateMaskImage(size: NSMakeSize(size.width, size.height - 5), y: text.lines[0].frame.maxY + 2)', 'referenceMaskImage(size: NSMakeSize(size.width, size.height - 5), y: text.lines[0].frame.maxY + 2, scale: System.backingScale)')
 output = lab / 'Sources/FoldingViewHarness/Generated'
-(output / 'ReferenceMask.swift').write_text('import Cocoa\nimport TGUIKit\nimport TelegramContext\n' + reference)
+(output / 'ReferenceMask.swift').write_text('import Cocoa\nimport TGUIKit\nimport AnsibleContext\n' + reference)
 p = output / 'Current.swift'
 s = p.read_text()
 a = s.index('private final class FoldingQuoteMaskCache {')

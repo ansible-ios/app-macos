@@ -3,7 +3,7 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 import HTMLBubbles
 
 final class HTMLDemoChatListRowItem: ChatListRowItem {

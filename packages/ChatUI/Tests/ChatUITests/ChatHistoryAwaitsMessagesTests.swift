@@ -1,7 +1,7 @@
 import XCTest
 import Postbox
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 import ChatHistoryModel
 
 final class ChatHistoryAwaitsMessagesTests: XCTestCase {

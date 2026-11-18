@@ -4,16 +4,16 @@ import TelegramCore
 import DateUtils
 import Postbox
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import GeneralRows
 import InputDataUI
 import AlertsUI
 import AvatarUI
 import LocalAnimations
 import ColorPalette
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import SwiftSignalKit
 
 public class WebAuthorizationRowItem: GeneralRowItem {

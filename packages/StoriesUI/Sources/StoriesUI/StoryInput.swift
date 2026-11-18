@@ -6,14 +6,14 @@ import Postbox
 import TelegramCore
 import ColorPalette
 import InputView
-import TelegramMedia
-import TelegramMediaResources
+import AnsibleMedia
+import AnsibleMediaResources
 import FoundationUtils
 import ChatUI
 import InputTextView
 import ShortPeerRow
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 
 protocol StoryInput {
     func setArguments(_ arguments: StoryArguments?, groupId: PeerId?) -> Void

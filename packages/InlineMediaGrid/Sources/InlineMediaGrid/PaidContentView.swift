@@ -3,8 +3,8 @@ import SwiftSignalKit
 import Postbox
 import TelegramCore
 import TGUIKit
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import LocalAnimations
 import InlineStickerLayer

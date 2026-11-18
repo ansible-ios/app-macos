@@ -7,10 +7,10 @@ import SwiftSignalKit
 import DateUtils
 import FoundationUtils
 import MessageUtils
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
+import AnsibleMediaUtils
 import Localization
 import Strings
 import AvatarUI

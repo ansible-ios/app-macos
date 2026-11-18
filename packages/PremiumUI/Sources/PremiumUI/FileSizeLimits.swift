@@ -1,10 +1,10 @@
 import Cocoa
 import TelegramCore
 import TGUIKit
-import TelegramContext
+import AnsibleContext
 import AlertsUI
 import Localization
-import TelegramUtils
+import AnsibleUtils
 
 public func fileSizeLimitExceed(context: any AccountContextProtocol, fileSize: Int64) -> Bool {
     if context.isPremium {

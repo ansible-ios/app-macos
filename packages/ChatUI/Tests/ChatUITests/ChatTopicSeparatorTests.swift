@@ -3,8 +3,8 @@ import XCTest
 import TGUIKit
 import ChatHistoryModel
 import InAppSettings
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 import ThemeSettings
 import ColorPalette
 @testable import ChatUI

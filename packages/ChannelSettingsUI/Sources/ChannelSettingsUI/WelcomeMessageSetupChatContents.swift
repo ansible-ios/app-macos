@@ -5,7 +5,7 @@ import Cocoa
 import TGUIKit
 import SwiftSignalKit
 import Localization
-import TelegramContext
+import AnsibleContext
 import AlertsUI
 import ChatModeTypes
 import ChatUI

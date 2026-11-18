@@ -4,10 +4,10 @@ import TelegramCore
 import SwiftSignalKit
 import Postbox
 import ObjcUtils
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
-import TelegramIconsTheme
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleIconsTheme
 import Localization
 import LocalAnimations
 import AvatarUI

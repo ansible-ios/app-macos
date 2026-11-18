@@ -4,7 +4,7 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 
 public struct GroupsInCommonHooks {
     public let openChat: (any AccountContextProtocol, PeerId) -> Void

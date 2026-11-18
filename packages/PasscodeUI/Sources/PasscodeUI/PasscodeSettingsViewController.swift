@@ -7,9 +7,9 @@ import Postbox
 import LocalAuthentication
 import Localization
 import GeneralRows
-import TelegramUtils
-import TelegramTheme
-import TelegramContext
+import AnsibleUtils
+import AnsibleTheme
+import AnsibleContext
 
 private enum PasscodeEntry : Comparable, Identifiable {
     case turnOn(sectionId:Int, viewType: GeneralViewType)

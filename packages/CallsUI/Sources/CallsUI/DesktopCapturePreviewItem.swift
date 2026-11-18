@@ -3,8 +3,8 @@ import AVFoundation
 import TgVoipWebrtc
 import TGUIKit
 import SwiftSignalKit
-import TelegramUtils
-import TelegramCallsCore
+import AnsibleUtils
+import AnsibleCallsCore
 import GeneralRows
 
 final class DesktopCapturePreviewItem : GeneralRowItem {

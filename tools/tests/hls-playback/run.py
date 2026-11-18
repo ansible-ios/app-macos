@@ -33,12 +33,12 @@ cases = ['normal', 'merged', 'separate', 'past-end', 'straddles-end', 'before-st
 with tempfile.TemporaryDirectory(prefix='hls-playback-') as temp:
     directory = Path(temp)
     cache = directory / 'module-cache'
-    range_set = sorted((root / 'submodules/telegram-ios/submodules/Utils/RangeSet/Sources').glob('*.swift'))
+    range_set = sorted((root / 'submodules/ansible-ios/submodules/Utils/RangeSet/Sources').glob('*.swift'))
     playback = sorted((root / 'packages/HLSPlayback/Sources/HLSPlayback').glob('*.swift'))
     commands = [
         ['swiftc', '-module-cache-path', str(cache), '-emit-library', '-emit-module', '-module-name', 'RangeSet', *map(str, range_set), '-o', str(directory / 'libRangeSet.dylib'), '-emit-module-path', str(directory / 'RangeSet.swiftmodule')],
         ['swiftc', '-module-cache-path', str(cache), '-emit-library', '-emit-module', '-module-name', 'HLSPlayback', *map(str, playback), '-o', str(directory / 'libHLSPlayback.dylib'), '-emit-module-path', str(directory / 'HLSPlayback.swiftmodule')],
-        ['swiftc', '-module-cache-path', str(cache), '-I', str(directory), '-L', str(directory), '-lRangeSet', '-lHLSPlayback', '-Xlinker', '-rpath', '-Xlinker', str(directory), str(directory / 'main.swift'), str(root / 'packages/TelegramMedia/Sources/HLSNative/HLSBufferingStatus.swift'), '-o', str(directory / 'tests')],
+        ['swiftc', '-module-cache-path', str(cache), '-I', str(directory), '-L', str(directory), '-lRangeSet', '-lHLSPlayback', '-Xlinker', '-rpath', '-Xlinker', str(directory), str(directory / 'main.swift'), str(root / 'packages/AnsibleMedia/Sources/HLSNative/HLSBufferingStatus.swift'), '-o', str(directory / 'tests')],
     ]
     (directory / 'main.swift').write_text(Path(__file__).with_name('BufferingStatusTests.swift').read_text())
     for command in commands:

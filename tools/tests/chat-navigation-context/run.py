@@ -26,7 +26,7 @@ end = installer.index('    hooks.showStickerPackPreviewWithContext =', start)
 fixture = fixture.replace('__PREMIUM__', installer[start:end])
 with tempfile.TemporaryDirectory(prefix='chat-navigation-context-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "ChatNavigationContext", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "ChatNavigationContextTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

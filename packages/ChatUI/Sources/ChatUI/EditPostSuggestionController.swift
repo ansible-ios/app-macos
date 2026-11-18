@@ -6,9 +6,9 @@ import TelegramCore
 import Postbox
 import CurrencyFormat
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import InputTextView

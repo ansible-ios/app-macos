@@ -3,17 +3,17 @@ import TGUIKit
 import TelegramCore
 import SwiftSignalKit
 import ColorPalette
-import TelegramMedia
+import AnsibleMedia
 import AuthenticationServices
 import ApiCredentials
 import FilePanels
 import PhoneNumberUtils
 import LocalAnimations
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import Localization
 import QRCodeUtils
-import TelegramUtils
+import AnsibleUtils
 
 public enum QRTokenState {
     case qr(CGImage)

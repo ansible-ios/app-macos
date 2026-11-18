@@ -4,8 +4,8 @@ import SwiftSignalKit
 import TelegramCore
 import InAppSettings
 import Postbox
-import TelegramMedia
-import TelegramMediaUtils
+import AnsibleMedia
+import AnsibleMediaUtils
 import SystemPermissions
 
 

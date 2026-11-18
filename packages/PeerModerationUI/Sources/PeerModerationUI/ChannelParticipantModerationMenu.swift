@@ -5,7 +5,7 @@ import Postbox
 import SwiftSignalKit
 import Localization
 import LocalAnimations
-import TelegramTheme
+import AnsibleTheme
 
 private func canModerateChannelParticipant(channel: TelegramChannel, accountPeerId: PeerId, member: Peer, participant: ChannelParticipant?) -> Bool {
     guard !channel.isChannel, channel.hasPermission(.banMembers), member.id != accountPeerId, member.isUser || member.isBot,

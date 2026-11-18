@@ -9,7 +9,7 @@ import TGModernGrowingTextView
 import Strings
 import InputView
 import ColorPalette
-import TelegramMedia
+import AnsibleMedia
 import ChatHistoryModel
 import ChatModeTypes
 import ExternalVideoUtils
@@ -18,10 +18,10 @@ import LocalAnimations
 import Localization
 import MessageUtils
 import MessageTextUtils
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 

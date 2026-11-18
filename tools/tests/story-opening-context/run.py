@@ -214,7 +214,7 @@ overview = overview.replace('__GROUP_STATS__', group_args[a:b].replace('func sta
 fixture += '\n' + overview
 with tempfile.TemporaryDirectory(prefix='story-opening-context-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "StoryOpeningContext", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "StoryOpeningTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

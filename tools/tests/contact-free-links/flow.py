@@ -13,7 +13,7 @@ flow = "func openContact(token: String, freeToken: String?, context: AccountCont
 tests = Path(__file__).with_name("ContactFlowTests.swift").read_text().replace("__PRODUCTION__", helper + flow)
 with tempfile.TemporaryDirectory(prefix="contact-flow-") as directory:
     path = Path(directory)
-    dependency = json.dumps(str(root / "submodules/telegram-ios/submodules/SSignalKit"))
+    dependency = json.dumps(str(root / "submodules/ansible-ios/submodules/SSignalKit"))
     (path / "Package.swift").write_text('// swift-tools-version:5.9\nimport PackageDescription\nlet package = Package(name: "ContactFlow", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ' + dependency + ')], targets: [.testTarget(name: "ContactFlowTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])\n')
     (path / "Tests").mkdir()
     (path / "Tests/ContactFlowTests.swift").write_text(tests)

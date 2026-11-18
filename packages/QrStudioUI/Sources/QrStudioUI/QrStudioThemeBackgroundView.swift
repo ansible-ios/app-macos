@@ -4,10 +4,10 @@ import TGUIKit
 import SwiftSignalKit
 import Postbox
 import TelegramCore
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import ThemeSettings
-import TelegramMediaUtils
+import AnsibleMediaUtils
 import ColorPalette
 
 final class QrStudioThemeBackgroundView: View, QrStudioBackgroundContent {

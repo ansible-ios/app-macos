@@ -2,9 +2,9 @@ import Cocoa
 import Foundation
 import TGUIKit
 import TelegramCore
-import TelegramMedia
+import AnsibleMedia
 import LocalAnimations
-import TelegramCallsCore
+import AnsibleCallsCore
 import Localization
 
 public final class GroupCallSpeakButton : Control {

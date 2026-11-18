@@ -1,12 +1,12 @@
 import Cocoa
-import TelegramUtils
+import AnsibleUtils
 import TGUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
 import InputView
-import TelegramTheme
-import TelegramMedia
+import AnsibleTheme
+import AnsibleMedia
 
 public final class InlineStickerItem : Hashable {
 

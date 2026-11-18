@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
 import Localization
-import TelegramTheme
+import AnsibleTheme
 class AddContactTableItem: TableRowItem {
     private let _stableId:AnyHashable
     fileprivate let text:TextViewLayout

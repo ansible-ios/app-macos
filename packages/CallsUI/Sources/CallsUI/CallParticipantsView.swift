@@ -4,7 +4,7 @@ import Postbox
 import SwiftSignalKit
 import TelegramCore
 import AvatarUI
-import TelegramTheme
+import AnsibleTheme
 
 internal final class CallParticipantsView : View {
     

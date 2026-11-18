@@ -2,15 +2,15 @@ import Cocoa
 import TelegramCore
 import Postbox
 import TGUIKit
-import TelegramMedia
+import AnsibleMedia
 import InputTextView
 import InstantPageUI
 import MessageUtils
 import Strings
-import TelegramContext
-import TelegramMediaUtils
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleUtils
+import AnsibleTheme
 import InlineStickerLayer
 import InputView
 

@@ -4,7 +4,7 @@ import Postbox
 import TelegramCore
 import SwiftSignalKit
 import CallsUI
-import TelegramCallsCore
+import AnsibleCallsCore
 
 func installGroupCallUIHooks() {
     GroupCallUIHooks.install(GroupCallUIHooks(groupCallThemeMembersColor: {

@@ -5,9 +5,9 @@ import Postbox
 import TelegramCore
 import SwiftSignalKit
 import Cocoa
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import GeneralRows
 import AvatarUI
 import PremiumStatusUI

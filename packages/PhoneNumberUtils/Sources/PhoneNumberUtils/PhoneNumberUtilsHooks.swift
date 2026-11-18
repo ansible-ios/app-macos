@@ -1,6 +1,6 @@
 import Foundation
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 
 public struct PhoneNumberUtilsHooks {
     public let currentCountriesConfiguration: (any AccountContextProtocol) -> Atomic<CountriesConfiguration>

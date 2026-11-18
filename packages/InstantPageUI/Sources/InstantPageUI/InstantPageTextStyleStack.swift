@@ -3,9 +3,9 @@ import Cocoa
 import TelegramCore
 
 import TGUIKit
-import TelegramTheme
-import TelegramUtils
-import TelegramContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleContext
 
 public enum InstantPageTextStyle {
     case fontSize(CGFloat)

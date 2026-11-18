@@ -1,18 +1,18 @@
 import Cocoa
-import TelegramMediaUtils
+import AnsibleMediaUtils
 import Postbox
 import TelegramCore
 import MtProtoKit
 import SwiftSignalKit
 import TGUIKit
 import Localization
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 import InputDataUI
 import AlertsUI
 import FilePanels
 import MessageTextUtils
-import TelegramUtils
+import AnsibleUtils
 import GeneralRows
 import ColorPalette
 

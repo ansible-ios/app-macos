@@ -3,7 +3,7 @@ import AppKit
 import ColorPalette
 import SwiftSignalKit
 import ThemeSettings
-@testable import TelegramTheme
+@testable import AnsibleTheme
 
 final class SystemThemeColorsTests: XCTestCase {
     override func setUp() {

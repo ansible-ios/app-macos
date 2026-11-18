@@ -1,10 +1,10 @@
 import Cocoa
 import TGUIKit
 import Foundation
-import TelegramMedia
+import AnsibleMedia
 import TelegramCore
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import LocalAnimations
 import Localization
 

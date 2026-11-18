@@ -4,9 +4,9 @@ import TGUIKit
 import TgVoipWebrtc
 import SwiftSignalKit
 import InAppSettings
-import TelegramTheme
-import TelegramMediaUtils
-import TelegramCallsCore
+import AnsibleTheme
+import AnsibleMediaUtils
+import AnsibleCallsCore
 import SystemPermissions
 import GeneralRows
 import InputDataUI

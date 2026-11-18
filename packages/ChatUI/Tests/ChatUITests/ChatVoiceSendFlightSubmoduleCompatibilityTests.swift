@@ -3,9 +3,9 @@ import Cocoa
 @testable import ChatUI
 
 final class ChatVoiceSendFlightSubmoduleCompatibilityTests: XCTestCase {
-    private static let transitionPath = "submodules/telegram-ios/submodules/TelegramUI/Sources/ChatMessageTransitionNode.swift"
-    private static let recordingButtonPath = "submodules/telegram-ios/submodules/TelegramUI/Components/ChatTextInputMediaRecordingButton/Sources/ChatTextInputMediaRecordingButton.swift"
-    private static let bubblePath = "submodules/telegram-ios/submodules/TelegramUI/Components/Chat/ChatMessageBubbleItemNode/Sources/ChatMessageBubbleItemNode.swift"
+    private static let transitionPath = "submodules/ansible-ios/submodules/TelegramUI/Sources/ChatMessageTransitionNode.swift"
+    private static let recordingButtonPath = "submodules/ansible-ios/submodules/TelegramUI/Components/ChatTextInputMediaRecordingButton/Sources/ChatTextInputMediaRecordingButton.swift"
+    private static let bubblePath = "submodules/ansible-ios/submodules/TelegramUI/Components/Chat/ChatMessageBubbleItemNode/Sources/ChatMessageBubbleItemNode.swift"
 
     private func repositoryRoot() -> URL {
         return URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()

@@ -9,15 +9,15 @@ import TGUIKit
 import libwebp
 import TGGifConverter
 import InAppSettings
-import TelegramMedia
-import TelegramMediaResources
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleMedia
+import AnsibleMediaResources
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import ChatModeTypes
 import DiceCache
 import EmojiReplacements
-import TelegramMediaUtils
+import AnsibleMediaUtils
 import InputView
 
 

@@ -3,12 +3,12 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleUtils
+import AnsibleMediaUtils
 import ChatModeTypes
 import InAppSettings
-import TelegramTheme
+import AnsibleTheme
 
 public func canDeleteMessage(_ message:Message, account:Account, chatLocation: ChatLocation, mode: ChatMode, ranks: CachedChannelAdminRanks? = nil) -> Bool {
 

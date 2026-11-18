@@ -1,6 +1,6 @@
 import Foundation
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 import TelegramCore
 import TGUIKit
 import Localization

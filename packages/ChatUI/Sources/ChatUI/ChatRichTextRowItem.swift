@@ -9,16 +9,16 @@ import CoreMedia
 import InAppSettings
 import RichTextEditorCore
 import RichTextEditorUI
-import TelegramMediaResources
+import AnsibleMediaResources
 import ChatHistoryModel
 import InputTextView
 import InstantPageUI
 import Localization
 import MessageUtils
 import Strings
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 import InputView
 

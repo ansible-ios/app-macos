@@ -1,8 +1,8 @@
 import Foundation
 import Cocoa
 import TelegramCore
-import TelegramTheme
-import TelegramMediaUtils
+import AnsibleTheme
+import AnsibleMediaUtils
 
 public func canCollagesFromUrl(_ urls:[URL]) -> Bool {
     let canCollage: Bool = urls.count >= 1

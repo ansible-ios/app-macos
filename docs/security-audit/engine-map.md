@@ -1,6 +1,6 @@
 # Rust MTProto engine: security map for auditors
 
-Engine: `submodules/telegram-ios/third-party/mtproto-engine` (submodule HEAD `c9c7f23`). Read-only review; nothing was edited.
+Engine: `submodules/ansible-ios/third-party/mtproto-engine` (submodule HEAD `c9c7f23`). Read-only review; nothing was edited.
 
 ## Path and test abbreviations
 

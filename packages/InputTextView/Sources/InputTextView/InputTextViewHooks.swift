@@ -2,7 +2,7 @@ import Cocoa
 import AppAnalytics
 import InputView
 import TGUIKit
-import TelegramContext
+import AnsibleContext
 import TelegramCore
 
 public protocol InputInlineAvatarLayer: SimpleLayer {

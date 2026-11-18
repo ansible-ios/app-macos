@@ -5,11 +5,11 @@ import TGUIKit
 import SwiftSignalKit
 import Postbox
 import ImageCanvasUI
-import TelegramTheme
+import AnsibleTheme
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleUtils
+import AnsibleMediaUtils
 import MessageUtils
 import AvatarEditorUI
 import ChatUI

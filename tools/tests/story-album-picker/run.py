@@ -24,7 +24,7 @@ if 'albumContext: PeerStoryListContext?' not in source:
 fixture = Path(__file__).with_name('StoryAlbumPickerTests.swift').read_text().replace('__PRODUCTION__',source)
 with tempfile.TemporaryDirectory(prefix='story-album-picker-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "StoryAlbumPicker", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "StoryAlbumPickerTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

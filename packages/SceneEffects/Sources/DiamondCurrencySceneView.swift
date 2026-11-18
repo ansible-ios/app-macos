@@ -1,6 +1,6 @@
 import Cocoa
 import TGUIKit
-import TelegramMedia
+import AnsibleMedia
 import LocalAnimations
 
 public final class DiamondCurrencySceneView: View, PremiumSceneView {

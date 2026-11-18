@@ -5,9 +5,9 @@ import TelegramCore
 import TGUIKit
 import ChatHistoryModel
 import InAppSettings
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import ThemeSettings
 import ColorPalette
 @testable import ChatUI

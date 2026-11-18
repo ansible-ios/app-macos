@@ -20,10 +20,10 @@ import PremiumStatusUI
 import PremiumUI
 import StarsUI
 import Strings
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 import HTMLBubbles
 

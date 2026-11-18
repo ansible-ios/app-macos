@@ -1,9 +1,9 @@
 import Cocoa
 import Localization
-import TelegramUtils
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramContext
+import AnsibleUtils
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleContext
 import AudioPlayerCore
 import TelegramCore
 import SwiftSignalKit

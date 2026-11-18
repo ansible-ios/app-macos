@@ -4,8 +4,8 @@ import TGUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import InlineStickerLayer
 import PerfLab
 import UniqueGiftBackground

@@ -3,7 +3,7 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 
 public struct BlockedPeersHooks {
     public let openPeerInfo: (NavigationViewController, any AccountContextProtocol, PeerId) -> Void

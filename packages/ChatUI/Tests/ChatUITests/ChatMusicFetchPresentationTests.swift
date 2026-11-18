@@ -3,7 +3,7 @@ import AppKit
 @testable import TGUIKit
 import TelegramCore
 import Postbox
-import TelegramTheme
+import AnsibleTheme
 import SwiftSignalKit
 import AudioPlayerCore
 @testable import FetchManager

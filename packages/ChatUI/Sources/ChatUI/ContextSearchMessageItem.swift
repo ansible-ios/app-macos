@@ -4,9 +4,9 @@ import DateUtils
 import TGUIKit
 import Postbox
 import Strings
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import GeneralRows
 import AvatarUI
 import MessageUtils

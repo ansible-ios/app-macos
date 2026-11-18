@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramTheme
+import AnsibleTheme
 import Localization
 
 public class ContextInlineSetupQuickReplyRowItem: TableRowItem {

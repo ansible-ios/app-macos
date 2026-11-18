@@ -6,12 +6,12 @@ import ObjcUtils
 import Localization
 import TelegramCore
 import Postbox
-import TelegramMedia
+import AnsibleMedia
 import RichTextEditorCore
 import InAppSettings
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import AlertsUI

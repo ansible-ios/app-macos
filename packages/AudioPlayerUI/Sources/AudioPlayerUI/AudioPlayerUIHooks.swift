@@ -2,7 +2,7 @@ import Cocoa
 import TGUIKit
 import Postbox
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 import AudioPlayerCore
 
 public protocol InlineAudioPlayerInstantVideoPIP: ViewController {

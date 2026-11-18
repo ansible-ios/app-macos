@@ -31,7 +31,7 @@ OLD replays the previous Mac app integration's gzip-only decoder, resize heurist
 
 These are local `TelegramMediaWidget` messages in the real chat renderer. The harness reads precompressed zlib/gzip bytes and passes them through the normal payload decoder, storage and row layout. It does not send messages or verify bot/server delivery. Use Back to leave; quit and run the launcher again to repeat.
 
-`manual.py --behavior old` and `manual.py --behavior new` select the mode. The launch flag is `-PerfLabWidgetBehavior old|new` with the manual chat harness flags. `manual.py --prepare-only` creates the fixtures and a manifest without opening the app. `--app /path/to/Telegram.app` selects a different Debug build. Generated files and reports are in `.build/widget-v013-manual/`.
+`manual.py --behavior old` and `manual.py --behavior new` select the mode. The launch flag is `-PerfLabWidgetBehavior old|new` with the manual chat harness flags. `manual.py --prepare-only` creates the fixtures and a manifest without opening the app. `--app /path/to/Ansible.app` selects a different Debug build. Generated files and reports are in `.build/widget-v013-manual/`.
 
 The focused automated checks are `python3 tools/tests/widget-v013/run.py`: payload decoding, the anchor kept next to prepared, live and cached heights, the list's scroll compensation for both anchors, and the renderer keeping the old pixels on the anchored edge when no press is recent.
 

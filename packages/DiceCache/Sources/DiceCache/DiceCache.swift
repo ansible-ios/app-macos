@@ -3,7 +3,7 @@ import TelegramCore
 
 import SwiftSignalKit
 import Postbox
-import TelegramTheme
+import AnsibleTheme
 import FoundationUtils
 
 public struct InteractiveEmojiConfetti : Equatable {

@@ -5,9 +5,9 @@ import Postbox
 import TelegramCore
 import InAppSettings
 import Strings
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
 
 
 

@@ -15,7 +15,7 @@ def section(start, end):
     return s[offset:s.index(end, offset)]
 
 fixture = Path(__file__).with_name('PlaylistTests.swift').read_text()
-message_equality = (root / 'packages/TelegramUtils/Sources/TelegramUtils/IsEqualMessages.swift').read_text().replace('import TelegramCore', '').replace('import Postbox', '')
+message_equality = (root / 'packages/AnsibleUtils/Sources/AnsibleUtils/IsEqualMessages.swift').read_text().replace('import TelegramCore', '').replace('import Postbox', '')
 fixture = fixture.replace('__MESSAGE_EQUALITY__', message_equality.replace('public ', ''))
 for key, value in [
     ('__STATE__', section('    public struct State : Equatable {', '    private var mediaPlayer:')),
@@ -37,7 +37,7 @@ metadata = section('    fileprivate func updateMetadata(', '    public override 
 fixture = fixture.replace('__METADATA__', metadata.replace('fileprivate ', ''))
 with tempfile.TemporaryDirectory(prefix='audio-playlist-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('// swift-tools-version:5.9\nimport PackageDescription\nlet package = Package(name: "AudioPlaylist", platforms: [.macOS(.v10_13)], dependencies: [.package(path: '+dependency+')], targets: [.testTarget(name: "PlaylistTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])\n')
     (directory / 'Tests').mkdir()
     (directory / 'Tests/PlaylistTests.swift').write_text(fixture)

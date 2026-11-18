@@ -4,9 +4,9 @@ import InAppSettings
 import Postbox
 import TGUIKit
 import ChatHistoryModel
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
 
 public class ChatFileMediaItem: ChatMediaItem {
 

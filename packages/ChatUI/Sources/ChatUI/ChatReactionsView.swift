@@ -6,8 +6,8 @@ import Postbox
 import Reactions
 import AppKit
 import SwiftSignalKit
-import TelegramMedia
-import TelegramMediaResources
+import AnsibleMedia
+import AnsibleMediaResources
 import AvatarUI
 import LocalAnimations
 import Localization
@@ -15,9 +15,9 @@ import MessageUtils
 import SceneEffects
 import StarsUI
 import Strings
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 
 private enum ReactionCountTooltip {
     private static var cache: [Int32: String] = [:]

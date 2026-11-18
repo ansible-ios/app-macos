@@ -2,8 +2,8 @@ import XCTest
 import AppKit
 import TGUIKit
 import GeneralRows
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 @testable import PeerInfoUI
 
 final class TextAndLabelRowTests: XCTestCase {

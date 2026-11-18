@@ -51,5 +51,5 @@
     "dark-loading.png": "338040ea4e2c428761b4d714cec280cef6182a29eec14eaeeeba538561809fc0",
     "light-empty.png": "5be9d646313e953cd457a1fc34479ac7bd6d2a3b25e6d5f355bba67c30177686"
   },
-  "scope": "65 search/state tests using production helpers and extracted pipelines, 6 real AppKit status-view tests; no full app build. Preview duck uses RLottie frame 20 from the bundled asset, not the full TelegramMedia player."
+  "scope": "65 search/state tests using production helpers and extracted pipelines, 6 real AppKit status-view tests; no full app build. Preview duck uses RLottie frame 20 from the bundled asset, not the full AnsibleMedia player."
 }

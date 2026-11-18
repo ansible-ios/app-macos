@@ -3,7 +3,7 @@ import TelegramCore
 
 import TGUIKit
 import Postbox
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 private final class MessagePhotoInfo {
     let mid:MessageId

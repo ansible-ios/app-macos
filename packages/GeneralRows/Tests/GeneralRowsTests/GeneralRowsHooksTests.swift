@@ -3,8 +3,8 @@ import AppKit
 import TGUIKit
 import TelegramCore
 import Postbox
-import TelegramMedia
-import TelegramContext
+import AnsibleMedia
+import AnsibleContext
 @testable import GeneralRows
 
 private final class StubInlineTextRenderer: InlineTextRenderer {

@@ -1,0 +1,1 @@
+../AnsibleUtils/ImageCompression.swift

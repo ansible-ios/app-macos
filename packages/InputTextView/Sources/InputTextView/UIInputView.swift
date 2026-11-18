@@ -5,15 +5,15 @@ import TGUIKit
 import InputView
 import ColorPalette
 import SwiftSignalKit
-import TelegramMedia
+import AnsibleMedia
 import Translate
 import TelegramCore
 import Postbox
 import Localization
 import InAppSettings
-import TelegramUtils
-import TelegramContext
-import TelegramTheme
+import AnsibleUtils
+import AnsibleContext
+import AnsibleTheme
 import InlineStickerLayer
 
 public final class InputAnimatedEmojiAttach: View {

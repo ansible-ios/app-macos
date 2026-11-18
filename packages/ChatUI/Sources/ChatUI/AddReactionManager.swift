@@ -5,15 +5,15 @@ import SwiftSignalKit
 import TelegramCore
 import Postbox
 import ObjcUtils
-import TelegramMedia
-import TelegramMediaResources
+import AnsibleMedia
+import AnsibleMediaResources
 import LocalAnimations
 import Localization
 import StarsUI
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 

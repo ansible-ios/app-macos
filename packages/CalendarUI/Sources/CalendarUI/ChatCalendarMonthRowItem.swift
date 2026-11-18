@@ -1,7 +1,7 @@
 import Cocoa
 import Foundation
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 import GeneralRows
 
 

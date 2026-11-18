@@ -3,7 +3,7 @@ import TGUIKit
 import ChatHistoryModel
 import GeneralRows
 import Localization
-import TelegramTheme
+import AnsibleTheme
 
 public class RepliesHeaderRowItem: GeneralRowItem {
     fileprivate var textLayout: TextViewLayout

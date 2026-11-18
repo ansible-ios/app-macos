@@ -13,11 +13,11 @@ import GeneralRows
 import InputDataUI
 import Localization
 import ShortPeerRow
-import TelegramCallsCore
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleCallsCore
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import PushToTalk
 
 private final class Arguments {

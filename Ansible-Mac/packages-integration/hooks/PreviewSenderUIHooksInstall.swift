@@ -9,9 +9,9 @@ import EntertainmentUI
 import ChatUI
 import AlertsUI
 import Localization
-import TelegramTheme
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleMediaUtils
 
 extension EmojiesController: @retroactive PreviewSenderEmojiesController {
 

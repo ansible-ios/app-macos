@@ -2,7 +2,7 @@ import Cocoa
 import Foundation
 import CurrencyFormat
 import InAppSettings
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 
 
@@ -12,9 +12,9 @@ import TelegramCore
 import SwiftSignalKit
 import Postbox
 import TGUIKit
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 

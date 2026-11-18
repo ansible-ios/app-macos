@@ -1,5 +1,5 @@
 import AppAnalytics
-import TelegramContext
+import AnsibleContext
 import Cocoa
 import CoreLocation
 import TGUIKit

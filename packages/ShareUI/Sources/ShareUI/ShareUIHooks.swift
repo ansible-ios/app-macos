@@ -2,11 +2,11 @@ import Cocoa
 import TGUIKit
 import Postbox
 import TelegramCore
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 import ChatUI
 import EntertainmentUI
-import TelegramTheme
+import AnsibleTheme
 import ChatModeTypes
 
 public protocol ShareSelectCallbackObject: ShareObject {

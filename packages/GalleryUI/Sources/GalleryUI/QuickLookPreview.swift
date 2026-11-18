@@ -8,9 +8,9 @@ import Quartz
 import Foundation
 import Localization
 import InAppSettings
-import TelegramTheme
-import TelegramContext
-import TelegramMediaUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleMediaUtils
 import ChatModeTypes
 import AlertsUI
 

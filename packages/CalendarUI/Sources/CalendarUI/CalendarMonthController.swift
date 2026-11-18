@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
 import CalendarUtils
-import TelegramTheme
+import AnsibleTheme
 import GeneralRows
 import Localization
 

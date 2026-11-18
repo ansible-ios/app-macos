@@ -6,9 +6,9 @@ import TelegramCore
 import TGModernGrowingTextView
 import InputView
 import ImageCanvasUI
-import TelegramContext
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleUtils
+import AnsibleMediaUtils
 import MessageUtils
 
 public struct ChatInterfaceSelectionState: Equatable {

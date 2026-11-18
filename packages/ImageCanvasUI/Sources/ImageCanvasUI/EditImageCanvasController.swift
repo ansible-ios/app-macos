@@ -3,9 +3,9 @@ import TGUIKit
 import SwiftSignalKit
 import ColorPalette
 import Localization
-import TelegramContext
+import AnsibleContext
 import TextRecognizing
-import TelegramMedia
+import AnsibleMedia
 
 public final class EditImageDrawTouch : Equatable {
 

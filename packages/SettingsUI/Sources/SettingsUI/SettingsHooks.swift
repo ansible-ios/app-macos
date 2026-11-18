@@ -6,14 +6,14 @@ import GeneralRows
 import Postbox
 import SwiftSignalKit
 import TGUIKit
-import TelegramContext
+import AnsibleContext
 import TelegramCore
-import TelegramLinks
-import TelegramTheme
+import AnsibleLinks
+import AnsibleTheme
 import ThemeSettings
 import InAppSettings
 import LocalAnimations
-import TelegramUtils
+import AnsibleUtils
 import ShortPeerRow
 import ChatModeTypes
 import InlineStickerLayer
@@ -143,7 +143,7 @@ public struct SettingsHooks {
     public let makeChatPreviewContext: (any AccountContextProtocol, PeerId, Bool) -> AppearanceChatPreviewContext
     public let makeChatPreviewItem: (NSSize, AppearanceChatPreviewContext, ChatHistoryEntry, TelegramPresentationTheme) -> TableRowItem
     public let makeSelectColorController: (any AccountContextProtocol, Peer) -> ViewController
-    public let downloadAndApplyCloudTheme: (any AccountContextProtocol, TelegramTheme, ColorPalette?, Bool) -> Signal<Never, Void>
+    public let downloadAndApplyCloudTheme: (any AccountContextProtocol, AnsibleTheme, ColorPalette?, Bool) -> Signal<Never, Void>
     public let generateThemePreview: (ColorPalette, Wallpaper, TableBackgroundMode) -> CGImage
     public let inAppLink: (NSString, any AccountContextProtocol) -> AppearanceInAppLink
     public let cloudThemes: (any AccountContextProtocol) -> Signal<CloudThemesCachedData, NoError>
@@ -199,7 +199,7 @@ public struct SettingsHooks {
                 makeChatPreviewContext: @escaping (any AccountContextProtocol, PeerId, Bool) -> AppearanceChatPreviewContext,
                 makeChatPreviewItem: @escaping (NSSize, AppearanceChatPreviewContext, ChatHistoryEntry, TelegramPresentationTheme) -> TableRowItem,
                 makeSelectColorController: @escaping (any AccountContextProtocol, Peer) -> ViewController,
-                downloadAndApplyCloudTheme: @escaping (any AccountContextProtocol, TelegramTheme, ColorPalette?, Bool) -> Signal<Never, Void>,
+                downloadAndApplyCloudTheme: @escaping (any AccountContextProtocol, AnsibleTheme, ColorPalette?, Bool) -> Signal<Never, Void>,
                 generateThemePreview: @escaping (ColorPalette, Wallpaper, TableBackgroundMode) -> CGImage,
                 inAppLink: @escaping (NSString, any AccountContextProtocol) -> AppearanceInAppLink,
                 cloudThemes: @escaping (any AccountContextProtocol) -> Signal<CloudThemesCachedData, NoError>,

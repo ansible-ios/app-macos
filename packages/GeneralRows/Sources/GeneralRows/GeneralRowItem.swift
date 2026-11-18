@@ -1,13 +1,13 @@
 import Cocoa
 import TGUIKit
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 import ColorPalette
-import TelegramIconsTheme
+import AnsibleIconsTheme
 #else
-import TelegramTheme
+import AnsibleTheme
 import ColorPalette
-import TelegramIconsTheme
+import AnsibleIconsTheme
 #endif
 
 public enum InputDataValueErrorTarget : Equatable {

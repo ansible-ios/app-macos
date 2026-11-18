@@ -3,8 +3,8 @@ import Cocoa
 import CoreText
 import TGUIKit
 import TelegramCore
-import TelegramContext
-import TelegramMedia
+import AnsibleContext
+import AnsibleMedia
 import ColorPalette
 import UniqueGiftBackground
 import InlineStickerLayer

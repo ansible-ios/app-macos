@@ -8,9 +8,9 @@ import Postbox
 import SwiftSignalKit
 import TGUIKit
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 #else
-import TelegramTheme
+import AnsibleTheme
 import CoreMedia
 #endif
 

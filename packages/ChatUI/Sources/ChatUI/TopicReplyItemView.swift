@@ -7,9 +7,9 @@ import Postbox
 import ColorPalette
 import TGModernGrowingTextView
 import Strings
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 struct ChatTopicIconIdentity: Equatable {

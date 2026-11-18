@@ -3,9 +3,9 @@ import TGUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 
 public final class EntertainmentSidebarView: View {
     private let glassView: LiquidGlassView

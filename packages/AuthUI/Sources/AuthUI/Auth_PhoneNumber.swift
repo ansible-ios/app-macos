@@ -5,10 +5,10 @@ import TelegramCore
 import SwiftSignalKit
 import FilePanels
 import PhoneNumberUtils
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import Localization
-import TelegramUtils
+import AnsibleUtils
 import PhoneInputUI
 
 public final class Auth_LoginHeader : View {

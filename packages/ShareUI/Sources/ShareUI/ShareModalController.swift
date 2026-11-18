@@ -17,11 +17,11 @@ import InputTextView
 import LocalAnimations
 import MessageUtils
 import ShortPeerRow
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import Strings
-import TelegramMediaUtils
+import AnsibleMediaUtils
 import ChatModeTypes
 import InlineStickerLayer
 import InputDataUI

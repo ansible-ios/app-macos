@@ -3,7 +3,7 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 
 public protocol AffiliateStickerView: AnyObject {
     func updateAffiliateSticker(file: TelegramMediaFile, size: NSSize, context: any AccountContextProtocol, animated: Bool)

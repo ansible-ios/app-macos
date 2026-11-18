@@ -5,9 +5,9 @@ import TelegramCore
 import SwiftSignalKit
 import LocalAnimations
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import InlineStickerLayer
 
 final class ChatStarReactionUndoView : Control {

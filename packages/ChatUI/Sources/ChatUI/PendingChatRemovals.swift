@@ -2,7 +2,7 @@ import Cocoa
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 
 public struct PendingChatRemovalToast: Equatable {
     public let peerId: PeerId

@@ -7,7 +7,7 @@ import InAppSettings
 import Postbox
 import SwiftSignalKit
 import ColorPalette
-import TelegramMediaResources
+import AnsibleMediaResources
 import ChatHistoryModel
 import ChatModeTypes
 import FoundationUtils
@@ -15,10 +15,10 @@ import GeneralRows
 import Localization
 import MessageUtils
 import SceneEffects
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 

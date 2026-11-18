@@ -21,7 +21,7 @@ with tempfile.TemporaryDirectory(prefix='edited-avatar-export-') as directory:
  directory=Path(directory)
  (directory/'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
-let package=Package(name:"EditedAvatarExport",platforms:[.macOS(.v10_13)],dependencies:[.package(path:'''+json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))+''')],targets:[.testTarget(name:"NativeTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Native"),.testTarget(name:"ControlledTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Controlled")])
+let package=Package(name:"EditedAvatarExport",platforms:[.macOS(.v10_13)],dependencies:[.package(path:'''+json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))+''')],targets:[.testTarget(name:"NativeTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Native"),.testTarget(name:"ControlledTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Controlled")])
 ''')
  (directory/'Native').mkdir();(directory/'Controlled').mkdir()
  (directory/'Native/EditedAvatarVideoExport.swift').write_text(source.replace('private ','')+'\n'+state)

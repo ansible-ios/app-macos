@@ -4,16 +4,16 @@ import Postbox
 import TelegramCore
 import KeyboardKey
 import SwiftSignalKit
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import Localization
 import ColorPalette
 import GeneralRows
 import ShortPeerRow
 import Strings
 import InAppSettings
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import AppAnalytics
 
 private class QuickSwitcherArguments {

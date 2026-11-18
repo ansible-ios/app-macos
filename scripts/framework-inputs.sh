@@ -18,25 +18,25 @@ framework_build_dir() {
 framework_source_roots() {
     case "$2" in
         OpenSSL)
-            echo "$1/submodules/telegram-ios/submodules/openssl"
+            echo "$1/submodules/ansible-ios/submodules/openssl"
             ;;
         mozjpeg)
-            echo "$1/submodules/telegram-ios/third-party/mozjpeg/mozjpeg"
+            echo "$1/submodules/ansible-ios/third-party/mozjpeg/mozjpeg"
             ;;
         dav1d)
-            echo "$1/submodules/telegram-ios/third-party/dav1d/dav1d"
+            echo "$1/submodules/ansible-ios/third-party/dav1d/dav1d"
             ;;
         ffmpeg)
-            echo "$1/submodules/telegram-ios/submodules/ffmpeg/Sources/FFMpeg"
+            echo "$1/submodules/ansible-ios/submodules/ffmpeg/Sources/FFMpeg"
             ;;
         webrtc)
             echo "$1/submodules/tg_owt"
             ;;
         tde2e)
-            echo "$1/submodules/telegram-ios/third-party/td/td"
+            echo "$1/submodules/ansible-ios/third-party/td/td"
             ;;
         mtproto-engine)
-            echo "$1/submodules/telegram-ios/third-party/mtproto-engine"
+            echo "$1/submodules/ansible-ios/third-party/mtproto-engine"
             ;;
         *)
             ;;
@@ -82,7 +82,7 @@ framework_extra_fingerprint() {
 framework_reset_outputs() {
     case "$2" in
         mtproto-engine)
-            rm -rf "$1/submodules/telegram-ios/submodules/MTProtoRustEngine/MTProtoEngineFFI.xcframework"
+            rm -rf "$1/submodules/ansible-ios/submodules/MTProtoRustEngine/MTProtoEngineFFI.xcframework"
             ;;
         *)
             ;;
@@ -123,7 +123,7 @@ framework_required_outputs() {
             printf '%s\n' "$BUILD_DIR/tde2e/lib/"{libtde2e,libtdutils}.a
             ;;
         mtproto-engine)
-            local XCFRAMEWORK="$1/submodules/telegram-ios/submodules/MTProtoRustEngine/MTProtoEngineFFI.xcframework"
+            local XCFRAMEWORK="$1/submodules/ansible-ios/submodules/MTProtoRustEngine/MTProtoEngineFFI.xcframework"
             printf '%s\n' "$BUILD_DIR/libmtproto_engine_ffi.a" "$XCFRAMEWORK/Info.plist" \
                 "$XCFRAMEWORK/macos-arm64_x86_64/libmtproto_engine_ffi.a" \
                 "$XCFRAMEWORK/macos-arm64_x86_64/Headers/MTProtoEngineFFI/"{mtproto_engine.h,module.modulemap}

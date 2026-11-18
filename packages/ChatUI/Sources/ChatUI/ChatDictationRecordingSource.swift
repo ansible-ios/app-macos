@@ -3,7 +3,7 @@ import AVFoundation
 import Accelerate
 import SwiftSignalKit
 import OpusBinding
-import TelegramMedia
+import AnsibleMedia
 import MediaRecorderUI
 
 final class ChatDictationRecordingSource {

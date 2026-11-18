@@ -8,7 +8,7 @@ swift test --package-path tools/perflab/ControlNodeLab
 LAB_EXPECT_MUTANT_EQUAL=1 swift test --package-path tools/perflab/ControlNodeLab --filter testMutantIsDetected
 ```
 
-The last command is the oracle check and is expected to fail. The package builds the real TGUIKit by path (the SSignalKit path needs an initialized `submodules/telegram-ios`).
+The last command is the oracle check and is expected to fail. The package builds the real TGUIKit by path (the SSignalKit path needs an initialized `submodules/ansible-ios`).
 
 ## Setup
 

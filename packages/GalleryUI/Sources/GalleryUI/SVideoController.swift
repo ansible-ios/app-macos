@@ -6,17 +6,17 @@ import SwiftSignalKit
 import Postbox
 import RangeSet
 import IOKit.pwr_mgt
-import TelegramMedia
+import AnsibleMedia
 import AudioPlayerCore
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import ChatModeTypes
 import ChatHistoryModel
 import GeneralRows
 import LocalAnimations
-import TelegramMediaUtils
+import AnsibleMediaUtils
 import AvatarUI
 import MessageUtils
 import InstantPageUI
@@ -25,7 +25,7 @@ import ColorPalette
 import InAppSettings
 import FoundationUtils
 import ObjcUtils
-import TelegramMediaResources
+import AnsibleMediaResources
 import InputDataUI
 
 

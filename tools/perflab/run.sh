@@ -6,11 +6,11 @@ if [ -z "$LAB" ] || [ -z "$LABEL" ]; then
     echo "usage: tools/perflab/run.sh <lab> <label> [-PerfLabScenarios a,b] [-PerfLabRuns n] [-PerfLabX value ...]"
     exit 1
 fi
-APP=${PERFLAB_APP:-$(ls -d ~/Library/Developer/Xcode/DerivedData/Ansible-Mac-*/Build/Products/Debug/Telegram.app 2>/dev/null | head -1)}
+APP=${PERFLAB_APP:-$(ls -d ~/Library/Developer/Xcode/DerivedData/Ansible-Mac-*/Build/Products/Debug/Ansible.app 2>/dev/null | head -1)}
 OUT="$HOME/Library/Group Containers/6N38VWS5BX.ru.keepcoder.Telegram/debug/perf-lab"
 RESULTS=${PERFLAB_RESULTS:-$DIR/results}
 mkdir -p "$RESULTS"
-if pgrep -f '^[^ ]*Debug/Telegram[.]app/Contents/MacOS/Telegram' >/dev/null; then
+if pgrep -f '^[^ ]*Debug/Telegram[.]app/Contents/MacOS/Ansible' >/dev/null; then
     echo "a Debug Telegram is already running; quit it first"
     exit 1
 fi
@@ -22,7 +22,7 @@ trap 'kill $SAMPLER 2>/dev/null' EXIT
 BEFORE=$(ls "$OUT" 2>/dev/null | sort)
 open -n "$APP" --args -PerfLab "$LAB" -PerfLabLabel "$LABEL" -PerfLabQuit "$@"
 sleep 3
-PID=$(pgrep -f '^[^ ]*Debug/Telegram[.]app/Contents/MacOS/Telegram' | head -1)
+PID=$(pgrep -f '^[^ ]*Debug/Telegram[.]app/Contents/MacOS/Ansible' | head -1)
 if [ -n "$PERFLAB_PROFILE" ]; then
     DELAY=${PERFLAB_PROFILE%%:*}; LIMIT=${PERFLAB_PROFILE##*:}
     TRACE="$RESULTS/$LAB-$LABEL.trace"

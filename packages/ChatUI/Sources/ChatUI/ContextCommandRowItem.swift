@@ -2,7 +2,7 @@ import Cocoa
 import TGUIKit
 import TelegramCore
 
-import TelegramTheme
+import AnsibleTheme
 import AvatarUI
 import ShortPeerRow
 

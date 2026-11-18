@@ -3,9 +3,9 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleUtils
+import AnsibleMediaUtils
 import LocationUI
 import InputView
 

@@ -3,7 +3,7 @@ import SwiftSignalKit
 import Postbox
 import TGUIKit
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 import ChatModeTypes
 
 public final class HashtagSearchGlobalChatContents: ChatCustomContentsProtocol {

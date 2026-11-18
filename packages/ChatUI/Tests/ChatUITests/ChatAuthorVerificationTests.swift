@@ -4,7 +4,7 @@ import Postbox
 import TelegramCore
 import PremiumStatusUI
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 import ThemeSettings
 import ColorPalette
 @testable import ChatUI

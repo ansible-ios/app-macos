@@ -9,9 +9,9 @@ let package = Package(
         .library(name: "ArchiveUtils", targets: ["ArchiveUtils"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
         .package(name: "Zip", path: "../../submodules/Zip"),
-        .package(name: "TelegramMediaResources", path: "../TelegramMediaResources"),
+        .package(name: "AnsibleMediaResources", path: "../AnsibleMediaResources"),
     ],
     targets: [
         .target(
@@ -19,7 +19,7 @@ let package = Package(
             dependencies: [
                 .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
                 .product(name: "Zip", package: "Zip", condition: nil),
-                .product(name: "TelegramMediaResources", package: "TelegramMediaResources", condition: nil),
+                .product(name: "AnsibleMediaResources", package: "AnsibleMediaResources", condition: nil),
             ],
             path: "Sources/ArchiveUtils"),
     ]

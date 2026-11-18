@@ -23,10 +23,10 @@ import ShareUI
 import SelectPeersUI
 import ShortPeerRow
 import StatisticsUI
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 import AppAnalytics
 
@@ -1850,7 +1850,7 @@ enum GroupInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
             if let value {
                 InlineStickerItem.apply(to: attr, associatedMedia: [:], entities: [.init(range: 0..<2, type: .CustomEmoji(stickerPack: nil, fileId: value.iconFileId))], isPremium: true)
             } else {
-                attr.insertEmbedded(.embedded(name: "Icon_Verified_Telegram", color: theme.colors.grayIcon, resize: false), for: clown)
+                attr.insertEmbedded(.embedded(name: "Icon_Verified_Ansible", color: theme.colors.grayIcon, resize: false), for: clown)
             }
             ChatHistoryLink.detectLinks(attr, type: [.Links], color: theme.colors.listGrayText)
 

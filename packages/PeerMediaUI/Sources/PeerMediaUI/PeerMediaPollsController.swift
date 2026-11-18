@@ -9,9 +9,9 @@ import ChatModeTypes
 import ChatUI
 import InputDataUI
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import AppAnalytics
 
 

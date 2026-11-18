@@ -7,8 +7,8 @@ import TGUIKit
 import InAppSettings
 import ColorPalette
 import ThemeSettings
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 
 func localizedFaqUrl() -> String {
     return "https://ansible.su/faq"

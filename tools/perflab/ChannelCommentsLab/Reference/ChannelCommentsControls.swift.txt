@@ -4,8 +4,8 @@ import TGUIKit
 import Postbox
 import SwiftSignalKit
 import AvatarUI
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 
 private let duration: TimeInterval = 0.4
 private let timingFunction: CAMediaTimingFunctionName = .spring

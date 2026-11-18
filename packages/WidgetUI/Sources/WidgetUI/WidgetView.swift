@@ -1,8 +1,8 @@
 import Foundation
 import Cocoa
 import TGUIKit
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 
 
 public struct WidgetData {

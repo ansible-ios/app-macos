@@ -1,12 +1,12 @@
 import Cocoa
-import TelegramCallsCore
+import AnsibleCallsCore
 import TGUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
 import AvatarUI
 import Localization
-import TelegramContext
+import AnsibleContext
 
 public final class GroupCallIncomingView : Control {
     

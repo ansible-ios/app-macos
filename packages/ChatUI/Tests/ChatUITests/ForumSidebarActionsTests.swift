@@ -4,7 +4,7 @@ import Postbox
 import TelegramCore
 import TGUIKit
 import ChatHistoryModel
-import TelegramTheme
+import AnsibleTheme
 @testable import ChatUI
 
 private final class SidebarActionRows: ForumSidebarRowsContent {

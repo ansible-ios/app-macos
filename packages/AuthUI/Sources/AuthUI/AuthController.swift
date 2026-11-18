@@ -9,9 +9,9 @@ import ApiCredentials
 import InAppSettings
 import ThemeSettings
 import AuthenticationServices
-import TelegramTheme
-import TelegramUtils
-import TelegramContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleContext
 import AlertsUI
 import PhoneNumberUtils
 import ProxyUtils

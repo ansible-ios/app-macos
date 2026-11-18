@@ -1,6 +1,6 @@
 import XCTest
 import Darwin
-@testable import TelegramMedia
+@testable import AnsibleMedia
 
 final class AudioRendererIdleStopTests: XCTestCase {
     private func usage() -> (wakeups: UInt64, cpu: Double) {

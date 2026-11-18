@@ -1,7 +1,7 @@
 import XCTest
 import AppKit
 import ColorPalette
-@testable import TelegramTheme
+@testable import AnsibleTheme
 
 final class PollPercentageImageTests: XCTestCase {
 

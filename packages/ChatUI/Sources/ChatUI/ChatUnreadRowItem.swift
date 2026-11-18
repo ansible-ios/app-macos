@@ -5,8 +5,8 @@ import InAppSettings
 import Postbox
 import ChatHistoryModel
 import Localization
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 
 public class ChatUnreadRowItem: ChatRowItem {
 

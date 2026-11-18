@@ -106,11 +106,11 @@ for i, source_case in enumerate(['richMessage', 'poll', 'message', 'selectedText
 message = message.replace('__MESSAGE_ACTIONS__', '\n'.join(actions))
 fixture += '\n' + message
 removal = Path(__file__).with_name('StyleRemovalTests.swift').read_text()
-core_translation = (root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Translate.swift').read_text()
+core_translation = (root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Translate.swift').read_text()
 a = core_translation.index('public enum DeleteAITextStyleError {')
 b = core_translation.index('\n}', a) + 2
 removal = removal.replace('__REMOVAL_ERROR__', core_translation[a:b].replace('public ', ''))
-engine_messages = (root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/TelegramEngineMessages.swift').read_text()
+engine_messages = (root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/TelegramEngineMessages.swift').read_text()
 for operation in ['deleteAITextStyle', 'unsaveAITextStyle']:
     assert 'public func ' + operation + '(id: Int64, accessHash: Int64) -> Signal<Never, DeleteAITextStyleError>' in engine_messages
 a = source.index('        menu.addItem(ContextMenuItem(strings().translateModalDeleteStyle, handler: {')
@@ -241,7 +241,7 @@ body = body.replace('public ', '').replace('any AccountContextProtocol', 'Contex
 for old, new in [('State', 'ComposeState'), ('Arguments', 'ComposeArguments'), ('InputDataController', 'ComposeController'), ('InputDataModalController', 'ComposeModal'), ('ModalInteractions', 'ComposeInteractions')]:
     body = re.sub(r'\b' + old + r'\b', new, body)
 compose = compose.replace('__COMPOSE_FACTORY__', body)
-errors = (root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Translate.swift').read_text()
+errors = (root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Translate.swift').read_text()
 compose = compose.replace('__COMPOSE_ERROR__', assignment_block(errors, 'public enum TranslationError').replace('public ', ''))
 editor = (root / 'packages/ChatUI/Sources/ChatUI/RichTextEditorWindowController.swift').read_text()
 a = editor.index('completion: { [weak coordinator] result in') + len('completion: ')
@@ -332,7 +332,7 @@ fixture += '\n' + group
 assert not re.search(r'__[A-Z_]+__', fixture)
 with tempfile.TemporaryDirectory(prefix='translation-context-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('// swift-tools-version:5.9\nimport PackageDescription\nlet package = Package(name: "TranslationContext", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ' + dependency + ')], targets: [.testTarget(name: "TranslationContextTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])\n')
     (directory / 'Tests').mkdir()
     (directory / 'Tests/TranslationContextTests.swift').write_text(fixture)

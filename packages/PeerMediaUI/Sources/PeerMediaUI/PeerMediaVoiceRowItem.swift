@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramMedia
+import AnsibleMedia
 import Postbox
 import SwiftSignalKit
 import AudioPlayerCore
@@ -9,9 +9,9 @@ import ChatUI
 import GalleryUI
 import GeneralRows
 import Localization
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 
 
 public class PeerMediaVoiceRowItem: PeerMediaRowItem {

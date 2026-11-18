@@ -1,7 +1,7 @@
 import XCTest
 import Cocoa
 import WidgetSandbox
-import TelegramTheme
+import AnsibleTheme
 import ColorPalette
 @testable import HTMLBubbles
 

@@ -6,8 +6,8 @@ import InAppSettings
 import SwiftSignalKit
 import TGUIKit
 import ChatModeTypes
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 
 public enum ChatHistoryInitialSearchLocation : Equatable {
     case index(MessageIndex, String?, NSRange?)

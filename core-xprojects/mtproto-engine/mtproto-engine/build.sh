@@ -18,7 +18,7 @@ DEPLOYMENT_TARGET="10.13"
 if [ ! -f "$SOURCE_DIR/Cargo.toml" ]; then
     echo "mtproto-engine sources are missing at $SOURCE_DIR"
     echo "Check out the telegram-ios submodule first:"
-    echo "  git submodule update --init submodules/telegram-ios"
+    echo "  git submodule update --init submodules/ansible-ios"
     exit 1
 fi
 

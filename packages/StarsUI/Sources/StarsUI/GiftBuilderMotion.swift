@@ -1,6 +1,6 @@
 import Cocoa
 import TGUIKit
-import TelegramContext
+import AnsibleContext
 import UniqueGiftBackground
 
 enum GiftBuilderMotion {

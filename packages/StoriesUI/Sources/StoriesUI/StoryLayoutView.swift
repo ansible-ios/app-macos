@@ -3,16 +3,16 @@ import TGUIKit
 import TelegramCore
 import SwiftSignalKit
 import Postbox
-import TelegramMedia
+import AnsibleMedia
 import TelegramMediaPlayer
 import ChatUI
 import InAppSettings
 import Localization
-import TelegramCallsCore
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleCallsCore
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 
 private var _nextSeekdId: Int = 0
 private func nextSeekdId() -> Int {

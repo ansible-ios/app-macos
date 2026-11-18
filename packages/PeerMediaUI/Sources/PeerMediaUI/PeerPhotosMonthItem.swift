@@ -4,7 +4,7 @@ import TelegramMediaPlayer
 import TGUIKit
 import Postbox
 import SwiftSignalKit
-import TelegramMedia
+import AnsibleMedia
 import ChatUI
 import ChatModeTypes
 import GalleryUI
@@ -13,9 +13,9 @@ import InlineMediaGrid
 import LocalAnimations
 import Localization
 import MessageUtils
-import TelegramContext
-import TelegramTheme
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleMediaUtils
 
 public class PeerPhotosMonthItem: GeneralRowItem {
     public let items:[Message]

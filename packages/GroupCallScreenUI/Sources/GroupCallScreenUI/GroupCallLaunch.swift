@@ -5,11 +5,11 @@ import InAppSettings
 import SwiftSignalKit
 import AVFoundation
 import TGUIKit
-import TelegramMedia
+import AnsibleMedia
 import TgVoipWebrtc
-import TelegramCallsCore
-import TelegramContext
-import TelegramTheme
+import AnsibleCallsCore
+import AnsibleContext
+import AnsibleTheme
 import Localization
 import AlertsUI
 import CallsUI

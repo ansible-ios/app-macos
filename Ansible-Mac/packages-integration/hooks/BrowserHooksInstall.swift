@@ -3,8 +3,8 @@ import ChatHistoryModel
 import InputDataUI
 import PaymentsUI
 import StarsUI
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 import Cocoa
 import TGUIKit
 import Postbox

@@ -1,8 +1,8 @@
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import Localization
 import GeneralRows
 import LocalAnimations

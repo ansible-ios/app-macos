@@ -1,7 +1,7 @@
 import Foundation
 import SwiftSignalKit
 import TelegramCore
-import TelegramMedia
+import AnsibleMedia
 import OpusBinding
 import Localization
 

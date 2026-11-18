@@ -21,7 +21,7 @@
 - `ansible-desktop` — отдельный Qt клиент. Каталоги `app-macos-gpt` в старых `_tmp/media` — черновые медиа/прототипы; актуальный исходник и applied manifest находятся здесь.
 - README должен сохранять происхождение от Telegram и лицензионную атрибуцию. Удаление GitHub fork badge раньше не означало удаления атрибуции из README.
 
-На момент handoff в macOS checkout оставались чужие/предшествующие изменения: ` m submodules/telegram-ios` и `?? .vscode/`. Они не включены в наши коммиты. Не сбрасывать, не добавлять gitlink и не удалять их. Перед продолжением снова проверить status, stash и worktrees.
+На момент handoff в macOS checkout оставались чужие/предшествующие изменения: ` m submodules/ansible-ios` и `?? .vscode/`. Они не включены в наши коммиты. Не сбрасывать, не добавлять gitlink и не удалять их. Перед продолжением снова проверить status, stash и worktrees.
 
 ## Решения владельца
 
@@ -38,7 +38,7 @@
 1. Экспорт 46 PNG из утверждённых мастеров по `branding/asset-manifest.json`. Экспортёр `scripts/branding/export.swift`, запуск из корня: `swift scripts/branding/export.swift`.
 2. Цветной/монохромный алмаз, синяя settings tile, роли giveaway/affiliate/refund/inline и знака Ansible. Слоты `preserved-app` пропускаются; тёмная app icon сравнена с baseline `28f988e7`, изменений нет.
 3. Обнаружен и исправлен белый квадрат Premium: `generatePremiumIcon` сам рисует подложку; входной PNG теперь прозрачная маска алмаза, без второй плитки. Полный UI результат после этой правки ещё проверить.
-4. `DiamondAppearance` в `packages/TelegramUtils/Sources/TelegramUtils/AppConstants.swift`: общие синие foreground/gradient/particle. Применено в ценах подарков, реакциях, радиальном свечении меню и emitters.
+4. `DiamondAppearance` в `packages/AnsibleUtils/Sources/AnsibleUtils/AppConstants.swift`: общие синие foreground/gradient/particle. Применено в ценах подарков, реакциях, радиальном свечении меню и emitters.
 5. `CurrencyConstants.swift`: XTR UI icon теперь `Icon_Menu_Star` (слот содержит алмаз). В `Star_ReactionsController.swift` знак у лидеров также заменён на алмаз; кнопка отправки использует общую валютную иконку.
 6. `DiamondCurrencySceneView.swift`: currency hero использует готовый Lottie из Web вместо отдельной Metal модели, onceEnd, максимум 30 FPS. Это не замена всех Premium/TON сцен.
 7. `FragmentUsernameController.swift`: в collectible-info старый символ TON заменён готовым цветным алмазом.

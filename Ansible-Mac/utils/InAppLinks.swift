@@ -9,7 +9,7 @@ import MtProtoKit
 import ThemeSettings
 import Translate
 import InputView
-import TelegramMedia
+import AnsibleMedia
 import InAppSettings
 import AppAnalytics
 

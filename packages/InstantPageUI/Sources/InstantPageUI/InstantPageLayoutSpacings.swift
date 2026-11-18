@@ -1,8 +1,8 @@
 import Cocoa
 import TelegramCore
-import TelegramTheme
-import TelegramUtils
-import TelegramContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleContext
 
 
 // Mirrors telegram-ios's `spacingBetweenBlocks` (InstantPageUI/InstantPageLayoutSpacings.swift). The chat

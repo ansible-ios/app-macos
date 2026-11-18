@@ -1,7 +1,7 @@
 import Cocoa
 import XCTest
 import TGUIKit
-import TelegramContext
+import AnsibleContext
 import InputView
 import InlineStickerLayer
 import CandidateBindingHarness

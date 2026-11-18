@@ -7,9 +7,9 @@ import SwiftSignalKit
 import Localization
 import ColorPalette
 import InAppSettings
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import AlertsUI
 import SystemPermissions
 import BuildConfig

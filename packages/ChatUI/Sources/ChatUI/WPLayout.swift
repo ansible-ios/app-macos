@@ -8,11 +8,11 @@ import InstantPageUI
 import Localization
 import PremiumUI
 import Strings
-import TelegramContext
-import TelegramLinks
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleLinks
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 import StarsUI
 

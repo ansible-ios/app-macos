@@ -3,8 +3,8 @@ import SwiftSignalKit
 import Postbox
 import TelegramCore
 import InAppSettings
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 
 
 public final class CachedInstantPage: Codable {

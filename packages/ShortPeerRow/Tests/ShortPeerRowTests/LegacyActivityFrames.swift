@@ -1,6 +1,6 @@
 import AppKit
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 
 private let legacyMinDiameter: CGFloat = 3.5
 private let legacyMaxDiameter: CGFloat = 8.0

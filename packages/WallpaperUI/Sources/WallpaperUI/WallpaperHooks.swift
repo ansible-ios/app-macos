@@ -3,8 +3,8 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import ChatHistoryModel
 import GeneralRows
 import ColorPalette
@@ -31,7 +31,7 @@ public struct WallpaperHooks {
     public let makeStickerView: (NSRect) -> WallpaperStickerView
     public let premiumConfiguration: (any AccountContextProtocol) -> any WallpaperPremiumConfiguration
     public let boostLevelBadgeImage: (String) -> CGImage
-    public let generateTheme: (ColorPalette, TelegramTheme?, Bool, CGFloat, ThemeWallpaper, NSSize) -> TelegramPresentationTheme
+    public let generateTheme: (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper, NSSize) -> TelegramPresentationTheme
 
     public init(makeChatPreviewContext: @escaping (any AccountContextProtocol, @escaping () -> CGRect) -> WallpaperChatPreviewContext,
                 makeChatPreviewItem: @escaping (NSSize, WallpaperChatPreviewContext, ChatHistoryEntry, TelegramPresentationTheme) -> TableRowItem,
@@ -40,7 +40,7 @@ public struct WallpaperHooks {
                 makeStickerView: @escaping (NSRect) -> WallpaperStickerView,
                 premiumConfiguration: @escaping (any AccountContextProtocol) -> any WallpaperPremiumConfiguration,
                 boostLevelBadgeImage: @escaping (String) -> CGImage,
-                generateTheme: @escaping (ColorPalette, TelegramTheme?, Bool, CGFloat, ThemeWallpaper, NSSize) -> TelegramPresentationTheme) {
+                generateTheme: @escaping (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper, NSSize) -> TelegramPresentationTheme) {
         self.makeChatPreviewContext = makeChatPreviewContext
         self.makeChatPreviewItem = makeChatPreviewItem
         self.updateChatPreviewBackground = updateChatPreviewBackground

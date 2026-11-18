@@ -1,6 +1,6 @@
 import Foundation
 import TelegramCore
-import TelegramUtils
+import AnsibleUtils
 
 public func resolveFormattedDateEntities(_ text: String, entities: [MessageTextEntity]) -> (text: String, entities: [MessageTextEntity]) {
     var replacements: [(range: Range<Int>, text: String)] = []

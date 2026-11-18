@@ -4,8 +4,8 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleMediaUtils
 
 public struct MediaRecorderHooks {
     public var setPendingRecording: ((Any, Signal<[MediaSenderContainer], NoError>, AnalyticsContext, AnalyticsRecordingRequest?) -> Void)?

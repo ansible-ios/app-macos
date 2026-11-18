@@ -4,9 +4,9 @@ import TelegramCore
 import TGUIKit
 import Localization
 #if SHARE
-import TelegramUtilsShare
+import AnsibleUtilsShare
 #else
-import TelegramUtils
+import AnsibleUtils
 #endif
 
 extension Peer {

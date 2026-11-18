@@ -4,8 +4,8 @@ import TGUIKit
 import SwiftSignalKit
 import ColorPalette
 import InAppSettings
-import TelegramTheme
-import TelegramMedia
+import AnsibleTheme
+import AnsibleMedia
 import ObjcUtils
 import TGVideoCameraMovie
 import AVFoundation

@@ -3,8 +3,8 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleMediaUtils
 
 public struct CallSettingsHooks {
     public let devicesContext: (any SharedAccountContextProtocol) -> DevicesContext

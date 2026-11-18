@@ -9,10 +9,10 @@ import AppKit
 import AlertsUI
 import Localization
 import StarsUI
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 
 
 public struct ThemeTuple : Comparable, Identifiable {

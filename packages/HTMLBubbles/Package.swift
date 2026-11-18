@@ -7,7 +7,7 @@ let mozjpegLibraryPath = URL(fileURLWithPath: #filePath).deletingLastPathCompone
 
 let deps: [(String, String)] = [
     ("TGUIKit", "../TGUIKit"),
-    ("TelegramTheme", "../TelegramTheme"),
+    ("AnsibleTheme", "../AnsibleTheme"),
     ("ColorPalette", "../ColorPalette"),
     ("ChatModeTypes", "../ChatModeTypes"),
     ("KeyboardKey", "../KeyboardKey"),
@@ -21,9 +21,9 @@ let package = Package(
         .library(name: "HTMLBubbles", targets: ["HTMLBubbles"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
         .package(name: "twidget", path: "../../third-party/twidget"),
         .package(name: "WidgetSandbox", path: "../../third-party/widget-sandbox"),
     ] + deps.map { .package(name: $0.0, path: $0.1) },
@@ -48,7 +48,7 @@ let package = Package(
             name: "HTMLBubblesTests",
             dependencies: [
                 "HTMLBubbles",
-                .product(name: "TelegramTheme", package: "TelegramTheme", condition: nil),
+                .product(name: "AnsibleTheme", package: "AnsibleTheme", condition: nil),
                 .product(name: "ColorPalette", package: "ColorPalette", condition: nil),
             ],
             path: "Tests/HTMLBubblesTests",

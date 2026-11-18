@@ -27,7 +27,7 @@ import ColorPalette
 import WebKit
 import CodeSyntax
 import MetalEngine
-import TelegramMedia
+import AnsibleMedia
 import TLottie
 import KeyboardKey
 import PasscodeCore

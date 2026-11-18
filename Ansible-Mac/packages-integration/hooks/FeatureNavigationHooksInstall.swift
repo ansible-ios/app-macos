@@ -1,5 +1,5 @@
 import AppAnalytics
-import TelegramContext
+import AnsibleContext
 import Cocoa
 import TGUIKit
 import TelegramCore
@@ -33,7 +33,7 @@ import SettingsUI
 import ComposeUI
 import ShareUI
 import ChannelAdminUI
-import TelegramCallsCore
+import AnsibleCallsCore
 import PreviewSenderUI
 import ChatUI
 

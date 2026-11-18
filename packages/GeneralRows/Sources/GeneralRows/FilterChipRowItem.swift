@@ -2,8 +2,8 @@ import Foundation
 import Cocoa
 import TGUIKit
 import SwiftSignalKit
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 
 public final class FilterChipRowItem : GeneralRowItem {
     fileprivate let layout: TextViewLayout

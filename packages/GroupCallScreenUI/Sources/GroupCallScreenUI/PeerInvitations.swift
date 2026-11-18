@@ -2,7 +2,7 @@ import Foundation
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 
 public func permanentExportedInvitation(context: any AccountContextProtocol, peerId: PeerId) -> Signal<ExportedInvitation?, NoError> {
     return context.account.postbox.transaction { transaction -> ExportedInvitation? in

@@ -6,14 +6,14 @@ import Postbox
 import TelegramCore
 import ColorPalette
 import InputView
-import TelegramMedia
+import AnsibleMedia
 import ChatUI
 import InAppSettings
 import InputTextView
 import Localization
 import ShortPeerRow
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 
 
 private let toggle_image_down: CGImage = generateImage(NSMakeSize(24, 24), contextGenerator: { size, ctx in

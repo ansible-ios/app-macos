@@ -9,9 +9,9 @@ let package = Package(
         .library(name: "QRCodeUtils", targets: ["QRCodeUtils"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
         .package(name: "TGUIKit", path: "../TGUIKit"),
-        .package(name: "TelegramMediaUtils", path: "../TelegramMediaUtils"),
+        .package(name: "AnsibleMediaUtils", path: "../AnsibleMediaUtils"),
     ],
     targets: [
         .target(
@@ -19,7 +19,7 @@ let package = Package(
             dependencies: [
                 .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
                 .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
-                .product(name: "TelegramMediaUtils", package: "TelegramMediaUtils", condition: nil),
+                .product(name: "AnsibleMediaUtils", package: "AnsibleMediaUtils", condition: nil),
             ],
             path: "Sources/QRCodeUtils"),
     ]

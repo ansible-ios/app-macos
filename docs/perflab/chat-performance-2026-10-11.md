@@ -15,7 +15,7 @@ Proof: `TGUIKitTests/AnimatableContentObserverTests` — 100 frame and bounds ch
 `controlState` is re-assigned on every mouse move over a control (every TextView and button in rows), and its didSet always ran `apply(state:)`: a `layer.backgroundColor` write and, for animated controls, a new 0.2 s `backgroundColor` animation from the presentation value to the same model value, which keeps Core Animation rendering. The color write and the animation now happen only when the color actually changes; state handlers and cursor updates are untouched.
 Proof: `TGUIKitTests/ControlStateApplyTests` fails on the old code (a background animation per unchanged update) and passes now; hover still animates.
 
-### 3. Avatar cache hits wrote themselves back (TelegramUtils `peerAvatarImage`)
+### 3. Avatar cache hits wrote themselves back (AnsibleUtils `peerAvatarImage`)
 
 Every avatar served from the photo cache (chat list rows, message authors, headers) was stored again with `cachePeerPhoto`: under the cache lock, `setImage` removed the entry, re-inserted it without its display scopes and ran eviction. The lookup already refreshes `lastUsed`, and `AvatarLayer` re-attaches the display scope (clearing the orphan mark) whenever its contents are set, so a hit now just returns the image. Verified with the type-check harness.
 

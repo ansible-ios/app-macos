@@ -3,11 +3,11 @@ import TGUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 import GeneralRows
 import AvatarUI
-import TelegramUtils
+import AnsibleUtils
 
 public final class ChangePeerRowItem: GeneralRowItem {
 

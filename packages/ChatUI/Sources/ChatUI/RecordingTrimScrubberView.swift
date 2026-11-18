@@ -3,9 +3,9 @@ import Foundation
 import TGUIKit
 import SwiftSignalKit
 import ColorPalette
-import TelegramTheme
-import TelegramMedia
-import TelegramMediaUtils
+import AnsibleTheme
+import AnsibleMedia
+import AnsibleMediaUtils
 import ObjcUtils
 import Localization
 import TGVideoCameraMovie

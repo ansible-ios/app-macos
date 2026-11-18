@@ -5,9 +5,9 @@ import TelegramCore
 import Postbox
 import ChatHistoryModel
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 
 
 

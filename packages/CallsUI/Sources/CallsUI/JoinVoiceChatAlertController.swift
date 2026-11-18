@@ -7,11 +7,11 @@ import TelegramCore
 import Postbox
 import InputDataUI
 import Localization
-import TelegramCallsCore
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
-import TelegramIconsTheme
+import AnsibleCallsCore
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleIconsTheme
 import AppAnalytics
 
 private final class Arguments {

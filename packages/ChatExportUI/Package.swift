@@ -3,20 +3,20 @@
 import PackageDescription
 
 let deps: [(String, String)] = [
-    ("TelegramMediaUtils", "../TelegramMediaUtils"),
+    ("AnsibleMediaUtils", "../AnsibleMediaUtils"),
     ("ShortPeerRow", "../ShortPeerRow"),
     ("TGUIKit", "../TGUIKit"),
     ("ColorPalette", "../ColorPalette"),
     ("Localization", "../Localization"),
-    ("TelegramTheme", "../TelegramTheme"),
-    ("TelegramContext", "../TelegramContext"),
-    ("TelegramUtils", "../TelegramUtils"),
+    ("AnsibleTheme", "../AnsibleTheme"),
+    ("AnsibleContext", "../AnsibleContext"),
+    ("AnsibleUtils", "../AnsibleUtils"),
     ("InputDataUI", "../InputDataUI"),
     ("GeneralRows", "../GeneralRows"),
     ("AlertsUI", "../AlertsUI"),
     ("FilePanels", "../FilePanels"),
     ("MessageTextUtils", "../MessageTextUtils"),
-    ("MtProtoKit", "../../submodules/telegram-ios/submodules/MtProtoKit"),
+    ("MtProtoKit", "../../submodules/ansible-ios/submodules/MtProtoKit"),
     ("AppAnalytics", "../AppAnalytics"),
 ]
 
@@ -27,9 +27,9 @@ let package = Package(
         .library(name: "ChatExportUI", targets: ["ChatExportUI"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
     ] + deps.map { .package(name: $0.0, path: $0.1) },
     targets: [
         .target(

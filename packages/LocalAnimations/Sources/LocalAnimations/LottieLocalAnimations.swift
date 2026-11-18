@@ -1,8 +1,8 @@
 import Cocoa
 import TelegramCore
-import TelegramMedia
+import AnsibleMedia
 import Postbox
-import TelegramMediaResources
+import AnsibleMediaResources
 
 private let version = 1
 
@@ -271,7 +271,7 @@ public enum LocalAnimatedSticker : String {
     case menu_folder_sport
     case menu_folder_star
     case menu_folder_student
-    case menu_folder_telegram
+    case menu_folder_ansible
     case menu_folder_unread
     case menu_folder_virus
     case menu_folder_work

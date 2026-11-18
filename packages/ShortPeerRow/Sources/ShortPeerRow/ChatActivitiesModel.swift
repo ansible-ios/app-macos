@@ -5,9 +5,9 @@ import Postbox
 import SwiftSignalKit
 import Localization
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 #else
-import TelegramTheme
+import AnsibleTheme
 #endif
 
 public enum ChatActivityAnimation {

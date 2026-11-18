@@ -77,7 +77,7 @@
 				A790A2E7236AFE3D000451B5 /* OpenSSLEncryptionProvider.m */,
 			);
 			name = Sources;
-			path = "../../submodules/telegram-ios/submodules/OpenSSLEncryptionProvider/Sources";
+			path = "../../submodules/ansible-ios/submodules/OpenSSLEncryptionProvider/Sources";
 			sourceTree = "<group>";
 		};
 		A790A2EB236AFE7C000451B5 /* Frameworks */ = {
@@ -185,7 +185,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ ! -d \"$PROJECT_DIR/build\" ]; then\n  sh $PROJECT_DIR/OpenSSLEncryption/build.sh ../../submodules/telegram-ios/submodules/openssl\nfi\n";
+			shellScript = "if [ ! -d \"$PROJECT_DIR/build\" ]; then\n  sh $PROJECT_DIR/OpenSSLEncryption/build.sh ../../submodules/ansible-ios/submodules/openssl\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -273,8 +273,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/build/openssl/include",
-					"$(PROJECT_DIR)/../../submodules/telegram-ios/submodules/OpenSSLEncryptionProvider/PublicHeaders",
-					"$(PROJECT_DIR)/../../submodules/telegram-ios/submodules/EncryptionProvider/PublicHeaders",
+					"$(PROJECT_DIR)/../../submodules/ansible-ios/submodules/OpenSSLEncryptionProvider/PublicHeaders",
+					"$(PROJECT_DIR)/../../submodules/ansible-ios/submodules/EncryptionProvider/PublicHeaders",
 				);
 				INFOPLIST_FILE = OpenSSLEncryption/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -362,8 +362,8 @@
 				FRAMEWORK_VERSION = A;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/build/openssl/include",
-					"$(PROJECT_DIR)/../../submodules/telegram-ios/submodules/OpenSSLEncryptionProvider/PublicHeaders",
-					"$(PROJECT_DIR)/../../submodules/telegram-ios/submodules/EncryptionProvider/PublicHeaders",
+					"$(PROJECT_DIR)/../../submodules/ansible-ios/submodules/OpenSSLEncryptionProvider/PublicHeaders",
+					"$(PROJECT_DIR)/../../submodules/ansible-ios/submodules/EncryptionProvider/PublicHeaders",
 				);
 				INFOPLIST_FILE = OpenSSLEncryption/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

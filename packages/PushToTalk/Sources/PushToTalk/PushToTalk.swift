@@ -1,5 +1,5 @@
 import Cocoa
-import TelegramContext
+import AnsibleContext
 import Foundation
 import HotKey
 import SwiftSignalKit

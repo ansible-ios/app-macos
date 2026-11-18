@@ -8,10 +8,10 @@ import InputView
 import InputTextView
 import GeneralRows
 import InputDataUI
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleMediaUtils
 import InlineStickerLayer
 import Localization
 

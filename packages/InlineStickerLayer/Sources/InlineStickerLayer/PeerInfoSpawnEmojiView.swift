@@ -1,13 +1,13 @@
 import Cocoa
 import InputView
-import TelegramUtils
+import AnsibleUtils
 import TGUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TelegramMediaResources
-import TelegramTheme
-import TelegramContext
+import AnsibleMediaResources
+import AnsibleTheme
+import AnsibleContext
 import LokiRng
 #if SHARE
 import InlineStickersShare

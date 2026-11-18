@@ -2,7 +2,7 @@ import Cocoa
 import TGUIKit
 import Postbox
 import Localization
-import TelegramTheme
+import AnsibleTheme
 
 
 

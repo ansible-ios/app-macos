@@ -2,7 +2,7 @@ import Cocoa
 import Foundation
 import TGUIKit
 import SwiftSignalKit
-import TelegramCallsCore
+import AnsibleCallsCore
 
 
 public final class GroupVideoView: LayerBackedView {

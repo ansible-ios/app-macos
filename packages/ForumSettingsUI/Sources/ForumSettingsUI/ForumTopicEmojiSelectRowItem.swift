@@ -1,7 +1,7 @@
 import Foundation
 import TGUIKit
 import Cocoa
-import TelegramContext
+import AnsibleContext
 import GeneralRows
 import Localization
 

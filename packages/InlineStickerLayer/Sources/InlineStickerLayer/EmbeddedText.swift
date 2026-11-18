@@ -1,13 +1,13 @@
 import Cocoa
-import TelegramUtils
+import AnsibleUtils
 import TGUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
 import InputView
-import TelegramTheme
-import TelegramMedia
-import TelegramMediaResources
+import AnsibleTheme
+import AnsibleMedia
+import AnsibleMediaResources
 
 
 public extension NSMutableAttributedString {

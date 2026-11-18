@@ -3,16 +3,16 @@
 import PackageDescription
 
 let deps: [(String, String)] = [
-    ("TelegramUtils", "../TelegramUtils"),
-    ("TelegramMedia", "../TelegramMedia"),
-    ("TelegramMediaResources", "../TelegramMediaResources"),
+    ("AnsibleUtils", "../AnsibleUtils"),
+    ("AnsibleMedia", "../AnsibleMedia"),
+    ("AnsibleMediaResources", "../AnsibleMediaResources"),
     ("InlineStickers", "../InlineStickers"),
     ("InputView", "../InputView"),
     ("TGUIKit", "../TGUIKit"),
-    ("TelegramTheme", "../TelegramTheme"),
-    ("TelegramContext", "../TelegramContext"),
+    ("AnsibleTheme", "../AnsibleTheme"),
+    ("AnsibleContext", "../AnsibleContext"),
     ("ColorPalette", "../ColorPalette"),
-    ("LokiRng", "../../submodules/telegram-ios/submodules/Utils/LokiRng"),
+    ("LokiRng", "../../submodules/ansible-ios/submodules/Utils/LokiRng"),
 ]
 
 let package = Package(
@@ -22,9 +22,9 @@ let package = Package(
         .library(name: "InlineStickerLayer", targets: ["InlineStickerLayer"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
     ] + deps.map { .package(name: $0.0, path: $0.1) },
     targets: [
         .target(

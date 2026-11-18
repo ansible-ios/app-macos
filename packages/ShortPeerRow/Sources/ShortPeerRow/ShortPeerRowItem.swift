@@ -6,15 +6,15 @@ import SwiftSignalKit
 import Localization
 import ColorPalette
 #if SHARE
-import TelegramThemeShare
-import TelegramContextShare
-import TelegramUtilsShare
+import AnsibleThemeShare
+import AnsibleContextShare
+import AnsibleUtilsShare
 import GeneralRowsShare
 import AvatarUIShare
 #else
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import AvatarUI
 import PremiumStatusUI

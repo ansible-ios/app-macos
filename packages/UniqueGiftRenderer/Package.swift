@@ -9,7 +9,7 @@ let package = Package(
         .library(name: "UniqueGiftRenderer", targets: ["UniqueGiftRenderer"]),
     ],
     dependencies: [
-        .package(name: "LokiRng", path: "../../submodules/telegram-ios/submodules/Utils/LokiRng"),
+        .package(name: "LokiRng", path: "../../submodules/ansible-ios/submodules/Utils/LokiRng"),
     ],
     targets: [
         .target(

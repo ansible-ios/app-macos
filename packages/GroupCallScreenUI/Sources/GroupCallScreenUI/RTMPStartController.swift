@@ -6,8 +6,8 @@ import Postbox
 import GeneralRows
 import InputDataUI
 import Localization
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import AppAnalytics
 
 private final class Arguments {

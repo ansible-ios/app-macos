@@ -1,7 +1,7 @@
 import Foundation
 import Cocoa
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 
 final class WidgetButton: Button {
     private let textView = TextView()

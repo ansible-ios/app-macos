@@ -4,8 +4,8 @@ let package = Package(
     name: "PostboxLab",
     platforms: [.macOS(.v10_15)],
     dependencies: [
-        .package(name: "Postbox", path: "../../../../submodules/telegram-ios/submodules/Postbox"),
-        .package(name: "SSignalKit", path: "../../../../submodules/telegram-ios/submodules/SSignalKit"),
+        .package(name: "Postbox", path: "../../../../submodules/ansible-ios/submodules/Postbox"),
+        .package(name: "SSignalKit", path: "../../../../submodules/ansible-ios/submodules/SSignalKit"),
     ],
     targets: [
         .target(name: "PostboxLabSupport", dependencies: [.product(name: "Postbox", package: "Postbox"), .product(name: "SwiftSignalKit", package: "SSignalKit")]),

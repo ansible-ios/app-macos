@@ -5,7 +5,7 @@ import StoreKit
 import Postbox
 import TelegramCore
 import InAppSettings
-import TelegramContext
+import AnsibleContext
 
 
 

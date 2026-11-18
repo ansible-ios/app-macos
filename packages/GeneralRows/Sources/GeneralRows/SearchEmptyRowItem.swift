@@ -2,12 +2,12 @@ import Cocoa
 import TGUIKit
 import Localization
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 import ColorPalette
-import TelegramIconsTheme
+import AnsibleIconsTheme
 #else
-import TelegramTheme
-import TelegramIconsTheme
+import AnsibleTheme
+import AnsibleIconsTheme
 #endif
 
 open class SearchEmptyRowItem: GeneralRowItem {

@@ -1,7 +1,7 @@
 #if SHARE
-import TelegramContextShare
+import AnsibleContextShare
 #else
-import TelegramContext
+import AnsibleContext
 #endif
 
 extension AccountContext: AccountContextProtocol {}

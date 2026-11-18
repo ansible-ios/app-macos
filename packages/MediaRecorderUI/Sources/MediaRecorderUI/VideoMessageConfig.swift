@@ -1,9 +1,9 @@
 import Foundation
 import TelegramCore
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 #else
-import TelegramTheme
+import AnsibleTheme
 #endif
 
 

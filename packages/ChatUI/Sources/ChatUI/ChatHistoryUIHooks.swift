@@ -5,11 +5,11 @@ import ColorPalette
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
-import TelegramLinks
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleLinks
+import AnsibleMediaUtils
 import InputDataUI
 import PhoneNumberUtils
 import LocalAnimations

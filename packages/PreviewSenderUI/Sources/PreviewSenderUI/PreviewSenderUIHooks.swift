@@ -2,9 +2,9 @@ import Cocoa
 import TGUIKit
 import TelegramCore
 import Postbox
-import TelegramTheme
-import TelegramContext
-import TelegramMediaUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleMediaUtils
 import ChatUI
 
 public struct PreviewSenderEmojiSelectedItem : Equatable {

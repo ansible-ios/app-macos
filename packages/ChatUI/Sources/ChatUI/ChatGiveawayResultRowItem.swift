@@ -11,9 +11,9 @@ import BoostUI
 import ChatHistoryModel
 import LocalAnimations
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 
 
 public final class ChatGiveawayResultRowItem : ChatRowItem {

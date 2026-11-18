@@ -2,7 +2,7 @@
 
 The app is an Xcode workspace (`Ansible-Mac.xcworkspace`) that links a set of native
 libraries built once from `core-xprojects/` and a collection of local Swift packages
-from `packages/` and `submodules/telegram-ios/submodules/`. There are no remote Swift
+from `packages/` and `submodules/ansible-ios/submodules/`. There are no remote Swift
 package dependencies, so once the submodules are checked out the build is offline.
 
 ## Requirements
@@ -48,7 +48,7 @@ For an existing checkout:
 git submodule update --init --recursive
 ```
 
-`--recursive` matters: `submodules/telegram-ios` has nested submodules that the native
+`--recursive` matters: `submodules/ansible-ios` has nested submodules that the native
 libraries are built from (`third-party/td`, `third-party/dav1d`, `third-party/libvpx`,
 `third-party/webrtc`, `third-party/wallet-engine`, and others).
 
@@ -110,7 +110,7 @@ missing:
 
 ```
 sh core-xprojects/wallet-engine/wallet-engine/build.sh \
-  submodules/telegram-ios/third-party/wallet-engine/wallet-engine \
+  submodules/ansible-ios/third-party/wallet-engine/wallet-engine \
   core-xprojects/wallet-engine/build \
   packages/WalletEngine
 ```
@@ -128,14 +128,14 @@ Schemes:
 
 | Scheme | Use |
 |---|---|
-| `Telegram` | Day-to-day development, Debug configuration (`Ansible-Mac/Debug.xcconfig`) |
-| `TelegramShare` | The share extension on its own |
+| `Ansible` | Day-to-day development, Debug configuration (`Ansible-Mac/Debug.xcconfig`) |
+| `AnsibleShare` | The share extension on its own |
 | `Release` | Release archives (`Ansible-Mac/Release.xcconfig`) |
 
 From the command line:
 
 ```
-xcodebuild -workspace Ansible-Mac.xcworkspace -scheme Telegram -configuration Debug build
+xcodebuild -workspace Ansible-Mac.xcworkspace -scheme Ansible -configuration Debug build
 ```
 
 The main app targets macOS 11.0 and the share extension macOS 10.13. Swift packages are
@@ -144,17 +144,17 @@ resolved from the local paths in the workspace; no network access is needed.
 ### Telegram-iOS compatibility
 
 The Telegram-iOS submodule points to the official upstream commit. The framework
-preparation applies `scripts/telegram-ios-macos.patch` to keep the Mac app's
+preparation applies `scripts/ansible-ios-macos.patch` to keep the Mac app's
 shared-core changes. If the frameworks are already built, run
-`sh scripts/prepare-telegram-ios.sh` before opening Xcode or resolving packages.
-Run `sh scripts/prepare-telegram-ios.sh --reverse` before checking out a different
+`sh scripts/prepare-ansible-ios.sh` before opening Xcode or resolving packages.
+Run `sh scripts/prepare-ansible-ios.sh --reverse` before checking out a different
 Telegram-iOS revision if the patch is applied.
 
 ### Generated TelegramApi sources
 
 `scripts/configure_frameworks.sh` prepares the generated Swift and Objective-C API
 sources before Xcode resolves packages. Both CI build paths run this preparation
-before building or archiving. The shared `Telegram`, `Release`, and `TelegramShare`
+before building or archiving. The shared `Ansible`, `Release`, and `AnsibleShare`
 schemes also refresh generation before normal builds. Both app targets validate the
 generated files, so a failed generator cannot silently build against stale output.
 
@@ -168,7 +168,7 @@ For a checkout with existing native libraries but no generated API sources, run 
 once **before opening Xcode** or invoking `xcodebuild`:
 
 ```
-python3 scripts/prepare-telegram-api.py
+python3 scripts/prepare-ansible-api.py
 ```
 
 This is already included in the normal framework setup and CI paths. Xcode discovers
@@ -180,8 +180,8 @@ filenames, prepare and reopen the workspace to refresh package discovery. Direct
 Focused verification without building the main app:
 
 ```
-python3 tools/tests/telegram-api-generation/test_generation.py
-python3 tools/tests/telegram-api-generation/xcode.py
+python3 tools/tests/ansible-api-generation/test_generation.py
+python3 tools/tests/ansible-api-generation/xcode.py
 python3 tools/tests/no-paid-messages-token/run.py
 ```
 
@@ -226,7 +226,7 @@ the app target; Swift packages under `packages/` do not read it, so the channel 
 the command line, which applies to every target including packages. Builds started from the Xcode UI
 do not get it, so `#if BETA` / `STABLE` / `ALPHA` / `APP_STORE` inside packages are false there.
 
-The script then extracts `Telegram.app` and its dSYM. GitLab runs this direct Mac
+The script then extracts `Ansible.app` and its dSYM. GitLab runs this direct Mac
 build through `buildbox/internal.sh`, which verifies and deploys the result while
 holding the existing machine-wide lock. `buildbox/build.sh` is the separate legacy
 Parallels VM build path.
@@ -264,7 +264,7 @@ Run the focused checks without deploying:
 
 ```
 python3 tools/tests/ci-build/test_incremental.py
-python3 tools/tests/telegram-api-generation/test_generation.py
+python3 tools/tests/ansible-api-generation/test_generation.py
 python3 tools/tests/ci-build/xcode.py
 ```
 
@@ -279,7 +279,7 @@ Version numbers are bumped manually at release time, not per build: run
 `tools/bump_build_number.sh Ansible-Mac/Info.plist` to increment `CFBundleVersion`, then
 `tools/sync_share_version.sh Ansible-Mac/Info.plist AnsibleShare/Info.plist` so the share
 extension matches (App Store validation requires it). These used to run from a build phase on the
-`Telegram` target, which rewrote `Info.plist` on every build and so made every incremental build
+`Ansible` target, which rewrote `Info.plist` on every build and so made every incremental build
 re-package and re-link the app.
 
 ## Localized strings
@@ -332,7 +332,7 @@ cd packages/TGUIKit && swift build
   `scripts/xcode27.sh revert` before committing.
 - **TelegramCore fails to build right after a `telegram-ios` submodule bump**: newly
   imported modules must be listed in
-  `submodules/telegram-ios/submodules/TelegramCore/Package.swift`; add the missing
+  `submodules/ansible-ios/submodules/TelegramCore/Package.swift`; add the missing
   dependencies there.
 
 ## If you want to develop a fork

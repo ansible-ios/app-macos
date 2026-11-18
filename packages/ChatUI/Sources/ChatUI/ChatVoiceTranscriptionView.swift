@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 
 final class ChatVoiceTranscriptionView: View {
     enum Action {

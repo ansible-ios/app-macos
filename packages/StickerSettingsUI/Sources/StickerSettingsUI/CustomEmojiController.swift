@@ -7,9 +7,9 @@ import Postbox
 import InAppSettings
 import ColorPalette
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import AlertsUI

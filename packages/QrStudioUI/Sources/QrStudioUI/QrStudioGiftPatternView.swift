@@ -3,7 +3,7 @@ import Cocoa
 import TGUIKit
 import SwiftSignalKit
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 import UniqueGiftBackground
 
 private func qrStudioFraction(_ value: Double) -> Double {

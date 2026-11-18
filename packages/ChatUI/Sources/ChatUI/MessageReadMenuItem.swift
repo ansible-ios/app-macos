@@ -5,16 +5,16 @@ import SwiftSignalKit
 import TGUIKit
 import Postbox
 import AppKit
-import TelegramMedia
+import AnsibleMedia
 import LocalAnimations
 import Localization
 import PremiumStatusUI
 import PremiumUI
 import Strings
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 import AlertsUI
 

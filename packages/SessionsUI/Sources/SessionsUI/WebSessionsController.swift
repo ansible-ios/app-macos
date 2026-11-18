@@ -5,9 +5,9 @@ import Postbox
 import SwiftSignalKit
 import TGUIKit
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import GeneralRows
 import InputDataUI
 import AlertsUI
@@ -15,7 +15,7 @@ import AvatarUI
 import LocalAnimations
 import ColorPalette
 import DateUtils
-import TelegramIconsTheme
+import AnsibleIconsTheme
 
 
 private final class WebSessionArguments {

@@ -3,7 +3,7 @@ import Cocoa
 import TelegramCore
 import ColorPalette
 import ThemeSettings
-import TelegramTheme
+import AnsibleTheme
 
 public extension TelegramMediaWebpageLoadedContent {
     func withUpdatedYoutubeTimecode(_ timecode: Double) -> TelegramMediaWebpageLoadedContent {

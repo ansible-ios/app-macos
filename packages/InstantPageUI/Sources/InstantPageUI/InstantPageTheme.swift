@@ -2,8 +2,8 @@ import Cocoa
 import InAppSettings
 import Foundation
 import Postbox
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 import ColorPalette
 import TGUIKit
 

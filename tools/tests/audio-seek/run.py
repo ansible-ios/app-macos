@@ -8,7 +8,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--source', type=Path, default=root / 'packages/AudioPlayerCore/Sources/AudioPlayerCore/AudioPlayerController.swift')
 args = parser.parse_args()
 source = args.source.read_text()
-media = (root / 'packages/TelegramMedia/Sources/MediaPlayer.swift').read_text()
+media = (root / 'packages/AnsibleMedia/Sources/MediaPlayer.swift').read_text()
 
 def section(text, start, end):
     offset = text.index(start)

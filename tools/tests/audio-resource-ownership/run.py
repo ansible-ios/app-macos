@@ -17,7 +17,7 @@ stop = source[stop_start:source.index('    @discardableResult public func set(tr
 fixture = Path(__file__).with_name('ResourceTests.swift').read_text().replace('__RESOURCE__', resource).replace('__PULL__', body.replace('fileprivate ', '')).replace('__STOP__', stop.replace('public ', ''))
 with tempfile.TemporaryDirectory(prefix='audio-resource-ownership-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('// swift-tools-version:5.9\nimport PackageDescription\nlet package = Package(name: "AudioResourceOwnership", platforms: [.macOS(.v10_13)], dependencies: [.package(path: '+dependency+')], targets: [.testTarget(name: "ResourceTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])\n')
     (directory / 'Tests').mkdir()
     (directory / 'Tests/ResourceTests.swift').write_text(fixture)

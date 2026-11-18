@@ -5,8 +5,8 @@ import SwiftSignalKit
 import Postbox
 import TelegramCore
 import TGUIKit
-import TelegramContext
-import TelegramMedia
+import AnsibleContext
+import AnsibleMedia
 
 final class QrStudioExportSticker {
     let frames: [CGImage]

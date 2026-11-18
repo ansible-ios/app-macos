@@ -3,7 +3,7 @@ import TGUIKit
 import Localization
 import Postbox
 import TelegramCore
-import TelegramUtils
+import AnsibleUtils
 @testable import ChatListUI
 
 final class SearchPeerContextMenuTests: XCTestCase {

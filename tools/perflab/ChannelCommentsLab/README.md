@@ -4,7 +4,7 @@
 
 ## Lab
 
-`generate.py` copies the production file twice into `Sources/CommentsHarness`: `Current.swift` unchanged, and `Legacy.swift` from `Reference/ChannelCommentsControls.swift.txt` (captured at `feca262f5`, hash in `Reference/provenance.json`) with its public types prefixed `Legacy`. Only the Postbox/SwiftSignalKit/AvatarUI/TelegramContext/TelegramTheme imports are removed; `Stubs.swift` supplies those symbols (asymmetric bitmap icons, solid avatar layers, theme colors). TGUIKit is the real package.
+`generate.py` copies the production file twice into `Sources/CommentsHarness`: `Current.swift` unchanged, and `Legacy.swift` from `Reference/ChannelCommentsControls.swift.txt` (captured at `feca262f5`, hash in `Reference/provenance.json`) with its public types prefixed `Legacy`. Only the Postbox/SwiftSignalKit/AvatarUI/AnsibleContext/AnsibleTheme imports are removed; `Stubs.swift` supplies those symbols (asymmetric bitmap icons, solid avatar layers, theme colors). TGUIKit is the real package.
 
 ```sh
 python3 tools/perflab/ChannelCommentsLab/generate.py "$PWD" tools/perflab/ChannelCommentsLab

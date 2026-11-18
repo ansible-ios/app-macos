@@ -9,11 +9,11 @@ import AvatarUI
 import GeneralRows
 import InputDataUI
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import ColorPalette
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import AppAnalytics
 
 private func formattedJoinedMessage(from names: [String]) -> String {

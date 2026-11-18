@@ -2,7 +2,7 @@ import XCTest
 import AppKit
 import ColorPalette
 import ThemeSettings
-import TelegramTheme
+import AnsibleTheme
 import TGUIKit
 import TelegramCore
 import Postbox

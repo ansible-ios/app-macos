@@ -4,14 +4,14 @@ import TelegramCore
 
 import Postbox
 import SwiftSignalKit
-import TelegramMediaResources
+import AnsibleMediaResources
 import AudioPlayerCore
 import ChatUI
 import GalleryUI
 import GeneralRows
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 
 public class PeerMediaMusicRowItem: PeerMediaRowItem {
     fileprivate let textLayout:TextViewLayout

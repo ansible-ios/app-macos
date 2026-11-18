@@ -7,9 +7,9 @@ import Postbox
 import TelegramCore
 import CallsUI
 import Localization
-import TelegramCallsCore
-import TelegramTheme
-import TelegramUtils
+import AnsibleCallsCore
+import AnsibleTheme
+import AnsibleUtils
 import Strings
 import InAppSettings
 

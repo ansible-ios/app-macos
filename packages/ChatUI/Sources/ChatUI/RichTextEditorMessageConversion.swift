@@ -4,7 +4,7 @@ import Postbox
 import RichTextEditorCore
 import RichTextEditorUI
 import InputView
-import TelegramUtils
+import AnsibleUtils
 import InstantPageUI
 
 // MARK: - Button action codec

@@ -2,7 +2,7 @@ import AlertsUI
 import Localization
 import Postbox
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 import TelegramCore
 
 func shareObserveDelivery(_ deliveries: [ShareRecipientDelivery], context: any AccountContextProtocol) {

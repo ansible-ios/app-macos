@@ -4,9 +4,9 @@ import SwiftSignalKit
 import TelegramCore
 import InAppSettings
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 #else
-import TelegramTheme
+import AnsibleTheme
 #endif
 
 public struct StoryPosterResultPrivacy: Codable, Equatable {

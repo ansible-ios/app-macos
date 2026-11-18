@@ -2,7 +2,7 @@ import Cocoa
 import TGUIKit
 import Postbox
 import TelegramCore
-import TelegramUtils
+import AnsibleUtils
 
 public struct ChatMediaSendFlightSource {
     public let rect: NSRect

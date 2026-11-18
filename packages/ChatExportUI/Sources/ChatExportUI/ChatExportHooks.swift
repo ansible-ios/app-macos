@@ -2,7 +2,7 @@ import Foundation
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 
 public struct ChatExportHooks {
     public let loadHistoryPage: (any AccountContextProtocol, PeerId, MessageHistoryAnchorIndex, Int, Atomic<ChatLocationContextHolder?>, ChatLocationInput) -> Signal<MessageHistoryView, NoError>

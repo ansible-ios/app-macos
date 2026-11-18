@@ -8,10 +8,10 @@ import TelegramCore
 import Cocoa
 import FoundationUtils
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleMediaUtils
 import MessageTextUtils
 import LocalAnimations
 import GeneralRows

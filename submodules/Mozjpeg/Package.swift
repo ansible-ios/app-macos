@@ -26,5 +26,5 @@ let package = Package(
                 .headerSearchPath("SharedHeaders/ios-mozjpeg"),
             ]),
     ]
-)///../../submodules/telegram-ios/third-party/mozjpeg/mozjpeg
+)///../../submodules/ansible-ios/third-party/mozjpeg/mozjpeg
 

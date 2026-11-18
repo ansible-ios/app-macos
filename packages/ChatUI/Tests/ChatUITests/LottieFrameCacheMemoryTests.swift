@@ -2,7 +2,7 @@ import XCTest
 import AppKit
 import SwiftSignalKit
 import Compression
-@testable import TelegramMedia
+@testable import AnsibleMedia
 
 final class LottieFrameCacheMemoryTests: XCTestCase {
 

@@ -8,9 +8,9 @@ import AppKit
 import CallsUI
 import GeneralRows
 import PremiumStatusUI
-import TelegramCallsCore
-import TelegramTheme
-import TelegramUtils
+import AnsibleCallsCore
+import AnsibleTheme
+import AnsibleUtils
 import Localization
 
 private var fakeIcon: CGImage {

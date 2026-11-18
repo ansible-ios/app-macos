@@ -5,7 +5,7 @@ import PackageDescription
 let deps: [(String, String)] = [
     ("TGUIKit", "../TGUIKit"),
     ("PhoneNumberUtils", "../PhoneNumberUtils"),
-    ("TelegramTheme", "../TelegramTheme"),
+    ("AnsibleTheme", "../AnsibleTheme"),
     ("Localization", "../Localization"),
 ]
 
@@ -16,9 +16,9 @@ let package = Package(
         .library(name: "PhoneInputUI", targets: ["PhoneInputUI"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
     ] + deps.map { .package(name: $0.0, path: $0.1) },
     targets: [
         .target(

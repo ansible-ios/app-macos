@@ -27,7 +27,7 @@ a = listing.index('                            let weared'); b = listing.index('
 fixture = fixture.replace('__MENU__', listing[a:b]+'return weared')
 with tempfile.TemporaryDirectory(prefix='gift-status-target-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "GiftStatusTarget", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "GiftStatusTargetTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

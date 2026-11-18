@@ -5,9 +5,9 @@ import TGUIKit
 import SwiftSignalKit
 import Postbox
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import SelectPeersUI
 import CalendarUI
 

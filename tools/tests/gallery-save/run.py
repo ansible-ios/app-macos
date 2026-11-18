@@ -21,7 +21,7 @@ body = body[:start] + '\nstrongSelf.saved.append(path)\n' + body[end - 1:]
 fixture = Path(__file__).with_name('GallerySaveTests.swift').read_text().replace('__SAVE__', body)
 with tempfile.TemporaryDirectory(prefix='gallery-save-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "GallerySave", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "GallerySaveTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

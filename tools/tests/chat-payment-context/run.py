@@ -28,7 +28,7 @@ start = interaction.index('                    case .payment:') + len('         
 fixture = fixture.replace('__KEYBOARD__', interaction[start:interaction.index('                    case let .urlAuth', start)])
 with tempfile.TemporaryDirectory(prefix='chat-payment-context-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "ChatPaymentContext", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "ChatPaymentContextTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

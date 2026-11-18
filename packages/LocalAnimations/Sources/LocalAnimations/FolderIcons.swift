@@ -1,8 +1,8 @@
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 
 
 
@@ -158,7 +158,7 @@ public enum FolderEmoticon {
             case "🎓":
                 return "Icon_Sidebar_Student"
             case "🛫":
-                return "Icon_Sidebar_Telegram"
+                return "Icon_Sidebar_Ansible"
             case "👨‍💼":
                 return "Icon_Sidebar_Work"
             case "🍷":

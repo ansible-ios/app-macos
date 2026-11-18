@@ -5,10 +5,10 @@ import TelegramCore
 import SwiftSignalKit
 import Postbox
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleMediaUtils
 import MessageTextUtils
 import ChatHistoryModel
 public class EditMessageModel: ChatAccessoryModel {

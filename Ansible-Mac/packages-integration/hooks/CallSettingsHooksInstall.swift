@@ -1,6 +1,6 @@
 import Cocoa
 import TGUIKit
-import TelegramMediaUtils
+import AnsibleMediaUtils
 import CallsUI
 
 func installCallSettingsUIHooks() {

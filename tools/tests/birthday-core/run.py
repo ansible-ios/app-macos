@@ -6,7 +6,7 @@ import tempfile
 
 root = Path(__file__).resolve().parents[3]
 parser = argparse.ArgumentParser()
-parser.add_argument('--source', type=Path, default=root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/Birthdays.swift')
+parser.add_argument('--source', type=Path, default=root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/Birthdays.swift')
 parser.add_argument('--filter')
 args = parser.parse_args()
 source = args.source.read_text()
@@ -15,7 +15,7 @@ source = '\n'.join(line for line in source.splitlines() if not (line.startswith(
 fixture = Path(__file__).with_name('BirthdayCoreTests.swift').read_text().replace('__SOURCE__', source)
 with tempfile.TemporaryDirectory(prefix='birthday-core-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "BirthdayCore", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "BirthdayCoreTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

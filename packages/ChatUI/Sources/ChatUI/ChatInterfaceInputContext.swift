@@ -3,7 +3,7 @@ import TelegramCore
 
 import Postbox
 import FoundationUtils
-import TelegramUtils
+import AnsibleUtils
 import InputView
 
 public struct PossibleContextQueryTypes: OptionSet {

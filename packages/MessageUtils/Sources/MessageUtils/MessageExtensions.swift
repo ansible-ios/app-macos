@@ -4,9 +4,9 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 import Localization
-import TelegramTheme
-import TelegramMediaUtils
-import TelegramUtils
+import AnsibleTheme
+import AnsibleMediaUtils
+import AnsibleUtils
 
 public extension Message {
     var replyMarkup:ReplyMarkupMessageAttribute? {

@@ -6,9 +6,9 @@ import Postbox
 import ChatHistoryModel
 import InputTextView
 import Localization
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
 
 
 public class ChatVideoMessageItem: ChatMediaItem {

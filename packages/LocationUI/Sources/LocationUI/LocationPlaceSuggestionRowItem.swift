@@ -6,14 +6,14 @@ import Postbox
 import SwiftSignalKit
 import Localization
 import ColorPalette
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import AvatarUI
 import ObjcUtils
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 private let randomColors = [NSColor(rgb: 0xe56cd5), NSColor(rgb: 0xf89440), NSColor(rgb: 0x9986ff), NSColor(rgb: 0x44b3f5), NSColor(rgb: 0x6dc139), NSColor(rgb: 0xff5d5a), NSColor(rgb: 0xf87aad), NSColor(rgb: 0x6e82b3), NSColor(rgb: 0xf5ba21)]
 

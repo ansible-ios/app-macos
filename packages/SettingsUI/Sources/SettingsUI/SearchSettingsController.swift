@@ -6,7 +6,7 @@ import TelegramCore
 import TGUIKit
 import InAppSettings
 import Localization
-import TelegramContext
+import AnsibleContext
 import GeneralRows
 import InputDataUI
 import AppAnalytics

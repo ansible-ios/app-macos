@@ -4,9 +4,9 @@ import Cocoa
 import TelegramCore
 import InAppSettings
 #if SHARE
-import TelegramContextShare
+import AnsibleContextShare
 #else
-import TelegramContext
+import AnsibleContext
 #endif
 
 public final class InteractiveTextView : Control {

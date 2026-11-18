@@ -5,7 +5,7 @@ import Postbox
 import SwiftSignalKit
 import InAppVideoServices
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 
 public let sharedVideoLoader:ExternalVideoLoader = {
     let shared = ExternalVideoLoader()

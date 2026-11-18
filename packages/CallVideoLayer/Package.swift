@@ -15,12 +15,12 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "MetalEngine", path: "../../submodules/telegram-ios/submodules/MetalEngine"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "MetalEngine", path: "../../submodules/ansible-ios/submodules/MetalEngine"),
         .package(name: "TGUIKit", path: "../TGUIKit"),
         .package(name: "TgVoipWebrtc", path: "../../submodules/tgcalls"),
-        .package(name: "TelegramVoip", path: "../../submodules/telegram-ios/submodules/TelegramVoip"),
-        .package(name: "YuvConversion", path: "../../submodules/telegram-ios/submodules/YuvConversion"),
+        .package(name: "TelegramVoip", path: "../../submodules/ansible-ios/submodules/TelegramVoip"),
+        .package(name: "YuvConversion", path: "../../submodules/ansible-ios/submodules/YuvConversion"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.

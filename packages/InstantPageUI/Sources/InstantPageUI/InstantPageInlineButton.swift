@@ -3,9 +3,9 @@ import CoreText
 import TelegramCore
 import TGUIKit
 import Emoji
-import TelegramTheme
-import TelegramUtils
-import TelegramContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleContext
 import InlineStickerLayer
 import InputView
 

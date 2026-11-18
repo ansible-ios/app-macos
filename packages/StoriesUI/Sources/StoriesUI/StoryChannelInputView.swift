@@ -8,8 +8,8 @@ import FoundationUtils
 import ChatUI
 import InputTextView
 import ShortPeerRow
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 import InputView
 import Localization
 

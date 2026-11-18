@@ -6,7 +6,7 @@ Fixture `/tmp/ReactionPassiveFix2`, frozen by `prepare.py`, then regenerated in 
 - After copying the native `edgeAntialiasingMask = 0`: 74 failures, all selected tags (`after-edge-mask-only.log`).
 - After the tag background layer (inserted at index 0, geometry flipped like the native NinePathImage layer) and the bitmap-backed production-style tag image: 10 tests, 0 failures in release and Address Sanitizer.
 - The bounded oracle applies to the selected tag background only. Its negative controls (flip, hide, fade) must fail at 1x, 2x and 3x.
-- Production ChatUI type-check against DerivedData: exit 0 (`chatui-typecheck.log`). TelegramMedia was re-emitted because DerivedData predated 530a24052.
+- Production ChatUI type-check against DerivedData: exit 0 (`chatui-typecheck.log`). AnsibleMedia was re-emitted because DerivedData predated 530a24052.
 
 Release medians, microseconds per operation, native / layers (forward run; the reverse run agrees within 2 %):
 

@@ -2,8 +2,8 @@ import Cocoa
 import TGUIKit
 import SwiftSignalKit
 import TelegramCore
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 
 public struct ComposeTitles {
     public let center:String

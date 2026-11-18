@@ -7,17 +7,17 @@ import Postbox
 import SwiftSignalKit
 import InAppSettings
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import AlertsUI
 import LocalAnimations
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import FoundationUtils
-import TelegramMediaUtils
-import TelegramLinks
+import AnsibleMediaUtils
+import AnsibleLinks
 import ChatHistoryModel
 import FilePanels
 import WallpaperUI
@@ -26,7 +26,7 @@ import AppAnalytics
 
 public enum ThemePreviewSource {
     case localTheme(TelegramPresentationTheme, name: String?)
-    case cloudTheme(TelegramTheme)
+    case cloudTheme(AnsibleTheme)
 }
 
 
@@ -282,7 +282,7 @@ public func ThemePreviewModalController(context: any AccountContextProtocol, sou
         let currentTheme = state.previewTheme
         let colors = currentTheme.colors
 
-        let cloudTheme: TelegramTheme?
+        let cloudTheme: AnsibleTheme?
         if case let .cloudTheme(t) = source {
             cloudTheme = t
         } else {

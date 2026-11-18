@@ -1,8 +1,8 @@
 import Foundation
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 #else
-import TelegramTheme
+import AnsibleTheme
 #endif
 
 public final class TextRevealController {

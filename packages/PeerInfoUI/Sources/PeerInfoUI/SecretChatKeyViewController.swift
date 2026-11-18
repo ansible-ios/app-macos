@@ -6,9 +6,9 @@ import TelegramCore
 import SwiftSignalKit
 import GeneralRows
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import ColorPalette
 import AvatarUI
 

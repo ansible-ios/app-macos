@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--source', type=Path, default=root / 'packages/AudioPlayerCore/Sources/AudioPlayerCore/AudioPlayerController.swift')
 args = parser.parse_args()
 source = args.source.read_text()
-media = (root / 'packages/TelegramMedia/Sources/MediaPlayer.swift').read_text()
+media = (root / 'packages/AnsibleMedia/Sources/MediaPlayer.swift').read_text()
 
 def section(text, start, end):
     offset = text.index(start)
@@ -30,7 +30,7 @@ for key, value in [
     fixture = fixture.replace(key, value.replace('public ', '').replace('fileprivate ', '').replace('private ', '').replace('SwiftSignalKit.Timer', 'ManualTimer').replace('RangeSet<Int64>', 'Int'))
 with tempfile.TemporaryDirectory(prefix='audio-playback-session-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('// swift-tools-version:5.9\nimport PackageDescription\nlet package = Package(name: "PlaybackSession", platforms: [.macOS(.v10_13)], dependencies: [.package(path: '+dependency+')], targets: [.testTarget(name: "PlaybackTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])\n')
     (directory / 'Tests').mkdir()
     (directory / 'Tests/PlaybackTests.swift').write_text(fixture)

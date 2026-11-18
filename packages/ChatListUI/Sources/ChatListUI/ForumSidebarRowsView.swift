@@ -1,12 +1,12 @@
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 import ChatUI
 import Postbox
 import SwiftSignalKit
 import Localization
-import TelegramTheme
+import AnsibleTheme
 import AlertsUI
 
 private final class SidebarRootRowItem: ChatListRowItem {

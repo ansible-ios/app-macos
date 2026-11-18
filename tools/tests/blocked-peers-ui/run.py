@@ -13,7 +13,7 @@ modern = 'private struct BlockedPeersEditingState' in source
 if modern:
     state = source[source.index('private struct BlockedPeersEditingState'):source.index('private final class BlockedPeerControllerArguments')]
 else:
-    state = (root / 'packages/TelegramUtils/Sources/TelegramUtils/PeerListEditingState.swift').read_text().replace('import Postbox', '')
+    state = (root / 'packages/AnsibleUtils/Sources/AnsibleUtils/PeerListEditingState.swift').read_text().replace('import Postbox', '')
 entries = source[source.index('private enum BlockedPeerEntryStableId'):source.index('    public func item(')] + '}\n'
 entries += source[source.index('private func blockedPeersControllerEntries'):source.index('fileprivate func prepareTransition')]
 start = source.index('    private let statePromise', source.index('open class BlockedPeersViewController'))
@@ -38,7 +38,7 @@ fixture = fixture.replace('__PENDING__', pending)
 fixture = fixture.replace('__STATE__', 'BlockedPeersEditingState' if modern else 'PeerListEditingState')
 with tempfile.TemporaryDirectory(prefix='blocked-peers-ui-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "BlockedPeersUI", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "BlockedPeersUITests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

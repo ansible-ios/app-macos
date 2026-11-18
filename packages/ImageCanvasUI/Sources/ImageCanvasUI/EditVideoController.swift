@@ -5,8 +5,8 @@ import TGUIKit
 import SwiftSignalKit
 import ColorPalette
 import Localization
-import TelegramContext
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleMediaUtils
 
 public enum EditVideoIcons {
     public static var edit: NSImage {

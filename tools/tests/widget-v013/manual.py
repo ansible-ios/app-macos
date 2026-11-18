@@ -101,11 +101,11 @@ def find_app(override):
             with info.open('rb') as handle:
                 metadata = plistlib.load(handle)
             if metadata.get('WorkspacePath') == str(ROOT / 'Ansible-Mac.xcworkspace'):
-                candidates.append(info.parent / 'Build/Products/Debug/Telegram.app')
-    candidates = [app for app in candidates if (app / 'Contents/MacOS/Telegram').is_file()]
+                candidates.append(info.parent / 'Build/Products/Debug/Ansible.app')
+    candidates = [app for app in candidates if (app / 'Contents/MacOS/Ansible').is_file()]
     if not candidates:
-        raise RuntimeError('Build the Debug app first, or pass --app /path/to/Telegram.app')
-    return max(candidates, key=lambda app: (app / 'Contents/MacOS/Telegram').stat().st_mtime)
+        raise RuntimeError('Build the Debug app first, or pass --app /path/to/Ansible.app')
+    return max(candidates, key=lambda app: (app / 'Contents/MacOS/Ansible').stat().st_mtime)
 
 
 def main():
@@ -121,7 +121,7 @@ def main():
     if args.prepare_only:
         return
     app = find_app(args.app)
-    binary = str(app / 'Contents/MacOS/Telegram')
+    binary = str(app / 'Contents/MacOS/Ansible')
     processes = subprocess.check_output(['/bin/ps', '-axo', 'command='], text=True)
     if any(line.strip() == binary or line.strip().startswith(binary + ' ') for line in processes.splitlines()):
         raise RuntimeError('Quit this Debug Telegram with Command-Q, then double-click manual.command again. A fresh launch is needed to open the test chat.')

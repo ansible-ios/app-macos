@@ -1,10 +1,10 @@
 import Cocoa
 import TGUIKit
-import TelegramMedia
-import TelegramTheme
+import AnsibleMedia
+import AnsibleTheme
 import LocalAnimations
 import Localization
-import TelegramUtils
+import AnsibleUtils
 
 extension PanelSearchStatusView {
     func updateSearchStatus(_ status: PanelSearchPresentation, kind: PanelSearchPlaceholderKind, query: String, theme: TelegramPresentationTheme, clearBackground: Bool = false) {

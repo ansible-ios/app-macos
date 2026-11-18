@@ -8,9 +8,9 @@ import InAppSettings
 import Translate
 import InputDataUI
 import GeneralRows
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import AlertsUI
 import ColorPalette
 import FoundationUtils

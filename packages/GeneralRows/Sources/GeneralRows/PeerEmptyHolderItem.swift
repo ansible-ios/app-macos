@@ -2,9 +2,9 @@ import Cocoa
 import TGUIKit
 import Localization
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 #else
-import TelegramTheme
+import AnsibleTheme
 #endif
 
 open class PeerEmptyHolderItem: GeneralRowItem {

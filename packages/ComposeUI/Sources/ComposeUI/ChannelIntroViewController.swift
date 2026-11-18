@@ -5,8 +5,8 @@ import TelegramCore
 
 import Postbox
 import Localization
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 import SelectPeersUI
 
 class ChannelIntroView : NSScrollView, AppearanceViewProtocol {

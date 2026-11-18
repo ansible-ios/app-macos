@@ -3,7 +3,7 @@ import XCTest
 import TGUIKit
 import InputView
 import InputTextView
-import TelegramContext
+import AnsibleContext
 import InlineStickerLayer
 @testable import FoldingViewHarness
 @testable import ChatLayerEngine
@@ -192,7 +192,7 @@ final class LiveInlineEmojiTests: XCTestCase {
         XCTAssertEqual(host.body.textNodes[0].textLayout?.selectedRange.range.location, NSNotFound)
         row.bind(item(2, context: context, stickers: [sticker(tint: .black)]))
         XCTAssertTrue(layers(host).first === explicit)
-        context.account = TelegramContext.Account()
+        context.account = AnsibleContext.Account()
         row.bind(item(2, context: context, stickers: [sticker(tint: .black)]))
         XCTAssertFalse(layers(host).first === explicit)
         XCTAssertNil(explicit.superlayer)

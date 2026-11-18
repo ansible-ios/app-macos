@@ -4,7 +4,7 @@ import TelegramCore
 import Postbox
 import TGUIKit
 import ChatHistoryModel
-import TelegramLinks
+import AnsibleLinks
 
 
 

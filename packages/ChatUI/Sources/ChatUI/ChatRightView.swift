@@ -2,7 +2,7 @@ import Cocoa
 import TGUIKit
 import ComponentsUI
 import TelegramCore
-import TelegramUtils
+import AnsibleUtils
 import InlineStickerLayer
 import SwiftSignalKit
 

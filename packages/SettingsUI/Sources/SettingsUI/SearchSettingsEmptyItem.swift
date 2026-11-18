@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
 import Localization
-import TelegramTheme
+import AnsibleTheme
 
 class SearchSettingsEmptyItem: TableRowItem {
     let textLayout:TextViewLayout

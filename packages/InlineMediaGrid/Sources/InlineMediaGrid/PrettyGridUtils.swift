@@ -3,7 +3,7 @@ import TelegramCore
 
 import Postbox
 import TGUIKit
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 
 public let kBotInlineTypeSticker:String = "sticker";

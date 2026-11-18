@@ -1,9 +1,9 @@
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramContext
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleUtils
+import AnsibleMediaUtils
 import Postbox
 import SwiftSignalKit
 import InlineStickerLayer

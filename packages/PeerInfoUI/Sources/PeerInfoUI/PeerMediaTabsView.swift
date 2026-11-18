@@ -1,8 +1,8 @@
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramMedia
-import TelegramTheme
+import AnsibleMedia
+import AnsibleTheme
 import InlineStickerLayer
 
 final class PeerMediaTabsView: View, HorizontalScrollConsuming {

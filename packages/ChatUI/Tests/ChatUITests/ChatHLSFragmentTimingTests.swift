@@ -4,11 +4,11 @@ import CoreMedia
 import AVFoundation
 import HLSPlayback
 import TelegramMediaPlayer
-@testable import TelegramMedia
+@testable import AnsibleMedia
 
 final class ChatHLSFragmentTimingTests: XCTestCase {
     private func fixture(_ name: String) -> URL {
-        return URL(fileURLWithPath: #filePath).deletingLastPathComponent().appendingPathComponent("../../../../submodules/telegram-ios/submodules/MediaPlayer/Tests/Fixtures/\(name).mp4").standardizedFileURL
+        return URL(fileURLWithPath: #filePath).deletingLastPathComponent().appendingPathComponent("../../../../submodules/ansible-ios/submodules/MediaPlayer/Tests/Fixtures/\(name).mp4").standardizedFileURL
     }
 
     private func assertTrack(_ actual: (start: Double, duration: Double)?, _ expected: FFMpegMediaInfo.Info?, _ label: String) {

@@ -6,7 +6,7 @@ import tempfile
 
 root = Path(__file__).resolve().parents[3]
 parser = argparse.ArgumentParser()
-parser.add_argument('--source', type=Path, default=root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift')
+parser.add_argument('--source', type=Path, default=root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift')
 args = parser.parse_args()
 source = args.source.read_text()
 def block(marker):
@@ -24,7 +24,7 @@ fixture = fixture.replace('__UPDATE_LIFECYCLE__', '\n'.join(block(marker) for ma
 entity_helpers = '\n'.join(block(marker) for marker in ['private func _internal_storyEntityFileIds(', 'private func _internal_storyEntityFiles(', 'private func _internal_prunedStoryEntityFiles('] if marker in source)
 fixture = fixture.replace('import SwiftSignalKit', 'import SwiftSignalKit\n' + entity_helpers, 1)
 
-reaction_source=(root/'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Stories.swift').read_text()
+reaction_source=(root/'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Stories.swift').read_text()
 def reaction_block(marker):
     start=reaction_source.index(marker); end=reaction_source.index('{',start)+1; depth=1
     while depth:
@@ -34,7 +34,7 @@ fixture=fixture.replace('__REACTION_REDUCER__',reaction_block('func _internal_up
 
 with tempfile.TemporaryDirectory(prefix='story-entity-files-') as directory:
     directory=Path(directory)
-    dependency=json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency=json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))
     (directory/'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "StoryEntityFiles", platforms: [.macOS(.v10_13)], dependencies: [.package(path: '''+dependency+''')], targets: [.testTarget(name: "StoryEntityFilesTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

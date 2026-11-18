@@ -2,7 +2,7 @@ import Cocoa
 import Postbox
 import TelegramCore
 import MessageUtils
-import TelegramUtils
+import AnsibleUtils
 
 public struct SearchMessagesResultState : Equatable {
     public static func == (lhs: SearchMessagesResultState, rhs: SearchMessagesResultState) -> Bool {

@@ -17,7 +17,7 @@ controller = source[source.index('@available(macOS 12.0, *)\nprivate class Deleg
 package = pathlib.Path(tempfile.mkdtemp(prefix='telegram-passkey-registration-'))
 tests = package / 'Tests'
 tests.mkdir()
-dependency = root / 'submodules/telegram-ios/submodules/SSignalKit'
+dependency = root / 'submodules/ansible-ios/submodules/SSignalKit'
 (package / 'Package.swift').write_text(f'''// swift-tools-version:5.5
 import PackageDescription
 let package = Package(

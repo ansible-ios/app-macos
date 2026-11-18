@@ -22,7 +22,7 @@ if 'private func chatHistoryKeepsReadState(' in source:
 package = Path(tempfile.mkdtemp(prefix='telegram-nonmember-read-'))
 tests = package / 'Tests'
 tests.mkdir()
-dependency = root / 'submodules/telegram-ios/submodules/SSignalKit'
+dependency = root / 'submodules/ansible-ios/submodules/SSignalKit'
 (package / 'Package.swift').write_text(f'''// swift-tools-version:5.5
 import PackageDescription
 let package = Package(name: "NonMemberReadRegression", platforms: [.macOS(.v10_13)], dependencies: [.package(name: "SSignalKit", path: "{dependency}")], targets: [.testTarget(name: "NonMemberReadRegressionTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

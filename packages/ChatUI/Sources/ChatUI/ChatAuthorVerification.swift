@@ -2,7 +2,7 @@ import Cocoa
 import Postbox
 import TelegramCore
 import PremiumStatusUI
-import TelegramTheme
+import AnsibleTheme
 
 struct ChatAuthorVerification {
     static let spacing: CGFloat = 4

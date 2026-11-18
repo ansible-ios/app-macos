@@ -6,7 +6,7 @@ import tempfile
 
 root = Path(__file__).resolve().parents[3]
 parser = argparse.ArgumentParser()
-parser.add_argument('--core-source', type=Path, default=root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/SavedMusic.swift')
+parser.add_argument('--core-source', type=Path, default=root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/SavedMusic.swift')
 parser.add_argument('--ui-source', type=Path, default=root / 'packages/PeerMediaUI/Sources/PeerMediaUI/SendAudioModalController.swift')
 args = parser.parse_args()
 core = args.core_source.read_text()
@@ -29,7 +29,7 @@ for key, value in [('__CONTEXT__', context), ('__MUTATIONS__', mutations), ('__U
     fixture = fixture.replace(key, value)
 with tempfile.TemporaryDirectory(prefix='saved-music-loading-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "SavedMusicLoading", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "SavedMusicTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

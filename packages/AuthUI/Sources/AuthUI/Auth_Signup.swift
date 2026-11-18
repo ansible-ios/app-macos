@@ -10,10 +10,10 @@ import SwiftSignalKit
 import FilePanels
 import PhoneNumberUtils
 import LocalAnimations
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import Localization
-import TelegramUtils
+import AnsibleUtils
 
 public final class Auth_SignupHeader : View {
     private let logo:ImageButton = ImageButton(frame: Auth_Insets.logoSize.bounds)

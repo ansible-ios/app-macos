@@ -1,7 +1,7 @@
 import Cocoa
-import TelegramCallsCore
+import AnsibleCallsCore
 import TGUIKit
-import TelegramMedia
+import AnsibleMedia
 import SwiftSignalKit
 import TelegramCore
 import Postbox
@@ -9,9 +9,9 @@ import AvatarUI
 import GeneralRows
 import InlineStickers
 import SceneEffects
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import EmojiReplacements
 import Strings
 import InlineStickerLayer

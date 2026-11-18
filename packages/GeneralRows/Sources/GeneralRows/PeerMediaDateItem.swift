@@ -4,8 +4,8 @@ import TelegramCore
 
 import Postbox
 import SwiftSignalKit
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 
 public class PeerMediaDateItem: TableStickItem {
 

@@ -3,8 +3,8 @@ import TGUIKit
 import TelegramCore
 import Postbox
 import Localization
-import TelegramTheme
-import TelegramMediaUtils
+import AnsibleTheme
+import AnsibleMediaUtils
 import GeneralRows
 import InputDataUI
 import LocalAnimations

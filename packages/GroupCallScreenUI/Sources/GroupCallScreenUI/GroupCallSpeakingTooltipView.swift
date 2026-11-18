@@ -1,5 +1,5 @@
 import Cocoa
-import TelegramCallsCore
+import AnsibleCallsCore
 import Foundation
 import TGUIKit
 import SwiftSignalKit
@@ -8,7 +8,7 @@ import Postbox
 import TelegramCore
 import CallsUI
 import Localization
-import TelegramUtils
+import AnsibleUtils
 
 public final class GroupCallSpeakingTooltipView: Control {
     private let nameView: TextView = TextView()

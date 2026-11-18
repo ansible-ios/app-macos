@@ -9,14 +9,14 @@ import TelegramVoip
 import ColorPalette
 import PrivateCallScreen
 import Emoji
-import TelegramCallsCore
+import AnsibleCallsCore
 import Localization
-import TelegramTheme
+import AnsibleTheme
 import AlertsUI
 import SystemPermissions
 import AvatarUI
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 import CallVideoLayer
 import AppAnalytics
 

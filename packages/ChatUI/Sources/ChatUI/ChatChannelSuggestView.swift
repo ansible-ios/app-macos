@@ -7,9 +7,9 @@ import SwiftSignalKit
 import Accelerate
 import AvatarUI
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 
 private let avatarSize = NSMakeSize(60, 60)
 

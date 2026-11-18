@@ -2,7 +2,7 @@ import XCTest
 import AppKit
 import TGUIKit
 import GeneralRows
-import TelegramTheme
+import AnsibleTheme
 @testable import InputDataUI
 
 final class InputDataRowSeparatorTests: XCTestCase {

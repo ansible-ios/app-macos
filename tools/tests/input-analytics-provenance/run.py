@@ -75,15 +75,15 @@ fixture = fixture.replace('public ', '')
 assert all(marker not in fixture for marker in ['__ATTRIBUTES__', '__PARSE__', '__MODEL__', '__FORMAT__', '__TRANSFORMS__', '__SYNC__', '__LINK_CALLBACK__', '__TRANSLATE_CALLBACK__', '__DATE_EDIT_CALLBACK__', '__DATE_CALLBACK__', '__INPUT_CAPTURE__', '__INPUT_HOOKS__', '__POLICY__', '__CONTEXT__', '__CAPTURE__'])
 with tempfile.TemporaryDirectory(prefix='input-analytics-provenance-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/MurMurHash32'))
-    signals = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/MurMurHash32'))
+    signals = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('// swift-tools-version:5.9\nimport PackageDescription\nlet package = Package(name: "InputAnalyticsProvenance", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ' + dependency + '), .package(path: ' + signals + ')], targets: [.testTarget(name: "InputAnalyticsProvenanceTests", dependencies: [.product(name: "MurMurHash32", package: "MurMurHash32"), .product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])\n')
     (directory / 'Tests').mkdir()
     (directory / 'Tests/ProvenanceTests.swift').write_text(fixture)
-    postbox = root / 'submodules/telegram-ios/submodules/Postbox/Sources'
+    postbox = root / 'submodules/ansible-ios/submodules/Postbox/Sources'
     for path in [postbox / 'Coding.swift', *sorted((postbox / 'Utils/Encoder').glob('*.swift')), *sorted((postbox / 'Utils/Decoder').glob('*.swift'))]:
         (directory / 'Tests' / path.name).write_text(path.read_text())
-    engine = (root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/Utils/Coding.swift').read_text().replace('import Postbox\n', '')
+    engine = (root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/Utils/Coding.swift').read_text().replace('import Postbox\n', '')
     (directory / 'Tests/EngineCoding.swift').write_text(engine)
 
     raise SystemExit(subprocess.run(['swift', 'test', '--package-path', str(directory), '--disable-sandbox', '--jobs', '4']).returncode)

@@ -7,16 +7,16 @@ import Postbox
 import SwiftSignalKit
 import TGModernGrowingTextView
 import InputView
-import TelegramMediaResources
+import AnsibleMediaResources
 import ArchiveUtils
 import ChatHistoryModel
 import ChatModeTypes
 import InputTextView
 import MessageUtils
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 public class ChatGroupedItem: ChatRowItem {
 

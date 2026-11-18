@@ -346,7 +346,7 @@ The first log line of the 21:54:44 launch is `[Api] Type constructor b90c2afd no
 
 `-PerfLabSynthetic <count>` opens a real `ChatController` over `ChatSyntheticContents`, a `ChatCustomContentsProtocol` built entirely in memory (the same mechanism as the HTML demo chats): a fake basic group with eleven fake members, `count` text messages of one to three sentences, a reply on every fourth message (with the replied message in `associatedMessages`), one to four reaction chips on every third, and every ninth outgoing. Timestamps start from a fixed base, so snapshots of two builds compare pixel for pixel. Nothing is stored in Postbox or sent, and no media is included (a fake resource would be fetched from the server). With 400 messages a 3 s fling at 16,000 pt/s scrolls 37,353 pt and binds 786 rows per run, and the bind steps repeat within about ±2 ms, so A/B runs need no real chat.
 
-Baseline app copies for A/B must sit at a path ending in `Debug/Telegram.app` (for example `/Users/tmac/Projects/perflab-base/Debug/Telegram.app`): `run.sh` finds the lab process with that pattern, and a copy elsewhere returns at once and overlaps the next run.
+Baseline app copies for A/B must sit at a path ending in `Debug/Ansible.app` (for example `/Users/tmac/Projects/perflab-base/Debug/Ansible.app`): `run.sh` finds the lab process with that pattern, and a copy elsewhere returns at once and overlaps the next run.
 
 ## 2026-10-19: keep a spare reactions container per row
 

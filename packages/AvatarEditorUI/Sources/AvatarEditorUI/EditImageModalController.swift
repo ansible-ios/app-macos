@@ -5,10 +5,10 @@ import SwiftSignalKit
 import ColorPalette
 import ImageCanvasUI
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramIconsTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleIconsTheme
+import AnsibleUtils
 
 private let dot: CGImage = generateImage(NSMakeSize(12, 12), contextGenerator: { size, ctx in
     ctx.clear(size.bounds)

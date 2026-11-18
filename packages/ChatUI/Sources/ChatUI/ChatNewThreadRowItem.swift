@@ -4,8 +4,8 @@ import SwiftSignalKit
 import TelegramCore
 import ChatHistoryModel
 import GeneralRows
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 
 public final class ChatNewThreadRowItem : GeneralRowItem {
     fileprivate let entry: ChatHistoryEntry

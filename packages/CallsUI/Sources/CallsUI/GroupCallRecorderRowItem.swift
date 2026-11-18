@@ -5,8 +5,8 @@ import SwiftSignalKit
 import TelegramCore
 import GeneralRows
 import Localization
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 import ColorPalette
 
 

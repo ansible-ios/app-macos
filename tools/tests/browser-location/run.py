@@ -26,7 +26,7 @@ fixture = fixture.replace('__PERMISSIONS__', block(permissions, 'public struct W
 fixture = fixture.replace('__METHODS__', '\n'.join(block(controller, marker) for marker in ['    fileprivate func openLocationSettings()', '    fileprivate func checkLocation()', '    fileprivate func requestLocation()', '    public func cancelPendingPageActions()', '    public override func viewWillDisappear(', '    public override func viewWillAppear('] if marker in controller))
 with tempfile.TemporaryDirectory(prefix='browser-location-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "BrowserLocation", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "BrowserLocationTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

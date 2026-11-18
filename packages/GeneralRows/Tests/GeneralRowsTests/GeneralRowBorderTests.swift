@@ -1,7 +1,7 @@
 import XCTest
 import AppKit
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 @testable import GeneralRows
 
 final class GeneralRowBorderTests: XCTestCase {

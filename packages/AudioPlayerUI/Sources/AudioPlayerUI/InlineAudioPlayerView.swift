@@ -5,12 +5,12 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 import RangeSet
-import TelegramMedia
+import AnsibleMedia
 import InAppSettings
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import LocalAnimations
 import GeneralRows
 import AudioPlayerCore

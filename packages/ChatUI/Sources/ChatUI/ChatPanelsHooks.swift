@@ -2,7 +2,7 @@ import Cocoa
 import TGUIKit
 import TelegramCore
 import Postbox
-import TelegramContext
+import AnsibleContext
 import GeneralRows
 
 public struct ChatPanelsHooks {

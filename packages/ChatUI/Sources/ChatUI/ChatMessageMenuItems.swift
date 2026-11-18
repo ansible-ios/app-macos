@@ -9,7 +9,7 @@ import ObjcUtils
 import Translate
 import InAppSettings
 import InputView
-import TelegramMedia
+import AnsibleMedia
 import AlertsUI
 import ChatHistoryModel
 import ChatModeTypes
@@ -21,10 +21,10 @@ import MessageUtils
 import PremiumUI
 import StarsUI
 import Strings
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 public func pollVoteRestrictionText(poll: TelegramMediaPoll, chatPeer: Peer?) -> String? {

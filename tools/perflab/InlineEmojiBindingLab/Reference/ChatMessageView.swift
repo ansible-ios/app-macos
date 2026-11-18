@@ -5,8 +5,8 @@ import TelegramCore
 import Postbox
 import InputTextView
 import MessageUtils
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleMediaUtils
+import AnsibleTheme
 import Localization
 
 

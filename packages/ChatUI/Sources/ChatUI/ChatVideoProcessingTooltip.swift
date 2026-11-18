@@ -6,9 +6,9 @@ import SwiftSignalKit
 import Postbox
 import LocalAnimations
 import Localization
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
 
 final class ChatVideoProcessingTooltip : Control {
     enum Source {

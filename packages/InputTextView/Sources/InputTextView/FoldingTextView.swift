@@ -2,11 +2,11 @@ import Foundation
 import Cocoa
 import ColorPalette
 import TGUIKit
-import TelegramMedia
+import AnsibleMedia
 import SwiftSignalKit
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import LocalAnimations
 import InlineStickerLayer
 

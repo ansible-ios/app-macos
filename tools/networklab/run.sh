@@ -10,16 +10,16 @@ fi
 if [ -z "$NETWORKLAB_APP" ]; then
     for data in ~/Library/Developer/Xcode/DerivedData/Ansible-Mac-*; do
         if /usr/libexec/PlistBuddy -c "Print :WorkspacePath" "$data/info.plist" 2>/dev/null | grep -q "$ROOT/"; then
-            NETWORKLAB_APP="$data/Build/Products/Debug/Telegram.app"
+            NETWORKLAB_APP="$data/Build/Products/Debug/Ansible.app"
         fi
     done
 fi
 APP=$NETWORKLAB_APP
 OUT="$HOME/Library/Group Containers/6N38VWS5BX.ru.keepcoder.Telegram/debug/perf-lab"
 RESULTS=${NETWORKLAB_RESULTS:-$DIR/results}
-BENCH="$ROOT/submodules/telegram-ios/third-party/mtproto-engine/target/release/mtproto-bench"
+BENCH="$ROOT/submodules/ansible-ios/third-party/mtproto-engine/target/release/mtproto-bench"
 mkdir -p "$RESULTS" "$OUT"
-if pgrep -f "Debug/Telegram.app/Contents/MacOS/Telegram" >/dev/null; then
+if pgrep -f "Debug/Ansible.app/Contents/MacOS/Ansible" >/dev/null; then
     echo "a Debug Telegram is already running; quit it first"
     exit 1
 fi
@@ -37,7 +37,7 @@ run_app() {
     open -n "$APP" --args -PerfLab network -PerfLabLabel "$LABEL" -PerfLabQuit -PerfLabAccount "$ACCOUNT" -PerfLabNetworkEngine "$ENGINE" "${PROXY_ARGS[@]}" "$@"
     sleep 3
     local pid
-    pid=$(pgrep -f "Debug/Telegram.app/Contents/MacOS/Telegram" | head -1)
+    pid=$(pgrep -f "Debug/Ansible.app/Contents/MacOS/Ansible" | head -1)
     while [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; do sleep 1; done
 }
 BEFORE=$(ls "$OUT" 2>/dev/null | sort)

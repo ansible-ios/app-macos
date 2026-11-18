@@ -4,11 +4,11 @@ import SwiftSignalKit
 import Postbox
 import TelegramCore
 #if SHARE
-import TelegramThemeShare
-import TelegramContextShare
+import AnsibleThemeShare
+import AnsibleContextShare
 #else
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 #endif
 
 struct ReadTimeSlice: Equatable {

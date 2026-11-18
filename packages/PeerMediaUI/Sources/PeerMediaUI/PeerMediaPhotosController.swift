@@ -12,10 +12,10 @@ import GalleryUI
 import GeneralRows
 import Localization
 import MessageUtils
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleMediaUtils
 import ChatUI
 import InputDataUI
 import AppAnalytics

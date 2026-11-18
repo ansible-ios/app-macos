@@ -9,7 +9,7 @@ MOD="$1"; SRC="$2"
 REPO="$(cd "$(dirname "$0")/../../.." && pwd)"
 WORK="${TMPDIR:-/tmp}/tg-typecheck"
 mkdir -p "$WORK/mods"
-D=$(ls -dt ~/Library/Developer/Xcode/DerivedData/Telegram*/Build | head -1)
+D=$(ls -dt ~/Library/Developer/Xcode/DerivedData/Ansible*/Build | head -1)
 SDK=$(xcrun --show-sdk-path --sdk macosx)
 ARGS=()
 HDRS=()

@@ -9,7 +9,7 @@ class SEUnauthorizedView : View {
     required init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         
-        imageView.image = #imageLiteral(resourceName: "Icon_TelegramLogin").precomposed()
+        imageView.image = #imageLiteral(resourceName: "Icon_AnsibleLogin").precomposed()
         imageView.sizeToFit()
         imageView.isAccessibilityDecorative = true
         self.backgroundColor = theme.colors.background

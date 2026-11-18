@@ -6,11 +6,11 @@ let deps: [(String, String)] = [
     ("TGUIKit", "../TGUIKit"),
     ("InAppSettings", "../InAppSettings"),
     ("Localization", "../Localization"),
-    ("TelegramTheme", "../TelegramTheme"),
-    ("TelegramContext", "../TelegramContext"),
-    ("TelegramUtils", "../TelegramUtils"),
-    ("TelegramMediaUtils", "../TelegramMediaUtils"),
-    ("TelegramMedia", "../TelegramMedia"),
+    ("AnsibleTheme", "../AnsibleTheme"),
+    ("AnsibleContext", "../AnsibleContext"),
+    ("AnsibleUtils", "../AnsibleUtils"),
+    ("AnsibleMediaUtils", "../AnsibleMediaUtils"),
+    ("AnsibleMedia", "../AnsibleMedia"),
     ("ChatModeTypes", "../ChatModeTypes"),
     ("MessageUtils", "../MessageUtils"),
     ("LocalAnimations", "../LocalAnimations"),
@@ -20,7 +20,7 @@ let deps: [(String, String)] = [
     ("GalleryUI", "../GalleryUI"),
     ("ChatUI", "../ChatUI"),
     ("PeerMediaUI", "../PeerMediaUI"),
-    ("RangeSet", "../../submodules/telegram-ios/submodules/Utils/RangeSet"),
+    ("RangeSet", "../../submodules/ansible-ios/submodules/Utils/RangeSet"),
 ]
 
 let package = Package(
@@ -30,9 +30,9 @@ let package = Package(
         .library(name: "AudioPlayerUI", targets: ["AudioPlayerUI"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
     ] + deps.map { .package(name: $0.0, path: $0.1) },
     targets: [
         .target(

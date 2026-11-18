@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import SwiftSignalKit
 
 public class SidebarViewController<T: NSView>: GenericViewController<T> {

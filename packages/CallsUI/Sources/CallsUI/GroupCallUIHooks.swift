@@ -3,9 +3,9 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
-import TelegramCallsCore
-import TelegramTheme
+import AnsibleContext
+import AnsibleCallsCore
+import AnsibleTheme
 import GeneralRows
 
 public protocol GroupCallAvatarData {

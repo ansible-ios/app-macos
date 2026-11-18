@@ -1,8 +1,8 @@
 import Foundation
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 import TelegramCore
-import TelegramUtils
+import AnsibleUtils
 import Postbox
 import AlertsUI
 import Localization

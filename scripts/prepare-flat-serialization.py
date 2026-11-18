@@ -7,7 +7,7 @@ import tempfile
 
 
 def prepare(root):
-    base = root / "submodules/telegram-ios/submodules/TelegramCore/FlatSerialization"
+    base = root / "submodules/ansible-ios/submodules/TelegramCore/FlatSerialization"
     models = sorted((base / "Models").glob("*.fbs"))
     if not models:
         raise RuntimeError("FlatSerialization models are missing")

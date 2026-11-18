@@ -8,7 +8,7 @@ let package = Package(
         .library(name: "RichTextEditorUI", targets: ["RichTextEditorUI"]),
     ],
     dependencies: [
-        .package(name: "RichTextEditor", path: "../../submodules/telegram-ios/submodules/TelegramUI/Components/RichTextEditor"),
+        .package(name: "RichTextEditor", path: "../../submodules/ansible-ios/submodules/TelegramUI/Components/RichTextEditor"),
         .package(name: "SwiftMath", path: "../SwiftMath"),
     ],
     targets: [

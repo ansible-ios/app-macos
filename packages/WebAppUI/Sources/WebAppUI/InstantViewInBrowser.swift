@@ -6,9 +6,9 @@ import SwiftSignalKit
 import TelegramCore
 import Postbox
 import InAppSettings
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import LocalAnimations
 
 private struct PageState : Equatable {

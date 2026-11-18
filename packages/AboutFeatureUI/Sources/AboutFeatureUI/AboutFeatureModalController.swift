@@ -5,9 +5,9 @@ import TelegramCore
 import Postbox
 import Localization
 import Strings
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import ChatUI
@@ -630,7 +630,7 @@ public func showFirstGramsModal(context: any AccountContextProtocol, window: Win
         description: description,
         features: [
             .init(
-                icon: TelegramThemeHooks.shared.image(.iconOptionTelegram).precomposed(theme.colors.accent),
+                icon: TelegramThemeHooks.shared.image(.iconOptionAnsible).precomposed(theme.colors.accent),
                 title: strings().aboutFeatureModalControllerFirstGramsSend,
                 description: strings().aboutFeatureModalControllerFirstGramsSendInfo
             ),

@@ -741,7 +741,7 @@
       "runner": "tools/tests/calendar-dates/run.py",
       "working_tests_passed": 50,
       "baseline_failing_tests": 35,
-      "coverage": "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in TelegramUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
+      "coverage": "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in AnsibleUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
     },
     {
       "runner": "tools/tests/calendar-selection/run.py",
@@ -931,9 +931,9 @@
     "SendAudioModalController: validate viewport filling when bot pages contain only unsupported/external results but have a next offset, plus explicit retry UX after request failure.",
     "InstantVideoPIP: signed-in native validation still needed for drag-off dismissal, hide/reopen animation, cross-window/account presentation, transcript visibility and background decoding.",
     "Full ChatUI typecheck: current analytics/recorder interfaces were emitted successfully into temporary validation storage, but cached InputDataUI navigation hooks and another completion signature still mismatch concurrent source. PiP source passes its independent native typecheck; whole-module integration remains unverified.",
-    "TelegramMedia GIFPlayerView: native hardware presentation, timebase synchronization during live video playback, frame retention while hiding and long-running resource accounting still require integration validation.",
+    "AnsibleMedia GIFPlayerView: native hardware presentation, timebase synchronization during live video playback, frame retention while hiding and long-running resource accounting still require integration validation.",
     "AudioPlayerUI numeric safeguards: signed-in native validation still needed for timing labels, blank-line spacing, invalid-duration playback and fetching/waiting transitions. Harnesses cover actual state branches with simulated controls.",
-    "TelegramMedia GIFPlayerView: failure paths now stop and permit explicit same-data retries, but corrupted-file UX and native display-layer failure recovery still require live integration review.",
+    "AnsibleMedia GIFPlayerView: failure paths now stop and permit explicit same-data retries, but corrupted-file UX and native display-layer failure recovery still require live integration review.",
     "AudioPlayerUI: native visual checks remain for fragmented buffering around the current seek position, clearing on song changes, completion layout and hidden player-list controls. Tests record control calls rather than render live UI.",
     "AudioPlayerCore interpolation and session changes still require native real-account playback with rate changes, stalls, seeks, repeated stops/restarts and system Now Playing; controlled-clock tests do not prove hardware scheduling or whole-app leak freedom.",
     "AudioPlayerCore resource fetching: inspect network-failure/retry UX and error propagation; current NoError resource-status API still ignores the separate fetch error. Native integration must verify playback-scoped cancellation preserves downloads requested by other UI.",
@@ -1127,8 +1127,8 @@
         "Shared pagination helper retains the engine continuation state and cumulative messages, rejects overlapping/exhausted page requests, cancels with the query subscription and handles synchronous/reentrant callbacks. Actual bottom-scroll routing is covered; no live table visual validation."
       ],
       "references": [
-        "submodules/telegram-ios/submodules/TelegramUI/Sources/ChatControllerUpdateSearch.swift",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/SearchMessages.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Sources/ChatControllerUpdateSearch.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/SearchMessages.swift",
         "https://core.telegram.org/tdlib/docs/classtd_1_1td__api_1_1search_chat_messages.html"
       ]
     },
@@ -1159,7 +1159,7 @@
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/SavedMusic.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/SavedMusic.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "ProfileSavedMusicContext leaves loading on request failure or empty completion and allows retry; reload retains visible rows. First-page retries request offset zero even with cached files, and late cached data is published after failure. Empty successful pages stop paging. Child disposable installation preserves reentrant request ownership.",
@@ -1219,22 +1219,22 @@
         "Forty-six playlist and twenty-eight playback-session/voice checks pass. Ten new edit cases use actual metadata adoption, merge/history callbacks, APEntry equality and production isEqualMessages with modeled Message/media/peer data; nine fail on the prior snapshot (twenty-three assertions). Final AudioPlayerCore native typecheck reports exit 0. iOS SharedMediaPlayer rebuilds playback for changed playback data; this implementation preserves the decoder across metadata-only changes keyed by resource ID. Native decoder/Postbox edits, artwork/PiP integration and whole-app leak validation remain pending."
       ],
       "references": [
-        "submodules/telegram-ios/submodules/TelegramUI/Sources/SharedMediaPlayer.swift",
-        "packages/TelegramMedia/Sources/MediaPlayer.swift",
-        "submodules/telegram-ios/submodules/MediaPlayer/Sources/MediaPlayerScrubbingNode.swift",
-        "submodules/telegram-ios/submodules/SSignalKit/SwiftSignalKit/Source/Timer.swift",
-        "submodules/telegram-ios/submodules/SSignalKit/SwiftSignalKit/Source/Signal.swift",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/Network/FetchedMediaResource.swift",
-        "submodules/telegram-ios/submodules/Postbox/Sources/MediaBox.swift",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/MediaManager/PeerMessagesMediaPlaylist/Sources/PeerMessagesMediaPlaylist.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Sources/SharedMediaPlayer.swift",
+        "packages/AnsibleMedia/Sources/MediaPlayer.swift",
+        "submodules/ansible-ios/submodules/MediaPlayer/Sources/MediaPlayerScrubbingNode.swift",
+        "submodules/ansible-ios/submodules/SSignalKit/SwiftSignalKit/Source/Timer.swift",
+        "submodules/ansible-ios/submodules/SSignalKit/SwiftSignalKit/Source/Signal.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/Network/FetchedMediaResource.swift",
+        "submodules/ansible-ios/submodules/Postbox/Sources/MediaBox.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/MediaManager/PeerMessagesMediaPlaylist/Sources/PeerMessagesMediaPlaylist.swift",
         "https://developer.apple.com/documentation/mediaplayer/mpremotecommand/addtarget(handler:)",
         "https://developer.apple.com/documentation/mediaplayer/mpremotecommand/removetarget(_:)",
-        "submodules/telegram-ios/submodules/TelegramUI/Sources/MediaManager.swift",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/MarkMessageContentAsConsumedInteractively.swift",
-        "packages/TelegramUtils/Sources/TelegramUtils/IsEqualMessages.swift",
-        "packages/TelegramUtils/Sources/TelegramUtils/System.swift",
-        "submodules/telegram-ios/submodules/AccountContext/Sources/SharedMediaPlayer.swift",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/SyncCore/SyncCore_CloudFileMediaResource.swift"
+        "submodules/ansible-ios/submodules/TelegramUI/Sources/MediaManager.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/MarkMessageContentAsConsumedInteractively.swift",
+        "packages/AnsibleUtils/Sources/AnsibleUtils/IsEqualMessages.swift",
+        "packages/AnsibleUtils/Sources/AnsibleUtils/System.swift",
+        "submodules/ansible-ios/submodules/AccountContext/Sources/SharedMediaPlayer.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/SyncCore/SyncCore_CloudFileMediaResource.swift"
       ]
     },
     {
@@ -1259,20 +1259,20 @@
         "Eighteen production-controller harness tests pass, fifteen fail against the original source. Final isolated PiP source typechecks against built dependencies plus its actual internal ChatControllerKind declaration. Whole ChatUI typecheck remains incomplete: fresh temporary analytics/recorder interfaces resolved initial errors, but cached InputDataUI and other interfaces still mismatch concurrent source changes. No unrelated source was edited; main app and native playback were not built or run."
       ],
       "references": [
-        "submodules/telegram-ios/submodules/TelegramUI/Sources/OverlayInstantVideoNode.swift",
-        "packages/TelegramMedia/Sources/GIFPlayerView.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Sources/OverlayInstantVideoNode.swift",
+        "packages/AnsibleMedia/Sources/GIFPlayerView.swift",
         "packages/TGUIKit/Sources/MajorNavigationController.swift"
       ]
     },
     {
-      "path": "packages/TelegramMedia/Sources/GIFPlayerView.swift",
+      "path": "packages/AnsibleMedia/Sources/GIFPlayerView.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Serializes renderer setup/reset/shutdown on the media queue. Per-view generation invalidation suppresses obsolete setup and callbacks, including during stop/restart and deinit. Replacing data explicitly stops the old request before registering the new one.",
         "Shutdown no longer waits for display readiness: stops requesting data, invalidates/removes timers, clears clock/output/asset/track state, flushes displayed content and detaches/cancels the reader. Reset now honors its resetImage flag.",
-        "Twelve native reader/timer/sample-buffer lifecycle tests pass, eleven fail against original code. The deinit test uses an explicit autorelease-pool boundary for native AppKit object lifetimes. TelegramMedia typechecks against existing dependencies; main app not built. Controlled display readiness and enqueue mean hardware rendering/performance remain unverified.",
+        "Twelve native reader/timer/sample-buffer lifecycle tests pass, eleven fail against original code. The deinit test uses an explicit autorelease-pool boundary for native AppKit object lifetimes. AnsibleMedia typechecks against existing dependencies; main app not built. Controlled display readiness and enqueue mean hardware rendering/performance remain unverified.",
         "Failed reader construction, startReading rejection and runtime failed status now terminate the request and release reader/timer state. A failed-generation marker permits an explicit same-data retry without letting stale failures invalidate newer sessions.",
-        "restartReading propagates startReading success, avoids forced clock unwrap and invalidates the previous timer even if its layer clock was detached. Nineteen tests pass; preceding cleanup fix fails five cases and crashes clock-creation failure in a separate process. Final TelegramMedia typecheck passes."
+        "restartReading propagates startReading success, avoids forced clock unwrap and invalidates the previous timer even if its layer clock was detached. Nineteen tests pass; preceding cleanup fix fails five cases and crashes clock-creation failure in a separate process. Final AnsibleMedia typecheck passes."
       ],
       "references": [
         "https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/requestmediadatawhenready(on:using:)",
@@ -1301,8 +1301,8 @@
       "references": [
         "packages/TGUIKit/Sources/LinearProgressControl.swift",
         "packages/GalleryUI/Sources/GalleryUI/SVideoView.swift",
-        "submodules/telegram-ios/submodules/TelegramUI/Sources/OverlayAudioPlayerControlsNode.swift",
-        "submodules/telegram-ios/submodules/MediaPlayer/Sources/MediaPlayerScrubbingNode.swift"
+        "submodules/ansible-ios/submodules/TelegramUI/Sources/OverlayAudioPlayerControlsNode.swift",
+        "submodules/ansible-ios/submodules/MediaPlayer/Sources/MediaPlayerScrubbingNode.swift"
       ]
     },
     {
@@ -1316,14 +1316,14 @@
         "Source comparison found iOS displays deleted accounts but also uses one replaceable removal disposable, so its request cancellation is not copied. Shared BlockedPeersContext pagination/mutation semantics remain a separate pending audit."
       ],
       "references": [
-        "submodules/telegram-ios/submodules/SettingsUI/Sources/Privacy and Security/BlockedPeersController.swift",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Privacy/BlockedPeersContext.swift",
+        "submodules/ansible-ios/submodules/SettingsUI/Sources/Privacy and Security/BlockedPeersController.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Privacy/BlockedPeersContext.swift",
         "packages/TGUIKit/Sources/MergeLists.swift",
-        "packages/TelegramUtils/Sources/TelegramUtils/System.swift"
+        "packages/AnsibleUtils/Sources/AnsibleUtils/System.swift"
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Privacy/BlockedPeersContext.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Privacy/BlockedPeersContext.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Pagination tracks raw blocked-vector count separately from visible/deduplicated peers. Missing payloads and overlaps advance the offset; duplicates refresh existing metadata. Empty slices and reached counts stop paging. Server counts are retained even for unrenderable peers and bounded by visible count. Frozen responses preserve known rows/count instead of reporting a false zero; empty completion leaves the page retryable.",
@@ -1337,7 +1337,7 @@
         "https://core.telegram.org/constructor/contacts.blockedSlice",
         "https://core.telegram.org/api/block",
         "https://core.telegram.org/method/contacts.setBlocked",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/Network/Network.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/Network/Network.swift",
         "packages/StoriesUI/Sources/StoriesUI/StoryPrivacyModalController.swift"
       ]
     },
@@ -1363,12 +1363,12 @@
         "packages/StoriesUI/Sources/StoriesUI/StoryPosterState.swift",
         "packages/SelectPeersUI/Sources/SelectPeersUI/SelectPeersController.swift",
         "packages/TGUIKit/Sources/ProgressModal.swift",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Stories/StoryContainerScreen/Sources/StoryItemSetContainerComponent.swift",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Stories.swift"
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Stories/StoryContainerScreen/Sources/StoryItemSetContainerComponent.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Stories.swift"
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Stories.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Stories.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Privacy edits first resolve input rules, then send the request. Local individual-story and story-list privacy are patched only after successful acceptance, using latest stored items so intervening unrelated field edits are preserved. Deleted/missing entries are not resurrected. Updates are passed to state manager after cache commit, before completion.",
@@ -1416,26 +1416,26 @@
       ],
       "references": [
         "https://core.telegram.org/method/stories.editStory",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/TelegramEngineMessages.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/TelegramEngineMessages.swift",
         "packages/StoriesUI/Sources/StoriesUI/StoryPrivacyModalController.swift",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Stories/StoryContainerScreen/Sources/StoryItemSetContainerComponent.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Stories/StoryContainerScreen/Sources/StoryItemSetContainerComponent.swift",
         "https://raw.githubusercontent.com/tdlib/td/master/td/telegram/UserPrivacySettingRule.cpp",
         "https://core.telegram.org/api/privacy",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Privacy/UpdatedAccountPrivacySettings.swift",
-        "submodules/telegram-ios/submodules/TelegramApi/swift_scheme.tl",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/MediaEditorScreen/Sources/EditStories.swift",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/ApiUtils/StoreMessage_Telegram.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Privacy/UpdatedAccountPrivacySettings.swift",
+        "submodules/ansible-ios/submodules/TelegramApi/swift_scheme.tl",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/MediaEditorScreen/Sources/EditStories.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/ApiUtils/StoreMessage_Telegram.swift",
         "https://core.telegram.org/method/stories.deleteStories",
         "https://raw.githubusercontent.com/tdlib/td/master/td/telegram/StoryManager.cpp",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/State/AccountStateManager.swift",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/State/AccountStateManagementUtils.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/State/AccountStateManager.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/State/AccountStateManagementUtils.swift",
         "https://core.telegram.org/method/stories.getStoriesViews",
         "https://core.telegram.org/constructor/storyViews",
         "https://core.telegram.org/method/stories.sendReaction",
         "packages/StoriesUI/Sources/StoriesUI/StoryModalController.swift",
         "https://raw.githubusercontent.com/tdlib/td/master/td/telegram/StoryManager.cpp",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/Network/Network.swift",
-        "submodules/telegram-ios/submodules/MTProtoRustEngine/Sources/MTProtoRustEngine/RustNetworkSession.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/Network/Network.swift",
+        "submodules/ansible-ios/submodules/MTProtoRustEngine/Sources/MTProtoRustEngine/RustNetworkSession.swift",
         "https://core.telegram.org/method/stories.deleteStories",
         "https://raw.githubusercontent.com/tdlib/td/master/td/telegram/StoryManager.cpp",
         "https://core.telegram.org/constructor/storyItem",
@@ -1443,7 +1443,7 @@
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Privacy/CloseFriends.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Privacy/CloseFriends.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Full-list close-friend replacement validates all unique selected IDs as existing cloud-user contacts before networking; duplicate IDs retain first occurrence order. Invalid or partially resolved selections fail instead of stripping namespaces or sending a partial replacement.",
@@ -1454,8 +1454,8 @@
       "references": [
         "https://core.telegram.org/method/contacts.editCloseFriends",
         "https://core.telegram.org/api/privacy",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Privacy/TelegramEnginePrivacy.swift",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Data/ContactsData.swift"
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Privacy/TelegramEnginePrivacy.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Data/ContactsData.swift"
       ]
     },
     {
@@ -1470,7 +1470,7 @@
         "Like action weakly captures its viewer, validates requested peer/story against the current slice, and supplies its previous reaction for uncached stories. Eight exact-callback tests pass; previous callback fails six cases with seven assertions. Full viewer compile remains unverified because unrelated analytics/recording interfaces differ in cached dependencies."
       ],
       "references": [
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Stories.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Stories.swift",
         "https://core.telegram.org/method/stories.deleteStories"
       ]
     },
@@ -1501,15 +1501,15 @@
         "74 album UI checks pass, including six membership-freshness cases; three cases fail on the preceding source. Native primary-file check passes against cached dependencies. Unknown membership and not-yet-initialized album contexts still need live/integration review."
       ],
       "references": [
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Stories.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Stories.swift",
         "https://core.telegram.org/method/stories.deleteStories",
         "https://core.telegram.org/method/stories.togglePinnedToTop",
         "https://raw.githubusercontent.com/tdlib/td/master/td/telegram/StoryManager.cpp",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/PeerInfo/PeerInfoVisualMediaPaneNode/Sources/PeerInfoStoryPaneNode.swift"
+        "submodules/ansible-ios/submodules/TelegramUI/Components/PeerInfo/PeerInfoVisualMediaPaneNode/Sources/PeerInfoStoryPaneNode.swift"
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Album pagination now advances by raw result count; archive/profile pagination uses the final raw story ID even when the item cannot be rendered. Repeated non-advancing ID cursors terminate. Duplicates are normalized before cache storage and refresh existing metadata in the visible list.",
@@ -1564,7 +1564,7 @@
         "https://core.telegram.org/api/offsets",
         "https://core.telegram.org/api/stories",
         "https://core.telegram.org/constructor/storyAlbum",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/ShareWithPeersScreen/Sources/ShareWithPeersScreen.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/ShareWithPeersScreen/Sources/ShareWithPeersScreen.swift",
         "https://core.telegram.org/method/stories.deleteAlbum",
         "https://core.telegram.org/method/stories.updateAlbum",
         "https://core.telegram.org/method/stories.reorderAlbums",
@@ -1575,7 +1575,7 @@
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/SSignalKit/SwiftSignalKit/Source/Signal_Meta.swift",
+      "path": "submodules/ansible-ios/submodules/SSignalKit/SwiftSignalKit/Source/Signal_Meta.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Signal queue children are installed before subscription at both initial and queued starts, preventing synchronous callback reentry from overwriting and canceling the next active request. Disposal marks the queue disposed under its lock, clears queued signals outside-lock lifetime safely, and prevents queued work from starting after synchronous cancellation.",
@@ -1583,7 +1583,7 @@
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/SSignalKit/SwiftSignalKit2/Source/Signal_Meta.swift",
+      "path": "submodules/ansible-ios/submodules/SSignalKit/SwiftSignalKit2/Source/Signal_Meta.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Signal queue children are installed before subscription at both initial and queued starts, preventing synchronous callback reentry from overwriting and canceling the next active request. Disposal marks the queue disposed under its lock, clears queued signals outside-lock lifetime safely, and prevents queued work from starting after synchronous cancellation.",
@@ -1602,7 +1602,7 @@
       ],
       "references": [
         "packages/StoriesUI/Sources/StoriesUI/StoryMediaController.swift",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift"
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift"
       ]
     },
     {
@@ -1623,15 +1623,15 @@
         "32 polling tests pass (24 actual call-site/window cases plus eight manager-specific lifecycle cases); 19 preceding-source cases fail with 125 assertions, including repeated failures in the 100-window retention case. All 33 preload/presentation freshness tests pass after updating only their extraction boundary (65 focused total). Native StoryChatContent primary-file check exits 0. Real transport/queue ordering, full controller publication reentry, live UI, channel stories and cache propagation are still pending."
       ],
       "references": [
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Stories/StoryContainerScreen/Sources/StoryChatContent.swift",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Stories/StoryContainerScreen/Sources/OpenStories.swift",
-        "submodules/telegram-ios/submodules/Postbox/Sources/MediaBox.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Stories/StoryContainerScreen/Sources/StoryChatContent.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Stories/StoryContainerScreen/Sources/OpenStories.swift",
+        "submodules/ansible-ios/submodules/Postbox/Sources/MediaBox.swift",
         "https://core.telegram.org/constructor/documentAttributeVideo",
         "https://core.telegram.org/constructor/autoDownloadSettings"
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/TelegramEngineMessages.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/TelegramEngineMessages.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "refreshStoryViews normalizes positive unique IDs in request order and treats an empty request as a no-op. Failed, missing-peer or malformed responses no longer clear existing view/reaction/forward/recent-viewer metadata. Only a returned changed value for a matching current stored story identity is applied, using all other current story fields. Missing/deleted/placeholder/mismatched rows are not fabricated or overwritten; unchanged results do not write the story table.",
@@ -1652,7 +1652,7 @@
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/Account/Account.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/Account/Account.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Account owns a fresh StoryViewRefreshContext instance so request ordering spans engine facades without crossing accounts or retaining completed story IDs. Isolated real-signal lifetime/concurrency checks pass; native primary-file typecheck passes. Other Account service lifecycles are not audited by this change.",
@@ -1663,11 +1663,11 @@
         "Owns StoryReactionReconciliationContext independently from the shared state-manager reaction context. Its deinit cancels per-story refresh disposables; actual helper requests weakly reference Account so pending network or queued work cannot retain a removed account. Ownership harness cases and cached primary-file typecheck pass."
       ],
       "references": [
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/TelegramEngineMessages.swift"
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/TelegramEngineMessages.swift"
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/State/AccountStateManagementUtils.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/State/AccountStateManagementUtils.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "UpdateStorySentReaction replay now delegates to the current-store reaction mutation, preserving matching story fields and updating existing profile/archive/discoverable album caches. Mismatched IDs and placeholders are untouched; same-selection replay avoids writes. Publishes only updateMyReaction, including active-only/uncached viewers, instead of an added full-story snapshot that can resurrect list entries.",
@@ -1687,7 +1687,7 @@
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/State/AccountStateManager.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/State/AccountStateManager.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Owns the shared StoryReactionContext used by its Impl and all six replayFinalState call sites. Account reads that same context through its state manager, including standalone-manager initialization. This allows delayed database replay to see pending reactions without retaining the Account. Native manager and Account primary-file checks pass.",
@@ -1700,7 +1700,7 @@
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/State/ManagedSynchronizePeerStoriesOperations.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/State/ManagedSynchronizePeerStoriesOperations.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Passes AccountStateManager to peer-story polling so pending reaction/count intent survives a concurrent poll; cached native primary-file typecheck passes. Operation-log retry/completion behavior is still pending."
@@ -1763,7 +1763,7 @@
         "tools/tests/browser-location/run.py",
         "https://core.telegram.org/api/web-events#web_app_request_location",
         "https://core.telegram.org/bots/webapps#locationdata",
-        "submodules/telegram-ios/submodules/WebUI/Sources/WebAppController.swift"
+        "submodules/ansible-ios/submodules/WebUI/Sources/WebAppController.swift"
       ]
     },
     {
@@ -1778,7 +1778,7 @@
         "tools/tests/browser-location/run.py",
         "https://core.telegram.org/api/web-events#web_app_request_location",
         "https://core.telegram.org/bots/webapps#locationdata",
-        "submodules/telegram-ios/submodules/WebUI/Sources/WebAppController.swift",
+        "submodules/ansible-ios/submodules/WebUI/Sources/WebAppController.swift",
         "tools/tests/browser-emoji-permission/run.py",
         "https://core.telegram.org/api/web-events#web_app_request_emoji_status_access",
         "tools/tests/browser-emoji-status/run.py",
@@ -1794,8 +1794,8 @@
       ],
       "references": [
         "tools/tests/web-app-permissions/run.py",
-        "submodules/telegram-ios/submodules/Postbox/Sources/Postbox.swift",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/ItemCache/TelegramEngineItemCache.swift"
+        "submodules/ansible-ios/submodules/Postbox/Sources/Postbox.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/ItemCache/TelegramEngineItemCache.swift"
       ]
     },
     {
@@ -1807,15 +1807,15 @@
       ],
       "references": [
         "tools/tests/web-app-permissions/run.py",
-        "submodules/telegram-ios/submodules/Postbox/Sources/Postbox.swift",
-        "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/ItemCache/TelegramEngineItemCache.swift",
+        "submodules/ansible-ios/submodules/Postbox/Sources/Postbox.swift",
+        "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/ItemCache/TelegramEngineItemCache.swift",
         "tools/tests/bot-emoji-permission/run.py",
         "https://core.telegram.org/method/bots.toggleUserEmojiStatusPermission",
         "https://core.telegram.org/api/web-events#web_app_request_emoji_status_access"
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/UpdateBotInfo.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/UpdateBotInfo.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Twenty-six tests extract the full _internal_toggleBotEmojiStatusAccess function, profile toggle/activation methods, actual permission-row constructor and profile appearance/disappearance methods. Real SwiftSignalKit runs over a controlled network/Postbox model that still commits queued transactions after disposal. boolFalse and empty RPC completions now fail; boolTrue alone updates the target cached flag and creates absent CachedUserData, preserving current unrelated flags/fields. The core signal captures Postbox/Network instead of Account. Accepted server changes still commit if observation is canceled afterward; cancellation before lookup/network delivery cannot start or publish new work. Profile rows disable optimistic autoswitch, own/coalesce the request, present failures, clear busy state by operation identity, support progress cancellation/retry and cancel before disappearance callbacks. Reappearance re-enables requests; deinit releases the network operation; old queued disposal cannot clear a newer operation. All 26 tests pass; original core/profile/controller sources fail 13 cases with 16 assertions. UpdateBotInfo native primary-file typecheck passes; exact profile action/activation method/row construction passes native typecheck. Full profile module remains subject to the previously verified stale analytics cache limitation. Native UI, real network/database scheduling, cross-client server updates and opposing same-bot permission requests remain unverified."
@@ -1847,7 +1847,7 @@
       "references": [
         "tools/tests/browser-emoji-permission/run.py",
         "https://core.telegram.org/api/web-events#web_app_request_emoji_status_access",
-        "submodules/telegram-ios/submodules/WebUI/Sources/WebAppController.swift"
+        "submodules/ansible-ios/submodules/WebUI/Sources/WebAppController.swift"
       ]
     },
     {
@@ -1859,7 +1859,7 @@
       "references": [
         "tools/tests/browser-emoji-permission/run.py",
         "https://core.telegram.org/api/web-events#web_app_request_emoji_status_access",
-        "submodules/telegram-ios/submodules/WebUI/Sources/WebAppController.swift"
+        "submodules/ansible-ios/submodules/WebUI/Sources/WebAppController.swift"
       ]
     },
     {
@@ -1872,7 +1872,7 @@
         "tools/tests/browser-emoji-status/run.py",
         "https://core.telegram.org/api/web-events#web_app_set_emoji_status",
         "https://core.telegram.org/api/bots/webapps#emoji_status_failed",
-        "submodules/telegram-ios/submodules/WebUI/Sources/WebAppController.swift"
+        "submodules/ansible-ios/submodules/WebUI/Sources/WebAppController.swift"
       ]
     },
     {
@@ -1885,11 +1885,11 @@
         "tools/tests/browser-emoji-status/run.py",
         "https://core.telegram.org/api/web-events#web_app_set_emoji_status",
         "https://core.telegram.org/api/bots/webapps#emoji_status_failed",
-        "submodules/telegram-ios/submodules/WebUI/Sources/WebAppController.swift"
+        "submodules/ansible-ios/submodules/WebUI/Sources/WebAppController.swift"
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/AccountData/TelegramEngineAccountData.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/AccountData/TelegramEngineAccountData.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Web-app set-emoji-status now owns loading, confirmation and acknowledged status mutation through page reset/disappearance. Exact production parser/action, full confirmation factory, controller lifecycle/handler methods and new core API run in 42 real-SwiftSignalKit harness cases with modeled Postbox/network/UI. Numeric and legacy-string durations are validated without trapping, zero means indefinite, expiry starts at confirmation, and selecting the same emoji sets it rather than toggling it off. Invalid IDs/files/durations, missing bot/window, Premium routing, recent-click and duplicate gates, loader cancellation, prompt dismissal, error payloads, false/empty/error responses, account/controller release, duplicate confirmation, retry and stale callbacks are covered. New setEmojiStatusWithResult commits media/recents/current-peer status only after boolTrue; accepted queued cache commits survive observer cancellation. Focus settings are cleared after accepted status commit. Original core API fails 7 of 8 comparison cases (14 assertions). 42 browser-location and 34 emoji-permission tests still pass. Native primary-file checks pass for core API, action, modal and browser controller; UI checks use a declaration shim for the new independently checked core API. Main app not built; live AppKit/WebKit/server and cross-request ordering remain unverified.",
@@ -1899,7 +1899,7 @@
         "tools/tests/browser-emoji-status/run.py",
         "https://core.telegram.org/api/web-events#web_app_set_emoji_status",
         "https://core.telegram.org/api/bots/webapps#emoji_status_failed",
-        "submodules/telegram-ios/submodules/WebUI/Sources/WebAppController.swift",
+        "submodules/ansible-ios/submodules/WebUI/Sources/WebAppController.swift",
         "https://core.telegram.org/method/account.updateEmojiStatus",
         "https://core.telegram.org/constructor/emojiStatus"
       ]
@@ -1927,7 +1927,7 @@
         "tools/tests/gift-status-target/run.py",
         "https://core.telegram.org/constructor/emojiStatusCollectible",
         "https://core.telegram.org/method/channels.updateEmojiStatus",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Gifts/GiftViewScreen/Sources/GiftViewScreen.swift"
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Gifts/GiftViewScreen/Sources/GiftViewScreen.swift"
       ]
     },
     {
@@ -1943,7 +1943,7 @@
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/UpdatePeerInfo.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/UpdatePeerInfo.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Channel emoji/collectible status: 26 exact-source SwiftSignalKit tests cover normal/gift requests and clear, rejected/empty RPCs, CHAT_NOT_MODIFIED, missing peer/access hash, incomplete model/pattern/backdrop attributes, current-peer field preservation, target removal/type change, server Updates forwarding, cache/media writes only after acceptance, cancellation before lookup/response versus after accepted queued commit, account/state-manager release, duplicate responses and repeated subscriptions. Normal and collectible requests share a peer-scoped network dependency tag. The API returns Updates, not Bool; accepted updates now reach AccountStateManager, while malformed collectible input fails instead of sending emojiStatusEmpty. Saved originals fail 17 of 26 cases with 46 assertions. Updated UpdatePeerInfo native primary-file typecheck passes. Main app not built; real network dependency scheduling, response reordering, queued AccountStateManager replay and live UI remain unverified. Current-peer patch/publication is queued through Postbox; publication is scheduled from its transaction body, not claimed as synchronous post-commit UI delivery.",
@@ -1986,7 +1986,7 @@
         "Gift wear confirmation now owns one request from boost lookup through acknowledged account/channel mutation. Preview conversion and confetti wait for acceptance; rejection leaves the preview and reports an error. Missing/mismatched owners, changed gift identities, foreign users and unsupported peers cannot fall back to personal status writes. Hosted gifts resolve through their host, while owned gifts use their owner. Wear no longer waits for unrelated Stars balance loading; upgrade balance checks remain guarded. Modal disappearance/deinit and leaving the preview cancel pending wear/boost work. Current source, gift, owner, window and active lifetime fence callbacks; repeated clicks coalesce and cancellation/rejection permit retry. Synchronous completion, queued cleanup and reentrant close during disposal/state update are covered. Validation captures the controller weakly; delayed Premium callbacks capture context weakly and revalidate the preview. Forty-five exact-source tests extract the complete GiftWearAction plus actual validation prefix/wear branch, lifecycle hooks and preview-dismiss branch with real SwiftSignalKit and modeled UI/network/services. All 45 pass; saved original controller fails 38 cases with 72 assertions. The existing 31 gift identity/target tests also pass after their fixture gained the new reset dependency. Both helper and full gift controller native primary-file typechecks pass against refreshed cached dependencies, resolving the prior cached-symbol limitation for this controller only. Local current telegram-ios GiftViewScreen commitWear remains optimistic, so it was compared for target semantics rather than accepted as proof of correct failure handling. Main app not built; live AppKit progress/morph timing, real database/network ordering, ownership transfer during an accepted request and cross-client reconciliation remain unverified."
       ],
       "references": [
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Gifts/GiftViewScreen/Sources/GiftViewScreen.swift"
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Gifts/GiftViewScreen/Sources/GiftViewScreen.swift"
       ]
     },
     {
@@ -1996,7 +1996,7 @@
         "Appearance status saves now share target-aware routing: own-account normal emoji resolves and validates the custom file before the acknowledged account API, personal clear uses that API with nil, channels/supergroups use peer APIs, collectible selection preserves unique identity/expiry and uses the target-specific gift API. Unsupported/foreign targets and mismatched or nonowned/nonhosted gifts fail. Removed duplicate plain-emoji writes that could overwrite collectible status. Both picker callbacks treat timeout as a duration with checked timestamp addition; zero is indefinite, bundle items clear, gifts retain their metadata and incomplete gifts/overflow are rejected. Dirty-state and boost comparisons now include full status identity and expiry. Parent and single-screen saves own/coalesce pending work, wait for completion, preserve reported errors, cancel on disappearance and allow retry. Single-screen failure/cancel clears saving state; parent navigation waits for success. Parent chains existing child lifecycle hooks because SectionViewController lifecycle overrides are non-open; changing tabs cancels the pending parent save. Fifty-five tests extract both complete new helpers, actual parent save/lifecycle wiring, actual picker callbacks/dirty comparison, child status construction and complete single-screen request closure with real SwiftSignalKit. All 55 pass; saved original sources fail 39 of 42 comparison cases with 65 assertions; 13 helper-only cases are contracts rather than original-code comparisons. All four native primary-file checks pass against cached dependencies. Actual AppKit tab/navigation/progress timing, real storage/network ordering and upload completion remain unverified. Concurrent appearance requests may partially succeed; they are not a server-side atomic transaction. Account name/color core still writes optimistically and ignores Bool payloads, so these UI fixes do not prove full appearance acknowledgement."
       ],
       "references": [
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/PeerNameColorScreen/Sources/UserApperanceScreen.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Settings/PeerNameColorScreen/Sources/UserApperanceScreen.swift",
         "packages/EntertainmentUI/Sources/EntertainmentUI/PremiumStatusController.swift",
         "Ansible-Mac/packages-integration/hooks/SettingsHooksInstall.swift"
       ]
@@ -2008,7 +2008,7 @@
         "Appearance status saves now share target-aware routing: own-account normal emoji resolves and validates the custom file before the acknowledged account API, personal clear uses that API with nil, channels/supergroups use peer APIs, collectible selection preserves unique identity/expiry and uses the target-specific gift API. Unsupported/foreign targets and mismatched or nonowned/nonhosted gifts fail. Removed duplicate plain-emoji writes that could overwrite collectible status. Both picker callbacks treat timeout as a duration with checked timestamp addition; zero is indefinite, bundle items clear, gifts retain their metadata and incomplete gifts/overflow are rejected. Dirty-state and boost comparisons now include full status identity and expiry. Parent and single-screen saves own/coalesce pending work, wait for completion, preserve reported errors, cancel on disappearance and allow retry. Single-screen failure/cancel clears saving state; parent navigation waits for success. Parent chains existing child lifecycle hooks because SectionViewController lifecycle overrides are non-open; changing tabs cancels the pending parent save. Fifty-five tests extract both complete new helpers, actual parent save/lifecycle wiring, actual picker callbacks/dirty comparison, child status construction and complete single-screen request closure with real SwiftSignalKit. All 55 pass; saved original sources fail 39 of 42 comparison cases with 65 assertions; 13 helper-only cases are contracts rather than original-code comparisons. All four native primary-file checks pass against cached dependencies. Actual AppKit tab/navigation/progress timing, real storage/network ordering and upload completion remain unverified. Concurrent appearance requests may partially succeed; they are not a server-side atomic transaction. Account name/color core still writes optimistically and ignores Bool payloads, so these UI fixes do not prove full appearance acknowledgement."
       ],
       "references": [
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/PeerNameColorScreen/Sources/UserApperanceScreen.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Settings/PeerNameColorScreen/Sources/UserApperanceScreen.swift",
         "packages/EntertainmentUI/Sources/EntertainmentUI/PremiumStatusController.swift",
         "Ansible-Mac/packages-integration/hooks/SettingsHooksInstall.swift"
       ]
@@ -2020,7 +2020,7 @@
         "Appearance status saves now share target-aware routing: own-account normal emoji resolves and validates the custom file before the acknowledged account API, personal clear uses that API with nil, channels/supergroups use peer APIs, collectible selection preserves unique identity/expiry and uses the target-specific gift API. Unsupported/foreign targets and mismatched or nonowned/nonhosted gifts fail. Removed duplicate plain-emoji writes that could overwrite collectible status. Both picker callbacks treat timeout as a duration with checked timestamp addition; zero is indefinite, bundle items clear, gifts retain their metadata and incomplete gifts/overflow are rejected. Dirty-state and boost comparisons now include full status identity and expiry. Parent and single-screen saves own/coalesce pending work, wait for completion, preserve reported errors, cancel on disappearance and allow retry. Single-screen failure/cancel clears saving state; parent navigation waits for success. Parent chains existing child lifecycle hooks because SectionViewController lifecycle overrides are non-open; changing tabs cancels the pending parent save. Fifty-five tests extract both complete new helpers, actual parent save/lifecycle wiring, actual picker callbacks/dirty comparison, child status construction and complete single-screen request closure with real SwiftSignalKit. All 55 pass; saved original sources fail 39 of 42 comparison cases with 65 assertions; 13 helper-only cases are contracts rather than original-code comparisons. All four native primary-file checks pass against cached dependencies. Actual AppKit tab/navigation/progress timing, real storage/network ordering and upload completion remain unverified. Concurrent appearance requests may partially succeed; they are not a server-side atomic transaction. Account name/color core still writes optimistically and ignores Bool payloads, so these UI fixes do not prove full appearance acknowledgement."
       ],
       "references": [
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/PeerNameColorScreen/Sources/UserApperanceScreen.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Settings/PeerNameColorScreen/Sources/UserApperanceScreen.swift",
         "packages/EntertainmentUI/Sources/EntertainmentUI/PremiumStatusController.swift",
         "Ansible-Mac/packages-integration/hooks/SettingsHooksInstall.swift"
       ]
@@ -2032,13 +2032,13 @@
         "Appearance status saves now share target-aware routing: own-account normal emoji resolves and validates the custom file before the acknowledged account API, personal clear uses that API with nil, channels/supergroups use peer APIs, collectible selection preserves unique identity/expiry and uses the target-specific gift API. Unsupported/foreign targets and mismatched or nonowned/nonhosted gifts fail. Removed duplicate plain-emoji writes that could overwrite collectible status. Both picker callbacks treat timeout as a duration with checked timestamp addition; zero is indefinite, bundle items clear, gifts retain their metadata and incomplete gifts/overflow are rejected. Dirty-state and boost comparisons now include full status identity and expiry. Parent and single-screen saves own/coalesce pending work, wait for completion, preserve reported errors, cancel on disappearance and allow retry. Single-screen failure/cancel clears saving state; parent navigation waits for success. Parent chains existing child lifecycle hooks because SectionViewController lifecycle overrides are non-open; changing tabs cancels the pending parent save. Fifty-five tests extract both complete new helpers, actual parent save/lifecycle wiring, actual picker callbacks/dirty comparison, child status construction and complete single-screen request closure with real SwiftSignalKit. All 55 pass; saved original sources fail 39 of 42 comparison cases with 65 assertions; 13 helper-only cases are contracts rather than original-code comparisons. All four native primary-file checks pass against cached dependencies. Actual AppKit tab/navigation/progress timing, real storage/network ordering and upload completion remain unverified. Concurrent appearance requests may partially succeed; they are not a server-side atomic transaction. Account name/color core still writes optimistically and ignores Bool payloads, so these UI fixes do not prove full appearance acknowledgement."
       ],
       "references": [
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/PeerNameColorScreen/Sources/UserApperanceScreen.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Settings/PeerNameColorScreen/Sources/UserApperanceScreen.swift",
         "packages/EntertainmentUI/Sources/EntertainmentUI/PremiumStatusController.swift",
         "Ansible-Mac/packages-integration/hooks/SettingsHooksInstall.swift"
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/AccountData/UpdateAccountPeerName.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/AccountData/UpdateAccountPeerName.swift",
       "status": "partial",
       "evidence": [
         "Account name/profile color changes no longer patch the peer optimistically. Each field request validates Bool acceptance, rejects false/empty/transport failure, and commits only its accepted color/background fields onto the current TelegramUser, preserving other fields. The two independent outcomes settle before completion/error: a rejected name request does not cancel or discard an accepted profile update, and vice versa. Missing/non-user peers fail before requests. Preset and collectible wire data, profile/name pattern clears, cancellation before lookup/response versus after an accepted queued commit, current-peer replacement/removal, duplicate responses, synchronous completion, cold/repeated subscriptions and Account release are covered by 39 exact-source SwiftSignalKit tests with modeled Postbox/network. All 39 pass; the saved original fails 31 cases with 57 assertions. Name and profile operations have separate request-dependency tags; this is not proof of reverse-response/local-commit ordering. Captured state is Postbox/Network/peerId rather than Account. Native UpdateAccountPeerName primary-file typecheck passes. Telegram account.updateColor documentation confirms Bool results and separate for_profile selection. The iOS shared source itself had the same optimistic implementation, so it was used as the regression baseline rather than a correctness oracle. Main app not built. Real server/cross-client changes, network dependency scheduling, commit/view publication and cancellation before an accepted server response is observed remain unverified.",
@@ -2088,7 +2088,7 @@
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/Birthdays.swift",
+      "path": "submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/Birthdays.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Birthday mutations now require boolTrue and fail on boolFalse or empty completion. Duplicate responses commit once, errors preserve the cache, flood errors remain distinct and automatic flood waiting stays disabled. Set/remove share a network dependency tag. Only accepted requests update current CachedUserData, creating it when absent and preserving other fields/peers. Cold and pending signals capture Postbox/peerId instead of Account; cancellation before a response suppresses work, while an already accepted queued commit survives observer cancellation. Twenty-four tests extract all birthday value/API mapping and mutation code with real SwiftSignalKit and modeled transport/Postbox. All pass; the saved original fails 7 cases with 15 assertions. Native Birthdays primary-file checking passes. Real request scheduling, reverse response/local commit ordering, current-server date validation and accepted-but-unobserved cancellation remain unverified."
@@ -2102,43 +2102,43 @@
       "path": "packages/CalendarUtils/Sources/CalendarUtils/CalendarUtils.h",
       "status": "partially_audited_fixes_applied",
       "evidence": [
-        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in TelegramUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
+        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in AnsibleUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
       ],
       "references": [
         "tools/tests/calendar-dates/run.py",
         "https://core.telegram.org/constructor/birthday",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift"
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift"
       ]
     },
     {
       "path": "packages/CalendarUtils/Sources/CalendarUtils/CalendarUtils.m",
       "status": "partially_audited_fixes_applied",
       "evidence": [
-        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in TelegramUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
+        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in AnsibleUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
       ],
       "references": [
         "tools/tests/calendar-dates/run.py",
         "https://core.telegram.org/constructor/birthday",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift"
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift"
       ]
     },
     {
       "path": "packages/CalendarUI/Sources/CalendarUI/CalendarController.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
-        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in TelegramUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial.",
+        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in AnsibleUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial.",
         "Calendar confirmation now stores the selected date independently of the browsed month. Actual day clicks update it before callbacks/closing; browsing months does not replace it, and returning to the selected month restores the correct highlight. Year changes preserve/clamp the selected day within the month and enforce picker year/future/explicit limits; hiding a year uses the selected date and is unavailable for future-only/disabled pickers. The date accessor no longer force-casts the current navigation child. Picker disappearance/deinit invalidates retained selection/navigation callbacks, reappearance allows fresh selection, and autoclose becomes inactive before dismissal to prevent reentrant/duplicate callbacks. Chat suggested-birthday Save reads the selected date, submits once, rejects accept/hide-year callbacks after disappearance and no longer captures AccountContext through retained accept callbacks. Thirty-eight tests compile the full CalendarController, exact CalendarMonthController initializer/navigation getters, full CalendarMonthStruct, actual day click closure and chat modal accept/hide/lifecycle fragments, with real Objective-C CalendarUtils/Foundation and modeled UI/navigation. All 38 pass. Of 37 safe original-source cases, 33 fail with 48 assertions; the separately isolated original date-getter case aborts with signal 6 on a forced cast, giving 34 failing original cases overall. Existing 50 calendar-date cases still pass after fixture updates. Both native CalendarController and full ChatServiceItem primary-file checks pass; chat uses the previously separately typechecked dateForPicker signature shim. Main app not built. Actual popover/modal animation lifecycle, visual selection/keyboard behavior and originating-account changes remain unverified. Chat still closes after initiating its existing standalone birthday hook; acknowledgement/error lifecycle beyond selection is not claimed fixed."
       ],
       "references": [
         "tools/tests/calendar-dates/run.py",
         "https://core.telegram.org/constructor/birthday",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift",
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift",
         "tools/tests/calendar-selection/run.py"
       ]
     },
@@ -2146,72 +2146,72 @@
       "path": "packages/CalendarUI/Sources/CalendarUI/CalendarMonthController.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
-        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in TelegramUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
+        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in AnsibleUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
       ],
       "references": [
         "tools/tests/calendar-dates/run.py",
         "https://core.telegram.org/constructor/birthday",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift"
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift"
       ]
     },
     {
-      "path": "packages/TelegramUtils/Sources/TelegramUtils/CoreTypeExtras.swift",
+      "path": "packages/AnsibleUtils/Sources/AnsibleUtils/CoreTypeExtras.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
-        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in TelegramUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
+        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in AnsibleUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
       ],
       "references": [
         "tools/tests/calendar-dates/run.py",
         "https://core.telegram.org/constructor/birthday",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift"
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift"
       ]
     },
     {
-      "path": "packages/TelegramUtils/Sources/TelegramUtils/TelegramBirthday.swift",
+      "path": "packages/AnsibleUtils/Sources/AnsibleUtils/AnsibleBirthday.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
-        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in TelegramUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
+        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in AnsibleUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
       ],
       "references": [
         "tools/tests/calendar-dates/run.py",
         "https://core.telegram.org/constructor/birthday",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift"
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift"
       ]
     },
     {
-      "path": "packages/TelegramUtils/Sources/TelegramUtils/PresenceStrings.swift",
+      "path": "packages/AnsibleUtils/Sources/AnsibleUtils/PresenceStrings.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
-        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in TelegramUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
+        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in AnsibleUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial."
       ],
       "references": [
         "tools/tests/calendar-dates/run.py",
         "https://core.telegram.org/constructor/birthday",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift"
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift"
       ]
     },
     {
       "path": "packages/ChatUI/Sources/ChatUI/ChatServiceItem.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
-        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in TelegramUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial.",
+        "Calendar and birthday date integrity: hidden-year selection uses leap year 4, with legacy year 1 still decoded as absent. Calendar labels/menu/navigation use the shared hidden-year convention. Hiding a year and opening a suggested birthday preserve February 29. Gregorian date conversion, birthday eligibility/age, suggested-date construction and formatting are independent of the system calendar; invalid day/month/year combinations are rejected rather than silently normalized. Gregorian display retains localized month/date formatting. Calendar month alignment derives the first calendar day rather than subtracting fixed 86400-second days, preventing DST column shifts. Day eligibility compares whole local calendar dates, enforces inclusive future/one-year/explicit limits across month/year boundaries and rejects invalid day indices; navigation cannot continue farther outside the allowed range. Fifty tests compile actual Objective-C CalendarUtils and extract the full month model, native navigation/label/hide-year handlers, Date birthday conversion, birthday helpers/formatter and chat suggested-date construction. Real Foundation calendars/DateFormatter across multiple time zones, DST and Buddhist/Islamic/Japanese calendars; Calendar.current/Locale.current/Date() are injected only at test seams for reproducibility, and UI widgets are modeled. All 50 pass; original sources fail 35 cases with 64 assertions. Six native Swift primary-file checks pass; ChatServiceItem uses a signature shim for dateForPicker, separately typechecked in AnsibleUtils. Telegram iOS birthday calculations use Gregorian dates, and its birthday picker uses a leap year for absent years. No full app build or visual/runtime calendar interaction. Localization layout, calendar accessibility, global preference changes mid-picker, extreme dates, actual date-preview fetching and suggested-birthday modal lifecycle remain partial.",
         "Calendar confirmation now stores the selected date independently of the browsed month. Actual day clicks update it before callbacks/closing; browsing months does not replace it, and returning to the selected month restores the correct highlight. Year changes preserve/clamp the selected day within the month and enforce picker year/future/explicit limits; hiding a year uses the selected date and is unavailable for future-only/disabled pickers. The date accessor no longer force-casts the current navigation child. Picker disappearance/deinit invalidates retained selection/navigation callbacks, reappearance allows fresh selection, and autoclose becomes inactive before dismissal to prevent reentrant/duplicate callbacks. Chat suggested-birthday Save reads the selected date, submits once, rejects accept/hide-year callbacks after disappearance and no longer captures AccountContext through retained accept callbacks. Thirty-eight tests compile the full CalendarController, exact CalendarMonthController initializer/navigation getters, full CalendarMonthStruct, actual day click closure and chat modal accept/hide/lifecycle fragments, with real Objective-C CalendarUtils/Foundation and modeled UI/navigation. All 38 pass. Of 37 safe original-source cases, 33 fail with 48 assertions; the separately isolated original date-getter case aborts with signal 6 on a forced cast, giving 34 failing original cases overall. Existing 50 calendar-date cases still pass after fixture updates. Both native CalendarController and full ChatServiceItem primary-file checks pass; chat uses the previously separately typechecked dateForPicker signature shim. Main app not built. Actual popover/modal animation lifecycle, visual selection/keyboard behavior and originating-account changes remain unverified. Chat still closes after initiating its existing standalone birthday hook; acknowledgement/error lifecycle beyond selection is not claimed fixed.",
         "Chat suggested-birthday saves now use an owned result-bearing request instead of closing immediately after a standalone Void hook. Server rejection leaves the selected date and picker open, with generic/flood feedback and retry. Pending clicks coalesce; acceptance closes only if the selected birthday still matches the submitted snapshot. A changed selection stays open. Disappearance cancels pending UI work; weak controller/context predicates and window/calendar identity checks suppress stale responses and retained callbacks. Twenty-six exact-source tests execute the full ChatBirthdaySaveAction plus modal accept/hide/lifecycle closures with real SwiftSignalKit and modeled UI/progress/network endpoints. All 26 pass; the saved original caller fails 21 cases with 30 assertions. Existing 38 calendar-selection cases also pass with the updated integration. Full ChatServiceItem and ChatBirthdaySaveAction native primary-file checks both report exit 0 against cached dependencies; the chat check retains the previously separately verified dateForPicker signature shim. Actual AppKit progress/modal lifecycle, same-window account switching and live server cancellation/commit ordering remain unverified. No main app build."
       ],
       "references": [
         "tools/tests/calendar-dates/run.py",
         "https://core.telegram.org/constructor/birthday",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
-        "submodules/telegram-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift",
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/Birthday.swift",
+        "submodules/ansible-ios/submodules/TelegramStringFormatting/Sources/PresenceStrings.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/Settings/BirthdayPickerScreen/Sources/BirthdayPickerComponent.swift",
         "tools/tests/calendar-selection/run.py",
         "tools/tests/birthday-modal/run.py"
       ]
@@ -2251,7 +2251,7 @@
         "tools/tests/avatar-video-export/run.py",
         "tools/tests/avatar-conversion/run.py",
         "https://developer.apple.com/documentation/avfoundation/avassetwriterinput/requestmediadatawhenready(on:using:)",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/MediaEditor/Sources/MediaEditorVideoAVAssetWriter.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/MediaEditor/Sources/MediaEditorVideoAVAssetWriter.swift",
         "tools/tests/avatar-media-preparation/run.py",
         "tools/tests/avatar-image-rendering/run.py"
       ]
@@ -2266,7 +2266,7 @@
         "tools/tests/avatar-video-export/run.py",
         "tools/tests/avatar-conversion/run.py",
         "https://developer.apple.com/documentation/avfoundation/avassetwriterinput/requestmediadatawhenready(on:using:)",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/MediaEditor/Sources/MediaEditorVideoAVAssetWriter.swift"
+        "submodules/ansible-ios/submodules/TelegramUI/Components/MediaEditor/Sources/MediaEditorVideoAVAssetWriter.swift"
       ]
     },
     {
@@ -2321,8 +2321,8 @@
       ],
       "references": [
         "tools/tests/edited-avatar-export/run.py",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/PeerInfo/PeerInfoScreen/Sources/PeerInfoScreenAvatarSetup.swift",
-        "submodules/telegram-ios/submodules/SSignalKit/SwiftSignalKit/Source/Queue.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/PeerInfo/PeerInfoScreen/Sources/PeerInfoScreenAvatarSetup.swift",
+        "submodules/ansible-ios/submodules/SSignalKit/SwiftSignalKit/Source/Queue.swift",
         "tools/tests/avatar-video-composition/run.py",
         "tools/tests/avatar-playback/run.py",
         "tools/tests/avatar-scrubber-geometry/run.py",
@@ -2337,8 +2337,8 @@
       ],
       "references": [
         "tools/tests/edited-avatar-export/run.py",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/PeerInfo/PeerInfoScreen/Sources/PeerInfoScreenAvatarSetup.swift",
-        "submodules/telegram-ios/submodules/SSignalKit/SwiftSignalKit/Source/Queue.swift"
+        "submodules/ansible-ios/submodules/TelegramUI/Components/PeerInfo/PeerInfoScreen/Sources/PeerInfoScreenAvatarSetup.swift",
+        "submodules/ansible-ios/submodules/SSignalKit/SwiftSignalKit/Source/Queue.swift"
       ]
     },
     {
@@ -2376,14 +2376,14 @@
       ]
     },
     {
-      "path": "packages/TelegramMediaUtils/Sources/TelegramMediaUtils/VideoEditorThumbs.swift",
+      "path": "packages/AnsibleMediaUtils/Sources/AnsibleMediaUtils/VideoEditorThumbs.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Shared video thumbnail generation now runs in an owned request with a serial callback queue, atomic cancellation and a retained AVAssetImageGenerator. Requested timestamps determine output slots; duplicate and unexpected callbacks cannot consume slots or replace accepted images. Failed, cancelled and nil-image results count toward completion, including all-failed/empty assets. Missing slots use a blurred or nearest available fallback while successful slots retain their timeline positions. Samples are generated with CoreMedia ratios, coalescing duplicate representable times and staying before duration even near the timescale limit. Invalid/non-finite duration, dimensions, counts and preview times terminate safely; requests are bounded to 4096 samples and 4096 pixels per scaled dimension. Cancellation calls cancelAllCGImageGeneration and clears callback/image ownership even when the backend never replies. Preview decoding is asynchronous/cancellable; the separate small image now honors lowSize and aspect ratio. Bitmap allocation is failable, and placeholder blur uses checked Accelerate vImage processing rather than unchecked DrawingContext/FastBlur allocations. Thirty-seven full-source tests pass: 31 controlled callback/configuration/ownership/validation cases using real SwiftSignalKit/CoreMedia/CoreGraphics/Accelerate, and six real AVFoundation cases using generated H.264 media. Native checks cover normal strips, small preview dimensions, explicit video composition geometry, empty/gapped sources and out-of-duration preview rejection. Native full-file primary typecheck passes. The original source at 489ec8d18bbba43bf9bed52f31c28a35c3e6fde2 matches the saved snapshot byte-for-byte; 31 safe comparisons run, 21 fail with 33 assertions, and six original unsafe-input/concurrent-array-mutation cases are skipped. Output scale is modeled as 2 in the harness; live display-scale changes, AppKit presentation, decoder/codec diversity, actual memory pressure and cancellation latency under load remain pending. Public signatures are unchanged for avatar, ImageCanvas video editing and chat recording trim consumers."
       ],
       "references": [
         "tools/tests/video-editor-thumbnails/run.py",
-        "submodules/telegram-ios/submodules/TelegramUI/Components/MediaEditor/Sources/MediaEditor.swift",
+        "submodules/ansible-ios/submodules/TelegramUI/Components/MediaEditor/Sources/MediaEditor.swift",
         "https://developer.apple.com/la/documentation/avfoundation/avassetimagegenerator/generatecgimagesasynchronously%28fortimes%3Acompletionhandler%3A%29",
         "packages/AvatarEditorUI/Sources/AvatarEditorUI/VideoAvatarModalController.swift",
         "packages/ImageCanvasUI/Sources/ImageCanvasUI/EditVideoController.swift",
@@ -2399,7 +2399,7 @@
       ],
       "references": [
         "tools/tests/video-thumbnail-callers/run.py",
-        "packages/TelegramMediaUtils/Sources/TelegramMediaUtils/VideoEditorThumbs.swift",
+        "packages/AnsibleMediaUtils/Sources/AnsibleMediaUtils/VideoEditorThumbs.swift",
         "packages/ChatUI/Sources/ChatUI/ChatInputRecordingView.swift"
       ]
     },
@@ -2411,7 +2411,7 @@
       ],
       "references": [
         "tools/tests/video-thumbnail-callers/run.py",
-        "packages/TelegramMediaUtils/Sources/TelegramMediaUtils/VideoEditorThumbs.swift",
+        "packages/AnsibleMediaUtils/Sources/AnsibleMediaUtils/VideoEditorThumbs.swift",
         "packages/ChatUI/Sources/ChatUI/ChatInputRecordingView.swift"
       ]
     },
@@ -2448,28 +2448,28 @@
       ]
     },
     {
-      "path": "packages/TelegramMedia/Sources/AudioRecorder.swift",
+      "path": "packages/AnsibleMedia/Sources/AudioRecorder.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Audio trim/store and native Opus continuity: replacement validates the candidate encoder against memory before atomically replacing disk contents, preserving the paused original on failure. Trim input/output bounds, exact sample conversion, decoder/frame/finalization errors, output collisions and persisted bytes are checked; abandoned partial files are removed. Paused trimming finalizes a cloned snapshot to retain pending PCM and encoder delay. The native encoder buffers partial PCM, submits correct final EOS granules including pre-skip, flushes live pages, and preserves encoder/Ogg state across same-instance and JSON/new-instance pause/resume. Snapshots validate version, architecture, sizes, numeric fields and data/state digests. Append rebuilds a continuous mono stream from decoded prior audio and stages atomic replacement until the first new write; legacy snapshots recover decodable audio. All 64 isolated cases pass: 33 controlled filesystem/failure cases and 31 freshly compiled native Opus cases. The original-code comparison has 47 failing cases and 127 failed assertions; four dangerous original cases are skipped (two unchecked numeric conversions and two unsafe native parsing/type paths). Exact encoded packet comparisons avoid mistaking independent decoder dither for encoder discontinuity. AudioRecorder and DataItem native primary-file checks pass against the current OpusBinding header, and the adjacent 44 resume cases pass. No main app build, device recording, live filesystem-failure injection, all-codec/platform validation or Instruments was performed. Native append reencodes prior audio; long-recording CPU/memory and cumulative lossy quality require follow-up. Original logs: /tmp/audio-trim-store-{fixed,baseline}.log."
       ]
     },
     {
-      "path": "packages/TelegramMedia/Sources/DataItem.swift",
+      "path": "packages/AnsibleMedia/Sources/DataItem.swift",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Audio trim/store and native Opus continuity: replacement validates the candidate encoder against memory before atomically replacing disk contents, preserving the paused original on failure. Trim input/output bounds, exact sample conversion, decoder/frame/finalization errors, output collisions and persisted bytes are checked; abandoned partial files are removed. Paused trimming finalizes a cloned snapshot to retain pending PCM and encoder delay. The native encoder buffers partial PCM, submits correct final EOS granules including pre-skip, flushes live pages, and preserves encoder/Ogg state across same-instance and JSON/new-instance pause/resume. Snapshots validate version, architecture, sizes, numeric fields and data/state digests. Append rebuilds a continuous mono stream from decoded prior audio and stages atomic replacement until the first new write; legacy snapshots recover decodable audio. All 64 isolated cases pass: 33 controlled filesystem/failure cases and 31 freshly compiled native Opus cases. The original-code comparison has 47 failing cases and 127 failed assertions; four dangerous original cases are skipped (two unchecked numeric conversions and two unsafe native parsing/type paths). Exact encoded packet comparisons avoid mistaking independent decoder dither for encoder discontinuity. AudioRecorder and DataItem native primary-file checks pass against the current OpusBinding header, and the adjacent 44 resume cases pass. No main app build, device recording, live filesystem-failure injection, all-codec/platform validation or Instruments was performed. Native append reencodes prior audio; long-recording CPU/memory and cumulative lossy quality require follow-up. Original logs: /tmp/audio-trim-store-{fixed,baseline}.log."
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/OpusBinding/Sources/opusenc/opusenc.m",
+      "path": "submodules/ansible-ios/submodules/OpusBinding/Sources/opusenc/opusenc.m",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Audio trim/store and native Opus continuity: replacement validates the candidate encoder against memory before atomically replacing disk contents, preserving the paused original on failure. Trim input/output bounds, exact sample conversion, decoder/frame/finalization errors, output collisions and persisted bytes are checked; abandoned partial files are removed. Paused trimming finalizes a cloned snapshot to retain pending PCM and encoder delay. The native encoder buffers partial PCM, submits correct final EOS granules including pre-skip, flushes live pages, and preserves encoder/Ogg state across same-instance and JSON/new-instance pause/resume. Snapshots validate version, architecture, sizes, numeric fields and data/state digests. Append rebuilds a continuous mono stream from decoded prior audio and stages atomic replacement until the first new write; legacy snapshots recover decodable audio. All 64 isolated cases pass: 33 controlled filesystem/failure cases and 31 freshly compiled native Opus cases. The original-code comparison has 47 failing cases and 127 failed assertions; four dangerous original cases are skipped (two unchecked numeric conversions and two unsafe native parsing/type paths). Exact encoded packet comparisons avoid mistaking independent decoder dither for encoder discontinuity. AudioRecorder and DataItem native primary-file checks pass against the current OpusBinding header, and the adjacent 44 resume cases pass. No main app build, device recording, live filesystem-failure injection, all-codec/platform validation or Instruments was performed. Native append reencodes prior audio; long-recording CPU/memory and cumulative lossy quality require follow-up. Original logs: /tmp/audio-trim-store-{fixed,baseline}.log."
       ]
     },
     {
-      "path": "submodules/telegram-ios/submodules/OpusBinding/Sources/TGDataItem.m",
+      "path": "submodules/ansible-ios/submodules/OpusBinding/Sources/TGDataItem.m",
       "status": "partially_audited_fixes_applied",
       "evidence": [
         "Audio trim/store and native Opus continuity: replacement validates the candidate encoder against memory before atomically replacing disk contents, preserving the paused original on failure. Trim input/output bounds, exact sample conversion, decoder/frame/finalization errors, output collisions and persisted bytes are checked; abandoned partial files are removed. Paused trimming finalizes a cloned snapshot to retain pending PCM and encoder delay. The native encoder buffers partial PCM, submits correct final EOS granules including pre-skip, flushes live pages, and preserves encoder/Ogg state across same-instance and JSON/new-instance pause/resume. Snapshots validate version, architecture, sizes, numeric fields and data/state digests. Append rebuilds a continuous mono stream from decoded prior audio and stages atomic replacement until the first new write; legacy snapshots recover decodable audio. All 64 isolated cases pass: 33 controlled filesystem/failure cases and 31 freshly compiled native Opus cases. The original-code comparison has 47 failing cases and 127 failed assertions; four dangerous original cases are skipped (two unchecked numeric conversions and two unsafe native parsing/type paths). Exact encoded packet comparisons avoid mistaking independent decoder dither for encoder discontinuity. AudioRecorder and DataItem native primary-file checks pass against the current OpusBinding header, and the adjacent 44 resume cases pass. No main app build, device recording, live filesystem-failure injection, all-codec/platform validation or Instruments was performed. Native append reencodes prior audio; long-recording CPU/memory and cumulative lossy quality require follow-up. Original logs: /tmp/audio-trim-store-{fixed,baseline}.log."

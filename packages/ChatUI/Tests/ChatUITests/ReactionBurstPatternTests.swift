@@ -4,7 +4,7 @@ import SceneEffects
 final class ReactionBurstPatternTests: XCTestCase {
     private func iosPattern() throws -> [[String: Any]] {
         let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
-        let url = root.appendingPathComponent("submodules/telegram-ios/submodules/TelegramUI/Resources/Animations/generic_reaction_inline_pattern.json")
+        let url = root.appendingPathComponent("submodules/ansible-ios/submodules/TelegramUI/Resources/Animations/generic_reaction_inline_pattern.json")
         guard let data = try? Data(contentsOf: url), let json = try JSONSerialization.jsonObject(with: data) as? [String: Any], let layers = json["layers"] as? [[String: Any]] else {
             throw XCTSkip("telegram-ios pattern not available at \(url.path)")
         }

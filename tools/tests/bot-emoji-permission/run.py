@@ -6,7 +6,7 @@ import tempfile
 
 root = Path(__file__).resolve().parents[3]
 parser = argparse.ArgumentParser()
-parser.add_argument('--core', type=Path, default=root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/UpdateBotInfo.swift')
+parser.add_argument('--core', type=Path, default=root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/UpdateBotInfo.swift')
 parser.add_argument('--profile', type=Path, default=root / 'packages/PeerInfoUI/Sources/PeerInfoUI/UserInfoEntries.swift')
 parser.add_argument('--controller', type=Path, default=root / 'packages/PeerInfoUI/Sources/PeerInfoUI/PeerInfoController.swift')
 args = parser.parse_args()
@@ -26,7 +26,7 @@ fixture = fixture.replace('__ROW__', profile[profile.index('            return G
 fixture = fixture.replace('__DISPOSE__', 'botEmojiStatusDisposable.dispose()' if 'botEmojiStatusDisposable.dispose()' in profile else '')
 with tempfile.TemporaryDirectory(prefix='bot-emoji-permission-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "BotEmojiPermission", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "BotEmojiPermissionTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

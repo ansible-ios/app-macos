@@ -4,9 +4,9 @@ import TGUIKit
 import TelegramCore
 import SwiftSignalKit
 import Postbox
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 
 private func animateStatusAppearance(_ items: [TableRowItem]) {
     let sections = items.compactMap {

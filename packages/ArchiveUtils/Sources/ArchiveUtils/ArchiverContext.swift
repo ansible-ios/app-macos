@@ -1,7 +1,7 @@
 import Foundation
 import Zip
 import SwiftSignalKit
-import TelegramMediaResources
+import AnsibleMediaResources
 
 public enum ArchiveStatus : Equatable {
     case none

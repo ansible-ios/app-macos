@@ -11,10 +11,10 @@ import ChatUI
 import GalleryUI
 import GeneralRows
 import MessageUtils
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleMediaUtils
 import AppAnalytics
 
 public enum PeerMediaSharedEntryStableId : Hashable {

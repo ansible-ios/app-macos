@@ -8,9 +8,9 @@ import ChatUI
 import InputTextView
 import Localization
 import ShortPeerRow
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import Strings
 import InputView
 

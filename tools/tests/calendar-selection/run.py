@@ -45,7 +45,7 @@ with tempfile.TemporaryDirectory(prefix='calendar-selection-') as directory:
         (directory / 'CalendarUtils' / name).write_text((root / 'packages/CalendarUtils/Sources/CalendarUtils' / name).read_text())
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
-let package = Package(name: "CalendarSelection", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit')) + ''')], targets: [.target(name: "CalendarUtils", path: "CalendarUtils", publicHeadersPath: "."), .testTarget(name: "CalendarSelectionTests", dependencies: ["CalendarUtils", .product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])
+let package = Package(name: "CalendarSelection", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit')) + ''')], targets: [.target(name: "CalendarUtils", path: "CalendarUtils", publicHeadersPath: "."), .testTarget(name: "CalendarSelectionTests", dependencies: ["CalendarUtils", .product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])
 ''')
     (directory / 'Tests').mkdir()
     (directory / 'Tests/CalendarSelectionTests.swift').write_text(fixture)

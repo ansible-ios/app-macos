@@ -7,12 +7,12 @@ root = Path(__file__).resolve().parents[3]
 parser = argparse.ArgumentParser()
 parser.add_argument('--baseline', action='store_true')
 args = parser.parse_args()
-source = subprocess.check_output(['git', 'show', '489ec8d18bbba43bf9bed52f31c28a35c3e6fde2:packages/TelegramMediaUtils/Sources/TelegramMediaUtils/VideoEditorThumbs.swift'], cwd=root, text=True) if args.baseline else (root/'packages/TelegramMediaUtils/Sources/TelegramMediaUtils/VideoEditorThumbs.swift').read_text()
-source = '\n'.join(line for line in source.splitlines() if line not in ['import TGUIKit', 'import TelegramTheme', 'import TelegramContext', 'import TelegramUtils'])
+source = subprocess.check_output(['git', 'show', '489ec8d18bbba43bf9bed52f31c28a35c3e6fde2:packages/AnsibleMediaUtils/Sources/AnsibleMediaUtils/VideoEditorThumbs.swift'], cwd=root, text=True) if args.baseline else (root/'packages/AnsibleMediaUtils/Sources/AnsibleMediaUtils/VideoEditorThumbs.swift').read_text()
+source = '\n'.join(line for line in source.splitlines() if line not in ['import TGUIKit', 'import AnsibleTheme', 'import AnsibleContext', 'import AnsibleUtils'])
 shim = Path(__file__).with_name('Support.swift').read_text()
 with tempfile.TemporaryDirectory(prefix='video-editor-thumbnails-') as directory:
     directory = Path(directory)
-    dependencies = ['.package(path: '+json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))+')', '.package(path: '+json.dumps(str(root/'packages/FastBlur'))+')']
+    dependencies = ['.package(path: '+json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))+')', '.package(path: '+json.dumps(str(root/'packages/FastBlur'))+')']
     (directory/'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "VideoEditorThumbnails", platforms: [.macOS(.v10_13)], dependencies: ['''+', '.join(dependencies)+'''], targets: [

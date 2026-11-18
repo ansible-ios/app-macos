@@ -17,8 +17,8 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(name: "ColorPalette", path: "../ColorPalette"),
         .package(name: "Colors", path: "../Colors"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
         .package(name: "InAppSettings", path: "../InAppSettings"),
     ],
     targets: [

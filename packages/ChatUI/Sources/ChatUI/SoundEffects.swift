@@ -1,9 +1,9 @@
 import Cocoa
 import CoreAudio
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 #else
-import TelegramTheme
+import AnsibleTheme
 #endif
 
 public enum SoundEffect {

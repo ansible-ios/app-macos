@@ -10,9 +10,9 @@ import ChatModeTypes
 import GalleryUI
 import InlineMediaGrid
 import MessageUtils
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 
 
 private final class PeerMediaGifsArguments {

@@ -2,9 +2,9 @@ import Cocoa
 import TelegramCore
 import TGUIKit
 #if SHARE
-import TelegramUtilsShare
+import AnsibleUtilsShare
 #else
-import TelegramUtils
+import AnsibleUtils
 #endif
 
 public func stringAndActivityForUserPresence(_ presence: TelegramUserPresence, timeDifference: TimeInterval, relativeTo timestamp: Int32, expanded: Bool = false, customTheme: GeneralRowItem.Theme? = nil) -> (String, Bool, NSColor) {

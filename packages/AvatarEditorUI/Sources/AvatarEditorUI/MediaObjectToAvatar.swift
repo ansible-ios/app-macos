@@ -8,9 +8,9 @@ import Postbox
 import ColorPalette
 import ThemeSettings
 import ObjcUtils
-import TelegramMedia
-import TelegramMediaUtils
-import TelegramContext
+import AnsibleMedia
+import AnsibleMediaUtils
+import AnsibleContext
 import AppKit
 
 private func avatarPatternBackground(_ signal: Signal<ImageDataTransformation, NoError>, arguments: TransformImageArguments) -> Signal<CGImage, NoError> {

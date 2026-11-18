@@ -1,5 +1,5 @@
 import Foundation
-import TelegramContext
+import AnsibleContext
 
 public struct MessageTextHooks {
     public let currentContext: () -> (any AccountContextProtocol)?

@@ -9,11 +9,11 @@ import GeneralRows
 import InputDataUI
 import LocalAnimations
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import ColorPalette
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import AppAnalytics
 
 private func generate(_ color: NSColor) -> CGImage {

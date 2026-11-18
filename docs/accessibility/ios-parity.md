@@ -1,6 +1,6 @@
 # VoiceOver: iOS parity spec
 
-Source of truth: `submodules/telegram-ios` (paths below are relative to `submodules/telegram-ios/submodules/`).
+Source of truth: `submodules/ansible-ios` (paths below are relative to `submodules/ansible-ios/submodules/`).
 English texts are from `Telegram/Telegram-iOS/en.lproj/Localizable.strings` (this path is relative to the telegram-ios root). Swift accessor `strings.VoiceOver_Chat_Photo` = key `"VoiceOver.Chat.Photo"`.
 `\n` below means a literal newline in the composed string (VoiceOver pauses on it).
 

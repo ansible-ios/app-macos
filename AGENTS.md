@@ -36,14 +36,14 @@ Only the modules you will touch most. Find anything else with `grep -rn "func Na
 | Module | Use it for |
 |---|---|
 | `TGUIKit` | Views, `TableView`, `ViewController`, modals, `Window` |
-| `TelegramContext` | `AccountContextProtocol`; packages take `any AccountContextProtocol` |
+| `AnsibleContext` | `AccountContextProtocol`; packages take `any AccountContextProtocol` |
 | `Localization` | `strings()`, generated from `Ansible-Mac/en.lproj/Localizable.strings` by `tools/swiftgen.sh` |
-| `TelegramTheme` | The `theme` global, `TelegramPresentationTheme`, `deliverOnPrepareQueue` |
-| `ColorPalette`, `TelegramIconsTheme` | Palette colors and `theme.icons` |
+| `AnsibleTheme` | The `theme` global, `TelegramPresentationTheme`, `deliverOnPrepareQueue` |
+| `ColorPalette`, `AnsibleIconsTheme` | Palette colors and `theme.icons` |
 | `InAppSettings` | App preferences stored in Postbox, `FastSettings` |
-| `TelegramUtils` | Telegram helpers shared by many features (formatting, peer status text, `bestWindow`) |
+| `AnsibleUtils` | Telegram helpers shared by many features (formatting, peer status text, `bestWindow`) |
 | `FoundationUtils`, `Strings`, `DateUtils`, `ObjcUtils` | Pure helpers with no Telegram UI |
-| `TelegramMedia`, `TelegramMediaUtils`, `TelegramMediaResources` | Players, media fetching and saving, media resources |
+| `AnsibleMedia`, `AnsibleMediaUtils`, `AnsibleMediaResources` | Players, media fetching and saving, media resources |
 | `LocalAnimations` | Bundled Lottie animations |
 | `InputDataUI` | `InputDataController` list and form screens, `FeatureNavigationHooks` |
 | `GeneralRows` | `GeneralRowItem` and the common table rows |
@@ -62,7 +62,7 @@ Only the modules you will touch most. Find anything else with `grep -rn "func Na
 ### Dependencies
 - Declare only modules whose symbols you actually use; never add dependencies "just in case"
 - No screen package may depend on another screen package; existing ones are debt
-- Keep feature code out of hubs (`TGUIKit`, `TelegramTheme`, `TelegramContext`, `Localization`, `TelegramUtils`, `InAppSettings`, `GeneralRows`, `InputDataUI`); a hub API change recompiles ~90 packages
+- Keep feature code out of hubs (`TGUIKit`, `AnsibleTheme`, `AnsibleContext`, `Localization`, `AnsibleUtils`, `InAppSettings`, `GeneralRows`, `InputDataUI`); a hub API change recompiles ~90 packages
 - `*Share` products are for the share extension only
 
 ### Moving Code into Packages
@@ -73,7 +73,7 @@ Only the modules you will touch most. Find anything else with `grep -rn "func Na
 
 ## Shipping a Beta
 A beta build starts when `beta` is pushed to `origin`.
-1. Commit all pending work on `beta`, including any submodule bumps (`submodules/telegram-ios` carries the Rust engine)
+1. Commit all pending work on `beta`, including any submodule bumps (`submodules/ansible-ios` carries the Rust engine)
 2. Merge the feature branches being shipped into `beta`, e.g. `git merge origin/sam/new-wallet`
 3. Bump the build number: increment `CFBundleVersion` in `Ansible-Mac/Info.plist` and `AnsibleShare/Info.plist`, commit as `Bump the build number to <N>`
 4. `git push origin beta`

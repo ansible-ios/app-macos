@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
-import TelegramTheme
-import TelegramIconsTheme
+import AnsibleTheme
+import AnsibleIconsTheme
 import ImageCanvasUI
 import Localization
 

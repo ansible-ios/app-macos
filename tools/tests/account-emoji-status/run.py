@@ -6,7 +6,7 @@ import tempfile
 
 root = Path(__file__).resolve().parents[3]
 parser = argparse.ArgumentParser()
-parser.add_argument('--source', type=Path, default=root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/AccountData/TelegramEngineAccountData.swift')
+parser.add_argument('--source', type=Path, default=root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/AccountData/TelegramEngineAccountData.swift')
 parser.add_argument('--filter')
 args = parser.parse_args()
 def block(source, marker):
@@ -25,7 +25,7 @@ else:
 fixture = fixture.replace('__CORE_SUPPORT__', support).replace('__CORE__', methods)
 with tempfile.TemporaryDirectory(prefix='account-emoji-status-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "AccountEmojiStatus", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "AccountEmojiStatusTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

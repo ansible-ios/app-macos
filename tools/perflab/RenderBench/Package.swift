@@ -7,7 +7,7 @@ let package = Package(
     platforms: [.macOS(.v10_15)],
     dependencies: [
         .package(name: "TGUIKit", path: "../../../packages/TGUIKit"),
-        .package(name: "SSignalKit", path: "../../../submodules/telegram-ios/submodules/SSignalKit"),
+        .package(name: "SSignalKit", path: "../../../submodules/ansible-ios/submodules/SSignalKit"),
     ],
     targets: [
         .executableTarget(

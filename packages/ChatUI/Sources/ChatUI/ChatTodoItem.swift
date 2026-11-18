@@ -14,9 +14,9 @@ import Localization
 import MessageUtils
 import PremiumUI
 import SceneEffects
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 

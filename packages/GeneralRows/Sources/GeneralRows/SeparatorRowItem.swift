@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import ColorPalette
 import Localization
 import SwiftSignalKit

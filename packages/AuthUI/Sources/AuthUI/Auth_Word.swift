@@ -1,15 +1,15 @@
 import TGUIKit
 import AppKit
 import TelegramCore
-import TelegramMedia
+import AnsibleMedia
 import InputView
 import SwiftSignalKit
 import FoundationUtils
 import InputTextView
 import LocalAnimations
-import TelegramUtils
-import TelegramContext
-import TelegramTheme
+import AnsibleUtils
+import AnsibleContext
+import AnsibleTheme
 import Localization
 
 private struct Localize {

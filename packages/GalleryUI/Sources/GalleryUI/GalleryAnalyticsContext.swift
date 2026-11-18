@@ -1,6 +1,6 @@
 import AppAnalytics
 import Postbox
-import TelegramContext
+import AnsibleContext
 import TelegramCore
 
 final class GalleryAnalyticsContext {

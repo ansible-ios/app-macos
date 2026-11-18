@@ -4,11 +4,11 @@ import TGUIKit
 import TelegramCore
 import SwiftSignalKit
 import Postbox
-import TelegramMedia
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleMedia
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleMediaUtils
 import AppAnalytics
 
 private var reactions: ReactionsWindowController?

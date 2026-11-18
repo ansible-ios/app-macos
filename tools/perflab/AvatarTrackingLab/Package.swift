@@ -8,7 +8,7 @@ let package = Package(
     platforms: [.macOS(.v10_15)],
     dependencies: [
         .package(path: "../../../packages/TGUIKit"),
-        .package(name: "SSignalKit", path: "../../../submodules/telegram-ios/submodules/SSignalKit")
+        .package(name: "SSignalKit", path: "../../../submodules/ansible-ios/submodules/SSignalKit")
     ],
     targets: [
         .target(name: "AvatarTrackingCurrent", dependencies: shared),

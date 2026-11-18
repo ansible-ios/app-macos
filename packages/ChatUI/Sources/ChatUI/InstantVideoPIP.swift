@@ -2,14 +2,14 @@ import CoreMedia
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramMedia
+import AnsibleMedia
 import Postbox
 import SwiftSignalKit
 import AudioPlayerCore
 import ChatModeTypes
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
 
 enum InstantVideoPIPCornerAlignment {
     case topLeft

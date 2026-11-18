@@ -6,7 +6,7 @@ set -x
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 SOURCE_DIR="$ROOT_DIR/submodules/tlottie"
-ENGINE_TOOLCHAIN_FILE="$ROOT_DIR/submodules/telegram-ios/third-party/mtproto-engine/rust-toolchain.toml"
+ENGINE_TOOLCHAIN_FILE="$ROOT_DIR/submodules/ansible-ios/third-party/mtproto-engine/rust-toolchain.toml"
 BUILD_DIR="$SCRIPT_DIR/build"
 DEPLOYMENT_TARGET="10.13"
 

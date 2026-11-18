@@ -1,10 +1,10 @@
 import Cocoa
 import Postbox
-import TelegramMediaResources
+import AnsibleMediaResources
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 #else
-import TelegramTheme
+import AnsibleTheme
 #endif
 
 private var telegramUIDeclaredEncodables: Void = {

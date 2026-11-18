@@ -175,7 +175,7 @@ def main():
     points = [int(v) for v in subprocess.check_output([str(work / 'screen')], text=True).split()]
     if not args.no_launch:
         app = find_app(args.app)
-        binary = str(app / 'Contents/MacOS/Telegram')
+        binary = str(app / 'Contents/MacOS/Ansible')
         subprocess.run(['osascript', '-e', 'tell application id "uz.keepcoder.Telegram" to quit'], capture_output=True)
         deadline = time.time() + 15
         while subprocess.run(['pgrep', '-f', binary], capture_output=True).returncode == 0:

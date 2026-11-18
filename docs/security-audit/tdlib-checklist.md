@@ -1,6 +1,6 @@
 # tdlib client-side MTProto security checks — audit checklist
 
-Source: tdlib checked out at `submodules/telegram-ios/third-party/td/td/` (commit `e894536b2f`, 2025-05-27).
+Source: tdlib checked out at `submodules/ansible-ios/third-party/td/td/` (commit `e894536b2f`, 2025-05-27).
 Every reference below was read in the code, not taken from comments or prior notes. Paths are relative to that root:
 
 - `td/mtproto/...`: the core

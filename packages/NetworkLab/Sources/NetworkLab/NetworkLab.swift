@@ -4,7 +4,7 @@ import AppKit
 import SwiftSignalKit
 import Postbox
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 import PerfLab
 
 public enum NetworkLab {

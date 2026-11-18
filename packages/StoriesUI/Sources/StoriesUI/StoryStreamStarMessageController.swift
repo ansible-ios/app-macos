@@ -6,9 +6,9 @@ import GeneralRows
 import InputDataUI
 import Localization
 import StarsUI
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import AppAnalytics
 
 private final class HeaderItem : GeneralRowItem {

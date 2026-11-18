@@ -30,7 +30,7 @@ for key, value in [('__SHARED__', shared), ('__SEARCH__', search), ('__BOT__', b
     fixture = fixture.replace(key, value)
 with tempfile.TemporaryDirectory(prefix='send-audio-pagination-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "AudioPagination", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "AudioPaginationTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

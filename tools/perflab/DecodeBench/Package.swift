@@ -9,9 +9,9 @@ let package = Package(
     platforms: [.macOS(.v12)],
     dependencies: [
         .package(name: "TGUIKit", path: "../../../packages/TGUIKit"),
-        .package(name: "SSignalKit", path: "../../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "FFMpegBinding", path: "../../../submodules/telegram-ios/submodules/FFMpegBinding"),
-        .package(name: "YuvConversion", path: "../../../submodules/telegram-ios/submodules/YuvConversion"),
+        .package(name: "SSignalKit", path: "../../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "FFMpegBinding", path: "../../../submodules/ansible-ios/submodules/FFMpegBinding"),
+        .package(name: "YuvConversion", path: "../../../submodules/ansible-ios/submodules/YuvConversion"),
     ],
     targets: [
         .executableTarget(

@@ -14,9 +14,9 @@
       "Bash(git submodule *)",
       "WebFetch(domain:bugs.telegram.org)",
       "Bash(swift -e ' *)",
-      "Bash(git -C submodules/telegram-ios log --oneline -40)",
-      "Bash(git -C /Users/renoir/projects/Telegram/telegrammacos/submodules/telegram-ios show 30a68f0431 --stat)",
-      "Bash(git -C /Users/renoir/projects/Telegram/telegrammacos/submodules/telegram-ios show 30a68f0431 -- 'submodules/TelegramUI/Components/RichTextEditor/Sources/RichTextEditorUIKit/Canvas/DocumentCanvasView+Editing.swift')",
+      "Bash(git -C submodules/ansible-ios log --oneline -40)",
+      "Bash(git -C /Users/renoir/projects/Telegram/telegrammacos/submodules/ansible-ios show 30a68f0431 --stat)",
+      "Bash(git -C /Users/renoir/projects/Telegram/telegrammacos/submodules/ansible-ios show 30a68f0431 -- 'submodules/TelegramUI/Components/RichTextEditor/Sources/RichTextEditorUIKit/Canvas/DocumentCanvasView+Editing.swift')",
       "Bash(git stash *)",
       "Bash(DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift test --filter \"setAlignment_isUndoable|applyDisplayOverride_setsParagraphAlignment|columnAlignment_rendersAndRoundTrips\")",
       "Bash(xcrun -sdk macosx swiftc -parse Ansible-Mac/RichTextEditorWindowController.swift)",
@@ -27,7 +27,7 @@
       "Bash(grep *)",
       "Bash(git -C /Users/renoir/projects/Telegram/telegrammacos-release-wt diff --stat)",
       "Bash(git -C /Users/renoir/projects/Telegram/telegrammacos-release-wt diff)",
-      "Read(//Users/renoir/projects/submodules/telegram-ios/submodules/TelegramUI/Components/RichTextEditor/**)",
+      "Read(//Users/renoir/projects/submodules/ansible-ios/submodules/TelegramUI/Components/RichTextEditor/**)",
       "Bash(rm -rf .build)",
       "Bash(swift test *)",
       "Bash(perl -0pi -e 's/v\\\\.mediaBlockViewProvider = \\\\{ _, _, width in/v.mediaBlockViewProvider = { _, _, _, width in/g; *)",
@@ -46,7 +46,7 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:api.github.com)",
       "Bash(gh api *)",
-      "Bash(awk 'NR>=280 && NR<=470' /Users/renoir/projects/Telegram/telegrammacos/submodules/telegram-ios/submodules/TelegramCore/Sources/SyncCore/SyncCore_ReactionsMessageAttribute.swift)"
+      "Bash(awk 'NR>=280 && NR<=470' /Users/renoir/projects/Telegram/telegrammacos/submodules/ansible-ios/submodules/TelegramCore/Sources/SyncCore/SyncCore_ReactionsMessageAttribute.swift)"
     ]
   }
 }

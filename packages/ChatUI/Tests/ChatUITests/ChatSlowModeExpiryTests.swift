@@ -1,7 +1,7 @@
 import XCTest
 import Postbox
 import TelegramCore
-import TelegramUtils
+import AnsibleUtils
 
 final class ChatSlowModeExpiryTests: XCTestCase {
     func testZeroAndExpiredTimeoutsUnlockImmediately() {

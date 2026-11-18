@@ -1061,7 +1061,7 @@ func generateClass() -> String {
     lines.append("import AppKit")
     lines.append("")
 
-    lines.append("public final class TelegramIconsTheme {")
+    lines.append("public final class AnsibleIconsTheme {")
     
     lines.append("  private var cached:Atomic<[String: CGImage]> = Atomic(value: [:])")
     lines.append("  private var cachedWithInset:Atomic<[String: (CGImage, NSEdgeInsets)]> = Atomic(value: [:])")
@@ -1149,4 +1149,4 @@ func generateClass() -> String {
 }
 
 print(FileManager.default.currentDirectoryPath)
-try! generateClass().write(toFile: FileManager.default.currentDirectoryPath + "/packages/TelegramIconsTheme/Sources/TelegramIconsTheme.swift", atomically: true, encoding: .utf8)
+try! generateClass().write(toFile: FileManager.default.currentDirectoryPath + "/packages/AnsibleIconsTheme/Sources/AnsibleIconsTheme.swift", atomically: true, encoding: .utf8)

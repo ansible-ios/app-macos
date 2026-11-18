@@ -2,7 +2,7 @@ import Foundation
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 
 private final class QrStudioPatternNode {
     let layer = SimpleLayer()

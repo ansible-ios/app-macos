@@ -1,8 +1,8 @@
 import Cocoa
 import TGUIKit
 import GeneralRows
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 import LocalAnimations
 
 final class SessionHeaderItem: GeneralRowItem {

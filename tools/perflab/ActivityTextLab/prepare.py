@@ -14,13 +14,13 @@ current = source[source.index(model_start):].replace('private func activityTextL
 old = subprocess.check_output(['git', 'show', 'd3f4a6235:packages/ShortPeerRow/Sources/ShortPeerRow/ChatActivitiesModel.swift'], cwd=root).decode()
 reference = (lab / 'Reference.swift.txt').read_text()
 assert old[old.index(model_start):] == reference
-geometry_path = root / 'packages/TelegramTheme/Sources/TelegramTheme/ThumbUtils.swift'
+geometry_path = root / 'packages/AnsibleTheme/Sources/AnsibleTheme/ThumbUtils.swift'
 geometry = geometry_path.read_text()
 geometry = geometry[geometry.index('fileprivate let minDiameter:'):geometry.index('private func generateUploadFileAnimatedImage')]
-theme_path = root / 'packages/TelegramTheme/Sources/TelegramTheme/TelegramPresentationTheme.swift'
+theme_path = root / 'packages/AnsibleTheme/Sources/AnsibleTheme/AnsiblePresentationTheme.swift'
 theme = theme_path.read_text()
 theme = theme[theme.index('public struct ActivitiesTheme'):theme.index('public final class TelegramTabBarTheme')]
-activity_path = root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/State/PeerInputActivity.swift'
+activity_path = root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/State/PeerInputActivity.swift'
 activity = activity_path.read_text()
 activity = activity[activity.index('public enum PeerInputActivity:'):activity.index('extension PeerInputActivity {')]
 output = 'import AppKit\nimport TGUIKit\nimport SwiftSignalKit\n' + theme + geometry + activity + view

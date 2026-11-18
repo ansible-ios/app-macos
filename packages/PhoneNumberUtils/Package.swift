@@ -9,10 +9,10 @@ let package = Package(
         .library(name: "PhoneNumberUtils", targets: ["PhoneNumberUtils"]),
     ],
     dependencies: [
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
-        .package(name: "libphonenumber", path: "../../submodules/telegram-ios/submodules/libphonenumber"),
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "TelegramContext", path: "../TelegramContext"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "libphonenumber", path: "../../submodules/ansible-ios/submodules/libphonenumber"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "AnsibleContext", path: "../AnsibleContext"),
     ],
     targets: [
         .target(
@@ -21,7 +21,7 @@ let package = Package(
                 .product(name: "TelegramCore", package: "TelegramCore", condition: nil),
                 .product(name: "libphonenumber", package: "libphonenumber", condition: nil),
                 .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
-                .product(name: "TelegramContext", package: "TelegramContext", condition: nil),
+                .product(name: "AnsibleContext", package: "AnsibleContext", condition: nil),
             ],
             path: "Sources/PhoneNumberUtils"),
     ]

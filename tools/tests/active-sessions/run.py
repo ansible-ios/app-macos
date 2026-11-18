@@ -8,7 +8,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--baseline', action='store_true')
 args = parser.parse_args()
 root = pathlib.Path(__file__).resolve().parents[3]
-submodule = root / 'submodules/telegram-ios'
+submodule = root / 'submodules/ansible-ios'
 source_path = 'submodules/TelegramCore/Sources/TelegramEngine/Privacy/ActiveSessionsContext.swift'
 if args.baseline:
     source = subprocess.check_output(['git', '-C', str(submodule), 'show', f'HEAD:{source_path}'], text=True)

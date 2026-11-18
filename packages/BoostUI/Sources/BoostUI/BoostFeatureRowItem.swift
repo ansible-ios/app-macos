@@ -3,8 +3,8 @@ import Cocoa
 import TGUIKit
 import Localization
 import ColorPalette
-import TelegramTheme
-import TelegramIconsTheme
+import AnsibleTheme
+import AnsibleIconsTheme
 import GeneralRows
 
 enum BoostChannelPerk: Equatable {

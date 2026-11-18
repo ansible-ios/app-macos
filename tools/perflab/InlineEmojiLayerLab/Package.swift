@@ -6,10 +6,10 @@ let package = Package(
     platforms: [.macOS(.v10_15)],
     dependencies: [.package(path: "../../../packages/TGUIKit")],
     targets: [
-        .target(name: "TelegramContext"),
+        .target(name: "AnsibleContext"),
         .target(name: "InputView"),
-        .target(name: "InlineStickerLayer", dependencies: ["TGUIKit", "TelegramContext", "InputView"]),
-        .target(name: "InlineEmojiHelper", dependencies: ["TGUIKit", "TelegramContext", "InputView", "InlineStickerLayer"]),
-        .testTarget(name: "InlineEmojiTests", dependencies: ["InlineEmojiHelper", "TGUIKit", "TelegramContext", "InputView", "InlineStickerLayer"])
+        .target(name: "InlineStickerLayer", dependencies: ["TGUIKit", "AnsibleContext", "InputView"]),
+        .target(name: "InlineEmojiHelper", dependencies: ["TGUIKit", "AnsibleContext", "InputView", "InlineStickerLayer"]),
+        .testTarget(name: "InlineEmojiTests", dependencies: ["InlineEmojiHelper", "TGUIKit", "AnsibleContext", "InputView", "InlineStickerLayer"])
     ]
 )

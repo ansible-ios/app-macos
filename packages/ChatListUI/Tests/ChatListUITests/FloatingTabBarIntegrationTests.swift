@@ -1,11 +1,11 @@
 import AppKit
 import XCTest
 @testable import TGUIKit
-import TelegramMedia
+import AnsibleMedia
 import TLottie
 import LocalAnimations
 import ColorPalette
-import TelegramTheme
+import AnsibleTheme
 @testable import ChatListUI
 
 private final class FloatingTabBarTestRow: TableRowItem {

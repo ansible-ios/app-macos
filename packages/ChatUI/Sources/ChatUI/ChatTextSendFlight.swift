@@ -2,7 +2,7 @@ import Cocoa
 import TGUIKit
 import Postbox
 import TelegramCore
-import TelegramUtils
+import AnsibleUtils
 import InputTextView
 
 enum ChatTextSendFlightMotion {

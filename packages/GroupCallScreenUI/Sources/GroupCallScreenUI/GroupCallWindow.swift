@@ -4,9 +4,9 @@ import TGUIKit
 import SwiftSignalKit
 import ColorPalette
 import GeneralRows
-import TelegramCallsCore
-import TelegramContext
-import TelegramTheme
+import AnsibleCallsCore
+import AnsibleContext
+import AnsibleTheme
 import CallVideoLayer
 import AppAnalytics
 

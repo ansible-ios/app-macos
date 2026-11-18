@@ -5,7 +5,7 @@ import Postbox
 import TelegramCore
 import SwiftSignalKit
 import MediaRecorderUI
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 func installMediaRecorderUIHooks() {
     var hooks = MediaRecorderHooks(setPendingMedia: { chatInteraction, data in

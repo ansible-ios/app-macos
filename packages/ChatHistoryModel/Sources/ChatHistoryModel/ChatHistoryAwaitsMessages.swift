@@ -1,6 +1,6 @@
 import Postbox
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 
 public func chatHistoryMessageIsUndisplayedForumRoot(_ message: Message, location: ChatLocation?, peer: Peer?) -> Bool {
     guard case let .thread(thread) = location, thread.isForumPost else { return false }

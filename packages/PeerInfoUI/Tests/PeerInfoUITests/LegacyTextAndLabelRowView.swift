@@ -1,7 +1,7 @@
 import AppKit
 import TGUIKit
 import GeneralRows
-import TelegramTheme
+import AnsibleTheme
 import Localization
 @testable import PeerInfoUI
 

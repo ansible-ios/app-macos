@@ -5,17 +5,17 @@ import SwiftSignalKit
 import Postbox
 import GeneralRows
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import ColorPalette
 import FoundationUtils
 import InputDataUI
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import AlertsUI
 import InAppSettings
 import ApiCredentials
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 
 public struct DockIconData {

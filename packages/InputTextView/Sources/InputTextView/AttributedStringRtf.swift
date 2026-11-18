@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
 import InputView
-import TelegramTheme
+import AnsibleTheme
 import RichTextEditorCore
 
 public extension NSAttributedString {

@@ -3,11 +3,11 @@ import TGUIKit
 import TelegramCore
 import Localization
 import ColorPalette
-import TelegramTheme
+import AnsibleTheme
 import InputDataUI
 import GeneralRows
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 import FoundationUtils
 import AlertsUI
 import InAppSettings

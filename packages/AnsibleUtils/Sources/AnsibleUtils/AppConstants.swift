@@ -1,0 +1,62 @@
+import Cocoa
+import TelegramCore
+import Postbox
+import ColorPalette
+import AnsibleTheme
+import FoundationUtils
+
+public let clown: String = "🤡"
+
+public let itunesAppLink = "https://apps.apple.com/us/app/telegram/id747648890"
+public let XTRSTAR: String = "💎"
+public enum DiamondAppearance {
+    public static var foreground: NSColor {
+        return theme.colors.isDark ? NSColor(0x5DBBFF) : NSColor(0x087AC4)
+    }
+    public static var gradient: [NSColor] {
+        return [NSColor(0x168FE8), NSColor(0x55C6FF)]
+    }
+    public static var particle: NSColor {
+        return NSColor(0x40B4FF)
+    }
+}
+public let clown_space: String = "\(clown)\(TINY_SPACE)"
+public let XTR_USD_RATE = 0.013
+
+public func restartApp() {
+    let task = appRelaunchProcess()
+    do {
+        try task.run()
+        NSApp.terminate(nil)
+    } catch {
+        NSLog("Failed to restart: \(error)")
+    }
+}
+
+extension ResolvePeerResult : @retroactive Equatable {
+
+    public var result: EnginePeer? {
+        switch self {
+        case .progress:
+            return nil
+        case let .result(peer):
+            return peer
+        }
+    }
+    public static func ==(lhs: ResolvePeerResult, rhs: ResolvePeerResult) -> Bool {
+        switch lhs {
+        case .progress:
+            if case .progress = rhs {
+                return true
+            } else {
+                return false
+            }
+        case let .result(lhsPeer):
+            if case let .result(rhsPeer) = rhs {
+                return PeerEquatable(lhsPeer?._asPeer()) == PeerEquatable(rhsPeer?._asPeer())
+            } else {
+                return false
+            }
+        }
+    }
+}

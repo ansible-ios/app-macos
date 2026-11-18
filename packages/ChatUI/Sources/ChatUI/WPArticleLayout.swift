@@ -10,9 +10,9 @@ import ChatModeTypes
 import ExternalVideoUtils
 import InstantPageUI
 import Strings
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
 
 public class WPArticleLayout: WPLayout {
     

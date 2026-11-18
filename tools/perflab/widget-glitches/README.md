@@ -8,7 +8,7 @@ send chat messages.
 Build Telegram Debug, quit the previous Debug instance, then launch:
 
 ```sh
-open -n /path/to/Debug/Telegram.app --args \
+open -n /path/to/Debug/Ansible.app --args \
   -PerfLab chat-navigation -PerfLabLabel widget-glitches \
   -PerfLabScenarios widgets -PerfLabPeerTitle "Widget Samples" \
   -PerfLabWidgetHistoryPasses 4 -PerfLabWidgetWait 1.5 \

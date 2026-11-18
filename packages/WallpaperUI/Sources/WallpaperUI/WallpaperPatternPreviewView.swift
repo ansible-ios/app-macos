@@ -5,15 +5,15 @@ import ThemeSettings
 import Postbox
 import SwiftSignalKit
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import GeneralRows
 import InputDataUI
 import AlertsUI
 import LocalAnimations
-import TelegramIconsTheme
-import TelegramMediaUtils
+import AnsibleIconsTheme
+import AnsibleMediaUtils
 
 public class WallpaperPatternView : Control {
     private var backgroundView: BackgroundView?

@@ -1,11 +1,11 @@
 import Cocoa
 import TGUIKit
-import TelegramMedia
+import AnsibleMedia
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 import InAppSettings
 import ChatModeTypes
 import AppAnalytics

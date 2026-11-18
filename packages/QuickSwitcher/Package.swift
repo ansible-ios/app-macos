@@ -7,9 +7,9 @@ let deps: [(String, String)] = [
     ("ChatModeTypes", "../ChatModeTypes"),
     ("ColorPalette", "../ColorPalette"),
     ("Localization", "../Localization"),
-    ("TelegramTheme", "../TelegramTheme"),
-    ("TelegramContext", "../TelegramContext"),
-    ("TelegramUtils", "../TelegramUtils"),
+    ("AnsibleTheme", "../AnsibleTheme"),
+    ("AnsibleContext", "../AnsibleContext"),
+    ("AnsibleUtils", "../AnsibleUtils"),
     ("GeneralRows", "../GeneralRows"),
     ("InputDataUI", "../InputDataUI"),
     ("AvatarUI", "../AvatarUI"),
@@ -17,7 +17,7 @@ let deps: [(String, String)] = [
     ("ShortPeerRow", "../ShortPeerRow"),
     ("Strings", "../Strings"),
     ("InAppSettings", "../InAppSettings"),
-    ("TelegramIconsTheme", "../TelegramIconsTheme"),
+    ("AnsibleIconsTheme", "../AnsibleIconsTheme"),
     ("AppAnalytics", "../AppAnalytics"),
 ]
 
@@ -28,9 +28,9 @@ let package = Package(
         .library(name: "QuickSwitcher", targets: ["QuickSwitcher"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
     ] + deps.map { .package(name: $0.0, path: $0.1) },
     targets: [
         .target(

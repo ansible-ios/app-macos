@@ -1,7 +1,7 @@
 import XCTest
 import SwiftSignalKit
 import TelegramCore
-import TelegramMedia
+import AnsibleMedia
 import OpusBinding
 @testable import ChatUI
 

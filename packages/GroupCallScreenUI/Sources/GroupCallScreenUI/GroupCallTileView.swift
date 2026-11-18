@@ -7,11 +7,11 @@ import SwiftSignalKit
 import TgVoipWebrtc
 import CallsUI
 import Localization
-import TelegramCallsCore
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleCallsCore
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 
 public struct VoiceChatTile {
     public fileprivate(set) var rect: NSRect

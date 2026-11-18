@@ -6,11 +6,11 @@ import TelegramCore
 import FetchManager
 import Cocoa
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import GeneralRows
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 
 public final class DownloadsControlArguments {

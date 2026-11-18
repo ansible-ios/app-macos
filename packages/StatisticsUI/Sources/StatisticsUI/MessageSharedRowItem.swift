@@ -6,10 +6,10 @@ import TelegramCore
 import SwiftSignalKit
 import GeneralRows
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
-import TelegramIconsTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
+import AnsibleIconsTheme
 import AvatarUI
 
 public class MessageSharedRowItem: GeneralRowItem {

@@ -4,11 +4,11 @@ import SwiftSignalKit
 import AppKit
 import TelegramCore
 import Postbox
-import TelegramMedia
-import TelegramContext
-import TelegramTheme
+import AnsibleMedia
+import AnsibleContext
+import AnsibleTheme
 import InAppSettings
-import TelegramUtils
+import AnsibleUtils
 
 public typealias MenuAnimation = LocalAnimatedSticker
 

@@ -3,11 +3,11 @@
 Date: 2026-10-02. Read-only review; no repository files were changed.
 
 Path prefixes used below:
-- `MTK/` = `/Users/renoir/projects/Telegram/telegrammacos/submodules/telegram-ios/submodules/MtProtoKit/Sources/`
-- `RE/` = `/Users/renoir/projects/Telegram/telegrammacos/submodules/telegram-ios/submodules/MTProtoRustEngine/Sources/MTProtoRustEngine/`
-- `ENG/` = `/Users/renoir/projects/Telegram/telegrammacos/submodules/telegram-ios/third-party/mtproto-engine/crates/`
-- `TD/` = `/Users/renoir/projects/Telegram/telegrammacos/submodules/telegram-ios/third-party/td/td/`
-- `OSSL/` = `/Users/renoir/projects/Telegram/telegrammacos/submodules/telegram-ios/submodules/OpenSSLEncryptionProvider/Sources/OpenSSLEncryptionProvider.m`
+- `MTK/` = `/Users/renoir/projects/Telegram/telegrammacos/submodules/ansible-ios/submodules/MtProtoKit/Sources/`
+- `RE/` = `/Users/renoir/projects/Telegram/telegrammacos/submodules/ansible-ios/submodules/MTProtoRustEngine/Sources/MTProtoRustEngine/`
+- `ENG/` = `/Users/renoir/projects/Telegram/telegrammacos/submodules/ansible-ios/third-party/mtproto-engine/crates/`
+- `TD/` = `/Users/renoir/projects/Telegram/telegrammacos/submodules/ansible-ios/third-party/td/td/`
+- `OSSL/` = `/Users/renoir/projects/Telegram/telegrammacos/submodules/ansible-ios/submodules/OpenSSLEncryptionProvider/Sources/OpenSSLEncryptionProvider.m`
 
 ## How the code fits together in the shipping macOS app
 

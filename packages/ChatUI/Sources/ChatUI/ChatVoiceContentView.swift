@@ -4,12 +4,12 @@ import TelegramCore
 
 import TGUIKit
 import SwiftSignalKit
-import TelegramMedia
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
-import TelegramMediaUtils
-import TelegramMediaResources
+import AnsibleMedia
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleMediaUtils
+import AnsibleMediaResources
 import InAppSettings
 import Localization
 import ColorPalette

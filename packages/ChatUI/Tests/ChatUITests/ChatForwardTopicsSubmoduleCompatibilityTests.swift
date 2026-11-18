@@ -153,11 +153,11 @@ final class ChatForwardTopicsSubmoduleCompatibilityTests: XCTestCase {
     }
 
     func testInputOrderAssumptionsStillHold() throws {
-        let threadIndexView = try String(contentsOf: repositoryRoot.appendingPathComponent("submodules/telegram-ios/submodules/Postbox/Sources/MessageHistoryThreadIndexView.swift"), encoding: .utf8)
+        let threadIndexView = try String(contentsOf: repositoryRoot.appendingPathComponent("submodules/ansible-ios/submodules/Postbox/Sources/MessageHistoryThreadIndexView.swift"), encoding: .utf8)
         XCTAssertTrue(threadIndexView.contains("return lhsPinnedIndex < rhsPinnedIndex"))
         XCTAssertTrue(threadIndexView.contains("return lhs.index > rhs.index"))
 
-        let predicate = try String(contentsOf: repositoryRoot.appendingPathComponent("packages/TelegramUtils/Sources/TelegramUtils/ChatListFilterPredicate.swift"), encoding: .utf8)
+        let predicate = try String(contentsOf: repositoryRoot.appendingPathComponent("packages/AnsibleUtils/Sources/AnsibleUtils/ChatListFilterPredicate.swift"), encoding: .utf8)
         let forumBranch = try XCTUnwrap(predicate.components(separatedBy: "case let .forum(peerId):").dropFirst().first)
         let forumList = try XCTUnwrap(forumBranch.components(separatedBy: "let list = EngineChatList(").dropFirst().first)
         XCTAssertTrue(forumList.trimmingCharacters(in: .whitespacesAndNewlines).hasPrefix("items: items.reversed(),"))

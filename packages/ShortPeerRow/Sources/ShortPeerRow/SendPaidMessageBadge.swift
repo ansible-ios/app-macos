@@ -1,9 +1,9 @@
 import Cocoa
 import TGUIKit
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 #else
-import TelegramTheme
+import AnsibleTheme
 #endif
 
 final class SendPaidMessageBadgeCache {

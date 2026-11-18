@@ -8,7 +8,7 @@ import InputView
 import AlertsUI
 import Localization
 import SystemPermissions
-import TelegramTheme
+import AnsibleTheme
 import ChatHistoryModel
 import MediaRecorderUI
 import TelegramCore

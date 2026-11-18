@@ -8,17 +8,17 @@ import ThemeSettings
 import ColorPalette
 import Localization
 import InAppSettings
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import AlertsUI
 import LocalAnimations
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import FoundationUtils
-import TelegramMediaUtils
-import TelegramLinks
+import AnsibleMediaUtils
+import AnsibleLinks
 import ChatHistoryModel
 import FilePanels
 import WallpaperUI
@@ -60,7 +60,7 @@ private final class AutoNightThemeArguments {
     }
 }
 
-private func autoNightEntries(appearance: Appearance, settings: AutoNightThemePreferences, cloudThemes: [TelegramTheme], arguments: AutoNightThemeArguments) -> [InputDataEntry] {
+private func autoNightEntries(appearance: Appearance, settings: AutoNightThemePreferences, cloudThemes: [AnsibleTheme], arguments: AutoNightThemeArguments) -> [InputDataEntry] {
     var entries: [InputDataEntry] = []
     
     var sectionId:Int32 = 0

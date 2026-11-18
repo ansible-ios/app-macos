@@ -6,7 +6,7 @@
   "packages/PeerInfoUI/Sources/PeerInfoUI/PeerMediaController.swift": "7041031517c1904e5817921ca22881afa33734d4343be666234c4ca1fbdac439",
   "packages/PeerMediaUI/Sources/PeerMediaUI/PeerMediaGridSizing.swift": "f77e748faedf4362e38a5ad26fdf31f4566b6f50a59cad1f7bf88792ff1a58f5",
   "packages/ChatHistoryModel/Sources/ChatHistoryModel/ChatDateId.swift": "e5b5ef67cbcd94733939aa511156a4e253972319849f75493fb680120c52f57f",
-  "submodules/telegram-ios/submodules/Postbox/Sources/Message.swift": "c382cdf51199878336bf65c396cc56aeebaf74685b00a941211676e07c2e476e",
+  "submodules/ansible-ios/submodules/Postbox/Sources/Message.swift": "c382cdf51199878336bf65c396cc56aeebaf74685b00a941211676e07c2e476e",
   "packages/GeneralRows/Sources/GeneralRows/GeneralRowItem.swift": "ec5f52e93e2bf2d860498bd4256d19a5608a62dfa51517b4403bf1edce71edce",
-  "packages/TelegramLinks/Sources/TelegramLinks/PeerMediaCollectionMode.swift": "53e3f493f5534bca3a2d830cf78042c01154d69b8292993b7adfe169c7ccd01a"
+  "packages/AnsibleLinks/Sources/AnsibleLinks/PeerMediaCollectionMode.swift": "53e3f493f5534bca3a2d830cf78042c01154d69b8292993b7adfe169c7ccd01a"
 }

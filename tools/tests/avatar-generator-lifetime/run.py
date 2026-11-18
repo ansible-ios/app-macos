@@ -23,7 +23,7 @@ with tempfile.TemporaryDirectory(prefix='avatar-generator-lifetime-') as directo
     directory=Path(directory)
     (directory/'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
-let package = Package(name: "AvatarGeneratorLifetime", platforms: [.macOS(.v10_13)], dependencies: [.package(path: '''+json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))+''')], targets: [.testTarget(name: "AvatarGeneratorLifetimeTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])
+let package = Package(name: "AvatarGeneratorLifetime", platforms: [.macOS(.v10_13)], dependencies: [.package(path: '''+json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))+''')], targets: [.testTarget(name: "AvatarGeneratorLifetimeTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])
 ''')
     (directory/'Tests').mkdir();(directory/'Tests/AvatarGeneratorLifetimeTests.swift').write_text(fixture)
     raise SystemExit(subprocess.run(['swift','test','--package-path',str(directory),'--disable-sandbox','--jobs','4']).returncode)

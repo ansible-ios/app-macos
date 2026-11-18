@@ -7,8 +7,8 @@ import Postbox
 import SwiftSignalKit
 import TelegramCore
 import ColorPalette
-import TelegramMedia
-import TelegramMediaUtils
+import AnsibleMedia
+import AnsibleMediaUtils
 import AlertsUI
 import AudioPlayerCore
 import AvatarUI
@@ -22,9 +22,9 @@ import Localization
 import PremiumStatusUI
 import PremiumUI
 import StarsUI
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 import AppAnalytics
 

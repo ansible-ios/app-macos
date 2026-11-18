@@ -3,7 +3,7 @@ import Foundation
 import CoreImage
 import SwiftSignalKit
 import TGUIKit
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 public enum QrCodeIcon {
     case none

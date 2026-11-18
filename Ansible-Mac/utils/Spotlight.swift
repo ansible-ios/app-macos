@@ -6,9 +6,9 @@ import Postbox
 import SwiftSignalKit
 import TGUIKit
 import MurMurHash32
-import TelegramTheme
-import TelegramLinks
-import TelegramUtils
+import AnsibleTheme
+import AnsibleLinks
+import AnsibleUtils
 
 public enum SpotlightIdentifierSource : Equatable {
     case peerId(PeerId)

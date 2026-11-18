@@ -8,9 +8,9 @@ import AvatarUI
 import InAppSettings
 import LocalAnimations
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 
 private let more_image = TelegramThemeHooks.shared.image(.iconStoryMore).precomposed(NSColor.white)
 private let muted_image = TelegramThemeHooks.shared.image(.iconStoryMute).precomposed(NSColor.white)

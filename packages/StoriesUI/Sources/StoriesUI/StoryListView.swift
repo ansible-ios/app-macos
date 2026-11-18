@@ -4,7 +4,7 @@ import SwiftSignalKit
 import TelegramCore
 import Postbox
 import TGModernGrowingTextView
-import TelegramMedia
+import AnsibleMedia
 import FoundationUtils
 import AvatarUI
 import ChatHistoryModel
@@ -15,10 +15,10 @@ import InputTextView
 import LocalAnimations
 import Localization
 import SceneEffects
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleMediaUtils
 import InlineStickerLayer
 
 private final class StoryRepostView : Control {

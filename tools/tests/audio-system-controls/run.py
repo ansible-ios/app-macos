@@ -16,7 +16,7 @@ if 'func activate()' not in control:
     control += '\nextension ControlCenter { func activate() {} }\n'
 start = source.index('        controlCenter.play =')
 bindings = source[start:source.index('    @objc open func windowDidBecomeKey()', start)]
-media = (root / 'packages/TelegramMedia/Sources/MediaPlayer.swift').read_text()
+media = (root / 'packages/AnsibleMedia/Sources/MediaPlayer.swift').read_text()
 status = media[media.index('public enum MediaPlayerPlaybackStatus'):media.index('public final class MediaPlayer {')]
 state = source[source.index('public enum APState'):source.index('public struct APResource')]
 start = source.index('    public func setStatus(')
@@ -29,7 +29,7 @@ with tempfile.TemporaryDirectory(prefix='audio-system-controls-') as directory:
     directory = Path(directory)
     path = directory / 'main.swift'
     path.write_text(fixture)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('// swift-tools-version:5.9\nimport PackageDescription\nlet package = Package(name: "AudioSystemControls", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ' + dependency + ')], targets: [.executableTarget(name: "Controls", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: ".", sources: ["main.swift"])])\n')
     subprocess.run(['swift', 'build', '--package-path', str(directory), '--disable-sandbox', '--jobs', '4'], check=True)
     binary = directory / '.build/debug/Controls'

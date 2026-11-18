@@ -32,6 +32,6 @@ manifest = (kit_copy / 'Package.swift').read_text()
 manifest = re.sub(r'(path: ")([^"]+)', lambda match: match[1] + str((kit / match[2]).resolve()) if match[2].startswith('..') else match[0], manifest)
 (kit_copy / 'Package.swift').write_text(manifest)
 path = output / 'Package.swift'
-path.write_text(path.read_text().replace('../../../packages/TGUIKit', str(kit_copy)).replace('../../../submodules/telegram-ios/submodules/SSignalKit', str(root / 'submodules/telegram-ios/submodules/SSignalKit')))
+path.write_text(path.read_text().replace('../../../packages/TGUIKit', str(kit_copy)).replace('../../../submodules/ansible-ios/submodules/SSignalKit', str(root / 'submodules/ansible-ios/submodules/SSignalKit')))
 (output / 'tguikit-snapshot.json').write_text(json.dumps(hashes, indent=2) + '\n')
 print(output)

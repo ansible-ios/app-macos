@@ -11,12 +11,12 @@ import LocalAnimations
 import Localization
 import SelectPeersUI
 import ShortPeerRow
-import TelegramCallsCore
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleCallsCore
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import ColorPalette
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import MessageUtils
 
 

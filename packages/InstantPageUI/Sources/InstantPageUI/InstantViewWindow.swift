@@ -5,9 +5,9 @@ import ObjcUtils
 import Postbox
 import SwiftSignalKit
 import InAppSettings
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import Localization
 
 private final class InstantViewArguments {

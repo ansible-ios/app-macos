@@ -6,9 +6,9 @@ import TelegramCore
 import TGUIKit
 import AvatarUI
 import ChatHistoryModel
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 extension ChatHistoryEntry.TopicType {

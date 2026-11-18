@@ -2,7 +2,7 @@ import Foundation
 import Cocoa
 import QuartzCore
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 
 private final class QrStudioPillLabelView: View {
     struct Content: Equatable {

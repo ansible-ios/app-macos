@@ -2,8 +2,8 @@ import Cocoa
 import TGUIKit
 import Postbox
 import TelegramCore
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 import ChatModeTypes
 import AudioPlayerCore
 

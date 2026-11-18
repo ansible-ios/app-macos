@@ -14,7 +14,7 @@ with tempfile.TemporaryDirectory(prefix='recording-status-') as directory:
  directory=Path(directory)
  (directory/'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
-let package=Package(name:"RecordingStatus",platforms:[.macOS(.v10_13)],dependencies:[.package(path:'''+json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))+''')],targets:[.testTarget(name:"RecordingStatusTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Tests")])
+let package=Package(name:"RecordingStatus",platforms:[.macOS(.v10_13)],dependencies:[.package(path:'''+json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))+''')],targets:[.testTarget(name:"RecordingStatusTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Tests")])
 ''')
  (directory/'Tests').mkdir()
  fixture=Path(__file__).with_name('RecordingStatusTests.swift').read_text().replace('__SOURCE__',source)

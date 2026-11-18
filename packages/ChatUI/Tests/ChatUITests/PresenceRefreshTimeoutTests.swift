@@ -1,6 +1,6 @@
 import XCTest
 import TelegramCore
-import TelegramUtils
+import AnsibleUtils
 
 final class PresenceRefreshTimeoutTests: XCTestCase {
     func testExpiringOnlineStatusWaitsForNextSecond() {

@@ -4,9 +4,9 @@ import Postbox
 import TelegramCore
 import TGUIKit
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleMediaUtils
 
 
 public final class CornerMaskLayer : SimpleShapeLayer {

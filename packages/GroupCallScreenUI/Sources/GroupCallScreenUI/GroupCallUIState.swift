@@ -7,8 +7,8 @@ import InAppSettings
 import TelegramCore
 import TgVoipWebrtc
 import Localization
-import TelegramCallsCore
-import TelegramUtils
+import AnsibleCallsCore
+import AnsibleUtils
 
 public final class GroupCallUIState : Equatable {
 

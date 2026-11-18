@@ -4,10 +4,10 @@ import TGUIKit
 import SwiftSignalKit
 import InputDataUI
 import GeneralRows
-import TelegramTheme
+import AnsibleTheme
 import Localization
 import ApiCredentials
-import TelegramContext
+import AnsibleContext
 
 let renamedDeviceModel = ValuePromise<String?>(nil, ignoreRepeated: true)
 

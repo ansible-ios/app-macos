@@ -4,8 +4,8 @@ import SwiftSignalKit
 import TelegramCore
 import TGUIKit
 import ChatHistoryModel
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 import Localization
 
 final class ChatLoadingStoryRowItem: ChatRowItem {

@@ -9,9 +9,9 @@ import GeneralRows
 import InputDataUI
 import Localization
 import PhoneNumberUtils
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import AppAnalytics
 
 private final class NewContactArguments {

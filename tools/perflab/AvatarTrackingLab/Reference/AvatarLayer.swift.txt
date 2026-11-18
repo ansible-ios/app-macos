@@ -1,13 +1,13 @@
 #if SHARE
-import TelegramUtilsShare
+import AnsibleUtilsShare
 #else
-import TelegramUtils
+import AnsibleUtils
 #endif
 
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 #else
-import TelegramTheme
+import AnsibleTheme
 #endif
 import Cocoa
 import TelegramCore

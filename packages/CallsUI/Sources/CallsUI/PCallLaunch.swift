@@ -6,12 +6,12 @@ import Postbox
 import TGUIKit
 import CoreGraphics
 import TelegramVoip
-import TelegramCallsCore
+import AnsibleCallsCore
 import AlertsUI
 import SystemPermissions
-import TelegramUtils
+import AnsibleUtils
 import Localization
-import TelegramContext
+import AnsibleContext
 import AppAnalytics
 
 public enum PCallResult {

@@ -8,9 +8,9 @@ let deps: [(String, String)] = [
     ("InputDataUI", "../InputDataUI"),
     ("GeneralRows", "../GeneralRows"),
     ("Localization", "../Localization"),
-    ("TelegramContext", "../TelegramContext"),
-    ("TelegramUtils", "../TelegramUtils"),
-    ("TelegramTheme", "../TelegramTheme"),
+    ("AnsibleContext", "../AnsibleContext"),
+    ("AnsibleUtils", "../AnsibleUtils"),
+    ("AnsibleTheme", "../AnsibleTheme"),
     ("ColorPalette", "../ColorPalette"),
     ("FoundationUtils", "../FoundationUtils"),
     ("AlertsUI", "../AlertsUI"),
@@ -19,15 +19,15 @@ let deps: [(String, String)] = [
     ("AvatarUI", "../AvatarUI"),
     ("ProxyUtils", "../ProxyUtils"),
     ("FilePanels", "../FilePanels"),
-    ("TelegramIconsTheme", "../TelegramIconsTheme"),
+    ("AnsibleIconsTheme", "../AnsibleIconsTheme"),
     ("ShortPeerRow", "../ShortPeerRow"),
     ("SystemPermissions", "../SystemPermissions"),
     ("ChatModeTypes", "../ChatModeTypes"),
     ("AudioPlayerCore", "../AudioPlayerCore"),
-    ("TelegramMediaUtils", "../TelegramMediaUtils"),
-    ("TelegramMedia", "../TelegramMedia"),
+    ("AnsibleMediaUtils", "../AnsibleMediaUtils"),
+    ("AnsibleMedia", "../AnsibleMedia"),
     ("InlineMediaGrid", "../InlineMediaGrid"),
-    ("GraphCore", "../../submodules/telegram-ios/submodules/GraphCore"),
+    ("GraphCore", "../../submodules/ansible-ios/submodules/GraphCore"),
 ]
 
 let package = Package(
@@ -37,9 +37,9 @@ let package = Package(
         .library(name: "DataUsageUI", targets: ["DataUsageUI"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
     ] + deps.map { .package(name: $0.0, path: $0.1) },
     targets: [
         .target(

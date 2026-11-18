@@ -3,8 +3,8 @@ import Cocoa
 import TGUIKit
 import SwiftSignalKit
 import TelegramCore
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import GeneralRows
 import Localization
 

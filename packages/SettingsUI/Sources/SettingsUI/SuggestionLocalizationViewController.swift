@@ -6,9 +6,9 @@ import Postbox
 import SwiftSignalKit
 import InputDataUI
 import GeneralRows
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import AlertsUI
 import InAppSettings
 import ColorPalette

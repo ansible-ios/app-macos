@@ -1,7 +1,7 @@
 import XCTest
 import AppKit
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 import Postbox
 import TelegramCore
 @testable import ChatListUI

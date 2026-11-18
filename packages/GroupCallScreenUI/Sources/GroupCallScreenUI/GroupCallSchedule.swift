@@ -1,12 +1,12 @@
 import Cocoa
-import TelegramCallsCore
+import AnsibleCallsCore
 import Foundation
 import TGUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox
 import Localization
-import TelegramUtils
+import AnsibleUtils
 
 
 private final class GroupCallScheduleTimerView : View {

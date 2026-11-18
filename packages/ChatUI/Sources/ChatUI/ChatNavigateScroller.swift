@@ -3,7 +3,7 @@ import TGUIKit
 import TelegramCore
 
 import Postbox
-import TelegramTheme
+import AnsibleTheme
 import Localization
 
 

@@ -3,7 +3,7 @@ import Postbox
 import TelegramCore
 import SwiftSignalKit
 import ChatModeTypes
-import TelegramTheme
+import AnsibleTheme
 import Localization
 
 public final class HTMLDemoChatContents: ChatCustomContentsProtocol {

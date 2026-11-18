@@ -4,7 +4,7 @@ import TGUIKit
 import TelegramCore
 import SwiftSignalKit
 import PhoneNumberUtils
-import TelegramTheme
+import AnsibleTheme
 import Localization
 
 private func formatNumber(_ number: String, country: Country) -> String {

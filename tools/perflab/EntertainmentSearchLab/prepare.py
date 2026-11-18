@@ -6,7 +6,7 @@ lab = Path(__file__).resolve().parent
 root = lab.parents[2]
 out = lab / "Sources/SearchLab"
 files = {
-    "EmojiKeywordSearch": "packages/TelegramUtils/Sources/TelegramUtils/EmojiKeywordSearch.swift",
+    "EmojiKeywordSearch": "packages/AnsibleUtils/Sources/AnsibleUtils/EmojiKeywordSearch.swift",
     "PanelSearchPresentation": "packages/EntertainmentUI/Sources/EntertainmentUI/PanelSearchPresentation.swift",
     "PanelSearchState": "packages/EntertainmentUI/Sources/EntertainmentUI/PanelSearchState.swift",
 }
@@ -109,7 +109,7 @@ func stickerResults(context: StickerContext, query: String, category: EmojiCateg
     let premiumStickers: Signal<[File], NoError> = .single([])
 ''' + stickers[start:end] + '\n}\n')
 
-inputs = read("packages/TelegramUtils/Sources/TelegramUtils/InputSources.swift")
+inputs = read("packages/AnsibleUtils/Sources/AnsibleUtils/InputSources.swift")
 start = inputs.index("    public func searchEmoji(")
 end = inputs.index("    public override init()", start)
 extensions = read("packages/TGUIKit/Sources/Extensions.swift")

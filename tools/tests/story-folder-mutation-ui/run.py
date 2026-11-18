@@ -65,7 +65,7 @@ fixture = Path(__file__).with_name('StoryFolderMutationUITests.swift').read_text
 for key,value in [('__FIELDS__',fields),('__MEMBERSHIP_HELPER__',membership_helper),('__MEMBERSHIP_ACTION__',membership_action),('__CONTAINS__',contains),('__REORDER__',reorder),('__CREATE__',create),('__CREATE_ACTION__',create_action),('__UPDATE__',helper),('__TITLE__',title),('__RENAME_ACTION__',rename),('__DELETE_ACTION__',delete),('__REDUCER__',reducer),('__DISAPPEAR__',method('    public override func viewWillDisappear')),('__APPEAR__',method('    public override func viewWillAppear')),('__DEINIT__',method('    deinit {'))]: fixture=fixture.replace(key,value)
 with tempfile.TemporaryDirectory(prefix='story-folder-mutation-ui-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "StoryFolderMutationUI", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "StoryFolderMutationUITests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

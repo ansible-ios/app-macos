@@ -4,9 +4,9 @@ import TGUIKit
 import Postbox
 import SwiftSignalKit
 import TelegramCore
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import Localization
 
 public class ContextAccountMenuItem : ContextMenuItem {

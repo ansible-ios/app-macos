@@ -1,11 +1,11 @@
 import Cocoa
-import TelegramCallsCore
+import AnsibleCallsCore
 import Foundation
 import TelegramCore
 import TGUIKit
 import SwiftSignalKit
 import GeneralRows
-import TelegramTheme
+import AnsibleTheme
 import Localization
 
 public final class GroupCallVideoOrientationRowItem : GeneralRowItem {

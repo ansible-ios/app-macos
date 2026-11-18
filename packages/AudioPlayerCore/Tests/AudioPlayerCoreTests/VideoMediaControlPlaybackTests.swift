@@ -3,7 +3,7 @@ import AVFoundation
 import MediaPlayer
 import Postbox
 import SwiftSignalKit
-@testable import TelegramMedia
+@testable import AnsibleMedia
 import TelegramMediaPlayer
 import XCTest
 @testable import AudioPlayerCore

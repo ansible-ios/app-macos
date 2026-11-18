@@ -33,7 +33,7 @@ with tempfile.TemporaryDirectory(prefix='recording-export-') as directory:
  directory=Path(directory)
  (directory/'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
-let package=Package(name:"RecordingExport",platforms:[.macOS(.v10_13)],dependencies:[.package(path:'''+json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))+''')],targets:[.testTarget(name:"ControlledTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Controlled"),.testTarget(name:"NativeTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Native")])
+let package=Package(name:"RecordingExport",platforms:[.macOS(.v10_13)],dependencies:[.package(path:'''+json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))+''')],targets:[.testTarget(name:"ControlledTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Controlled"),.testTarget(name:"NativeTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Native")])
 ''')
  (directory/'Controlled').mkdir();(directory/'Native').mkdir()
  (directory/'Controlled/ControlledTests.swift').write_text(Path(__file__).with_name('ControlledTests.swift').read_text().replace('__SOURCE__','\n'.join(x for x in controlled_source.splitlines() if not x.startswith('import '))).replace('__TRIM_HELPER__',block(core,'private func trimmedVideoFile')).replace('__APPLY_TRIM__',block(pipeline,'public func applyTrim')))

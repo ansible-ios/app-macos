@@ -2,9 +2,9 @@ import TelegramCore
 import SwiftSignalKit
 import TGUIKit
 import Cocoa
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import AvatarUI
 import InlineStickerLayer

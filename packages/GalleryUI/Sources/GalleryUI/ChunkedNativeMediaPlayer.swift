@@ -4,7 +4,7 @@ import TGUIKit
 import Postbox
 import SwiftSignalKit
 import TelegramMediaPlayer
-import TelegramMedia
+import AnsibleMedia
 import RangeSet
 import TelegramCore
 import InAppSettings

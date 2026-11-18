@@ -3,7 +3,7 @@ import XCTest
 import Postbox
 import TelegramCore
 import InAppSettings
-import TelegramTheme
+import AnsibleTheme
 @testable import InstantPageUI
 @testable import ChatUI
 

@@ -1,6 +1,6 @@
 import Cocoa
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 import Strings
 import Localization
 private class EmojiTolerance : View {

@@ -2,7 +2,7 @@ import XCTest
 import AppKit
 import TGUIKit
 import Postbox
-import TelegramUtils
+import AnsibleUtils
 @testable import ChatListUI
 
 final class GCChatListIndicatorTests: XCTestCase {

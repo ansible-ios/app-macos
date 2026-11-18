@@ -7,8 +7,8 @@ import SwiftSignalKit
 import InputDataUI
 import GeneralRows
 import Localization
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import ColorPalette
 import AppAnalytics
 

@@ -3,8 +3,8 @@ import TGUIKit
 import SwiftSignalKit
 import Postbox
 import TelegramCore
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import Localization
 
 public final class SearchTabsView: Control {

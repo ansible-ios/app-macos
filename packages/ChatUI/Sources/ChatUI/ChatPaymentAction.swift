@@ -3,9 +3,9 @@ import Localization
 import Postbox
 import StarsUI
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 import TelegramCore
-import TelegramUtils
+import AnsibleUtils
 import TGUIKit
 
 final class ChatPaidMediaPurchase {

@@ -1,1 +1,1 @@
-../../../../../submodules/telegram-ios/submodules/MediaPlayer/Sources/FFMpegMediaVideoFrameDecoder.swift
+../../../../../submodules/ansible-ios/submodules/MediaPlayer/Sources/FFMpegMediaVideoFrameDecoder.swift

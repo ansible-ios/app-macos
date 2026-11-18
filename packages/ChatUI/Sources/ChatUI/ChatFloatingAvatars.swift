@@ -4,7 +4,7 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 import AvatarUI
-import TelegramUtils
+import AnsibleUtils
 
 final class ChatFloatingAvatarScene: ChatLayerSceneView {
     private let containerFlipped: Bool

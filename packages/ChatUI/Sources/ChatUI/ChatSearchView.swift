@@ -2,9 +2,9 @@ import Cocoa
 import TGUIKit
 import SwiftSignalKit
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 enum TokenSearchState : Equatable {

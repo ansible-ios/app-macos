@@ -9,15 +9,15 @@ import Postbox
 import InputDataUI
 import GeneralRows
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import ColorPalette
 import FoundationUtils
 import AlertsUI
 import InAppSettings
 import LocalAnimations
-import TelegramIconsTheme
+import AnsibleIconsTheme
 
 
 private final class Arguments {

@@ -5,15 +5,15 @@ import PackageDescription
 let deps: [(String, String)] = [
     ("TGUIKit", "../TGUIKit"),
     ("Localization", "../Localization"),
-    ("TelegramTheme", "../TelegramTheme"),
-    ("TelegramContext", "../TelegramContext"),
-    ("TelegramUtils", "../TelegramUtils"),
-    ("TelegramMediaUtils", "../TelegramMediaUtils"),
-    ("TelegramMedia", "../TelegramMedia"),
+    ("AnsibleTheme", "../AnsibleTheme"),
+    ("AnsibleContext", "../AnsibleContext"),
+    ("AnsibleUtils", "../AnsibleUtils"),
+    ("AnsibleMediaUtils", "../AnsibleMediaUtils"),
+    ("AnsibleMedia", "../AnsibleMedia"),
     ("ChatModeTypes", "../ChatModeTypes"),
     ("MessageUtils", "../MessageUtils"),
-    ("RangeSet", "../../submodules/telegram-ios/submodules/Utils/RangeSet"),
-    ("TelegramMediaResources", "../../submodules/telegram-ios/submodules/TelegramMediaResources"),
+    ("RangeSet", "../../submodules/ansible-ios/submodules/Utils/RangeSet"),
+    ("AnsibleMediaResources", "../../submodules/ansible-ios/submodules/AnsibleMediaResources"),
 ]
 
 let package = Package(
@@ -23,10 +23,10 @@ let package = Package(
         .library(name: "AudioPlayerCore", targets: ["AudioPlayerCore"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
-        .package(name: "TelegramCore", path: "../../submodules/telegram-ios/submodules/TelegramCore"),
-        .package(name: "Postbox", path: "../../submodules/telegram-ios/submodules/Postbox"),
-        .package(name: "TelegramMediaPlayer", path: "../../submodules/telegram-ios/submodules/MediaPlayer"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
+        .package(name: "TelegramMediaPlayer", path: "../../submodules/ansible-ios/submodules/MediaPlayer"),
     ] + deps.map { .package(name: $0.0, path: $0.1) },
     targets: [
         .target(
@@ -41,7 +41,7 @@ let package = Package(
             name: "AudioPlayerCoreTests",
             dependencies: [
                 "AudioPlayerCore",
-                .product(name: "TelegramMedia", package: "TelegramMedia"),
+                .product(name: "AnsibleMedia", package: "AnsibleMedia"),
                 .product(name: "SwiftSignalKit", package: "SSignalKit"),
                 .product(name: "Postbox", package: "Postbox"),
                 .product(name: "TelegramMediaPlayer", package: "TelegramMediaPlayer"),

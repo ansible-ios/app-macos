@@ -6,9 +6,9 @@ import SwiftSignalKit
 import Postbox
 import ChatHistoryModel
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 
 public class ChatCallRowItem: ChatRowItem {
     

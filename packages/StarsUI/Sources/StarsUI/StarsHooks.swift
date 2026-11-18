@@ -4,9 +4,9 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
-import TelegramUtils
-import TelegramMedia
+import AnsibleContext
+import AnsibleUtils
+import AnsibleMedia
 import InputView
 import InputTextView
 import ChatModeTypes

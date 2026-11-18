@@ -1,5 +1,5 @@
 import Foundation
-import TelegramTheme
+import AnsibleTheme
 import Cocoa
 import TelegramCore
 import Postbox

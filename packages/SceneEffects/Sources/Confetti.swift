@@ -1,16 +1,16 @@
 import Cocoa
-import TelegramMediaUtils
+import AnsibleMediaUtils
 import TGUIKit
 import CoreGraphics
 import QuartzCore
 import TelegramCore
 import SwiftSignalKit
-import TelegramMedia
-import TelegramContext
-import TelegramUtils
+import AnsibleMedia
+import AnsibleContext
+import AnsibleUtils
 import LocalAnimations
 import InlineStickers
-import TelegramTheme
+import AnsibleTheme
 import InlineStickerLayer
 
 public func PlayConfetti(for window: Window, playEffect: Bool = false, stars: Bool = false) {

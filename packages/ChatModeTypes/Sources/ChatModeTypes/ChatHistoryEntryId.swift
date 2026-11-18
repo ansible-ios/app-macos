@@ -1,7 +1,7 @@
 import Foundation
 import Postbox
 import TelegramCore
-import TelegramUtils
+import AnsibleUtils
 
 public enum ChatHistoryEntryId : Hashable {
     case message(Message)

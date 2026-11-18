@@ -4,7 +4,7 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 
 func isUnsupportedWalletNavigation(_ url: URL?) -> Bool {
     guard let url else { return false }

@@ -14,8 +14,8 @@ are in telegram-ios `docs/native-hls-player.md`.
 Do not edit these files here. To update, take the iOS revision and copy both directories again:
 
 ```
-git -C submodules/telegram-ios fetch origin
-git -C submodules/telegram-ios archive <revision> submodules/HLSPlayback/Sources submodules/HLSPlayback/Tests | tar -x -C /tmp/hls
+git -C submodules/ansible-ios fetch origin
+git -C submodules/ansible-ios archive <revision> submodules/HLSPlayback/Sources submodules/HLSPlayback/Tests | tar -x -C /tmp/hls
 cp /tmp/hls/submodules/HLSPlayback/Sources/*.swift packages/HLSPlayback/Sources/HLSPlayback/
 cp -R /tmp/hls/submodules/HLSPlayback/Tests/. packages/HLSPlayback/Tests/HLSPlaybackTests/
 python3 tools/tests/hls-playback/run.py
@@ -31,7 +31,7 @@ buffered-ranges checks of the macOS view. `swift test --package-path packages/HL
 
 ## The macOS side
 
-`packages/TelegramMedia` feeds the controller and `ChunkMediaPlayerV2` (through its `.custom` source):
+`packages/AnsibleMedia` feeds the controller and `ChunkMediaPlayerV2` (through its `.custom` source):
 
 - `Sources/HLSNative/`: the environment over MediaBox (`TelegramEngine.resources`), the part store (the level's init
   plus one segment in a temp file, timed from its MP4 boxes with an FFmpeg fallback), the player source and the playlist loader. Ported from

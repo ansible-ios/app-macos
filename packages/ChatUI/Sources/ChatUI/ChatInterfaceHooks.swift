@@ -3,12 +3,12 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
-import TelegramUtils
-import TelegramLinks
+import AnsibleContext
+import AnsibleUtils
+import AnsibleLinks
 import InputDataUI
 import ChatHistoryModel
-import TelegramCallsCore
+import AnsibleCallsCore
 import ChatModeTypes
 import AppAnalytics
 

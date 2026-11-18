@@ -180,15 +180,15 @@ items:
   "class:Ansible-Mac/AuthModalController": {ignore: container, note: "modal that hosts the auth.* steps"}
   "class:Ansible-Mac/MainViewController": {ignore: container}
   "class:Ansible-Mac/UpdateTabController": {ignore: embedded, note: "update bar under the chat list and on the login screen"}
-  "class:TelegramMediaUtils/PreviewModalController": {ignore: transient, note: "long-press sticker or GIF preview"}
+  "class:AnsibleMediaUtils/PreviewModalController": {ignore: transient, note: "long-press sticker or GIF preview"}
   "class:AnsibleShare/SEPasslockController": passcode.lock
   "class:AnsibleShare/SESelectController": share.extension
   "class:AnsibleShare/SEUnauthorizedViewController": share.extension_logged_out
   "class:AnsibleShare/ShareViewController": {ignore: container}
-  "class:TelegramUtils/EditableViewController": {ignore: base}
-  "class:TelegramUtils/TableViewController": {ignore: base}
-  "class:TelegramUtils/TelegramGenericViewController": {ignore: base}
-  "class:TelegramUtils/TelegramViewController": {ignore: base}
+  "class:AnsibleUtils/EditableViewController": {ignore: base}
+  "class:AnsibleUtils/TableViewController": {ignore: base}
+  "class:AnsibleUtils/TelegramGenericViewController": {ignore: base}
+  "class:AnsibleUtils/TelegramViewController": {ignore: base}
   "class:WalletUI/WalletAuthorizeController": wallet.authorize
   "class:WalletUI/WalletModalController": {ignore: base}
   "class:WalletUI/WalletPeerBalanceController": wallet.peer_balance

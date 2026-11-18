@@ -6,7 +6,7 @@ import tempfile
 
 root = Path(__file__).resolve().parents[3]
 parser = argparse.ArgumentParser()
-parser.add_argument('--source', type=Path, default=root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift')
+parser.add_argument('--source', type=Path, default=root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift')
 args = parser.parse_args()
 source = args.source.read_text()
 def block(marker):
@@ -30,7 +30,7 @@ fixture = Path(__file__).with_name('StoryFolderMutationTests.swift').read_text()
 for key,value in [('__HELPER__',helper),('__UPDATE__',update),('__DELETE__',delete),('__RENAME__',rename)]: fixture=fixture.replace(key,value)
 with tempfile.TemporaryDirectory(prefix='story-folder-mutations-') as directory:
     directory=Path(directory)
-    dependency=json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency=json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))
     (directory/'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "StoryFolderMutation", platforms: [.macOS(.v10_13)], dependencies: [.package(path: '''+dependency+''')], targets: [.testTarget(name: "StoryFolderMutationTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

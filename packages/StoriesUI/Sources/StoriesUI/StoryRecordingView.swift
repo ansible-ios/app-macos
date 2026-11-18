@@ -7,7 +7,7 @@ import AlertsUI
 import InputDataUI
 import Localization
 import MediaRecorderUI
-import TelegramTheme
+import AnsibleTheme
 import Strings
 
 

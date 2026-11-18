@@ -3,7 +3,7 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 
 public struct ReportHooks {
     public let makeStickerHeaderRow: (NSSize, AnyHashable, any AccountContextProtocol, NSAttributedString) -> TableRowItem

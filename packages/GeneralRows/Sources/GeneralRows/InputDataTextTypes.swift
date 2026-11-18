@@ -2,11 +2,11 @@ import Cocoa
 import TGUIKit
 import TelegramCore
 #if SHARE
-import TelegramThemeShare
-import TelegramContextShare
+import AnsibleThemeShare
+import AnsibleContextShare
 #else
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 #endif
 
 public final class InputDataTextInsertAnimatedViewData : NSObject {

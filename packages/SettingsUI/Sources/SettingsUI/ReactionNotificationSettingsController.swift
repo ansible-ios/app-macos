@@ -6,12 +6,12 @@ import InAppSettings
 import InputDataUI
 import GeneralRows
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import ColorPalette
 import LocalAnimations
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 private final class Arguments {
     let context: any AccountContextProtocol

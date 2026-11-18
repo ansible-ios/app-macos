@@ -18,11 +18,11 @@ PROJECTS=(
     core-xprojects/tde2e/tde2e.xcodeproj/project.pbxproj
     core-xprojects/mtproto-engine/MTProtoEngine.xcodeproj/project.pbxproj
 )
-TELEGRAM_CORE_MANIFEST=submodules/telegram-ios/submodules/TelegramCore/Package.swift
+TELEGRAM_CORE_MANIFEST=submodules/ansible-ios/submodules/TelegramCore/Package.swift
 SHADER_MANIFESTS=(
     packages/CallVideoLayer/Package.swift
     packages/DustLayer/Package.swift
-    submodules/telegram-ios/submodules/MetalEngine/Package.swift
+    submodules/ansible-ios/submodules/MetalEngine/Package.swift
 )
 SHADER_RESOURCES='(,\s*resources:\s*\[\s*\.copy\("[^"]+\.metal"\)(?:\s*,\s*\.copy\("[^"]+\.metal"\))*\s*\])'
 BUILD_CONFIGURATION='^\t\t([0-9A-Fa-f]{24}) (?:/\*[^\n]*?\*/ )?= \{\n\t\t\tisa = XCBuildConfiguration;\n.*?^\t\t\};\n'

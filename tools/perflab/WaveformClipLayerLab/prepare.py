@@ -4,7 +4,7 @@ import json
 
 lab = Path(__file__).resolve().parent
 root = lab.parents[2]
-paths = ["packages/TelegramMedia/Sources/AudioWaveform.swift", "packages/TelegramMedia/Sources/AudioWaveformView.swift"]
+paths = ["packages/AnsibleMedia/Sources/AudioWaveform.swift", "packages/AnsibleMedia/Sources/AudioWaveformView.swift"]
 metadata = json.loads((lab / "Reference/hashes.json").read_text())
 bridge = """
 extension AudioWaveformView {

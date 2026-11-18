@@ -4,11 +4,11 @@ import Foundation
 import SwiftSignalKit
 import InAppSettings
 #if SHARE
-import TelegramThemeShare
-import TelegramContextShare
+import AnsibleThemeShare
+import AnsibleContextShare
 #else
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 #endif
 
 public struct WebAppPermissionsState: Codable {

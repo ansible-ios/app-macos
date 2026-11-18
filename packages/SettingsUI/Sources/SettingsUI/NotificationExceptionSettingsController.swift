@@ -7,13 +7,13 @@ import InAppSettings
 import InputDataUI
 import GeneralRows
 import Localization
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import ColorPalette
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import LocalAnimations
-import TelegramMediaUtils
-import TelegramUtils
+import AnsibleMediaUtils
+import AnsibleUtils
 
 private enum ExceptionMute: Equatable {
     case alwaysOn

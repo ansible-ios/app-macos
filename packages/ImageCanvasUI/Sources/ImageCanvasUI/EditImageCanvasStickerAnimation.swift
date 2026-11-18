@@ -2,7 +2,7 @@ import Cocoa
 import AVFoundation
 import TGUIKit
 import SwiftSignalKit
-import TelegramMedia
+import AnsibleMedia
 import TelegramMediaPlayer
 
 public struct EditImageCanvasStickerAnimation: Equatable {

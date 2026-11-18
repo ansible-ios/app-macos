@@ -2,15 +2,15 @@ import Cocoa
 import TGUIKit
 import Postbox
 import TelegramCore
-import TelegramMedia
+import AnsibleMedia
 import SwiftSignalKit
 import AVFoundation
 import AvatarUI
 import Localization
 import PremiumStatusUI
 import ShortPeerRow
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 import ComponentsUI
 

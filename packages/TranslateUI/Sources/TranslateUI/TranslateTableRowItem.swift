@@ -4,9 +4,9 @@ import TelegramCore
 import Postbox
 import Cocoa
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InstantPageUI
 import ChatUI

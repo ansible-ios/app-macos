@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
 import SwiftSignalKit
-import TelegramTheme
+import AnsibleTheme
 
 public final class GiftButtonStarsView : View {
 

@@ -1,7 +1,7 @@
 import Foundation
 import SwiftSignalKit
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 import TGUIKit
 
 final class GiftWearAction {

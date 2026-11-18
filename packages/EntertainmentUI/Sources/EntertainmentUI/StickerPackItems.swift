@@ -1,19 +1,19 @@
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramMedia
+import AnsibleMedia
 import Postbox
 import SwiftSignalKit
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleMediaUtils
 import LocalAnimations
 import AvatarUI
 import FilePanels
 import InlineStickerLayer
-import TelegramMediaResources
+import AnsibleMediaResources
 
 public class StickerPackRowItem: TableRowItem {
     

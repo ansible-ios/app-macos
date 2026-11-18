@@ -1,0 +1,1 @@
+../AnsibleUtils/UpdaterNotifySettings.swift

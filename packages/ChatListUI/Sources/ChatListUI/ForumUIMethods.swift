@@ -5,11 +5,11 @@ import Postbox
 import TGUIKit
 import SwiftSignalKit
 import AppKit
-import TelegramMediaResources
+import AnsibleMediaResources
 import Cocoa
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import MessageUtils
 import ChatModeTypes
 import ChatHistoryModel

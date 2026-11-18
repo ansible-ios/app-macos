@@ -4,8 +4,8 @@ import ImageIO
 import TGUIKit
 import SwiftSignalKit
 import AvatarUI
-import TelegramContext
-import TelegramUtils
+import AnsibleContext
+import AnsibleUtils
 import TelegramCore
 import PerfLab
 

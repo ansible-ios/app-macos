@@ -6,18 +6,18 @@ import SwiftSignalKit
 import InputDataUI
 import GeneralRows
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import ColorPalette
 import AvatarUI
 import ShortPeerRow
 import LocalAnimations
 import DateUtils
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import TelegramCore
 import Postbox
-import TelegramMediaUtils
+import AnsibleMediaUtils
 import MessageTextUtils
 public enum ChartItemType {
     case lines

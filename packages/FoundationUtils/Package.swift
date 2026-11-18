@@ -11,7 +11,7 @@ let package = Package(
             targets: ["FoundationUtils"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
         .package(name: "Strings", path: "../Strings"),
     ],
     targets: [

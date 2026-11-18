@@ -7,17 +7,17 @@ import Postbox
 import TGUIKit
 import InAppSettings
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import AlertsUI
 import LocalAnimations
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import FoundationUtils
-import TelegramMediaUtils
-import TelegramLinks
+import AnsibleMediaUtils
+import AnsibleLinks
 import ChatHistoryModel
 import FilePanels
 import WallpaperUI
@@ -177,7 +177,7 @@ public struct SmartThemeCachedData : Equatable {
     
     public enum Source : Equatable {
         case local(ColorPalette)
-        case cloud(TelegramTheme)
+        case cloud(AnsibleTheme)
     }
     public struct Data : Equatable {
         public let appTheme: TelegramPresentationTheme
@@ -213,12 +213,12 @@ public struct CloudThemesCachedData {
         }
     }
     
-    public let themes: [TelegramTheme]
+    public let themes: [AnsibleTheme]
     public let list: [Key : [SmartThemeCachedData]]
     public let `default`: SmartThemeCachedData?
     public let custom: SmartThemeCachedData?
 
-    public init(themes: [TelegramTheme], list: [Key : [SmartThemeCachedData]], default: SmartThemeCachedData?, custom: SmartThemeCachedData?) {
+    public init(themes: [AnsibleTheme], list: [Key : [SmartThemeCachedData]], default: SmartThemeCachedData?, custom: SmartThemeCachedData?) {
         self.themes = themes
         self.list = list
         self.default = `default`
@@ -229,9 +229,9 @@ public struct CloudThemesCachedData {
 
 public struct AppearanceAccentColor : Equatable {
     public let accent: PaletteAccentColor
-    public let cloudTheme: TelegramTheme?
+    public let cloudTheme: AnsibleTheme?
     public let cachedTheme: InstallCloudThemeCachedData?
-    public init(accent: PaletteAccentColor, cloudTheme: TelegramTheme?, cachedTheme: InstallCloudThemeCachedData? = nil) {
+    public init(accent: PaletteAccentColor, cloudTheme: AnsibleTheme?, cachedTheme: InstallCloudThemeCachedData? = nil) {
         self.accent = accent
         self.cloudTheme = cloudTheme
         self.cachedTheme = cachedTheme
@@ -285,7 +285,7 @@ public struct InstallCloudThemeCachedData : Equatable {
 }
 public enum InstallThemeSource : Equatable {
     case local(ColorPalette)
-    case cloud(TelegramTheme, InstallCloudThemeCachedData?)
+    case cloud(AnsibleTheme, InstallCloudThemeCachedData?)
 }
 
 private final class AppAppearanceViewArguments {
@@ -296,15 +296,15 @@ private final class AppAppearanceViewArguments {
     public let selectAccentColor:(AppearanceAccentColor?)->Void
     public let selectChatBackground:()->Void
     public let openAutoNightSettings:()->Void
-    public let removeTheme:(TelegramTheme)->Void
-    public let editTheme:(TelegramTheme)->Void
-    public let shareTheme:(TelegramTheme)->Void
+    public let removeTheme:(AnsibleTheme)->Void
+    public let editTheme:(AnsibleTheme)->Void
+    public let shareTheme:(AnsibleTheme)->Void
     public let shareLocal:(ColorPalette)->Void
     public let toggleDarkMode:(Bool)->Void
     public let toggleRevealThemes:()->Void
     public let userNameColor:()->Void
     public let selectAppIcon:(TelegramApplicationIcons.Icon)->Void
-    public init(context: any AccountContextProtocol, togglePalette: @escaping(InstallThemeSource)->Void, toggleBubbles: @escaping(Bool)->Void, toggleFontSize: @escaping(CGFloat)->Void, selectAccentColor: @escaping(AppearanceAccentColor?)->Void, selectChatBackground:@escaping()->Void, openAutoNightSettings:@escaping()->Void, removeTheme:@escaping(TelegramTheme)->Void, editTheme: @escaping(TelegramTheme)->Void, shareTheme:@escaping(TelegramTheme)->Void, shareLocal:@escaping(ColorPalette)->Void, toggleDarkMode: @escaping(Bool)->Void, toggleRevealThemes:@escaping()->Void, userNameColor:@escaping()->Void, selectAppIcon:@escaping(TelegramApplicationIcons.Icon)->Void) {
+    public init(context: any AccountContextProtocol, togglePalette: @escaping(InstallThemeSource)->Void, toggleBubbles: @escaping(Bool)->Void, toggleFontSize: @escaping(CGFloat)->Void, selectAccentColor: @escaping(AppearanceAccentColor?)->Void, selectChatBackground:@escaping()->Void, openAutoNightSettings:@escaping()->Void, removeTheme:@escaping(AnsibleTheme)->Void, editTheme: @escaping(AnsibleTheme)->Void, shareTheme:@escaping(AnsibleTheme)->Void, shareLocal:@escaping(ColorPalette)->Void, toggleDarkMode: @escaping(Bool)->Void, toggleRevealThemes:@escaping()->Void, userNameColor:@escaping()->Void, selectAppIcon:@escaping(TelegramApplicationIcons.Icon)->Void) {
         self.context = context
         self.togglePalette = togglePalette
         self.toggleBubbles = toggleBubbles
@@ -339,7 +339,7 @@ private let _id_name_color = InputDataIdentifier("_id_name_color")
 
 private let _id_dock_icon = InputDataIdentifier("_id_dock_icon")
 
-private func appAppearanceEntries(appearance: Appearance, state: State, settings: ThemePaletteSettings, cloudThemes: [TelegramTheme], generated:  CloudThemesCachedData, autoNightSettings: AutoNightThemePreferences, animatedEmojiStickers: [String: StickerPackItem], dockIcons: TelegramApplicationIcons, dockSettings: DockSettings, arguments: AppAppearanceViewArguments) -> [InputDataEntry] {
+private func appAppearanceEntries(appearance: Appearance, state: State, settings: ThemePaletteSettings, cloudThemes: [AnsibleTheme], generated:  CloudThemesCachedData, autoNightSettings: AutoNightThemePreferences, animatedEmojiStickers: [String: StickerPackItem], dockIcons: TelegramApplicationIcons, dockSettings: DockSettings, arguments: AppAppearanceViewArguments) -> [InputDataEntry] {
     
     var entries:[InputDataEntry] = []
     var sectionId: Int32 = 0
@@ -387,7 +387,7 @@ private func appAppearanceEntries(appearance: Appearance, state: State, settings
 
     struct ListEquatable : Equatable {
         let theme: TelegramPresentationTheme
-        let cloudThemes:[TelegramTheme]
+        let cloudThemes:[AnsibleTheme]
     }
     
     entries.append(InputDataEntry.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_theme_list, equatable: InputDataEquatable(ListEquatable(theme: appearance.presentation, cloudThemes: cloudThemes)), comparable: nil, item: { initialSize, stableId in
@@ -420,7 +420,7 @@ private func appAppearanceEntries(appearance: Appearance, state: State, settings
 
         return ThemeListRowItem(initialSize, stableId: stableId, context: arguments.context, theme: appearance.presentation, selected: selected, local: locals, cloudThemes: cloudThemes, viewType: accentList.isEmpty ? .lastItem : .innerItem, togglePalette: arguments.togglePalette, menuItems: { source in
             var items:[ContextMenuItem] = []
-            var cloud: TelegramTheme?
+            var cloud: AnsibleTheme?
 
             switch source {
             case let .cloud(c):

@@ -1,0 +1,110 @@
+// swift-tools-version:5.5
+
+import PackageDescription
+import Foundation
+
+let coreLibraries: [(path: String, name: String)] = [
+    ("webrtc/build/webrtc", "mac_framework_objc_static"),
+    ("openssl/build/openssl/lib", "ssl"),
+    ("openssl/build/openssl/lib", "crypto"),
+    ("ffmpeg/build/ffmpeg/lib", "avformat"),
+    ("ffmpeg/build/ffmpeg/lib", "avcodec"),
+    ("ffmpeg/build/ffmpeg/lib", "swresample"),
+    ("ffmpeg/build/ffmpeg/lib", "avutil"),
+    ("OpenH264/build/output/lib", "openh264"),
+    ("libvpx/build/libvpx/lib", "vpx"),
+    ("dav1d/build/dav1d/lib", "dav1d"),
+    ("libopus/build/libopus/lib", "opus"),
+    ("Mozjpeg/build", "jpeg"),
+    ("libwebp/build/libwebp/lib", "webpdemux"),
+    ("libwebp/build/libwebp/lib", "webpdecoder"),
+    ("libwebp/build/libwebp/lib", "webp"),
+    ("libwebp/build/libwebp/lib", "sharpyuv"),
+    ("tde2e/build/tde2e/lib", "tde2e"),
+    ("tde2e/build/tde2e/lib", "tdutils"),
+]
+let coreXprojects = URL(fileURLWithPath: #filePath).deletingLastPathComponent().appendingPathComponent("../../core-xprojects").standardized
+let coreLinkerFlags: [String] = coreLibraries.flatMap { ["-L", coreXprojects.appendingPathComponent($0.path).path, "-l\($0.name)"] }
+
+let package = Package(
+    name: "AnsibleCallsCore",
+    platforms: [.macOS(.v10_13)],
+    products: [
+        .library(name: "AnsibleCallsCore", targets: ["AnsibleCallsCore"]),
+    ],
+    dependencies: [
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
+        .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
+        .package(name: "TelegramVoip", path: "../../submodules/ansible-ios/submodules/TelegramVoip"),
+        .package(name: "TgVoipWebrtc", path: "../../submodules/tgcalls"),
+        .package(name: "TdBinding", path: "../../submodules/ansible-ios/third-party/td/TdBinding"),
+        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "ColorPalette", path: "../ColorPalette"),
+        .package(name: "Localization", path: "../Localization"),
+        .package(name: "InAppSettings", path: "../InAppSettings"),
+        .package(name: "CallVideoLayer", path: "../CallVideoLayer"),
+        .package(name: "BroadcastPlayback", path: "../BroadcastPlayback"),
+        .package(name: "AnsibleMedia", path: "../AnsibleMedia"),
+        .package(name: "TelegramMediaPlayer", path: "../../submodules/ansible-ios/submodules/MediaPlayer"),
+        .package(name: "AnsibleMediaUtils", path: "../AnsibleMediaUtils"),
+        .package(name: "AnsibleTheme", path: "../AnsibleTheme"),
+        .package(name: "GeneralRows", path: "../GeneralRows"),
+        .package(name: "AnsibleContext", path: "../AnsibleContext"),
+        .package(name: "AnsibleUtils", path: "../AnsibleUtils"),
+        .package(name: "SystemPermissions", path: "../SystemPermissions"),
+        .package(name: "ProxyUtils", path: "../ProxyUtils"),
+        .package(name: "rnoise", path: "../../submodules/ansible-ios/third-party/rnnoise"),
+    ],
+    targets: [
+        .target(
+            name: "AnsibleCallsCore",
+            dependencies: [
+                .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
+                .product(name: "TelegramCore", package: "TelegramCore", condition: nil),
+                .product(name: "Postbox", package: "Postbox", condition: nil),
+                .product(name: "TelegramVoip", package: "TelegramVoip", condition: nil),
+                .product(name: "TgVoipWebrtc", package: "TgVoipWebrtc", condition: nil),
+                .product(name: "TdBinding", package: "TdBinding", condition: nil),
+                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "ColorPalette", package: "ColorPalette", condition: nil),
+                .product(name: "Localization", package: "Localization", condition: nil),
+                .product(name: "InAppSettings", package: "InAppSettings", condition: nil),
+                .product(name: "CallVideoLayer", package: "CallVideoLayer", condition: nil),
+                .product(name: "BroadcastPlayback", package: "BroadcastPlayback"),
+                .product(name: "AnsibleMedia", package: "AnsibleMedia"),
+                .product(name: "TelegramMediaPlayer", package: "TelegramMediaPlayer"),
+                .product(name: "AnsibleMediaUtils", package: "AnsibleMediaUtils", condition: nil),
+                .product(name: "AnsibleTheme", package: "AnsibleTheme", condition: nil),
+                .product(name: "GeneralRows", package: "GeneralRows", condition: nil),
+                .product(name: "AnsibleContext", package: "AnsibleContext", condition: nil),
+                .product(name: "AnsibleUtils", package: "AnsibleUtils", condition: nil),
+                .product(name: "SystemPermissions", package: "SystemPermissions", condition: nil),
+                .product(name: "ProxyUtils", package: "ProxyUtils", condition: nil),
+            ],
+            path: "Sources/AnsibleCallsCore",
+            swiftSettings: [.unsafeFlags(["-Xcc", "-DWEBRTC_MAC=1"])]),
+        .testTarget(
+            name: "AnsibleCallsCoreTests",
+            dependencies: [
+                "AnsibleCallsCore",
+                .product(name: "AnsibleMediaUtils", package: "AnsibleMediaUtils", condition: nil),
+                .product(name: "rnoise", package: "rnoise"),
+            ],
+            path: "Tests/AnsibleCallsCoreTests",
+            swiftSettings: [.unsafeFlags(["-Xcc", "-DWEBRTC_MAC=1"])],
+            linkerSettings: [
+                .unsafeFlags(coreLinkerFlags),
+                .linkedFramework("VideoToolbox"),
+                .linkedFramework("CoreMedia"),
+                .linkedFramework("AudioToolbox"),
+                .linkedFramework("CoreAudio"),
+                .linkedFramework("AVFoundation"),
+                .linkedFramework("ScreenCaptureKit"),
+                .linkedLibrary("z"),
+                .linkedLibrary("bz2"),
+                .linkedLibrary("iconv"),
+                .linkedLibrary("c++"),
+            ]),
+    ]
+)

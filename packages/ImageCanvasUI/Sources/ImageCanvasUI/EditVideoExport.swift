@@ -4,7 +4,7 @@ import AudioToolbox
 import CoreImage
 import SwiftSignalKit
 import Localization
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 public enum EditVideoTool: String, CaseIterable, Equatable {
     case enhance

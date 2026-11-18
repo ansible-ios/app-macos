@@ -8,7 +8,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--baseline', action='store_true')
 args = parser.parse_args()
 root = pathlib.Path(__file__).resolve().parents[3]
-path = 'packages/TelegramCallsCore/Sources/TelegramCallsCore/PresentationGroupCall.swift'
+path = 'packages/AnsibleCallsCore/Sources/AnsibleCallsCore/PresentationGroupCall.swift'
 source = subprocess.check_output(['git', '-C', str(root), 'show', f'HEAD:{path}'], text=True) if args.baseline else (root / path).read_text()
 source = source[source.index('public final class PresentationGroupCallImpl:'):]
 
@@ -45,7 +45,7 @@ methods += '\nfunc establishParticipantsContext() {\nlet participantsContext = s
 package = pathlib.Path(tempfile.mkdtemp(prefix='telegram-group-call-regression-'))
 tests = package / 'Tests'
 tests.mkdir()
-dependency = root / 'submodules/telegram-ios/submodules/SSignalKit'
+dependency = root / 'submodules/ansible-ios/submodules/SSignalKit'
 (package / 'Package.swift').write_text(f'''// swift-tools-version:5.5
 import PackageDescription
 let package = Package(

@@ -1,17 +1,17 @@
 import Cocoa
 import TGUIKit
 #if SHARE
-import TelegramUtilsShare
-typealias TelegramGenericViewController<T: NSView> = TelegramUtilsShare.TelegramGenericViewController<T, AccountContext>
-typealias TelegramViewController = TelegramUtilsShare.TelegramViewController<AccountContext>
-typealias TableViewController = TelegramUtilsShare.TableViewController<AccountContext>
-typealias EditableViewController<T: NSView> = TelegramUtilsShare.EditableViewController<T, AccountContext>
+import AnsibleUtilsShare
+typealias TelegramGenericViewController<T: NSView> = AnsibleUtilsShare.TelegramGenericViewController<T, AccountContext>
+typealias TelegramViewController = AnsibleUtilsShare.TelegramViewController<AccountContext>
+typealias TableViewController = AnsibleUtilsShare.TableViewController<AccountContext>
+typealias EditableViewController<T: NSView> = AnsibleUtilsShare.EditableViewController<T, AccountContext>
 #else
-import TelegramUtils
-typealias TelegramGenericViewController<T: NSView> = TelegramUtils.TelegramGenericViewController<T, AccountContext>
-typealias TelegramViewController = TelegramUtils.TelegramViewController<AccountContext>
-typealias TableViewController = TelegramUtils.TableViewController<AccountContext>
-typealias EditableViewController<T: NSView> = TelegramUtils.EditableViewController<T, AccountContext>
+import AnsibleUtils
+typealias TelegramGenericViewController<T: NSView> = AnsibleUtils.TelegramGenericViewController<T, AccountContext>
+typealias TelegramViewController = AnsibleUtils.TelegramViewController<AccountContext>
+typealias TableViewController = AnsibleUtils.TableViewController<AccountContext>
+typealias EditableViewController<T: NSView> = AnsibleUtils.EditableViewController<T, AccountContext>
 typealias PasscodeSettingsViewController = PasscodeUI.PasscodeSettingsViewController<AccountContext>
 typealias RecentSessionsController = SessionsUI.RecentSessionsController<AccountContext>
 typealias WebSessionsController = SessionsUI.WebSessionsController<AccountContext>

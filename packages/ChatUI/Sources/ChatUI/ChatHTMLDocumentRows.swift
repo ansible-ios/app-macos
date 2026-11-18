@@ -3,7 +3,7 @@ import TGUIKit
 import TelegramCore
 import Postbox
 import ChatHistoryModel
-import TelegramTheme
+import AnsibleTheme
 import HTMLBubbles
 
 enum ChatHTMLDocumentRows {

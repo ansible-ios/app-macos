@@ -9,9 +9,9 @@ import ChatHistoryModel
 import InputDataUI
 import GeneralRows
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import InAppSettings
 import FoundationUtils
 import Strings

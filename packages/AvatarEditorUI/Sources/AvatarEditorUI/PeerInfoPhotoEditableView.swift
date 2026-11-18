@@ -1,6 +1,6 @@
 import Cocoa
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 import Localization
 
 public final class PeerInfoUpdatingPhotoState : Equatable {

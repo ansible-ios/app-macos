@@ -36,7 +36,7 @@ blocks += [between(photos, 'private struct PeerMediaPhotosState', '\nstruct Peer
 blocks += [between(gifs, 'private struct PeerMediaGifsState', '\nprivate final class PeerMediaGifsSupplyment').replace('private struct', 'struct', 1)]
 blocks += [read(media / 'PeerMediaGridSizing.swift')]
 blocks += [read(root / 'packages/ChatHistoryModel/Sources/ChatHistoryModel/ChatDateId.swift')]
-postbox = read(root / 'submodules/telegram-ios/submodules/Postbox/Sources/Message.swift')
+postbox = read(root / 'submodules/ansible-ios/submodules/Postbox/Sources/Message.swift')
 blocks += [between(postbox, 'public struct MessageIndex:', '\npublic struct ChatListIndex:')]
 rows = read(root / 'packages/GeneralRows/Sources/GeneralRows/GeneralRowItem.swift')
 blocks += [between(rows, 'public func bestGeneralViewType<T>(_ array:[T], for item: T) -> GeneralViewType where T: Equatable', '\npublic func bestGeneralViewType<T>(_ array:[T], for i: Int)')]
@@ -52,7 +52,7 @@ assert '.withUpdatedLoading(false).withUpdatedLoading(isLoading)' not in gifs
 for name, text in [('TabHarness', tabs), ('ReferenceTabHarness', (lab / 'ReferenceTabPipeline.txt').read_text())]:
     pipeline = between(text, '        let distinctTabs: Signal<(tabs:', '        let ready = data') if name == 'TabHarness' else text
     blocks += ['final class ' + name + ': TabHarnessBase {\nfunc stream() -> Signal<TabData, NoError> {\n' + pipeline + '\nreturn data\n}\n}']
-mode = read(root / 'packages/TelegramLinks/Sources/TelegramLinks/PeerMediaCollectionMode.swift')
+mode = read(root / 'packages/AnsibleLinks/Sources/AnsibleLinks/PeerMediaCollectionMode.swift')
 blocks += [between(mode, 'public enum PeerMediaCollectionMode', '    public var tagsValue:') + '\n}']
 (lab / 'Sources/PeerMediaProfileLab/Generated.swift').write_text(strip_comments('\n\n'.join(blocks)) + '\n')
 (lab / 'provenance.json').write_text(json.dumps(hashes, indent=2) + '\n')

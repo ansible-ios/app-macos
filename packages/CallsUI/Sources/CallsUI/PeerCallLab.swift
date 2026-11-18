@@ -9,8 +9,8 @@ import CallVideoLayer
 import PrivateCallScreen
 import AvatarUI
 import PerfLab
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import TelegramVoip
 import TgVoipWebrtc
 

@@ -1,3 +1,3 @@
-import TelegramCallsCore
+import AnsibleCallsCore
 
 extension GroupCallContext: GroupCallContextProtocol {}

@@ -1,6 +1,6 @@
 import Cocoa
 import TGUIKit
-import TelegramContext
+import AnsibleContext
 
 final class ChatLayerMessageTextView: ChatLayerSceneView {
     struct Identity: Hashable {

@@ -3,7 +3,7 @@ import Postbox
 import TelegramCore
 import TgVoipWebrtc
 import SwiftSignalKit
-import TelegramCallsCore
+import AnsibleCallsCore
 
 public enum RequestOrJoinGroupCallResult {
     case success(GroupCallContext)

@@ -24,12 +24,12 @@ PY
 
 export CMAKE_POLICY_VERSION_MINIMUM=3.5
 export CARGO_PROFILE_RELEASE_STRIP=none
-/bin/bash scripts/prepare-telegram-ios.sh
+/bin/bash scripts/prepare-ansible-ios.sh
 if [[ "$(xcodebuild -version | head -1)" == "Xcode 27"* ]]; then
     /bin/bash scripts/xcode27.sh apply
 fi
 /bin/bash scripts/configure_frameworks.sh
-xcodebuild -quiet -jobs "${ANSIBLE_BUILD_JOBS:-2}" -workspace Ansible-Mac.xcworkspace -scheme Telegram \
+xcodebuild -quiet -jobs "${ANSIBLE_BUILD_JOBS:-2}" -workspace Ansible-Mac.xcworkspace -scheme Ansible \
     -configuration Debug -destination "platform=macOS,arch=$(uname -m)" \
     -derivedDataPath "$ROOT/.build/Ansible" \
     CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build

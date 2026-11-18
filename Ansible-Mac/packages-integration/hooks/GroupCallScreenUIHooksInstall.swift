@@ -6,9 +6,9 @@ import SwiftSignalKit
 import GroupCallScreenUI
 import ChatUI
 import ChatModeTypes
-import TelegramUtils
-import TelegramMediaUtils
-import TelegramTheme
+import AnsibleUtils
+import AnsibleMediaUtils
+import AnsibleTheme
 import EntertainmentUI
 
 extension EmojiesController: @retroactive GroupCallEmojiesController {

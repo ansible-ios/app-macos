@@ -1,6 +1,6 @@
 import Foundation
 import TGUIKit
-import TelegramTheme
+import AnsibleTheme
 import ColorPalette
 import Localization
 

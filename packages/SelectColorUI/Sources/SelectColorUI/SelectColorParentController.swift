@@ -4,9 +4,9 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import InputDataUI
 
 private final class CenterView : TitledBarView {

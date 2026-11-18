@@ -1,8 +1,8 @@
 import Foundation
 import SwiftSignalKit
 import TelegramCore
-import TelegramContext
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleMediaUtils
 
 enum SelectColorSaveError {
     case generic

@@ -14,10 +14,10 @@ old = subprocess.check_output(['git', 'show', '4ae6313e0:packages/ShortPeerRow/S
 reference = (lab / 'Reference.swift.txt').read_text()
 assert old[old.index(start):old.index(end)] == reference
 assert 'activityView.stopAnimation()' in source[source.index('    public func clean()'):]
-geometry_path = root / 'packages/TelegramTheme/Sources/TelegramTheme/ThumbUtils.swift'
+geometry_path = root / 'packages/AnsibleTheme/Sources/AnsibleTheme/ThumbUtils.swift'
 geometry = geometry_path.read_text()
 geometry = geometry[geometry.index('fileprivate let minDiameter:'):geometry.index('private func generateUploadFileAnimatedImage')]
-theme_path = root / 'packages/TelegramTheme/Sources/TelegramTheme/TelegramPresentationTheme.swift'
+theme_path = root / 'packages/AnsibleTheme/Sources/AnsibleTheme/AnsiblePresentationTheme.swift'
 theme = theme_path.read_text()
 theme = theme[theme.index('public struct ActivitiesTheme'):theme.index('public final class TelegramTabBarTheme')]
 output = 'import AppKit\nimport TGUIKit\n' + theme + geometry

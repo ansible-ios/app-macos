@@ -6,7 +6,7 @@ import SwiftSignalKit
 import InAppSettings
 import CurrencyFormat
 import ThemeSettings
-import TelegramMedia
+import AnsibleMedia
 import TelegramMediaPlayer
 import AlertsUI
 import AvatarUI
@@ -20,10 +20,10 @@ import MessageUtils
 import PremiumUI
 import StarsUI
 import Strings
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import SecureIdUtils
 import InlineStickerLayer
 import SceneEffects

@@ -6,8 +6,8 @@ import Postbox
 import TelegramCore
 import ColorPalette
 import InputView
-import TelegramMedia
-import TelegramMediaResources
+import AnsibleMedia
+import AnsibleMediaResources
 import FoundationUtils
 import ChatUI
 import InAppSettings
@@ -16,10 +16,10 @@ import LocalAnimations
 import Localization
 import SceneEffects
 import ShortPeerRow
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 extension MessageReaction.Reaction {

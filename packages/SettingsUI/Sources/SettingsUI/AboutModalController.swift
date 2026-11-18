@@ -1,8 +1,8 @@
 import Cocoa
 import TGUIKit
 import Localization
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 
 public var APP_VERSION_STRING: String {
     var vText = "\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "1").\(Bundle.main.infoDictionary?["CFBundleVersion"] ?? "0")"

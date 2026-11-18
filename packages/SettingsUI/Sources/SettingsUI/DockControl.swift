@@ -7,15 +7,15 @@ import ApiCredentials
 import InAppSettings
 import GeneralRows
 import Localization
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import ColorPalette
 import FoundationUtils
 import InputDataUI
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import AlertsUI
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 public extension TelegramApplicationIcons.Icon {
     var path: String {

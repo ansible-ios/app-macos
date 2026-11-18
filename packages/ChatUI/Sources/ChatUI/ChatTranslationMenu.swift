@@ -2,7 +2,7 @@ import TGUIKit
 import TelegramCore
 import Translate
 import Localization
-import TelegramTheme
+import AnsibleTheme
 import LocalAnimations
 
 func chatTranslationMenuItem(chatInteraction: ChatInteraction) -> ContextMenuItem? {

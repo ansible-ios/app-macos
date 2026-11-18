@@ -5,9 +5,9 @@ import TelegramCore
 import InAppSettings
 import FoundationUtils
 import SwiftSignalKit
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import ChatModeTypes
 import MessageUtils
 import Localization

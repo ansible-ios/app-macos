@@ -16,7 +16,7 @@ a = profile.index('    func togglePermissionsGeo()'); b = profile.index('    fun
 fixture = Path(__file__).with_name('WebAppPermissionsTests.swift').read_text().replace('__SOURCE__', source).replace('__PROFILE__', profile[a:b])
 with tempfile.TemporaryDirectory(prefix='web-app-permissions-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "WebAppPermissions", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "WebAppPermissionsTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

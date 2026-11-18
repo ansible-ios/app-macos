@@ -2,7 +2,7 @@ import Foundation
 import AppKit
 import TGUIKit
 import Localization
-import TelegramTheme
+import AnsibleTheme
 import GeneralRows
 import InputDataUI
 

@@ -3,9 +3,9 @@
 import Cocoa
 import CurrencyFormat
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 #else
-import TelegramTheme
+import AnsibleTheme
 #endif
 /// Custom text field delegate, that formats user inputs based on a given currency formatter.
 open class CurrencyUITextFieldDelegate: NSObject {

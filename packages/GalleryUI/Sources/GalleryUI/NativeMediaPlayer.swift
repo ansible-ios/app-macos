@@ -3,18 +3,18 @@ import TGUIKit
 import Postbox
 import SwiftSignalKit
 import TelegramMediaPlayer
-import TelegramMedia
+import AnsibleMedia
 import RangeSet
 import TelegramCore
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import ChatModeTypes
 import ChatHistoryModel
 import GeneralRows
 import LocalAnimations
-import TelegramMediaUtils
+import AnsibleMediaUtils
 import AvatarUI
 import MessageUtils
 import InstantPageUI
@@ -23,7 +23,7 @@ import ColorPalette
 import InAppSettings
 import FoundationUtils
 import ObjcUtils
-import TelegramMediaResources
+import AnsibleMediaResources
 
 public final class NativeMediaPlayer : View, UniversalVideoContentView {
     

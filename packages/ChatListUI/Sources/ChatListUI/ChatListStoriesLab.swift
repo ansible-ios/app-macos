@@ -3,7 +3,7 @@ import Cocoa
 import ObjectiveC
 import TGUIKit
 import SwiftSignalKit
-import TelegramContext
+import AnsibleContext
 import PerfLab
 
 public enum ChatListStoriesLab {

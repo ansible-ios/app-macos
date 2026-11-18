@@ -6,9 +6,9 @@ import Postbox
 import SwiftSignalKit
 import TGUIKit
 import TelegramCore
-import TelegramContext
-import TelegramCallsCore
-import TelegramUtils
+import AnsibleContext
+import AnsibleCallsCore
+import AnsibleUtils
 import ChatModeTypes
 import ChatHistoryModel
 import ImageCanvasUI

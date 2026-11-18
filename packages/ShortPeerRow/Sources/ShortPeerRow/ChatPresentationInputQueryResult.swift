@@ -3,9 +3,9 @@ import TelegramCore
 
 import Postbox
 #if SHARE
-import TelegramUtilsShare
+import AnsibleUtilsShare
 #else
-import TelegramUtils
+import AnsibleUtils
 #endif
 
 public struct ChatInputCommand: Equatable {

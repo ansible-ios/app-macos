@@ -9,9 +9,9 @@ import Postbox
 import FoundationUtils
 import ObjcUtils
 import Localization
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import MessageTextUtils
 import GeneralRows
 import AlertsUI

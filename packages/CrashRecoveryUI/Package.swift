@@ -17,7 +17,7 @@ let package = Package(
         .library(name: "CrashRecoveryUI", targets: ["CrashRecoveryUI"]),
     ],
     dependencies: [
-        .package(name: "SSignalKit", path: "../../submodules/telegram-ios/submodules/SSignalKit"),
+        .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
     ] + deps.map { .package(name: $0.0, path: $0.1) },
     targets: [
         .target(

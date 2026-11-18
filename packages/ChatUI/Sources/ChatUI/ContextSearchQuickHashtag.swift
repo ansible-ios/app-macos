@@ -2,8 +2,8 @@ import Cocoa
 import TelegramCore
 import DateUtils
 import TGUIKit
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import Localization
 import InAppSettings
 import GeneralRows

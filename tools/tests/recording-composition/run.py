@@ -23,7 +23,7 @@ with tempfile.TemporaryDirectory(prefix='recording-composition-') as directory:
  directory=Path(directory)
  (directory/'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
-let package=Package(name:"RecordingComposition",platforms:[.macOS(.v10_13)],dependencies:[.package(path:'''+json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))+''')],targets:[.testTarget(name:"ControlledTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Controlled"),.testTarget(name:"NativeTests",dependencies:[],path:"Native")])
+let package=Package(name:"RecordingComposition",platforms:[.macOS(.v10_13)],dependencies:[.package(path:'''+json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))+''')],targets:[.testTarget(name:"ControlledTests",dependencies:[.product(name:"SwiftSignalKit",package:"SSignalKit")],path:"Controlled"),.testTarget(name:"NativeTests",dependencies:[],path:"Native")])
 ''')
  (directory/'Controlled').mkdir();(directory/'Controlled/ControlledTests.swift').write_text(fixture)
  (directory/'Native').mkdir();(directory/'Native/RecordingVideoComposition.swift').write_text(helper)

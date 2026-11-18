@@ -13,7 +13,7 @@
     "packages/TGUIKit/Tests/TGUIKitTests/TransformImageArgumentsTests.swift": "66c5e94c2f4f961c6dbfad053bd854d4fa121a841baeca8e1eaceff236a78594",
     "packages/TGUIKit/Tests/TGUIKitTests/TransformImageViewTests.swift": "3b7d94c8e1ac62c8f3e40e56140a64e5655615251479e4e73b71becc1b755da3",
     "packages/TGUIKit/Tests/TGUIKitTests/TransformImageBenchmarkTests.swift": "8044d92da4fd554d3eef44d05007c4bc5ca67e1f3f5b8ad6c1bd441b94be0f5b",
-    "submodules/telegram-ios/submodules/SSignalKit/SwiftSignalKit/Source/Promise.swift": "e691338e89b656e5d272f70e6c97f5d07990d57badfd7e1d7e1dae86f9a3693a"
+    "submodules/ansible-ios/submodules/SSignalKit/SwiftSignalKit/Source/Promise.swift": "e691338e89b656e5d272f70e6c97f5d07990d57badfd7e1d7e1dae86f9a3693a"
   },
   "benchmark_scope": "Original and new real TransformImageView implementations use the same corrected TransformImageArguments type, isolating argument delivery. The renderer returns nil after counting executions; actual image pixels and protected buffers are covered separately by functional tests."
 }

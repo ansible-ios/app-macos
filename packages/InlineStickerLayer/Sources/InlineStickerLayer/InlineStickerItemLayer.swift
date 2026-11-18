@@ -1,6 +1,6 @@
-import TelegramTheme
+import AnsibleTheme
 import InputView
-import TelegramUtils
+import AnsibleUtils
 import Foundation
 import SwiftSignalKit
 import TelegramCore
@@ -8,8 +8,8 @@ import Postbox
 import TGUIKit
 import Accelerate
 import AppKit
-import TelegramMedia
-import TelegramMediaResources
+import AnsibleMedia
+import AnsibleMediaResources
 #if SHARE
 import InlineStickersShare
 #else

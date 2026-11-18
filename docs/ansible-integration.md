@@ -22,9 +22,9 @@ The integration was checked against the local `app-ios` and `app-desktop` implem
 
 ## Patch ownership
 
-The shared Telegram-iOS checkout remains pinned to the upstream revision. Ansible changes to that checkout are carried as parent-repository patches and applied by `scripts/prepare-telegram-ios.sh`, not as unpushed submodule commits:
+The shared Telegram-iOS checkout remains pinned to the upstream revision. Ansible changes to that checkout are carried as parent-repository patches and applied by `scripts/prepare-ansible-ios.sh`, not as unpushed submodule commits:
 
-- `telegram-ios-macos.patch`: upstream macOS preparation.
+- `ansible-ios-macos.patch`: upstream macOS preparation.
 - `ansible-network.patch`: Ansible bootstrap and server key.
 - `ansible-media.patch`: Ansible animated-sticker recognition and file attributes.
 

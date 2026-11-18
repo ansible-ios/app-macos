@@ -6,7 +6,7 @@ import tempfile
 
 root = Path(__file__).resolve().parents[3]
 parser = argparse.ArgumentParser()
-parser.add_argument('--source', type=Path, default=root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift')
+parser.add_argument('--source', type=Path, default=root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift')
 args = parser.parse_args()
 source = args.source.read_text()
 def block(marker):
@@ -25,7 +25,7 @@ if not helper:
 fixture = Path(__file__).with_name('StoryFolderReorderTests.swift').read_text().replace('__HELPER__',helper).replace('__REORDER__',reorder)
 with tempfile.TemporaryDirectory(prefix='story-folder-reorder-') as directory:
     directory=Path(directory)
-    dependency=json.dumps(str(root/'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency=json.dumps(str(root/'submodules/ansible-ios/submodules/SSignalKit'))
     (directory/'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "StoryFolderReorder", platforms: [.macOS(.v10_13)], dependencies: [.package(path: '''+dependency+''')], targets: [.testTarget(name: "StoryFolderReorderTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

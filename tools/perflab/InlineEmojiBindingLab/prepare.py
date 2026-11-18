@@ -73,15 +73,15 @@ import PackageDescription
 let package = Package(name: "InlineEmojiBindingLab", platforms: [.macOS(.v10_15)], dependencies: [
     .package(path: "TGUIKit"), .package(name: "SSignalKit", path: "%s")
 ], targets: [
-    .target(name: "TelegramCore"), .target(name: "TelegramContext"), .target(name: "InputView"),
-    .target(name: "InlineStickerLayer", dependencies: ["TGUIKit", "TelegramContext", "InputView"]),
+    .target(name: "TelegramCore"), .target(name: "AnsibleContext"), .target(name: "InputView"),
+    .target(name: "InlineStickerLayer", dependencies: ["TGUIKit", "AnsibleContext", "InputView"]),
     .target(name: "InputTextView", dependencies: ["TGUIKit"]),
-    .target(name: "ChatLayerEngine", dependencies: ["TGUIKit", "InputTextView", "TelegramCore", "TelegramContext", "InputView", "InlineStickerLayer", .product(name: "SwiftSignalKit", package: "SSignalKit")]),
-    .target(name: "CandidateBindingHarness", dependencies: ["TGUIKit", "ChatLayerEngine", "InputTextView", "TelegramContext", "InputView", "InlineStickerLayer"]),
-    .target(name: "NativeBindingHarness", dependencies: ["TGUIKit", "ChatLayerEngine", "InputTextView", "TelegramContext", "InputView", "InlineStickerLayer"]),
-    .testTarget(name: "BindingTests", dependencies: ["TGUIKit", "CandidateBindingHarness", "NativeBindingHarness", "TelegramContext", "InputView", "InlineStickerLayer"])
+    .target(name: "ChatLayerEngine", dependencies: ["TGUIKit", "InputTextView", "TelegramCore", "AnsibleContext", "InputView", "InlineStickerLayer", .product(name: "SwiftSignalKit", package: "SSignalKit")]),
+    .target(name: "CandidateBindingHarness", dependencies: ["TGUIKit", "ChatLayerEngine", "InputTextView", "AnsibleContext", "InputView", "InlineStickerLayer"]),
+    .target(name: "NativeBindingHarness", dependencies: ["TGUIKit", "ChatLayerEngine", "InputTextView", "AnsibleContext", "InputView", "InlineStickerLayer"]),
+    .testTarget(name: "BindingTests", dependencies: ["TGUIKit", "CandidateBindingHarness", "NativeBindingHarness", "AnsibleContext", "InputView", "InlineStickerLayer"])
 ])
-''' % (root / 'submodules/telegram-ios/submodules/SSignalKit'))
+''' % (root / 'submodules/ansible-ios/submodules/SSignalKit'))
 tests = output / 'Tests/BindingTests'
 tests.mkdir(parents=True)
 for path in (lab / 'Tests').glob('*.swift'):

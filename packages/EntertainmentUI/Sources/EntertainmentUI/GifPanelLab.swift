@@ -2,9 +2,9 @@
 import Cocoa
 import TGUIKit
 import SwiftSignalKit
-import TelegramContext
-import TelegramMedia
-import TelegramMediaUtils
+import AnsibleContext
+import AnsibleMedia
+import AnsibleMediaUtils
 import PerfLab
 
 public enum GifPanelLab {

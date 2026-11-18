@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramContext
+import AnsibleContext
 
 public enum AuthInAppLink {
     case external(link: String, Bool)

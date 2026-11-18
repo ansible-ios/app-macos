@@ -1,10 +1,10 @@
 #if SHARE
-import TelegramUtilsShare
+import AnsibleUtilsShare
 #else
-import TelegramUtils
+import AnsibleUtils
 #endif
-import TelegramTheme
-import TelegramContext
+import AnsibleTheme
+import AnsibleContext
 import Cocoa
 import TGUIKit
 import SwiftSignalKit

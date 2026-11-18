@@ -187,12 +187,12 @@ for legacy, contents in [(False, folding_text), (True, view_reference.read_text(
     contents = '\n'.join(line for line in contents.splitlines() if not line.startswith('import ')).replace('public ', '')
     if legacy:
         contents = contents.replace('FoldingText', 'LegacyFoldingText')
-    (view_output / (name + '.swift')).write_text('import Cocoa\nimport TGUIKit\nimport TelegramContext\n' + contents)
+    (view_output / (name + '.swift')).write_text('import Cocoa\nimport TGUIKit\nimport AnsibleContext\n' + contents)
 view_dependencies = (lab / 'Sources/FoldingBlocksHarness/Dependencies.swift').read_text().split('final class BlockHarness {')[0].replace('import InputTextView\n', '')
 view_dependencies = view_dependencies.replace('enum LiteMode { case emoji }\n', '').replace(declaration(view_dependencies, 'protocol AccountContextProtocol: AnyObject {') + '\n', '')
-view_dependencies = view_dependencies.replace('var account = 0', 'var account = TelegramContext.Account()').replace('var inlinePacksContext = 0', 'var inlinePacksContext = TelegramContext.InlineStickersContext()')
-view_dependencies = view_dependencies.replace('init(account: Int, inlinePacksContext: Int,', 'init(account: TelegramContext.Account, inlinePacksContext: TelegramContext.InlineStickersContext,')
-(view_output / 'Dependencies.swift').write_text('import TelegramContext\n' + view_dependencies)
+view_dependencies = view_dependencies.replace('var account = 0', 'var account = AnsibleContext.Account()').replace('var inlinePacksContext = 0', 'var inlinePacksContext = AnsibleContext.InlineStickersContext()')
+view_dependencies = view_dependencies.replace('init(account: Int, inlinePacksContext: Int,', 'init(account: AnsibleContext.Account, inlinePacksContext: AnsibleContext.InlineStickersContext,')
+(view_output / 'Dependencies.swift').write_text('import AnsibleContext\n' + view_dependencies)
 (view_output / 'Playback.swift').write_text(playback_text)
 (view_output / 'Keys.swift').write_text(keys_text)
 
@@ -562,5 +562,5 @@ with (folding_output / 'QuoteLayer.swift').open('a') as stream:
     stream.write('\n' + redraw_reference.read_text().replace('FoldingTextQuoteLayer', 'OriginalRedrawQuoteLayer'))
 
 inline_emoji_sources = [root / 'packages/ChatUI/Sources/ChatUI' / name for name in ['ChatLayerInlineEmoji.swift', 'ChatLayerMessageTextView.swift', 'ChatLayerMessageText+Layout.swift', 'ChatMessageView.swift', 'ChatRowView.swift']]
-inline_emoji_sources += [lab / path for path in ['Sources/TelegramContext/Context.swift', 'Sources/InputView/Emoji.swift', 'Sources/InlineStickerLayer/Media.swift', 'Sources/FoldingViewHarness/ChatTextDependencies.swift', 'Sources/FoldingViewHarness/CaptionDependencies.swift', 'Tests/FoldingViewTests/LiveInlineEmojiTests.swift', 'prepare.py', 'prepare-captions.py', 'Package.swift']]
+inline_emoji_sources += [lab / path for path in ['Sources/AnsibleContext/Context.swift', 'Sources/InputView/Emoji.swift', 'Sources/InlineStickerLayer/Media.swift', 'Sources/FoldingViewHarness/ChatTextDependencies.swift', 'Sources/FoldingViewHarness/CaptionDependencies.swift', 'Tests/FoldingViewTests/LiveInlineEmojiTests.swift', 'prepare.py', 'prepare-captions.py', 'Package.swift']]
 (lab / 'inline-emoji-integration-provenance.json').write_text(json.dumps({'source_sha256': {str(source.relative_to(root)): hashlib.sha256(source.read_bytes()).hexdigest() for source in inline_emoji_sources}, 'scope': 'Exact production helper and host; extracted production body/caption methods; real TGUIKit; deterministic media/account stand-ins; no real decoding or asynchronous fetching'}, indent=2) + '\n')

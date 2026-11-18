@@ -7,10 +7,10 @@ import TelegramCore
 import Postbox
 import Localization
 import ColorPalette
-import TelegramTheme
-import TelegramIconsTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleIconsTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import ShortPeerRow

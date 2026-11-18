@@ -4,12 +4,12 @@ import Postbox
 import TelegramCore
 
 import TGUIKit
-import TelegramMediaResources
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
-import TelegramMedia
-import TelegramMediaUtils
+import AnsibleMediaResources
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
+import AnsibleMedia
+import AnsibleMediaUtils
 import InAppSettings
 import Localization
 import ColorPalette

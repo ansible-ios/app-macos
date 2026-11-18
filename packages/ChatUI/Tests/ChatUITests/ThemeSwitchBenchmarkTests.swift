@@ -5,7 +5,7 @@ import Darwin
 import TelegramCore
 import ThemeSettings
 import SwiftSignalKit
-@testable import TelegramTheme
+@testable import AnsibleTheme
 
 @available(macOS 14.0, *)
 private final class ThemeSwitchFrameProbe: NSObject {
@@ -41,7 +41,7 @@ final class ThemeSwitchBenchmarkTests: XCTestCase {
         return Double(value.tv_sec) + Double(value.tv_nsec) / 1_000_000_000
     }
 
-    private func baseline(presentation: Signal<TelegramPresentationTheme, NoError>, themes: [TelegramTheme]) -> Signal<[(ChatTheme, TelegramPresentationTheme)], NoError> {
+    private func baseline(presentation: Signal<TelegramPresentationTheme, NoError>, themes: [AnsibleTheme]) -> Signal<[(ChatTheme, TelegramPresentationTheme)], NoError> {
         return presentation |> mapToSignal { presentation in
             var signals: [Signal<(ChatTheme, TelegramPresentationTheme), NoError>] = []
             for theme in themes {
@@ -61,7 +61,7 @@ final class ThemeSwitchBenchmarkTests: XCTestCase {
     }
 
     @available(macOS 14.0, *)
-    private func runScenario(prepared: Bool, fixtures: [TelegramTheme], presentations: [TelegramPresentationTheme]) -> [String: Any] {
+    private func runScenario(prepared: Bool, fixtures: [AnsibleTheme], presentations: [TelegramPresentationTheme]) -> [String: Any] {
         let input = ValuePromise<TelegramPresentationTheme>(PreparedChatThemesTests.presentation(), ignoreRepeated: false)
         let signal = prepared ? preparedChatThemes(presentation: input.get(), themes: .single(fixtures), cacheWallpaper: { .single($0) }) : baseline(presentation: input.get(), themes: fixtures)
         let probe = ThemeSwitchFrameProbe()

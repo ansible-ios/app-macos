@@ -62,7 +62,7 @@ premium = premium.replace('__SOURCE_MAPPING__', installer[start:end])
 store_tests = Path(__file__).with_name('PremiumStoreTests.swift').read_text()
 store_source = (root / 'packages/PremiumUI/Sources/PremiumUI/PremiumStoreOperation.swift').read_text()
 store_tests = store_tests.replace('__STORE_OPERATIONS__', store_source[store_source.index('private final class PremiumStoreOperation'):])
-store_types = (root / 'packages/TelegramContext/Sources/TelegramContext/InAppPurchase.swift').read_text()
+store_types = (root / 'packages/AnsibleContext/Sources/AnsibleContext/InAppPurchase.swift').read_text()
 start = store_types.index('public enum InAppPurchaseState')
 end = store_types.index('public struct', start)
 store_tests = store_tests.replace('__STORE_TYPES__', store_types[start:end])
@@ -87,7 +87,7 @@ business_call = next(line.strip() for line in boarding.splitlines() if 'PremiumH
 navigation_tests = navigation_tests.replace('__BUSINESS_ACTION__', business_call)
 with tempfile.TemporaryDirectory(prefix='payment-context-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "PaymentContext", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "PaymentContextTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

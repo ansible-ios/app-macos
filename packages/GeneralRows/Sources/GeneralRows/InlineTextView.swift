@@ -1,6 +1,6 @@
 import Cocoa
 import TGUIKit
-import TelegramContext
+import AnsibleContext
 
 public final class InlineTextView: TextView {
     private var inlineRenderer: InlineTextRenderer?

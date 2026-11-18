@@ -7,9 +7,9 @@ import InAppSettings
 import TGModernGrowingTextView
 import QuartzCore
 import Strings
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import InputTextView
 import InlineStickerLayer
 

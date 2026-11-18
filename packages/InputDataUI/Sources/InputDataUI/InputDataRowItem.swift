@@ -1,8 +1,8 @@
 import ColorPalette
 import GeneralRows
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import Localization
 import Cocoa
 import TGUIKit

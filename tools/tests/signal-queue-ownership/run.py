@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--source', type=Path)
 parser.add_argument('--legacy', action='store_true')
 args = parser.parse_args()
-source = root / 'submodules/telegram-ios/submodules/SSignalKit' / ('SwiftSignalKit' if args.legacy else 'SwiftSignalKit2') / 'Source'
+source = root / 'submodules/ansible-ios/submodules/SSignalKit' / ('SwiftSignalKit' if args.legacy else 'SwiftSignalKit2') / 'Source'
 with tempfile.TemporaryDirectory(prefix='signal-queue-ownership-') as directory:
     directory=Path(directory)
     shutil.copytree(source,directory/'Sources')

@@ -6,17 +6,17 @@ import Postbox
 import SwiftSignalKit
 import Localization
 import InAppSettings
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import AlertsUI
 import LocalAnimations
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import FoundationUtils
-import TelegramMediaUtils
-import TelegramLinks
+import AnsibleMediaUtils
+import AnsibleLinks
 import ThemeSettings
 import ChatHistoryModel
 import FilePanels
@@ -106,8 +106,8 @@ private final class HorizontalThemeItem : GeneralRowItem {
 
 public struct LocalPaletteWithReference {
     public let palette: ColorPalette
-    public let cloud: TelegramTheme?
-    public init(palette: ColorPalette, cloud: TelegramTheme?) {
+    public let cloud: AnsibleTheme?
+    public init(palette: ColorPalette, cloud: AnsibleTheme?) {
         self.palette = palette
         self.cloud = cloud
     }
@@ -263,12 +263,12 @@ private final class HorizontalThemeView : HorizontalRowView {
 public class ThemeListRowItem: GeneralRowItem {
     fileprivate let context: any AccountContextProtocol
     fileprivate let theme: TelegramPresentationTheme
-    fileprivate let cloudThemes:[TelegramTheme]
+    fileprivate let cloudThemes:[AnsibleTheme]
     fileprivate let local:[LocalPaletteWithReference]
     fileprivate let togglePalette: (InstallThemeSource)->Void
     fileprivate let menuItems: (ThemeSource)->[ContextMenuItem]
     fileprivate let selected: ThemeSource
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, theme: TelegramPresentationTheme, selected: ThemeSource, local:[LocalPaletteWithReference], cloudThemes:[TelegramTheme], viewType: GeneralViewType, togglePalette: @escaping(InstallThemeSource)->Void, menuItems: @escaping(ThemeSource)->[ContextMenuItem]) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, theme: TelegramPresentationTheme, selected: ThemeSource, local:[LocalPaletteWithReference], cloudThemes:[AnsibleTheme], viewType: GeneralViewType, togglePalette: @escaping(InstallThemeSource)->Void, menuItems: @escaping(ThemeSource)->[ContextMenuItem]) {
         self.context = context
         self.theme = theme
         self.local = local

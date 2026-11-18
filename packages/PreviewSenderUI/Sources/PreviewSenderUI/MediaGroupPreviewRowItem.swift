@@ -5,10 +5,10 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 import ImageCanvasUI
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleMediaUtils
 import MessageUtils
 import InlineMediaGrid
 import AvatarEditorUI

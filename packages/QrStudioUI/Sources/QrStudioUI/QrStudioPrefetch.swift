@@ -2,7 +2,7 @@ import Foundation
 import SwiftSignalKit
 import TelegramCore
 import Postbox
-import TelegramContext
+import AnsibleContext
 
 final class QrStudioPrefetch {
     private struct Key: Hashable {

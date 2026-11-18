@@ -1,7 +1,7 @@
 import Cocoa
 import TelegramCore
 import Postbox
-import TelegramContext
+import AnsibleContext
 
 public enum GiftCraftingState: Equatable {
     case idle

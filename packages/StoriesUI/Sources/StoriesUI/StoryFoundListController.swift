@@ -5,10 +5,10 @@ import SwiftSignalKit
 import MapKit
 import TelegramCore
 import Postbox
-import TelegramContext
-import TelegramTheme
-import TelegramIconsTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleIconsTheme
+import AnsibleUtils
 import Localization
 import GeneralRows
 import InputDataUI
@@ -17,7 +17,7 @@ import AlertsUI
 import ColorPalette
 import FoundationUtils
 import AvatarUI
-import TelegramMediaResources
+import AnsibleMediaResources
 import AppAnalytics
 
 private final class Arguments {

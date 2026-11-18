@@ -5,18 +5,18 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
-import TelegramMediaUtils
-import TelegramMedia
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleMediaUtils
+import AnsibleMedia
 import ChatModeTypes
 import MessageUtils
 import AVKit
 import AVFoundation
 import MediaPlayer
 import RangeSet
-import TelegramMediaResources
+import AnsibleMediaResources
 
 
 public class APSingleWrapper {

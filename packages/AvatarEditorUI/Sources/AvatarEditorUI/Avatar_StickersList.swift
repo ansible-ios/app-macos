@@ -1,7 +1,7 @@
 import Foundation
 import AppKit
 import TGUIKit
-import TelegramContext
+import AnsibleContext
 
 final class Avatar_StickersList : View {
     private var stickersView: NSView?

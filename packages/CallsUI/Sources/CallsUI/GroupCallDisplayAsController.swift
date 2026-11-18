@@ -8,11 +8,11 @@ import GeneralRows
 import InputDataUI
 import Localization
 import ShortPeerRow
-import TelegramContext
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleUtils
 import ColorPalette
-import TelegramIconsTheme
+import AnsibleIconsTheme
 import AppAnalytics
 
 

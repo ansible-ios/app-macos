@@ -1,5 +1,5 @@
 import Cocoa
-import TelegramCallsCore
+import AnsibleCallsCore
 import TGUIKit
 import SwiftSignalKit
 import TelegramCore

@@ -3,8 +3,8 @@ import TGUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TelegramCallsCore
-import TelegramMediaUtils
+import AnsibleCallsCore
+import AnsibleMediaUtils
 import TgVoipWebrtc
 
 func installCallsCoreUIHooks() {

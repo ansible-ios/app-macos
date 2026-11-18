@@ -2,9 +2,9 @@ import Cocoa
 import TGUIKit
 import TelegramCore
 import Localization
-import TelegramContext
-import TelegramMediaUtils
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleUtils
 import InlineStickerLayer
 
 

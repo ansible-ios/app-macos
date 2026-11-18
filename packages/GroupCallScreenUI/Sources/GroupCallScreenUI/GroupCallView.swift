@@ -5,9 +5,9 @@ import SwiftSignalKit
 import TelegramCore
 import Postbox
 import Localization
-import TelegramCallsCore
-import TelegramTheme
-import TelegramUtils
+import AnsibleCallsCore
+import AnsibleTheme
+import AnsibleUtils
 
 
 private final class NoStreamView : View {

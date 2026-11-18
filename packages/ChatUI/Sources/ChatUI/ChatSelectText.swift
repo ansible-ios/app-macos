@@ -7,8 +7,8 @@ import SwiftSignalKit
 import AlertsUI
 import InputTextView
 import MessageTextUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleTheme
+import AnsibleUtils
 import Localization
 import HTMLBubbles
 import MessageUtils

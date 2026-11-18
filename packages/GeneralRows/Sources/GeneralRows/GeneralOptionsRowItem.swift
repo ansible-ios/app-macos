@@ -3,9 +3,9 @@ import TGUIKit
 import SwiftSignalKit
 import TelegramCore
 #if SHARE
-import TelegramThemeShare
+import AnsibleThemeShare
 #else
-import TelegramTheme
+import AnsibleTheme
 #endif
 
 public final class GeneralOptionsRowItem : GeneralRowItem {

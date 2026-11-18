@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
 import TelegramCore
-import TelegramMedia
+import AnsibleMedia
 import Postbox
 import SwiftSignalKit
 import RangeSet
@@ -11,10 +11,10 @@ import PeerMediaUI
 import GalleryUI
 import ChatHistoryModel
 import ChatModeTypes
-import TelegramUtils
-import TelegramContext
-import TelegramTheme
-import TelegramMediaUtils
+import AnsibleUtils
+import AnsibleContext
+import AnsibleTheme
+import AnsibleMediaUtils
 import MessageUtils
 import GeneralRows
 import LocalAnimations

@@ -1,7 +1,7 @@
 import XCTest
 import AppKit
 import ImageIO
-import TelegramMediaUtils
+import AnsibleMediaUtils
 
 final class WallpaperEightBitTests: XCTestCase {
 

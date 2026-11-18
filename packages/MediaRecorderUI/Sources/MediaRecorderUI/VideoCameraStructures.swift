@@ -6,11 +6,11 @@ import Postbox
 import SwiftSignalKit
 import ColorPalette
 import InAppSettings
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
-import TelegramMedia
-import TelegramMediaUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleMedia
+import AnsibleMediaUtils
 import ObjcUtils
 import TGVideoCameraMovie
 import AVFoundation

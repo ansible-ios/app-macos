@@ -1,6 +1,6 @@
 import Foundation
 import Postbox
-import TelegramContext
+import AnsibleContext
 import ChatModeTypes
 
 public protocol MessagePermissionSource: AnyObject {

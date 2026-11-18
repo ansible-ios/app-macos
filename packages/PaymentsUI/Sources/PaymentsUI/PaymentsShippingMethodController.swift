@@ -5,10 +5,10 @@ import TelegramCore
 import Postbox
 import CurrencyFormat
 import InAppSettings
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
 import GeneralRows
 import InputDataUI
 import Localization

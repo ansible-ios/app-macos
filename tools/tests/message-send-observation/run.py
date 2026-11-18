@@ -39,7 +39,7 @@ inline_end = controller.index('                    }\n                    switch
 fixture = fixture.replace('__INLINE__', controller[inline_start:inline_end])
 with tempfile.TemporaryDirectory(prefix='message-send-observation-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "MessageSendObservation", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "MessageSendObservationTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

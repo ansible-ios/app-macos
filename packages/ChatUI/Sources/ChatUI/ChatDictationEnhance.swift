@@ -2,12 +2,12 @@ import Cocoa
 import TGUIKit
 import SwiftSignalKit
 import TelegramCore
-import TelegramTheme
+import AnsibleTheme
 import Localization
 import InputView
 import InputDataUI
 import AppAnalytics
-import TelegramContext
+import AnsibleContext
 import InlineStickerLayer
 import LocalAnimations
 

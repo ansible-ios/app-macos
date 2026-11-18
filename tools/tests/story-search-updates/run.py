@@ -6,7 +6,7 @@ import tempfile
 
 root = Path(__file__).resolve().parents[3]
 parser = argparse.ArgumentParser()
-parser.add_argument('--source', type=Path, default=root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift')
+parser.add_argument('--source', type=Path, default=root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/StoryListContext.swift')
 args = parser.parse_args()
 source = args.source.read_text()
 def block(text, marker, offset=0):
@@ -20,11 +20,11 @@ context = context.replace('private ', '').replace('final class Impl {', 'final c
 fixture = fixture.replace('__CONTEXT__', context)
 helpers = [block(source, marker) for marker in ['private func _internal_storyEntityFileIds(', 'private func _internal_storyEntityFiles(', 'private func _internal_prunedStoryEntityFiles(', 'private func _internal_engineStoryWithViews(', 'private func _internal_engineStoryWithReaction(', 'private func _internal_mappedStoryViews(']]
 fixture = fixture.replace('__HELPERS__', '\n'.join(helpers))
-stories = (root / 'submodules/telegram-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Stories.swift').read_text()
+stories = (root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Messages/Stories.swift').read_text()
 fixture = fixture.replace('__REACTION_REDUCER__', block(stories, 'func _internal_updateStoryViewsForMyReaction(')).replace('__VIEWS_EMPTY__', block(stories, 'public var isEmpty: Bool {').replace('public ', ''))
 with tempfile.TemporaryDirectory(prefix='story-search-updates-') as directory:
     path = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (path / 'Package.swift').write_text('// swift-tools-version:5.9\nimport PackageDescription\nlet package = Package(name: "StorySearchUpdates", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ' + dependency + ')], targets: [.testTarget(name: "StorySearchUpdatesTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])\n')
     (path / 'Tests').mkdir(); (path / 'Tests/StorySearchUpdatesTests.swift').write_text(fixture)
     raise SystemExit(subprocess.run(['swift', 'test', '--package-path', str(path), '--disable-sandbox', '--jobs', '4']).returncode)

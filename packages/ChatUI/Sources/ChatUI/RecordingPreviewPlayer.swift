@@ -4,7 +4,7 @@ import TGUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TelegramMedia
+import AnsibleMedia
 import ObjcUtils
 import TGVideoCameraMovie
 import AVFoundation

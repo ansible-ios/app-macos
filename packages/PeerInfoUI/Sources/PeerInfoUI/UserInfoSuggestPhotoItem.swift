@@ -3,11 +3,11 @@ import TelegramCore
 import SwiftSignalKit
 import Postbox
 import TGUIKit
-import TelegramMedia
+import AnsibleMedia
 import Cocoa
-import TelegramContext
-import TelegramUtils
-import TelegramTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleTheme
 import Localization
 import GeneralRows
 import AvatarUI

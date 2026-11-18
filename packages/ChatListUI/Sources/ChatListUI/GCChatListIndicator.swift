@@ -1,5 +1,5 @@
 import Cocoa
-import TelegramUtils
+import AnsibleUtils
 import QuartzCore
 import TGUIKit
 import SwiftSignalKit

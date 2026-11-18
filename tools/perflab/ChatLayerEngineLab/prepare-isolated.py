@@ -39,7 +39,7 @@ manifest = re.sub(r'(path: ")([^"]+)', lambda match: match[1] + str((kit / match
 (kit_copy / 'Package.swift').write_text(manifest)
 path = output / 'Package.swift'
 source = path.read_text().replace('../../../packages/TGUIKit', str(kit_copy))
-source = source.replace('../../../submodules/telegram-ios/submodules/SSignalKit', str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+source = source.replace('../../../submodules/ansible-ios/submodules/SSignalKit', str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
 path.write_text(source)
 (output / 'tguikit-snapshot.json').write_text(json.dumps(hashes, indent=2) + '\n')
 print(output)

@@ -6,10 +6,10 @@ import Postbox
 import InAppSettings
 import ColorPalette
 import Localization
-import TelegramTheme
-import TelegramContext
-import TelegramUtils
-import TelegramMediaUtils
+import AnsibleTheme
+import AnsibleContext
+import AnsibleUtils
+import AnsibleMediaUtils
 import ChatModeTypes
 import ChatHistoryModel
 import ChatUI

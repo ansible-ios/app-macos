@@ -3,8 +3,8 @@ import Cocoa
 import TGUIKit
 import TelegramCore
 import Postbox
-import TelegramContext
-import TelegramTheme
+import AnsibleContext
+import AnsibleTheme
 import AvatarUI
 
 public struct GiveawayChannel {

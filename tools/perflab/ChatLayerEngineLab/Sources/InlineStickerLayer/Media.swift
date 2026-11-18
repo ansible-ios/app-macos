@@ -1,6 +1,6 @@
 import Cocoa
 import TGUIKit
-import TelegramContext
+import AnsibleContext
 import InputView
 
 public enum PlayPolicy: Equatable { case loop, once }

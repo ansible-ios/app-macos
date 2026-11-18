@@ -37,7 +37,7 @@ parts['__VISIBLE_READ_IDS__'] = section(controller, '    private func visibleMes
 parts['__CANCEL_FOCUS__'] = section(controller, '    private func cancelMessageFocus()', '    public func clearReplyStack()') if '    private func cancelMessageFocus()' in controller else '    func cancelMessageFocus() { messageIndexDisposable.set(nil) }'
 with tempfile.TemporaryDirectory(prefix='chat-message-focus-') as directory:
     directory = Path(directory)
-    dependency = json.dumps(str(root / 'submodules/telegram-ios/submodules/SSignalKit'))
+    dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
     (directory / 'Package.swift').write_text('''// swift-tools-version:5.9
 import PackageDescription
 let package = Package(name: "ChatMessageFocus", platforms: [.macOS(.v10_13)], dependencies: [.package(path: ''' + dependency + ''')], targets: [.testTarget(name: "ChatMessageFocusTests", dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit")], path: "Tests")])

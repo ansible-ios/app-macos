@@ -7,17 +7,17 @@ import TGUIKit
 import SwiftSignalKit
 import TGModernGrowingTextView
 import InputView
-import TelegramMedia
-import TelegramMediaResources
+import AnsibleMedia
+import AnsibleMediaResources
 import ArchiveUtils
 import ChatHistoryModel
 import InputTextView
 import Localization
 import MessageUtils
-import TelegramContext
-import TelegramMediaUtils
-import TelegramTheme
-import TelegramUtils
+import AnsibleContext
+import AnsibleMediaUtils
+import AnsibleTheme
+import AnsibleUtils
 import InlineStickerLayer
 
 
