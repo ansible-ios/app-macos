@@ -135,6 +135,9 @@ public final class ChatGiveawayGiftRowItem : ChatRowItem {
     }
     
     public var giftAnimation: LocalAnimatedSticker {
+        if let amount = data.starsAmount {
+            return LocalAnimatedSticker.bestForStarsGift(Int64(amount))
+        }
         switch data.months {
         case 12:
             return LocalAnimatedSticker.premium_gift_12

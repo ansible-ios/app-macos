@@ -129,14 +129,8 @@ public final class ChatGiveawayResultRowItem : ChatRowItem {
             default:
                 return LocalAnimatedSticker.premium_gift_3
             }
-        case .stars(let amount):
-            if amount <= 1000 {
-                return LocalAnimatedSticker.premium_gift_3
-            } else if amount < 2500 {
-                return LocalAnimatedSticker.premium_gift_6
-            } else {
-                return LocalAnimatedSticker.premium_gift_12
-            }
+        case let .stars(amount):
+            return LocalAnimatedSticker.bestForStarsGift(Int64(amount))
         }
     }
     

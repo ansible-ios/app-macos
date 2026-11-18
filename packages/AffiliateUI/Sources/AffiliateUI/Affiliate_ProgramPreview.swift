@@ -12,10 +12,8 @@ import GeneralRows
 import InputDataUI
 import AvatarUI
 import AlertsUI
-import LocalAnimations
 import SceneEffects
 import ObjcUtils
-import InlineStickerLayer
 import AppAnalytics
 
 private final class HeaderItem : GeneralRowItem {
@@ -323,14 +321,12 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         rows.append(.init(left: .init(.initialize(string: strings().affiliateProgramMonthlyText, color: theme.colors.text, font: .normal(.text))), right: .init(name: .init(.initialize(string: count.formattedWithSeparator, color: theme.colors.text, font: .normal(.text)), maximumNumberOfLines: 1))))
     }
     
+    let amount = "\(state.program.revenue.stringValue) \(strings().starListTelegramStars)"
+    let revenueText = strings().affiliateProgramDailyRevenueText(amount).replacingOccurrences(of: "#", with: "")
     let revenueAttr = NSMutableAttributedString()
-    revenueAttr.append(string: state.program.revenue.stringValue, color: theme.colors.text, font: .normal(.text))
-    revenueAttr.append(string: " " + clown, font: .normal(.text))
-    revenueAttr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
-    
-    let revenueLayout: TextViewLayout = .init(revenueAttr, maximumNumberOfLines: 1)
-    
-    rows.append(.init(left: .init(.initialize(string: strings().affiliateProgramDailyRevenueText(state.program.revenue.stringValue), color: theme.colors.text, font: .normal(.text)), maximumNumberOfLines: 1), right: .init(name: revenueLayout)))
+    revenueAttr.append(string: revenueText, color: theme.colors.text, font: .normal(.text))
+    revenueAttr.detectBoldColorInString(with: .medium(.text))
+    rows.append(.init(left: nil, right: .init(name: TextViewLayout(revenueAttr))))
 
     
     entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: .init("stats"), equatable: .init(state), comparable: nil, item: { initialSize, stableId in
