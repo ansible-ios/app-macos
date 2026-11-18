@@ -309,10 +309,10 @@ public class AnimatedStickerPreviewModalView : View, ModalPreviewControllerView 
             let data: Signal<MediaResourceData, NoError>
             if let resource = reference.media.resource as? LocalBundleResource {
                 data = Signal { subscriber in
-                    if let path = Bundle.main.path(forResource: resource.name, ofType: resource.ext), let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: [.mappedRead]) {
-                        subscriber.putNext(MediaResourceData(path: path, offset: 0, size: Int64(data.count), complete: true))
-                        subscriber.putCompletion()
+                    if let data = resource.bundleData {
+                        subscriber.putNext(data)
                     }
+                    subscriber.putCompletion()
                     return EmptyDisposable
                 }
             } else {

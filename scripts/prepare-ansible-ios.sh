@@ -11,10 +11,10 @@ fi
 
 case "$#:${1:-}" in
     0:)
-        patches="ansible-ios-macos.patch ansible-network.patch ansible-media.patch ansible-sticker-upload.patch"
+        patches="ansible-ios-macos.patch ansible-network.patch ansible-media.patch ansible-sticker-upload.patch ansible-sticker-playback.patch"
         ;;
     1:--reverse)
-        patches="ansible-sticker-upload.patch ansible-media.patch ansible-network.patch ansible-ios-macos.patch"
+        patches="ansible-sticker-playback.patch ansible-sticker-upload.patch ansible-media.patch ansible-network.patch ansible-ios-macos.patch"
         ;;
     *)
         printf 'Usage: %s [--reverse]\n' "$0" >&2
@@ -25,9 +25,16 @@ esac
 for name in $patches; do
     patch="$scripts_dir/$name"
     if [ "$#" -eq 0 ]; then
+        if [ "$name" = ansible-media.patch ] &&
+            git -C "$ios" apply --unidiff-zero --reverse --check "$scripts_dir/ansible-sticker-playback.patch" 2>/dev/null &&
+            git -C "$ios" apply --unidiff-zero --reverse --check --exclude='*/SyncCore_TelegramMediaFile.swift' "$patch" 2>/dev/null; then
+            continue
+        fi
         if git -C "$ios" apply --unidiff-zero --reverse --check "$patch" 2>/dev/null; then
             continue
         fi
+    elif [ "$name" = ansible-sticker-playback.patch ] && git -C "$ios" apply --unidiff-zero --check "$scripts_dir/ansible-media.patch" 2>/dev/null; then
+        continue
     elif git -C "$ios" apply --unidiff-zero --check "$patch" 2>/dev/null; then
         continue
     fi

@@ -403,6 +403,12 @@ public class LocalBundleResource: TelegramMediaResource {
     public var path: String? {
         return Bundle.main.path(forResource: name, ofType: ext)
     }
+
+    public var bundleData: MediaResourceData? {
+        guard let path = path, let attributes = try? FileManager.default.attributesOfItem(atPath: path),
+              let size = attributes[.size] as? NSNumber else { return nil }
+        return MediaResourceData(path: path, offset: 0, size: size.int64Value, complete: true)
+    }
 }
 
 

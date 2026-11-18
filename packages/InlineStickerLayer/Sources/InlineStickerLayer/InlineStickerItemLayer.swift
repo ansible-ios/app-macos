@@ -766,10 +766,10 @@ public final class InlineStickerItemLayer : SimpleLayer {
             let data: Signal<MediaResourceData, NoError>
             if let resource = file.resource as? LocalBundleResource {
                 data = Signal { subscriber in
-                    if let path = Bundle.main.path(forResource: resource.name, ofType: resource.ext), let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: [.mappedRead]) {
-                        subscriber.putNext(MediaResourceData(path: path, offset: 0, size: Int64(data.count), complete: true))
-                        subscriber.putCompletion()
+                    if let data = resource.bundleData {
+                        subscriber.putNext(data)
                     }
+                    subscriber.putCompletion()
                     return EmptyDisposable
                 } |> runOn(resourcesQueue)
             } else {

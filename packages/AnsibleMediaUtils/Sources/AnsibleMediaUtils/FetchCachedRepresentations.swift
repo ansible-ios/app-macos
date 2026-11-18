@@ -382,10 +382,10 @@ private func fetchCachedAnimatedStickerRepresentation(account: Account, resource
     let data: Signal<MediaResourceData, NoError>
     if let resource = resource as? LocalBundleResource {
         data = Signal { subscriber in
-            if let path = Bundle.main.path(forResource: resource.name, ofType: resource.ext), let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: [.mappedRead]) {
-                subscriber.putNext(MediaResourceData(path: path, offset: 0, size: Int64(data.count), complete: true))
-                subscriber.putCompletion()
+            if let data = resource.bundleData {
+                subscriber.putNext(data)
             }
+            subscriber.putCompletion()
             return EmptyDisposable
         }
     } else {
@@ -416,22 +416,12 @@ private func fetchCachedAnimatedStickerRepresentation(account: Account, resource
                     image = convertFromWebP(data)?._cgImage ?? NSImage(data: data)?.cgImage(forProposedRect: nil, context: nil, hints: nil)
                     
                     if image == nil, let data = TGGUnzipData(data, 8 * 1024 * 1024) {
-                        if let json = String(data: transformedWithFitzModifier(data: data, fitzModifier: representation.fitzModifier), encoding: .utf8), json.length > 0 {
-                            let renderer = LottieRenderHooks.shared.makeRenderer(json)
-                            
-                            let s:(w: Int, h: Int) = (w: Int(representation.size.width) * 2, h: Int(representation.size.height) * 2)
-
-                            let bytesPerRow = DeviceGraphicsContextSettings.shared.bytesPerRow(forWidth: s.w)
-                            let bufferSize = s.h * bytesPerRow
-                            let memoryData = malloc(bufferSize)!
-                            let frameData = memoryData.assumingMemoryBound(to: UInt8.self)
-                            
-                            renderer?.renderFrame(with: 0, into: frameData, width: Int32(s.w), height: Int32(s.h), bytesPerRow: Int32(bytesPerRow))
-                            
-                            image = generateImagePixel(representation.size, scale: 2, pixelGenerator: { (_, pixelData, bytesPerRow) in
-                                memcpy(pixelData, frameData, bufferSize)
-                            })
-                            free(memoryData)
+                        if let json = String(data: transformedWithFitzModifier(data: data, fitzModifier: representation.fitzModifier), encoding: .utf8),
+                           let renderer = LottieRenderHooks.shared.makeRenderer(json), renderer.endFrame() > 0 {
+                            let frame = min(max(0, Int32(clamping: representation.frame)), renderer.endFrame() - 1)
+                            image = generateImagePixel(representation.size, scale: 2) { size, pixels, bytesPerRow in
+                                renderer.renderFrame(with: frame, into: pixels, width: Int32(size.width), height: Int32(size.height), bytesPerRow: Int32(bytesPerRow))
+                            }
                         }
                     } else if image != nil {
                         let webp = WebPImageDecoder(data: data, scale: 2.0)
@@ -450,14 +440,12 @@ private func fetchCachedAnimatedStickerRepresentation(account: Account, resource
                     let options = NSMutableDictionary()
                     options.setObject(colorQuality as NSNumber, forKey: kCGImageDestinationLossyCompressionQuality as NSString)
                     CGImageDestinationAddImage(colorDestination, image, options as CFDictionary)
-                    if CGImageDestinationFinalize(colorDestination)  {
-                        try? colorData.write(to: url, options: .atomic)
+                    if CGImageDestinationFinalize(colorDestination), (try? colorData.write(to: url, options: .atomic)) != nil {
                         return .single(.temporaryPath(path))
                     }
-                } else {
-                    return .complete()
                 }
             }
+            return .complete()
         }
         return .never()
     }

@@ -1,0 +1,39 @@
+--- a/submodules/TelegramCore/Sources/SyncCore/SyncCore_TelegramMediaFile.swift
++++ b/submodules/TelegramCore/Sources/SyncCore/SyncCore_TelegramMediaFile.swift
+@@ -659,2 +659,6 @@
+
++private func isLottieStickerMimeType(_ mimeType: String?) -> Bool {
++    return mimeType == "application/x-ansible-sticker" || mimeType == "application/x-tgsticker"
++}
++
+ public final class TelegramMediaFile: Media, Equatable, Codable {
+@@ -986,3 +990,3 @@
+     private var isSecretChatTgs: Bool {
+-        return self.mimeType == "application/x-ansible-sticker" && self.fileId.namespace == Namespaces.Media.CloudSecretFile
++        return isLottieStickerMimeType(self.mimeType) && self.fileId.namespace == Namespaces.Media.CloudSecretFile
+     }
+@@ -1089,6 +1093,3 @@
+         }
+-        if let _ = self.fileName, self.mimeType == "application/x-ansible-sticker" {
+-            return true
+-        }
+-        return false
++        return isLottieStickerMimeType(self.mimeType)
+     }
+@@ -1377,5 +1378,5 @@
+         if let _wrappedFile = self._wrappedFile {
+-            return _wrappedFile.mimeType == "application/x-ansible-sticker" && _wrappedFile.fileId.namespace == Namespaces.Media.CloudSecretFile
+-        }
+-        return self._wrapped!.mimeType == "application/x-ansible-sticker" && self.fileId.namespace == Namespaces.Media.CloudSecretFile
++            return isLottieStickerMimeType(_wrappedFile.mimeType) && _wrappedFile.fileId.namespace == Namespaces.Media.CloudSecretFile
++        }
++        return isLottieStickerMimeType(self._wrapped!.mimeType) && self.fileId.namespace == Namespaces.Media.CloudSecretFile
+     }
+@@ -1515,6 +1516,3 @@
+         }
+-        if self._wrapped!.mimeType == "application/x-ansible-sticker" && self.fileName != nil {
+-            return true
+-        }
+-        return false
++        return isLottieStickerMimeType(self._wrapped!.mimeType)
+     }

@@ -55,7 +55,22 @@ private func decodeDstData(_ data: Data) -> DstData? {
         }
         result[frame] = FrameDst(offset: offset, length: length, finished: finished)
     }
-    return DstData(dest: result, fps: Int32(fps), startFrame: Int32(startFrame), endFrame: Int32(endFrame))
+    guard let fps = Int32(exactly: fps), let start = Int32(exactly: startFrame), let end = Int32(exactly: endFrame) else { return nil }
+    return DstData(dest: result, fps: fps, startFrame: start, endFrame: end)
+}
+
+private func restoredFrameMap(mapPath: String, dataPath: String, bufferSize: Int) -> DstData? {
+    guard let archive = try? Data(contentsOf: URL(fileURLWithPath: mapPath)), !archive.isEmpty,
+          let payload = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSData.self, from: archive),
+          let map = decodeDstData(payload as Data) ?? (try? PropertyListDecoder().decode(DstData.self, from: payload as Data)),
+          map.fps > 0, map.endFrame > map.startFrame,
+          let attributes = try? FileManager.default.attributesOfItem(atPath: dataPath),
+          let length = (attributes[.size] as? NSNumber)?.int64Value else { return nil }
+    for frame in map.dest.values {
+        guard frame.offset >= 0, frame.length > 0, frame.length <= bufferSize,
+              Int64(frame.offset) <= length - Int64(frame.length) else { return nil }
+    }
+    return map
 }
 
 final class TRLotData {
@@ -94,7 +109,7 @@ final class TRLotData {
     
     private var readHandle: FileHandle?
     private var writeHandle: FileHandle?
-    private var isDirty: Bool = false
+    fileprivate var isDirty: Bool = false
     private let key: LottieAnimationEntryKey
     fileprivate let queue: Queue
     
@@ -294,35 +309,11 @@ final class TRLotData {
 
         }
         
-        guard FileManager.default.isReadableFile(atPath: self.mapPath) else {
-            self.map = .init(dest: [:], fps: 0, startFrame: 0, endFrame: 0)
-            self.bufferSize = bufferSize
-            deferr(self)
-            return
-        }
-        
-        guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: self.mapPath) as? Data else {
-            self.map = .init(dest: [:], fps: 0, startFrame: 0, endFrame: 0)
-            self.bufferSize = bufferSize
-            deferr(self)
-            return
-        }
-        if let map = decodeDstData(data) {
-            self.map = map
-            self.bufferSize = bufferSize
-            deferr(self)
-        } else {
-            do {
-                self.map = try PropertyListDecoder().decode(DstData.self, from: data)
-                self.bufferSize = bufferSize
-                deferr(self)
-            } catch {
-                self.map = .init(dest: [:], fps: 0, startFrame: 0, endFrame: 0)
-                self.bufferSize = bufferSize
-                deferr(self)
-            }
-        }
-        
+        self.bufferSize = bufferSize
+        self.map = restoredFrameMap(mapPath: self.mapPath, dataPath: self.dataPath, bufferSize: bufferSize)
+            ?? DstData(dest: [:], fps: 0, startFrame: 0, endFrame: 0)
+        deferr(self)
+
         if !self.map.dest.isEmpty, self.map.dest.filter ({ $0.value.finished }).count == self.map.dest.count {
             self.isFinished = true
             _ = self.finishedFlag.swap(true)
@@ -465,6 +456,7 @@ final class TRLotFileSupplyment {
                         let scratch = self.bufferSize <= TRLotData.transientScratchBufferSize ? nil : self.data.encodeScratchBuffer
                         length = compression_encode_buffer(dst, self.bufferSize, address, self.bufferSize, scratch, COMPRESSION_LZFSE)
                     }
+                    guard length > 0 else { return }
                     let _ = self.data.writeFrame(frame: Int(current.1), data: Data(bytes: dst, count: length))
                 }
             }
@@ -508,7 +500,13 @@ final class TRLotFileSupplyment {
                     do {
                         let unsafePointer = compressed.baseAddress!.assumingMemoryBound(to: UInt8.self)
 
-                        let _ = compression_decode_buffer(address, bufferSize, unsafePointer, compressed.count, self.data.decodeScratchBuffer, COMPRESSION_LZFSE)
+                        guard compression_decode_buffer(address, bufferSize, unsafePointer, compressed.count, self.data.decodeScratchBuffer, COMPRESSION_LZFSE) == bufferSize else {
+                            free(address)
+                            self.lastCompressedFrame = nil
+                            self.data.map.dest.removeValue(forKey: frame)
+                            self.data.isDirty = true
+                            return
+                        }
 
                         if let previous = previous, enableDifference {
                             previous.withUnsafeBytes { pointer in

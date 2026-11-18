@@ -142,7 +142,7 @@ public final class CachedWallpaperRepresentation: CachedMediaResourceRepresentat
 public final class CachedAnimatedStickerRepresentation: CachedMediaResourceRepresentation {
     public var keepDuration: CachedMediaRepresentationKeepDuration = .general
     public var uniqueId: String {
-        let version: Int = 18
+        let version: Int = 19
         if let fitzModifier = self.fitzModifier {
             return "2animated-sticker-v\(version)-\(self.thumb ? 1 : 0)-w:\(size.width)-h:\(size.height)-fitz\(fitzModifier.rawValue)-f\(frame)-m1\(self.isVideo)"
         } else {

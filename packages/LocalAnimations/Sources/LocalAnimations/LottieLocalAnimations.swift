@@ -2,9 +2,8 @@ import Cocoa
 import TelegramCore
 import AnsibleMedia
 import Postbox
+import TGUIKit
 import AnsibleMediaResources
-
-private let version = 1
 
 public enum LocalAnimatedSticker : String {
     case brilliant_static
@@ -423,14 +422,18 @@ public enum LocalAnimatedSticker : String {
     
     case birthday_cake
     
+    private var bundleMediaId: MediaId {
+        return MediaId(namespace: 0, id: Int64(bitPattern: ("local-animation-v1-" + rawValue).persistentHashValue))
+    }
+
     public var file: TelegramMediaFile {
         let resource:LocalBundleResource = LocalBundleResource(name: self.rawValue, ext: "ass")
-        return TelegramMediaFile(fileId: MediaId(namespace: 0, id: MediaId.Id(resource.name.hashValue)), partialReference: nil, resource: resource, previewRepresentations: [], videoThumbnails: [], immediateThumbnailData: nil, mimeType: "application/x-ansible-sticker", size: nil, attributes: [.Sticker(displayText: "", packReference: nil, maskData: nil), .Animated, .FileName(fileName: "ansible-animoji.ass")], alternativeRepresentations: [])
+        return TelegramMediaFile(fileId: bundleMediaId, partialReference: nil, resource: resource, previewRepresentations: [], videoThumbnails: [], immediateThumbnailData: nil, mimeType: "application/x-ansible-sticker", size: nil, attributes: [.Sticker(displayText: "", packReference: nil, maskData: nil), .Animated, .FileName(fileName: "ansible-animoji.ass")], alternativeRepresentations: [])
     }
     
     public var monochromeFile: TelegramMediaFile {
         let resource:LocalBundleResource = LocalBundleResource(name: self.rawValue, ext: "ass")
-        return TelegramMediaFile(fileId: MediaId(namespace: 0, id: MediaId.Id(resource.name.hashValue)), partialReference: nil, resource: resource, previewRepresentations: [], videoThumbnails: [], immediateThumbnailData: nil, mimeType: "application/x-ansible-sticker", size: nil, attributes: [.Sticker(displayText: "", packReference: nil, maskData: nil), .Animated, .FileName(fileName: "ansible-animoji.ass"), .CustomEmoji(isPremium: false, isSingleColor: true, alt: "", packReference: nil)], alternativeRepresentations: [])
+        return TelegramMediaFile(fileId: bundleMediaId, partialReference: nil, resource: resource, previewRepresentations: [], videoThumbnails: [], immediateThumbnailData: nil, mimeType: "application/x-ansible-sticker", size: nil, attributes: [.Sticker(displayText: "", packReference: nil, maskData: nil), .Animated, .FileName(fileName: "ansible-animoji.ass"), .CustomEmoji(isPremium: false, isSingleColor: true, alt: "", packReference: nil)], alternativeRepresentations: [])
     }
     
     public func menuIcon(_ color: NSColor) -> CGImage? {
