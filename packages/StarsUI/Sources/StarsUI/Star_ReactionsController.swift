@@ -245,7 +245,7 @@ private final class HeaderItem : GeneralRowItem {
     }
     
     override var accessibilityValue: String? {
-        let balance = balanceLayout.attributedString.string.replacingOccurrences(of: clown, with: "")
+        let balance = strings().starPurchaseBalance("\(state.myBalance) \(strings().starListTelegramStars)")
         return [info.attributedString.string, balance].joined(separator: ", ")
     }
     
@@ -278,7 +278,8 @@ private final class AcceptView : Control {
         layout.measure(width: item.width - 60)
         
         textView.set(text: layout, context: item.context)
-        setAccessibilityLabel(attr.string.replacingOccurrences(of: clown, with: ""))
+        let sendAmount = strings().starsReactScreenSendOther("", Int(item.state.amount.realValue))
+        setAccessibilityLabel("\(sendAmount) \(strings().starListTelegramStars)")
         
         self.removeAllHandlers()
         self.set(handler: { [weak item] _ in

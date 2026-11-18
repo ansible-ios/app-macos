@@ -1169,7 +1169,8 @@ public class ChatInputView: View, Notifable {
         
         
         if let amount = chatInteraction.presentation.sendPaidMessageStars {
-            return strings().messagePlaceholderPaidMessage(strings().starListItemCountOther(Int(amount.value)))
+            let placeholder = strings().messagePlaceholderPaidMessage(strings().starListItemCountOther(Int(amount.value)))
+            return replacingLegacyCurrencyStar(in: placeholder, with: "")
         }
         
         if case let .thread(mode) = chatInteraction.mode {

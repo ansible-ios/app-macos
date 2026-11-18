@@ -111,7 +111,8 @@ public final class ChatMediaPaidContentItem : ChatRowItem {
         
         if isPreview {
             let attr = NSMutableAttributedString()
-            attr.append(string: strings().paidMediaUnlockForOther(Int(media.amount)), color: .white, font: .medium(.text))
+            let unlock = strings().paidMediaUnlockForOther(Int(media.amount))
+            attr.append(string: replacingLegacyCurrencyStar(in: unlock, with: "#"), color: .white, font: .medium(.text))
             attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: "#")
             
             let textLayout = TextViewLayout(attr)
@@ -521,6 +522,8 @@ private final class Button: Control {
     
     func update(textLayout: TextViewLayout, item: ChatMediaPaidContentItem, context: any AccountContextProtocol) {
         self.item = item
+        setAccessibilityRole(.button)
+        setAccessibilityLabel(textLayout.attributedString.string.replacingOccurrences(of: clown, with: strings().starListTelegramStars))
         self.textView.set(text: textLayout, context: context)
         self.setFrameSize(NSMakeSize(textView.frame.width + 20, 30))
     }
