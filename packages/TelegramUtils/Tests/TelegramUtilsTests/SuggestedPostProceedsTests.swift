@@ -5,7 +5,7 @@ import XCTest
 final class SuggestedPostProceedsTests: XCTestCase {
     private func proceeds(_ units: Int64, currency: CurrencyAmount.Currency, rate: Int32) -> Int64 {
         let offer = CurrencyAmount(amount: StarsAmount(value: units, nanos: 0), currency: currency)
-        return offer.suggestedPostProceeds(permille: rate).amount.value
+        return offer.recipientProceeds(permille: rate).amount.value
     }
 
     func testDiamondRecipientShareRoundsUpToWholeDiamonds() {

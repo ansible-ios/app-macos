@@ -1516,7 +1516,7 @@ public final class ChatInteraction : InterfaceObserver  {
                             let paidAmount = amount.flatMap { $0.amount.value > 0 ? $0 : nil }
                             let rateKey = paidAmount?.currency == .ton ? "ton_suggested_post_commission_permille" : "stars_suggested_post_commission_permille"
                             let permille = min(1000, max(0, context.appConfiguration.getGeneralValue(rateKey, orElse: 850)))
-                            let formatted = paidAmount?.suggestedPostProceeds(permille: permille).suggestedPostAmountText ?? strings().chatServiceSuggestPostHeaderPriceFree
+                            let formatted = paidAmount?.recipientProceeds(permille: permille).suggestedPostAmountText ?? strings().chatServiceSuggestPostHeaderPriceFree
 
                             if attribute.timestamp == nil {
                                 let infoText = TextViewLayout(

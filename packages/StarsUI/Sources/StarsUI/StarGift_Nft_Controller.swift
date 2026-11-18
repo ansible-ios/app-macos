@@ -151,45 +151,15 @@ public func makeGiftOriginalInfoString(_ gift: StarGift.UniqueGift, peerMap:[Pee
 
 extension StarGift.UniqueGift {
     public func resellStars(_ context: (any AccountContextProtocol)) -> CurrencyAmount? {
-        let value = self.resellAmounts?.first(where: { value in
-            if value.currency == .stars {
-               return true
-            } else {
-                return false
-            }
-        })
-        
-        if let value {
-            return value
-        } else if let ton = self.resellAmounts?.first(where: { $0.currency == .ton}) {
-            let usd_rate = context.appConfiguration.getGeneralValueDouble("ton_usd_rate", orElse: 3)
-            let tons = Double(ton.amount.value) / 1_000_000_000
-            let usdAmount = tons * usd_rate
-            return .init(amount: .init(value: Int64(usdAmount / 0.013), nanos: 0), currency: .stars)
-        } else {
-            return nil
-        }
+        return resell
     }
-    
+
     public var resell: CurrencyAmount? {
-        return self.resellAmounts?.first(where: { value in
-            if value.currency == (resellForTonOnly ? .ton : .stars) {
-               return true
-            } else {
-                return false
-            }
-        })
+        guard !resellForTonOnly else { return nil }
+        return resellAmounts?.first { $0.currency == .stars }
     }
     
-    public func resell(_ currency: CurrencyAmount.Currency) -> CurrencyAmount? {
-        return self.resellAmounts?.first(where: { value in
-            if value.currency == currency {
-               return true
-            } else {
-                return false
-            }
-        })
-    }
+
 }
 
 public func getTransferAttributesRows(gift unique: StarGift.UniqueGift, includeValue: Bool = true) -> [InputDataTableBasedItem.Row] {
@@ -228,7 +198,7 @@ public func getTransferAttributesRows(gift unique: StarGift.UniqueGift, includeV
 
 public final class TransferUniqueGiftHeaderItem : GeneralRowItem {
     public enum TransferType : Equatable {
-        case buy(onlyTon: Bool)
+        case buy
         case transfer
         case sell
         case resetTheme
@@ -239,29 +209,8 @@ public final class TransferUniqueGiftHeaderItem : GeneralRowItem {
     fileprivate let context: (any AccountContextProtocol)
     fileprivate let layout: TextViewLayout
     
-    fileprivate let onlyTonLayout: TextViewLayout?
-    
-    fileprivate let buyForStars: TextViewLayout?
-    fileprivate let buyForTon: TextViewLayout?
-    
-    fileprivate var buyForSelected: CurrencyAmount.Currency = .stars
-    fileprivate let callback: (CurrencyAmount.Currency)->Void
-    
-    public func toggleBuySelected() {
-        switch buyForSelected {
-        case .stars:
-            buyForSelected = .ton
-        case .ton:
-            buyForSelected = .stars
-        }
-        callback(buyForSelected)
-        self.redraw(animated: true)
-    }
-    
-    public init(_ initialSize: NSSize, stableId: AnyHashable, gift: StarGift.UniqueGift, toPeer: EnginePeer, context: (any AccountContextProtocol), transferType: TransferType = .transfer, buyForSelected: CurrencyAmount.Currency = .stars, callback: @escaping (CurrencyAmount.Currency)->Void = { _ in }) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, gift: StarGift.UniqueGift, toPeer: EnginePeer, context: (any AccountContextProtocol), transferType: TransferType = .transfer) {
         self.transferType = transferType
-        self.buyForSelected = buyForSelected
-        self.callback = callback
         self.gift = gift
         self.toPeer = toPeer
         self.context = context
@@ -303,58 +252,7 @@ public final class TransferUniqueGiftHeaderItem : GeneralRowItem {
         }
         layout.measure(width: .greatestFiniteMagnitude)
 
-        if case let .buy(onlyTon) = transferType {
-            if onlyTon {
-                self.onlyTonLayout = .init(
-                    .initialize(
-                        string: strings().starGiftSellAlertOnlyTon,
-                        color: theme.colors.listGrayText,
-                        font: .normal(.text)
-                    ),
-                    alignment: .center
-                )
-                self.onlyTonLayout?.measure(width: 200)
-                
-                self.buyForTon = nil
-                self.buyForStars = nil
-                
-            } else {
-                self.onlyTonLayout = nil
-                
-                self.buyForTon = .init(
-                    .initialize(
-                        string: strings().starGiftSellAlertPayInTon,
-                        color: theme.colors.listGrayText,
-                        font: .normal(.text)
-                    ),
-                    alignment: .center
-                )
-                self.buyForStars = .init(
-                    .initialize(
-                        string: strings().starGiftSellAlertPayInStars,
-                        color: theme.colors.listGrayText,
-                        font: .normal(.text)
-                    ),
-                    alignment: .center
-                )
-                
-                self.buyForStars?.measure(width: .greatestFiniteMagnitude)
-                self.buyForTon?.measure(width: .greatestFiniteMagnitude)
-            }
-        } else {
-            self.onlyTonLayout = nil
-            self.buyForTon = nil
-            self.buyForStars = nil
-        }
-
-        var height: CGFloat = 120
-        if let onlyTonLayout {
-            height += onlyTonLayout.layoutSize.height
-        } else if let _ = buyForTon {
-            height += 20
-        }
-        
-        super.init(initialSize, height: height, stableId: stableId)
+        super.init(initialSize, height: 120, stableId: stableId)
     }
     
     public override var accessibilityLabel: String? {
@@ -376,16 +274,10 @@ private final class TransferHeaderView : GeneralRowView {
     private let chevron: ImageView = ImageView()
     private let container = View()
     private let textView = TextView()
-    private var headerTextView: TextView?
-    
     private let transferContainer = View()
     
     private let backgroundView = UniqueGiftBackgroundView(frame: NSMakeRect(0, 0, 60, 60))
     
-    private var buyFor: View?
-    private var buyForTon: TextView?
-    private var buyForStars: TextView?
-
     
     public required init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -454,97 +346,6 @@ private final class TransferHeaderView : GeneralRowView {
         (giftView as? StarsStickerView)?.updateStarsSticker(file: item.gift.file!, size: giftView.frame.size, context: item.context, colors: [], playback: .standard, animated: animated)
         
         
-        if let onlyTonLayout = item.onlyTonLayout {
-            let current: TextView
-            if let view = self.headerTextView {
-                current = view
-            } else {
-                current = TextView()
-                self.headerTextView = current
-                self.addSubview(current)
-                current.userInteractionEnabled = false
-                current.isSelectable = false
-                current.disableBackgroundDrawing = true
-                current.isEventLess = true
-            }
-            current.update(onlyTonLayout)
-        } else if let view = self.headerTextView {
-            performSubviewRemoval(view, animated: animated)
-            self.headerTextView = nil
-        }
-        
-        if let buyForTon = item.buyForTon, let buyForStars = item.buyForStars {
-            let current: View
-            if let view = buyFor {
-                current = view
-            } else {
-                current = View(frame: NSMakeRect(0, 0, frame.width, 26))
-                addSubview(current)
-                self.buyFor = current
-            }
-            
-            let tonCurrent: TextView
-            if let view = self.buyForTon {
-                tonCurrent = view
-            } else {
-                tonCurrent = TextView()
-                self.buyForTon = tonCurrent
-                current.addSubview(tonCurrent)
-                tonCurrent.isSelectable = false
-                tonCurrent.scaleOnClick = true
-            }
-            tonCurrent.update(buyForTon)
-            tonCurrent.setFrameSize(NSMakeSize(buyForTon.layoutSize.width + 20, 26))
-            tonCurrent.layer?.cornerRadius = tonCurrent.frame.height / 2
-
-            let starsCurrent: TextView
-            if let view = self.buyForStars {
-                starsCurrent = view
-            } else {
-                starsCurrent = TextView()
-                self.buyForStars = starsCurrent
-                current.addSubview(starsCurrent)
-                starsCurrent.isSelectable = false
-                starsCurrent.scaleOnClick = true
-            }
-            starsCurrent.update(buyForStars)
-            starsCurrent.setFrameSize(NSMakeSize(buyForStars.layoutSize.width + 20, 26))
-            starsCurrent.layer?.cornerRadius = starsCurrent.frame.height / 2
-            
-            
-            starsCurrent.setSingle(handler: { [weak item, weak self] _ in
-                if item?.buyForSelected != .stars {
-                    item?.toggleBuySelected()
-                    if let buyForTon = self?.buyForTon {
-                        tooltip(for: buyForTon, text: strings().starSellTonTooltip)
-                    }
-                }
-                
-            }, for: .Click)
-            
-            tonCurrent.setSingle(handler: { [weak item] _ in
-                if item?.buyForSelected != .ton {
-                    item?.toggleBuySelected()
-                }
-            }, for: .Click)
-            
-            switch item.buyForSelected {
-            case .stars:
-                starsCurrent.set(background: theme.colors.listGrayText.withAlphaComponent(0.2), for: .Normal)
-                tonCurrent.set(background: .clear, for: .Normal)
-            case .ton:
-                tonCurrent.set(background: theme.colors.listGrayText.withAlphaComponent(0.2), for: .Normal)
-                starsCurrent.set(background: .clear, for: .Normal)
-            }
-        } else {
-            if let view = self.buyFor {
-                performSubviewRemoval(view, animated: animated)
-                self.buyFor = nil
-                self.buyForTon = nil
-                self.buyForStars = nil
-            }
-        }
-        
         if let content = UniqueGiftBackgroundContent(gift: item.gift) {
             self.backgroundView.isHidden = false
             self.backgroundView.update(context: item.context, content: content, style: .item(giftCenterY: 30, cornerRadius: 10))
@@ -565,24 +366,7 @@ private final class TransferHeaderView : GeneralRowView {
         }
         
         
-        headerTextView?.centerX(y: 0)
-        
-        var offset: CGFloat = 15
-        
-        if let headerTextView {
-            offset += headerTextView.frame.height
-        }
-        if let buyFor {
-            offset += buyFor.frame.height
-        }
-        
-        if let buyFor {
-            buyFor.frame = bounds.focusX(NSMakeSize(buyFor.subviewsWidthSize.width, 26), y: 0)
-            if let buyForTon, let buyForStars {
-                buyForStars.centerY(x: 0)
-                buyForTon.centerY(x: buyForStars.frame.maxX)
-            }
-        }
+        let offset: CGFloat = 15
         
         container.centerX(y: offset)
         transferContainer.centerY(x: 0)
@@ -984,11 +768,7 @@ private final class HeaderItem : GeneralRowItem {
         } else if state.canManage, let uniqueGift = state.gift.unique, let resell = uniqueGift.resell {
             let attr = NSMutableAttributedString()
             attr.append(string: strings().starNftOnSaleFor(clown_space), color: darkPalette.background, font: .medium(.title))
-            if resell.currency == .ton {
-                attr.insertEmbedded(.embedded(name: "Icon_Ton_Currency", color: darkPalette.background, resize: false), for: clown)
-            } else {
-                attr.insertEmbedded(.embedded(name: XTR_ICON, color: darkPalette.background, resize: false), for: clown)
-            }
+            attr.insertEmbedded(.embedded(name: XTR_ICON, color: darkPalette.background, resize: false), for: clown)
             attr.append(string: resell.formatted, color: darkPalette.background, font: .medium(.title))
             self.onSaleLayout = .init(attr, alignment: .center)
             self.onSaleLayout?.measure(width: .greatestFiniteMagnitude)
@@ -1914,8 +1694,6 @@ private struct State : Equatable {
     
     public var starsState: StarsContext.State?
     public var myBalance: StarsAmount?
-    public var myTonBalance: StarsAmount?
-    public var tonAddress: String? = nil
     public var savedToProfileOverride: Bool?
 
     public var profileVisibility: (reference: StarGiftReference, saved: Bool)? {
@@ -1928,7 +1706,6 @@ private struct State : Equatable {
     public var owner: EnginePeer?
     public var ownerName: String?
     
-    public var isTonOwner: Bool = false
     
     public var accountPeerId: PeerId
     
@@ -2255,7 +2032,6 @@ private struct State : Equatable {
     }
 }
 
-private let _id_ton_input = InputDataIdentifier("_id_ton_input")
 
 private let _id_craft_features = InputDataIdentifier("_id_craft_features")
 private let _id_craft_start_button = InputDataIdentifier("_id_craft_start_button")
@@ -2274,21 +2050,9 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         }))
     }
 
-    let explorerUrl = arguments.context.appConfiguration.getStringValue("ton_blockchain_explorer_url", orElse: "https://tonviewer.com/")
-
-    
-   
-    
     if !state.source.isCrafting {
-        if let gift = state.gift.unique, let address = gift.giftAddress, gift.hostPeerId != nil {
-            entries.append(.desc(sectionId: sectionId, index: index, text: .markdown(strings().starGiftOnBlockchainInfo, linkHandler: { _ in
-                LinkHooks.shared.openExternalLink(explorerUrl + address, false)
-            }), data: .init(color: theme.colors.grayText, viewType: .singleItem, centerViewAlignment: true, alignment: .center)))
-            index += 1
-        } else {
-            entries.append(.sectionId(sectionId, type: .legacy))
-            sectionId += 1
-        }
+        entries.append(.sectionId(sectionId, type: .legacy))
+        sectionId += 1
     }
 
     switch state.source {
@@ -2395,18 +2159,12 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                     return (NSAttributedString.Key.link.rawValue, contents)
                 }))
             } else if let ownerName = state.ownerName {
-                if state.isTonOwner {
-                    ownerAttr = parseMarkdownIntoAttributedString("[\(ownerName.prefixWithDots(20, mode: .middle))](\(ownerName))", attributes: MarkdownAttributes(body: MarkdownAttributeSet(font: .medium(.text), textColor: theme.colors.text), bold: MarkdownAttributeSet(font: .bold(.text), textColor: theme.colors.text), link: MarkdownAttributeSet(font: .medium(.text), textColor: theme.colors.accentIcon), linkAttribute: { contents in
-                        return (NSAttributedString.Key.link.rawValue, contents)
-                    }))
-                } else {
-                    ownerAttr = .initialize(string: ownerName, color: theme.colors.text, font: .normal(.text))
-                }
+                ownerAttr = .initialize(string: ownerName, color: theme.colors.text, font: .normal(.text))
             } else {
                 ownerAttr = .init()
             }
             
-            let ownerText: TextViewLayout = .init(ownerAttr, maximumNumberOfLines: state.isTonOwner ? 3 : 1, alwaysStaticItems: true)
+            let ownerText: TextViewLayout = .init(ownerAttr, maximumNumberOfLines: 1, alwaysStaticItems: true)
             
             ownerText.interactions.processURL = { url in
                 if let url = url as? String, !url.isEmpty {
@@ -2797,12 +2555,11 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
     }
     
     
-    actionsDisposable.add(combineLatest(context.starsContext.state, context.tonContext.state, authorPeer).startStrict(next: { state, tonState, authorPeer in
+    actionsDisposable.add(combineLatest(context.starsContext.state, authorPeer).startStrict(next: { state, authorPeer in
         updateState { current in
             var current = current
             current.starsState = state
             current.myBalance = state?.balance
-            current.myTonBalance = tonState?.balance
             current.author = authorPeer
             return current
         }
@@ -2839,7 +2596,6 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
                         var current = current
                         current.owner = peer
                         current.ownerName = nil
-                        current.isTonOwner = false
                         return current
                     }
                 }))
@@ -2849,17 +2605,15 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
                         var current = current
                         current.owner = peer
                         current.ownerName = name
-                        current.isTonOwner = false
                         return current
                     }
                 }))
-            case let .address(address):
+            case .address:
                 ownerDisposable.set(ownerPeerId.startStandalone(next: { peer in
                     updateState { current in
                         var current = current
                         current.owner = peer
-                        current.ownerName = address
-                        current.isTonOwner = true
+                        current.ownerName = nil
                         return current
                     }
                 }))
@@ -2953,20 +2707,18 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
    
     
     
-    let buyResellGift:(StarGift.UniqueGift, EnginePeer, BotPaymentForm, BotPaymentForm)->Void = { [weak giftsContext, weak resaleContext] gift, peer, starsForm, tonForm in
+    let buyResellGift:(StarGift.UniqueGift, EnginePeer, BotPaymentForm)->Void = { [weak giftsContext, weak resaleContext] gift, peer, form in
 
-        var buyForSelected: CurrencyAmount.Currency = gift.resellForTonOnly ? .ton : .stars
         var modifyData:((ModalAlertData)->Void)? = nil
         
         var getData:()->ModalAlertData = { .init(info: "") }
         
         getData = {
             
-            let form = buyForSelected == .stars ? starsForm : tonForm
             
             let fullAmount = form.invoice.prices.first?.amount ?? 0
             
-            let resellAmount = CurrencyAmount(amount: StarsAmount.init(value: fullAmount, nanos: 0), currency: buyForSelected)
+            let resellAmount = CurrencyAmount(amount: StarsAmount.init(value: fullAmount, nanos: 0), currency: .stars)
             
             let resellStars = resellAmount.fullyFormatted
             
@@ -2978,10 +2730,7 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
             }
             
             return ModalAlertData(title: strings().starNftGiftConfirmTitle, info: infoText, description: nil, ok: strings().starNftGiftConfirmOk(resellStars), options: [], mode: .confirm(text: strings().modalCancel, isThird: false), header: .init(id: "header", value: { initialSize, stableId, presentation in
-                return TransferUniqueGiftHeaderItem(initialSize, stableId: stableId, gift: gift, toPeer: peer, context: context, transferType: .buy(onlyTon: gift.resellForTonOnly), buyForSelected: buyForSelected, callback: { updated in
-                    buyForSelected = updated
-                    modifyData?(getData())
-                })
+                return TransferUniqueGiftHeaderItem(initialSize, stableId: stableId, gift: gift, toPeer: peer, context: context, transferType: .buy)
             }), footer: ModalAlertData.Footer.init(id: "footer", value: { initialSize, stableId, presentation, action in
                 return InputDataTableBasedItem(initialSize, stableId: stableId, viewType: .singleItem, rows: getTransferAttributesRows(gift: gift), context: context)
             }))
@@ -3002,7 +2751,6 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
             }
             let hideName = !isMessagePublic
 
-            let form = buyForSelected == .stars ? starsForm : tonForm
 
             let fullAmount = form.invoice.prices.first?.amount ?? 0
 
@@ -3022,31 +2770,21 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
                 }))
             }
 
-            let balanceSignal: Signal<StarsAmount, NoError>
-            if buyForSelected == .stars {
-                balanceSignal = context.starsContext.state |> take(1) |> map { $0?.balance ?? .init(value: 0, nanos: 0) }
-            } else {
-                balanceSignal = context.tonContext.state |> take(1) |> map { $0?.balance ?? .init(value: 0, nanos: 0) }
-            }
+            let balanceSignal = context.starsContext.state |> take(1) |> map { $0?.balance ?? StarsAmount(value: 0, nanos: 0) }
 
             _ = (balanceSignal |> deliverOnMainQueue).startStandalone(next: { myBalance in
                 if fullAmount > myBalance.value {
-                    if buyForSelected == .ton {
-                        StarsHooks.shared.openTonBalance(context, fullAmount - myBalance.value)
-                    } else {
-                        presentStarsTopUp(fullAmount)
-                    }
+                    presentStarsTopUp(fullAmount)
                     return
                 }
-                let source: BotPaymentInvoiceSource = .starGiftResale(slug: gift.slug, toPeerId: toPeerId, ton: buyForSelected == .ton, hideName: hideName, text: text, entities: entities)
+                let source: BotPaymentInvoiceSource = .starGiftResale(slug: gift.slug, toPeerId: toPeerId, ton: false, hideName: hideName, text: text, entities: entities)
 
                 let performPayment: (Int64, Int64) -> Void = { formId, paidAmount in
-                    let resellAmount = CurrencyAmount(amount: StarsAmount.init(value: paidAmount, nanos: 0), currency: buyForSelected).fullyFormatted
+                    let resellAmount = CurrencyAmount(amount: StarsAmount.init(value: paidAmount, nanos: 0), currency: .stars).fullyFormatted
                     _ = showModalProgress(signal: context.engine.payments.sendStarsPaymentForm(formId: formId, source: source), for: window).startStandalone(next: { result in
                         switch result {
                         case let .done(_, _, purchasedGift):
                             context.starsContext.load(force: true)
-                            context.tonContext.load(force: true)
                             context.starsSubscriptionsContext.load(force: true)
                             giftsContext?.removeStarGift(gift: .unique(gift))
                             resaleContext?.removeStarGift(gift: .unique(gift))
@@ -3096,17 +2834,16 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
                 // Always re-fetch before paying: the cached form can be stale (the composer or a
                 // top-up may have taken minutes), and only a fresh invoice makes the price check real.
                 _ = showModalProgress(signal: context.engine.payments.fetchBotPaymentForm(source: source, themeParams: nil), for: window).startStandalone(next: { freshForm in
-                    let freshAmount = freshForm.invoice.prices.first?.amount ?? 0
+                    guard freshForm.invoice.currency == "XTR", freshForm.invoice.prices.count == 1, let freshAmount = freshForm.invoice.prices.first?.amount, freshAmount > 0 else {
+                        showModalText(for: window, text: strings().unknownError)
+                        return
+                    }
                     if freshAmount > fullAmount {
-                        let previousAmount = CurrencyAmount(amount: StarsAmount.init(value: fullAmount, nanos: 0), currency: buyForSelected).fullyFormatted
-                        let updatedAmount = CurrencyAmount(amount: StarsAmount.init(value: freshAmount, nanos: 0), currency: buyForSelected).fullyFormatted
+                        let previousAmount = CurrencyAmount(amount: StarsAmount.init(value: fullAmount, nanos: 0), currency: .stars).fullyFormatted
+                        let updatedAmount = CurrencyAmount(amount: StarsAmount.init(value: freshAmount, nanos: 0), currency: .stars).fullyFormatted
                         verifyAlert(for: window, header: strings().starNftGiftPriceChangedTitle, information: strings().starNftGiftPriceChangedInfo(previousAmount, updatedAmount), ok: strings().starNftGiftPriceChangedOK(updatedAmount), successHandler: { _ in
                             if freshAmount > myBalance.value {
-                                if buyForSelected == .ton {
-                                    StarsHooks.shared.openTonBalance(context, freshAmount - myBalance.value)
-                                } else {
-                                    presentStarsTopUp(freshAmount)
-                                }
+                                presentStarsTopUp(freshAmount)
                             } else {
                                 performPayment(freshForm.id, freshAmount)
                             }
@@ -3292,7 +3029,7 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
                     return
                 }
                 
-                showModal(with: sellNft(context: context, resellPrice: gift.resellAmounts, defaultCurrency: gift.resellForTonOnly ? .ton : .stars, gift: gift, callback: { value in
+                showModal(with: sellNft(context: context, resellPrice: gift.resellAmounts, gift: gift, callback: { value in
                     if !updatePrice {
                         let data = ModalAlertData(title: nil, info: strings().giftSellConfirmText(gift.title, value.fullyFormatted), description: nil, ok: strings().giftSellConfirmTitle, options: [], mode: .confirm(text: strings().modalCancel, isThird: false), header: .init(id: "header", value: { initialSize, stableId, presentation in
                             return TransferUniqueGiftHeaderItem(initialSize, stableId: stableId, gift: gift, toPeer: .init(context.myPeer!), context: context, transferType: .sell)
@@ -3450,7 +3187,7 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
         
         
     }, makeOffer: { gift, peer in
-        showModal(with: StarNftOfferController(context: context, peer: peer, defaultCurrency: .stars, gift: gift, callback: { amount, duration, stars in
+        showModal(with: StarNftOfferController(context: context, peer: peer, gift: gift, callback: { amount, duration, stars in
             _ = showModalProgress(signal: context.engine.payments.sendStarGiftOffer(peerId: peer.id, slug: gift.slug, amount: amount, duration: duration, allowPaidStars: stars?.value), for: window).startStandalone()
         }), for: window)
     }, showModels: { gift, defaultSection in
@@ -3693,14 +3430,6 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
         }
     }
     
-    controller.updateDatas = { data in
-        updateState { current in
-            var current = current
-            current.tonAddress = data[_id_ton_input]?.stringValue
-            return current
-        }
-        return .none
-    }
     
     getController = { [weak controller] in
         return controller
@@ -3775,22 +3504,16 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
                 let signal = context.engine.data.get(TelegramEngine.EngineData.Item.Peer.Peer(id: toPeerId)) |> deliverOnMainQueue
 
 
-                let formAndMaybeValidatedInfo_Stars: Signal<BotPaymentForm?, BotPaymentFormRequestError>
-                if gift.resellForTonOnly {
-                    formAndMaybeValidatedInfo_Stars = .single(nil)
-                } else {
-                    formAndMaybeValidatedInfo_Stars = context.engine.payments.fetchBotPaymentForm(source: .starGiftResale(slug: gift.slug, toPeerId: toPeerId, ton: false, hideName: true, text: nil, entities: nil), themeParams: nil)
-                    |> map(Optional.init)
-                }
+                let paymentForm = context.engine.payments.fetchBotPaymentForm(source: .starGiftResale(slug: gift.slug, toPeerId: toPeerId, ton: false, hideName: true, text: nil, entities: nil), themeParams: nil)
 
-
-
-                let formAndMaybeValidatedInfo_Ton = context.engine.payments.fetchBotPaymentForm(source: .starGiftResale(slug: gift.slug, toPeerId: toPeerId, ton: true, hideName: true, text: nil, entities: nil), themeParams: nil)
-
-                _ = showModalProgress(signal: combineLatest(signal |> castError(BotPaymentFormRequestError.self), formAndMaybeValidatedInfo_Stars, formAndMaybeValidatedInfo_Ton), for: window).start(next: { peer, starsForm, tonForm in
+            _ = showModalProgress(signal: combineLatest(signal |> castError(BotPaymentFormRequestError.self), paymentForm), for: window).start(next: { peer, form in
+                    guard form.invoice.currency == "XTR", form.invoice.prices.count == 1, (form.invoice.prices.first?.amount ?? 0) > 0 else {
+                        showModalText(for: window, text: strings().unknownError)
+                        return
+                    }
                     if let peer {
                         ModalMorphContextSource.withSource(morphSource) {
-                            buyResellGift(gift, peer, starsForm ?? tonForm, tonForm)
+                            buyResellGift(gift, peer, form)
                         }
                     }
 
@@ -3982,12 +3705,10 @@ private final class SellNftArguments {
     public let context: (any AccountContextProtocol)
     public let interactions: TextView_Interactions
     public let updateState: (Updated_ChatTextInputState)->Void
-    public let toggleOnlyTon:()->Void
-    public init(context: (any AccountContextProtocol), interactions: TextView_Interactions, updateState: @escaping(Updated_ChatTextInputState)->Void, toggleOnlyTon:@escaping()->Void) {
+    public init(context: (any AccountContextProtocol), interactions: TextView_Interactions, updateState: @escaping(Updated_ChatTextInputState)->Void) {
         self.context = context
         self.interactions = interactions
         self.updateState = updateState
-        self.toggleOnlyTon = toggleOnlyTon
     }
 }
 
@@ -4007,12 +3728,7 @@ private final class SellNftInputItem : GeneralRowItem {
         self.interactions = arguments.interactions
         
         let usd_rate: Double
-        switch currency {
-        case .ton:
-            usd_rate = arguments.context.appConfiguration.getGeneralValueDouble("ton_usd_rate", orElse: 3)
-        case .stars:
-            usd_rate = arguments.context.appConfiguration.getGeneralValueDouble("star_usd_rate", orElse: 0.013)
-        }
+        usd_rate = arguments.context.appConfiguration.getGeneralValueDouble("star_usd_rate", orElse: 0.013)
         
         let string: String
         if value > 0 {
@@ -4074,12 +3790,7 @@ private final class SellNftInputView : GeneralRowView {
             
             let attr = NSMutableAttributedString()
             attr.append(string: clown)
-            switch item.currency {
-            case .stars:
-                attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
-            case .ton:
-                attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.ton_logo.file), for: clown)
-            }
+            attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
             
             let layout = TextViewLayout(attr)
             layout.measure(width: .greatestFiniteMagnitude)
@@ -4107,27 +3818,15 @@ private final class SellNftInputView : GeneralRowView {
             let min_resale: Double
             let max_resale: Double
             
-            switch item.currency {
-            case .stars:
-                min_resale = item.arguments.context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_min", orElse: 125)
-                max_resale = item.arguments.context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_max", orElse: 100000)
-            case .ton:
-                min_resale = item.arguments.context.appConfiguration.getGeneralValueDouble("ton_stargift_resale_amount_min", orElse: 1) / 1_000_000_000
-                max_resale = item.arguments.context.appConfiguration.getGeneralValueDouble("ton_stargift_resale_amount_max", orElse: 10000) / 1_000_000_000
-            }
+            min_resale = item.arguments.context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_min", orElse: 125)
+            max_resale = item.arguments.context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_max", orElse: 100000)
 
             inputView.inputTheme = inputView.inputTheme.withUpdatedTextColor(Double(value) < min_resale || Double(value) > max_resale ? theme.colors.redUI : theme.colors.text)
             
             
-            let currency = item.currency
             item.interactions.filterEvent = { event in
                 if let chars = event.characters {
-                    switch currency {
-                    case .stars:
-                        return chars.trimmingCharacters(in: CharacterSet(charactersIn: "1234567890\u{7f}")).isEmpty
-                    case .ton:
-                        return chars.trimmingCharacters(in: CharacterSet(charactersIn: "1234567890.\u{7f}")).isEmpty
-                    }
+                    return chars.trimmingCharacters(in: CharacterSet(charactersIn: "1234567890\u{7f}")).isEmpty
                 } else {
                     return false
                 }
@@ -4229,29 +3928,13 @@ private struct SellNftState : Equatable {
     public var inputState: Updated_ChatTextInputState = .init()
     
     public var floorPrice: Int64?
-    public var currency: CurrencyAmount.Currency = .stars
+    public let currency: CurrencyAmount.Currency = .stars
     
-    public var value: Double {
-        if let value = Double(inputState.string) {
-            return value
-        } else {
-            return 0
-        }
-    }
-    
-    public func amount(comission: Double) -> StarsAmount {
-        switch self.currency {
-        case .stars:
-            return .init(value: Int64((Double(self.value) * comission)), nanos: 0)
-        case .ton:
-            return .init(value: Int64((Double(self.value) * comission) * 1_000_000_000), nanos: 0)
-        }
-    }
+    public var value: Int64 { Int64(inputState.string) ?? 0 }
 }
 
 
 private let _id_input = InputDataIdentifier("_id_input")
-private let _id_only_ton = InputDataIdentifier("_id_only_ton")
 
 private func sellNftEntries(_ state: SellNftState, arguments: SellNftArguments) -> [InputDataEntry] {
     var entries: [InputDataEntry] = []
@@ -4264,7 +3947,7 @@ private func sellNftEntries(_ state: SellNftState, arguments: SellNftArguments) 
     index += 1
     
     entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_input, equatable: .init(state), comparable: nil, item: { initialSize, stableId in
-        return SellNftInputItem(initialSize, stableId: stableId, value: state.value, inputState: state.inputState, currency: state.currency, arguments: arguments)
+        return SellNftInputItem(initialSize, stableId: stableId, value: Double(state.value), inputState: state.inputState, currency: state.currency, arguments: arguments)
     }))
     
     let comission: Double = arguments.context.marketComission(state.currency)
@@ -4275,7 +3958,7 @@ private func sellNftEntries(_ state: SellNftState, arguments: SellNftArguments) 
     if state.value == 0 {
         text = strings().starNftSellInfo("\(comission * 100.0)%")
     } else {
-        let currency = CurrencyAmount(amount: state.amount(comission: comission), currency: state.currency)
+        let currency = CurrencyAmount(amount: .init(value: state.value, nanos: 0), currency: .stars).recipientProceeds(permille: Int32((min(1, max(0, comission)) * 1000).rounded()))
         text = strings().starNftSellInfo(currency.fullyFormatted)
     }
     
@@ -4284,37 +3967,6 @@ private func sellNftEntries(_ state: SellNftState, arguments: SellNftArguments) 
     index += 1
     
     entries.append(.sectionId(sectionId, type: .normal))
-    sectionId += 1
-    
-    
-    entries.append(.general(
-        sectionId: sectionId,
-        index: index,
-        value: .none,
-        error: nil,
-        identifier: _id_only_ton,
-        data: .init(
-            name: strings().starSellTonOnlyAccept,
-            color: theme.colors.text,
-            type: .switchable(state.currency == .ton),
-            viewType: .singleItem,
-            action: arguments.toggleOnlyTon,
-            autoswitch: false
-        )
-    ))
-
-    entries.append(.desc(
-        sectionId: sectionId,
-        index: index,
-        text: .plain(strings().starSellTonDescription),
-        data: .init(
-            color: theme.colors.listGrayText,
-            viewType: .textBottomItem
-        )
-    ))
-
-    index += 1
-
 
     
     if let floorPrice = state.floorPrice {
@@ -4338,32 +3990,14 @@ private func sellNftEntries(_ state: SellNftState, arguments: SellNftArguments) 
 
 
 
-private func sellNft(context: (any AccountContextProtocol), resellPrice: [CurrencyAmount]?, defaultCurrency: CurrencyAmount.Currency, gift: StarGift.UniqueGift, callback:@escaping(CurrencyAmount)->Void) -> InputDataModalController {
+private func sellNft(context: (any AccountContextProtocol), resellPrice: [CurrencyAmount]?, gift: StarGift.UniqueGift, callback:@escaping(CurrencyAmount)->Void) -> InputDataModalController {
     
     
     
-    let string: String
-    if let resellPrice = resellPrice {
-        switch defaultCurrency {
-        case .stars:
-            if let currency = resellPrice.first(where: { $0.currency == .stars }) {
-                string = currency.formatted.numeralFormat()
-            } else {
-                string = ""
-            }
-        case .ton:
-            if let currency = resellPrice.first(where: { $0.currency == .ton }) {
-                string = currency.formatted.numeralFormat()
-            } else {
-                string = ""
-            }
-        }
-    } else {
-        string = ""
-    }
+    let string = resellPrice?.first(where: { $0.currency == .stars }).map { String($0.amount.value) } ?? ""
     
     
-    let initialState = SellNftState(inputState: .init(inputText: .initialize(string: string)), currency: defaultCurrency)
+    let initialState = SellNftState(inputState: .init(inputText: .initialize(string: string)))
 
     let statePromise = ValuePromise(initialState, ignoreRepeated: true)
     let stateValue = Atomic(value: initialState)
@@ -4372,7 +4006,6 @@ private func sellNft(context: (any AccountContextProtocol), resellPrice: [Curren
     }
     
 
-    let usd_rate = context.appConfiguration.getGeneralValueDouble("ton_usd_rate", orElse: 3)
 
 
     let actionsDisposable = DisposableSet()
@@ -4391,33 +4024,7 @@ private func sellNft(context: (any AccountContextProtocol), resellPrice: [Curren
 
     let arguments = SellNftArguments(context: context, interactions: interactions, updateState: { [weak interactions] value in
         
-        let currency = stateValue.with { $0.currency }
-        
-        var inputState: Updated_ChatTextInputState
-        let doubleValue = Double(value.string) ?? 0
-        let doubleString = "\(doubleValue)"
-        let hasNonDigits = doubleString.range(of: ".0") != nil ? false : "\(doubleValue)".rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) != nil
-
-        if hasNonDigits {
-
-            switch currency {
-            case .stars:
-                let safeInt: Int64
-                if !doubleValue.isFinite || doubleValue < 0 {
-                    safeInt = 0
-                } else if doubleValue >= Double(Int64.max) {
-                    safeInt = Int64.max
-                } else {
-                    safeInt = Int64(doubleValue)
-                }
-                inputState = .init(inputText: .initialize(string: "\(safeInt)"))
-            case .ton:
-                inputState = .init(inputText: .initialize(string: "\((doubleValue * 100).rounded() / 100)"))
-            }
-        } else {
-            inputState = value
-        }
-        
+        let inputState = value
         
         interactions?.update { _ in
             return inputState
@@ -4427,56 +4034,6 @@ private func sellNft(context: (any AccountContextProtocol), resellPrice: [Curren
             current.inputState = inputState
             return current
         }
-    }, toggleOnlyTon: { [weak interactions] in
-        
-        let currency = stateValue.with { $0.currency }
-        var value = stateValue.with { $0.value }
-        
-//        let min_ton_resale_stars = context.appConfiguration.getGeneralValueDouble("stars_stargift_stars_ton_min", orElse: 5000)
-//
-//        
-//        if currency == .stars, value < min_ton_resale_stars {
-//            showModalText(for: context.window, text: strings().starGiftNftResaleMinPriceInfo(strings().starListItemCountOther(Int(min_ton_resale_stars))))
-//            return
-//        }
-        
-        updateState { current in
-            var current = current
-            switch current.currency {
-            case .ton:
-                current.currency = .stars
-            case .stars:
-                current.currency = .ton
-            }
-            return current
-        }
-        var inputState: Updated_ChatTextInputState
-
-        switch currency {
-        case .ton:
-            if value > 0 {
-                let usd = Double(value) * usd_rate
-                value = Double(Int64(usd / 0.013))
-            }
-            inputState = .init(inputText: .initialize(string: "\(Int64(value))"))
-        case .stars:
-            if value > 0 {
-                let usd = Double(value) * 0.013
-                value = ((usd / usd_rate) * 100).rounded() / 100
-            }
-            inputState = .init(inputText: .initialize(string: "\(value)"))
-        }
-        
-        
-        interactions?.update { _ in
-            return inputState
-        }
-        updateState { current in
-            var current = current
-            current.inputState = inputState
-            return current
-        }
-        
     })
     
     let signal = statePromise.get() |> deliverOnPrepareQueue |> map { state in
@@ -4497,14 +4054,8 @@ private func sellNft(context: (any AccountContextProtocol), resellPrice: [Curren
         let max_resale: Double
         
         
-        switch state.currency {
-        case .stars:
-            min_resale = context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_min", orElse: 125)
-            max_resale = context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_max", orElse: 100000)
-        case .ton:
-            min_resale = context.appConfiguration.getGeneralValueDouble("ton_stargift_resale_amount_min", orElse: 1) / 1_000_000_000
-            max_resale = context.appConfiguration.getGeneralValueDouble("ton_stargift_resale_amount_max", orElse: 10000) / 1_000_000_000
-        }
+        min_resale = context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_min", orElse: 125)
+        max_resale = context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_max", orElse: 100000)
         
         let value = state.value
         
@@ -4513,7 +4064,7 @@ private func sellNft(context: (any AccountContextProtocol), resellPrice: [Curren
         }
         
                 
-        callback(.init(amount: state.amount(comission: 1), currency: state.currency))
+        callback(.init(amount: .init(value: state.value, nanos: 0), currency: state.currency))
         close?()
         return .none
     }

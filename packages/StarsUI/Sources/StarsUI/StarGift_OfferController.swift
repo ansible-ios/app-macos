@@ -35,167 +35,16 @@ import AppAnalytics
 
 
 
-private final class HeaderItem : GeneralRowItem {
-    
-    fileprivate let context: (any AccountContextProtocol)
-    
-    fileprivate let buyForStars: TextViewLayout
-    fileprivate let buyForTon: TextViewLayout
-    
-    fileprivate var buyForSelected: CurrencyAmount.Currency = .stars
-    fileprivate let callback: (CurrencyAmount.Currency)->Void
-    
-    public func toggleBuySelected() {
-        switch buyForSelected {
-        case .stars:
-            buyForSelected = .ton
-        case .ton:
-            buyForSelected = .stars
-        }
-        callback(buyForSelected)
-        self.redraw(animated: true)
-    }
-    
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: (any AccountContextProtocol), buyForSelected: CurrencyAmount.Currency, callback: @escaping (CurrencyAmount.Currency)->Void = { _ in }) {
-        self.buyForSelected = buyForSelected
-        self.callback = callback
-        self.context = context
-        
-        self.buyForTon = .init(
-            .initialize(
-                string: "Offer TON",
-                color: theme.colors.listGrayText,
-                font: .normal(.text)
-            ),
-            alignment: .center
-        )
-        self.buyForStars = .init(
-            .initialize(
-                string: "Offer Diamonds",
-                color: theme.colors.listGrayText,
-                font: .normal(.text)
-            ),
-            alignment: .center
-        )
-        
-        self.buyForStars.measure(width: .greatestFiniteMagnitude)
-        self.buyForTon.measure(width: .greatestFiniteMagnitude)
-        
-        super.init(initialSize, height: 26, stableId: stableId)
-    }
-    
-    override var accessibilityLabel: String? {
-        switch buyForSelected {
-        case .stars:
-            return buyForStars.attributedString.string
-        case .ton:
-            return buyForTon.attributedString.string
-        }
-    }
-    
-    public override func viewClass() -> AnyClass {
-        return HeaderItemView.self
-    }
-}
-
-private final class HeaderItemView : GeneralRowView {
-
-    private let buyFor: View
-    private let buyForTon: TextView = TextView()
-    private let buyForStars: TextView = TextView()
-
-    
-    public required init(frame frameRect: NSRect) {
-        buyFor = View(frame: NSMakeRect(0, 0, frameRect.width, 26))
-        super.init(frame: frameRect)
-        addSubview(buyFor)
-        
-        buyForTon.isSelectable = false
-        buyForStars.isSelectable = false
-        
-        buyFor.addSubview(buyForTon)
-        buyFor.addSubview(buyForStars)
-    }
-    
-    public override var backdorColor: NSColor {
-        return .clear
-    }
-    
-    public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    public override func set(item: TableRowItem, animated: Bool) {
-                
-        super.set(item: item, animated: animated)
-        
-        guard let item = item as? HeaderItem else {
-            return
-        }
-        let tonCurrent = self.buyForTon
-        let starsCurrent = self.buyForStars
-                
-                        
-        tonCurrent.update(item.buyForTon)
-        tonCurrent.setFrameSize(NSMakeSize(item.buyForTon.layoutSize.width + 20, 26))
-        tonCurrent.layer?.cornerRadius = tonCurrent.frame.height / 2
-
-        
-        starsCurrent.update(item.buyForStars)
-        starsCurrent.setFrameSize(NSMakeSize(item.buyForStars.layoutSize.width + 20, 26))
-        starsCurrent.layer?.cornerRadius = starsCurrent.frame.height / 2
-        
-        
-        starsCurrent.setSingle(handler: { [weak item] _ in
-            if item?.buyForSelected != .stars {
-                item?.toggleBuySelected()
-            }
-        }, for: .Click)
-        
-        tonCurrent.setSingle(handler: { [weak item] _ in
-            if item?.buyForSelected != .ton {
-                item?.toggleBuySelected()
-            }
-        }, for: .Click)
-        
-        switch item.buyForSelected {
-        case .stars:
-            starsCurrent.set(background: theme.colors.listGrayText.withAlphaComponent(0.2), for: .Normal)
-            tonCurrent.set(background: .clear, for: .Normal)
-        case .ton:
-            tonCurrent.set(background: theme.colors.listGrayText.withAlphaComponent(0.2), for: .Normal)
-            starsCurrent.set(background: .clear, for: .Normal)
-        }
-       
-                
-        needsLayout = true
-        
-        
-    }
-    
-    public override func layout() {
-        super.layout()
-        
-        buyFor.frame = bounds.focusX(NSMakeSize(buyFor.subviewsWidthSize.width, 26), y: 0)
-        buyForStars.centerY(x: 0)
-        buyForTon.centerY(x: buyForStars.frame.maxX)
-
-    }
-}
-
-
 private final class Arguments {
     public let context: (any AccountContextProtocol)
     public let interactions: TextView_Interactions
     public let updateState: (Updated_ChatTextInputState)->Void
     public let setDuration:(Int)->Void
-    public let updateCurrency:(CurrencyAmount.Currency)->Void
-    public init(context: (any AccountContextProtocol), interactions: TextView_Interactions, updateState: @escaping(Updated_ChatTextInputState)->Void, setDuration:@escaping(Int)->Void, updateCurrency:@escaping(CurrencyAmount.Currency)->Void) {
+    public init(context: (any AccountContextProtocol), interactions: TextView_Interactions, updateState: @escaping(Updated_ChatTextInputState)->Void, setDuration:@escaping(Int)->Void) {
         self.context = context
         self.interactions = interactions
         self.updateState = updateState
         self.setDuration = setDuration
-        self.updateCurrency = updateCurrency
     }
 }
 
@@ -216,13 +65,7 @@ private final class StarNftOfferInputItem : GeneralRowItem {
         self.minStarAmount = minStarAmount
         self.interactions = arguments.interactions
         
-        let usd_rate: Double
-        switch currency {
-        case .ton:
-            usd_rate = arguments.context.appConfiguration.getGeneralValueDouble("ton_usd_rate", orElse: 3)
-        case .stars:
-            usd_rate = arguments.context.appConfiguration.getGeneralValueDouble("star_usd_rate", orElse: 0.013)
-        }
+        let usd_rate = arguments.context.appConfiguration.getGeneralValueDouble("star_usd_rate", orElse: 0.013)
         
         let string: String
         if value > 0 {
@@ -243,7 +86,7 @@ private final class StarNftOfferInputItem : GeneralRowItem {
     }
     
     override var accessibilityLabel: String? {
-        return currency == .stars ? strings().fragmentStarAmountPlaceholder : strings().voiceOverCommonTonAmount
+        return strings().fragmentStarAmountPlaceholder
     }
     
     override var accessibilityValue: String? {
@@ -284,12 +127,7 @@ private final class StarNftOfferInputView : GeneralRowView {
             
             let attr = NSMutableAttributedString()
             attr.append(string: clown)
-            switch item.currency {
-            case .stars:
-                attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
-            case .ton:
-                attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.ton_logo.file), for: clown)
-            }
+            attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
             
             let layout = TextViewLayout(attr)
             layout.measure(width: .greatestFiniteMagnitude)
@@ -299,7 +137,7 @@ private final class StarNftOfferInputView : GeneralRowView {
             
 
             
-            inputView.placeholder = item.currency == .stars ? strings().fragmentStarAmountPlaceholder : "TON Amount"
+            inputView.placeholder = strings().fragmentStarAmountPlaceholder
             
             inputView.context = item.arguments.context
             inputView.interactions.max_height = 500
@@ -317,27 +155,15 @@ private final class StarNftOfferInputView : GeneralRowView {
             let min_resale: Double
             let max_resale: Double
             
-            switch item.currency {
-            case .stars:
-                min_resale = item.minStarAmount.flatMap(Double.init) ?? item.arguments.context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_min", orElse: 125)
-                max_resale = item.arguments.context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_max", orElse: 100000)
-            case .ton:
-                min_resale = item.arguments.context.appConfiguration.getGeneralValueDouble("ton_stargift_resale_amount_min", orElse: 1) / 1_000_000_000
-                max_resale = item.arguments.context.appConfiguration.getGeneralValueDouble("ton_stargift_resale_amount_max", orElse: 10000) / 1_000_000_000
-            }
+            min_resale = item.minStarAmount.flatMap(Double.init) ?? item.arguments.context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_min", orElse: 125)
+            max_resale = item.arguments.context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_max", orElse: 100000)
 
             inputView.inputTheme = inputView.inputTheme.withUpdatedTextColor(Double(value) < min_resale || Double(value) > max_resale ? theme.colors.redUI : theme.colors.text)
             
             
-            let currency = item.currency
             item.interactions.filterEvent = { event in
                 if let chars = event.characters {
-                    switch currency {
-                    case .stars:
-                        return chars.trimmingCharacters(in: CharacterSet(charactersIn: "1234567890\u{7f}")).isEmpty
-                    case .ton:
-                        return chars.trimmingCharacters(in: CharacterSet(charactersIn: "1234567890.\u{7f}")).isEmpty
-                    }
+                    return chars.trimmingCharacters(in: CharacterSet(charactersIn: "1234567890\u{7f}")).isEmpty
                 } else {
                     return false
                 }
@@ -439,32 +265,18 @@ private struct StarNftOfferState : Equatable {
     public var inputState: Updated_ChatTextInputState = .init()
     
     public var floorPrice: Int64?
-    public var currency: CurrencyAmount.Currency = .stars
+    public let currency: CurrencyAmount.Currency = .stars
     public var offerDuration: Int = 48 * 60 * 60
     
     public var myBalance: StarsAmount?
-    public var myTonBalance: StarsAmount?
     public var sendPaidMessageseStars: StarsAmount?
     
     public var peer: EnginePeer
     public var gift: StarGift.UniqueGift
 
-    public var value: Double {
-        if let value = Double(inputState.string) {
-            return value
-        } else {
-            return 0
-        }
-    }
-    
-    public func amount() -> StarsAmount {
-        switch self.currency {
-        case .stars:
-            return .init(value: Int64((Double(self.value))), nanos: 0)
-        case .ton:
-            return .init(value: Int64((Double(self.value)) * 1_000_000_000), nanos: 0)
-        }
-    }
+    public var value: Int64 { Int64(inputState.string) ?? 0 }
+
+    public func amount() -> StarsAmount { .init(value: value, nanos: 0) }
     
     public var okText: String {
         let amount = self.amount()
@@ -479,7 +291,7 @@ private struct StarNftOfferState : Equatable {
 
 
 private let _id_input = InputDataIdentifier("_id_input")
-private let _id_only_ton = InputDataIdentifier("_id_only_ton")
+private let _id_duration = InputDataIdentifier("_id_duration")
 
 private func entries(_ state: StarNftOfferState, arguments: Arguments) -> [InputDataEntry] {
     var entries: [InputDataEntry] = []
@@ -488,20 +300,11 @@ private func entries(_ state: StarNftOfferState, arguments: Arguments) -> [Input
     var index: Int32 = 0
     
     
-    entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: .init("header"), equatable: .init(state), comparable: nil, item: { initialSize, stableId in
-        return HeaderItem(initialSize, stableId: stableId, context: arguments.context, buyForSelected: state.currency, callback: { currency in
-            arguments.updateCurrency(currency)
-        })
-    }))
-    
-    entries.append(.sectionId(sectionId, type: .customModern(10)))
-    sectionId += 1
-    
     entries.append(.desc(sectionId: sectionId, index: index, text: .plain("DIAMONDS TO OFFER"), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))
     index += 1
     
     entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_input, equatable: .init(state), comparable: nil, item: { initialSize, stableId in
-        return StarNftOfferInputItem(initialSize, stableId: stableId, minStarAmount: state.gift.minOfferStars, value: state.value, inputState: state.inputState, currency: state.currency, arguments: arguments)
+        return StarNftOfferInputItem(initialSize, stableId: stableId, minStarAmount: state.gift.minOfferStars, value: Double(state.value), inputState: state.inputState, currency: state.currency, arguments: arguments)
     }))
     
     let giftString = "\(state.gift.title) #\(state.gift.number)"
@@ -532,7 +335,7 @@ private func entries(_ state: StarNftOfferState, arguments: Arguments) -> [Input
         index: index,
         value: .none,
         error: nil,
-        identifier: _id_only_ton,
+        identifier: _id_duration,
         data: .init(
             name: strings().starGiftOfferDuration,
             color: theme.colors.text,
@@ -541,12 +344,7 @@ private func entries(_ state: StarNftOfferState, arguments: Arguments) -> [Input
         )
     ))
     
-    let currency: String
-    if state.currency == .ton {
-        currency = strings().starGiftOfferCurrencyTon
-    } else {
-        currency = strings().starGiftOfferCurrencyStars
-    }
+    let currency = strings().starGiftOfferCurrencyStars
 
     entries.append(.desc(
         sectionId: sectionId,
@@ -572,10 +370,10 @@ private func entries(_ state: StarNftOfferState, arguments: Arguments) -> [Input
 
 
 
-public func StarNftOfferController(context: (any AccountContextProtocol), peer: EnginePeer, defaultCurrency: CurrencyAmount.Currency, gift: StarGift.UniqueGift, callback:@escaping(CurrencyAmount, Int32, StarsAmount?)->Void) -> InputDataModalController {
+public func StarNftOfferController(context: (any AccountContextProtocol), peer: EnginePeer, gift: StarGift.UniqueGift, callback:@escaping(CurrencyAmount, Int32, StarsAmount?)->Void) -> InputDataModalController {
     
     
-    let initialState = StarNftOfferState(inputState: .init(inputText: .initialize(string: "")), currency: defaultCurrency, peer: peer, gift: gift)
+    let initialState = StarNftOfferState(inputState: .init(inputText: .initialize(string: "")), peer: peer, gift: gift)
 
     let statePromise = ValuePromise(initialState, ignoreRepeated: true)
     let stateValue = Atomic(value: initialState)
@@ -584,7 +382,6 @@ public func StarNftOfferController(context: (any AccountContextProtocol), peer: 
     }
     
 
-    let usd_rate = context.appConfiguration.getGeneralValueDouble("ton_usd_rate", orElse: 3)
 
 
     let actionsDisposable = DisposableSet()
@@ -603,12 +400,11 @@ public func StarNftOfferController(context: (any AccountContextProtocol), peer: 
     let sendPaidMessageseStars = context.engine.data.subscribe(TelegramEngine.EngineData.Item.Peer.SendPaidMessageStars(id: peer.id))
     
     
-    actionsDisposable.add(combineLatest(context.engine.payments.cachedStarGifts(), context.starsContext.state, context.tonContext.state, sendPaidMessageseStars).start(next: { gifts, starsState, tonState, sendPaidMessageseStars in
+    actionsDisposable.add(combineLatest(context.engine.payments.cachedStarGifts(), context.starsContext.state, sendPaidMessageseStars).start(next: { gifts, starsState, sendPaidMessageseStars in
         updateState { current in
             var current = current
             current.sendPaidMessageseStars = sendPaidMessageseStars
             current.myBalance = starsState?.balance
-            current.myTonBalance = tonState?.balance
             current.floorPrice = gifts?.first(where: { $0.generic?.title == gift.title })?.generic?.availability?.minResaleStars
             return current
         }
@@ -616,34 +412,7 @@ public func StarNftOfferController(context: (any AccountContextProtocol), peer: 
 
     let arguments = Arguments(context: context, interactions: interactions, updateState: { [weak interactions] value in
         
-        let currency = stateValue.with { $0.currency }
-        
-        var inputState: Updated_ChatTextInputState
-        let doubleValue = Double(value.string) ?? 0
-        let doubleString = "\(doubleValue)"
-        let hasNonDigits = doubleString.range(of: ".0") != nil ? false : "\(doubleValue)".rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) != nil
-
-        if hasNonDigits {
-
-            switch currency {
-            case .stars:
-                let safeInt: Int64
-                if !doubleValue.isFinite || doubleValue < 0 {
-                    safeInt = 0
-                } else if doubleValue >= Double(Int64.max) {
-                    safeInt = Int64.max
-                } else {
-                    safeInt = Int64(doubleValue)
-                }
-                inputState = .init(inputText: .initialize(string: "\(safeInt)"))
-            case .ton:
-                inputState = .init(inputText: .initialize(string: "\((doubleValue * 100).rounded() / 100)"))
-            }
-        } else {
-            inputState = value
-        }
-        
-        
+        let inputState = value
         interactions?.update { _ in
             return inputState
         }
@@ -658,37 +427,6 @@ public func StarNftOfferController(context: (any AccountContextProtocol), peer: 
             current.offerDuration = duration
             return current
         }
-    }, updateCurrency: { [weak interactions] currency in
-        
-        let prevCurrency = stateValue.with { $0.currency }
-        var value = stateValue.with { $0.value }
-                
-        let inputState: Updated_ChatTextInputState
-        switch prevCurrency {
-        case .ton:
-            if value > 0 {
-                let usd = Double(value) * usd_rate
-                value = Double(Int64(usd / 0.013))
-            }
-            inputState = .init(inputText: .initialize(string: "\(Int64(value))"))
-        case .stars:
-            if value > 0 {
-                let usd = Double(value) * 0.013
-                value = ((usd / usd_rate) * 100).rounded() / 100
-            }
-            inputState = .init(inputText: .initialize(string: "\(value)"))
-        }
-        
-        interactions?.update { _ in
-            return inputState
-        }
-        
-        updateState { current in
-            var current = current
-            current.currency = currency
-            return current
-        }
-        
     })
     
     let signal = statePromise.get() |> deliverOnPrepareQueue |> map { state in
@@ -704,14 +442,8 @@ public func StarNftOfferController(context: (any AccountContextProtocol), peer: 
         let min_resale: Double
         let max_resale: Double
         
-        switch state.currency {
-        case .stars:
-            min_resale = gift.minOfferStars.flatMap(Double.init) ?? context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_min", orElse: 125)
-            max_resale = context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_max", orElse: 100000)
-        case .ton:
-            min_resale = context.appConfiguration.getGeneralValueDouble("ton_stargift_resale_amount_min", orElse: 1) / 1_000_000_000
-            max_resale = context.appConfiguration.getGeneralValueDouble("ton_stargift_resale_amount_max", orElse: 10000) / 1_000_000_000
-        }
+        min_resale = gift.minOfferStars.flatMap(Double.init) ?? context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_min", orElse: 125)
+        max_resale = context.appConfiguration.getGeneralValueDouble("stars_stargift_resale_amount_max", orElse: 100000)
         
         let value = state.value
         
@@ -720,22 +452,13 @@ public func StarNftOfferController(context: (any AccountContextProtocol), peer: 
         }
         
         
-        let myBalance: StarsAmount
-        if state.currency == .stars {
-            myBalance = state.myBalance ?? .init(value: 0, nanos: 0)
-        } else {
-            myBalance = state.myTonBalance ?? .init(value: 0, nanos: 0)
-        }
+        let myBalance = state.myBalance ?? StarsAmount(value: 0, nanos: 0)
         
         let fullAmount = CurrencyAmount(amount: state.amount(), currency: state.currency)
 
         if fullAmount.amount.value > myBalance.value {
-            if state.currency == .ton {
-                StarsHooks.shared.openTonBalance(context, fullAmount.amount.value - myBalance.value)
-            } else {
-                let sourceValue: Star_ListScreenSource =  .buy(suffix: nil, amount: fullAmount.amount.value)
-                showModal(with: Star_ListScreen(context: context, source: sourceValue), for: window)
-            }
+            let sourceValue: Star_ListScreenSource = .buy(suffix: nil, amount: fullAmount.amount.value)
+            showModal(with: Star_ListScreen(context: context, source: sourceValue), for: window)
             return .none
         }
         
@@ -752,13 +475,8 @@ public func StarNftOfferController(context: (any AccountContextProtocol), peer: 
                 } else {
                     control = ImageView(frame: NSMakeRect(0, 0, 20, 20))
                 }
-                if fullAmount.currency == .ton {
-                    control.image = TelegramThemeHooks.shared.image(.iconTonCurrency).precomposed()
-                    control.setAccessibilityLabel("TON")
-                } else {
                     control.image = TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed()
                     control.setAccessibilityLabel(strings().voiceOverCommonStars)
-                }
                 return control
             })))
             
@@ -784,20 +502,12 @@ public func StarNftOfferController(context: (any AccountContextProtocol), peer: 
         
         showModalAlert(for: window, data: data, completion: { result in
             if let paid = state.sendPaidMessageseStars {
-                if fullAmount.currency == .stars {
-                    if paid.value + fullAmount.amount.value > myBalance.value {
-                        let sourceValue: Star_ListScreenSource =  .buy(suffix: nil, amount: paid.value)
-                        showModal(with: Star_ListScreen(context: context, source: sourceValue), for: window)
-                        return
-                    }
-                } else {
-                    if paid.value > myBalance.value {
-                        let sourceValue: Star_ListScreenSource =  .buy(suffix: nil, amount: paid.value)
-                        showModal(with: Star_ListScreen(context: context, source: sourceValue), for: window)
-                        return
-                    }
+                let remaining = myBalance.value - fullAmount.amount.value
+                if paid.value > remaining {
+                    let source: Star_ListScreenSource = .buy(suffix: nil, amount: paid.value - remaining)
+                    showModal(with: Star_ListScreen(context: context, source: source), for: window)
+                    return
                 }
-                
             }
             callback(fullAmount, Int32(state.offerDuration), state.sendPaidMessageseStars)
             close?()
@@ -812,7 +522,7 @@ public func StarNftOfferController(context: (any AccountContextProtocol), peer: 
     
    
     
-    let modalInteractions = ModalInteractions(acceptTitle: "Offer 2000 Diamonds", accept: { [weak controller] in
+    let modalInteractions = ModalInteractions(acceptTitle: initialState.okText, accept: { [weak controller] in
         _ = controller?.returnKeyAction()
     }, singleButton: true)
 

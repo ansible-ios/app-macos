@@ -1150,7 +1150,6 @@ struct SelectColorState : Equatable {
     var icon_emojiPack: CGImage?
     
     var myBalance: StarsAmount?
-    var myTonBalance: StarsAmount?
 
 
     func isSame(to peer: Peer) -> Bool {
@@ -2064,11 +2063,10 @@ public func SelectColorController(context: any AccountContextProtocol, peer: Pee
         }
     }))
     
-    actionsDisposable.add(combineLatest(context.starsContext.state, context.tonContext.state).startStrict(next: { state, tonState in
+    actionsDisposable.add(context.starsContext.state.startStrict(next: { state in
         updateState { current in
             var current = current
             current.myBalance = state?.balance
-            current.myTonBalance = tonState?.balance
             return current
         }
     }))
@@ -2082,28 +2080,20 @@ public func SelectColorController(context: any AccountContextProtocol, peer: Pee
     var getController:(()->InputDataController?)? = nil
 
     
-    let buyResellGift:(StarGift.UniqueGift, EnginePeer, BotPaymentForm, BotPaymentForm, ResaleGiftsContext, Bool)->Void = { gift, peer, starsForm, tonForm, resaleContext, needClose in
+    let buyResellGift:(StarGift.UniqueGift, EnginePeer, BotPaymentForm, ResaleGiftsContext, Bool)->Void = { gift, peer, form, resaleContext, needClose in
         
         let state = stateValue.with { $0 }
         
-       
-        _ = gift.resell?.fullyFormatted ?? ""
-
-        _ = gift.resell?.amount ?? .zero
-        
-        
-        var buyForSelected: CurrencyAmount.Currency = gift.resellForTonOnly ? .ton : .stars
         var modifyData:((ModalAlertData)->Void)? = nil
         
         var getData:()->ModalAlertData = { .init(info: "") }
         
         getData = {
             
-            let form = buyForSelected == .stars ? starsForm : tonForm
             
             let fullAmount = form.invoice.prices.first?.amount ?? 0
             
-            let resellAmount = CurrencyAmount(amount: StarsAmount.init(value: fullAmount, nanos: 0), currency: buyForSelected)
+            let resellAmount = CurrencyAmount(amount: StarsAmount.init(value: fullAmount, nanos: 0), currency: .stars)
             
             let resellStars = resellAmount.fullyFormatted
             
@@ -2115,10 +2105,7 @@ public func SelectColorController(context: any AccountContextProtocol, peer: Pee
             }
             
             return ModalAlertData(title: strings().starNftGiftConfirmTitle, info: infoText, description: nil, ok: strings().starNftGiftConfirmOk(resellStars), options: [], mode: .confirm(text: strings().modalCancel, isThird: false), header: .init(id: "header", value: { initialSize, stableId, presentation in
-                return TransferUniqueGiftHeaderItem(initialSize, stableId: stableId, gift: gift, toPeer: peer, context: context, transferType: .buy(onlyTon: gift.resellForTonOnly), buyForSelected: buyForSelected, callback: { updated in
-                    buyForSelected = updated
-                    modifyData?(getData())
-                })
+                return TransferUniqueGiftHeaderItem(initialSize, stableId: stableId, gift: gift, toPeer: peer, context: context, transferType: .buy)
             }), footer: ModalAlertData.Footer.init(id: "footer", value: { initialSize, stableId, presentation, action in
                 return InputDataTableBasedItem(initialSize, stableId: stableId, viewType: .singleItem, rows: getTransferAttributesRows(gift: gift), context: context)
             }))
@@ -2128,32 +2115,20 @@ public func SelectColorController(context: any AccountContextProtocol, peer: Pee
         
         showModalAlert(for: context.window, data: getData(), completion: { result in
             
-            let myBalance: StarsAmount
-            if buyForSelected == .stars {
-                myBalance = state.myBalance ?? .init(value: 0, nanos: 0)
-            } else {
-                myBalance = state.myTonBalance ?? .init(value: 0, nanos: 0)
-            }
-            
-            let form = buyForSelected == .stars ? starsForm : tonForm
+            let myBalance = state.myBalance ?? StarsAmount(value: 0, nanos: 0)
                         
             let fullAmount = form.invoice.prices.first?.amount ?? 0
-            let resellAmount = CurrencyAmount(amount: StarsAmount.init(value: fullAmount, nanos: 0), currency: buyForSelected).fullyFormatted
+            let resellAmount = CurrencyAmount(amount: StarsAmount.init(value: fullAmount, nanos: 0), currency: .stars).fullyFormatted
 
             if fullAmount > myBalance.value {
-                if buyForSelected == .ton {
-                    showModal(with: SettingsNavigationHooks.shared.makeAddTonBalanceController(context, fullAmount - myBalance.value), for: context.window)
-                } else {
-                    let sourceValue: Star_ListScreenSource =  .buy(suffix: nil, amount: fullAmount)
-                    showModal(with: Star_ListScreen(context: context, source: sourceValue), for: context.window)
-                }
+                let sourceValue: Star_ListScreenSource = .buy(suffix: nil, amount: fullAmount)
+                showModal(with: Star_ListScreen(context: context, source: sourceValue), for: context.window)
             } else {
-                _ = showModalProgress(signal: context.engine.payments.sendStarsPaymentForm(formId: form.id, source: .starGiftResale(slug: gift.slug, toPeerId: peerId, ton: buyForSelected == .ton, hideName: true, text: nil, entities: nil)), for: context.window).startStandalone(next: { result in
+                _ = showModalProgress(signal: context.engine.payments.sendStarsPaymentForm(formId: form.id, source: .starGiftResale(slug: gift.slug, toPeerId: peerId, ton: false, hideName: true, text: nil, entities: nil)), for: context.window).startStandalone(next: { result in
                     switch result {
                     case let .done(_, _, uniqueStarGift):
                         PlayConfetti(for: context.window, stars: true)
                         context.starsContext.load(force: true)
-                        context.tonContext.load(force: true)
                         context.starsSubscriptionsContext.load(force: true)
                         resaleContext.removeStarGift(gift: .unique(gift))
                         getCurrentContext()?.insertStarGifts(gifts: uniqueStarGift.flatMap { [$0] } ?? [])
@@ -2459,20 +2434,15 @@ public func SelectColorController(context: any AccountContextProtocol, peer: Pee
             let signal = context.engine.data.get(TelegramEngine.EngineData.Item.Peer.Peer(id: peerId)) |> deliverOnMainQueue
             
             
-            let formAndMaybeValidatedInfo_Stars: Signal<BotPaymentForm?, BotPaymentFormRequestError>
-            if gift.resellForTonOnly {
-                formAndMaybeValidatedInfo_Stars = .single(nil)
-            } else {
-                formAndMaybeValidatedInfo_Stars = context.engine.payments.fetchBotPaymentForm(source: .starGiftResale(slug: gift.slug, toPeerId: peerId, ton: false, hideName: true, text: nil, entities: nil), themeParams: nil)
-                |> map(Optional.init)
-            }
-            
-            
-            let formAndMaybeValidatedInfo_Ton = context.engine.payments.fetchBotPaymentForm(source: .starGiftResale(slug: gift.slug, toPeerId: peerId, ton: true, hideName: true, text: nil, entities: nil), themeParams: nil)
+            let paymentForm = context.engine.payments.fetchBotPaymentForm(source: .starGiftResale(slug: gift.slug, toPeerId: peerId, ton: false, hideName: true, text: nil, entities: nil), themeParams: nil)
 
-            _ = showModalProgress(signal: combineLatest(signal |> castError(BotPaymentFormRequestError.self), formAndMaybeValidatedInfo_Stars, formAndMaybeValidatedInfo_Ton), for: context.window).start(next: { peer, starsForm, tonForm in
+            _ = showModalProgress(signal: combineLatest(signal |> castError(BotPaymentFormRequestError.self), paymentForm), for: context.window).start(next: { peer, form in
+                guard form.invoice.currency == "XTR", form.invoice.prices.count == 1, (form.invoice.prices.first?.amount ?? 0) > 0 else {
+                    showModalText(for: context.window, text: strings().unknownError)
+                    return
+                }
                 if let peer {
-                    buyResellGift(gift, peer, starsForm ?? tonForm, tonForm, resaleContext, needClose)
+                    buyResellGift(gift, peer, form, resaleContext, needClose)
                 }
                 
             })

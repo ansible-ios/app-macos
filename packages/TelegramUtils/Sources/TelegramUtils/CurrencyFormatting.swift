@@ -92,7 +92,7 @@ public extension CurrencyAmount {
         }
     }
 
-    func suggestedPostProceeds(permille: Int32) -> CurrencyAmount {
+    func recipientProceeds(permille: Int32) -> CurrencyAmount {
         let rate = Int64(min(1000, max(0, permille)))
         let whole = amount.value / 1000 * rate
         let remainder = amount.value % 1000 * rate

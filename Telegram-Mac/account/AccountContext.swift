@@ -1047,12 +1047,7 @@ final class AccountContext {
     }
     
     func amount(amount: CurrencyAmount, comission: Double) -> CurrencyAmount {
-        switch amount.currency {
-        case .stars:
-            return .init(amount: .init(value: Int64((Double(amount.amount.value) * comission)), nanos: 0), currency: amount.currency)
-        case .ton:
-            return .init(amount: .init(value: Int64((Double(amount.amount.value) * comission) * 1_000_000_000), nanos: 0), currency: amount.currency)
-        }
+        return amount.recipientProceeds(permille: Int32((min(1, max(0, comission)) * 1000).rounded()))
     }
     
     deinit {
