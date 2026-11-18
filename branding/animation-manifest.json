@@ -196,5 +196,14 @@
     "width": 512,
     "height": 512,
     "frames": 180
+  },
+  {
+    "path": "Resources/tgs/gallery_saved_media.tgs",
+    "role": "gallery-save-confirmation",
+    "source": "ios/anim_savemedia.ass",
+    "sha256": "c97e0465678466fd6e7a25ef060554266f3f4dfc5ada5df8eabce19ca4c59180",
+    "width": 512,
+    "height": 512,
+    "frames": 65
   }
 ]

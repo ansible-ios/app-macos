@@ -22,6 +22,7 @@ public enum LocalAnimatedSticker : String {
     case monkey_unsee
     case monkey_see
     case think_spectacular
+    case gallery_saved_media
     case success_saved
     case dice_idle
     case dice_roll

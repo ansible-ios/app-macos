@@ -52,7 +52,7 @@ extension LocalAnimatedSticker {
             playPolicy = .once
         case .think_spectacular:
             playPolicy = .once
-        case .success_saved:
+        case .gallery_saved_media, .success_saved:
             playPolicy = .onceEnd
             hidePlayer = false
             thumbAtFrame = 60
