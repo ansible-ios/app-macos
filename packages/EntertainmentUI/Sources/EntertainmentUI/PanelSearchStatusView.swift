@@ -8,8 +8,8 @@ final class PanelSearchStatusView: View {
     private let shimmerMask = CAShapeLayer()
     private let frost = PickerFrostView()
     private let frostMask = CAShapeLayer()
-    private var animationView: View?
-    private var makeAnimation: (() -> View?)?
+    private var animationView: NSView?
+    private var makeAnimation: (() -> NSView?)?
     private(set) var status: PanelSearchPresentation = .hidden
     private var kind: PanelSearchPlaceholderKind = .stickers
     private var reduceMotion = false
@@ -49,9 +49,9 @@ final class PanelSearchStatusView: View {
 
     override func hitTest(_ point: NSPoint) -> NSView? { nil }
 
-    func update(status: PanelSearchPresentation, kind: PanelSearchPlaceholderKind, title: String, detail: String, loadingLabel: String, backgroundColor: NSColor, frosted: Bool = false, isDark: Bool = false, textColor: NSColor, detailColor: NSColor, reduceMotion: Bool, makeAnimation: @escaping () -> View?) {
+    func update(status: PanelSearchPresentation, kind: PanelSearchPlaceholderKind, title: String, detail: String, loadingLabel: String, backgroundColor: NSColor, frosted: Bool = false, isDark: Bool = false, textColor: NSColor, detailColor: NSColor, reduceMotion: Bool, makeAnimation: @escaping () -> NSView?) {
         let textChanged = self.title != title || self.detail != detail || self.textColor != textColor || self.detailColor != detailColor
-        if self.reduceMotion != reduceMotion { removeAnimation() }
+        if self.reduceMotion != reduceMotion || self.kind != kind || (reduceMotion && self.detailColor != detailColor) { removeAnimation() }
         self.status = status
         self.kind = kind
         self.title = title

@@ -566,6 +566,8 @@ public enum AnsibleThemeImage {
     case iconEmptySharedMusic
     case iconEntertainmentEmoji
     case iconEntertainmentGifs
+    case iconPanelEmptyStickers
+    case iconPanelEmptyGif
     case iconEntertainmentSearch
     case iconEntertainmentSearchCancel
     case iconEntertainmentSettings

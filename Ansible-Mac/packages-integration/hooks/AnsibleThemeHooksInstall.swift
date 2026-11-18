@@ -567,6 +567,8 @@ private func themeHookImage(_ image: AnsibleThemeImage) -> NSImage {
             case .iconEmptySharedMusic: return NSImage(resource: .iconEmptySharedMusic)
             case .iconEntertainmentEmoji: return NSImage(resource: .iconEntertainmentEmoji)
             case .iconEntertainmentGifs: return NSImage(resource: .iconEntertainmentGifs)
+            case .iconPanelEmptyStickers: return NSImage(resource: .iconPanelEmptyStickers)
+            case .iconPanelEmptyGif: return NSImage(resource: .iconPanelEmptyGif)
             case .iconEntertainmentSearch: return NSImage(resource: .iconEntertainmentSearch)
             case .iconEntertainmentSearchCancel: return NSImage(resource: .iconEntertainmentSearchCancel)
             case .iconEntertainmentSettings: return NSImage(resource: .iconEntertainmentSettings)

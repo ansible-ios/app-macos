@@ -205,5 +205,14 @@
     "width": 512,
     "height": 512,
     "frames": 65
+  },
+  {
+    "path": "Resources/tgs/menu/menu_view_sticker_set.tgs",
+    "role": "sticker-and-emoji-set-menu",
+    "source": "ios/input_anim_stickerToSmile.json + input_anim_smileToSticker.json",
+    "sha256": "9cc08be203ef5c0424178e6010b8ec533ce1042e2fdbd35f521072d10be8ce78",
+    "width": 32,
+    "height": 32,
+    "frames": 48
   }
 ]
