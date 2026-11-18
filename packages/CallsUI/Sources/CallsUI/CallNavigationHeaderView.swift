@@ -47,7 +47,7 @@ public class CallStatusBarBackgroundView: View, CallStatusBarBackground {
         }
     }
 
-    private func targetColors(theme: TelegramPresentationTheme) -> (NSColor, NSColor) {
+    private func targetColors(theme: AnsiblePresentationTheme) -> (NSColor, NSColor) {
         if let speaking = self.speaking, speaking.1 {
             if speaking.2 {
                 if speaking.0 {
@@ -102,7 +102,7 @@ public class CallStatusBarBackgroundView: View, CallStatusBarBackground {
 
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         self.wavesView.isDarkAppearance = theme.colors.isDark
         self.wavesView.updateColors(self.targetColors(theme: theme), animated: true)
     }
@@ -344,7 +344,7 @@ open class CallHeaderBasicView : NavigationHeaderView {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         self.backgroundColor = .clear
         endCall.set(image: theme.icons.callInlineDecline, for: .Normal)
         endCall.set(image: theme.icons.callInlineDecline, for: .Highlight)

@@ -143,7 +143,7 @@ public final class WidgetAppearanceView : View {
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
         
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         
         if let context = getContext?() {
             let installSource: InstallThemeSource?
@@ -194,7 +194,7 @@ public final class WidgetAppearanceView : View {
 
 
 
-public final class WidgetAppearanceController<Context: AccountContextProtocol> : TelegramGenericViewController<WidgetView<WidgetAppearanceView>, Context> {
+public final class WidgetAppearanceController<Context: AccountContextProtocol> : AnsibleGenericViewController<WidgetView<WidgetAppearanceView>, Context> {
 
     public override var defaultBarTitle: String {
         return localizedString("Telegram.WidgetAppearanceController")

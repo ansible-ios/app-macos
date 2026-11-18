@@ -1,7 +1,7 @@
 import Cocoa
 import TGUIKit
 
-func installTelegramLinksHooks() {
+func installAnsibleLinksHooks() {
     LinkHooks.install(LinkHooks(callbackLink: { text, handler in
         return inAppLink.callback(text, handler)
     }, globalLinkExecutor: {

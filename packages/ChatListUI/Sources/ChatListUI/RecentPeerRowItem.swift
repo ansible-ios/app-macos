@@ -96,7 +96,7 @@ public class RecentPeerRowView : ShortPeerRowView {
             super.init(frame: frameRect)
             addSubview(textView)
             addSubview(imageView)
-            imageView.image = TelegramThemeHooks.shared.image(.iconSearchAd).precomposed(theme.colors.accent)
+            imageView.image = AnsibleThemeHooks.shared.image(.iconSearchAd).precomposed(theme.colors.accent)
             imageView.sizeToFit()
             imageView.isAccessibilityDecorative = true
             textView.isAccessibilityDecorative = true

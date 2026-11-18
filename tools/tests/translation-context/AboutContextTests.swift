@@ -11,8 +11,8 @@ extension Theme {
     var colors: Colors { Colors() }
 }
 extension Theme.Icons { var modalClose: Int { 1 } }
-struct TelegramThemeHooks {
-    static var shared = TelegramThemeHooks()
+struct AnsibleThemeHooks {
+    static var shared = AnsibleThemeHooks()
     enum Icon { case cocoon120, iconOptionLock, iconOptionStatistics, iconOptionGift }
     struct Image { func precomposed(_ color: Int = 0) -> Int { Probe.check?(); return color } }
     func image(_ icon: Icon) -> Image { Probe.check?(); return Image() }

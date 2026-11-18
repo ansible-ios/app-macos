@@ -11,7 +11,7 @@ import AnsibleTheme
 public class ChatFileMediaItem: ChatMediaItem {
 
     
-    public override init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         super.init(initialSize, chatInteraction, context, object, theme: theme)
         self.parameters = ChatMediaLayoutParameters.layout(for: (self.media as! TelegramMediaFile), isWebpage: false, chatInteraction: chatInteraction, presentation: .make(for: object.message!, account: context.account, renderType: object.renderType, theme: theme), automaticDownload: object.additionalData.automaticDownload.isDownloable(object.message!), isIncoming: object.message!.isIncoming(context.account, object.renderType == .bubble), isFile: true, autoplayMedia: object.autoplayMedia, isChatRelated: true, isCopyProtected: object.message!.isCopyProtected(cachedData: chatInteraction.presentation.cachedData))
         

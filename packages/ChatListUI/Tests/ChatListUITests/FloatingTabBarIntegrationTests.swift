@@ -130,10 +130,10 @@ final class FloatingTabBarIntegrationTests: XCTestCase {
             throw XCTSkip("Native glass is unavailable")
         }
         let previousTheme = theme
-        defer { telegramUpdateTheme(previousTheme, window: nil, animated: false) }
+        defer { ansibleUpdateTheme(previousTheme, window: nil, animated: false) }
         for palette in [dayClassicPalette, darkPalette] {
             let currentTheme = generateTheme(palette: palette, cloudTheme: nil, bubbled: false, fontSize: 13, wallpaper: previousTheme.wallpaper, liquidGlass: true)
-            telegramUpdateTheme(currentTheme, window: nil, animated: false)
+            ansibleUpdateTheme(currentTheme, window: nil, animated: false)
             try assertLottieKeepsPlayingThroughTintedPortals(outsideColor: palette.text, accentColor: palette.accentIcon)
         }
     }

@@ -429,7 +429,7 @@ private enum PrivacyAndSecurityEntry: Comparable, Identifiable {
             })
         case let .passkeys(_, passkeys, viewType):
             let desc = !passkeys.isEmpty ? strings().privacyAndSecurityItemOn : strings().privacyAndSecurityItemOff
-            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().privacySettingsPasskey, icon: generateSettingsIcon(TelegramThemeHooks.shared.image(.iconPasskeySettings).precomposed(flipVertical: true)), type: .nextContext(desc), viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().privacySettingsPasskey, icon: generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconPasskeySettings).precomposed(flipVertical: true)), type: .nextContext(desc), viewType: viewType, action: {
                 arguments.openPasskey(passkeys)
             })
         case let .twoStepVerification(_, configuration, viewType):
@@ -452,7 +452,7 @@ private enum PrivacyAndSecurityEntry: Comparable, Identifiable {
         case .globalTimerInfo:
             return GeneralTextRowItem(initialSize, stableId: stableId, text: strings().privacySettingsGlobalTimerInfo, viewType: .textBottomItem)
         case let .loginEmail(_, pattern, viewType):
-            let image = TelegramThemeHooks.shared.image(.iconPrivacySettingsEmail).precomposed(flipVertical: true)
+            let image = AnsibleThemeHooks.shared.image(.iconPrivacySettingsEmail).precomposed(flipVertical: true)
             
             return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().privacySettingsLoginEmail, icon: generateSettingsIcon(image), type: .next, viewType: viewType, action: {
                 arguments.setupLoginEmail(pattern)

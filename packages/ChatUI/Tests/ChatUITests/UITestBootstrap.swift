@@ -20,7 +20,7 @@ enum UITestBootstrap {
             retained.append(image)
         }
         GeneralRowsHooks.install(.placeholder)
-        TelegramThemeHooks.install(TelegramThemeHooks(
+        AnsibleThemeHooks.install(AnsibleThemeHooks(
             image: { TestImages.theme($0) },
             icons: { generateIcons(from: $0, bubbled: $1) },
             sendingFrame: { generateSendingFrame($0) },
@@ -32,7 +32,7 @@ enum UITestBootstrap {
             darkAppearance: { theme },
             liveStreamBadgeColor: { .systemRed }))
         let telegramTheme = generateTheme(palette: dayClassicPalette, cloudTheme: nil, bubbled: false, fontSize: 13, wallpaper: ThemeWallpaper(), liquidGlass: false)
-        telegramUpdateTheme(telegramTheme, window: nil, animated: false)
+        ansibleUpdateTheme(telegramTheme, window: nil, animated: false)
     }()
 
     static func install() {
@@ -89,7 +89,7 @@ enum TestImages {
         return index[key(name)].flatMap(load) ?? stub(name)
     }
 
-    static func theme(_ value: TelegramThemeImage) -> NSImage {
+    static func theme(_ value: AnsibleThemeImage) -> NSImage {
         let name = key(String(describing: value))
         return (index[name] ?? index[name + "color"]).flatMap(load) ?? stub(name)
     }

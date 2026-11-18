@@ -25,7 +25,7 @@ public struct PhoneCallUIHooks {
     public let selectModalPeers: (Window, any AccountContextProtocol, String, Set<PeerId>) -> Signal<[PeerId], NoError>
     public let makeCallFeedbackController: (any AccountContextProtocol, CallId, Int, Bool, Bool) -> ModalViewController
     public let groupCallMinFullScreenSize: () -> NSSize
-    public let makeGroupCallInviteLinkController: (any AccountContextProtocol, EngineCreatedGroupCall, TelegramPresentationTheme) -> ModalViewController
+    public let makeGroupCallInviteLinkController: (any AccountContextProtocol, EngineCreatedGroupCall, AnsiblePresentationTheme) -> ModalViewController
     public let requestOrJoinConferenceCall: (any AccountContextProtocol, GroupCallInfo, InternalGroupCallReference) -> Signal<ConferenceCallJoinResult, NoError>
     public let applyGroupCallResult: (any SharedAccountContextProtocol, any GroupCallContextProtocol) -> Void
 
@@ -35,7 +35,7 @@ public struct PhoneCallUIHooks {
                 selectModalPeers: @escaping (Window, any AccountContextProtocol, String, Set<PeerId>) -> Signal<[PeerId], NoError>,
                 makeCallFeedbackController: @escaping (any AccountContextProtocol, CallId, Int, Bool, Bool) -> ModalViewController,
                 groupCallMinFullScreenSize: @escaping () -> NSSize,
-                makeGroupCallInviteLinkController: @escaping (any AccountContextProtocol, EngineCreatedGroupCall, TelegramPresentationTheme) -> ModalViewController,
+                makeGroupCallInviteLinkController: @escaping (any AccountContextProtocol, EngineCreatedGroupCall, AnsiblePresentationTheme) -> ModalViewController,
                 requestOrJoinConferenceCall: @escaping (any AccountContextProtocol, GroupCallInfo, InternalGroupCallReference) -> Signal<ConferenceCallJoinResult, NoError>,
                 applyGroupCallResult: @escaping (any SharedAccountContextProtocol, any GroupCallContextProtocol) -> Void) {
         self.callScreenHost = callScreenHost

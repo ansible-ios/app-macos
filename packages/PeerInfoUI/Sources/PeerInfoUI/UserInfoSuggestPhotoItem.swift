@@ -79,7 +79,7 @@ private final class UserInfoSuggestPhotoView: GeneralContainableRowView {
         currentPhoto.setFrameSize(NSMakeSize(50, 50))
         newPhoto.setFrameSize(NSMakeSize(50, 50))
 
-        imageView.image = TelegramThemeHooks.shared.image(.iconContactPhotoChevron).precomposed(theme.colors.grayIcon)
+        imageView.image = AnsibleThemeHooks.shared.image(.iconContactPhotoChevron).precomposed(theme.colors.grayIcon)
         imageView.sizeToFit()
         imageView.isAccessibilityDecorative = true
         newPhoto.setAccessibilityLabel(strings().voiceOverCommonPhoto)

@@ -16,11 +16,11 @@ public final class SmartThemePreviewRowItem : GeneralRowItem {
     fileprivate let theme: ThemeTuple?
     fileprivate let context: any AccountContextProtocol
     fileprivate let selected: Bool
-    fileprivate let select:((ChatTheme, TelegramPresentationTheme)?)->Void
+    fileprivate let select:((ChatTheme, AnsiblePresentationTheme)?)->Void
     fileprivate let emojies: [String: StickerPackItem]
     fileprivate let bubbled: Bool
     fileprivate let loading: Bool
-    public init(_ initialSize: NSSize, context: any AccountContextProtocol, stableId: AnyHashable, bubbled: Bool, emojies: [String: StickerPackItem], theme: ThemeTuple?, selected: Bool, loading: Bool = false, select:@escaping((ChatTheme, TelegramPresentationTheme)?)->Void) {
+    public init(_ initialSize: NSSize, context: any AccountContextProtocol, stableId: AnyHashable, bubbled: Bool, emojies: [String: StickerPackItem], theme: ThemeTuple?, selected: Bool, loading: Bool = false, select:@escaping((ChatTheme, AnsiblePresentationTheme)?)->Void) {
         self.theme = theme
         self.select = select
         self.selected = selected

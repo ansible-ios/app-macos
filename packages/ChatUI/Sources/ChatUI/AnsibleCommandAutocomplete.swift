@@ -1,6 +1,6 @@
 import Foundation
 
-public enum TelegramCommandAutocomplete {
+public enum AnsibleCommandAutocomplete {
     public static func queryRange(in text: String, cursorUTF16Offset: Int) -> Range<String.Index>? {
         let cursorUTF16Offset = min(max(0, cursorUTF16Offset), text.utf16.count)
         let cursorUTF16Index = text.utf16.index(text.utf16.startIndex, offsetBy: cursorUTF16Offset)

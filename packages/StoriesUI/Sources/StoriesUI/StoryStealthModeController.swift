@@ -56,7 +56,7 @@ private final class StoryStealthModeView : Control {
             fatalError("init(coder:) has not been implemented")
         }
         
-        public func layout(image: CGImage, title: String, text: String, width: CGFloat, presentation: TelegramPresentationTheme) {
+        public func layout(image: CGImage, title: String, text: String, width: CGFloat, presentation: AnsiblePresentationTheme) {
             
             self.imageView.image = image
             self.imageView.sizeToFit()
@@ -116,7 +116,7 @@ private final class StoryStealthModeView : Control {
         close.scaleOnClick = true
         close.autohighlight = false
         close.setAccessibilityLabel(strings().voiceOverCommonClose)
-        headerImage.image = TelegramThemeHooks.shared.image(.iconStoryStealthMode).precomposed()
+        headerImage.image = AnsibleThemeHooks.shared.image(.iconStoryStealthMode).precomposed()
         headerImage.sizeToFit()
         headerImage.isAccessibilityDecorative = true
         
@@ -124,11 +124,11 @@ private final class StoryStealthModeView : Control {
         button.autohighlight = false
     }
     
-    public func initialize(presentation: TelegramPresentationTheme) {
+    public func initialize(presentation: AnsiblePresentationTheme) {
         updateLocalizationAndTheme(theme: presentation)
     }
     
-    public func update(_ state: State, context: any AccountContextProtocol, presentation: TelegramPresentationTheme) -> NSSize {
+    public func update(_ state: State, context: any AccountContextProtocol, presentation: AnsiblePresentationTheme) -> NSSize {
         self.state = state
         self.context = context
         self.updateLocalizationAndTheme(theme: presentation)
@@ -151,7 +151,7 @@ private final class StoryStealthModeView : Control {
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
         self.backgroundColor = theme.colors.background
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         close.set(image: theme.icons.glass_close, for: .Normal)
         close.setGlassEffect(size: NSMakeSize(36, 36))
         close.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
@@ -166,9 +166,9 @@ private final class StoryStealthModeView : Control {
         let infoLayout = TextViewLayout(.initialize(string: state.isPremium ? strings().storyStealthModeInfoText : strings().storyStealthModeInfoSubscribe, color: theme.colors.grayText, font: .normal(.text)), alignment: .center)
         self.descView.update(infoLayout)
         
-        infoView1.layout(image: TelegramThemeHooks.shared.image(.iconStoryStealthModeRewind5).precomposed(theme.colors.accent), title: strings().storyStealthModeFirstTitle, text: strings().storyStealthModeFirstInfo, width: frame.width, presentation: theme)
+        infoView1.layout(image: AnsibleThemeHooks.shared.image(.iconStoryStealthModeRewind5).precomposed(theme.colors.accent), title: strings().storyStealthModeFirstTitle, text: strings().storyStealthModeFirstInfo, width: frame.width, presentation: theme)
         
-        infoView2.layout(image: TelegramThemeHooks.shared.image(.iconStoryStealthModeRewind25).precomposed(theme.colors.accent), title: strings().storyStealthModeSecondTitle, text: strings().storyStealthModeSecondInfo, width: frame.width, presentation: theme)
+        infoView2.layout(image: AnsibleThemeHooks.shared.image(.iconStoryStealthModeRewind25).precomposed(theme.colors.accent), title: strings().storyStealthModeSecondTitle, text: strings().storyStealthModeSecondInfo, width: frame.width, presentation: theme)
 
         
         button.set(font: .medium(.text), for: .Normal)
@@ -220,11 +220,11 @@ private final class StoryStealthModeView : Control {
 public final class StoryStealthModeController: ModalViewController {
     
     private let context: any AccountContextProtocol
-    private let presentation: TelegramPresentationTheme
+    private let presentation: AnsiblePresentationTheme
     private let disposable = MetaDisposable()
     private let actionsDisposable = DisposableSet()
     private let enableStealth: ()->Void
-    public init(_ context: any AccountContextProtocol, enableStealth: @escaping()->Void, presentation: TelegramPresentationTheme) {
+    public init(_ context: any AccountContextProtocol, enableStealth: @escaping()->Void, presentation: AnsiblePresentationTheme) {
         self.context = context
         self.presentation = presentation
         self.enableStealth = enableStealth
@@ -300,7 +300,7 @@ public final class StoryStealthModeController: ModalViewController {
                 self?.enableStealth()
                 self?.close()
             } else {
-                FeatureNavigationHooks.shared.showPremiumBoarding(context, context.window, .storiesStealthMode, false, TelegramThemeHooks.shared.darkAppearance())
+                FeatureNavigationHooks.shared.showPremiumBoarding(context, context.window, .storiesStealthMode, false, AnsibleThemeHooks.shared.darkAppearance())
             }
         }, for: .Click)
     }

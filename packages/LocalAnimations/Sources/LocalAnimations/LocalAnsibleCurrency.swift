@@ -1,7 +1,7 @@
 import Cocoa
 import AnsibleMedia
 
-public enum LocalTelegramCurrency : String {
+public enum LocalAnsibleCurrency : String {
     case xtr = "XTR"
     case ton = "TON"
     

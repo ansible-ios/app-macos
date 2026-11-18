@@ -17,8 +17,8 @@ import AppAnalytics
 private final class ButtonsItem : GeneralRowItem {
     fileprivate let state: State
     fileprivate let secondAction:()->Void
-    fileprivate let presentation: TelegramPresentationTheme
-    public init(_ initialSize: NSSize, stableId: AnyHashable, presentation: TelegramPresentationTheme, state: State, action: @escaping()->Void, secondAction:@escaping()->Void) {
+    fileprivate let presentation: AnsiblePresentationTheme
+    public init(_ initialSize: NSSize, stableId: AnyHashable, presentation: AnsiblePresentationTheme, state: State, action: @escaping()->Void, secondAction:@escaping()->Void) {
         self.state = state
         self.secondAction = secondAction
         self.presentation = presentation
@@ -170,12 +170,12 @@ private final class ButtonsItemView : GeneralRowView {
 }
 
 private final class Arguments {
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
     public let action: ()->Void
     public let toggle: (Int)->Void
     public let secondAction:()->Void
     public let updateDatas:()->Void
-    public init(presentation: TelegramPresentationTheme, action: @escaping()->Void, toggle: @escaping(Int)->Void, secondAction:@escaping()->Void, updateDatas:@escaping()->Void) {
+    public init(presentation: AnsiblePresentationTheme, action: @escaping()->Void, toggle: @escaping(Int)->Void, secondAction:@escaping()->Void, updateDatas:@escaping()->Void) {
         self.presentation = presentation
         self.action = action
         self.toggle = toggle
@@ -204,10 +204,10 @@ public final class AlertHeaderItem : TableRowItem {
     fileprivate let title: TextViewLayout
     fileprivate let info: TextViewLayout?
     fileprivate let peer: EnginePeer
-    public init(_ initialSize: NSSize, stableId: AnyHashable, presentation: TelegramPresentationTheme, context: any AccountContextProtocol, peer: EnginePeer, info: String?, callback:((String)->Void)? = nil) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, presentation: AnsiblePresentationTheme, context: any AccountContextProtocol, peer: EnginePeer, info: String?, callback:((String)->Void)? = nil) {
         self.context = context
         self.peer = peer
-        self.title = .init(.initialize(string: TelegramUtilsHooks.shared.peerTitle(peer._asPeer()), color: presentation.colors.text, font: .medium(.header)), alignment: .center)
+        self.title = .init(.initialize(string: AnsibleUtilsHooks.shared.peerTitle(peer._asPeer()), color: presentation.colors.text, font: .medium(.header)), alignment: .center)
         
         if let info {
             let infoAttr = parseMarkdownIntoAttributedString(info, attributes: MarkdownAttributes(body: MarkdownAttributeSet(font: .normal(.text), textColor: presentation.colors.darkGrayText), bold: MarkdownAttributeSet(font: .bold(.text), textColor: presentation.colors.darkGrayText), link: MarkdownAttributeSet(font: .medium(.text), textColor: presentation.colors.accent), linkAttribute: { contents in
@@ -350,8 +350,8 @@ private final class RowItem : TableRowItem {
     fileprivate var disclaimer: TextViewLayout?
     fileprivate let options: [Option]
     fileprivate let toggle: (Int)->Void
-    fileprivate let presentation: TelegramPresentationTheme
-    public init(_ initialSize: NSSize, presentation: TelegramPresentationTheme, state: State, toggle:@escaping(Int)->Void) {
+    fileprivate let presentation: AnsiblePresentationTheme
+    public init(_ initialSize: NSSize, presentation: AnsiblePresentationTheme, state: State, toggle:@escaping(Int)->Void) {
         self.state = state
         self.presentation = presentation
         self.toggle = toggle
@@ -524,7 +524,7 @@ private final class RowView : TableRowView {
             fatalError("init(coder:) has not been implemented")
         }
         
-        public func update(option: RowItem.Option, presentation: TelegramPresentationTheme, toggle:@escaping()->Void, animated: Bool) {
+        public func update(option: RowItem.Option, presentation: AnsiblePresentationTheme, toggle:@escaping()->Void, animated: Bool) {
             self.toggle = toggle
             
             let selected = generateCheckSelected(foregroundColor: presentation.colors.accentIcon, backgroundColor: presentation.colors.underSelectedColor)
@@ -770,12 +770,12 @@ public struct ModalAlertData : Equatable {
 
     public struct Header : Equatable {
         public var id: AnyHashable
-        public var value:(NSSize, AnyHashable, TelegramPresentationTheme)->TableRowItem
+        public var value:(NSSize, AnyHashable, AnsiblePresentationTheme)->TableRowItem
 
         public static func ==(lhs: Header, rhs: Header) -> Bool {
             return lhs.id == rhs.id
         }
-        public init(id: AnyHashable, value: @escaping (NSSize, AnyHashable, TelegramPresentationTheme)->TableRowItem) {
+        public init(id: AnyHashable, value: @escaping (NSSize, AnyHashable, AnsiblePresentationTheme)->TableRowItem) {
             self.id = id
             self.value = value
         }
@@ -783,12 +783,12 @@ public struct ModalAlertData : Equatable {
 
     public struct Footer : Equatable {
         public var id: AnyHashable
-        public var value:(NSSize, AnyHashable, TelegramPresentationTheme, @escaping()->Void)->TableRowItem
+        public var value:(NSSize, AnyHashable, AnsiblePresentationTheme, @escaping()->Void)->TableRowItem
         public var validateData: (([InputDataIdentifier : InputDataValue]) -> InputDataValidation)? = nil
         public static func ==(lhs: Footer, rhs: Footer) -> Bool {
             return lhs.id == rhs.id
         }
-        public init(id: AnyHashable, value: @escaping (NSSize, AnyHashable, TelegramPresentationTheme, @escaping()->Void)->TableRowItem, validateData: (([InputDataIdentifier : InputDataValue]) -> InputDataValidation)? = nil) {
+        public init(id: AnyHashable, value: @escaping (NSSize, AnyHashable, AnsiblePresentationTheme, @escaping()->Void)->TableRowItem, validateData: (([InputDataIdentifier : InputDataValue]) -> InputDataValidation)? = nil) {
             self.id = id
             self.value = value
             self.validateData = validateData
@@ -900,7 +900,7 @@ private func minimumSize(_ data: ModalAlertData) -> NSSize {
     return size
 }
 
-private func ModalAlertController(data: ModalAlertData, completion: @escaping(ModalAlertResult)->Void, cancel:@escaping()->Void = {}, onDeinit:(()->Void)?, presentation: TelegramPresentationTheme = theme, takeNewData:((@escaping(ModalAlertData)->Void)->Void)? = nil) -> InputDataModalController {
+private func ModalAlertController(data: ModalAlertData, completion: @escaping(ModalAlertResult)->Void, cancel:@escaping()->Void = {}, onDeinit:(()->Void)?, presentation: AnsiblePresentationTheme = theme, takeNewData:((@escaping(ModalAlertData)->Void)->Void)? = nil) -> InputDataModalController {
     
     
     
@@ -1042,11 +1042,11 @@ private func ModalAlertController(data: ModalAlertData, completion: @escaping(Mo
 
 
 
-public func showModalAlert(for window: Window, data: ModalAlertData, completion: @escaping(ModalAlertResult)->Void, cancel:@escaping()->Void = {}, onDeinit:(()->Void)? = nil, presentation: TelegramPresentationTheme = theme, takeNewData:((@escaping(ModalAlertData)->Void)->Void)? = nil) {
+public func showModalAlert(for window: Window, data: ModalAlertData, completion: @escaping(ModalAlertResult)->Void, cancel:@escaping()->Void = {}, onDeinit:(()->Void)? = nil, presentation: AnsiblePresentationTheme = theme, takeNewData:((@escaping(ModalAlertData)->Void)->Void)? = nil) {
     showModal(with: ModalAlertController(data: data, completion: completion, cancel: cancel, onDeinit: onDeinit, presentation: presentation, takeNewData: takeNewData), for: window, animationType: .scaleCenter)
 }
 
-public func showDismissableModalAlert(for window: Window, data: ModalAlertData, presentation: TelegramPresentationTheme = theme, completion: @escaping (ModalAlertResult) -> Void = { _ in }, cancel: @escaping () -> Void = {}, onDeinit: (() -> Void)? = nil) -> () -> Void {
+public func showDismissableModalAlert(for window: Window, data: ModalAlertData, presentation: AnsiblePresentationTheme = theme, completion: @escaping (ModalAlertResult) -> Void = { _ in }, cancel: @escaping () -> Void = {}, onDeinit: (() -> Void)? = nil) -> () -> Void {
     let controller = ModalAlertController(data: data, completion: completion, cancel: cancel, onDeinit: onDeinit, presentation: presentation)
     showModal(with: controller, for: window, animationType: .scaleCenter)
     return { [weak controller] in

@@ -843,7 +843,7 @@ public final class InlineStickerItemLayer : SimpleLayer {
                     signal = chatMessageSticker(postbox: account.postbox, file: reference, small: aspectSize.width <= 5, scale: System.backingScale, fetched: fetched)
                 case "bundle/topic":
                     if let resource = file.resource as? ForumTopicIconResource {
-                        signal = TelegramUtilsHooks.shared.topicImage!(resource.title, resource.bgColors, resource.strokeColors)
+                        signal = AnsibleUtilsHooks.shared.topicImage!(resource.title, resource.bgColors, resource.strokeColors)
                     } else {
                         signal = .complete()
                     }
@@ -880,7 +880,7 @@ public final class InlineStickerItemLayer : SimpleLayer {
 
                     shimmerDataDisposable.set(dataSignal.start(next: { [weak self] completed in
                         if !completed, self?.preview == nil, self?.playerState != .playing {
-                            let data = !TelegramUtilsHooks.shared.animationsAreLite() ? file.immediateThumbnailData : nil
+                            let data = !AnsibleUtilsHooks.shared.animationsAreLite() ? file.immediateThumbnailData : nil
 
                             let shimmerSize = aspectSize
                             let foregroundColor = shimmerColor.color.withAlphaComponent(0.2)

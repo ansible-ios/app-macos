@@ -133,7 +133,7 @@ private struct MessagePriceScale {
 
 private func showMessagePriceEditor(window: Window, scale: MessagePriceScale, commission: Double, apply: @escaping (Int64) -> Void) {
     let title = strings().messagesPrivacyControllerPriceForEachMessage
-    let star = TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed(zoom: 0.75)
+    let star = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed(zoom: 0.75)
     let payout = strings().starNftSellInfo("\(commission.string)%")
     let entries: [InputDataEntry] = [
         .sectionId(0, type: .normal),

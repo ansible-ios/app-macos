@@ -232,7 +232,7 @@ private final class ChannelMemberSingleCategoryListContext: ChannelMemberCategor
             switch requestCategory {
             case .admins:
                 if let query = adminQuery {
-                    return members?.filter({TelegramContextHooks.shared.peerTitle($0.peer._asPeer()).lowercased().components(separatedBy: " ").contains(where: {$0.hasPrefix(query.lowercased())})})
+                    return members?.filter({AnsibleContextHooks.shared.peerTitle($0.peer._asPeer()).lowercased().components(separatedBy: " ").contains(where: {$0.hasPrefix(query.lowercased())})})
                 }
             default:
                 break

@@ -26,23 +26,23 @@ private extension LiteModeKey {
     var icon: CGImage? {
         switch self {
         case .animations:
-            return TelegramThemeHooks.shared.image(.iconLiteModeEffects).precomposed(flipVertical: true)
+            return AnsibleThemeHooks.shared.image(.iconLiteModeEffects).precomposed(flipVertical: true)
         case .menu_animations:
-            return TelegramThemeHooks.shared.image(.iconLiteModeMenu).precomposed(flipVertical: true)
+            return AnsibleThemeHooks.shared.image(.iconLiteModeMenu).precomposed(flipVertical: true)
         case .stickers:
-            return TelegramThemeHooks.shared.image(.iconLiteModeStickers).precomposed(flipVertical: true)
+            return AnsibleThemeHooks.shared.image(.iconLiteModeStickers).precomposed(flipVertical: true)
         case .gif:
-            return TelegramThemeHooks.shared.image(.iconLiteModeGifs).precomposed(flipVertical: true)
+            return AnsibleThemeHooks.shared.image(.iconLiteModeGifs).precomposed(flipVertical: true)
         case .video:
-            return TelegramThemeHooks.shared.image(.iconLiteModeVideos).precomposed(flipVertical: true)
+            return AnsibleThemeHooks.shared.image(.iconLiteModeVideos).precomposed(flipVertical: true)
         case .blur:
-            return TelegramThemeHooks.shared.image(.iconLiteModeBlur).precomposed(flipVertical: true)
+            return AnsibleThemeHooks.shared.image(.iconLiteModeBlur).precomposed(flipVertical: true)
         case .emoji_effects:
-            return TelegramThemeHooks.shared.image(.iconLiteModeEmojiEffects).precomposed(flipVertical: true)
+            return AnsibleThemeHooks.shared.image(.iconLiteModeEmojiEffects).precomposed(flipVertical: true)
         case .emoji:
-            return TelegramThemeHooks.shared.image(.iconLiteModeEmoji).precomposed(flipVertical: true)
+            return AnsibleThemeHooks.shared.image(.iconLiteModeEmoji).precomposed(flipVertical: true)
         case .liquidGlass:
-            return TelegramThemeHooks.shared.image(.iconLiteModeBlur).precomposed(flipVertical: true)
+            return AnsibleThemeHooks.shared.image(.iconLiteModeBlur).precomposed(flipVertical: true)
         default:
             return nil
         }

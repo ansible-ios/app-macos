@@ -52,13 +52,13 @@ private final class SourceHarnessMessageView: TableRowView {
 
 final class ChatSourceHeaderHarnessTests: XCTestCase {
     private let accountId = PeerId(namespace: Namespaces.Peer.CloudUser, id: ._internalFromInt64Value(100))
-    private var presentation: TelegramPresentationTheme!
+    private var presentation: AnsiblePresentationTheme!
 
     override func setUp() {
         super.setUp()
         UITestBootstrap.install()
         ChatHistoryModelHooks.install(.placeholder)
-        TelegramUtilsHooks.install(.init(animationsAreLite: { false }, isLite: { _ in true }, peerTitle: { ($0 as? TelegramUser)?.firstName ?? ($0 as? TelegramChannel)?.title ?? "" }, peerLetters: { _ in [] }, peerIsForum: { _ in false }, peerCompactTitle: { _ in "" }, repliesPeerId: { .init(0) }))
+        AnsibleUtilsHooks.install(.init(animationsAreLite: { false }, isLite: { _ in true }, peerTitle: { ($0 as? TelegramUser)?.firstName ?? ($0 as? TelegramChannel)?.title ?? "" }, peerLetters: { _ in [] }, peerIsForum: { _ in false }, peerCompactTitle: { _ in "" }, repliesPeerId: { .init(0) }))
         presentation = generateTheme(palette: dayClassicPalette, cloudTheme: nil, bubbled: true, fontSize: 13, wallpaper: ThemeWallpaper(), liquidGlass: false)
     }
 

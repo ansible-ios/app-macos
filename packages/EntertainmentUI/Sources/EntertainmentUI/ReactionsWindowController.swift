@@ -22,16 +22,16 @@ public final class ReactionsWindowController : NSObject {
         private let contentView: NSView
         private let backgroundView = View()
         private let container = View()
-        private let theme: TelegramPresentationTheme
+        private let theme: AnsiblePresentationTheme
         private var tintGlass: NSView?
         private var morphTimer: Foundation.Timer?
         private var isMorphing = false
-        init(_ content: NSView, theme: TelegramPresentationTheme) {
+        init(_ content: NSView, theme: AnsiblePresentationTheme) {
             
             self.theme = theme
             self.contentView = content
             self.visualView = NSVisualEffectView(frame: content.bounds)
-            if #available(macOS 26.0, *), System.liquidGlass, System.liquidGlassAvailable, !TelegramUtilsHooks.shared.isLite(.blur) {
+            if #available(macOS 26.0, *), System.liquidGlass, System.liquidGlassAvailable, !AnsibleUtilsHooks.shared.isLite(.blur) {
                 let glass = NSGlassEffectView(frame: .zero)
                 glass.style = .regular
                 glass.cornerRadius = 20
@@ -46,7 +46,7 @@ public final class ReactionsWindowController : NSObject {
             if let glassView {
                 container.addSubview(glassView)
                 backgroundView.backgroundColor = .clear
-            } else if #available(macOS 11.0, *), !TelegramUtilsHooks.shared.isLite(.blur) {
+            } else if #available(macOS 11.0, *), !AnsibleUtilsHooks.shared.isLite(.blur) {
                 container.addSubview(visualView)
                 backgroundView.backgroundColor = .menuFallbackVeil(isDark: theme.colors.isDark)
             } else {
@@ -59,7 +59,7 @@ public final class ReactionsWindowController : NSObject {
             addSubview(container)
             
 
-            if !TelegramUtilsHooks.shared.isLite(.blur) {
+            if !AnsibleUtilsHooks.shared.isLite(.blur) {
                 self.visualView.wantsLayer = true
                 self.visualView.state = .active
                 self.visualView.blendingMode = .behindWindow
@@ -206,7 +206,7 @@ public final class ReactionsWindowController : NSObject {
     private var keyDisposable: Disposable?
     private var panelKeyDisposable: Disposable?
 
-    private func makeView(_ content: NSView, _ initialView: NSView, _ initialRect: NSRect, animated: Bool, theme: TelegramPresentationTheme, moveTop: Bool) -> (Window, V) {
+    private func makeView(_ content: NSView, _ initialView: NSView, _ initialRect: NSRect, animated: Bool, theme: AnsiblePresentationTheme, moveTop: Bool) -> (Window, V) {
         
         let v = V(content, theme: theme)
         
@@ -254,14 +254,14 @@ public final class ReactionsWindowController : NSObject {
     }
 
     private var onClose:(()->Void)?
-    private let presentation: TelegramPresentationTheme
+    private let presentation: AnsiblePresentationTheme
     private let name: String
     private let moveTop: Bool
     private var skipAppearAnimation = false
     
     private let parentWindow: Window
     private let analyticsScreen: AnalyticsScreen?
-    public init<Context: AccountContextProtocol>(_ context: Context, peerId: PeerId, selectedItems: [EmojiesSectionRowItem.SelectedItem], react: @escaping(StickerPackItem, NSRect?)->Void, reactLarge: ((StickerPackItem, NSRect?)->Void)? = nil, onClose:(()->Void)? = nil, presentation: TelegramPresentationTheme = theme, name: String = "", moveTop: Bool = false, mode: EmojiesController.Mode = .reactions, parentWindow: Window? = nil, orderedTags: [RecentReactionItem]? = nil) {
+    public init<Context: AccountContextProtocol>(_ context: Context, peerId: PeerId, selectedItems: [EmojiesSectionRowItem.SelectedItem], react: @escaping(StickerPackItem, NSRect?)->Void, reactLarge: ((StickerPackItem, NSRect?)->Void)? = nil, onClose:(()->Void)? = nil, presentation: AnsiblePresentationTheme = theme, name: String = "", moveTop: Bool = false, mode: EmojiesController.Mode = .reactions, parentWindow: Window? = nil, orderedTags: [RecentReactionItem]? = nil) {
         self.parentWindow = parentWindow ?? context.window
         self.context = context
         self.presentation = presentation

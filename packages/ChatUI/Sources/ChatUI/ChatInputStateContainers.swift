@@ -45,7 +45,7 @@ public class ChatInputStateView: View {
     /// falling through to the global app `theme` singleton — a chat on a
     /// custom palette would otherwise show the wrong glass tint on its
     /// state pills.
-    internal var currentChatTheme: TelegramPresentationTheme?
+    internal var currentChatTheme: AnsiblePresentationTheme?
 
     public required init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -72,7 +72,7 @@ public class ChatInputStateView: View {
 
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let chatTheme = (theme as! TelegramPresentationTheme)
+        let chatTheme = (theme as! AnsiblePresentationTheme)
         self.currentChatTheme = chatTheme
         containerView.backgroundColor = .clear
 

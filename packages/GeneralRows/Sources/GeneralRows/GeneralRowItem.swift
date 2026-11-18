@@ -267,7 +267,7 @@ open class GeneralRowItem: TableRowItem {
         public let unselectedImage: CGImage
         public let selectedImage: CGImage
         
-        public static func initialize(_ theme: TelegramPresentationTheme, background: NSColor? = nil) -> GeneralRowItem.Theme {
+        public static func initialize(_ theme: AnsiblePresentationTheme, background: NSColor? = nil) -> GeneralRowItem.Theme {
             return .init(backgroundColor: background ?? theme.colors.background,
                          grayBackground: theme.colors.grayBackground,
                          grayForeground: theme.colors.grayForeground,

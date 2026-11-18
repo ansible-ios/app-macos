@@ -39,10 +39,10 @@ private func hTmeParseDuration(_ durationStr: String) -> Int32? {
     return Int32(exactly: Int(durationStr) ?? 0)
 }
 
-public let telegram_me:[String] = ["asme.su/", "www.asme.su/"]
+public let ansible_me:[String] = ["asme.su/", "www.asme.su/"]
 private let actions_me:[String] = ["joinchat/","addstickers/","addemoji/","confirmphone","socks", "proxy", "setlanguage/", "bg/", "addtheme/","invoice/", "addlist/", "boost", "giftcode/", "m/", "nft/", "call/", "auction/", "newbot/", "addstyle/", "webproxy"]
 
-let telegram_scheme:String = "as://"
+let ansible_scheme:String = "as://"
 private let known_scheme:[String] = ["resolve","msg_url","join","addstickers", "addemoji","confirmphone", "socks", "proxy", "passport", "setlanguage", "bg", "privatepost", "addtheme", "settings", "invoice", "premium_offer", "restore_purchases", "login", "addlist", "boost", "giftcode", "premium_multigift", "stars_topup", "message", "nft", "call", "stars", "ton", "stargift_auction", "oauth", "newbot", "addstyle", "grams", "webproxy", sendGramsPath]
 
 let keyURLUsername = "domain";
@@ -92,7 +92,7 @@ let keyURLPort = "port";
 let keyURLUser = "user";
 let keyURLPass = "pass";
 
-public let privateTelegramPeerPrefix = "_private_"
+public let privateAnsiblePeerPrefix = "_private_"
 
 public let legacyPassportUsername = "telegrampassport"
 
@@ -155,11 +155,11 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
         }
     }
 
-    let mightBeTelegramDomain =
+    let mightBeAnsibleDomain =
         value.range(of: "asme.su/").location != NSNotFound
 
-    if mightBeTelegramDomain {
-    for domain in telegram_me {
+    if mightBeAnsibleDomain {
+    for domain in ansible_me {
         let range = url.range(of: domain)
         if range.location != NSNotFound && (range.location == 0 || (range.location <= 8 && url.substring(from: range.location - 1).hasPrefix("/"))) {
             let string = external.substring(from: range.location + range.length)
@@ -305,7 +305,7 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
                             } else {
                                 let (vars, _) = urlVars(with: string)
                                 if let priv = vars["c"] {
-                                    return .boost(link: urlString, username: "\(privateTelegramPeerPrefix)\(priv)")
+                                    return .boost(link: urlString, username: "\(privateAnsiblePeerPrefix)\(priv)")
                                 }
                             }
                         }
@@ -513,14 +513,14 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
                             }
                             let (params, action) = urlVars(with: url as String)
                             if let thread = params[keyURLThreadId]?.nsstring.intValue, let post = post {
-                                return .comments(link: urlString, username: "\(privateTelegramPeerPrefix)\(username)", threadId: thread, commentId: post)
+                                return .comments(link: urlString, username: "\(privateAnsiblePeerPrefix)\(username)", threadId: thread, commentId: post)
                             } else if let topic = params[keyURLTopicId]?.nsstring.intValue {
-                                return .topic(link: urlString, username: "\(privateTelegramPeerPrefix)\(username)", threadId: topic, commentId: post)
+                                return .topic(link: urlString, username: "\(privateAnsiblePeerPrefix)\(username)", threadId: topic, commentId: post)
                             } else if userAndPost.count == 4, let threadId = Int32(userAndPost[2]) {
-                                return .topic(link: urlString, username: "\(privateTelegramPeerPrefix)\(username)", threadId: threadId, commentId: post)
+                                return .topic(link: urlString, username: "\(privateAnsiblePeerPrefix)\(username)", threadId: threadId, commentId: post)
                             } else {
                                 if action.first == "boost" {
-                                    return .boost(link: urlString, username: "\(privateTelegramPeerPrefix)\(username)")
+                                    return .boost(link: urlString, username: "\(privateAnsiblePeerPrefix)\(username)")
                                 } else {
                                     let forceProfile = false
 
@@ -534,7 +534,7 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
                                             action = .pollOption(optionData)
                                         }
                                     }
-                                    return .followResolvedName(link: urlString, username: "\(privateTelegramPeerPrefix)\(username)", postId: post, forceProfile: forceProfile, action: action)
+                                    return .followResolvedName(link: urlString, username: "\(privateAnsiblePeerPrefix)\(username)", postId: post, forceProfile: forceProfile, action: action)
                                 }
                             }
                         }
@@ -625,7 +625,7 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
             }
         }
     }
-    } // end if mightBeTelegramDomain
+    } // end if mightBeAnsibleDomain
 
     if url.hasPrefix("@"), options.hasOpenInfo, options.hasContext {
         return .followResolvedName(link: urlString, username: url.substring(from: 1), postId: nil, forceProfile: false, action:nil)
@@ -638,8 +638,8 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
         return .hashtag(url as String)
     }
 
-    if url.hasPrefix(telegram_scheme) {
-        let action = url.substring(from: telegram_scheme.length)
+    if url.hasPrefix(ansible_scheme) {
+        let action = url.substring(from: ansible_scheme.length)
 
         let (vars, emptyVars) = urlVars(with: external as String)
 
@@ -874,12 +874,12 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
                         let topicId = vars[keyURLTopicId]?.nsstring.intValue
 
                         if let threadId = threadId, let post = post, options.hasContext {
-                            return .comments(link: urlString, username: "\(privateTelegramPeerPrefix)\(username)", threadId: threadId, commentId: post)
+                            return .comments(link: urlString, username: "\(privateAnsiblePeerPrefix)\(username)", threadId: threadId, commentId: post)
                         } else if let topicId = topicId, options.hasContext {
-                            return .topic(link: urlString, username: "\(privateTelegramPeerPrefix)\(username)", threadId: topicId, commentId: post)
+                            return .topic(link: urlString, username: "\(privateAnsiblePeerPrefix)\(username)", threadId: topicId, commentId: post)
                         } else if options.hasContext {
                             let forceProfile = emptyVars.contains("profile")
-                            return .followResolvedName(link: urlString, username: "\(privateTelegramPeerPrefix)\(username)", postId: post, forceProfile: forceProfile, action:nil)
+                            return .followResolvedName(link: urlString, username: "\(privateAnsiblePeerPrefix)\(username)", postId: post, forceProfile: forceProfile, action:nil)
                         }
                     }
                 case known_scheme[12]:
@@ -919,7 +919,7 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
                     }
                 case known_scheme[19]:
                     if let channelId = vars[keyURLChannel], options.hasContext {
-                        return .boost(link: urlString, username: "\(privateTelegramPeerPrefix)\(channelId)")
+                        return .boost(link: urlString, username: "\(privateAnsiblePeerPrefix)\(channelId)")
                     } else if let username = vars[keyURLUsername], options.hasContext {
                         return .boost(link: urlString, username: username)
                     }
@@ -990,7 +990,7 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
             }
         }
         if options.hasContext {
-            var path = url.substring(from: telegram_scheme.length)
+            var path = url.substring(from: ansible_scheme.length)
             let qLocation = path.nsstring.range(of: "?").location
             path = path.nsstring.substring(to: qLocation != NSNotFound ? qLocation : path.length)
             return .unsupportedScheme(link: urlString, path: path)

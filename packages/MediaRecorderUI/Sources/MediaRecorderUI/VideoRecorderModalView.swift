@@ -50,7 +50,7 @@ public class VideoRecorderModalView: View {
         placeholderView.animates = false
         placeholderView.isAccessibilityDecorative = true
         shadowView.isAccessibilityDecorative = true
-        placeholderView.image = thumbnail ?? TelegramThemeHooks.shared.image(.videoMessagePlaceholder).precomposed()
+        placeholderView.image = thumbnail ?? AnsibleThemeHooks.shared.image(.videoMessagePlaceholder).precomposed()
         placeholderView.frame = bounds
         captureContainer.addSubview(placeholderView)
         placeholderView.center()
@@ -67,7 +67,7 @@ public class VideoRecorderModalView: View {
         
         previewPlayer.frame = captureContainer.bounds
         
-        shadowView.image = TelegramThemeHooks.shared.image(.iconVideoMessageShadow).precomposed()
+        shadowView.image = AnsibleThemeHooks.shared.image(.iconVideoMessageShadow).precomposed()
         shadowView.setFrameSize(NSMakeSize(frameRect.width, frameRect.height))
     }
     

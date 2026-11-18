@@ -218,7 +218,7 @@ public class ColorPalette : Equatable {
     public let name: String
     public let copyright:String
     public let accentList:[PaletteAccentColor]
-    public let parent: TelegramBuiltinTheme
+    public let parent: AnsibleBuiltinTheme
     public let wallpaper: PaletteWallpaper
 
     /// FNV-1a hash of every stored `NSColor`'s argb. Used by `==` so each
@@ -905,7 +905,7 @@ public class ColorPalette : Equatable {
     public required init(isNative: Bool, isDark: Bool,
                 tinted: Bool,
                 name: String,
-                parent: TelegramBuiltinTheme,
+                parent: AnsibleBuiltinTheme,
                 wallpaper: PaletteWallpaper,
                 copyright: String,
                 accentList: [PaletteAccentColor],
@@ -1828,7 +1828,7 @@ public class ColorPalette : Equatable {
 }
 
 
-public enum TelegramBuiltinTheme : String {
+public enum AnsibleBuiltinTheme : String {
     case day = "day"
     case dayClassic = "dayClassic"
     case dark = "dark"

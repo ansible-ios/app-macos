@@ -441,7 +441,7 @@ func pickerSearchTheme(_ background: NSColor, theme: PresentationTheme, black: B
     return SearchTheme(background, chrome.map { theme.search.searchImage._NSImage.precomposed($0) } ?? theme.search.searchImage, theme.search.clearImage, theme.search.placeholder, theme.search.textColor, chrome ?? theme.search.placeholderColor)
 }
 
-private func packEntries(_ state: State, arguments: Arguments, presentation: TelegramPresentationTheme?) -> [InputDataEntry] {
+private func packEntries(_ state: State, arguments: Arguments, presentation: AnsiblePresentationTheme?) -> [InputDataEntry] {
     var entries:[InputDataEntry] = []
     
     var index: Int32 = 0
@@ -472,7 +472,7 @@ private func packEntries(_ state: State, arguments: Arguments, presentation: Tel
         hasRecent = false
     }
     if hasRecent {
-        let recentImage = TelegramThemeHooks.shared.image(.iconEmojiTabRecent)
+        let recentImage = AnsibleThemeHooks.shared.image(.iconEmojiTabRecent)
         let color = state.color ?? pickerChromeColor(state.blackChrome, theme: presentation ?? theme) ?? theme.colors.grayIcon
         let icon = recentImage.precomposed(color.withAlphaComponent(0.8))
         let activeIcon = recentImage.precomposed((state.color ?? pickerChromeColor(state.blackChrome, theme: presentation ?? theme) ?? theme.colors.grayIcon.darker()))
@@ -1010,8 +1010,8 @@ extension EmojiSearchCategories.Group : @retroactive Identifiable, @retroactive 
 public final class BackCategoryControl : Control {
     private var sticker: InlineStickerItemLayer
     private let context: any AccountContextProtocol
-    private let presentation: TelegramPresentationTheme
-    public init(frame frameRect: NSRect, context: any AccountContextProtocol, presentation: TelegramPresentationTheme) {
+    private let presentation: AnsiblePresentationTheme
+    public init(frame frameRect: NSRect, context: any AccountContextProtocol, presentation: AnsiblePresentationTheme) {
         self.context = context
         self.presentation = presentation
         let theme = presentation
@@ -1088,10 +1088,10 @@ public final class AnimatedEmojiesCategories : Control {
         
         
         private var selectionView : SimpleLayer?
-        private var presenation: TelegramPresentationTheme? = nil
+        private var presenation: AnsiblePresentationTheme? = nil
         private var iconColor: NSColor?
         
-        required init(frame frameRect: NSRect, context: any AccountContextProtocol, category: EmojiSearchCategories.Group, isSelected: Bool, presenation: TelegramPresentationTheme? = nil, iconColor: NSColor? = nil) {
+        required init(frame frameRect: NSRect, context: any AccountContextProtocol, category: EmojiSearchCategories.Group, isSelected: Bool, presenation: AnsiblePresentationTheme? = nil, iconColor: NSColor? = nil) {
             
             self.presenation = presenation
             self.iconColor = iconColor
@@ -1241,7 +1241,7 @@ public final class AnimatedEmojiesCategories : Control {
     
     private var categories: [EmojiSearchCategories.Group] = []
     public var select:((EmojiSearchCategories.Group?)->Void)? = nil
-    public required init(frame frameRect: NSRect, presentation: TelegramPresentationTheme? = nil) {
+    public required init(frame frameRect: NSRect, presentation: AnsiblePresentationTheme? = nil) {
         self.presentation = presentation
         super.init(frame: frameRect)
         
@@ -1266,7 +1266,7 @@ public final class AnimatedEmojiesCategories : Control {
         self.layer?.cornerRadius = frame.height / 2
         updateScroll()
     }
-    public var presentation: TelegramPresentationTheme? = nil
+    public var presentation: AnsiblePresentationTheme? = nil
     
     public var searchTheme: SearchTheme? {
         didSet {
@@ -1516,7 +1516,7 @@ public final class AnimatedEmojiesView : Control {
     private var context: (any AccountContextProtocol)?
     fileprivate var arguments: Arguments?
     
-    public var presentation: TelegramPresentationTheme? {
+    public var presentation: AnsiblePresentationTheme? {
         didSet {
             categories?.presentation = presentation
         }
@@ -1557,14 +1557,14 @@ public final class AnimatedEmojiesView : Control {
         
         visualEffect.wantsLayer = true
         
-        if !TelegramUtilsHooks.shared.isLite(.blur) {
+        if !AnsibleUtilsHooks.shared.isLite(.blur) {
             visualEffect.state = .active
             visualEffect.blendingMode = .behindWindow
             visualEffect.autoresizingMask = []
         }
         
         
-        if #available(macOS 11.0, *), !TelegramUtilsHooks.shared.isLite(.blur) {
+        if #available(macOS 11.0, *), !AnsibleUtilsHooks.shared.isLite(.blur) {
             searchContainer.addSubview(visualEffect)
         }
         
@@ -1614,7 +1614,7 @@ public final class AnimatedEmojiesView : Control {
         transition.updateFrame(view: tabs, frame: NSMakeRect(0, initial, size.width, 46))
         transition.updateFrame(view: packsView, frame: tabs.focus(NSMakeSize(size.width, 36)))
         transition.updateFrame(view: borderView, frame: NSMakeRect(0, tabs.frame.maxY, size.width, .borderSize))
-        let blursUnderHeader = usesPickerStyle && !TelegramUtilsHooks.shared.isLite(.blur)
+        let blursUnderHeader = usesPickerStyle && !AnsibleUtilsHooks.shared.isLite(.blur)
         let headerInset: CGFloat = blursUnderHeader ? 46 : 0
         let tableY = headerInset > 0 ? max(0, tabs.frame.maxY - headerInset) : tabs.frame.maxY
         let topInset = headerInset > 0 ? tabs.frame.maxY - tableY : 0
@@ -1688,7 +1688,7 @@ public final class AnimatedEmojiesView : Control {
         visualEffect.isHidden = isGlass || mode.isTransparent
         headerBlur.appearance = NSAppearance.themed(isDark: theme.colors.isDark)
         searchFrost.appearance = NSAppearance.themed(isDark: theme.colors.isDark)
-        searchFrost.isHidden = !usesPickerStyle || TelegramUtilsHooks.shared.isLite(.blur)
+        searchFrost.isHidden = !usesPickerStyle || AnsibleUtilsHooks.shared.isLite(.blur)
         if let glassSurface {
             glassSurface.customTint = theme.colors.background.withAlphaComponent(EntertainmentView.glassTintAlpha)
             glassSurface.updateLocalizationAndTheme(theme: theme)
@@ -1712,7 +1712,7 @@ public final class AnimatedEmojiesView : Control {
         }
         
         self.searchView.updateLocalizationAndTheme(theme: theme)
-        searchStatusView.updateSearchStatus(searchStatus, kind: .emoji, query: searchView.query, theme: presentation ?? (theme as! TelegramPresentationTheme), clearBackground: usesPickerStyle)
+        searchStatusView.updateSearchStatus(searchStatus, kind: .emoji, query: searchView.query, theme: presentation ?? (theme as! AnsiblePresentationTheme), clearBackground: usesPickerStyle)
     }
     
     public required init?(coder: NSCoder) {
@@ -1981,7 +1981,7 @@ public final class AnimatedEmojiesView : Control {
         let rect = NSMakeRect(viewPoint.y - point.y, 5, item.height, packsView.frame.height)
         
         selectionView.layer?.cornerRadius = item.height == item.width && item.index != 1 ? .cornerRadius : item.width / 2
-        if usesPickerStyle || isGlass, !TelegramUtilsHooks.shared.isLite(.blur) {
+        if usesPickerStyle || isGlass, !AnsibleUtilsHooks.shared.isLite(.blur) {
             let frost: NSVisualEffectView
             if let current = selectionFrost {
                 frost = current
@@ -2170,7 +2170,7 @@ public enum EmojiesControllerMode {
     }
 }
 
-public final class EmojiesController<Context: AccountContextProtocol> : TelegramGenericViewController<AnimatedEmojiesView, Context>, TableViewDelegate {
+public final class EmojiesController<Context: AccountContextProtocol> : AnsibleGenericViewController<AnimatedEmojiesView, Context>, TableViewDelegate {
     public override var defaultBarTitle: String {
         return localizedString("Telegram.EmojiesController")
     }
@@ -2252,7 +2252,7 @@ public final class EmojiesController<Context: AccountContextProtocol> : Telegram
     
     public var closeCurrent:(()->Void)? = nil
     public var animateAppearance:(([TableRowItem])->Void)? = nil
-    private var presentation: TelegramPresentationTheme?
+    private var presentation: AnsiblePresentationTheme?
     private let selectedItems: [EmojiesSectionRowItem.SelectedItem]
     private let ignorePremium: Bool
     private let orderedTags: [RecentReactionItem]?
@@ -2304,7 +2304,7 @@ public final class EmojiesController<Context: AccountContextProtocol> : Telegram
         })
     }
 
-    public init(_ context: Context, mode: Mode = .emoji, selectedItems: [EmojiesSectionRowItem.SelectedItem] = [], presentation: TelegramPresentationTheme? = nil, color: NSColor? = nil, ignorePremium: Bool = false, orderedTags: [RecentReactionItem]? = nil) {
+    public init(_ context: Context, mode: Mode = .emoji, selectedItems: [EmojiesSectionRowItem.SelectedItem] = [], presentation: AnsiblePresentationTheme? = nil, color: NSColor? = nil, ignorePremium: Bool = false, orderedTags: [RecentReactionItem]? = nil) {
         self.orderedTags = orderedTags
         self.mode = mode
         self.presentation = presentation
@@ -2582,7 +2582,7 @@ public final class EmojiesController<Context: AccountContextProtocol> : Telegram
         
         let presentation = self.presentation
         
-        let takePresentation:()->TelegramPresentationTheme = {
+        let takePresentation:()->AnsiblePresentationTheme = {
             return presentation ?? theme
         }
         

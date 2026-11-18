@@ -48,7 +48,7 @@ private final class LocationPinView : View {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         locationPin.image = theme.icons.locationMapPin
         locationPin.sizeToFit()
         dotView.backgroundColor = theme.colors.accentIcon
@@ -146,7 +146,7 @@ private final class LocationMapView : View {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         locationPinView.updateLocalizationAndTheme(theme: theme)
         expandButton.set(font: .medium(.title), for: .Normal)
         expandButton.set(color: theme.colors.accent, for: .Normal)

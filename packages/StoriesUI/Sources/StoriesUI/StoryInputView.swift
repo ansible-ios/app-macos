@@ -37,45 +37,45 @@ enum StoryInputState : Equatable {
 
 private var send_image: CGImage {
     if System.liquidGlass {
-        return TelegramThemeHooks.shared.image(.iconSendMessageSmall).precomposed(darkAppearance.colors.underSelectedColor)
+        return AnsibleThemeHooks.shared.image(.iconSendMessageSmall).precomposed(darkAppearance.colors.underSelectedColor)
     }
-    return TelegramThemeHooks.shared.image(.iconSendMessage).precomposed(darkAppearance.colors.accent)
+    return AnsibleThemeHooks.shared.image(.iconSendMessage).precomposed(darkAppearance.colors.accent)
 }
 private var send_image_active: CGImage {
     if System.liquidGlass {
-        return TelegramThemeHooks.shared.image(.iconSendMessageSmall).precomposed(darkAppearance.colors.underSelectedColor)
+        return AnsibleThemeHooks.shared.image(.iconSendMessageSmall).precomposed(darkAppearance.colors.underSelectedColor)
     }
-    return TelegramThemeHooks.shared.image(.iconSendMessage).precomposed(darkAppearance.colors.accent.darker())
+    return AnsibleThemeHooks.shared.image(.iconSendMessage).precomposed(darkAppearance.colors.accent.darker())
 }
 
-private let like_image: CGImage  = TelegramThemeHooks.shared.image(.iconStoryLike).precomposed(NSColor(0xffffff, 1))
-private var like_image_active: CGImage  = TelegramThemeHooks.shared.image(.iconStoryLike).precomposed(NSColor(0xffffff, 0.8))
+private let like_image: CGImage  = AnsibleThemeHooks.shared.image(.iconStoryLike).precomposed(NSColor(0xffffff, 1))
+private var like_image_active: CGImage  = AnsibleThemeHooks.shared.image(.iconStoryLike).precomposed(NSColor(0xffffff, 0.8))
 
 
-private let attach_image: CGImage  = TelegramThemeHooks.shared.image(.iconChatAttach).precomposed(NSColor(0xffffff, 1))
-private let attach_image_active: CGImage  = TelegramThemeHooks.shared.image(.iconChatAttach).precomposed(NSColor(0xffffff, 0.8))
+private let attach_image: CGImage  = AnsibleThemeHooks.shared.image(.iconChatAttach).precomposed(NSColor(0xffffff, 1))
+private let attach_image_active: CGImage  = AnsibleThemeHooks.shared.image(.iconChatAttach).precomposed(NSColor(0xffffff, 0.8))
 
-private let voice_image: CGImage  = TelegramThemeHooks.shared.image(.iconRecordVoice).precomposed(NSColor(0xffffff, 1))
-private let voice_image_active: CGImage  = TelegramThemeHooks.shared.image(.iconRecordVoice).precomposed(NSColor(0xffffff, 0.8))
+private let voice_image: CGImage  = AnsibleThemeHooks.shared.image(.iconRecordVoice).precomposed(NSColor(0xffffff, 1))
+private let voice_image_active: CGImage  = AnsibleThemeHooks.shared.image(.iconRecordVoice).precomposed(NSColor(0xffffff, 0.8))
 
-private let video_message_image: CGImage  = TelegramThemeHooks.shared.image(.iconRecordVideoMessage).precomposed(NSColor(0xffffff, 1))
-private let video_message_image_active: CGImage  = TelegramThemeHooks.shared.image(.iconRecordVideoMessage).precomposed(NSColor(0xffffff, 0.8))
-
-
-private let stickers_image: CGImage  = TelegramThemeHooks.shared.image(.iconChatEntertainmentSticker).precomposed(NSColor(0xffffff, 1))
-private var stickers_image_active: CGImage  = TelegramThemeHooks.shared.image(.iconChatEntertainmentSticker).precomposed(NSColor(0xffffff, 0.8))
-
-private let emoji_image: CGImage  = TelegramThemeHooks.shared.image(.iconEntertainments).precomposed(NSColor(0xffffff, 1))
-private var emoji_image_active: CGImage  = TelegramThemeHooks.shared.image(.iconEntertainments).precomposed(NSColor(0xffffff, 0.8))
+private let video_message_image: CGImage  = AnsibleThemeHooks.shared.image(.iconRecordVideoMessage).precomposed(NSColor(0xffffff, 1))
+private let video_message_image_active: CGImage  = AnsibleThemeHooks.shared.image(.iconRecordVideoMessage).precomposed(NSColor(0xffffff, 0.8))
 
 
+private let stickers_image: CGImage  = AnsibleThemeHooks.shared.image(.iconChatEntertainmentSticker).precomposed(NSColor(0xffffff, 1))
+private var stickers_image_active: CGImage  = AnsibleThemeHooks.shared.image(.iconChatEntertainmentSticker).precomposed(NSColor(0xffffff, 0.8))
 
-private let share_image: CGImage  = TelegramThemeHooks.shared.image(.iconStoryShare).precomposed(NSColor(0xffffff, 1))
-private let share_image_active: CGImage  = TelegramThemeHooks.shared.image(.iconStoryShare).precomposed(NSColor(0xffffff, 0.8))
+private let emoji_image: CGImage  = AnsibleThemeHooks.shared.image(.iconEntertainments).precomposed(NSColor(0xffffff, 1))
+private var emoji_image_active: CGImage  = AnsibleThemeHooks.shared.image(.iconEntertainments).precomposed(NSColor(0xffffff, 0.8))
 
 
-private let setprice_image: CGImage  = TelegramThemeHooks.shared.image(.iconInputSuggestPost).precomposed(NSColor(0xffffff, 1))
-private let setprice_image_active: CGImage  = TelegramThemeHooks.shared.image(.iconInputSuggestPost).precomposed(NSColor(0xffffff, 0.8))
+
+private let share_image: CGImage  = AnsibleThemeHooks.shared.image(.iconStoryShare).precomposed(NSColor(0xffffff, 1))
+private let share_image_active: CGImage  = AnsibleThemeHooks.shared.image(.iconStoryShare).precomposed(NSColor(0xffffff, 0.8))
+
+
+private let setprice_image: CGImage  = AnsibleThemeHooks.shared.image(.iconInputSuggestPost).precomposed(NSColor(0xffffff, 1))
+private let setprice_image_active: CGImage  = AnsibleThemeHooks.shared.image(.iconInputSuggestPost).precomposed(NSColor(0xffffff, 0.8))
 
 
 private func generateStarsTextIcon(text: String, bgColor: NSColor, textColor: NSColor, fontSize: CGFloat = .small, round: Bool = false, borderColor: NSColor? = nil, small: Bool = false) -> CGImage {
@@ -83,7 +83,7 @@ private func generateStarsTextIcon(text: String, bgColor: NSColor, textColor: NS
     let textNode = TextNode.layoutText(.initialize(string: text, color: textColor, font: .avatar(fontSize)), nil, 2, .end, NSMakeSize(.greatestFiniteMagnitude, 20), nil, false, .center)
     var size = textNode.0.size
     
-    let icon = TelegramThemeHooks.shared.image(.starSmall).precomposed(textColor, flipVertical: true)
+    let icon = AnsibleThemeHooks.shared.image(.starSmall).precomposed(textColor, flipVertical: true)
 
     if !small {
         size.width = max(40, (size.width + 19 + icon.backingSize.width))
@@ -419,7 +419,7 @@ final class StoryReplyActionButton : View {
                             ctx.round(size, size.height / 2)
                             ctx.setFillColor((hasPending ? NSColor(0xFFAC04) : bgColor).cgColor)
                             ctx.fill(size.bounds)
-                            let star = TelegramThemeHooks.shared.image(.iconPeerPremium).precomposed(.white)
+                            let star = AnsibleThemeHooks.shared.image(.iconPeerPremium).precomposed(.white)
                             ctx.draw(star, in: size.bounds.focus(star.backingSize))
                         })!
                         
@@ -466,7 +466,7 @@ final class StoryReplyActionButton : View {
                             ctx.round(size, size.height / 2)
                             ctx.setFillColor(bgColor.cgColor)
                             ctx.fill(size.bounds)
-                            let star = TelegramThemeHooks.shared.image(.iconPeerPremium).precomposed(.white)
+                            let star = AnsibleThemeHooks.shared.image(.iconPeerPremium).precomposed(.white)
                             ctx.draw(star, in: size.bounds.focus(star.backingSize))
                         })!
                     }
@@ -616,7 +616,7 @@ final class StoryReplyActionButton : View {
         
         let file = LocalAnimatedSticker.premium_reaction_effect_5.file
         
-        if TelegramUtilsHooks.shared.isLite(.emoji_effects) {
+        if AnsibleUtilsHooks.shared.isLite(.emoji_effects) {
             return
         }
 

@@ -105,8 +105,8 @@ public struct FixtureTheme {
 }
 public let theme = FixtureTheme()
 public func generatePremium(_ value: Bool, color: NSColor, small: Bool = false) -> CGImage { makeIcon() }
-public struct TelegramUtilsHooks {
-    public static let shared = TelegramUtilsHooks()
+public struct AnsibleUtilsHooks {
+    public static let shared = AnsibleUtilsHooks()
     public enum Lite { case emoji }
     public func isLite(_ mode: Lite) -> Bool { false }
 }

@@ -108,7 +108,7 @@ private final class GroupCallVideoOrientationRowView : GeneralContainableRowView
             
             let top = ImageView()
             top.isAccessibilityDecorative = true
-            top.image = TelegramThemeHooks.shared.image(.iconGroupCallRecordAvatar1)._cgImage
+            top.image = AnsibleThemeHooks.shared.image(.iconGroupCallRecordAvatar1)._cgImage
             top.isEventLess = true
             top.layer?.cornerRadius = 2
             

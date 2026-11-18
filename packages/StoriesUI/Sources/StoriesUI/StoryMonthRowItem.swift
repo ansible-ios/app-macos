@@ -25,12 +25,12 @@ public final class StoryMonthRowItem : GeneralRowItem {
     fileprivate let toggleSelected: (StoryId)->Void
     fileprivate let menuItems: (StoryListContextState.Item)->[ContextMenuItem]
     fileprivate let pinnedIds:[Int32]
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
     fileprivate let rowCountValue: Int
     fileprivate let nextRowCount: Int?
     fileprivate let clipsToPosts: Bool
     fileprivate private(set) var postsSize: NSSize = NSZeroSize
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, standalone: Bool, peerId: PeerId, peerReference: PeerReference, items: [StoryListContextState.Item], selected: Set<StoryId>?, pinnedIds:[Int32], rowCount: Int, nextRowCount: Int? = nil, clipsToPosts: Bool = false, viewType: GeneralViewType, openStory:@escaping(StoryInitialIndex?)->Void, toggleSelected: @escaping(StoryId)->Void, menuItems:@escaping(StoryListContextState.Item)->[ContextMenuItem], presentation: TelegramPresentationTheme = theme) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, standalone: Bool, peerId: PeerId, peerReference: PeerReference, items: [StoryListContextState.Item], selected: Set<StoryId>?, pinnedIds:[Int32], rowCount: Int, nextRowCount: Int? = nil, clipsToPosts: Bool = false, viewType: GeneralViewType, openStory:@escaping(StoryInitialIndex?)->Void, toggleSelected: @escaping(StoryId)->Void, menuItems:@escaping(StoryListContextState.Item)->[ContextMenuItem], presentation: AnsiblePresentationTheme = theme) {
         self.items = items
         self.selected = selected
         self.standalone = standalone

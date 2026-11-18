@@ -932,14 +932,14 @@ public class SearchController<Context: AccountContextProtocol>: GenericViewContr
                 } |> mapToSignal { peerViews, peers in
                     
                     let items: [UnreadMessageCountsItem] = peers.map { peer in
-                        return .peer(id: peer.peerId, handleThreads: peer.peer.map { TelegramUtilsHooks.shared.peerIsForum($0) } == true)
+                        return .peer(id: peer.peerId, handleThreads: peer.peer.map { AnsibleUtilsHooks.shared.peerIsForum($0) } == true)
                     }
                     
                     return context.account.postbox.unreadMessageCountsView(items: items) |> take(1) |> map { values -> ([RenderedPeer], [PeerId: UnreadSearchBadge]) in
                         var unread:[PeerId: UnreadSearchBadge] = [:]
                         for peerView in peerViews {
                             let isMuted = peerView.isMuted
-                            let unreadCount = values.count(for: .peer(id: peerView.peerId, handleThreads: peerViewMainPeer(peerView).map { TelegramUtilsHooks.shared.peerIsForum($0) } == true))
+                            let unreadCount = values.count(for: .peer(id: peerView.peerId, handleThreads: peerViewMainPeer(peerView).map { AnsibleUtilsHooks.shared.peerIsForum($0) } == true))
                             if let unreadCount = unreadCount, unreadCount > 0 {
                                 unread[peerView.peerId] = isMuted ? .muted(unreadCount) : .unmuted(unreadCount)
                             }
@@ -1041,11 +1041,11 @@ public class SearchController<Context: AccountContextProtocol>: GenericViewContr
                                 |> mapToSignal { peers -> Signal<([FoundPeer], [FoundPeer], [PeerId : UnreadSearchBadge], [AdPeer]), NoError> in
                                     let all = peers.0 + peers.1
                                     return combineLatest(all.map { context.account.postbox.peerView(id: $0.peer.id) |> take(1) }) |> mapToSignal { peerViews in
-                                        return context.account.postbox.unreadMessageCountsView(items: all.map {.peer(id: $0.peer.id, handleThreads: TelegramUtilsHooks.shared.peerIsForum($0.peer._asPeer()))}) |> take(1) |> map { values in
+                                        return context.account.postbox.unreadMessageCountsView(items: all.map {.peer(id: $0.peer.id, handleThreads: AnsibleUtilsHooks.shared.peerIsForum($0.peer._asPeer()))}) |> take(1) |> map { values in
                                             var unread:[PeerId: UnreadSearchBadge] = [:]
                                             outer: for peerView in peerViews {
                                                 let isMuted = peerView.isMuted
-                                                let unreadCount = values.count(for: .peer(id: peerView.peerId, handleThreads: peerViewMainPeer(peerView).map { TelegramUtilsHooks.shared.peerIsForum($0) } == true))
+                                                let unreadCount = values.count(for: .peer(id: peerView.peerId, handleThreads: peerViewMainPeer(peerView).map { AnsibleUtilsHooks.shared.peerIsForum($0) } == true))
                                                 if let unreadCount = unreadCount, unreadCount > 0 {
                                                     if let peer = peerViewMainPeer(peerView) {
                                                         if let peer = peer as? TelegramChannel {
@@ -1628,12 +1628,12 @@ public class SearchController<Context: AccountContextProtocol>: GenericViewContr
                         return true
                     }
                 } |> mapToSignal { peerViews -> Signal<([PeerView], [PeerId: UnreadSearchBadge], EngineDataMap<TelegramEngine.EngineData.Item.Peer.StoryStats>.Result), NoError> in
-                    return context.account.postbox.unreadMessageCountsView(items: peerViews.map {.peer(id: $0.peerId, handleThreads: peerViewMainPeer($0).map { TelegramUtilsHooks.shared.peerIsForum($0) } == true)}) |> map { values -> ([PeerView], [PeerId: UnreadSearchBadge]) in
+                    return context.account.postbox.unreadMessageCountsView(items: peerViews.map {.peer(id: $0.peerId, handleThreads: peerViewMainPeer($0).map { AnsibleUtilsHooks.shared.peerIsForum($0) } == true)}) |> map { values -> ([PeerView], [PeerId: UnreadSearchBadge]) in
                             
                             var unread:[PeerId: UnreadSearchBadge] = [:]
                             for peerView in peerViews {
                                 let isMuted = peerView.isMuted
-                                let unreadCount = values.count(for: .peer(id: peerView.peerId, handleThreads: peerViewMainPeer(peerView).map { TelegramUtilsHooks.shared.peerIsForum($0) } == true))
+                                let unreadCount = values.count(for: .peer(id: peerView.peerId, handleThreads: peerViewMainPeer(peerView).map { AnsibleUtilsHooks.shared.peerIsForum($0) } == true))
                                 if let unreadCount = unreadCount, unreadCount > 0 {
                                     unread[peerView.peerId] = isMuted ? .muted(unreadCount) : .unmuted(unreadCount)
                                 }
@@ -1657,7 +1657,7 @@ public class SearchController<Context: AccountContextProtocol>: GenericViewContr
                         return .single(([], [:], [:]))
                     case let .peers(peers):
                         return combineLatest(peers.map {context.account.postbox.peerView(id: $0.id)}) |> mapToSignal { peerViews -> Signal<([Peer], [PeerId: UnreadSearchBadge], [PeerId : Bool]), NoError> in
-                            return context.account.postbox.unreadMessageCountsView(items: peerViews.map {.peer(id: $0.peerId, handleThreads: peerViewMainPeer($0).map { TelegramUtilsHooks.shared.peerIsForum($0) } == true)}) |> map { values in
+                            return context.account.postbox.unreadMessageCountsView(items: peerViews.map {.peer(id: $0.peerId, handleThreads: peerViewMainPeer($0).map { AnsibleUtilsHooks.shared.peerIsForum($0) } == true)}) |> map { values in
                                     
                                     var peers:[Peer] = []
                                     var unread:[PeerId: UnreadSearchBadge] = [:]
@@ -1670,7 +1670,7 @@ public class SearchController<Context: AccountContextProtocol>: GenericViewContr
                                                 (_, isActive, _) = stringAndActivityForUserPresence(presence, timeDifference: context.timeDifference, relativeTo: Int32(timestamp))
                                             }
                                             let isMuted = peerView.isMuted
-                                            let unreadCount = values.count(for: .peer(id: peerView.peerId, handleThreads: peerViewMainPeer(peerView).map { TelegramUtilsHooks.shared.peerIsForum($0) } == true))
+                                            let unreadCount = values.count(for: .peer(id: peerView.peerId, handleThreads: peerViewMainPeer(peerView).map { AnsibleUtilsHooks.shared.peerIsForum($0) } == true))
                                             if let unreadCount = unreadCount, unreadCount > 0 {
                                                 unread[peerView.peerId] = isMuted ? .muted(unreadCount) : .unmuted(unreadCount)
                                             }
@@ -2230,7 +2230,7 @@ public class SearchController<Context: AccountContextProtocol>: GenericViewContr
             if let peer = peer {
                 if case .savedMessages = target {
                     id = .chatId(.chatList(peer.id), peer.id, -1)
-                } else if TelegramUtilsHooks.shared.peerIsForum(peer) {
+                } else if AnsibleUtilsHooks.shared.peerIsForum(peer) {
                     id = .forum(peer.id)
                 } else if let peerId = peerId {
                     id = .chatId(.chatList(peerId), peerId, -1)

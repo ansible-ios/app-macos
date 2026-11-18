@@ -20,7 +20,7 @@ private var scamIcon: CGImage {
     GroupCallScreenUIHooks.shared.generateScamIconReversed(GroupCallTheme.customTheme.redColor, GroupCallTheme.customTheme.backgroundColor)
 }
 private var premiumIcon: CGImage {
-    TelegramThemeHooks.shared.image(.iconPeerPremium).precomposed(GroupCallTheme.customTheme.accentColor)
+    AnsibleThemeHooks.shared.image(.iconPeerPremium).precomposed(GroupCallTheme.customTheme.accentColor)
 }
 
 public final class GroupCallParticipantRowItem : GeneralRowItem {
@@ -118,7 +118,7 @@ public final class GroupCallParticipantRowItem : GeneralRowItem {
     }
     
     public override var menuPresentation: AppMenu.Presentation {
-        return .current(TelegramThemeHooks.shared.darkAppearance().colors)
+        return .current(AnsibleThemeHooks.shared.darkAppearance().colors)
     }
     
     public override var isLegacyMenu: Bool {

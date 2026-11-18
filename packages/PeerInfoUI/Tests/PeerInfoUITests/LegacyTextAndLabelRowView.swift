@@ -178,14 +178,14 @@ final class LegacyTextAndLabelRowView: GeneralRowView {
             moreView.setFrameSize(NSMakeSize(item.moreLayout.layoutSize.width + 10, item.moreLayout.layoutSize.height))
             moreView.background = theme.colors.background
             
-            copyView.set(image: TelegramThemeHooks.shared.image(item.gift != nil ? .iconGiftBirthday : .iconFastCopyLink).precomposed(item.accentColor), for: .Normal)
+            copyView.set(image: AnsibleThemeHooks.shared.image(item.gift != nil ? .iconGiftBirthday : .iconFastCopyLink).precomposed(item.accentColor), for: .Normal)
             copyView.sizeToFit()
             copyView.scaleOnClick = true
             copyView.isHidden = item._copyToClipboard == nil && item.gift == nil
             toggleVisibility.isHidden = item.hideText == nil
             
             if let hideText = item.hideText {
-                toggleVisibility.set(image: TelegramThemeHooks.shared.image(hideText ? .iconEyeOn : .iconEyeOff).precomposed(item.accentColor), for: .Normal)
+                toggleVisibility.set(image: AnsibleThemeHooks.shared.image(hideText ? .iconEyeOn : .iconEyeOff).precomposed(item.accentColor), for: .Normal)
                 toggleVisibility.sizeToFit()
             }
             

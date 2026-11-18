@@ -28,10 +28,10 @@ class MediaPreviewRowItem: TableRowItem {
     fileprivate let paint:()->Void
     fileprivate let delete: (()->Void)?
     fileprivate let editedData: EditedImageData?
-    fileprivate let theme: TelegramPresentationTheme
+    fileprivate let theme: AnsiblePresentationTheme
     fileprivate let payAmount: Int64?
     fileprivate let renderingPreview: CGImage?
-    init(_ initialSize: NSSize, media: Media, context: any AccountContextProtocol, theme: TelegramPresentationTheme, editedData: EditedImageData? = nil, isSpoiler: Bool, payAmount: Int64?, renderingPreview: CGImage? = nil, edit:@escaping()->Void = {}, paint:@escaping()->Void = {}, delete: (()->Void)? = nil) {
+    init(_ initialSize: NSSize, media: Media, context: any AccountContextProtocol, theme: AnsiblePresentationTheme, editedData: EditedImageData? = nil, isSpoiler: Bool, payAmount: Int64?, renderingPreview: CGImage? = nil, edit:@escaping()->Void = {}, paint:@escaping()->Void = {}, delete: (()->Void)? = nil) {
         self.renderingPreview = renderingPreview
         self.edit = edit
         self.paint = paint

@@ -2,16 +2,16 @@ import Foundation
 import Postbox
 import TelegramCore
 
-public struct TelegramContextHooks {
+public struct AnsibleContextHooks {
     public let peerTitle: (Peer) -> String
 
     public init(peerTitle: @escaping (Peer) -> String) {
         self.peerTitle = peerTitle
     }
 
-    public static var shared: TelegramContextHooks = TelegramContextHooks(peerTitle: { _ in return "" })
+    public static var shared: AnsibleContextHooks = AnsibleContextHooks(peerTitle: { _ in return "" })
 }
 
-public func installTelegramContextHooks(_ hooks: TelegramContextHooks) {
-    TelegramContextHooks.shared = hooks
+public func installAnsibleContextHooks(_ hooks: AnsibleContextHooks) {
+    AnsibleContextHooks.shared = hooks
 }

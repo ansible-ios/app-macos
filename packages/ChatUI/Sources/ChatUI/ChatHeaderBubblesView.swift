@@ -503,7 +503,7 @@ final class ChatHeaderBubblesView: View, InteractionContentViewProtocol {
     /// tints/icons against the chat's palette instead of falling through
     /// to the global app `theme` singleton, which is wrong for chats on a
     /// custom palette or wallpaper.
-    private var currentChatTheme: TelegramPresentationTheme?
+    private var currentChatTheme: AnsiblePresentationTheme?
 
     enum MenuMode {
         case menu
@@ -637,7 +637,7 @@ final class ChatHeaderBubblesView: View, InteractionContentViewProtocol {
 
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         self.currentChatTheme = theme
         let buttonSize = NSMakeSize(Self.bubbleHeight, Self.bubbleHeight)
 
@@ -672,7 +672,7 @@ final class ChatHeaderBubblesView: View, InteractionContentViewProtocol {
 
     private func updateForumSidebarButtonImage() {
         let palette = (currentChatTheme ?? theme).colors
-        let image = ChatUIHooks.shared.forumSidebarToggleImage?(isForumSidebarOpen) ?? TelegramThemeHooks.shared.image(.iconMonoforumToggle)
+        let image = ChatUIHooks.shared.forumSidebarToggleImage?(isForumSidebarOpen) ?? AnsibleThemeHooks.shared.image(.iconMonoforumToggle)
         forumSidebarButton.set(image: image.precomposed(palette.text, flipHorizontal: true), for: .Normal)
         forumSidebarButton.setAccessibilityValue(isForumSidebarOpen ? strings().voiceOverCommonSelected : strings().voiceOverCommonNotSelected)
     }
@@ -787,7 +787,7 @@ final class ChatHeaderBubblesView: View, InteractionContentViewProtocol {
                 avatarControl.setSignal(generateEmptyPhoto(avatarControl.frame.size, type: .icon(colors: theme.colors.peerColors(5), icon: icon, iconSize: icon.backingSize.aspectFitted(NSMakeSize(avatarControl.frame.size.width - 12, avatarControl.frame.size.height - 12)), cornerRadius: nil), bubble: false) |> map { ($0, false) })
             } else {
                 if peer.isMonoForum, let mainForumPeer = peerViewMonoforumMainPeer(peerView) {
-                    avatarControl.setState(account: context.account, state: .PeerAvatar(peer, TelegramUtilsHooks.shared.peerLetters(mainForumPeer), mainForumPeer.smallProfileImage, mainForumPeer.namePeerColor, nil, nil, mainForumPeer.groupAccess.canManageDirect, nil))
+                    avatarControl.setState(account: context.account, state: .PeerAvatar(peer, AnsibleUtilsHooks.shared.peerLetters(mainForumPeer), mainForumPeer.smallProfileImage, mainForumPeer.namePeerColor, nil, nil, mainForumPeer.groupAccess.canManageDirect, nil))
                 } else {
                     avatarControl.setPeer(account: context.account, peer: peer, disableForum: true)
                 }
@@ -885,7 +885,7 @@ final class ChatHeaderBubblesView: View, InteractionContentViewProtocol {
         if let threadInfo = presentation.threadInfo, isTopicMode(presentation) {
             let size = NSMakeSize(30, 30)
             let info = threadInfo.info
-            let fallbackFile = TelegramUtilsHooks.shared.topicFile!(info.title, info.iconColor, presentation.chatLocation.threadId == 1)
+            let fallbackFile = AnsibleUtilsHooks.shared.topicFile!(info.title, info.iconColor, presentation.chatLocation.threadId == 1)
             let targetFileId: Int64 = info.icon ?? fallbackFile.fileId.id
             let current: InlineStickerItemLayer
             if let layer = self.inlineTopicPhotoLayer, layer.file?.fileId.id == targetFileId {

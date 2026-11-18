@@ -696,7 +696,7 @@ public class InputTextDataRowView : GeneralContainableRowView {
                     }
                 }, for: .Click)
             }
-            current.set(image: TelegramThemeHooks.shared.image(.iconCustomEmojiSmall).precomposed(theme.colors.grayIcon), for: .Normal)
+            current.set(image: AnsibleThemeHooks.shared.image(.iconCustomEmojiSmall).precomposed(theme.colors.grayIcon), for: .Normal)
             current.sizeToFit()
         } else if let view = self.emoji {
             performSubviewRemoval(view, animated: animated)

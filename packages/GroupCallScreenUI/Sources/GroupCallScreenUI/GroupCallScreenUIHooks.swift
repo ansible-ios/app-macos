@@ -22,15 +22,15 @@ public struct GroupCallScreenUIHooks {
     public let updateCurrentGroupCallValue: (any SharedAccountContextProtocol, GroupCallContext?) -> Void
     public let showGroupCall: (any SharedAccountContextProtocol, GroupCallContext) -> Void
     public let pushPeerInfo: (NavigationViewController, any AccountContextProtocol, PeerId) -> Void
-    public let showReactionsWindow: (any AccountContextProtocol, PeerId, @escaping (StickerPackItem, NSRect?) -> Void, (() -> Void)?, TelegramPresentationTheme, String, Window?, NSView & StickerFramesCollector) -> Void
+    public let showReactionsWindow: (any AccountContextProtocol, PeerId, @escaping (StickerPackItem, NSRect?) -> Void, (() -> Void)?, AnsiblePresentationTheme, String, Window?, NSView & StickerFramesCollector) -> Void
     public let makeVolumeMenuItem: (CGFloat, ((CGFloat, Bool) -> Void)?) -> ContextMenuItem
     public let generateFakeIconReversed: (NSColor, NSColor) -> CGImage
     public let generateScamIconReversed: (NSColor, NSColor) -> CGImage
-    public let makeEmojies: (any AccountContextProtocol, TelegramPresentationTheme) -> GroupCallEmojiesController
+    public let makeEmojies: (any AccountContextProtocol, AnsiblePresentationTheme) -> GroupCallEmojiesController
     public let updateEmojies: (GroupCallEmojiesController, EntertainmentInteractions, any ChatInteractionProtocol) -> Void
     public let formatMessageText: ([MessageTextEntity], String, any AccountContextProtocol, CGFloat, NSColor, NSColor) -> NSAttributedString
     public let reactionsListWidth: (Int, Int, Bool) -> CGFloat
-    public let makeReactionsListView: (NSRect, any AccountContextProtocol, [ContextReaction], @escaping (MessageReaction.Reaction, Bool, NSRect?) -> Void, ((NSView & StickerFramesCollector) -> Void)?, TelegramPresentationTheme, Window?) -> NSView
+    public let makeReactionsListView: (NSRect, any AccountContextProtocol, [ContextReaction], @escaping (MessageReaction.Reaction, Bool, NSRect?) -> Void, ((NSView & StickerFramesCollector) -> Void)?, AnsiblePresentationTheme, Window?) -> NSView
     public let makeRTMPServerUrlItem: (NSSize, AnyHashable, String, String, NSColor, NSColor, String, (any AccountContextProtocol)?, GeneralViewType, Bool, @escaping () -> Void, Bool, Bool, (() -> Void)?, NSFont) -> TableRowItem
     public let makeRTMPStreamKeyItem: (NSSize, AnyHashable, String, String, NSColor, NSColor, String, (any AccountContextProtocol)?, GeneralViewType, Bool, @escaping () -> Void, Bool, Bool, (() -> Void)?, NSFont, Bool?, (() -> Void)?) -> TableRowItem
     public let makeSettingsRTMPServerUrlItem: (NSSize, AnyHashable, String, String, NSColor, NSColor, NSColor, String, (any AccountContextProtocol)?, GeneralViewType, Bool, @escaping () -> Void, Bool, Bool, (() -> Void)?, NSFont, NSColor, NSColor) -> TableRowItem
@@ -43,15 +43,15 @@ public struct GroupCallScreenUIHooks {
                 updateCurrentGroupCallValue: @escaping (any SharedAccountContextProtocol, GroupCallContext?) -> Void,
                 showGroupCall: @escaping (any SharedAccountContextProtocol, GroupCallContext) -> Void,
                 pushPeerInfo: @escaping (NavigationViewController, any AccountContextProtocol, PeerId) -> Void,
-                showReactionsWindow: @escaping (any AccountContextProtocol, PeerId, @escaping (StickerPackItem, NSRect?) -> Void, (() -> Void)?, TelegramPresentationTheme, String, Window?, NSView & StickerFramesCollector) -> Void,
+                showReactionsWindow: @escaping (any AccountContextProtocol, PeerId, @escaping (StickerPackItem, NSRect?) -> Void, (() -> Void)?, AnsiblePresentationTheme, String, Window?, NSView & StickerFramesCollector) -> Void,
                 makeVolumeMenuItem: @escaping (CGFloat, ((CGFloat, Bool) -> Void)?) -> ContextMenuItem,
                 generateFakeIconReversed: @escaping (NSColor, NSColor) -> CGImage,
                 generateScamIconReversed: @escaping (NSColor, NSColor) -> CGImage,
-                makeEmojies: @escaping (any AccountContextProtocol, TelegramPresentationTheme) -> GroupCallEmojiesController,
+                makeEmojies: @escaping (any AccountContextProtocol, AnsiblePresentationTheme) -> GroupCallEmojiesController,
                 updateEmojies: @escaping (GroupCallEmojiesController, EntertainmentInteractions, any ChatInteractionProtocol) -> Void,
                 formatMessageText: @escaping ([MessageTextEntity], String, any AccountContextProtocol, CGFloat, NSColor, NSColor) -> NSAttributedString,
                 reactionsListWidth: @escaping (Int, Int, Bool) -> CGFloat,
-                makeReactionsListView: @escaping (NSRect, any AccountContextProtocol, [ContextReaction], @escaping (MessageReaction.Reaction, Bool, NSRect?) -> Void, ((NSView & StickerFramesCollector) -> Void)?, TelegramPresentationTheme, Window?) -> NSView,
+                makeReactionsListView: @escaping (NSRect, any AccountContextProtocol, [ContextReaction], @escaping (MessageReaction.Reaction, Bool, NSRect?) -> Void, ((NSView & StickerFramesCollector) -> Void)?, AnsiblePresentationTheme, Window?) -> NSView,
                 makeRTMPServerUrlItem: @escaping (NSSize, AnyHashable, String, String, NSColor, NSColor, String, (any AccountContextProtocol)?, GeneralViewType, Bool, @escaping () -> Void, Bool, Bool, (() -> Void)?, NSFont) -> TableRowItem,
                 makeRTMPStreamKeyItem: @escaping (NSSize, AnyHashable, String, String, NSColor, NSColor, String, (any AccountContextProtocol)?, GeneralViewType, Bool, @escaping () -> Void, Bool, Bool, (() -> Void)?, NSFont, Bool?, (() -> Void)?) -> TableRowItem,
                 makeSettingsRTMPServerUrlItem: @escaping (NSSize, AnyHashable, String, String, NSColor, NSColor, NSColor, String, (any AccountContextProtocol)?, GeneralViewType, Bool, @escaping () -> Void, Bool, Bool, (() -> Void)?, NSFont, NSColor, NSColor) -> TableRowItem,

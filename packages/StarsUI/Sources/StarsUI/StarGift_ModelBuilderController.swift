@@ -863,11 +863,11 @@ private final class HeaderView: GeneralRowView {
         guard let item = item as? HeaderItem else { return }
         let hadModel = modelId != nil
         let animated = hadModel
-        dismiss.updateIcon(TelegramThemeHooks.shared.image(.iconPipClose).precomposed(.white), size: NSMakeSize(18, 18), animated: false)
+        dismiss.updateIcon(AnsibleThemeHooks.shared.image(.iconPipClose).precomposed(.white), size: NSMakeSize(18, 18), animated: false)
         dismiss.setAccessibilityLabel(strings().voiceOverCommonClose)
         dismiss.setSingle(handler: { [weak item] _ in item?.arguments.dismiss() }, for: .Click)
         if mode != item.state.mode {
-            let image = TelegramThemeHooks.shared.image(item.state.mode == .custom ? .iconVideoPlayerPlay : .iconVideoPlayerPause).precomposed(.white)
+            let image = AnsibleThemeHooks.shared.image(item.state.mode == .custom ? .iconVideoPlayerPlay : .iconVideoPlayerPause).precomposed(.white)
             playView.updateIcon(image, size: NSMakeSize(14, 14), animated: animated)
             mode = item.state.mode
         }

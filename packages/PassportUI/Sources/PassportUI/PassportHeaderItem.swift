@@ -34,7 +34,7 @@ class PassportHeaderItem: TableRowItem {
     init(_ initialSize: NSSize, account: Account, stableId: AnyHashable, requestedFields: [SecureIdRequestedFormField], peer: Peer) {
         self.account = account
         self._stableId = stableId
-        self.botPhoto = .PeerAvatar(peer, peer.displayLetters, peer.smallProfileImage, peer.namePeerColor, nil, nil, TelegramUtilsHooks.shared.peerIsForum(peer), nil)
+        self.botPhoto = .PeerAvatar(peer, peer.displayLetters, peer.smallProfileImage, peer.namePeerColor, nil, nil, AnsibleUtilsHooks.shared.peerIsForum(peer), nil)
         
         let attributed = NSMutableAttributedString()
         

@@ -339,7 +339,7 @@ public final class WebpageHeaderView : Control {
                 
         subtitleView.update(TextViewLayout(.initialize(string: subtitle, color: secondColor, font: .normal(.text)), maximumNumberOfLines: 1))
         
-        rightButton.set(image: TelegramThemeHooks.shared.image(.iconChatActionsActive).precomposed(color), for: .Normal)
+        rightButton.set(image: AnsibleThemeHooks.shared.image(.iconChatActionsActive).precomposed(color), for: .Normal)
         rightButton.setGlassEffect(size: NSMakeSize(36, 36))
         rightButton.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
         rightButton.setAccessibilityLabel(strings().voiceOverCommonMore)
@@ -353,7 +353,7 @@ public final class WebpageHeaderView : Control {
                 let btn = ImageButton()
                 btn.autohighlight = false
                 btn.animates = false
-                btn.set(image: TelegramThemeHooks.shared.image(.iconPipClose).precomposed(color), for: .Normal)
+                btn.set(image: AnsibleThemeHooks.shared.image(.iconPipClose).precomposed(color), for: .Normal)
                 btn.setGlassEffect(size: NSMakeSize(36, 36))
                 btn.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
                 btn.setAccessibilityLabel(strings().voiceOverCommonClose)
@@ -362,7 +362,7 @@ public final class WebpageHeaderView : Control {
                 let btn = TextButton()
                 btn.autohighlight = false
                 btn.animates = false
-                btn.set(image: TelegramThemeHooks.shared.image(.iconChatNavigationBack).precomposed(color), for: .Normal)
+                btn.set(image: AnsibleThemeHooks.shared.image(.iconChatNavigationBack).precomposed(color), for: .Normal)
                 btn.set(text: strings().navigationBack, for: .Normal)
                 btn.set(font: .normal(.title), for: .Normal)
                 btn.set(color: color, for: .Normal)

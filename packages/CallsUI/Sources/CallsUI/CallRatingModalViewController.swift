@@ -37,7 +37,7 @@ private class CallRatingModalView: View {
         for i in 0 ..< 5 {
             let star = ImageButton()
             star.setAccessibilityLabel(strings().voiceOverCallsRatingStarsOther(i + 1))
-            star.set(image: TelegramThemeHooks.shared.image(.iconCallStar).precomposed(theme.colors.accent), for: .Normal)
+            star.set(image: AnsibleThemeHooks.shared.image(.iconCallStar).precomposed(theme.colors.accent), for: .Normal)
             star.sizeToFit()
             star.setFrameOrigin(x, 0)
             rating.addSubview(star)
@@ -45,10 +45,10 @@ private class CallRatingModalView: View {
             
             star.set(handler: { [weak self] current in
                 for j in 0 ... i {
-                    (self?.rating.subviews[j] as? ImageButton)?.set(image: TelegramThemeHooks.shared.image(.iconCallStarHighlighted).precomposed(theme.colors.accent), for: .Normal)
+                    (self?.rating.subviews[j] as? ImageButton)?.set(image: AnsibleThemeHooks.shared.image(.iconCallStarHighlighted).precomposed(theme.colors.accent), for: .Normal)
                 }
                 for j in i + 1 ..< 5 {
-                    (self?.rating.subviews[j] as? ImageButton)?.set(image: TelegramThemeHooks.shared.image(.iconCallStar).precomposed(theme.colors.accent), for: .Normal)
+                    (self?.rating.subviews[j] as? ImageButton)?.set(image: AnsibleThemeHooks.shared.image(.iconCallStar).precomposed(theme.colors.accent), for: .Normal)
                 }
                 self?.state = .stars
                 delay(0.15, closure: {

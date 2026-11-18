@@ -160,7 +160,7 @@ private final class EmptyView : View {
     
     func update(_ text: String) {
         
-        self.imageView.image = TelegramThemeHooks.shared.image(.iconRecentLogs).precomposed(theme.colors.grayIcon)
+        self.imageView.image = AnsibleThemeHooks.shared.image(.iconRecentLogs).precomposed(theme.colors.grayIcon)
         self.imageView.sizeToFit()
         
         let attributed = NSMutableAttributedString()
@@ -217,7 +217,7 @@ public class ChannelEventLogView : View {
 
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         settings.set(text: strings().channelEventFilterFilters, for: .Normal)
         settings.set(color: theme.colors.text, for: .Normal)
         settings.set(background: .clear, for: .Highlight)
@@ -227,7 +227,7 @@ public class ChannelEventLogView : View {
         settings.layer?.cornerRadius = 20
         settings.setGlassEffect(size: settings.frame.size)
 
-        info.set(image: TelegramThemeHooks.shared.image(.iconChannelPromoInfo).precomposed(theme.colors.text), for: .Normal)
+        info.set(image: AnsibleThemeHooks.shared.image(.iconChannelPromoInfo).precomposed(theme.colors.text), for: .Normal)
         info.sizeToFit(.zero, NSMakeSize(40, 40), thatFit: true)
         info.layer?.cornerRadius = 20
         info.setGlassEffect(size: NSMakeSize(40, 40))
@@ -390,7 +390,7 @@ private func eventLogItems(_ entries:[ChannelAdminEventLogEntry], state: State, 
     return items
 }
 
-open class ChannelEventLogController<Context: AccountContextProtocol>: TelegramGenericViewController<ChannelEventLogView, Context> {
+open class ChannelEventLogController<Context: AccountContextProtocol>: AnsibleGenericViewController<ChannelEventLogView, Context> {
     private let peerId:PeerId
     private let peer: EnginePeer
     private let chatInteraction:ChatInteraction
@@ -499,7 +499,7 @@ open class ChannelEventLogController<Context: AccountContextProtocol>: TelegramG
     }
 
     private var searchButtonImage: CGImage {
-        return inSearch ? TelegramThemeHooks.shared.image(.iconPipClose).precomposed(theme.colors.text) : theme.icons.chatSearch
+        return inSearch ? AnsibleThemeHooks.shared.image(.iconPipClose).precomposed(theme.colors.text) : theme.icons.chatSearch
     }
 
     private func toggleSearch() {

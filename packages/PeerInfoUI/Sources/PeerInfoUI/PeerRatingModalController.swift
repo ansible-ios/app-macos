@@ -137,7 +137,7 @@ private final class LevelRowView : GeneralRowView {
             textLayout.measure(width: .greatestFiniteMagnitude)
             self.textView.set(text: textLayout, context: nil)
 
-            crownView.image = TelegramThemeHooks.shared.image(realValue >= 0 ? .iconRatingCrown : .iconRatingAlert).precomposed(theme.colors.underSelectedColor)
+            crownView.image = AnsibleThemeHooks.shared.image(realValue >= 0 ? .iconRatingCrown : .iconRatingAlert).precomposed(theme.colors.underSelectedColor)
             crownView.sizeToFit()
 
             
@@ -428,7 +428,7 @@ private final class RowItem : GeneralRowItem {
         )
 
         options.append(.init(
-            image: TelegramThemeHooks.shared.image(.iconChannelGift).precomposed(theme.colors.accent),
+            image: AnsibleThemeHooks.shared.image(.iconChannelGift).precomposed(theme.colors.accent),
             header: .init(.initialize(
                 string: strings().peerRatingPreviewTelegramHeader,
                 color: theme.colors.text,
@@ -444,7 +444,7 @@ private final class RowItem : GeneralRowItem {
         ))
 
         options.append(.init(
-            image: TelegramThemeHooks.shared.image(.iconGiftStars).precomposed(theme.colors.accent),
+            image: AnsibleThemeHooks.shared.image(.iconGiftStars).precomposed(theme.colors.accent),
             header: .init(.initialize(
                 string: strings().peerRatingPreviewUsersHeader,
                 color: theme.colors.text,
@@ -460,7 +460,7 @@ private final class RowItem : GeneralRowItem {
         ))
 
         options.append(.init(
-            image: TelegramThemeHooks.shared.image(.iconStarRefund).precomposed(theme.colors.accent),
+            image: AnsibleThemeHooks.shared.image(.iconStarRefund).precomposed(theme.colors.accent),
             header: .init(.initialize(
                 string: strings().peerRatingPreviewRefundsHeader,
                 color: theme.colors.text,

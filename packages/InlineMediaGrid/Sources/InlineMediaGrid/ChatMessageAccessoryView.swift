@@ -286,7 +286,7 @@ public class ChatMessageAccessoryView: Control {
             layer.add(cornerAnimation, forKey: "cornerRadius")
         }
         
-        if theme.shouldBlurService, !TelegramUtilsHooks.shared.isLite(.blur) {
+        if theme.shouldBlurService, !AnsibleUtilsHooks.shared.isLite(.blur) {
             let current: VisualEffect
             if let view = self.visualEffect {
                 current = view

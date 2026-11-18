@@ -140,7 +140,7 @@ public final class ChatAvatarView : Control {
         }
         
         self.avatar.setPeer(account: context.account, peer: peer, message: message, size: size, disableForum: disableForum)
-        if peer.isPremium || force, peer.hasVideo, !TelegramUtilsHooks.shared.isLite(.animations) {
+        if peer.isPremium || force, peer.hasVideo, !AnsibleUtilsHooks.shared.isLite(.animations) {
             let signal = peerPhotos(context: context, peerId: peer.id) |> deliverOnMainQueue
             var first = true
             self.disposable.set(signal.start(next: { [weak self] photos in

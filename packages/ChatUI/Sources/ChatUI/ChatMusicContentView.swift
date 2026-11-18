@@ -181,7 +181,7 @@ public class ChatMusicContentView: ChatAudioContentView {
     }
     
     public override func preloadStreamblePart() {
-        if let context = context, !TelegramUtilsHooks.shared.isLite(.any) {
+        if let context = context, !AnsibleUtilsHooks.shared.isLite(.any) {
             if let media = media as? TelegramMediaFile {
                 let reference = parent != nil ? FileMediaReference.message(message: MessageReference(parent!), media: media) : FileMediaReference.standalone(media: media)
                 partHeaderDisposable.set(fetchedMediaResource(mediaBox: context.account.postbox.mediaBox, userLocation: reference.userLocation, userContentType: reference.userContentType, reference: reference.resourceReference(media.resource), range: (0 ..< 500 * 1024, .default), statsCategory: .audio).start())

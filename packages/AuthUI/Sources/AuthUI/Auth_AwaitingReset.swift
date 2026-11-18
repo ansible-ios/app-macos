@@ -58,7 +58,7 @@ private final class Auth_AwaitingResetHeaderView : View {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         if let data = LocalAnimatedSticker.keychain.data {
             self.playerView.set(LottieAnimation(compressed: data, key: .init(key: .bundle("keychain"), size: Auth_Insets.logoSize, backingScale: Int(System.backingScale), fitzModifier: nil, colors: []), playPolicy: .onceEnd))
         }

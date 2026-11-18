@@ -2391,11 +2391,11 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
         case let .botEditUsername(_, text, viewType):
             return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditUsername, icon: theme.icons.peerInfoBotUsername, type: .nextContext("@\(text)"), viewType: viewType, action: arguments.openEditBotUsername)
         case let .botAffiliate(_, text, starRefProgram, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotAffiliate, icon: TelegramThemeHooks.shared.image(.iconBotAffiliate).precomposed(flipVertical: true), type: .nextContext(text), viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotAffiliate, icon: AnsibleThemeHooks.shared.image(.iconBotAffiliate).precomposed(flipVertical: true), type: .nextContext(text), viewType: viewType, action: {
                 arguments.openAffiliate(starRefProgram: starRefProgram)
             })
         case let .verifyAccounts(_, verification, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoVerifyAccounts, icon: TelegramThemeHooks.shared.image(.iconPeerInfoVerifyAccounts).precomposed(theme.colors.accent, flipVertical: true), type: .nextContext(""), viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoVerifyAccounts, icon: AnsibleThemeHooks.shared.image(.iconPeerInfoVerifyAccounts).precomposed(theme.colors.accent, flipVertical: true), type: .nextContext(""), viewType: viewType, action: {
                 arguments.openVerifyAccounts(verification)
             })
         case let .botStarsBalance(_, text, viewType):
@@ -2407,23 +2407,23 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
         case let .botPermissionsHeader(_, text, viewType):
             return GeneralTextRowItem(initialSize, stableId: stableId.hashValue, text: .plain(text), viewType: viewType)
         case let .botPermissionsStatus(_, value, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotPermissionsStatus, icon: TelegramThemeHooks.shared.image(.iconPeerInfoBotStatus).precomposed(flipVertical: true), type: .switchable(value), viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotPermissionsStatus, icon: AnsibleThemeHooks.shared.image(.iconPeerInfoBotStatus).precomposed(flipVertical: true), type: .switchable(value), viewType: viewType, action: {
                 arguments.togglePermissionsStatus()
             }, autoswitch: false)
         case let .botPermissionsGeo(_, value, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotPermissionsGeo, icon: TelegramThemeHooks.shared.image(.iconPeerInfoBotLocation).precomposed(flipVertical: true), type: .switchable(value), viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotPermissionsGeo, icon: AnsibleThemeHooks.shared.image(.iconPeerInfoBotLocation).precomposed(flipVertical: true), type: .switchable(value), viewType: viewType, action: {
                 arguments.togglePermissionsGeo()
             })
         case let .botEditIntro(_, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditIntro, icon: TelegramThemeHooks.shared.image(.iconPeerInfoBotIntro).precomposed(theme.colors.accent, flipVertical: true), nameStyle: blueActionButton, viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditIntro, icon: AnsibleThemeHooks.shared.image(.iconPeerInfoBotIntro).precomposed(theme.colors.accent, flipVertical: true), nameStyle: blueActionButton, viewType: viewType, action: {
                 arguments.editBot("intro")
             })
         case let .botEditCommands(_, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditCommands, icon: TelegramThemeHooks.shared.image(.iconPeerInfoBotCommands).precomposed(theme.colors.accent, flipVertical: true), nameStyle: blueActionButton, viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditCommands, icon: AnsibleThemeHooks.shared.image(.iconPeerInfoBotCommands).precomposed(theme.colors.accent, flipVertical: true), nameStyle: blueActionButton, viewType: viewType, action: {
                 arguments.editBot("commands")
             })
         case let .botEditSettings(_, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditSettings, icon: TelegramThemeHooks.shared.image(.iconPeerInfoBotSettings).precomposed(theme.colors.accent, flipVertical: true), nameStyle: blueActionButton, viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditSettings, icon: AnsibleThemeHooks.shared.image(.iconPeerInfoBotSettings).precomposed(theme.colors.accent, flipVertical: true), nameStyle: blueActionButton, viewType: viewType, action: {
                 arguments.editBot(nil)
             })
         case let .botEditInfo(_, viewType):
@@ -2657,7 +2657,7 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
                 arguments.encryptionKey()
             })
         case let .suggestBirthday(_, string, nextType, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: string, icon: TelegramThemeHooks.shared.image(.iconBirthdaySuggest).precomposed(blueActionButton.foregroundColor, flipVertical: true), nameStyle: blueActionButton, type: nextType, viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: string, icon: AnsibleThemeHooks.shared.image(.iconBirthdaySuggest).precomposed(blueActionButton.foregroundColor, flipVertical: true), nameStyle: blueActionButton, type: nextType, viewType: viewType, action: {
                 arguments.suggestBirthday()
             })
         case let .setPhoto(_, string, type, nextType, viewType):

@@ -173,8 +173,8 @@ public func <(lhs:ChatWrappedEntry, rhs: ChatWrappedEntry) -> Bool {
 final class ChatHistoryView {
     let originalView: MessageHistoryView?
     let filteredEntries: [ChatWrappedEntry]
-    let theme: TelegramPresentationTheme
-    init(originalView:MessageHistoryView?, filteredEntries: [ChatWrappedEntry], theme: TelegramPresentationTheme) {
+    let theme: AnsiblePresentationTheme
+    init(originalView:MessageHistoryView?, filteredEntries: [ChatWrappedEntry], theme: AnsiblePresentationTheme) {
         self.originalView = originalView
         self.filteredEntries = filteredEntries
         self.theme = theme
@@ -233,15 +233,15 @@ func ==(lhs:ChatHistoryState, rhs:ChatHistoryState) -> Bool {
 }
 
 private final class ChatPresentationCacheEntry {
-    private let base: TelegramPresentationTheme
-    private weak var global: TelegramPresentationTheme?
-    private let result: TelegramPresentationTheme
-    private let emoticonThemes: [(ChatTheme, TelegramPresentationTheme)]
+    private let base: AnsiblePresentationTheme
+    private weak var global: AnsiblePresentationTheme?
+    private let result: AnsiblePresentationTheme
+    private let emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)]
     private let wallpaper: ThemeWallpaper?
     private let liteMode: LiteMode
     private let scaleFactor: CGFloat
 
-    init(base: TelegramPresentationTheme, global: TelegramPresentationTheme, emoticonThemes: [(ChatTheme, TelegramPresentationTheme)], wallpaper: ThemeWallpaper?, liteMode: LiteMode, scaleFactor: CGFloat, result: TelegramPresentationTheme) {
+    init(base: AnsiblePresentationTheme, global: AnsiblePresentationTheme, emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)], wallpaper: ThemeWallpaper?, liteMode: LiteMode, scaleFactor: CGFloat, result: AnsiblePresentationTheme) {
         self.base = base
         self.global = global
         self.result = result
@@ -251,7 +251,7 @@ private final class ChatPresentationCacheEntry {
         self.scaleFactor = scaleFactor
     }
 
-    func result(base: TelegramPresentationTheme, global: TelegramPresentationTheme, emoticonThemes: [(ChatTheme, TelegramPresentationTheme)]?, wallpaper: ThemeWallpaper?, liteMode: LiteMode, scaleFactor: CGFloat) -> TelegramPresentationTheme? {
+    func result(base: AnsiblePresentationTheme, global: AnsiblePresentationTheme, emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)]?, wallpaper: ThemeWallpaper?, liteMode: LiteMode, scaleFactor: CGFloat) -> AnsiblePresentationTheme? {
         guard self.base === base, self.global === global, self.liteMode == liteMode, self.scaleFactor == scaleFactor, self.result.backgroundSize == base.backgroundSize, self.wallpaper == wallpaper else {
             return nil
         }
@@ -267,9 +267,9 @@ private final class ChatPresentationCacheEntry {
     }
 }
 
-private func chatPresentation(_ base: TelegramPresentationTheme, withEmoticonThemes emoticonThemes: [(ChatTheme, TelegramPresentationTheme)], cache: inout ChatPresentationCacheEntry?) -> TelegramPresentationTheme {
+private func chatPresentation(_ base: AnsiblePresentationTheme, withEmoticonThemes emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)], cache: inout ChatPresentationCacheEntry?) -> AnsiblePresentationTheme {
     let global = theme
-    let liteMode = TelegramPresentationTheme.currentLiteMode()
+    let liteMode = AnsiblePresentationTheme.currentLiteMode()
     let scaleFactor = System.backingScale
     if let cached = cache?.result(base: base, global: global, emoticonThemes: emoticonThemes, wallpaper: nil, liteMode: liteMode, scaleFactor: scaleFactor) {
         return cached
@@ -279,9 +279,9 @@ private func chatPresentation(_ base: TelegramPresentationTheme, withEmoticonThe
     return result
 }
 
-private func chatPresentation(_ base: TelegramPresentationTheme, withWallpaper wallpaper: ThemeWallpaper, cache: inout ChatPresentationCacheEntry?) -> TelegramPresentationTheme {
+private func chatPresentation(_ base: AnsiblePresentationTheme, withWallpaper wallpaper: ThemeWallpaper, cache: inout ChatPresentationCacheEntry?) -> AnsiblePresentationTheme {
     let global = theme
-    let liteMode = TelegramPresentationTheme.currentLiteMode()
+    let liteMode = AnsiblePresentationTheme.currentLiteMode()
     let scaleFactor = System.backingScale
     if let cached = cache?.result(base: base, global: global, emoticonThemes: nil, wallpaper: wallpaper, liteMode: liteMode, scaleFactor: scaleFactor) {
         return cached
@@ -358,7 +358,7 @@ public class ChatControllerView : View, ChatInputDelegate {
     fileprivate var inputHeightChanged: ((CGFloat) -> Void)? = nil
     private var transcriptionView: ChatVoiceTranscriptionView?
     private var dictationEnhanceView: ChatDictationEnhanceView?
-    var chatTheme: TelegramPresentationTheme? {
+    var chatTheme: AnsiblePresentationTheme? {
         didSet {
             if chatTheme != oldValue {
                 updateLocalizationAndTheme(theme: chatTheme ?? theme)
@@ -410,7 +410,7 @@ public class ChatControllerView : View, ChatInputDelegate {
         return color
     }
 
-    private static func computeEdgeColor(for mode: TableBackgroundMode, theme: TelegramPresentationTheme) -> NSColor {
+    private static func computeEdgeColor(for mode: TableBackgroundMode, theme: AnsiblePresentationTheme) -> NSColor {
         
        
         
@@ -1290,7 +1290,7 @@ public class ChatControllerView : View, ChatInputDelegate {
                     progressView!.frame = progressView!.centerFrame().offsetBy(dx: leftInset, dy: -inputView.frame.height/2)
                 }
                 let currentTheme = self.chatTheme ?? theme
-                if currentTheme.shouldBlurService, !TelegramUtilsHooks.shared.isLite(.blur) {
+                if currentTheme.shouldBlurService, !AnsibleUtilsHooks.shared.isLite(.blur) {
                     progressView?.blurBackground = currentTheme.blurServiceColor
                     progressView?.backgroundColor = .clear
                 } else {
@@ -1706,11 +1706,11 @@ public class ChatControllerView : View, ChatInputDelegate {
 
         super.updateLocalizationAndTheme(theme: theme)
         
-        let chatTheme = self.chatTheme ?? theme as! TelegramPresentationTheme
+        let chatTheme = self.chatTheme ?? theme as! AnsiblePresentationTheme
         transcriptionView?.updateLocalizationAndTheme(theme: chatTheme)
         dictationEnhanceView?.updateLocalizationAndTheme(theme: chatTheme)
         
-        if chatTheme.shouldBlurService, !TelegramUtilsHooks.shared.isLite(.blur) {
+        if chatTheme.shouldBlurService, !AnsibleUtilsHooks.shared.isLite(.blur) {
             progressView?.blurBackground = chatTheme.blurServiceColor
             progressView?.backgroundColor = .clear
         } else {
@@ -2055,7 +2055,7 @@ fileprivate func prepareEntries(from fromView:ChatHistoryView?, to toView:ChatHi
                 ChatMergeProbe.mainThreadItems += 1
             }
             #endif
-            let presentation: TelegramPresentationTheme = entry.entry.additionalData.chatTheme ?? theme
+            let presentation: AnsiblePresentationTheme = entry.entry.additionalData.chatTheme ?? theme
             
             let item:TableRowItem = ChatRowItem.item(initialSize, from: entry.appearance.entry, interaction: interaction, theme: presentation)
             _ = item.makeSize(initialSize.width)
@@ -2509,7 +2509,7 @@ private enum ChatPlayEffectTarget {
     case effect
 }
 
-open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewController<ChatControllerView, Context>, Notifable, TableViewDelegate, ChatControllerKind, ChatInterfaceController {
+open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewController<ChatControllerView, Context>, Notifable, TableViewDelegate, ChatControllerKind, ChatInterfaceController {
     private var forumSidebarController: ForumSidebarController?
     private var inheritedSidebarOpen = false
     private let sidebarFocusDisposable = MetaDisposable()
@@ -2528,9 +2528,9 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
         }
     }
     private struct ThemeTuple : Equatable {
-        let theme: TelegramPresentationTheme
+        let theme: AnsiblePresentationTheme
         let emoticon: ChatTheme?
-        let genuie: TelegramPresentationTheme
+        let genuie: AnsiblePresentationTheme
         let temp: Bool
     }
     private struct FindSearchMessage {
@@ -2673,10 +2673,10 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
     private var grouppedFloatingPhotos: [([ChatRowItem], ChatFloatingAvatar)] = []
     private var lastFloatingCollectKey: (lower: Int, upper: Int, firstId: MessageId?, lastId: MessageId?)?
     
-    private let chatThemeValue: Promise<(ChatTheme?, TelegramPresentationTheme)> = Promise((nil, theme))
+    private let chatThemeValue: Promise<(ChatTheme?, AnsiblePresentationTheme)> = Promise((nil, theme))
     private var presentationEmoticonCache: ChatPresentationCacheEntry?
     private var presentationWallpaperCache: ChatPresentationCacheEntry?
-    private let chatThemeTempValue: Promise<(ChatTheme?, TelegramPresentationTheme)?> = Promise(nil)
+    private let chatThemeTempValue: Promise<(ChatTheme?, AnsiblePresentationTheme)?> = Promise(nil)
 
    
     public var chatInteraction:ChatInteraction
@@ -2839,8 +2839,8 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
         var mediaRevealed: Set<MessageId> = Set()
         var translate: ChatLiveTranslateContext.State?
         var storyState: PeerExpiringStoryListContext.State?
-        var presentation:TelegramPresentationTheme = theme
-        var presentation_genuie:TelegramPresentationTheme = theme
+        var presentation:AnsiblePresentationTheme = theme
+        var presentation_genuie:AnsiblePresentationTheme = theme
         var bespoke_wallpaper: ThemeWallpaper?
         var presentation_emoticon: ChatTheme? = nil
         var factCheck: Set<MessageId> = Set()
@@ -2867,11 +2867,11 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
         stateValue.set(uiState.modify(f))
     }
 
-    private func cachedPresentation(_ base: TelegramPresentationTheme, withEmoticonThemes emoticonThemes: [(ChatTheme, TelegramPresentationTheme)]) -> TelegramPresentationTheme {
+    private func cachedPresentation(_ base: AnsiblePresentationTheme, withEmoticonThemes emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)]) -> AnsiblePresentationTheme {
         return chatPresentation(base, withEmoticonThemes: emoticonThemes, cache: &presentationEmoticonCache)
     }
 
-    private func cachedPresentation(_ base: TelegramPresentationTheme, withWallpaper wallpaper: ThemeWallpaper) -> TelegramPresentationTheme {
+    private func cachedPresentation(_ base: AnsiblePresentationTheme, withWallpaper wallpaper: ThemeWallpaper) -> AnsiblePresentationTheme {
         return chatPresentation(base, withWallpaper: wallpaper, cache: &presentationWallpaperCache)
     }
 
@@ -3101,7 +3101,7 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
 
     private var hasPhotos: Bool = false
     private let historyPeer = Atomic<Peer?>(value: nil)
-    private func updateHasPhotos(_ theme: TelegramPresentationTheme) {
+    private func updateHasPhotos(_ theme: AnsiblePresentationTheme) {
         if let peer = self.chatInteraction.peer ?? self.historyPeer.with({ $0 }) {
             let peerAccept = peer.isGroup || peer.isChannel || peer.isSupergroup || peer.id == context.peerId || peer.id == repliesPeerId || mode.isSavedMessagesThread || peer.id == verifyCodePeerId
             self.hasPhotos = peerAccept && theme.bubbled
@@ -3959,9 +3959,9 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
         } |> distinctUntilChanged
         
         
-        let chatTheme:Signal<(ChatTheme?, TelegramPresentationTheme), NoError> = combineLatest(context.chatThemes, themeEmoticon, appearanceSignal) |> map { chatThemes, chatTheme, appearance -> (ChatTheme?, TelegramPresentationTheme) in
+        let chatTheme:Signal<(ChatTheme?, AnsiblePresentationTheme), NoError> = combineLatest(context.chatThemes, themeEmoticon, appearanceSignal) |> map { chatThemes, chatTheme, appearance -> (ChatTheme?, AnsiblePresentationTheme) in
             
-            var theme: TelegramPresentationTheme = appearance.presentation
+            var theme: AnsiblePresentationTheme = appearance.presentation
             if let chatTheme = chatTheme {
                 switch chatTheme {
                 case .emoticon:
@@ -9624,7 +9624,7 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
             } |> deliverOnMainQueue
     
             var previousCounts: (mentions: Int32, reactions: Int32, pollVotes: Int32, scroller: Int32)?
-            weak var previousCountsTheme: TelegramPresentationTheme?
+            weak var previousCountsTheme: AnsiblePresentationTheme?
             self.chatUnreadMentionCountDisposable.set(combineLatest(queue: .mainQueue(), unseenPersonalMessages, unreadCount).start(next: { [weak self] count, unreadCount in
                 let counts = (mentions: count.mentionCount, reactions: count.reactionCount, pollVotes: count.pollVoteCount, scroller: Int32(unreadCount))
                 if let previous = previousCounts, previous == counts, previousCountsTheme === theme {
@@ -9894,12 +9894,12 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
                                     if Int(message.timestamp) + Int(liveBroadcastingTimeout) > Int(timestamp) {
                                         messageIdsWithLiveLocation.append(message.id)
                                     }
-                                } else if let telegramFile = media as? TelegramMediaFile {
-                                    if telegramFile.isAnimatedSticker, (message.id.peerId.namespace == Namespaces.Peer.SecretChat || !telegramFile.previewRepresentations.isEmpty), let size = telegramFile.size, size > 0 && size <= 128 * 1024 {
+                                } else if let ansibleFile = media as? TelegramMediaFile {
+                                    if ansibleFile.isAnimatedSticker, (message.id.peerId.namespace == Namespaces.Peer.SecretChat || !ansibleFile.previewRepresentations.isEmpty), let size = ansibleFile.size, size > 0 && size <= 128 * 1024 {
                                         if message.id.peerId.namespace == Namespaces.Peer.SecretChat {
-                                            if telegramFile.fileId.namespace == Namespaces.Media.CloudFile {
+                                            if ansibleFile.fileId.namespace == Namespaces.Media.CloudFile {
                                                 var isValidated = false
-                                                attributes: for attribute in telegramFile.attributes {
+                                                attributes: for attribute in ansibleFile.attributes {
                                                     if case .hintIsValidated = attribute {
                                                         isValidated = true
                                                         break attributes
@@ -10463,7 +10463,7 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
     
     private func checkMessageDeletions(_ previous: ChatHistoryView?, _ currentView: ChatHistoryView) {
         
-        if TelegramUtilsHooks.shared.isLite(.animations) {
+        if AnsibleUtilsHooks.shared.isLite(.animations) {
             return
         }
         if hasModals(context.window) || !context.window.isKeyWindow {
@@ -10863,7 +10863,7 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
             }, itemImage: MenuAnimation.menu_schedule_message.value))
         case .history:
 
-            if let peer = peerViewMainPeer(peerView), TelegramUtilsHooks.shared.peerIsForum(peer) && peer.displayForumAsTabs(splitState: context.layout) && chatSidebarKind(chatInteraction.presentation) != .forum {
+            if let peer = peerViewMainPeer(peerView), AnsibleUtilsHooks.shared.peerIsForum(peer) && peer.displayForumAsTabs(splitState: context.layout) && chatSidebarKind(chatInteraction.presentation) != .forum {
                 items.append(ContextMenuItem(strings().forumTopicContextNew, handler: {
                     ChatUIHooks.shared.createForumTopic(peer.id, context)
                 }, itemImage: MenuAnimation.menu_plus.value))
@@ -12909,7 +12909,7 @@ open class ChatController<Context: AccountContextProtocol>: TelegramGenericViewC
             }
             
             if let peer = value.mainPeer, let oldPeer = oldValue.mainPeer {
-                if TelegramUtilsHooks.shared.peerIsForum(peer) && !TelegramUtilsHooks.shared.peerIsForum(oldPeer) || (!self.mode.isSavedMessagesThread && oldValue.threadInfo != nil && value.threadInfo == nil && !peer.displayForumAsTabs(splitState: context.layout)), !peer.isMonoForum {
+                if AnsibleUtilsHooks.shared.peerIsForum(peer) && !AnsibleUtilsHooks.shared.peerIsForum(oldPeer) || (!self.mode.isSavedMessagesThread && oldValue.threadInfo != nil && value.threadInfo == nil && !peer.displayForumAsTabs(splitState: context.layout)), !peer.isMonoForum {
                     if (self.navigationController?.stackCount ?? 0) > 1 {
                         self.navigationController?.removeImmediately(self)
                     } else if self.mode == .preview {

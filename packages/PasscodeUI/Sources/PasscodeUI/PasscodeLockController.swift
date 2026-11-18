@@ -193,7 +193,7 @@ public class PasscodeLockView : Control, NSTextFieldDelegate {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         backgroundColor = theme.colors.background
         input.backgroundColor = .clear
         input.textView?.insertionPointColor = theme.colors.text

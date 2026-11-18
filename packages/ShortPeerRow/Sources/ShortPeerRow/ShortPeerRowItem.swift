@@ -154,7 +154,7 @@ public final class SelectPeerInteraction : InterfaceObserver {
         })
     }
     public func activateSelection(_ peer: Peer) {
-        let isForum = TelegramUtilsHooks.shared.peerIsForum(peer) || (peer.groupAccess.canManageDirect && peer.isMonoForum)
+        let isForum = AnsibleUtilsHooks.shared.peerIsForum(peer) || (peer.groupAccess.canManageDirect && peer.isMonoForum)
         if isForum, !presentation.selected.contains(peer.id), self.openForum(peer.id, peer.isMonoForum) {
             return
         }

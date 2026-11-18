@@ -35,9 +35,9 @@ public final class PremiumBoardingRowItem : GeneralRowItem {
 
     fileprivate let premValueIndex: Int
     fileprivate let business: Bool
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
     fileprivate let isNew: Bool
-    public init(_ initialSize: NSSize, stableId: AnyHashable, viewType: GeneralViewType, presentation: TelegramPresentationTheme, index: Int, value: PremiumValue, limits: PremiumLimitConfig, isLast: Bool, isNew: Bool, callback: @escaping(PremiumValue)->Void) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, viewType: GeneralViewType, presentation: AnsiblePresentationTheme, index: Int, value: PremiumValue, limits: PremiumLimitConfig, isLast: Bool, isNew: Bool, callback: @escaping(PremiumValue)->Void) {
         self.value = value
         self.limits = limits
         self.presentation = presentation

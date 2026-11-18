@@ -49,7 +49,7 @@ private let itemSize = NSMakeSize(100, 140)
 private struct ChannelWallpaper : Equatable {
     let emoticon: ChatTheme
     let wallpaper: TelegramWallpaper?
-    let theme: TelegramPresentationTheme?
+    let theme: AnsiblePresentationTheme?
     let stickerItem: StickerPackItem?
 }
 
@@ -294,10 +294,10 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
     
     
   
-    entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_choose, data: .init(name: strings().channelWallpaperChooseFromFile, color: theme.colors.accent, icon: TelegramThemeHooks.shared.image(.iconAttachPhoto).precomposed(theme.colors.accent, flipVertical: true), type: .none, viewType: hasCustom ? .firstItem : .singleItem, enabled: true, action: arguments.custom, afterNameImage: afterNameImage_WallpaperIcon)))
+    entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_choose, data: .init(name: strings().channelWallpaperChooseFromFile, color: theme.colors.accent, icon: AnsibleThemeHooks.shared.image(.iconAttachPhoto).precomposed(theme.colors.accent, flipVertical: true), type: .none, viewType: hasCustom ? .firstItem : .singleItem, enabled: true, action: arguments.custom, afterNameImage: afterNameImage_WallpaperIcon)))
     
     if hasCustom {
-        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_remove, data: .init(name: strings().channelWallpaperRemoveWallpaper, color: theme.colors.redUI, icon: TelegramThemeHooks.shared.image(.iconEditorDelete).precomposed(theme.colors.redUI, flipVertical: true), type: .none, viewType: .lastItem, enabled: true, action: arguments.remove)))
+        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_remove, data: .init(name: strings().channelWallpaperRemoveWallpaper, color: theme.colors.redUI, icon: AnsibleThemeHooks.shared.image(.iconEditorDelete).precomposed(theme.colors.redUI, flipVertical: true), type: .none, viewType: .lastItem, enabled: true, action: arguments.remove)))
     }
     
     entries.append(.sectionId(sectionId, type: .normal))

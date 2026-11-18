@@ -349,7 +349,7 @@ public func importPalette(_ path: String) -> ColorPalette? {
         var paletteName: String? = nil
         var copyright: String = "Telegram"
         var wallpaper: PaletteWallpaper?
-        var parent: TelegramBuiltinTheme = .dayClassic
+        var parent: AnsibleBuiltinTheme = .dayClassic
         let accentList:[PaletteAccentColor] = []
         var colors:[String: NSColor] = [:]
         var bubbleBackground_outgoing:[NSColor] = []
@@ -383,7 +383,7 @@ public func importPalette(_ path: String) -> ColorPalette? {
                     } else if name == "wallpaper" {
                         wallpaper = PaletteWallpaper(value)
                     } else if name == "parent" {
-                        parent = TelegramBuiltinTheme(rawValue: value) ?? .dayClassic
+                        parent = AnsibleBuiltinTheme(rawValue: value) ?? .dayClassic
                     } else {
                         let components = value.components(separatedBy: ":")
                         var hex:UInt32?

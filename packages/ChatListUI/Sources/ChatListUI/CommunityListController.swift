@@ -630,7 +630,7 @@ private final class CommunityPendingRowView: TableRowView {
     override func set(item: TableRowItem, animated: Bool = false) {
         super.set(item: item, animated: animated)
         guard let item = item as? CommunityPendingRowItem else { return }
-        imageView.image = TelegramThemeHooks.shared.image(.iconCommunityPendingRequests).precomposed()
+        imageView.image = AnsibleThemeHooks.shared.image(.iconCommunityPendingRequests).precomposed()
         imageView.sizeToFit()
         textView.update(item.titleLayout)
         item.badge.view = badgeView

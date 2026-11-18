@@ -9,7 +9,7 @@ import AnsibleMediaUtils
 import AnsibleTheme
 import AnsibleUtils
 
-extension TelegramChatColors {
+extension AnsibleChatColors {
     public func channelViewsIcon(_ item: ChatRowItem) -> CGImage {
         return item.isStateOverlayLayout ? !item.isInteractiveMedia ? item.presentation.chatChannelViewsOverlayServiceBubble : item.presentation.icons.chatChannelViewsOverlayBubble : item.hasBubble ? item.isIncoming ? item.presentation.icons.chatChannelViewsInBubble_incoming : item.presentation.icons.chatChannelViewsInBubble_outgoing : item.presentation.icons.chatChannelViewsOutBubble
     }
@@ -49,7 +49,7 @@ extension TelegramChatColors {
         return item.hasBubble ? item.isIncoming ? item.presentation.icons.chat_quiz_explanation_bubble_incoming : item.presentation.icons.chat_quiz_explanation_bubble_outgoing : item.presentation.icons.chat_quiz_explanation
     }
     
-    public func instantPageIcon(_ incoming: Bool, _ bubbled: Bool, presentation: TelegramPresentationTheme) -> CGImage {
+    public func instantPageIcon(_ incoming: Bool, _ bubbled: Bool, presentation: AnsiblePresentationTheme) -> CGImage {
         return bubbled ? incoming ? presentation.icons.chatInstantViewBubble_incoming : presentation.icons.chatInstantViewBubble_outgoing : presentation.icons.chatInstantView
     }
     
@@ -195,7 +195,7 @@ extension TelegramChatColors {
         return nil
     }
     
-    private static let quoteBaseImage: NSImage = TelegramThemeHooks.shared.image(.iconQuote)
+    private static let quoteBaseImage: NSImage = AnsibleThemeHooks.shared.image(.iconQuote)
 
     public func replyQuote(_ item: ChatRowItem) -> CGImage {
         if let message = item.message, let replyAttr = message.replyAttribute, let replyMessage = message.associatedMessages[replyAttr.messageId], let author = replyMessage.effectiveAuthor {

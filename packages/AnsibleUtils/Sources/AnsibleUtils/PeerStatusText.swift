@@ -91,12 +91,12 @@ public func stringStatus(for peerView:PeerView, context: any AccountContextProto
     }
 
     if let peer = effectivePeer {
-        let title:NSAttributedString = .initialize(string: TelegramUtilsHooks.shared.peerTitle(peer), color: theme.titleColor, font: theme.titleFont)
+        let title:NSAttributedString = .initialize(string: AnsibleUtilsHooks.shared.peerTitle(peer), color: theme.titleColor, font: theme.titleFont)
         if let user = peer as? TelegramUser {
             if user.phone == "42777" || user.phone == "42470" || user.phone == "4240004" {
                 return PeerStatusStringResult(title, .initialize(string: strings().peerServiceNotifications,  color: theme.statusColor, font: theme.statusFont))
             }
-            if user.id == TelegramUtilsHooks.shared.repliesPeerId() {
+            if user.id == AnsibleUtilsHooks.shared.repliesPeerId() {
                 return PeerStatusStringResult(title, .initialize(string: strings().peerRepliesNotifications,  color: theme.statusColor, font: theme.statusFont))
             } else if user.flags.contains(.isSupport) {
                 return PeerStatusStringResult(title, .initialize(string: strings().presenceSupport,  color: theme.statusColor, font: theme.statusFont))

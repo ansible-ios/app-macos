@@ -498,7 +498,7 @@ public final class SingleTimeMediaViewer : ModalViewController {
     public override func close(animationType: ModalAnimationCloseBehaviour = .common) {
         super.close(animationType: animationType)
         if let view = genericView.mediaView {
-            if TelegramUtilsHooks.shared.isLite(.animations) {
+            if AnsibleUtilsHooks.shared.isLite(.animations) {
                 return
             }
             ApplyDustAnimation(for: view)

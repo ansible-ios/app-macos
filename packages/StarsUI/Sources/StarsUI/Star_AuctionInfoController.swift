@@ -77,7 +77,7 @@ private final class RowItem : GeneralRowItem {
 
         options.append(
             .init(
-                image: TelegramThemeHooks.shared.image(.iconAuctionInfoOption1).precomposed(theme.colors.accent),
+                image: AnsibleThemeHooks.shared.image(.iconAuctionInfoOption1).precomposed(theme.colors.accent),
                 header: .init(
                     .initialize(
                         string: strings().starAuctionInfoTopBidders(Int(dropSize)),
@@ -98,7 +98,7 @@ private final class RowItem : GeneralRowItem {
 
         options.append(
             .init(
-                image: TelegramThemeHooks.shared.image(.iconAuctionInfoOption2).precomposed(theme.colors.accent),
+                image: AnsibleThemeHooks.shared.image(.iconAuctionInfoOption2).precomposed(theme.colors.accent),
                 header: .init(
                     .initialize(
                         string: strings().starAuctionInfoBidCarryover,
@@ -119,7 +119,7 @@ private final class RowItem : GeneralRowItem {
 
         options.append(
             .init(
-                image: TelegramThemeHooks.shared.image(.iconAuctionInfoOption3).precomposed(theme.colors.accent),
+                image: AnsibleThemeHooks.shared.image(.iconAuctionInfoOption3).precomposed(theme.colors.accent),
                 header: .init(
                     .initialize(
                         string: strings().starAuctionInfoMissedBidders,

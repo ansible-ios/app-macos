@@ -371,7 +371,7 @@ public final class MessageReadMenuRowItem : AppMenuRowItem {
                 chatInteraction?.openInfo(peer.0.id, false, nil, nil)
             }, peer: peer.0, context: context, reaction: reaction, readTimestamp: peer.2, message: message, reactionValue: peer.1)
             let signal:Signal<(CGImage?, Bool), NoError>
-            signal = peerAvatarImage(account: context.account, photo: .peer(peer.0, peer.0.smallProfileImage, peer.0.namePeerColor, TelegramUtilsHooks.shared.peerLetters(peer.0), nil, nil), displayDimensions: NSMakeSize(18 * System.backingScale, 18 * System.backingScale), font: .avatar(13), genCap: true, synchronousLoad: false) |> deliverOnMainQueue
+            signal = peerAvatarImage(account: context.account, photo: .peer(peer.0, peer.0.smallProfileImage, peer.0.namePeerColor, AnsibleUtilsHooks.shared.peerLetters(peer.0), nil, nil), displayDimensions: NSMakeSize(18 * System.backingScale, 18 * System.backingScale), font: .avatar(13), genCap: true, synchronousLoad: false) |> deliverOnMainQueue
             _ = signal.start(next: { [weak item] image, _ in
                 if let image = image {
                     item?.image = NSImage(cgImage: image, size: NSMakeSize(18, 18))
@@ -485,7 +485,7 @@ private final class MessageReadMenuItemView : AppMenuRowView {
             
             if let peers = peers {
                 let signal:Signal<[(CGImage?, Bool)], NoError> = combineLatest(peers.map { peer in
-                    return peerAvatarImage(account: context.account, photo: .peer(peer, peer.smallProfileImage, peer.namePeerColor, TelegramUtilsHooks.shared.peerLetters(peer), nil, nil), displayDimensions: NSMakeSize(size.width * System.backingScale, size.height * System.backingScale), font: .avatar(13), genCap: true, synchronousLoad: false)
+                    return peerAvatarImage(account: context.account, photo: .peer(peer, peer.smallProfileImage, peer.namePeerColor, AnsibleUtilsHooks.shared.peerLetters(peer), nil, nil), displayDimensions: NSMakeSize(size.width * System.backingScale, size.height * System.backingScale), font: .avatar(13), genCap: true, synchronousLoad: false)
                 })
                 
                 
@@ -862,7 +862,7 @@ extension ContextMenuItem {
                 
                 _ = premRequired.startStandalone(next: { [weak item] value in
                     //item?.isEnabled = !value
-                    let image = TelegramThemeHooks.shared.image(.menuLock)
+                    let image = AnsibleThemeHooks.shared.image(.menuLock)
                     item?.state = .on
                     item?.stateOnImage = image
                     item?.handler = {
@@ -903,7 +903,7 @@ private func forwardTopicMenuItem(_ item: EngineChatList.Item, in peer: Peer, co
     })
     let threadMessage = item.messages.first
     if let threadId, peer.isMonoForum, let threadPeer = threadMessage?.peers[PeerId(threadId)] {
-        ContextMenuItem.makeItemAvatar(menuItem, account: context.account, peer: threadPeer, source: .peer(threadPeer, threadPeer.smallProfileImage, threadPeer.namePeerColor, TelegramUtilsHooks.shared.peerLetters(threadPeer), threadMessage?._asMessage(), nil))
+        ContextMenuItem.makeItemAvatar(menuItem, account: context.account, peer: threadPeer, source: .peer(threadPeer, threadPeer.smallProfileImage, threadPeer.namePeerColor, AnsibleUtilsHooks.shared.peerLetters(threadPeer), threadMessage?._asMessage(), nil))
         menuItem.title = threadPeer.displayTitle
     } else {
         ContextMenuItem.makeItemAvatar(menuItem, account: context.account, peer: peer, source: .topic(threadData.info, threadId == 1))
@@ -1057,7 +1057,7 @@ public final class ReactionPeerMenu : ContextMenuItem {
                     self?.submenu = menu
                 }
             }))
-        } else if TelegramUtilsHooks.shared.peerIsForum(peer) || (peer.isAdmin && peer.isMonoForum), case let .forward(callback, _) = destination {
+        } else if AnsibleUtilsHooks.shared.peerIsForum(peer) || (peer.isAdmin && peer.isMonoForum), case let .forward(callback, _) = destination {
             let menu = ContextMenu()
             self.submenu = menu
             menu.asyncItemsProvider = { [weak self] completion in
@@ -1074,7 +1074,7 @@ public final class ReactionPeerMenu : ContextMenuItem {
                 })
             }
         }
-        ContextMenuItem.makeItemAvatar(self, account: context.account, peer: peer, source: .peer(peer, peer.smallProfileImage, peer.namePeerColor, TelegramUtilsHooks.shared.peerLetters(peer), message, nil), selfAsSaved: selfSaved)
+        ContextMenuItem.makeItemAvatar(self, account: context.account, peer: peer, source: .peer(peer, peer.smallProfileImage, peer.namePeerColor, AnsibleUtilsHooks.shared.peerLetters(peer), message, nil), selfAsSaved: selfSaved)
         if !peer.isCommunity, moderationBinding == nil {
             ContextMenuItem.checkPremiumRequired(self, context: context, peer: peer)
         }

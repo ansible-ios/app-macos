@@ -12,11 +12,11 @@ import AnsibleContext
 import AnsibleTheme
 import AnsibleUtils
 
-private let more_image = TelegramThemeHooks.shared.image(.iconStoryMore).precomposed(NSColor.white)
-private let muted_image = TelegramThemeHooks.shared.image(.iconStoryMute).precomposed(NSColor.white)
-private let cant_unmute = TelegramThemeHooks.shared.image(.iconStoryMute).precomposed(NSColor.white.withAlphaComponent(0.75))
+private let more_image = AnsibleThemeHooks.shared.image(.iconStoryMore).precomposed(NSColor.white)
+private let muted_image = AnsibleThemeHooks.shared.image(.iconStoryMute).precomposed(NSColor.white)
+private let cant_unmute = AnsibleThemeHooks.shared.image(.iconStoryMute).precomposed(NSColor.white.withAlphaComponent(0.75))
 
-private let unmuted_image = TelegramThemeHooks.shared.image(.iconStoryUnmute).precomposed(NSColor.white)
+private let unmuted_image = AnsibleThemeHooks.shared.image(.iconStoryUnmute).precomposed(NSColor.white)
 
 private final class StoryAuthorControl: Control {
     weak var secondary: Control?
@@ -36,10 +36,10 @@ private final class StoryAuthorControl: Control {
     }
 }
 
-private let privacy_close_friends = TelegramThemeHooks.shared.image(.iconStoryCloseFriends).precomposed()
-private let privacy_contacts = TelegramThemeHooks.shared.image(.iconStoryContacts).precomposed()
-private let privacy_selected_contacts = TelegramThemeHooks.shared.image(.iconStorySelectedContacts).precomposed()
-private let forward_repost = TelegramThemeHooks.shared.image(.iconStoryViewRepost).precomposed(NSColor.white)
+private let privacy_close_friends = AnsibleThemeHooks.shared.image(.iconStoryCloseFriends).precomposed()
+private let privacy_contacts = AnsibleThemeHooks.shared.image(.iconStoryContacts).precomposed()
+private let privacy_selected_contacts = AnsibleThemeHooks.shared.image(.iconStorySelectedContacts).precomposed()
+private let forward_repost = AnsibleThemeHooks.shared.image(.iconStoryViewRepost).precomposed(NSColor.white)
 
 
 private final class RepostView : View {

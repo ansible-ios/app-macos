@@ -133,7 +133,7 @@ private final class RowView: GeneralContainableRowView {
             fatalError("init(coder:) has not been implemented")
         }
         
-        func update(_ peer: EnginePeer, context: any AccountContextProtocol, presentation: TelegramPresentationTheme, maxWidth: CGFloat) {
+        func update(_ peer: EnginePeer, context: any AccountContextProtocol, presentation: AnsiblePresentationTheme, maxWidth: CGFloat) {
             self.avatar.setPeer(account: context.account, peer: peer._asPeer())
             
             let layout = TextViewLayout(.initialize(string: peer._asPeer().displayTitle, color: presentation.colors.text, font: .medium(.text)))

@@ -229,12 +229,12 @@ open class SelectivePrivacySettingsPeersController<Context: AccountContextProtoc
         var initialPeers = Array(self.initialPeers.values)
         
         if let premiumUsers, premiumUsers {
-            let premium = TelegramFilterCategory(category: .premiumUsers)
+            let premium = AnsibleFilterCategory(category: .premiumUsers)
             initialPeers.insert(.init(peer: premium, participantCount: nil), at: 0)
         }
         
         if let enableForBots, enableForBots {
-            let enableForBots = TelegramFilterCategory(category: .miniApps)
+            let enableForBots = AnsibleFilterCategory(category: .miniApps)
             initialPeers.insert(.init(peer: enableForBots, participantCount: nil), at: 0)
         }
         
@@ -311,7 +311,7 @@ open class SelectivePrivacySettingsPeersController<Context: AccountContextProtoc
 
                                     updatedPeers.append(SelectivePrivacyPeer(peer: peer, participantCount: participantCount))
                                 } else if peerId.namespace._internalGetInt32Value() == ChatListFilterPeerCategories.Namespace {
-                                    updatedPeers.insert(SelectivePrivacyPeer(peer: TelegramFilterCategory(category: .init(rawValue: Int32(peerId.id._internalGetInt64Value()))), participantCount: nil), at: 0)
+                                    updatedPeers.insert(SelectivePrivacyPeer(peer: AnsibleFilterCategory(category: .init(rawValue: Int32(peerId.id._internalGetInt64Value()))), participantCount: nil), at: 0)
                                 }
                             }
                             return updatedPeers

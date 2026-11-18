@@ -478,7 +478,7 @@ private final class PlayerListControlsView : View {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         separator.backgroundColor = theme.colors.border
         
         progress.insets = NSEdgeInsetsMake(0, 0, 0, 0)

@@ -36,14 +36,14 @@ public final class ShareAdditionItems {
 open class ShareObject {
     
     public let additionTopItems:ShareAdditionItems?
-    public var presentation: TelegramPresentationTheme?
+    public var presentation: AnsiblePresentationTheme?
     public let context: any AccountContextProtocol
     public let emptyPerformOnClose: Bool
     public let excludePeerIds: Set<PeerId>
     public let defaultSelectedIds:Set<PeerId>
     public let limit: Int?
     
-    open var appearance: TelegramPresentationTheme {
+    open var appearance: AnsiblePresentationTheme {
         return presentation ?? theme
     }
     

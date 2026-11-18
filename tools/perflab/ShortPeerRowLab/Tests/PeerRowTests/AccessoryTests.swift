@@ -154,10 +154,10 @@ final class AccessoryTests: XCTestCase {
                 assertEqual(old, new, scale: scale, render: true)
             }
         }
-        let originalSource = TelegramThemeHooks.shared.source
-        defer { TelegramThemeHooks.shared.source = originalSource }
+        let originalSource = AnsibleThemeHooks.shared.source
+        defer { AnsibleThemeHooks.shared.source = originalSource }
         let previous = new.choiceControl!.image!
-        TelegramThemeHooks.shared.source = NSImage(size: NSSize(width: 24, height: 16), flipped: false) { rect in
+        AnsibleThemeHooks.shared.source = NSImage(size: NSSize(width: 24, height: 16), flipped: false) { rect in
             NSColor.black.setFill()
             rect.fill()
             return true
@@ -194,7 +194,7 @@ final class AccessoryTests: XCTestCase {
 
     func testRightActionsUseDeclaredIndicesAndFollowPeerReuse() {
         let old = ReferenceAccessoryView(), new = CurrentAccessoryView()
-        let icon = TelegramThemeHooks.shared.source.precomposed(.blue)
+        let icon = AnsibleThemeHooks.shared.source.precomposed(.blue)
         var received: [(Int, Int)] = []
         let first = AccessoryItem(), second = AccessoryItem()
         first.peerId = 12

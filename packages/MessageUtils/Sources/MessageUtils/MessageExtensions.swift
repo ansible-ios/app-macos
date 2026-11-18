@@ -312,7 +312,7 @@ public extension Message {
         for attr in attributes {
             if let source = attr as? SourceReferenceMessageAttribute {
                 if let info = forwardInfo {
-                    if let peer = peers[source.messageId.peerId], peer is TelegramChannel, accountPeerId != id.peerId, TelegramUtilsHooks.shared.repliesPeerId() != id.peerId {
+                    if let peer = peers[source.messageId.peerId], peer is TelegramChannel, accountPeerId != id.peerId, AnsibleUtilsHooks.shared.repliesPeerId() != id.peerId {
                         _peer = peer
                     } else {
                         _peer = info.author

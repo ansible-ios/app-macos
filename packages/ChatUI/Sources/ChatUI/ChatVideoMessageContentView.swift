@@ -41,7 +41,7 @@ private let instantVideoMutedThumb = generateImage(NSMakeSize(30, 30), contextGe
     ctx.setFillColor(NSColor.blackTransparent.cgColor)
     ctx.round(size, size.width / 2.0)
     ctx.fill(CGRect(origin: CGPoint(), size: size))
-    let icon = TelegramThemeHooks.shared.image(.iconVideoMessageMutedIcon).precomposed()
+    let icon = AnsibleThemeHooks.shared.image(.iconVideoMessageMutedIcon).precomposed()
     ctx.draw(icon, in: NSMakeRect(floorToScreenPixels(System.backingScale, (size.width - icon.backingSize.width) / 2), floorToScreenPixels(System.backingScale, (size.height - icon.backingSize.height) / 2), icon.backingSize.width, icon.backingSize.height))
 })
 
@@ -324,7 +324,7 @@ public class ChatVideoMessageContentView: ChatMediaContentView, APDelegate {
         let timebase:CMTimebase? = ChatMediaUIHooks.shared.getAudioPlayer(context)?.currentSong?.stableId == parent?.chatStableId ? ChatMediaUIHooks.shared.getAudioPlayer(context)?.timebase : nil
         
         var accept = acceptVisibility
-        if TelegramUtilsHooks.shared.isLite(.video) && timebase == nil {
+        if AnsibleUtilsHooks.shared.isLite(.video) && timebase == nil {
             accept = accept && mouseInside()
         }
         

@@ -76,9 +76,9 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
   
     entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_promo, equatable: .init(state), comparable: nil, item: { initialSize, stableId in
         return Affiliate_PromoItem(initialSize, stableId: stableId, context: arguments.context, options: [
-            .init(image: TelegramThemeHooks.shared.image(.iconBotAffiliateStar).precomposed(theme.colors.accent), title: strings().affiliateSetupIntroNewTitle1, text: strings().affiliateSetupIntroNewText1),
-            .init(image: TelegramThemeHooks.shared.image(.iconBotAffiliateChannel).precomposed(theme.colors.accent), title: strings().affiliateSetupIntroNewTitle2, text: strings().affiliateSetupIntroNewText2),
-            .init(image: TelegramThemeHooks.shared.image(.iconBotAffiliateLink).precomposed(theme.colors.accent), title: strings().affiliateSetupIntroNewTitle3, text: strings().affiliateSetupIntroNewText3)
+            .init(image: AnsibleThemeHooks.shared.image(.iconBotAffiliateStar).precomposed(theme.colors.accent), title: strings().affiliateSetupIntroNewTitle1, text: strings().affiliateSetupIntroNewText1),
+            .init(image: AnsibleThemeHooks.shared.image(.iconBotAffiliateChannel).precomposed(theme.colors.accent), title: strings().affiliateSetupIntroNewTitle2, text: strings().affiliateSetupIntroNewText2),
+            .init(image: AnsibleThemeHooks.shared.image(.iconBotAffiliateLink).precomposed(theme.colors.accent), title: strings().affiliateSetupIntroNewTitle3, text: strings().affiliateSetupIntroNewText3)
         ])
     }))
     

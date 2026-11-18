@@ -19,7 +19,7 @@ private enum PasscodeEntry : Comparable, Identifiable {
     case change(sectionId:Int, viewType: GeneralViewType)
     case autoLock(sectionId:Int, time:Int32?, viewType: GeneralViewType)
     case turnTouchId(sectionId:Int, enabled: Bool, viewType: GeneralViewType)
-    case lockTelegramHeader(sectionId:Int, viewType: GeneralViewType)
+    case lockAnsibleHeader(sectionId:Int, viewType: GeneralViewType)
     case lockWalletHeader(sectionId:Int, viewType: GeneralViewType)
     case walletPasscode(sectionId:Int, enabled: Bool, available: Bool, viewType: GeneralViewType)
     case walletBiometrics(sectionId:Int, enabled: Bool, available: Bool, viewType: GeneralViewType)
@@ -42,7 +42,7 @@ private enum PasscodeEntry : Comparable, Identifiable {
             return 5
         case .turnTouchId:
             return 6
-        case .lockTelegramHeader:
+        case .lockAnsibleHeader:
             return 7
         case .lockWalletHeader:
             return 8
@@ -73,7 +73,7 @@ private enum PasscodeEntry : Comparable, Identifiable {
             return (sectionId * 1000) + stableId
         case let .turnTouchId(sectionId, _, _):
             return (sectionId * 1000) + stableId
-        case let .lockTelegramHeader(sectionId, _):
+        case let .lockAnsibleHeader(sectionId, _):
             return (sectionId * 1000) + stableId
         case let .lockWalletHeader(sectionId, _):
             return (sectionId * 1000) + stableId
@@ -115,7 +115,7 @@ private func passcodeSettinsEntry(_ passcode: PostboxAccessChallengeData, passco
         sectionId += 1
         
         let context = LAContext()
-        entries.append(.lockTelegramHeader(sectionId: sectionId, viewType: .textTopItem))
+        entries.append(.lockAnsibleHeader(sectionId: sectionId, viewType: .textTopItem))
         entries.append(.autoLock(sectionId: sectionId, time: passcodeSettings.timeout, viewType: context.canUseBiometric ? .firstItem : .singleItem))
         if context.canUseBiometric {
             entries.append(.turnTouchId(sectionId: sectionId, enabled: additional.useTouchId, viewType: .lastItem))
@@ -152,7 +152,7 @@ fileprivate func prepareTransition(left:[AppearanceWrapperEntry<PasscodeEntry>],
             })
         case let .turnOnDescription(_, viewType), let .turnOffDescription(_, viewType):
             return GeneralTextRowItem(initialSize, stableId: entry.stableId, text: strings().passcodeControllerText, viewType: viewType)
-        case let .lockTelegramHeader(_, viewType):
+        case let .lockAnsibleHeader(_, viewType):
             return GeneralTextRowItem(initialSize, stableId: entry.stableId, text: strings().passcodeSettingsViewControllerLockTelegram, viewType: viewType)
         case let .lockWalletHeader(_, viewType):
             return GeneralTextRowItem(initialSize, stableId: entry.stableId, text: strings().passcodeSettingsViewControllerLockWallet, viewType: viewType)

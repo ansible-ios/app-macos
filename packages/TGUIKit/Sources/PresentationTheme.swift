@@ -41,7 +41,7 @@ open class PresentationTheme : Equatable {
     
     public static func ==(lhs: PresentationTheme, rhs: PresentationTheme) -> Bool {
         // Dispatch via an overridable instance method so subclasses
-        // (TelegramPresentationTheme) can define value-based equality —
+        // (AnsiblePresentationTheme) can define value-based equality —
         // a `static func ==` on a subclass would only shadow this one and
         // never be called when the call site sees the parent's type.
         return lhs.isEqual(rhs)

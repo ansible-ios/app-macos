@@ -243,7 +243,7 @@ public final class ChatInputSendButton: View {
 
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
 
         let icon = chatInteraction.presentation.state == .editing ? theme.icons.chat_header_done : theme.icons.send_message_large
         send.set(image: icon, for: .Normal)

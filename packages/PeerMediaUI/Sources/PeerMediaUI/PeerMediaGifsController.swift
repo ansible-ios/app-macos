@@ -131,7 +131,7 @@ fileprivate func prepareTransition(left:[AppearanceWrapperEntry<InputContextEntr
     return TableUpdateTransition(deleted: removed, inserted: inserted, updated: updated, animated: animated)
 }
 
-open class PeerMediaGifsController<Context: AccountContextProtocol>: TelegramGenericViewController<PeerMediaGifsView, Context> {
+open class PeerMediaGifsController<Context: AccountContextProtocol>: AnsibleGenericViewController<PeerMediaGifsView, Context> {
 
     open override var defaultBarTitle: String {
         return localizedString("Telegram.PeerMediaGifsController")

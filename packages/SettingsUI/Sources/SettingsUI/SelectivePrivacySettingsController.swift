@@ -1141,8 +1141,8 @@ open class SelectivePrivacySettingsController<Context: AccountContextProtocol>: 
                         for (key, _) in updatedPeerIds {
                             disableFor.removeValue(forKey: key)
                         }
-                        current.enableForPremium = updatedPeerIds[TelegramFilterCategory(category: .premiumUsers).id] != nil
-                        current.enableForBots = updatedPeerIds[TelegramFilterCategory(category: .miniApps).id] != nil
+                        current.enableForPremium = updatedPeerIds[AnsibleFilterCategory(category: .premiumUsers).id] != nil
+                        current.enableForBots = updatedPeerIds[AnsibleFilterCategory(category: .miniApps).id] != nil
 
                         current.enableFor = updatedPeerIds.filter({ $0.key.namespace._internalGetInt32Value() != ChatListFilterPeerCategories.Namespace })
                         current.disableFor = disableFor

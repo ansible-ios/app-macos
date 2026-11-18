@@ -34,7 +34,7 @@ public final class CornerMaskLayerSimple : SimpleLayer {
 
 
 
-private let sensitiveImage = TelegramThemeHooks.shared.image(.iconMediaSensitiveContent).precomposed(.white)
+private let sensitiveImage = AnsibleThemeHooks.shared.image(.iconMediaSensitiveContent).precomposed(.white)
 
 public final class MediaInkView : Control {
     

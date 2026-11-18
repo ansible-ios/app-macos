@@ -32,7 +32,7 @@ public class ChatGroupedItem: ChatRowItem {
     }
    
     
-    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ entry: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ entry: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         
         var captionLayouts: [ChatRowItem.RowCaption] = []
         

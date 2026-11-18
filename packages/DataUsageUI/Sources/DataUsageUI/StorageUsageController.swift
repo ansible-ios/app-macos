@@ -871,11 +871,11 @@ private func storageUsageControllerEntries<Context: AccountContextProtocol>(stat
                 let icon: CGImage
                 switch keepMedia.category {
                 case .groups:
-                    icon = generateSettingsIcon(TelegramThemeHooks.shared.image(.iconColoredGroup).precomposed(flipVertical: true))
+                    icon = generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconColoredGroup).precomposed(flipVertical: true))
                 case .channels:
-                    icon = generateSettingsIcon(TelegramThemeHooks.shared.image(.iconColoredChannel).precomposed(flipVertical: true))
+                    icon = generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconColoredChannel).precomposed(flipVertical: true))
                 case .privateChats:
-                    icon = generateSettingsIcon(TelegramThemeHooks.shared.image(.iconColoredPrivate).precomposed(flipVertical: true))
+                    icon = generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconColoredPrivate).precomposed(flipVertical: true))
                 case .stories:
                     icon = StorageUsageResources.storiesIcon
                 }

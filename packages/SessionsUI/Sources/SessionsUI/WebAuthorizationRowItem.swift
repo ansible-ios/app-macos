@@ -27,7 +27,7 @@ public class WebAuthorizationRowItem: GeneralRowItem {
     public init(_ initialSize: NSSize, stableId: AnyHashable, account: Account, authorization: WebAuthorization, peer: Peer, viewType: GeneralViewType, logout:@escaping()->Void) {
         self.logoutInteraction = logout
         self.account = account
-        self.photo = .PeerAvatar(peer, peer.displayLetters, peer.smallProfileImage, peer.namePeerColor, nil, nil, TelegramUtilsHooks.shared.peerIsForum(peer), nil)
+        self.photo = .PeerAvatar(peer, peer.displayLetters, peer.smallProfileImage, peer.namePeerColor, nil, nil, AnsibleUtilsHooks.shared.peerIsForum(peer), nil)
         self.nameLayout = TextViewLayout(.initialize(string: peer.displayTitle, color: theme.colors.text, font: .medium(.title)), maximumNumberOfLines: 1)
         let statusAttr = NSMutableAttributedString()
         

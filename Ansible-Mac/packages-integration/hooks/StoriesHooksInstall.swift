@@ -34,7 +34,7 @@ func installStoriesUIHooks() {
             PeerInfoController.push(navigation: context.bindings.rootNavigation(), context: context as! AccountContext, peerId: peerId)
         }
     }, showShareStory: { context, media, hasLink, storyId, repostAction, presentation in
-        let additionTopItems: ShareAdditionItems = .init(items: [.init(peer: TelegramStoryRepostPeerObject(), status: strings().storyRepostToMy)], topSeparator: "", bottomSeparator: "", selectable: false)
+        let additionTopItems: ShareAdditionItems = .init(items: [.init(peer: AnsibleStoryRepostPeerObject(), status: strings().storyRepostToMy)], topSeparator: "", bottomSeparator: "", selectable: false)
 
         showModal(with: ShareModalController(ShareStoryObject(context, media: media, hasLink: hasLink, storyId: storyId, additionTopItems: additionTopItems, repostAction: {
             repostAction()

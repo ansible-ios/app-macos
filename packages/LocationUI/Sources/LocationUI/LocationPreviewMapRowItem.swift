@@ -105,9 +105,9 @@ private final class LocationAnnotationView : MKAnnotationView {
 public class LocationPreviewMapRowItem: GeneralRowItem {
     let peer: Peer?
     let context: (any AccountContextProtocol)
-    let presentation: TelegramPresentationTheme
+    let presentation: AnsiblePresentationTheme
     fileprivate let pin: MapPin
-    public init(_ initialSize: NSSize, height: CGFloat, stableId: AnyHashable, context: (any AccountContextProtocol), latitude: Double, longitude: Double, peer: Peer?, viewType: GeneralViewType, presentation: TelegramPresentationTheme) {
+    public init(_ initialSize: NSSize, height: CGFloat, stableId: AnyHashable, context: (any AccountContextProtocol), latitude: Double, longitude: Double, peer: Peer?, viewType: GeneralViewType, presentation: AnsiblePresentationTheme) {
         self.peer = peer
         self.context = context
         self.presentation = presentation

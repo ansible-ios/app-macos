@@ -103,7 +103,7 @@ public class SecretChatKeyView : View {
     }
 }
 
-open class SecretChatKeyViewController<Context: AccountContextProtocol>: TelegramGenericViewController<SecretChatKeyView, Context> {
+open class SecretChatKeyViewController<Context: AccountContextProtocol>: AnsibleGenericViewController<SecretChatKeyView, Context> {
 
     private let peerId:PeerId
     private let disposable = MetaDisposable()

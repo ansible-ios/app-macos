@@ -18,7 +18,7 @@ import AnsibleUtils
 
 private let toggle_image_down: CGImage = generateImage(NSMakeSize(24, 24), contextGenerator: { size, ctx in
     ctx.clear(size.bounds)
-    let image = TelegramThemeHooks.shared.image(.iconLiveStreamMessageConceal).precomposed(.white)
+    let image = AnsibleThemeHooks.shared.image(.iconLiveStreamMessageConceal).precomposed(.white)
 
     var imageRect = size.bounds.focus(image.backingSize)
     ctx.draw(image, in: imageRect)
@@ -27,7 +27,7 @@ private let toggle_image_down: CGImage = generateImage(NSMakeSize(24, 24), conte
 
 private let toggle_image_up: CGImage = generateImage(NSMakeSize(24, 24), contextGenerator: { size, ctx in
     ctx.clear(size.bounds)
-    let image = TelegramThemeHooks.shared.image(.iconLiveStreamMessageReveal).precomposed(.white)
+    let image = AnsibleThemeHooks.shared.image(.iconLiveStreamMessageReveal).precomposed(.white)
 
     var imageRect = size.bounds.focus(image.backingSize)
     ctx.draw(image, in: imageRect)
@@ -37,7 +37,7 @@ private let toggle_image_up: CGImage = generateImage(NSMakeSize(24, 24), context
 
 private let toggle_image_up_unread: CGImage = generateImage(NSMakeSize(24, 24), contextGenerator: { size, ctx in
     ctx.clear(size.bounds)
-    let image = TelegramThemeHooks.shared.image(.iconLiveStreamMessageReveal).precomposed(.white)
+    let image = AnsibleThemeHooks.shared.image(.iconLiveStreamMessageReveal).precomposed(.white)
     
     var imageRect = size.bounds.focus(image.backingSize)
     ctx.draw(image, in: imageRect)

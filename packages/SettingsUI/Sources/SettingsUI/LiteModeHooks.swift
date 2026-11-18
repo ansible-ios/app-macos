@@ -3,9 +3,9 @@ import TGUIKit
 import AnsibleTheme
 
 public struct LiteModeHooks {
-    public let updateTheme: (TelegramPresentationTheme, Bool) -> Void
+    public let updateTheme: (AnsiblePresentationTheme, Bool) -> Void
 
-    public init(updateTheme: @escaping (TelegramPresentationTheme, Bool) -> Void) {
+    public init(updateTheme: @escaping (AnsiblePresentationTheme, Bool) -> Void) {
         self.updateTheme = updateTheme
     }
 

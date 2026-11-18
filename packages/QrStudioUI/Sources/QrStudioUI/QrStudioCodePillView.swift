@@ -85,7 +85,7 @@ private final class QrStudioPillLabelView: View {
     func update(content: Content, color: NSColor, size: CGSize, transition: ContainedViewLayoutTransition) {
         let colorChanged = self.color.map { !$0.isEqual(color) } ?? true
         if self.content?.slashed != content.slashed || colorChanged {
-            let diamond = TelegramThemeHooks.shared.image(.iconMenuStar).precomposed(color)
+            let diamond = AnsibleThemeHooks.shared.image(.iconMenuStar).precomposed(color)
             let side = Self.diamondSide
             self.diamondLayer.contents = generateImage(CGSize(width: side, height: side), contextGenerator: { size, context in
                 context.clear(size.bounds)

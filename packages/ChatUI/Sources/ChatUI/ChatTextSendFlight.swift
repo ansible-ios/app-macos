@@ -74,7 +74,7 @@ final class ChatTextSendFlight {
     }
 
     private var reduceMotion: Bool {
-        return NSWorkspace.shared.accessibilityDisplayShouldReduceMotion || TelegramUtilsHooks.shared.isLite(.animations)
+        return NSWorkspace.shared.accessibilityDisplayShouldReduceMotion || AnsibleUtilsHooks.shared.isLite(.animations)
     }
 
     private func cancelPending() {

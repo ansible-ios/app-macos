@@ -454,7 +454,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
         
         
 
-        telegramUIDeclareEncodables()
+        ansibleUIDeclareEncodables()
         
         initializeMimeStore()
         
@@ -512,7 +512,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
                     UNUserNotifications.current?.registerCategories()
                 }
                 
-                telegramUpdateTheme(updateTheme(with: themeSettings), window: window, animated: false)
+                ansibleUpdateTheme(updateTheme(with: themeSettings), window: window, animated: false)
 
                 self.window.makeKeyAndOrderFront(self)
                 NSApp.activate(ignoringOtherApps: true)
@@ -663,7 +663,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
                     UNUserNotifications.current?.registerCategories()
                 }
                             
-                telegramUpdateTheme(updateTheme(with: themeSettings), window: window, animated: false)
+                ansibleUpdateTheme(updateTheme(with: themeSettings), window: window, animated: false)
 
                 
                 let basicTheme = Atomic<ThemePaletteSettings?>(value: themeSettings.withUpdatedPalette(theme.colors))
@@ -672,7 +672,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
                 
                 
                 let previousBackingScale: Atomic<CGFloat> = Atomic(value: System.backingScale)
-                let signal: Signal<(theme: TelegramPresentationTheme, animated: Bool)?, NoError> = combineLatest(queue: .mainQueue(), themeSettingsView(accountManager: accountManager), backingProperties.get(), systemThemeColorsSignal()) |> map { settings, backingScale, systemColors in
+                let signal: Signal<(theme: AnsiblePresentationTheme, animated: Bool)?, NoError> = combineLatest(queue: .mainQueue(), themeSettingsView(accountManager: accountManager), backingProperties.get(), systemThemeColorsSignal()) |> map { settings, backingScale, systemColors in
                     System.legacyMenu = settings.legacyMenu
                     let resolved = settings.palette.name == systemPalette.name ? settings.withUpdatedPalette(systemColors) : settings
                     return (resolved, backingScale)
@@ -690,14 +690,14 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
                 _ = signal.start(next: { updated in
                     if let (theme, animated) = updated {
                         if self.contextValue == nil {
-                            telegramUpdateTheme(theme, window: window, animated: animated)
+                            ansibleUpdateTheme(theme, window: window, animated: animated)
                         } else {
                             self.enumerateApplicationContexts({ context in
-                                telegramUpdateTheme(theme, window: context.context.window, animated: animated)
+                                ansibleUpdateTheme(theme, window: context.context.window, animated: animated)
                                 context.applyNewTheme()
                             })
                             self.enumerateExternalChatContexts({ context in
-                                telegramUpdateTheme(theme, window: context.window, animated: animated)
+                                ansibleUpdateTheme(theme, window: context.window, animated: animated)
                                 context.window.applyChrome(.compact)
                             })
                         }

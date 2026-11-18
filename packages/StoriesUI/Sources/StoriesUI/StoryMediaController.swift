@@ -668,7 +668,7 @@ public final class StoryMediaView : View {
             self.archive.set(text: isArchive ? strings().storyMediaUnarchive : strings().storyMediaArchive, for: .Normal)
             self.archive.sizeToFit(NSMakeSize(20, 0), NSMakeSize(0, Panel.buttonHeight), thatFit: false)
 
-            self.delete.set(image: TelegramThemeHooks.shared.image(.iconMessageActionPanelDelete).precomposed(theme.colors.text), for: .Normal)
+            self.delete.set(image: AnsibleThemeHooks.shared.image(.iconMessageActionPanelDelete).precomposed(theme.colors.text), for: .Normal)
             self.delete.sizeToFit(.zero, NSMakeSize(Panel.buttonHeight, Panel.buttonHeight), thatFit: true)
 
             self.pin.isEnabled = !selected.isEmpty
@@ -842,7 +842,7 @@ private struct StoryReferenceEntry : Comparable, Identifiable {
 }
 
 
-public final class StoryMediaController<Context: AccountContextProtocol> : TelegramGenericViewController<StoryMediaView, Context> {
+public final class StoryMediaController<Context: AccountContextProtocol> : AnsibleGenericViewController<StoryMediaView, Context> {
 
     public override var defaultBarTitle: String {
         return localizedString("Telegram.StoryMediaController")

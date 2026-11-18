@@ -24,8 +24,8 @@ Ranked:
    ~26 MB/entry @2× → up to ~0.5 GB uncounted. `purgeImageCachesForMemoryPressure()` (PhotoCache.swift:349-356)
    clears the 6 ScopedImageCaches but **OMITS wallpaperCache** → largest retainer survives memory pressure
    (MemoryPressureMonitor.swift:44). Keyed `.background(Wallpaper, palette.name)`; written `cacheBackground`
-   (478-481), read `cachedBackground` (482-484), driven by `TelegramPresentationTheme.backgroundMode` (598-621).
-2. **No clear-on-theme-switch.** `telegramUpdateTheme` (Appearance.swift:2239-2274) / `updateTheme(with:)` (2201-2235)
+   (478-481), read `cachedBackground` (482-484), driven by `AnsiblePresentationTheme.backgroundMode` (598-621).
+2. **No clear-on-theme-switch.** `ansibleUpdateTheme` (Appearance.swift:2239-2274) / `updateTheme(with:)` (2201-2235)
    clear no cache; old-theme wallpaper NSImages linger (keyed by palette.name) until count-evict(20) or OS pressure.
    Media caches self-heal (TransformImageArguments embeds emptyColor/corners → key rotates). themeThums are
    other-theme previews → correct to keep.
@@ -34,7 +34,7 @@ Ranked:
    hash. 46 callsites (ChatUI/ChatListUI/StoriesUI/…). Micro-win: hash once, avoid Signal alloc.
 4. **Dead double-work:** `cachedThemeThumb` (507) re-queries the same themeThums that returned nil; `cacheThemeThumb`
    (520-524) identical if/else. Unused: `WallpaperCache.maxCount` (292), `WallpaperCachedRecord.date` (17/20), `removeRecord` (308).
-5. **TelegramChatColors.cacheDict** (ChatPresentationUtils.swift:242, per-theme so no cross-theme leak): `messageSecretTimer`
+5. **AnsibleChatColors.cacheDict** (ChatPresentationUtils.swift:242, per-theme so no cross-theme leak): `messageSecretTimer`
    colors from GLOBAL `theme.colors.darkGrayText` not `self.palette` (latent staleness) + unbounded per distinct digit string.
 6. extensionImageCache (ThumbUtils.swift:5) unbounded but harmless (small extension set, Atomic).
 
@@ -48,7 +48,7 @@ palette on theme switch; (4) hash-once hot path; (5) dead-code cleanup; (6) cach
 
 ### Theme core & icons memory (agent, 2026-10-06)
 Pipeline: theme built OFF-main on `resourcesQueue` (AppDelegate.swift:661 `updateTheme(with:)`→`generateTheme`
-Appearance.swift:2174/2201), swapped on MAIN (`telegramUpdateTheme`→`PresentationTheme.updateTheme` `_theme.swap`
+Appearance.swift:2174/2201), swapped on MAIN (`ansibleUpdateTheme`→`PresentationTheme.updateTheme` `_theme.swap`
 PresentationTheme.swift:17 + `_themeSignal.set` Appearance.swift:2241). Change notify = Promise/Signal chain
 `_themeSignal→themeSignal→appearanceSignal` (AnsiblePresentationTheme.swift:755, AppearanceGlobal.swift:93-100);
 NotificationCenter only for AppearanceDayContext day/clock (60s timer, AppearanceGlobal.swift:62-91). Icons are
@@ -63,13 +63,13 @@ Ranked:
    build even when an identical cached bg exists. (Ties to PhotoCache #1/candidate — the cache it skips.)
 2. **N emoticon (chat) themes rebuilt on MAIN on every appearanceSignal fire — incl. daily clock rollover.**
    AccountContext.swift:710-741: `combineLatest(appearanceSignal, getChatThemes)|>mapToSignal` on main; per server
-   theme `withUpdatedColors` (fresh 877-closure AnsibleIconsTheme + TelegramChatColors) + `withUpdatedWallpaper`
+   theme `withUpdatedColors` (fresh 877-closure AnsibleIconsTheme + AnsibleChatColors) + `withUpdatedWallpaper`
    (2nd theme). Restarted every 20min. Any appearance pulse (switch, language, once-a-day day pulse) rebuilds all N.
 3. **Write-lock on every `theme`/`presentation` read.** PresentationTheme.swift:11-13 `_theme.modify {$0}` (write-style,
    not `with`); read per cell layout/draw on main AND prepareQueue.
 4. **Unsynchronized lazy caches on a cross-thread-shared theme (DATA RACE/correctness).** ~12 `var _xxx:CGImage?`
    AnsiblePresentationTheme.swift:296-474, `_chatServiceItemColor`:480, `_chatServiceItemTextColor`:524,
-   `_backgroundMode`:597; + `TelegramChatColors.cacheDict` ChatPresentationUtils.swift:242. No locks (unlike
+   `_backgroundMode`:597; + `AnsibleChatColors.cacheDict` ChatPresentationUtils.swift:242. No locks (unlike
    AnsibleIconsTheme's Atomic); theme read from main + prepareQueue → torn reads/double render/possible crash.
 5. **Full theme + icon realloc on fontSize-only change.** AppDelegate.swift:665-666 rebuilds whole theme (empty icon
    cache) when only fontSize/scale changed; icons depend on palette/bubbled/scale not fontSize. `withUpdatedColors`

@@ -12,11 +12,11 @@ import Localization
 
 public class SmartThemeListRowItem: GeneralRowItem {
     fileprivate let context: any AccountContextProtocol
-    fileprivate let theme: TelegramPresentationTheme
+    fileprivate let theme: AnsiblePresentationTheme
     fileprivate let list: [SmartThemeCachedData]
     fileprivate let togglePalette: (InstallThemeSource)->Void
     fileprivate let animatedEmojiStickers: [String: StickerPackItem]
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, theme: TelegramPresentationTheme, list: [SmartThemeCachedData], animatedEmojiStickers: [String: StickerPackItem], viewType: GeneralViewType, togglePalette: @escaping(InstallThemeSource)->Void) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, theme: AnsiblePresentationTheme, list: [SmartThemeCachedData], animatedEmojiStickers: [String: StickerPackItem], viewType: GeneralViewType, togglePalette: @escaping(InstallThemeSource)->Void) {
         self.context = context
         self.theme = theme
         self.list = list

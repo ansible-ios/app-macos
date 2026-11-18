@@ -27,8 +27,8 @@ public final class PremiumBoardingDoubleRowItem : GeneralRowItem {
     public let info: TextViewLayout
     public let itemType: PremiumBoardingDoubleItem
     public let limits: PremiumLimitConfig
-    public let presentation: TelegramPresentationTheme
-    public init(_ initialSize: NSSize, presentation: TelegramPresentationTheme, limits: PremiumLimitConfig, type: PremiumBoardingDoubleItem) {
+    public let presentation: AnsiblePresentationTheme
+    public init(_ initialSize: NSSize, presentation: AnsiblePresentationTheme, limits: PremiumLimitConfig, type: PremiumBoardingDoubleItem) {
         self.itemType = type
         self.limits = limits
         self.presentation = presentation
@@ -103,7 +103,7 @@ private final class PremiumBoardingDoubleRowView : TableRowView {
             normalCount.isSelectable = false
         }
         
-        public func update(_ itemType: PremiumBoardingDoubleItem, presentation: TelegramPresentationTheme, limits: PremiumLimitConfig) {
+        public func update(_ itemType: PremiumBoardingDoubleItem, presentation: AnsiblePresentationTheme, limits: PremiumLimitConfig) {
             let normalLayout = TextViewLayout(.initialize(string: strings().premiumLimitFree, color: presentation.colors.text, font: .medium(13)))
             normalLayout.measure(width: .greatestFiniteMagnitude)
             

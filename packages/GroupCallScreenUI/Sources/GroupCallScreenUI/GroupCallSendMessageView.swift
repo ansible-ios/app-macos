@@ -137,7 +137,7 @@ private func reactionsValues(context: any AccountContextProtocol, react: @escapi
                 }
                 react(.init(item: value, fromRect: fromRect))
                 onClose()
-            }, onClose, TelegramThemeHooks.shared.darkAppearance(), name, parentWindow, view)
+            }, onClose, AnsibleThemeHooks.shared.darkAppearance(), name, parentWindow, view)
         }
         
         
@@ -145,7 +145,7 @@ private func reactionsValues(context: any AccountContextProtocol, react: @escapi
         let view = GroupCallScreenUIHooks.shared.makeReactionsListView(rect, context, available, { value, checkPrem, fromRect in
             react(.init(item: value.toUpdate(), fromRect: fromRect))
             onClose()
-        }, reveal, TelegramThemeHooks.shared.darkAppearance(), parentWindow)
+        }, reveal, AnsibleThemeHooks.shared.darkAppearance(), parentWindow)
         
         return (panel, view)
     } |> deliverOnMainQueue
@@ -239,7 +239,7 @@ public final class GroupCallSendMessageView : View {
 
         textContainer.layer?.cornerRadius = 20
         
-        self.textView.inputView.appearance = TelegramThemeHooks.shared.darkAppearance().appearance
+        self.textView.inputView.appearance = AnsibleThemeHooks.shared.darkAppearance().appearance
         
         self.textView.interactions.max_height = 200
         self.textView.interactions.min_height = 34
@@ -433,7 +433,7 @@ public final class GroupCallSendMessageView : View {
                     }
                 }))
                 
-                let emoji = GroupCallScreenUIHooks.shared.makeEmojies(context, TelegramThemeHooks.shared.darkAppearance())
+                let emoji = GroupCallScreenUIHooks.shared.makeEmojies(context, AnsibleThemeHooks.shared.darkAppearance())
                 self.emoji = emoji
             
                 let interactions = EntertainmentInteractions(.emoji, peerId: context.peerId)
@@ -467,7 +467,7 @@ public final class GroupCallSendMessageView : View {
         self.state = state
         
         self.textView.context = arguments.getContext()
-        self.textView.inputTheme = TelegramThemeHooks.shared.darkAppearance().inputTheme
+        self.textView.inputTheme = AnsibleThemeHooks.shared.darkAppearance().inputTheme
 
         
         makeReactions(arguments: arguments)

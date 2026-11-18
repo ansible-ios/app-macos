@@ -145,7 +145,7 @@ final class AppSidebarUIEnvironment: SidebarUIEnvironment {
     }
 
     func categoryPeer(_ category: ChatListFilterPeerCategories) -> Peer {
-        return TelegramFilterCategory(category: category)
+        return AnsibleFilterCategory(category: category)
     }
 
     func selectPeers(defaultSelectedIds: Set<PeerId>, categories: [Peer], limit: Int, limitReachedText: String, callback: @escaping ([PeerId]) -> Signal<Never, NoError>) {

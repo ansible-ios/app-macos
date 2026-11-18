@@ -507,7 +507,7 @@ public func SendAudioModalController(context: any AccountContextProtocol, chatIn
         modalController?.close()
     })
 
-    let searchIcon = TelegramThemeHooks.shared.image(.iconTouchBarSearch).precomposed(theme.colors.accentIcon)
+    let searchIcon = AnsibleThemeHooks.shared.image(.iconTouchBarSearch).precomposed(theme.colors.accentIcon)
     controller.rightModalHeader = ModalHeaderData(image: searchIcon, handler: { [weak controller] in
         let willShow = !stateValue.with({ $0.showSearch })
         updateState { current in

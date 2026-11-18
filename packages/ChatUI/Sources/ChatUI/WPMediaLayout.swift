@@ -16,7 +16,7 @@ public class WPMediaLayout: WPLayout {
     public var mediaSize:NSSize = NSZeroSize
     public private(set) var media: Media
     public let parameters:ChatMediaLayoutParameters?
-    public init(with content: TelegramMediaWebpageLoadedContent, context: any AccountContextProtocol, chatInteraction:ChatInteraction, parent:Message, fontSize: CGFloat, presentation: WPLayoutPresentation, approximateSynchronousValue: Bool, downloadSettings: AutomaticMediaDownloadSettings, autoplayMedia: AutoplayMediaPreferences, theme: TelegramPresentationTheme, mayCopyText: Bool, entities: [MessageTextEntity]? = nil, adAttribute: AdMessageAttribute? = nil, uniqueGift: StarGift.UniqueGift? = nil) {
+    public init(with content: TelegramMediaWebpageLoadedContent, context: any AccountContextProtocol, chatInteraction:ChatInteraction, parent:Message, fontSize: CGFloat, presentation: WPLayoutPresentation, approximateSynchronousValue: Bool, downloadSettings: AutomaticMediaDownloadSettings, autoplayMedia: AutoplayMediaPreferences, theme: AnsiblePresentationTheme, mayCopyText: Bool, entities: [MessageTextEntity]? = nil, adAttribute: AdMessageAttribute? = nil, uniqueGift: StarGift.UniqueGift? = nil) {
         self.media = uniqueGift?.file ?? (content.file ?? content.image)!
         if let representations = content.image?.representations, let file = self.media as? TelegramMediaFile {
             self.media = file.withUpdatedPreviewRepresentations(representations)

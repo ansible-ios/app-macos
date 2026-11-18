@@ -10,11 +10,11 @@ import AnsibleTheme
 public final class ChatNewThreadRowItem : GeneralRowItem {
     fileprivate let entry: ChatHistoryEntry
     fileprivate let chatInteraction: ChatInteraction
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
     fileprivate let title: TextViewLayout
     fileprivate let info: TextViewLayout
     
-    public init(_ initialSize: NSSize, entry: ChatHistoryEntry, chatInteraction: ChatInteraction, presentation: TelegramPresentationTheme) {
+    public init(_ initialSize: NSSize, entry: ChatHistoryEntry, chatInteraction: ChatInteraction, presentation: AnsiblePresentationTheme) {
         self.entry = entry
         self.presentation = presentation
         self.chatInteraction = chatInteraction
@@ -124,14 +124,14 @@ private final class ChatNewThreadRowView: TableRowView {
 
             photo.image = generateImage(NSMakeSize(80, 80), contextGenerator: { size, ctx in
                 ctx.clear(size.bounds)
-                let image = TelegramThemeHooks.shared.image(.iconNewThreadLarge).precomposed(item.presentation.chatServiceItemTextColor)
+                let image = AnsibleThemeHooks.shared.image(.iconNewThreadLarge).precomposed(item.presentation.chatServiceItemTextColor)
                 ctx.setFillColor(item.presentation.chatServiceItemTextColor.withAlphaComponent(0.1).cgColor)
                 ctx.fillEllipse(in: size.bounds)
                 ctx.draw(image, in: size.bounds.focus(image.backingSize))
             })
             photo.sizeToFit()
             
-            chevron.image = TelegramThemeHooks.shared.image(.iconSmallChevronDown).precomposed(item.presentation.chatServiceItemTextColor)
+            chevron.image = AnsibleThemeHooks.shared.image(.iconSmallChevronDown).precomposed(item.presentation.chatServiceItemTextColor)
             chevron.sizeToFit()
             
             needsLayout = true

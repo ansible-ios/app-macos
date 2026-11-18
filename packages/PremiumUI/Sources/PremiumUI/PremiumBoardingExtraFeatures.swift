@@ -26,8 +26,8 @@ public final class PremiumBoardingStoryRowItem : GeneralRowItem {
     public let title: TextViewLayout
     public let info: TextViewLayout
     public let itemType: PremiumBoardingExtraFeatureItem
-    public let presentation: TelegramPresentationTheme
-    public init(_ initialSize: NSSize, type: PremiumBoardingExtraFeatureItem, presentation: TelegramPresentationTheme) {
+    public let presentation: AnsiblePresentationTheme
+    public init(_ initialSize: NSSize, type: PremiumBoardingExtraFeatureItem, presentation: AnsiblePresentationTheme) {
         self.itemType = type
         self.presentation = presentation
         self.title = .init(.initialize(string: type.title, color: presentation.colors.text, font: .medium(.title)))
@@ -251,37 +251,37 @@ public enum PremiumBoardingExtraFeatureItem {
     public var image: CGImage {
         switch self {
         case .priority:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingPriorityOrder).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingPriorityOrder).precomposed()
         case .stealth:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingStealthMode).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingStealthMode).precomposed()
         case .permanentViews:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingPermanentViewsHistory).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingPermanentViewsHistory).precomposed()
         case .expiratationDuration:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingExpirationDurations).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingExpirationDurations).precomposed()
         case .saveToGallery:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingSaveStoriesToGallery).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingSaveStoriesToGallery).precomposed()
         case .longerCaption:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingLongerCaptions).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingLongerCaptions).precomposed()
         case .linksAndFormating:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingLinksAndFormatting).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingLinksAndFormatting).precomposed()
         case .highQuality:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingHighQuality).precomposed(NSColor(0x9A64EE))
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingHighQuality).precomposed(NSColor(0x9A64EE))
         case .business_location:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessFeatureLocation).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessFeatureLocation).precomposed()
         case .business_hours:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessFeatureHours).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessFeatureHours).precomposed()
         case .business_quick_replies:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessFeatureReply).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessFeatureReply).precomposed()
         case .business_greeting_messages:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessFeatureGreeting).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessFeatureGreeting).precomposed()
         case .business_away_messages:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessFeatureAway).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessFeatureAway).precomposed()
         case .business_chatbots:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessFeatureBot).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessFeatureBot).precomposed()
         case .business_intro:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessFeatureIntro).precomposed(NSColor(red: 0.404, green: 0.42, blue: 1, alpha: 1))
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessFeatureIntro).precomposed(NSColor(red: 0.404, green: 0.42, blue: 1, alpha: 1))
         case .business_links:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessFeatureLinks).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessFeatureLinks).precomposed()
         }
     }
 }
@@ -291,8 +291,8 @@ public final class PremiumBoardingExtraFeaturesView: View, PremiumSlideView {
     public final class HeaderView: View {
         private let container = View()
         private let titleView = TextView()
-        private let presentation: TelegramPresentationTheme
-        public init(frame frameRect: NSRect, presentation: TelegramPresentationTheme) {
+        private let presentation: AnsiblePresentationTheme
+        public init(frame frameRect: NSRect, presentation: AnsiblePresentationTheme) {
             self.presentation = presentation
             super.init(frame: frameRect)
             
@@ -344,8 +344,8 @@ public final class PremiumBoardingExtraFeaturesView: View, PremiumSlideView {
     public let bottomBorder = View(frame: .zero)
     
     public let tableView: TableView = TableView()
-    public let presentation: TelegramPresentationTheme
-    public required init(frame frameRect: NSRect, presentation: TelegramPresentationTheme) {
+    public let presentation: AnsiblePresentationTheme
+    public required init(frame frameRect: NSRect, presentation: AnsiblePresentationTheme) {
         self.presentation = presentation
         self.headerView = HeaderView(frame: .zero, presentation: presentation)
         super.init(frame: frameRect)

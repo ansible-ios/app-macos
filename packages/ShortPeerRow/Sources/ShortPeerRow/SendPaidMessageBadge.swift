@@ -24,7 +24,7 @@ final class SendPaidMessageBadgeCache {
     private var entry: (key: Key, image: CGImage)?
 
     func image(text: String, bgColor: NSColor, outerColor: NSColor, imageColor: NSColor, font: NSFont) -> CGImage {
-        let key = Key(text: text, background: bgColor.cgColor, outer: outerColor.cgColor, foreground: imageColor.cgColor, font: font, scale: System.backingScale, icon: TelegramThemeHooks.shared.image(.starSmall))
+        let key = Key(text: text, background: bgColor.cgColor, outer: outerColor.cgColor, foreground: imageColor.cgColor, font: font, scale: System.backingScale, icon: AnsibleThemeHooks.shared.image(.starSmall))
         if let entry, entry.key == key {
             return entry.image
         }
@@ -36,7 +36,7 @@ final class SendPaidMessageBadgeCache {
 
 public func generalSendPaidMessage(bgColor: NSColor, outerColor: NSColor, imageColor: NSColor, count: NSAttributedString) -> CGImage {
     let layout = TextNode.layoutText(count, nil, 1, .end, NSMakeSize(.greatestFiniteMagnitude, .greatestFiniteMagnitude), nil, false, .center)
-    let image = TelegramThemeHooks.shared.image(.starSmall).precomposed(imageColor, flipVertical: true)
+    let image = AnsibleThemeHooks.shared.image(.starSmall).precomposed(imageColor, flipVertical: true)
 
     return generateImage(NSMakeSize(layout.0.size.width + 8 + image.backingSize.width, 18), rotatedContext: { size, ctx in
         ctx.clear(size.bounds)

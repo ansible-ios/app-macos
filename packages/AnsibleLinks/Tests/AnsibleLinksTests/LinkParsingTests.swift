@@ -309,11 +309,11 @@ final class LinkParsingTests: XCTestCase {
 
     func testTelegramLinkQueryNormalization() {
         XCTAssertEqual(
-            normalizedTelegramLinkQuery("as://sendgrams&startapp=tonconnect-v__2"),
+            normalizedAnsibleLinkQuery("as://sendgrams&startapp=tonconnect-v__2"),
             "as://sendgrams?startapp=tonconnect-v__2"
         )
         XCTAssertEqual(
-            normalizedTelegramLinkQuery("telegram://sendgrams&startapp=a&b=c"),
+            normalizedAnsibleLinkQuery("telegram://sendgrams&startapp=a&b=c"),
             "telegram://sendgrams?startapp=a&b=c"
         )
         for unchanged in [
@@ -322,7 +322,7 @@ final class LinkParsingTests: XCTestCase {
             "as://sendgrams",
             "https://asme.su/sendgrams&startapp=a"
         ] {
-            XCTAssertEqual(normalizedTelegramLinkQuery(unchanged), unchanged, unchanged)
+            XCTAssertEqual(normalizedAnsibleLinkQuery(unchanged), unchanged, unchanged)
         }
     }
 

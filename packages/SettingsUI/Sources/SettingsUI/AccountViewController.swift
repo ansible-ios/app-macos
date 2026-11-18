@@ -52,7 +52,7 @@ private final class AccountSearchBarView: View {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         searchView.searchTheme = .init(theme.colors.background, theme.search.searchImage, theme.search.clearImage, {
             return strings().searchFieldSearch
         }, theme.search.textColor, theme.search.placeholderColor)
@@ -309,7 +309,7 @@ private enum AccountInfoEntry<Context: AccountContextProtocol> : TableItemListNo
             let text = peer.peer.emojiStatus != nil ? strings().accountSettingsChangeStatus : strings().accountSettingsUpdateStatus
             return GeneralInteractedRowItem(initialSize, stableId: stableId, name: text, nameStyle: ControlStyle(font: .normal(.title), foregroundColor: theme.colors.accentIcon), type: .none, viewType: viewType, action: arguments.runStatusPopover, thumb: GeneralThumbAdditional(thumb: icon, textInset: 35, thumbInset: 0), inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear))
         case let .setProfileColor(_, viewType, peer):
-            let icon: CGImage = TelegramThemeHooks.shared.image(.iconChannelFeatureCover).precomposed(theme.colors.accent, flipVertical: true)
+            let icon: CGImage = AnsibleThemeHooks.shared.image(.iconChannelFeatureCover).precomposed(theme.colors.accent, flipVertical: true)
             let text = strings().accountSettingsSetProfileColor
             return GeneralInteractedRowItem(initialSize, stableId: stableId, name: text, nameStyle: ControlStyle(font: .normal(.title), foregroundColor: theme.colors.accentIcon), type: .none, viewType: viewType, action: {
                 arguments.setProfileColor(peer.peer)
@@ -369,7 +369,7 @@ private enum AccountInfoEntry<Context: AccountContextProtocol> : TableItemListNo
             }
             
             if icon == nil {
-                icon = TelegramThemeHooks.shared.image(.iconSettingsBotCap).precomposed(flipVertical: true, scale: System.backingScale)
+                icon = AnsibleThemeHooks.shared.image(.iconSettingsBotCap).precomposed(flipVertical: true, scale: System.backingScale)
             }
             let type: GeneralInteractedType
             if bot.flags.contains(.notActivated) || bot.flags.contains(.showInSettingsDisclaimer) {
@@ -402,7 +402,7 @@ private enum AccountInfoEntry<Context: AccountContextProtocol> : TableItemListNo
                 arguments.presentController(SettingsNavigationHooks.shared.makeInstalledStickerPacksController(arguments.context, nil), true)
             }, inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear))
         case let .notifications(_, viewType, status):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountSettingsNotifications, icon: theme.icons.settingsNotifications, activeIcon: theme.icons.settingsNotificationsActive, type: status == .denied ? .image(TelegramThemeHooks.shared.image(.iconMessageSentFailed).precomposed()) : .next, viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountSettingsNotifications, icon: theme.icons.settingsNotifications, activeIcon: theme.icons.settingsNotificationsActive, type: status == .denied ? .image(AnsibleThemeHooks.shared.image(.iconMessageSentFailed).precomposed()) : .next, viewType: viewType, action: {
                 arguments.presentController(NotificationPreferencesController(arguments.context), true)
             }, inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear))
         case let .language(_, viewType, current):
@@ -491,7 +491,7 @@ private func settingsMoneyIcon() -> CGImage? {
     return image.precomposed(flipVertical: true)
 }
 
-private func accountInfoEntries<Context: AccountContextProtocol>(peerView:PeerView, context: Context, accounts: [AccountWithInfo], language: TelegramLocalization, privacySettings: AccountPrivacySettings?, webSessions: WebSessionsContextState, proxySettings: (ProxySettings, ConnectionStatus), passportVisible: Bool, appUpdateState: Any?, hasFilters: Bool, sessionsCount: Int, unAuthStatus: NotificationAuthorizationStatus, has2fa: Bool, twoStepConfiguration: TwoStepVeriticationAccessConfiguration?, storyStats: EngineStorySubscriptions?, attachMenuBots: [AttachMenuBot], stars: StarsContext.State?) -> [AccountInfoEntry<Context>] {
+private func accountInfoEntries<Context: AccountContextProtocol>(peerView:PeerView, context: Context, accounts: [AccountWithInfo], language: AnsibleLocalization, privacySettings: AccountPrivacySettings?, webSessions: WebSessionsContextState, proxySettings: (ProxySettings, ConnectionStatus), passportVisible: Bool, appUpdateState: Any?, hasFilters: Bool, sessionsCount: Int, unAuthStatus: NotificationAuthorizationStatus, has2fa: Bool, twoStepConfiguration: TwoStepVeriticationAccessConfiguration?, storyStats: EngineStorySubscriptions?, attachMenuBots: [AttachMenuBot], stars: StarsContext.State?) -> [AccountInfoEntry<Context>] {
     var entries:[AccountInfoEntry<Context>] = []
     
     var index:Int = 0
@@ -744,7 +744,7 @@ public final class AccountControllerView : Control {
         edit.set(text: strings().navigationEdit, for: .Normal)
         edit.set(color: theme.colors.accent, for: .Normal)
         edit.scaleOnClick = true
-        qrCode.set(image: (theme as! TelegramPresentationTheme).icons.wallet_qr, for: .Normal)
+        qrCode.set(image: (theme as! AnsiblePresentationTheme).icons.wallet_qr, for: .Normal)
         qrCode.sizeToFit(.zero, NSMakeSize(30, 30), thatFit: true)
         self.backgroundColor = .clear
 
@@ -777,7 +777,7 @@ public final class AccountControllerView : Control {
     }
 }
 
-open class AccountViewController<Context: AccountContextProtocol> : TelegramGenericViewController<AccountControllerView, Context>, TableViewDelegate {
+open class AccountViewController<Context: AccountContextProtocol> : AnsibleGenericViewController<AccountControllerView, Context>, TableViewDelegate {
     
     
     private let disposable = MetaDisposable()

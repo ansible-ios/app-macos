@@ -4,7 +4,7 @@ import ColorPalette
 import AnsibleIconsTheme
 import InAppSettings
 
-public enum TelegramThemeImage {
+public enum AnsibleThemeImage {
     case iconCheck
     case iconSelectionUncheck
     case iconChannelCommentsOverlay
@@ -902,8 +902,8 @@ public enum TelegramThemeImage {
     case iconGalleryLivePhotoPlaying
 }
 
-public struct TelegramThemeHooks {
-    public let image: (TelegramThemeImage) -> NSImage
+public struct AnsibleThemeHooks {
+    public let image: (AnsibleThemeImage) -> NSImage
     public let icons: (ColorPalette, Bool) -> AnsibleIconsTheme
     public let sendingFrame: (NSColor) -> CGImage
     public let clockMinImage: (NSColor) -> CGImage
@@ -911,10 +911,10 @@ public struct TelegramThemeHooks {
     public let chatGroupToggleUnselected: (NSColor, NSColor) -> CGImage
     public let setDefaultTheme: (Window?) -> Void
     public let liteMode: () -> LiteMode
-    public let darkAppearance: () -> TelegramPresentationTheme
+    public let darkAppearance: () -> AnsiblePresentationTheme
     public let liveStreamBadgeColor: () -> NSColor
 
-    public init(image: @escaping (TelegramThemeImage) -> NSImage,
+    public init(image: @escaping (AnsibleThemeImage) -> NSImage,
                 icons: @escaping (ColorPalette, Bool) -> AnsibleIconsTheme,
                 sendingFrame: @escaping (NSColor) -> CGImage,
                 clockMinImage: @escaping (NSColor) -> CGImage,
@@ -922,7 +922,7 @@ public struct TelegramThemeHooks {
                 chatGroupToggleUnselected: @escaping (NSColor, NSColor) -> CGImage,
                 setDefaultTheme: @escaping (Window?) -> Void,
                 liteMode: @escaping () -> LiteMode,
-                darkAppearance: @escaping () -> TelegramPresentationTheme,
+                darkAppearance: @escaping () -> AnsiblePresentationTheme,
                 liveStreamBadgeColor: @escaping () -> NSColor) {
         self.image = image
         self.icons = icons
@@ -936,16 +936,16 @@ public struct TelegramThemeHooks {
         self.liveStreamBadgeColor = liveStreamBadgeColor
     }
 
-    private static var _shared: TelegramThemeHooks?
+    private static var _shared: AnsibleThemeHooks?
 
-    public static var shared: TelegramThemeHooks {
+    public static var shared: AnsibleThemeHooks {
         guard let value = _shared else {
-            fatalError("TelegramThemeHooks.install must be called before the theme is used")
+            fatalError("AnsibleThemeHooks.install must be called before the theme is used")
         }
         return value
     }
 
-    public static func install(_ hooks: TelegramThemeHooks) {
+    public static func install(_ hooks: AnsibleThemeHooks) {
         _shared = hooks
     }
 }

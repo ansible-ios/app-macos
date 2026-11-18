@@ -132,7 +132,7 @@ private final class HeaderItemView: GeneralRowView {
         iconView.layer?.addSublayer(gradient)
         iconView.addSubview(stickerView)
         
-        stickerView.image = TelegramThemeHooks.shared.image(.iconJoinGroupCall).precomposed(theme.colors.underSelectedColor)
+        stickerView.image = AnsibleThemeHooks.shared.image(.iconJoinGroupCall).precomposed(theme.colors.underSelectedColor)
         stickerView.sizeToFit()
         stickerView.center()
 

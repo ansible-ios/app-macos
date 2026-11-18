@@ -189,7 +189,7 @@ public class ChatServiceItem: ChatRowItem {
         
         public let replyMarkupModel: ReplyMarkupNode?
         
-        public init(context: any AccountContextProtocol, message: Message, receiver: EnginePeer, amount: CurrencyAmount, gift: StarGift.UniqueGift, text: TextViewLayout, info: TextViewLayout?, isActive: Bool, theme: TelegramPresentationTheme, accept: @escaping()->Void = {}, reject: @escaping()->Void = {}) {
+        public init(context: any AccountContextProtocol, message: Message, receiver: EnginePeer, amount: CurrencyAmount, gift: StarGift.UniqueGift, text: TextViewLayout, info: TextViewLayout?, isActive: Bool, theme: AnsiblePresentationTheme, accept: @escaping()->Void = {}, reject: @escaping()->Void = {}) {
             self.context = context
             self.message = message
             self.isActive = isActive
@@ -325,7 +325,7 @@ public class ChatServiceItem: ChatRowItem {
         public let isActive: Bool
         public let replyMarkupModel: ReplyMarkupNode?
 
-        public init(text: TextViewLayout, items: [TextViewLayout], isActive: Bool, theme: TelegramPresentationTheme, context: any AccountContextProtocol, accept: @escaping () -> Void = {}, reject: @escaping () -> Void = {}) {
+        public init(text: TextViewLayout, items: [TextViewLayout], isActive: Bool, theme: AnsiblePresentationTheme, context: any AccountContextProtocol, accept: @escaping () -> Void = {}, reject: @escaping () -> Void = {}) {
             self.text = text
             self.items = items
             self.isActive = isActive
@@ -554,7 +554,7 @@ public class ChatServiceItem: ChatRowItem {
         public let avatar: AvatarStoryIndicatorComponent?
         public let context: any AccountContextProtocol
         public let peer: PeerReference
-        public init(context: any AccountContextProtocol, peer: PeerReference, maxReadId: Int32?, media: TelegramMediaStory, storyItem: Stories.StoredItem, text: TextViewLayout, theme: TelegramPresentationTheme, isIncoming: Bool, isLoading: Bool = false) {
+        public init(context: any AccountContextProtocol, peer: PeerReference, maxReadId: Int32?, media: TelegramMediaStory, storyItem: Stories.StoredItem, text: TextViewLayout, theme: AnsiblePresentationTheme, isIncoming: Bool, isLoading: Bool = false) {
             self.media = media
             self.context = context
             self.storyItem = storyItem
@@ -643,7 +643,7 @@ public class ChatServiceItem: ChatRowItem {
     public private(set) var communityChangedData: CommunityChangedData? = nil
     public private(set) var copyProtectionRequestData: CopyProtectionRequestData? = nil
     
-    public override init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ context: any AccountContextProtocol, _ entry: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ context: any AccountContextProtocol, _ entry: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         let message:Message = entry.message!
                 
         
@@ -3303,7 +3303,7 @@ public class ChatServiceRowView: TableRowView, RevealTableView {
                     self.badgeView = current
                 }
                                 
-                let ribbon = generateGradientTintedImage(image: TelegramThemeHooks.shared.image(.giftRibbon).precomposed(), colors: [badge.color.withMultiplied(hue: 0.97, saturation: 1.45, brightness: 0.89), badge.color.withMultiplied(hue: 1.01, saturation: 1.22, brightness: 1.04)], direction: .mirroredDiagonal)!
+                let ribbon = generateGradientTintedImage(image: AnsibleThemeHooks.shared.image(.giftRibbon).precomposed(), colors: [badge.color.withMultiplied(hue: 0.97, saturation: 1.45, brightness: 0.89), badge.color.withMultiplied(hue: 1.01, saturation: 1.22, brightness: 1.04)], direction: .mirroredDiagonal)!
                 
                 
                 current.image = generateGiftBadgeBackground(background: ribbon, text: badge.text)
@@ -4153,7 +4153,7 @@ public class ChatServiceRowView: TableRowView, RevealTableView {
                 itemsContainer.addSubview(view)
                 checkViews.append(view)
             }
-            let checkImage = TelegramThemeHooks.shared.image(.iconTodoOtherCheck).precomposed(item.presentation.chatServiceItemTextColor)
+            let checkImage = AnsibleThemeHooks.shared.image(.iconTodoOtherCheck).precomposed(item.presentation.chatServiceItemTextColor)
             for (i, layout) in data.items.enumerated() {
                 itemViews[i].update(layout)
                 checkViews[i].image = checkImage
@@ -5813,7 +5813,7 @@ public class ChatServiceRowView: TableRowView, RevealTableView {
     }
     
     public override func onInsert(_ animation: NSTableView.AnimationOptions, appearAnimated: Bool) {
-        if let item = item as? ChatRowItem, !TelegramUtilsHooks.shared.isLite(.animations) {
+        if let item = item as? ChatRowItem, !AnsibleUtilsHooks.shared.isLite(.animations) {
             if item.isBubbled, appearAnimated {
                 self.layer?.animateScaleSpring(from: 0.5, to: 1, duration: 0.4, bounce: false)
                 self.layer?.animateAlpha(from: 0, to: 1, duration: 0.35)

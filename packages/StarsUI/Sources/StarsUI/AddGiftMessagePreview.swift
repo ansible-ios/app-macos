@@ -54,7 +54,7 @@ public final class AddGiftMessagePreviewItem: GeneralRowItem {
         self.backgroundContent = UniqueGiftBackgroundContent(gift: gift)
         self.stickerFile = stickerFile
 
-        let ribbon = generateGradientTintedImage(image: TelegramThemeHooks.shared.image(.giftRibbon).precomposed(), colors: [outerColor.withMultiplied(hue: 0.97, saturation: 1.45, brightness: 0.89), outerColor.withMultiplied(hue: 1.01, saturation: 1.22, brightness: 1.04)], direction: .mirroredDiagonal)!
+        let ribbon = generateGradientTintedImage(image: AnsibleThemeHooks.shared.image(.giftRibbon).precomposed(), colors: [outerColor.withMultiplied(hue: 0.97, saturation: 1.45, brightness: 0.89), outerColor.withMultiplied(hue: 1.01, saturation: 1.22, brightness: 1.04)], direction: .mirroredDiagonal)!
         self.ribbonImage = generateGiftBadgeBackground(background: ribbon, text: strings().chatServiceGiftRibbonGift)
 
         let myName = context.myPeer?.compactDisplayTitle ?? ""

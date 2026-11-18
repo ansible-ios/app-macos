@@ -22,11 +22,11 @@ private final class StoryViewerEmptyRowItem : GeneralRowItem {
     fileprivate let state: State
     fileprivate let openPremium: ()->Void
     fileprivate let context: any AccountContextProtocol
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
     fileprivate let sticker: LocalAnimatedSticker = LocalAnimatedSticker.duck_empty
     fileprivate let text: TextViewLayout
     fileprivate let premiumText: TextViewLayout?
-    init(_ initialSize: NSSize, height: CGFloat, stableId: AnyHashable, presentation: TelegramPresentationTheme, context: any AccountContextProtocol, state: State, openPremium: @escaping()->Void) {
+    init(_ initialSize: NSSize, height: CGFloat, stableId: AnyHashable, presentation: AnsiblePresentationTheme, context: any AccountContextProtocol, state: State, openPremium: @escaping()->Void) {
         self.openPremium = openPremium
         self.state = state
         self.context = context
@@ -205,14 +205,14 @@ private final class StoryViewerRowItem : GeneralRowItem {
     fileprivate let item: EngineStoryViewListContext.Item
     fileprivate let storyStats: PeerStoryStats?
     fileprivate let avatarComponent: AvatarStoryIndicatorComponent?
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
     fileprivate let nameLayout: TextViewLayout
     fileprivate let dateLayout: TextViewLayout
     fileprivate let callback: (PeerId)->Void
     fileprivate let openStory:(PeerId)->Void
     fileprivate let openRepostStory:(StoryId)->Void
     fileprivate let contextMenu:(PeerId)->Signal<[ContextMenuItem], NoError>
-    init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, peer: Peer, item: EngineStoryViewListContext.Item, storyStats: PeerStoryStats?, timestamp: Int32, presentation: TelegramPresentationTheme, callback:@escaping(PeerId)->Void, openStory:@escaping(PeerId)->Void, contextMenu:@escaping(PeerId)->Signal<[ContextMenuItem], NoError>, openRepostStory:@escaping(StoryId)->Void) {
+    init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, peer: Peer, item: EngineStoryViewListContext.Item, storyStats: PeerStoryStats?, timestamp: Int32, presentation: AnsiblePresentationTheme, callback:@escaping(PeerId)->Void, openStory:@escaping(PeerId)->Void, contextMenu:@escaping(PeerId)->Signal<[ContextMenuItem], NoError>, openRepostStory:@escaping(StoryId)->Void) {
         self.context = context
         self.peer = peer
         self.openStory = openStory
@@ -324,10 +324,10 @@ private final class StoryViewerRowItem : GeneralRowItem {
 }
 
 private var repost_story: CGImage {
-    TelegramThemeHooks.shared.image(.iconStoryRepostFrom).precomposed(darkAppearance.colors.greenUI)
+    AnsibleThemeHooks.shared.image(.iconStoryRepostFrom).precomposed(darkAppearance.colors.greenUI)
 }
 private var forward_story: CGImage {
-    TelegramThemeHooks.shared.image(.iconStoryForwarded).precomposed(darkAppearance.colors.greenUI)
+    AnsibleThemeHooks.shared.image(.iconStoryForwarded).precomposed(darkAppearance.colors.greenUI)
 }
 
 private final class StoryViewerRowView: GeneralRowView {
@@ -542,14 +542,14 @@ private final class StoryViewerRowView: GeneralRowView {
 
 private final class Arguments {
     let context: any AccountContextProtocol
-    let presentation: TelegramPresentationTheme
+    let presentation: AnsiblePresentationTheme
     let callback:(PeerId)->Void
     let openStory:(PeerId)->Void
     let contextMenu:(PeerId)->Signal<[ContextMenuItem], NoError>
     let toggleListMode:(EngineStoryViewListContext.ListMode)->Void
     let openPremium:()->Void
     let openRepostStory:(StoryId)->Void
-    init(context: any AccountContextProtocol, presentation: TelegramPresentationTheme, callback: @escaping(PeerId)->Void, openStory:@escaping(PeerId)->Void, contextMenu:@escaping(PeerId)->Signal<[ContextMenuItem], NoError>, toggleListMode:@escaping(EngineStoryViewListContext.ListMode)->Void, openPremium:@escaping()->Void, openRepostStory:@escaping(StoryId)->Void) {
+    init(context: any AccountContextProtocol, presentation: AnsiblePresentationTheme, callback: @escaping(PeerId)->Void, openStory:@escaping(PeerId)->Void, contextMenu:@escaping(PeerId)->Signal<[ContextMenuItem], NoError>, toggleListMode:@escaping(EngineStoryViewListContext.ListMode)->Void, openPremium:@escaping()->Void, openRepostStory:@escaping(StoryId)->Void) {
         self.context = context
         self.presentation = presentation
         self.callback = callback
@@ -724,13 +724,13 @@ private final class StoryViewersTopView : View {
             self?.arguments?.toggleListMode(.contacts)
         }))
         
-        close.set(image: TelegramThemeHooks.shared.image(.iconChatActionClose).precomposed(darkAppearance.colors.text), for: .Normal)
+        close.set(image: AnsibleThemeHooks.shared.image(.iconChatActionClose).precomposed(darkAppearance.colors.text), for: .Normal)
         close.autohighlight = false
         close.scaleOnClick = true
         close.sizeToFit()
         close.setAccessibilityLabel(strings().voiceOverCommonClose)
         
-        filter.set(image: TelegramThemeHooks.shared.image(.iconStoryViewersFilter).precomposed(darkAppearance.colors.text), for: .Normal)
+        filter.set(image: AnsibleThemeHooks.shared.image(.iconStoryViewersFilter).precomposed(darkAppearance.colors.text), for: .Normal)
         filter.autohighlight = false
         filter.scaleOnClick = true
         filter.sizeToFit()
@@ -805,7 +805,7 @@ private final class StoryViewersTopView : View {
     
 }
 
-func StoryViewersModalController<Context: AccountContextProtocol>(context: Context, list: EngineStoryViewListContext, peerId: PeerId, isChannel: Bool, story: EngineStoryItem, presentation: TelegramPresentationTheme, callback:@escaping(PeerId)->Void, analyticsContext: AnalyticsContext? = nil) -> InputDataModalController {
+func StoryViewersModalController<Context: AccountContextProtocol>(context: Context, list: EngineStoryViewListContext, peerId: PeerId, isChannel: Bool, story: EngineStoryItem, presentation: AnsiblePresentationTheme, callback:@escaping(PeerId)->Void, analyticsContext: AnalyticsContext? = nil) -> InputDataModalController {
     let origin = Analytics.shared.captureContext(engine: context.engine, peerId: peerId, inherited: analyticsContext ?? Analytics.shared.unresolvedContext())
     let lifetime = origin.beginPresentation()
     defer { lifetime.end() }

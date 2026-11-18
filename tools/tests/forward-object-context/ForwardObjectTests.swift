@@ -280,10 +280,10 @@ enum ForumUI {
         UI.forumContext = analyticsContext; UI.onForum?(); return UI.forumResult
     }
 }
-struct TelegramPresentationTheme {}
+struct AnsiblePresentationTheme {}
 class ShareObject {
     let context: any AccountContextProtocol
-    var presentation: TelegramPresentationTheme?
+    var presentation: AnsiblePresentationTheme?
     var excludePeerIds = Set<PeerId>(), threadIds: [PeerId: Int64] = [:]
     var scheduleDate: Date?, withoutSound = false
     let emptyPerformOnClose: Bool
@@ -460,7 +460,7 @@ __RECIPIENT_METHODS__
 __PICKER_CLOSE__
     let share: ShareObject
     let completion: ((Bool) -> Void)?
-    let presentation: TelegramPresentationTheme?
+    let presentation: AnsiblePresentationTheme?
     let emoji: ViewController
     let contextChatInteraction: ChatInteraction
     let inputContextHelper: InputContextHelper
@@ -471,7 +471,7 @@ final class ShareUIHooks {
     static let shared = ShareUIHooks()
     func makeChatController(_ context: any AccountContextProtocol, _ location: ChatLocation, _ initialAction: ChatInitialAction) -> ChatInterfaceController { UI.onConstruct?(); UI.fullChats += 1; return ChatController(context, location) }
     func makeChatAdditionController(_ context: any AccountContextProtocol, _ location: ChatLocation, _ initialAction: ChatInitialAction) -> ChatInterfaceController { UI.onConstruct?(); UI.additionalChats += 1; return ChatController(context, location) }
-    func makeEmojies(_ context: any AccountContextProtocol, _ presentation: TelegramPresentationTheme?) -> ViewController { UI.onEmoji?(); return ViewController() }
+    func makeEmojies(_ context: any AccountContextProtocol, _ presentation: AnsiblePresentationTheme?) -> ViewController { UI.onEmoji?(); return ViewController() }
 }
 struct ChatUIHooks {
     static var shared = installedHooks()

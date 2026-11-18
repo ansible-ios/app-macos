@@ -52,8 +52,8 @@ final class SearchStoryListContext {
 struct StoryInitialIndex {}
 struct Colors { let background = 0; let text = 0; let grayText = 0; let border = 0; let accent = 0; let underSelectedColor = 0 }
 struct Icons { let modalClose = 0 }
-struct TelegramPresentationTheme { let colors = Colors(); let icons = Icons(); let appearance = 0 }
-let theme = TelegramPresentationTheme()
+struct AnsiblePresentationTheme { let colors = Colors(); let icons = Icons(); let appearance = 0 }
+let theme = AnsiblePresentationTheme()
 struct Strings {
     let storyLocationTitle = "location"; let storiesFoundListNotFound = "not found"; let unknownError = "error"
     let voiceOverCommonRetry = "retry"; let chatRichTextShowMore = "more"
@@ -88,7 +88,7 @@ struct InputDataEntry {
     static func custom(sectionId: Int32, index: Int32, value: InputDataValue, identifier: InputDataIdentifier, equatable: InputDataEquatable, comparable: Int?, item: @escaping (NSSize, AnyHashable) -> TableRowItem) -> Self { .init(identifier: identifier, item: item) }
 }
 class TableRowItem {}
-struct RowTheme { static func initialize(_ theme: TelegramPresentationTheme) -> Self { .init() } }
+struct RowTheme { static func initialize(_ theme: AnsiblePresentationTheme) -> Self { .init() } }
 struct GeneralViewType {
     enum Position { case first, inner, last, single }
     let position: Position; let innerInset: NSEdgeInsets
@@ -96,8 +96,8 @@ struct GeneralViewType {
     static func modern(position: Position, insets: NSEdgeInsets) -> Self { .init(position: position, innerInset: insets) }
 }
 private final class MapRowItem: TableRowItem {
-    let location: State.Location; let presentation: TelegramPresentationTheme
-    init(_ size: NSSize, height: CGFloat, stableId: AnyHashable, context: any AccountContextProtocol, location: State.Location, userLocation: CLLocation?, geocodedPlacemark: ReverseGeocodedPlacemark?, userLocationError: UserLocationError?, presentation: TelegramPresentationTheme, viewType: GeneralViewType, action: @escaping () -> Void) { self.location = location; self.presentation = presentation }
+    let location: State.Location; let presentation: AnsiblePresentationTheme
+    init(_ size: NSSize, height: CGFloat, stableId: AnyHashable, context: any AccountContextProtocol, location: State.Location, userLocation: CLLocation?, geocodedPlacemark: ReverseGeocodedPlacemark?, userLocationError: UserLocationError?, presentation: AnsiblePresentationTheme, viewType: GeneralViewType, action: @escaping () -> Void) { self.location = location; self.presentation = presentation }
 }
 final class SeparatorRowItem: TableRowItem { init(_ size: NSSize, _ id: AnyHashable, string: String, customTheme: RowTheme) {} }
 final class SearchEmptyRowItem: TableRowItem {
@@ -110,13 +110,13 @@ final class GridRow: TableRowItem { let peerId: PeerId; let reference: PeerRefer
 final class StoriesHooks {
     static let shared = StoriesHooks()
     func showListStoryObserved(_ context: any AccountContextProtocol, _ list: SearchStoryListContext, _ peer: PeerId, _ index: StoryInitialIndex?, analyticsContext: AnalyticsContext) {}
-    func makeStoryMonthRowItem(_ size: NSSize, _ id: AnyHashable, _ context: any AccountContextProtocol, _ standalone: Bool, _ peerId: PeerId, _ reference: PeerReference, _ items: [StoryListContextState.Item], _ selected: Int?, _ pinned: [Int32], _ columns: Int, _ type: GeneralViewType, _ open: @escaping (StoryInitialIndex?) -> Void, _ toggle: (Int) -> Void, _ menu: (Int) -> [Int], _ theme: TelegramPresentationTheme) -> TableRowItem { GridRow(peerId, reference, items) }
+    func makeStoryMonthRowItem(_ size: NSSize, _ id: AnyHashable, _ context: any AccountContextProtocol, _ standalone: Bool, _ peerId: PeerId, _ reference: PeerReference, _ items: [StoryListContextState.Item], _ selected: Int?, _ pinned: [Int32], _ columns: Int, _ type: GeneralViewType, _ open: @escaping (StoryInitialIndex?) -> Void, _ toggle: (Int) -> Void, _ menu: (Int) -> [Int], _ theme: AnsiblePresentationTheme) -> TableRowItem { GridRow(peerId, reference, items) }
     enum Link { case external(link: String, Bool) }
     func executeInApp(_ link: Link) {}
 }
-struct TelegramThemeHooks { static let shared = Self(); enum Image { case iconStoryShare }; func image(_ image: Image) -> Int { 0 } }
+struct AnsibleThemeHooks { static let shared = Self(); enum Image { case iconStoryShare }; func image(_ image: Image) -> Int { 0 } }
 extension Int { static var clear: Int { 0 }; func precomposed(_ color: Int) -> Int { self } }
-func verifyAlert(for window: Int, information: String, ok: String, successHandler: @escaping (Bool) -> Void, presentation: TelegramPresentationTheme) {}
+func verifyAlert(for window: Int, information: String, ok: String, successHandler: @escaping (Bool) -> Void, presentation: AnsiblePresentationTheme) {}
 struct InputDataSignalValue { let entries: [InputDataEntry] }
 struct ModalHeaderData {
     init(image: Int, handler: @escaping () -> Void) {}
@@ -143,8 +143,8 @@ final class InputDataController {
 final class InputDataModalController {
     var analyticsContext: AnalyticsContext?
     let controller: InputDataController; var getModalTheme: (() -> ModalTheme)?
-    init(_ controller: InputDataController, modalInteractions: Int?, size: NSSize, presentation: TelegramPresentationTheme) { self.controller = controller }
-    func close() {}; func updateLocalizationAndTheme(theme: TelegramPresentationTheme) {}
+    init(_ controller: InputDataController, modalInteractions: Int?, size: NSSize, presentation: AnsiblePresentationTheme) { self.controller = controller }
+    func close() {}; func updateLocalizationAndTheme(theme: AnsiblePresentationTheme) {}
 }
 extension Array { func chunks(_ n: Int) -> [[Element]] { stride(from: 0, to: count, by: n).map { Array(self[$0..<Swift.min($0 + n, count)]) } } }
 __ARGUMENTS__

@@ -80,7 +80,7 @@ public final class SettingsThemeWallpaperView: BackgroundView {
             
             self.imageView.set(arguments: arguments)
             
-            self.backgroundMode = TelegramPresentationTheme.defaultBackground(theme.colors)
+            self.backgroundMode = AnsiblePresentationTheme.defaultBackground(theme.colors)
 
         case let .color(color):
             self.imageView.isHidden = true

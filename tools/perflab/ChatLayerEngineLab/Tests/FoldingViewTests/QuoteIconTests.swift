@@ -100,8 +100,8 @@ final class QuoteIconTests: XCTestCase {
     }
 
     func testCompleteQuotePainterMatchesWithChangingIconsAndColors() {
-        let oldScale = System.backingScale, previous = TelegramThemeHooks.imageOverride
-        defer { System.updateScaleFactor(oldScale); TelegramThemeHooks.imageOverride = previous }
+        let oldScale = System.backingScale, previous = AnsibleThemeHooks.imageOverride
+        defer { System.updateScaleFactor(oldScale); AnsibleThemeHooks.imageOverride = previous }
         let current = FoldingTextQuoteLayer(), reference = ReferenceIconQuoteLayer()
         System.updateScaleFactor(3)
         current.blockQuotes = quotes(code: false)
@@ -111,7 +111,7 @@ final class QuoteIconTests: XCTestCase {
             for code in [false, true] {
                 for variant in 0..<3 {
                     let icon = source(bitmap(variant))
-                    TelegramThemeHooks.imageOverride = { name in name == .iconCopyCode ? icon : NSImage(named: "Icon_Quote")! }
+                    AnsibleThemeHooks.imageOverride = { name in name == .iconCopyCode ? icon : NSImage(named: "Icon_Quote")! }
                     let blocks = quotes(3, code: code, color: variant % 2 == 0 ? .red : .blue)
                     current.blockQuotes = blocks; reference.blockQuotes = blocks
                     XCTAssertEqual(render(current, count: 3, scale: scale).differingPixels(from: render(reference, count: 3, scale: scale), tolerance: 0), 0, "code=\(code) scale=\(scale) variant=\(variant)")
@@ -152,10 +152,10 @@ final class QuoteIconTests: XCTestCase {
     }
 
     func testActualCopyAssetMatchesOriginalTintAndPainter() {
-        let oldScale = System.backingScale, previous = TelegramThemeHooks.imageOverride
-        defer { System.updateScaleFactor(oldScale); TelegramThemeHooks.imageOverride = previous }
+        let oldScale = System.backingScale, previous = AnsibleThemeHooks.imageOverride
+        defer { System.updateScaleFactor(oldScale); AnsibleThemeHooks.imageOverride = previous }
         let cache = FoldingTextQuoteLayer.CopyIconCache(), image = makeRealCopyIconFixture()
-        TelegramThemeHooks.imageOverride = { name in name == .iconCopyCode ? image : NSImage(named: "Icon_Quote")! }
+        AnsibleThemeHooks.imageOverride = { name in name == .iconCopyCode ? image : NSImage(named: "Icon_Quote")! }
         let current = FoldingTextQuoteLayer(), reference = ReferenceIconQuoteLayer()
         for scale: CGFloat in [1, 2, 3] {
             System.updateScaleFactor(scale)
@@ -170,11 +170,11 @@ final class QuoteIconTests: XCTestCase {
 
     func testGeneratedAppLoaderMatchesOriginalTintAndPainter() throws {
         guard let path = ProcessInfo.processInfo.environment["CHAT_COPY_ICON_BUNDLE"], let bundle = Bundle(path: path) else { throw XCTSkip("Supply the asset-only probe bundle") }
-        let oldScale = System.backingScale, previous = TelegramThemeHooks.imageOverride, oldAppearance = NSAppearance.current
-        defer { System.updateScaleFactor(oldScale); TelegramThemeHooks.imageOverride = previous; NSAppearance.current = oldAppearance }
+        let oldScale = System.backingScale, previous = AnsibleThemeHooks.imageOverride, oldAppearance = NSAppearance.current
+        defer { System.updateScaleFactor(oldScale); AnsibleThemeHooks.imageOverride = previous; NSAppearance.current = oldAppearance }
         let cache = FoldingTextQuoteLayer.CopyIconCache()
         let makeSource = { bundle.image(forResource: NSImage.Name("Icon_CopyCode"))! }
-        TelegramThemeHooks.imageOverride = { name in name == .iconCopyCode ? makeSource() : NSImage(named: "Icon_Quote")! }
+        AnsibleThemeHooks.imageOverride = { name in name == .iconCopyCode ? makeSource() : NSImage(named: "Icon_Quote")! }
         let current = FoldingTextQuoteLayer(), reference = ReferenceIconQuoteLayer()
         for appearance in [NSAppearance.Name.aqua, .darkAqua] {
             NSAppearance.current = NSAppearance(named: appearance)

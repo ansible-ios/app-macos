@@ -137,7 +137,7 @@ final class FoldingTextQuoteLayer: SimpleLayer {
                 let rect = NSMakeRect(blockFrame.minX, blockFrame.minY, blockFrame.width, headerHeight)
                 ctx.drawRoundedRect(rect: rect, topLeftRadius: radius, topRightRadius: radius)
                 header.1.draw(CGRect(x: blockFrame.minX + 8, y: blockFrame.minY + (headerHeight - header.0.size.height) / 2 - 1, width: header.0.size.width, height: header.0.size.height), in: ctx, backingScaleFactor: System.backingScale, backgroundColor: .clear)
-                let image = CopyIconCache.shared.image(TelegramThemeHooks.shared.image(.iconCopyCode), color: blockQuote.colors.main, scale: System.backingScale)
+                let image = CopyIconCache.shared.image(AnsibleThemeHooks.shared.image(.iconCopyCode), color: blockQuote.colors.main, scale: System.backingScale)
                 ctx.draw(image, in: CGRect(origin: NSMakePoint(blockFrame.width - image.backingSize.width - 3, blockFrame.minY + (headerHeight - image.backingSize.height) / 2), size: image.backingSize))
             }
         }

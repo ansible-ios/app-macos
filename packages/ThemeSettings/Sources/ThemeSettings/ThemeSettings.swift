@@ -209,7 +209,7 @@ public enum Wallpaper : Equatable, Codable {
             self = .color(UInt32(bitPattern: try container.decode(Int32.self, forKey: "c")))
         case 2:
             let settings = try container.decode(WallpaperSettings.self, forKey: "settings")
-            let reps = try container.decode([TelegramMediaImageRepresentationNativeCodable].self, forKey: "i").map { $0.value }
+            let reps = try container.decode([AnsibleMediaImageRepresentationNativeCodable].self, forKey: "i").map { $0.value }
             self = .image(reps, settings: settings)
         case 3:
             let settings = try container.decode(WallpaperSettings.self, forKey: "settings")
@@ -219,7 +219,7 @@ public enum Wallpaper : Equatable, Codable {
             let gift = try container.decodeIfPresent(StarGift.UniqueGift.self, forKey: "gift")
             self = .file(slug: slug, file: file, settings: settings, isPattern: isPattern, gift: gift)
         case 4:
-            let rep = try container.decode(TelegramMediaImageRepresentationNativeCodable.self, forKey: "rep").value
+            let rep = try container.decode(AnsibleMediaImageRepresentationNativeCodable.self, forKey: "rep").value
             let blurred = try container.decode(Int32.self, forKey: "b") == 1
             self = .custom(rep, blurred: blurred)
         case 5:
@@ -253,7 +253,7 @@ public enum Wallpaper : Equatable, Codable {
             try container.encode(Int32(bitPattern: color), forKey: "c")
         case let .image(representations, settings):
             try container.encode(Int32(2), forKey: "v")
-            try container.encode(representations.map { TelegramMediaImageRepresentationNativeCodable($0) }, forKey: "i")
+            try container.encode(representations.map { AnsibleMediaImageRepresentationNativeCodable($0) }, forKey: "i")
             try container.encode(settings, forKey: "settings")
         case let .file(slug, file, settings, isPattern, gift):
             try container.encode(Int32(3), forKey: "v")
@@ -266,7 +266,7 @@ public enum Wallpaper : Equatable, Codable {
             }
         case let .custom(resource, blurred):
             try container.encode(Int32(4), forKey: "v")
-            try container.encode(TelegramMediaImageRepresentationNativeCodable(resource), forKey: "rep")
+            try container.encode(AnsibleMediaImageRepresentationNativeCodable(resource), forKey: "rep")
             try container.encode(Int32(blurred ? 1 : 0), forKey: "b")
         case .none:
             try container.encode(Int32(5), forKey: "v")
@@ -403,7 +403,7 @@ public enum Wallpaper : Equatable, Codable {
     }
 }
 
-final class TelegramMediaImageRepresentationNativeCodable : Codable {
+final class AnsibleMediaImageRepresentationNativeCodable : Codable {
     let value: TelegramMediaImageRepresentation
     init(_ value: TelegramMediaImageRepresentation) {
         self.value = value
@@ -611,7 +611,7 @@ final class ColorPaletteNativeCodable : Codable {
         let tinted = try container.decode(Bool.self, forKey: "tinted")
         
         
-        let parent: TelegramBuiltinTheme = TelegramBuiltinTheme(rawValue: try container.decodeIfPresent(String.self, forKey: "parent") ?? dayClassicPalette.name) ?? (dark ? .nightAccent : .dayClassic)
+        let parent: AnsibleBuiltinTheme = AnsibleBuiltinTheme(rawValue: try container.decodeIfPresent(String.self, forKey: "parent") ?? dayClassicPalette.name) ?? (dark ? .nightAccent : .dayClassic)
         let copyright: String = try container.decodeIfPresent(String.self, forKey: "copyright") ?? "Telegram"
         
         let isNative = try container.decodeIfPresent(Bool.self, forKey: "isNative") ?? true
@@ -829,9 +829,9 @@ public struct DefaultCloudTheme : Equatable, Codable {
 
 
 public struct DefaultTheme : Equatable, Codable {
-    public let local: TelegramBuiltinTheme
+    public let local: AnsibleBuiltinTheme
     public let cloud: DefaultCloudTheme?
-    public init(local: TelegramBuiltinTheme, cloud: DefaultCloudTheme?) {
+    public init(local: AnsibleBuiltinTheme, cloud: DefaultCloudTheme?) {
         self.local = local
         self.cloud = cloud
     }
@@ -840,7 +840,7 @@ public struct DefaultTheme : Equatable, Codable {
         let container = try decoder.container(keyedBy: StringCodingKey.self)
         
         let localRawValue = try container.decode(String.self, forKey: "dl_1")
-        self.local = TelegramBuiltinTheme(rawValue: localRawValue) ?? .dayClassic
+        self.local = AnsibleBuiltinTheme(rawValue: localRawValue) ?? .dayClassic
         self.cloud = try container.decodeIfPresent(DefaultCloudTheme.self, forKey: "dc")
     }
     
@@ -862,12 +862,12 @@ public struct DefaultTheme : Equatable, Codable {
 }
 
 public struct LocalWallapper : Equatable, Codable {
-    public let name: TelegramBuiltinTheme
+    public let name: AnsibleBuiltinTheme
     public let cloud: AnsibleTheme?
     public let wallpaper: AssociatedWallpaper
     public let associated: AssociatedWallpaper?
     public let accentColor: UInt32
-    public init(name: TelegramBuiltinTheme, accentColor: UInt32, wallpaper: AssociatedWallpaper, associated: AssociatedWallpaper?, cloud: AnsibleTheme?) {
+    public init(name: AnsibleBuiltinTheme, accentColor: UInt32, wallpaper: AssociatedWallpaper, associated: AssociatedWallpaper?, cloud: AnsibleTheme?) {
         self.name = name
         self.accentColor = accentColor
         self.wallpaper = wallpaper
@@ -888,7 +888,7 @@ public struct LocalWallapper : Equatable, Codable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: StringCodingKey.self)
-        self.name = TelegramBuiltinTheme(rawValue: try container.decode(String.self, forKey: "name")) ?? .dayClassic
+        self.name = AnsibleBuiltinTheme(rawValue: try container.decode(String.self, forKey: "name")) ?? .dayClassic
         self.wallpaper = try container.decode(AssociatedWallpaper.self, forKey: "aw")
         self.cloud = try container.decodeIfPresent(TelegramThemeNativeCodable.self, forKey: "cloud")?.value
         self.associated = try container.decodeIfPresent(AssociatedWallpaper.self, forKey: "as")
@@ -917,10 +917,10 @@ public struct LocalWallapper : Equatable, Codable {
 }
 
 public struct LocalAccentColor : Equatable, Codable {
-    public let name: TelegramBuiltinTheme
+    public let name: AnsibleBuiltinTheme
     public let color: PaletteAccentColor
     public let cloud: AnsibleTheme?
-    public init(name: TelegramBuiltinTheme, color: PaletteAccentColor, cloud: AnsibleTheme?) {
+    public init(name: AnsibleBuiltinTheme, color: PaletteAccentColor, cloud: AnsibleTheme?) {
         self.name = name
         self.color = color
         self.cloud = cloud
@@ -928,7 +928,7 @@ public struct LocalAccentColor : Equatable, Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: StringCodingKey.self)
        
-        self.name = TelegramBuiltinTheme(rawValue: try container.decode(String.self, forKey: "name")) ?? .dayClassic
+        self.name = AnsibleBuiltinTheme(rawValue: try container.decode(String.self, forKey: "name")) ?? .dayClassic
         let hex = try container.decodeIfPresent(String.self, forKey: "color")
         if let hex = hex, let color = NSColor(hexString: hex) {
             self.color = .init(color)

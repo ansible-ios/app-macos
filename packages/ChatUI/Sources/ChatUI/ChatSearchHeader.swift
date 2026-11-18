@@ -165,7 +165,7 @@ private final class ChatSearchTagsView: View {
                     
                     self.change(opacity: item.enabled ? 1.0 : 0.8, animated: animated)
                                         
-                    let image = TelegramThemeHooks.shared.image(.iconSavedMessagesPremiumTag)
+                    let image = AnsibleThemeHooks.shared.image(.iconSavedMessagesPremiumTag)
                     let baseColor = selected ? theme.colors.accent : theme.colors.listBackground
                     let tintColor = baseColor.withAlphaComponent(selected ? 0.6 : 0.25)
                     let background = NSImage(cgImage: generateTintedImage(image: image._cgImage, color: tintColor)!, size: image.size)
@@ -173,7 +173,7 @@ private final class ChatSearchTagsView: View {
                     self.backgroundView.image = background
                     
                     let layer: InlineStickerItemLayer = .init(account: item.arguments.context.account, file: item.tag.file, size: NSMakeSize(16, 16), playPolicy: .framesCount(1))
-                    imageView.updateLayer(layer, isLite: TelegramUtilsHooks.shared.isLite(.emoji), animated: animated)
+                    imageView.updateLayer(layer, isLite: AnsibleUtilsHooks.shared.isLite(.emoji), animated: animated)
                     
                     if let layout = item.countViewLayout {
                         let current: TextView
@@ -416,7 +416,7 @@ private final class ChatSearchTagsView: View {
                 textView.update(item.textViewLayout)
                 self.tagView.capInsets = NSEdgeInsets(top: 3, left: 5, bottom: 3, right: 10)
                 
-                let image = TelegramThemeHooks.shared.image(.iconSavedMessagesPremiumTag)
+                let image = AnsibleThemeHooks.shared.image(.iconSavedMessagesPremiumTag)
 
                 self.tagView.image = NSImage(cgImage: generateTintedImage(image: image._cgImage, color: theme.colors.accent.withAlphaComponent(0.2))!, size: image.size)
 
@@ -493,7 +493,7 @@ private final class ChatSearchTagsView: View {
         
         let tag: EmojiTag?
         let index: Int
-        let theme: TelegramPresentationTheme
+        let theme: AnsiblePresentationTheme
         let selected: Bool
         func item(_ arguments: ChatSearchTagsView.Arguments, initialSize: NSSize) -> TableRowItem {
             if let tag = tag {
@@ -567,7 +567,7 @@ private final class ChatSearchTagsView: View {
             self.tagTextView.update(tagLayout)
             self.secondTextView.update(secondLayout)
             
-            let image = TelegramThemeHooks.shared.image(.iconSavedMessagesPremiumTag)
+            let image = AnsibleThemeHooks.shared.image(.iconSavedMessagesPremiumTag)
 
             tagImageView.image = NSImage(cgImage: generateTintedImage(image: image._cgImage, color: theme.colors.accent.withAlphaComponent(0.2))!, size: image.size)
             tagImageView.setFrameSize(NSMakeSize(tagLayout.layoutSize.width + 6, 22))
@@ -1240,7 +1240,7 @@ class ChatSearchHeader : View, Notifable, ChatHeaderProtocol {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         backgroundColor = .clear
 
         calendar.set(image: theme.icons.chat_search_calendar, for: .Normal)

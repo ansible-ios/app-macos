@@ -133,7 +133,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         }
         
         if state.selected != nil {
-            entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_hide, data: .init(name: strings().personalChannelHide, color: theme.colors.accent, icon: TelegramThemeHooks.shared.image(.iconPersonalChannelOff).precomposed(theme.colors.accent), viewType: channels.isEmpty ? .singleItem : .firstItem, action: {
+            entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_hide, data: .init(name: strings().personalChannelHide, color: theme.colors.accent, icon: AnsibleThemeHooks.shared.image(.iconPersonalChannelOff).precomposed(theme.colors.accent), viewType: channels.isEmpty ? .singleItem : .firstItem, action: {
                 arguments.removeSelected()
             }, iconTextInset: 41, iconInset: 4)))
         }

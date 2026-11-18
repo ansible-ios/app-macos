@@ -83,15 +83,15 @@ private enum NetworkItem : Int32 {
     public var icon: CGImage {
         switch self {
         case .photos:
-            return generateSettingsIcon(TelegramThemeHooks.shared.image(.iconDataUsagePhotos).precomposed(flipVertical: true))
+            return generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconDataUsagePhotos).precomposed(flipVertical: true))
         case .videos:
-            return generateSettingsIcon(TelegramThemeHooks.shared.image(.iconDataUsageVideos).precomposed(flipVertical: true))
+            return generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconDataUsageVideos).precomposed(flipVertical: true))
         case .files:
-            return generateSettingsIcon(TelegramThemeHooks.shared.image(.iconDataUsageFiles).precomposed(flipVertical: true))
+            return generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconDataUsageFiles).precomposed(flipVertical: true))
         case .audio:
-            return generateSettingsIcon(TelegramThemeHooks.shared.image(.iconDataUsageAudio).precomposed(flipVertical: true))
+            return generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconDataUsageAudio).precomposed(flipVertical: true))
         case .messages:
-            return generateSettingsIcon(TelegramThemeHooks.shared.image(.iconDataUsageMessages).precomposed(flipVertical: true))
+            return generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconDataUsageMessages).precomposed(flipVertical: true))
         }
     }
     
@@ -132,15 +132,15 @@ private enum NetworkItem : Int32 {
     public var particle: CGImage? {
         switch self {
         case .photos:
-            return TelegramThemeHooks.shared.image(.iconSvgParticlePhotos).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconSvgParticlePhotos).precomposed()
         case .videos:
-            return TelegramThemeHooks.shared.image(.iconSvgParticleVideos).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconSvgParticleVideos).precomposed()
         case .files:
-            return TelegramThemeHooks.shared.image(.iconSvgParticleFiles).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconSvgParticleFiles).precomposed()
         case .audio:
-            return TelegramThemeHooks.shared.image(.iconSvgParticleMusic).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconSvgParticleMusic).precomposed()
         case .messages:
-            return TelegramThemeHooks.shared.image(.iconSvgParticleOther).precomposed()
+            return AnsibleThemeHooks.shared.image(.iconSvgParticleOther).precomposed()
         }
     }
 }

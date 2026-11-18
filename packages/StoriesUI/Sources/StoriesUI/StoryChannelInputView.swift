@@ -14,13 +14,13 @@ import InputView
 import Localization
 
 
-private let share_image = TelegramThemeHooks.shared.image(.iconStoryShare).precomposed(NSColor.white)
-private let delete_image = TelegramThemeHooks.shared.image(.iconStoryDelete).precomposed(NSColor.white)
-private let like_image = TelegramThemeHooks.shared.image(.iconStoryLikeCount).precomposed(NSColor.white)
+private let share_image = AnsibleThemeHooks.shared.image(.iconStoryShare).precomposed(NSColor.white)
+private let delete_image = AnsibleThemeHooks.shared.image(.iconStoryDelete).precomposed(NSColor.white)
+private let like_image = AnsibleThemeHooks.shared.image(.iconStoryLikeCount).precomposed(NSColor.white)
 
-private let view_image = TelegramThemeHooks.shared.image(.iconStoryViewers).precomposed(NSColor.white)
+private let view_image = AnsibleThemeHooks.shared.image(.iconStoryViewers).precomposed(NSColor.white)
 
-private let repost_image = TelegramThemeHooks.shared.image(.iconStoryInputRepost).precomposed(NSColor.white)
+private let repost_image = AnsibleThemeHooks.shared.image(.iconStoryInputRepost).precomposed(NSColor.white)
 
 final class StoryChannelInputView : Control, StoryInput {
     

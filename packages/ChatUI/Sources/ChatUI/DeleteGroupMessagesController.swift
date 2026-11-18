@@ -217,7 +217,7 @@ private final class RowView: GeneralContainableRowView {
             }
             current.isEventLess = true
             current.animates = animated
-            current.image = TelegramThemeHooks.shared.image((item.option.revealed ? .iconSmallChevronUp : .iconSmallChevronDown)).precomposed(theme.colors.text)
+            current.image = AnsibleThemeHooks.shared.image((item.option.revealed ? .iconSmallChevronUp : .iconSmallChevronDown)).precomposed(theme.colors.text)
             current.sizeToFit()
         } else if let view = self.chevron {
             performSubviewRemoval(view, animated: animated)

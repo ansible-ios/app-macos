@@ -255,7 +255,7 @@ private final class HeaderView : GeneralRowView {
         
       
         
-        dismiss.set(image: TelegramThemeHooks.shared.image(.iconPipClose).precomposed(.white), for: .Normal)
+        dismiss.set(image: AnsibleThemeHooks.shared.image(.iconPipClose).precomposed(.white), for: .Normal)
         dismiss.setGlassEffect(size: NSMakeSize(36, 36))
         dismiss.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
         dismiss.scaleOnClick = true
@@ -373,7 +373,7 @@ private final class GiftsRowView: GeneralRowView {
         
         infoView.update(layout)
         
-        arrowView.image = TelegramThemeHooks.shared.image(.iconAuctionPreviewArrow).precomposed(theme.colors.grayIcon)
+        arrowView.image = AnsibleThemeHooks.shared.image(.iconAuctionPreviewArrow).precomposed(theme.colors.grayIcon)
         arrowView.sizeToFit()
         
         fromView.set(option: item.from, context: item.arguments.context, selected: false, animated: animated, callback: { _, _ in })

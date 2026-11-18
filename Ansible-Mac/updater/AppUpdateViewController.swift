@@ -12,7 +12,7 @@ import AppAnalytics
 
 
 
-final class TelegramUpdater : NSObject, SUUpdaterPrivate {
+final class AnsibleUpdater : NSObject, SUUpdaterPrivate {
     var delegate: SUUpdaterDelegate!
     
     var userAgentString: String!
@@ -76,7 +76,7 @@ var appUpdateStateSignal: Signal<AppUpdateState, NoError> {
 private let updateState:((AppUpdateState)->AppUpdateState) -> Void = { f in
     statePromise.set(stateValue.modify(f))
 }
-private let updater = TelegramUpdater()
+private let updater = AnsibleUpdater()
 private let currentDriver = Atomic<ObjectIdentifier?>(value: nil)
 private var driver:SUBasicUpdateDriver? {
     didSet {
@@ -352,7 +352,7 @@ private final class InternalUpdateDriver : ExternalUpdateDriver {
     private let disposabe = MetaDisposable()
     private let context: AccountContext
     
-    init(updater:TelegramUpdater, context: AccountContext) {
+    init(updater:AnsibleUpdater, context: AccountContext) {
         self.context = context
         super.init(updater: updater)
     }

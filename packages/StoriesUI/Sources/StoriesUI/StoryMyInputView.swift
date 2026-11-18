@@ -35,7 +35,7 @@ final class Story_AvatarContentView: View {
         
         if let peers = peers {
             let signal:Signal<[(CGImage?, Bool)], NoError> = combineLatest(peers.map { peer in
-                return peerAvatarImage(account: context.account, photo: .peer(peer, peer.smallProfileImage, peer.namePeerColor, TelegramUtilsHooks.shared.peerLetters(peer), nil, nil), displayDimensions: NSMakeSize(size.width * System.backingScale, size.height * System.backingScale), font: .avatar(14), genCap: true, synchronousLoad: false)
+                return peerAvatarImage(account: context.account, photo: .peer(peer, peer.smallProfileImage, peer.namePeerColor, AnsibleUtilsHooks.shared.peerLetters(peer), nil, nil), displayDimensions: NSMakeSize(size.width * System.backingScale, size.height * System.backingScale), font: .avatar(14), genCap: true, synchronousLoad: false)
             })
             
             
@@ -150,9 +150,9 @@ final class Story_LikesCountView : View {
     }
 }
 
-private let more_image = TelegramThemeHooks.shared.image(.iconStoryMore).precomposed(NSColor.white)
-private let delete_image = TelegramThemeHooks.shared.image(.iconStoryDelete).precomposed(NSColor.white)
-private let like_image = TelegramThemeHooks.shared.image(.iconStoryLikeCount).precomposed()
+private let more_image = AnsibleThemeHooks.shared.image(.iconStoryMore).precomposed(NSColor.white)
+private let delete_image = AnsibleThemeHooks.shared.image(.iconStoryDelete).precomposed(NSColor.white)
+private let like_image = AnsibleThemeHooks.shared.image(.iconStoryLikeCount).precomposed()
 
 
 private func makeItem(_ peer: Peer, context: any AccountContextProtocol, callback:@escaping(PeerId)->Void) -> ContextMenuItem {

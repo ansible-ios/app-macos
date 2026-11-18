@@ -671,7 +671,7 @@ public final class GroupCallSettingsController : ModalViewController {
     }
 
     public override var modalHeader: (left: ModalHeaderData?, center: ModalHeaderData?, right: ModalHeaderData?)? {
-        return (left: ModalHeaderData(image: TelegramThemeHooks.shared.darkAppearance().icons.modalClose, handler: { [weak self] in
+        return (left: ModalHeaderData(image: AnsibleThemeHooks.shared.darkAppearance().icons.modalClose, handler: { [weak self] in
             self?.close()
         }), center: ModalHeaderData(title: strings().voiceChatSettings), right: nil)
     }
@@ -858,7 +858,7 @@ public final class GroupCallSettingsController : ModalViewController {
                     return
                 }
                 _ = showModalProgress(signal: call.sharedContext.endGroupCall(terminate: true), for: window).start()
-            }, presentation: TelegramThemeHooks.shared.darkAppearance())
+            }, presentation: AnsibleThemeHooks.shared.darkAppearance())
 
         }, updateDefaultParticipantsAreMuted: { [weak self] value in
             self?.call.updateDefaultParticipantsAreMuted(isMuted: value)
@@ -880,7 +880,7 @@ public final class GroupCallSettingsController : ModalViewController {
             if let window = self?.window {
                 verifyAlert_button(for: window, header: strings().voiceChatRecordingStartTitle, information: strings().voiceChatRecordingStartText1, ok: strings().voiceChatRecordingStartOK, successHandler: { _ in
                     self?.call.setShouldBeRecording(true, title: stateValue.with { $0.recordName }, videoOrientation: stateValue.with { $0.recordVideo ? $0.videoOrientation.rawValue : nil})
-                }, presentation: TelegramThemeHooks.shared.darkAppearance())
+                }, presentation: AnsibleThemeHooks.shared.darkAppearance())
             }
         }, stopRecording: { [weak self] in
             if let window = self?.window {
@@ -889,7 +889,7 @@ public final class GroupCallSettingsController : ModalViewController {
                     if let window = window {
                         showModalText(for: window, text: strings().voiceChatToastStop)
                     }
-                }, presentation: TelegramThemeHooks.shared.darkAppearance())
+                }, presentation: AnsibleThemeHooks.shared.darkAppearance())
             }
         }, resetLink: { [weak self] in
             self?.call.resetListenerLink()
@@ -942,7 +942,7 @@ public final class GroupCallSettingsController : ModalViewController {
                         })
                     }
                     
-                }, presentation: TelegramThemeHooks.shared.darkAppearance())
+                }, presentation: AnsibleThemeHooks.shared.darkAppearance())
             }
         }, shareInviteLink: { [weak self] inviteLinks in
             guard let self, let window = self.window else {
@@ -955,7 +955,7 @@ public final class GroupCallSettingsController : ModalViewController {
                 guard let info else {
                     return
                 }
-                showModal(with: GroupCallInviteLinkController(context: context, source: .groupCall(.init(slug: "", link: inviteLinks.listenerLink, callInfo: info)), mode: .share, presentation: TelegramThemeHooks.shared.darkAppearance()), for: window)
+                showModal(with: GroupCallInviteLinkController(context: context, source: .groupCall(.init(slug: "", link: inviteLinks.listenerLink, callInfo: info)), mode: .share, presentation: AnsibleThemeHooks.shared.darkAppearance()), for: window)
 
             })
             

@@ -87,7 +87,7 @@ public enum BoostSubject: Equatable {
 
 private final class Arguments {
     let context: any AccountContextProtocol
-    let presentation: TelegramPresentationTheme
+    let presentation: AnsiblePresentationTheme
     let isGroup: Bool
     let onlyFeatures: Bool
     let boost:()->Void
@@ -95,7 +95,7 @@ private final class Arguments {
     let shareLink:(String)->Void
     let copyLink:(String)->Void
     let openGiveaway:()->Void
-    init(context: any AccountContextProtocol, presentation: TelegramPresentationTheme, isGroup: Bool, onlyFeatures: Bool, boost:@escaping()->Void, openChannel:@escaping()->Void, shareLink: @escaping(String)->Void, copyLink: @escaping(String)->Void, openGiveaway:@escaping()->Void) {
+    init(context: any AccountContextProtocol, presentation: AnsiblePresentationTheme, isGroup: Bool, onlyFeatures: Bool, boost:@escaping()->Void, openChannel:@escaping()->Void, shareLink: @escaping(String)->Void, copyLink: @escaping(String)->Void, openGiveaway:@escaping()->Void) {
         self.context = context
         self.presentation = presentation
         self.isGroup = isGroup
@@ -236,10 +236,10 @@ private final class BoostRowItem : TableRowItem {
     fileprivate let context: any AccountContextProtocol
     fileprivate let state: State
     fileprivate let text: TextViewLayout
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
     fileprivate let boost:()->Void
     fileprivate let openChannel:()->Void
-    init(_ initialSize: NSSize, presentation: TelegramPresentationTheme, state: State, context: any AccountContextProtocol, boost:@escaping()->Void, openChannel:@escaping()->Void) {
+    init(_ initialSize: NSSize, presentation: AnsiblePresentationTheme, state: State, context: any AccountContextProtocol, boost:@escaping()->Void, openChannel:@escaping()->Void) {
         self.context = context
         self.state = state
         self.boost = boost
@@ -442,7 +442,7 @@ private final class BoostRowItemView : TableRowView {
             fatalError("init(coder:) has not been implemented")
         }
         
-        func update(_ peer: Peer, context: any AccountContextProtocol, presentation: TelegramPresentationTheme, maxWidth: CGFloat) {
+        func update(_ peer: Peer, context: any AccountContextProtocol, presentation: AnsiblePresentationTheme, maxWidth: CGFloat) {
             self.avatar.setPeer(account: context.account, peer: peer)
             
             let layout = TextViewLayout(.initialize(string: peer.displayTitle, color: presentation.colors.text, font: .medium(.text)))
@@ -484,7 +484,7 @@ private final class BoostRowItemView : TableRowView {
             currentLevel.isSelectable = false
         }
         
-        func update(_ state: State, context: any AccountContextProtocol, presentation: TelegramPresentationTheme, transition: ContainedViewLayoutTransition) {
+        func update(_ state: State, context: any AccountContextProtocol, presentation: AnsiblePresentationTheme, transition: ContainedViewLayoutTransition) {
             
             self.state = state
             
@@ -657,8 +657,8 @@ private final class AcceptRowItem : TableRowItem {
     fileprivate let boost:()->Void
     fileprivate let state: State
     fileprivate let context: any AccountContextProtocol
-    fileprivate let presentation: TelegramPresentationTheme
-    init(_ initialSize: NSSize, state: State, context: any AccountContextProtocol, presentation: TelegramPresentationTheme, boost:@escaping()->Void) {
+    fileprivate let presentation: AnsiblePresentationTheme
+    init(_ initialSize: NSSize, state: State, context: any AccountContextProtocol, presentation: AnsiblePresentationTheme, boost:@escaping()->Void) {
         self.boost = boost
         self.presentation = presentation
         self.state = state
@@ -738,7 +738,7 @@ private final class AcceptRowView : TableRowView {
             fatalError("init(coder:) has not been implemented")
         }
         
-        func update(state: State, presentation: TelegramPresentationTheme, lottie: LocalAnimatedSticker) {
+        func update(state: State, presentation: AnsiblePresentationTheme, lottie: LocalAnimatedSticker) {
             
             let title: String
             var gradient: Bool = false
@@ -1038,7 +1038,7 @@ public enum BoostChannelSource : Equatable {
     case wearStatus
 }
 
-public func BoostChannelModalController(context: any AccountContextProtocol, peer: Peer, boosts: ChannelBoostStatus, myStatus: MyBoostStatus?, infoOnly: Bool = false, onlyFeatures: Bool = false, source: BoostChannelSource = .basic, presentation: TelegramPresentationTheme = theme) -> InputDataModalController {
+public func BoostChannelModalController(context: any AccountContextProtocol, peer: Peer, boosts: ChannelBoostStatus, myStatus: MyBoostStatus?, infoOnly: Bool = false, onlyFeatures: Bool = false, source: BoostChannelSource = .basic, presentation: AnsiblePresentationTheme = theme) -> InputDataModalController {
     
     
     var getController:(()->ViewController?)? = nil

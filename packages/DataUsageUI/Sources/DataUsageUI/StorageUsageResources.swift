@@ -15,19 +15,19 @@ enum StorageUsageResources {
         let image: NSImage
         switch category {
         case .photos:
-            image = TelegramThemeHooks.shared.image(.iconSvgParticlePhotos)
+            image = AnsibleThemeHooks.shared.image(.iconSvgParticlePhotos)
         case .videos:
-            image = TelegramThemeHooks.shared.image(.iconSvgParticleVideos)
+            image = AnsibleThemeHooks.shared.image(.iconSvgParticleVideos)
         case .files:
-            image = TelegramThemeHooks.shared.image(.iconSvgParticleFiles)
+            image = AnsibleThemeHooks.shared.image(.iconSvgParticleFiles)
         case .music:
-            image = TelegramThemeHooks.shared.image(.iconSvgParticleMusic)
+            image = AnsibleThemeHooks.shared.image(.iconSvgParticleMusic)
         case .stickers:
             image = self.image("StorageParticleStickers")
         case .avatars:
             image = self.image("StorageParticleAvatars")
         case .other, .misc, .stories:
-            image = TelegramThemeHooks.shared.image(.iconSvgParticleOther)
+            image = AnsibleThemeHooks.shared.image(.iconSvgParticleOther)
         }
         return image.precomposed()
     }

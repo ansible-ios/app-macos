@@ -231,7 +231,7 @@ final class ChatFloatingAvatar {
         if item.entry.additionalData.authorStoryStats != nil {
             return false
         }
-        if peer.isPremium, peer.hasVideo, !TelegramUtilsHooks.shared.isLite(.animations) {
+        if peer.isPremium, peer.hasVideo, !AnsibleUtilsHooks.shared.isLite(.animations) {
             return false
         }
         return true

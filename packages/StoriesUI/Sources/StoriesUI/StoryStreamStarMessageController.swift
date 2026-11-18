@@ -264,9 +264,9 @@ private final class HeaderView: GeneralRowView {
 
 private final class Arguments {
     let context: any AccountContextProtocol
-    let presentation: TelegramPresentationTheme
+    let presentation: AnsiblePresentationTheme
     let updateValue:(Int64)->Void
-    init(context: any AccountContextProtocol, presentation: TelegramPresentationTheme, updateValue:@escaping(Int64)->Void) {
+    init(context: any AccountContextProtocol, presentation: AnsiblePresentationTheme, updateValue:@escaping(Int64)->Void) {
         self.context = context
         self.presentation = presentation
         self.updateValue = updateValue
@@ -320,7 +320,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
     return entries
 }
 
-func StoryStreamStarMessageController(context: any AccountContextProtocol, story: StoryContentItem, currentValue: Int64?, minValue: Int64?, text: String, entities: [MessageTextEntity], presentation: TelegramPresentationTheme, callback: @escaping(Int64)->Void) -> InputDataModalController {
+func StoryStreamStarMessageController(context: any AccountContextProtocol, story: StoryContentItem, currentValue: Int64?, minValue: Int64?, text: String, entities: [MessageTextEntity], presentation: AnsiblePresentationTheme, callback: @escaping(Int64)->Void) -> InputDataModalController {
     
     
     var close:(()->Void)? = nil

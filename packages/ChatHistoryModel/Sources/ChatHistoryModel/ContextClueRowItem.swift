@@ -34,11 +34,11 @@ public class ContextClueRowItem: TableRowItem {
     fileprivate let callback:((Source)->Void)?
     fileprivate let selected: Source?
     public let animated: [TelegramMediaFile]
-    fileprivate let presentation: TelegramPresentationTheme?
+    fileprivate let presentation: AnsiblePresentationTheme?
     
     public let sources: [ContextClueRowItem.Source]
     
-    public init(_ initialSize: NSSize, stableId:AnyHashable, context: any AccountContextProtocol, clues: [String], animated: [TelegramMediaFile], selected: Source?, canDisablePrediction: Bool, callback:((Source)->Void)? = nil, presentation: TelegramPresentationTheme?) {
+    public init(_ initialSize: NSSize, stableId:AnyHashable, context: any AccountContextProtocol, clues: [String], animated: [TelegramMediaFile], selected: Source?, canDisablePrediction: Bool, callback:((Source)->Void)? = nil, presentation: AnsiblePresentationTheme?) {
         self.animated = context.isPremium ? Array(animated.prefix(30)) : Array(animated.filter { !$0.isPremiumEmoji }.prefix(30))
         self._stableId = stableId
         self.clues = clues
@@ -80,8 +80,8 @@ public final class AnimatedClueRowItem : TableRowItem {
     }
     public let clue: TelegramMediaFile
     public let context: any AccountContextProtocol
-    public let presentation: TelegramPresentationTheme
-    public init(_ initialSize: NSSize, context: any AccountContextProtocol, clue: TelegramMediaFile, presentation: TelegramPresentationTheme = theme) {
+    public let presentation: AnsiblePresentationTheme
+    public init(_ initialSize: NSSize, context: any AccountContextProtocol, clue: TelegramMediaFile, presentation: AnsiblePresentationTheme = theme) {
         self.clue = clue
         self.context = context
         self.presentation = presentation
@@ -194,8 +194,8 @@ private final class ClueRowItem : TableRowItem {
         return _stableId
     }
     public let layout: TextViewLayout
-    public let presentation: TelegramPresentationTheme
-    public init(_ initialSize: NSSize, clue: String, presentation: TelegramPresentationTheme) {
+    public let presentation: AnsiblePresentationTheme
+    public init(_ initialSize: NSSize, clue: String, presentation: AnsiblePresentationTheme) {
         self.layout = TextViewLayout(.initialize(string: clue, color: nil, font: .normal(24)))
         self.presentation = presentation
         super.init(initialSize)
@@ -297,7 +297,7 @@ private class ContextClueRowView : TableRowView, TableViewDelegate {
             }
         }
         
-        func makeItem(_ size: NSSize, context: any AccountContextProtocol, presentation: TelegramPresentationTheme) -> TableRowItem {
+        func makeItem(_ size: NSSize, context: any AccountContextProtocol, presentation: AnsiblePresentationTheme) -> TableRowItem {
             switch self {
             case let .common(clue, _):
                 return ClueRowItem(size, clue: clue, presentation: presentation)

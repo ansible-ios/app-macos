@@ -8,11 +8,11 @@ import TelegramCore
 
 
 private struct PeerPhotos {
-    public let photos: [TelegramPeerPhotoHolder]
+    public let photos: [AnsiblePeerPhotoHolder]
     public let time: TimeInterval
 }
 
-public struct TelegramPeerPhotoHolder {
+public struct AnsiblePeerPhotoHolder {
     public let value: TelegramPeerPhoto
     public let caption: String?
     public init(value: TelegramPeerPhoto, caption: String?) {
@@ -25,7 +25,7 @@ private var peerAvatars:Atomic<[PeerId: PeerPhotos]> = Atomic(value: [:])
 private let maxCachedPeerPhotos: Int = 200
 
 
-public func syncPeerPhotos(peerId: PeerId) -> [TelegramPeerPhotoHolder] {
+public func syncPeerPhotos(peerId: PeerId) -> [AnsiblePeerPhotoHolder] {
     return peerAvatars.with { $0[peerId].map { $0.photos } ?? [] }
 }
 public func resetPeerPhotos(peerId: PeerId) {
@@ -36,7 +36,7 @@ public func resetPeerPhotos(peerId: PeerId) {
     }
 }
 
-public func peerPhotos(context: (any AccountContextProtocol), peerId: PeerId, force: Bool = false) -> Signal<[TelegramPeerPhotoHolder], NoError> {
+public func peerPhotos(context: (any AccountContextProtocol), peerId: PeerId, force: Bool = false) -> Signal<[AnsiblePeerPhotoHolder], NoError> {
     let photos = peerAvatars.with { $0[peerId] }
     if let photos = photos, photos.time > Date().timeIntervalSince1970, !force {
         return .single(photos.photos)
@@ -44,7 +44,7 @@ public func peerPhotos(context: (any AccountContextProtocol), peerId: PeerId, fo
         return .single(peerAvatars.with { $0[peerId]?.photos } ?? []) |> then(combineLatest(context.engine.peers.requestPeerPhotos(peerId: peerId), getCachedDataView(peerId: peerId, postbox: context.account.postbox) |> take(1), getPeerView(peerId: peerId, postbox: context.account.postbox) |> take(1)) |> delay(0.4, queue: .concurrentDefaultQueue()) |> map { photos, cachedData, peer in
             return peerAvatars.modify { value in
                 var value = value
-                var photos:[TelegramPeerPhotoHolder] = photos.map {
+                var photos:[AnsiblePeerPhotoHolder] = photos.map {
                     return .init(value: $0, caption: nil)
                 }
                 if let cachedData = cachedData, let value = cachedData.personalPhoto {

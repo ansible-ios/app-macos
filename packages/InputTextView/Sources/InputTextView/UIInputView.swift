@@ -55,7 +55,7 @@ public final class InputAnimatedEmojiAttach: View {
         self.media.superview = self
         let mediaRect = self.focus(media.frame.size)
         
-        self.media.isPlayable = !TelegramUtilsHooks.shared.isLite(.emoji)
+        self.media.isPlayable = !AnsibleUtilsHooks.shared.isLite(.emoji)
         self.media.frame = mediaRect
         self.layer?.addSublayer(media)
                 
@@ -292,7 +292,7 @@ public final class UITextView : View, Notifable, ChatInputTextViewDelegate {
         if context.isPremium {
             return nil
         }
-        return TelegramThemeHooks.shared.image(.iconPremiumLock)
+        return AnsibleThemeHooks.shared.image(.iconPremiumLock)
     }
 
     public func inputTextTranslateSelected() {

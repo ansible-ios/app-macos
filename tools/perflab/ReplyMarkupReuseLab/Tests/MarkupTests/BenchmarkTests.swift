@@ -9,7 +9,7 @@ final class BenchmarkTests: XCTestCase {
         let reverse = ProcessInfo.processInfo.environment["MARKUP_REVERSE"] != nil
         GeneralRowsHooks.shared.makeInlineTextRenderer = { let renderer = RendererFixture(); renderer.recordsEvents = false; return renderer }
         let interactions = ReplyMarkupInteractions()
-        let theme = TelegramPresentationTheme()
+        let theme = AnsiblePresentationTheme()
         var samples: [String: [Double]] = [:]
         for count in [1, 6, 24] {
             for embedded in [false, true] {

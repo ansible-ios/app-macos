@@ -971,7 +971,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                     entries.append(.sectionId(sectionId, type: .normal))
                     sectionId += 1
                     
-                    entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_show_more, data: .init(name: strings().starListItemShowMore, color: theme.colors.accent, type: .image(TelegramThemeHooks.shared.image(.iconHorizontalChevron).precomposed(theme.colors.accent)), viewType: .singleItem, action: arguments.reveal)))
+                    entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_show_more, data: .init(name: strings().starListItemShowMore, color: theme.colors.accent, type: .image(AnsibleThemeHooks.shared.image(.iconHorizontalChevron).precomposed(theme.colors.accent)), viewType: .singleItem, action: arguments.reveal)))
                 }
             } else {
                 entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_loading, equatable: .init(state), comparable: nil, item: { initialSize, stableId in
@@ -1003,7 +1003,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             if affiliateEnabled, arguments.currency == .stars {
                 entries.append(.sectionId(sectionId, type: .normal))
                 sectionId += 1
-                entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: .init("affiliate"), data: .init(name: strings().affilateProgramEarn, color: theme.colors.text, icon: TelegramThemeHooks.shared.image(.iconAffiliateEarnStars).precomposed(flipVertical: true), type: .next, viewType: .singleItem, description: strings().affilateProgramEarnInfo, descTextColor: theme.colors.grayText, action: arguments.openAffiliate, afterNameImage: generateTextIcon_NewBadge_Flipped(bgColor: theme.colors.accent, textColor: theme.colors.underSelectedColor))))
+                entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: .init("affiliate"), data: .init(name: strings().affilateProgramEarn, color: theme.colors.text, icon: AnsibleThemeHooks.shared.image(.iconAffiliateEarnStars).precomposed(flipVertical: true), type: .next, viewType: .singleItem, description: strings().affilateProgramEarnInfo, descTextColor: theme.colors.grayText, action: arguments.openAffiliate, afterNameImage: generateTextIcon_NewBadge_Flipped(bgColor: theme.colors.accent, textColor: theme.colors.underSelectedColor))))
             }
             
             

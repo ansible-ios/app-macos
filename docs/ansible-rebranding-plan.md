@@ -124,7 +124,7 @@ Share extension также берёт `ApiEnvironment.language`. Ключи macO
 | Платные взаимодействия | Реакции, сообщения, подписки, медиа, чаевые, affiliate и giveaways | StarsUI, ChatUI, PeerInfoUI, StoriesUI, backend-config hooks |
 | Подарки/коллекции | Каталог, цена, улучшение, продажа, transfer, auction/craft, пустые состояния | StarsUI, GalleryUI, PeerInfoUI |
 | Premium | Настройки, hero, подарки, paywall, ограничения, badges | PremiumUI, SceneEffects, LocalAnimations |
-| Кошелёк/Gram/TON | Сопоставить реальные backend capabilities и денежную модель; убрать неподдерживаемые точки входа | WalletUI, LocalTelegramCurrency, in-app links, app configuration |
+| Кошелёк/Gram/TON | Сопоставить реальные backend capabilities и денежную модель; убрать неподдерживаемые точки входа | WalletUI, LocalAnsibleCurrency, in-app links, app configuration |
 | Системная интеграция | Dock/Finder/Cmd-Tab, notification permissions, Share, URL handlers, open/save/export | app metadata, AnsibleShare, localized plist/menu |
 | Ссылки и QR | Создание, разбор, копирование, sharing, login/proxy/sticker/theme/gift/invite/profile/message links | InAppLinks, Link/QR UI, meUrlPrefix callers |
 | Служебный контент | Уведомления, server notices, canned examples, bots, help links | langpacks, backend config, конкретные поставщики контента |

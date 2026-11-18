@@ -22,10 +22,10 @@ public final class InputSwapSuggestionsPanel : View, TableViewDelegate {
     private let tableView = HorizontalTableView(frame: .zero)
     private let containerView = View()
     private weak var relativeView: NSView?
-    private let presentation: TelegramPresentationTheme
+    private let presentation: AnsiblePresentationTheme
     private let backgroundLayer = SimpleShapeLayer()
     private let highlightRect:(NSRange, Bool)-> NSRect
-    public init(inputView: UITextView, textContent:NSClipView, relativeView: NSView, window: Window, context: any AccountContextProtocol, presentation: TelegramPresentationTheme = theme, highlightRect:@escaping(NSRange, Bool)-> NSRect) {
+    public init(inputView: UITextView, textContent:NSClipView, relativeView: NSView, window: Window, context: any AccountContextProtocol, presentation: AnsiblePresentationTheme = theme, highlightRect:@escaping(NSRange, Bool)-> NSRect) {
         self.textContent = textContent
         self.highlightRect = highlightRect
         self.inputView = inputView
@@ -151,7 +151,7 @@ public final class InputSwapSuggestionsPanel : View, TableViewDelegate {
             }
         }
         
-        public func makeItem(_ size: NSSize, context: any AccountContextProtocol, presentation: TelegramPresentationTheme) -> TableRowItem {
+        public func makeItem(_ size: NSSize, context: any AccountContextProtocol, presentation: AnsiblePresentationTheme) -> TableRowItem {
             switch self {
             case let .animated(file, _):
                 return AnimatedClueRowItem(size, context: context, clue: file, presentation: presentation)

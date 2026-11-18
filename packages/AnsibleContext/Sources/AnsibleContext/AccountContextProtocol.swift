@@ -55,7 +55,7 @@ public protocol AccountContextProtocol: AnyObject {
     var diceCache: DiceCache { get }
     var captureExclusionManager: CaptureExclusionManager { get }
     var autoplayMedia: AutoplayMediaPreferences { get }
-    var chatThemes: Signal<[(ChatTheme, TelegramPresentationTheme)], NoError> { get }
+    var chatThemes: Signal<[(ChatTheme, AnsiblePresentationTheme)], NoError> { get }
     var layoutValue: Signal<SplitViewState, NoError> { get }
     var isInGlobalSearch: Bool { get set }
     var closeFolderFirst: Bool { get set }
@@ -78,7 +78,7 @@ public protocol AccountContextProtocol: AnyObject {
     var premiumProductsAndPrice: ([PremiumGiftProduct], (Int64, NSDecimalNumber)) { get }
     func updateMessagesPrivacy(noPaidMessages: SelectivePrivacySettings, globalSettings: GlobalPrivacySettings)
     func marketComission(_ currency: CurrencyAmount.Currency) -> Double
-    var emoticonThemes: [(ChatTheme, TelegramPresentationTheme)] { get }
+    var emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)] { get }
     var temporaryPassword: String? { get }
     func setTemporaryPwd(_ password: String) -> Void
     func resetTemporaryPwd()

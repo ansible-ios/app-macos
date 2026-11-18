@@ -6,7 +6,7 @@ import SwiftSignalKit
 import AnsibleMediaResources
 import InAppSettings
 
-public struct TelegramUtilsHooks {
+public struct AnsibleUtilsHooks {
     public let animationsAreLite: () -> Bool
     public let isLite: (LiteModeKey) -> Bool
     public let peerTitle: (Peer) -> String
@@ -31,16 +31,16 @@ public struct TelegramUtilsHooks {
         self.generalTopicImage = generalTopicImage
     }
 
-    private static var installed: TelegramUtilsHooks?
+    private static var installed: AnsibleUtilsHooks?
 
-    public static var shared: TelegramUtilsHooks {
+    public static var shared: AnsibleUtilsHooks {
         guard let hooks = installed else {
-            fatalError("TelegramUtilsHooks.install must be called before shared presentation is used")
+            fatalError("AnsibleUtilsHooks.install must be called before shared presentation is used")
         }
         return hooks
     }
 
-    public static func install(_ hooks: TelegramUtilsHooks) {
+    public static func install(_ hooks: AnsibleUtilsHooks) {
         installed = hooks
     }
 }

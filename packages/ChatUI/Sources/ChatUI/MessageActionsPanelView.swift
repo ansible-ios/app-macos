@@ -38,7 +38,7 @@ public class MessageActionsPanelView: Control, Notifable {
     /// instead of the global app `theme`. Without this, selecting messages
     /// in a chat with a custom palette would render counts/icons against
     /// the app theme colours.
-    private var currentChatTheme: TelegramPresentationTheme?
+    private var currentChatTheme: AnsiblePresentationTheme?
 
     public required init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -234,11 +234,11 @@ public class MessageActionsPanelView: Control, Notifable {
 
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         self.currentChatTheme = theme
 
-        deleteButton.set(image: TelegramThemeHooks.shared.image(.iconMessageActionPanelDelete).precomposed(theme.colors.text), for: .Normal)
-        forwardButton.set(image: TelegramThemeHooks.shared.image(.iconMessageActionPanelForward).precomposed(theme.colors.text), for: .Normal)
+        deleteButton.set(image: AnsibleThemeHooks.shared.image(.iconMessageActionPanelDelete).precomposed(theme.colors.text), for: .Normal)
+        forwardButton.set(image: AnsibleThemeHooks.shared.image(.iconMessageActionPanelForward).precomposed(theme.colors.text), for: .Normal)
 
         deleteButton.setGlassEffect(size: NSMakeSize(40, 40), tintColor: theme.colors.background.withAlphaComponent(0.4))
         forwardButton.setGlassEffect(size: NSMakeSize(40, 40), tintColor: theme.colors.background.withAlphaComponent(0.4))

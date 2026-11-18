@@ -339,11 +339,11 @@ private func entries(state: State, arguments: Arguments) -> [InputDataEntry] {
                                             "3",
                                             "4",
                                             "5"]
-                    let images:[CGImage] = [TelegramThemeHooks.shared.image(.iconBoostIndicatorSingle).precomposed(theme.colors.grayText, flipVertical: true),
-                                            TelegramThemeHooks.shared.image(.iconBoostIndicatorMultiple).precomposed(theme.colors.grayText, flipVertical: true),
-                                            TelegramThemeHooks.shared.image(.iconBoostIndicatorMultiple).precomposed(theme.colors.grayText, flipVertical: true),
-                                            TelegramThemeHooks.shared.image(.iconBoostIndicatorMultiple).precomposed(theme.colors.grayText, flipVertical: true),
-                                            TelegramThemeHooks.shared.image(.iconBoostIndicatorMultiple).precomposed(theme.colors.grayText, flipVertical: true)]
+                    let images:[CGImage] = [AnsibleThemeHooks.shared.image(.iconBoostIndicatorSingle).precomposed(theme.colors.grayText, flipVertical: true),
+                                            AnsibleThemeHooks.shared.image(.iconBoostIndicatorMultiple).precomposed(theme.colors.grayText, flipVertical: true),
+                                            AnsibleThemeHooks.shared.image(.iconBoostIndicatorMultiple).precomposed(theme.colors.grayText, flipVertical: true),
+                                            AnsibleThemeHooks.shared.image(.iconBoostIndicatorMultiple).precomposed(theme.colors.grayText, flipVertical: true),
+                                            AnsibleThemeHooks.shared.image(.iconBoostIndicatorMultiple).precomposed(theme.colors.grayText, flipVertical: true)]
                     return SelectSizeRowItem(initialSize, stableId: stableId, current: boost, sizes: list, hasMarkers: false, titles: titles, titlesImages: images, viewType: .lastItem, selectAction: { index in
                        arguments.updateBoostNeed(list[index])
                     })

@@ -84,7 +84,7 @@ public final class ChatMediaPaidContentItem : ChatRowItem {
     fileprivate let badgeLayout: TextViewLayout?
     
     
-    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         let message = object.message!
         self.media = message.media[0] as! TelegramMediaPaidContent
         

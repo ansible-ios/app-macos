@@ -48,7 +48,7 @@ private final class ContextAccountMenuRowItem : AppMenuRowItem {
         super.init(initialSize, item: item, interaction: interaction, presentation: presentation)
 
         let signal: Signal<(CGImage?, Bool), NoError>
-        signal = peerAvatarImage(account: account.account, photo: .peer(account.peer, account.peer.smallProfileImage, account.peer.namePeerColor, TelegramUtilsHooks.shared.peerLetters(account.peer), nil, nil), displayDimensions: NSMakeSize(18 * System.backingScale, 18 * System.backingScale), font: .avatar(13), genCap: true, synchronousLoad: false) |> deliverOnMainQueue
+        signal = peerAvatarImage(account: account.account, photo: .peer(account.peer, account.peer.smallProfileImage, account.peer.namePeerColor, AnsibleUtilsHooks.shared.peerLetters(account.peer), nil, nil), displayDimensions: NSMakeSize(18 * System.backingScale, 18 * System.backingScale), font: .avatar(13), genCap: true, synchronousLoad: false) |> deliverOnMainQueue
         disposable.set(signal.start(next: { [weak item] image, _ in
             if let image = image {
                 item?.image = NSImage(cgImage: image, size: NSMakeSize(18, 18))

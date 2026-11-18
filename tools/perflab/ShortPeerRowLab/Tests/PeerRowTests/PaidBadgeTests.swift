@@ -112,8 +112,8 @@ final class PaidBadgeTests: XCTestCase {
         let cache = SendPaidMessageBadgeCache()
         var text = "12.5K", bg: NSColor = .blue, outer: NSColor = .white, fg: NSColor = .yellow, font = NSFont.avatar(.small)
         func image() -> CGImage { cache.image(text: text, bgColor: bg, outerColor: outer, imageColor: fg, font: font) }
-        let source = TelegramThemeHooks.shared.starSource
-        defer { TelegramThemeHooks.shared.starSource = source }
+        let source = AnsibleThemeHooks.shared.starSource
+        defer { AnsibleThemeHooks.shared.starSource = source }
         var previous = image()
         let changes: [() -> Void] = [
             { text = "12,5K" },
@@ -122,7 +122,7 @@ final class PaidBadgeTests: XCTestCase {
             { fg = .green },
             { font = .boldSystemFont(ofSize: 17) },
             { System.updateScaleFactor(3) },
-            { TelegramThemeHooks.shared.starSource = NSImage(size: NSSize(width: 10, height: 10), flipped: false) { rect in NSColor.black.setFill(); rect.fill(); return true } }
+            { AnsibleThemeHooks.shared.starSource = NSImage(size: NSSize(width: 10, height: 10), flipped: false) { rect in NSColor.black.setFill(); rect.fill(); return true } }
         ]
         for change in changes {
             change()

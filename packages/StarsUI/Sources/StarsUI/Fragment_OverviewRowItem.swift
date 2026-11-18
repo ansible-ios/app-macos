@@ -73,12 +73,12 @@ public final class Fragment_OverviewRowItem : GeneralRowItem {
     public let amount: TextViewLayout
     public let info: TextViewLayout
     
-    public let currency: LocalTelegramCurrency
+    public let currency: LocalAnsibleCurrency
     
     public let starsAmount: TextViewLayout?
     
     
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: (any AccountContextProtocol), overview: Overview, currency: LocalTelegramCurrency, viewType: GeneralViewType) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, context: (any AccountContextProtocol), overview: Overview, currency: LocalAnsibleCurrency, viewType: GeneralViewType) {
         self.context = context
         self.overview = overview
         self.currency = currency

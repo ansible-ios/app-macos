@@ -61,14 +61,14 @@ private final class Arguments {
     let withdraw:()->Void
     let withdrawStars:()->Void
     let promo:()->Void
-    let loadDetailedGraph:(LocalTelegramCurrency, StatsGraph, Int64) -> Signal<StatsGraph?, NoError>
+    let loadDetailedGraph:(LocalAnsibleCurrency, StatsGraph, Int64) -> Signal<StatsGraph?, NoError>
     let transaction:(Star_Transaction)->Void
     let toggleAds:()->Void
     let loadMore:(State.TransactionMode)->Void
     let toggleTransactionType:(State.TransactionMode)->Void
     let openStarsTransaction:(Star_Transaction)->Void
     let openAffiliate:()->Void
-    init(context: any AccountContextProtocol, interactions: TextView_Interactions, updateState:@escaping(Updated_ChatTextInputState)->Void, executeLink:@escaping(String)->Void, withdraw:@escaping()->Void, promo: @escaping()->Void, loadDetailedGraph:@escaping(LocalTelegramCurrency, StatsGraph, Int64) -> Signal<StatsGraph?, NoError>, transaction:@escaping(Star_Transaction)->Void, toggleAds:@escaping()->Void, loadMore:@escaping(State.TransactionMode)->Void, toggleTransactionType:@escaping(State.TransactionMode)->Void, openStarsTransaction:@escaping(Star_Transaction)->Void, withdrawStars:@escaping()->Void, openAffiliate:@escaping()->Void) {
+    init(context: any AccountContextProtocol, interactions: TextView_Interactions, updateState:@escaping(Updated_ChatTextInputState)->Void, executeLink:@escaping(String)->Void, withdraw:@escaping()->Void, promo: @escaping()->Void, loadDetailedGraph:@escaping(LocalAnsibleCurrency, StatsGraph, Int64) -> Signal<StatsGraph?, NoError>, transaction:@escaping(Star_Transaction)->Void, toggleAds:@escaping()->Void, loadMore:@escaping(State.TransactionMode)->Void, toggleTransactionType:@escaping(State.TransactionMode)->Void, openStarsTransaction:@escaping(Star_Transaction)->Void, withdrawStars:@escaping()->Void, openAffiliate:@escaping()->Void) {
         self.context = context
         self.interactions = interactions
         self.updateState = updateState
@@ -391,7 +391,7 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
     if affiliateEnabled {
         entries.append(.sectionId(sectionId, type: .normal))
         sectionId += 1
-        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: .init("affiliate"), data: .init(name: strings().affilateProgramEarn, color: theme.colors.text, icon: TelegramThemeHooks.shared.image(.iconAffiliateEarnStars).precomposed(flipVertical: true), type: .next, viewType: .singleItem, description: strings().affilateProgramEarnInfo, descTextColor: theme.colors.grayText, action: arguments.openAffiliate, afterNameImage: generateTextIcon_NewBadge_Flipped(bgColor: theme.colors.accent, textColor: theme.colors.underSelectedColor))))
+        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: .init("affiliate"), data: .init(name: strings().affilateProgramEarn, color: theme.colors.text, icon: AnsibleThemeHooks.shared.image(.iconAffiliateEarnStars).precomposed(flipVertical: true), type: .next, viewType: .singleItem, description: strings().affilateProgramEarnInfo, descTextColor: theme.colors.grayText, action: arguments.openAffiliate, afterNameImage: generateTextIcon_NewBadge_Flipped(bgColor: theme.colors.accent, textColor: theme.colors.underSelectedColor))))
 
     }
         

@@ -85,7 +85,7 @@ private func cloudThemeData(context: any AccountContextProtocol, theme: AnsibleT
 
 
 
-private func generateThumb(palette: ColorPalette, bubbled: Bool, wallpaper: Wallpaper, emoticonThemes: [(ChatTheme, TelegramPresentationTheme)]) -> Signal<CGImage, NoError> {
+private func generateThumb(palette: ColorPalette, bubbled: Bool, wallpaper: Wallpaper, emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)]) -> Signal<CGImage, NoError> {
     return Signal { subscriber in
         let image = generateImage(NSMakeSize(80, 55), rotatedContext: { size, ctx in
             let rect = NSMakeRect(0, 0, size.width, size.height)
@@ -97,7 +97,7 @@ private func generateThumb(palette: ColorPalette, bubbled: Bool, wallpaper: Wall
             if bubbled {
                 switch wallpaper {
                 case .builtin:
-                    backgroundMode = TelegramPresentationTheme.defaultBackground(palette)
+                    backgroundMode = AnsiblePresentationTheme.defaultBackground(palette)
                 case let.color(color):
                     backgroundMode = .color(color: NSColor(argb: color).withAlphaComponent(1.0))
                 case let .gradient(_, colors, rotation):
@@ -106,14 +106,14 @@ private func generateThumb(palette: ColorPalette, bubbled: Bool, wallpaper: Wall
                     if let resource = largestImageRepresentation(representation)?.resource, let image = downsampledImage(contentsOfFile: wallpaperPath(resource, settings: settings), maxPixelSize: max(size.width, size.height) * System.backingScale) {
                         backgroundMode = .background(image: image, intensity: settings.intensity, colors: settings.colors.map { NSColor(argb: $0) }, rotation: settings.rotation, metadata: nil)
                     } else {
-                        backgroundMode = TelegramPresentationTheme.defaultBackground(palette)
+                        backgroundMode = AnsiblePresentationTheme.defaultBackground(palette)
                     }
                     
                 case let .file(_, file, settings, _, _):
                     if let image = downsampledImage(contentsOfFile: wallpaperPath(file.resource, settings: settings), maxPixelSize: max(size.width, size.height) * System.backingScale) {
                         backgroundMode = .background(image: image, intensity: settings.intensity, colors: settings.colors.map { NSColor(argb: $0) }, rotation: settings.rotation, metadata: nil)
                     } else {
-                        backgroundMode = TelegramPresentationTheme.defaultBackground(palette)
+                        backgroundMode = AnsiblePresentationTheme.defaultBackground(palette)
                     }
                 case .none:
                     backgroundMode = .color(color: palette.chatBackground)
@@ -121,7 +121,7 @@ private func generateThumb(palette: ColorPalette, bubbled: Bool, wallpaper: Wall
                     if let image = downsampledImage(contentsOfFile: wallpaperPath(representation.resource, settings: WallpaperSettings(blur: blurred)), maxPixelSize: max(size.width, size.height) * System.backingScale) {
                         backgroundMode = .background(image: image, intensity: nil, colors: nil, rotation: nil, metadata: nil)
                     } else {
-                        backgroundMode = TelegramPresentationTheme.defaultBackground(palette)
+                        backgroundMode = AnsiblePresentationTheme.defaultBackground(palette)
                     }
                 case let .emoticon(emoticon):
                     if let first = emoticonThemes.first(where: { $0.0.id == emoticon.strippedEmoji }) {
@@ -135,7 +135,7 @@ private func generateThumb(palette: ColorPalette, bubbled: Bool, wallpaper: Wall
             }
             
             func applyBubbles() {
-                let bubbleImage = TelegramThemeHooks.shared.image(.iconThemeBubble)
+                let bubbleImage = AnsibleThemeHooks.shared.image(.iconThemeBubble)
                 let incoming = bubbleImage.precomposed(palette.bubbleBackground_incoming, flipVertical: true)
                 ctx.draw(incoming, in: NSMakeRect(7, 9, 48, 16))
                 let outgoing = bubbleImage.precomposed(palette.bubbleBackground_outgoing, flipVertical: true, flipHorizontal: true)
@@ -208,7 +208,7 @@ private func generateThumb(palette: ColorPalette, bubbled: Bool, wallpaper: Wall
 }
 
 
-private func generateWidgetThumb(palette: ColorPalette, bubbled: Bool, wallpaper: Wallpaper, emoticonThemes: [(ChatTheme, TelegramPresentationTheme)]) -> Signal<CGImage, NoError> {
+private func generateWidgetThumb(palette: ColorPalette, bubbled: Bool, wallpaper: Wallpaper, emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)]) -> Signal<CGImage, NoError> {
     return Signal { subscriber in
         let image = generateImage(NSMakeSize(132, 86), rotatedContext: { size, ctx in
             let rect = NSMakeRect(0, 0, size.width, size.height)
@@ -220,7 +220,7 @@ private func generateWidgetThumb(palette: ColorPalette, bubbled: Bool, wallpaper
             if bubbled {
                 switch wallpaper {
                 case .builtin:
-                    backgroundMode = TelegramPresentationTheme.defaultBackground(palette)
+                    backgroundMode = AnsiblePresentationTheme.defaultBackground(palette)
                 case let.color(color):
                     backgroundMode = .color(color: NSColor(argb: color).withAlphaComponent(1.0))
                 case let .gradient(_, colors, rotation):
@@ -229,14 +229,14 @@ private func generateWidgetThumb(palette: ColorPalette, bubbled: Bool, wallpaper
                     if let resource = largestImageRepresentation(representation)?.resource, let image = downsampledImage(contentsOfFile: wallpaperPath(resource, settings: settings), maxPixelSize: max(size.width, size.height) * System.backingScale) {
                         backgroundMode = .background(image: image, intensity: settings.intensity, colors: settings.colors.map { NSColor(argb: $0) }, rotation: settings.rotation, metadata: nil)
                     } else {
-                        backgroundMode = TelegramPresentationTheme.defaultBackground(palette)
+                        backgroundMode = AnsiblePresentationTheme.defaultBackground(palette)
                     }
                     
                 case let .file(_, file, settings, _, _):
                     if let image = downsampledImage(contentsOfFile: wallpaperPath(file.resource, settings: settings), maxPixelSize: max(size.width, size.height) * System.backingScale) {
                         backgroundMode = .background(image: image, intensity: settings.intensity, colors: settings.colors.map { NSColor(argb: $0) }, rotation: settings.rotation, metadata: nil)
                     } else {
-                        backgroundMode = TelegramPresentationTheme.defaultBackground(palette)
+                        backgroundMode = AnsiblePresentationTheme.defaultBackground(palette)
                     }
                 case .none:
                     backgroundMode = .color(color: palette.chatBackground)
@@ -244,7 +244,7 @@ private func generateWidgetThumb(palette: ColorPalette, bubbled: Bool, wallpaper
                     if let image = downsampledImage(contentsOfFile: wallpaperPath(representation.resource, settings: WallpaperSettings(blur: blurred)), maxPixelSize: max(size.width, size.height) * System.backingScale) {
                         backgroundMode = .background(image: image, intensity: nil, colors: nil, rotation: nil, metadata: nil)
                     } else {
-                        backgroundMode = TelegramPresentationTheme.defaultBackground(palette)
+                        backgroundMode = AnsiblePresentationTheme.defaultBackground(palette)
                     }
                 case let .emoticon(emoticon):
                     if let first = emoticonThemes.first(where: { $0.0.id == emoticon.strippedEmoji }) {
@@ -259,8 +259,8 @@ private func generateWidgetThumb(palette: ColorPalette, bubbled: Bool, wallpaper
             
             func applyBubbles() {
                 
-                ctx.draw(TelegramThemeHooks.shared.image(.iconThemePreviewDino).precomposed(flipVertical: true), in: NSMakeRect(10, 24, 24, 24))
-                ctx.draw(TelegramThemeHooks.shared.image(.iconThemePreviewDuck).precomposed(flipVertical: true), in: NSMakeRect(10, 54, 24, 24))
+                ctx.draw(AnsibleThemeHooks.shared.image(.iconThemePreviewDino).precomposed(flipVertical: true), in: NSMakeRect(10, 24, 24, 24))
+                ctx.draw(AnsibleThemeHooks.shared.image(.iconThemePreviewDuck).precomposed(flipVertical: true), in: NSMakeRect(10, 54, 24, 24))
 
                 let bubble1 = generateImage(NSMakeSize(80, 38), rotatedContext: { size, ctx in
                     let rect = NSMakeRect(0, 0, size.width, size.height)
@@ -312,7 +312,7 @@ private func generateWidgetThumb(palette: ColorPalette, bubbled: Bool, wallpaper
             }
             
             func applyPlain() {
-                ctx.draw(TelegramThemeHooks.shared.image(.iconThemePreviewDino).precomposed(flipVertical: true), in: NSMakeRect(10, 10, 24, 24))
+                ctx.draw(AnsibleThemeHooks.shared.image(.iconThemePreviewDino).precomposed(flipVertical: true), in: NSMakeRect(10, 10, 24, 24))
                 if true {
                     let name1 = generateImage(NSMakeSize(32, 6), rotatedContext: { size, ctx in
                         let rect = NSMakeRect(0, 0, size.width, size.height)
@@ -344,7 +344,7 @@ private func generateWidgetThumb(palette: ColorPalette, bubbled: Bool, wallpaper
                 }
                 
                 if true {
-                    ctx.draw(TelegramThemeHooks.shared.image(.iconThemePreviewDuck).precomposed(flipVertical: true), in: NSMakeRect(10, 54, 24, 24))
+                    ctx.draw(AnsibleThemeHooks.shared.image(.iconThemePreviewDuck).precomposed(flipVertical: true), in: NSMakeRect(10, 54, 24, 24))
 
                     let name1 = generateImage(NSMakeSize(32, 6), rotatedContext: { size, ctx in
                         let rect = NSMakeRect(0, 0, size.width, size.height)
@@ -388,7 +388,7 @@ public func generateChatThemeThumb(palette: ColorPalette, bubbled: Bool, backgro
             ctx.round(size, 10)
             
             func applyBubbles() {
-                let bubbleImage = TelegramThemeHooks.shared.image(.iconThemeBubble)
+                let bubbleImage = AnsibleThemeHooks.shared.image(.iconThemeBubble)
                 let incoming = bubbleImage.precomposed(palette.bubbleBackground_incoming, flipVertical: true)
                 ctx.draw(incoming, in: NSMakeRect(7, 9, 38, 16))
                 let outgoing = bubbleImage.precomposed(palette.bubbleBackground_outgoing, flipVertical: true, flipHorizontal: true)

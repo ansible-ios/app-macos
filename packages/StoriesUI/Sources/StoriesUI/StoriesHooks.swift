@@ -46,12 +46,12 @@ public struct StoriesHooks {
             showListStory(context, listContext, peerId, initialId)
         }
     }
-    public let makeStoryMonthRowItem: (NSSize, AnyHashable, any AccountContextProtocol, Bool, PeerId, PeerReference, [StoryListContextState.Item], Set<StoryId>?, [Int32], Int, GeneralViewType, @escaping (StoryInitialIndex?) -> Void, @escaping (StoryId) -> Void, @escaping (StoryListContextState.Item) -> [ContextMenuItem], TelegramPresentationTheme) -> TableRowItem
+    public let makeStoryMonthRowItem: (NSSize, AnyHashable, any AccountContextProtocol, Bool, PeerId, PeerReference, [StoryListContextState.Item], Set<StoryId>?, [Int32], Int, GeneralViewType, @escaping (StoryInitialIndex?) -> Void, @escaping (StoryId) -> Void, @escaping (StoryListContextState.Item) -> [ContextMenuItem], AnsiblePresentationTheme) -> TableRowItem
     public let executeInApp: (StoriesInAppLink) -> Void
     public let showShareLink: (any AccountContextProtocol, String, Window) -> Void
-    public let generateTheme: (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper) -> TelegramPresentationTheme
+    public let generateTheme: (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper) -> AnsiblePresentationTheme
     public let pushPeerInfoIfNeeded: (any AccountContextProtocol, PeerId) -> Void
-    public let showShareStory: (any AccountContextProtocol, TelegramMediaStory, Bool, StoryId, @escaping () -> Void, TelegramPresentationTheme) -> Void
+    public let showShareStory: (any AccountContextProtocol, TelegramMediaStory, Bool, StoryId, @escaping () -> Void, AnsiblePresentationTheme) -> Void
     public let findShareModal: (ModalViewController?) -> ModalViewController?
     public let makeInAppLink: (NSString, any AccountContextProtocol, @escaping (PeerId, Bool, MessageId?, ChatInitialAction?) -> Void) -> Any
     public let executeInAppLink: (Any, @escaping (Bool) -> Void) -> Void
@@ -63,12 +63,12 @@ public struct StoriesHooks {
                 pushStoryMedia: @escaping (any AccountContextProtocol, PeerId, PeerStoryListContext, Bool, Bool) -> Void,
                 generateLiveStreamBadge: @escaping (CGFloat, NSColor?) -> CGImage,
                 showListStory: @escaping (any AccountContextProtocol, StoryListContext, PeerId, StoryInitialIndex?) -> Void,
-                makeStoryMonthRowItem: @escaping (NSSize, AnyHashable, any AccountContextProtocol, Bool, PeerId, PeerReference, [StoryListContextState.Item], Set<StoryId>?, [Int32], Int, GeneralViewType, @escaping (StoryInitialIndex?) -> Void, @escaping (StoryId) -> Void, @escaping (StoryListContextState.Item) -> [ContextMenuItem], TelegramPresentationTheme) -> TableRowItem,
+                makeStoryMonthRowItem: @escaping (NSSize, AnyHashable, any AccountContextProtocol, Bool, PeerId, PeerReference, [StoryListContextState.Item], Set<StoryId>?, [Int32], Int, GeneralViewType, @escaping (StoryInitialIndex?) -> Void, @escaping (StoryId) -> Void, @escaping (StoryListContextState.Item) -> [ContextMenuItem], AnsiblePresentationTheme) -> TableRowItem,
                 executeInApp: @escaping (StoriesInAppLink) -> Void,
                 showShareLink: @escaping (any AccountContextProtocol, String, Window) -> Void,
-                generateTheme: @escaping (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper) -> TelegramPresentationTheme,
+                generateTheme: @escaping (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper) -> AnsiblePresentationTheme,
                 pushPeerInfoIfNeeded: @escaping (any AccountContextProtocol, PeerId) -> Void,
-                showShareStory: @escaping (any AccountContextProtocol, TelegramMediaStory, Bool, StoryId, @escaping () -> Void, TelegramPresentationTheme) -> Void,
+                showShareStory: @escaping (any AccountContextProtocol, TelegramMediaStory, Bool, StoryId, @escaping () -> Void, AnsiblePresentationTheme) -> Void,
                 findShareModal: @escaping (ModalViewController?) -> ModalViewController?,
                 makeInAppLink: @escaping (NSString, any AccountContextProtocol, @escaping (PeerId, Bool, MessageId?, ChatInitialAction?) -> Void) -> Any,
                 executeInAppLink: @escaping (Any, @escaping (Bool) -> Void) -> Void,

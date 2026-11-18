@@ -2,14 +2,14 @@ import Cocoa
 import TGUIKit
 #if SHARE
 import AnsibleUtilsShare
-typealias TelegramGenericViewController<T: NSView> = AnsibleUtilsShare.TelegramGenericViewController<T, AccountContext>
-typealias TelegramViewController = AnsibleUtilsShare.TelegramViewController<AccountContext>
+typealias AnsibleGenericViewController<T: NSView> = AnsibleUtilsShare.AnsibleGenericViewController<T, AccountContext>
+typealias AnsibleViewController = AnsibleUtilsShare.AnsibleViewController<AccountContext>
 typealias TableViewController = AnsibleUtilsShare.TableViewController<AccountContext>
 typealias EditableViewController<T: NSView> = AnsibleUtilsShare.EditableViewController<T, AccountContext>
 #else
 import AnsibleUtils
-typealias TelegramGenericViewController<T: NSView> = AnsibleUtils.TelegramGenericViewController<T, AccountContext>
-typealias TelegramViewController = AnsibleUtils.TelegramViewController<AccountContext>
+typealias AnsibleGenericViewController<T: NSView> = AnsibleUtils.AnsibleGenericViewController<T, AccountContext>
+typealias AnsibleViewController = AnsibleUtils.AnsibleViewController<AccountContext>
 typealias TableViewController = AnsibleUtils.TableViewController<AccountContext>
 typealias EditableViewController<T: NSView> = AnsibleUtils.EditableViewController<T, AccountContext>
 typealias PasscodeSettingsViewController = PasscodeUI.PasscodeSettingsViewController<AccountContext>
@@ -62,12 +62,12 @@ typealias StoryMediaController = StoriesUI.StoryMediaController<AccountContext>
 typealias StoryModalController = StoriesUI.StoryModalController<AccountContext>
 #endif
 
-func installTelegramUtilsHooks() {
-    installTelegramContextHooks(.init(peerTitle: { $0.displayTitle }))
+func installAnsibleUtilsHooks() {
+    installAnsibleContextHooks(.init(peerTitle: { $0.displayTitle }))
     #if SHARE
-    TelegramUtilsHooks.install(.init(animationsAreLite: { false }, isLite: { _ in false }, peerTitle: { $0.displayTitle }, peerLetters: { $0.displayLetters }, peerIsForum: { $0.isForum }, peerCompactTitle: { $0.compactDisplayTitle }, repliesPeerId: { repliesPeerId }))
+    AnsibleUtilsHooks.install(.init(animationsAreLite: { false }, isLite: { _ in false }, peerTitle: { $0.displayTitle }, peerLetters: { $0.displayLetters }, peerIsForum: { $0.isForum }, peerCompactTitle: { $0.compactDisplayTitle }, repliesPeerId: { repliesPeerId }))
     #else
-    TelegramUtilsHooks.install(.init(animationsAreLite: { isLite(.animations) }, isLite: { isLite($0) }, peerTitle: { $0.displayTitle }, peerLetters: { $0.displayLetters }, peerIsForum: { $0.isForum }, peerCompactTitle: { $0.compactDisplayTitle }, repliesPeerId: { repliesPeerId }, topicFile: { title, color, general in
+    AnsibleUtilsHooks.install(.init(animationsAreLite: { isLite(.animations) }, isLite: { isLite($0) }, peerTitle: { $0.displayTitle }, peerLetters: { $0.displayLetters }, peerIsForum: { $0.isForum }, peerCompactTitle: { $0.compactDisplayTitle }, repliesPeerId: { repliesPeerId }, topicFile: { title, color, general in
         ForumUI.makeIconFile(title: title, iconColor: color, isGeneral: general)
     }, topicImage: { title, backgroundColors, strokeColors in
         makeTopicIcon(title, bgColors: backgroundColors, strokeColors: strokeColors)

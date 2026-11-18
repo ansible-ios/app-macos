@@ -183,7 +183,7 @@ final class AvatarImageRenderer {
         self.forceCommunityStyle = forceCommunity
         let state: AvatarNodeState
         if let peer = peer {
-            state = .PeerAvatar(peer, TelegramUtilsHooks.shared.peerLetters(peer), peer.smallProfileImage, peer.namePeerColor, message, size, ((peer.isForumOrMonoForum || (peer is TelegramCommunity)) && !disableForum) || forceMonoforum || forceCommunity, cornerRadius)
+            state = .PeerAvatar(peer, AnsibleUtilsHooks.shared.peerLetters(peer), peer.smallProfileImage, peer.namePeerColor, message, size, ((peer.isForumOrMonoForum || (peer is TelegramCommunity)) && !disableForum) || forceMonoforum || forceCommunity, cornerRadius)
             setCommunityStack(((peer is TelegramCommunity) || forceCommunity) && !disableForum)
         } else {
             state = .Empty

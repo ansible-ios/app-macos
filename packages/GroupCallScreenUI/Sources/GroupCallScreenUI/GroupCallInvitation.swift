@@ -252,7 +252,7 @@ public final class GroupCallAddMembersBehaviour : SelectPeersBehavior {
                 let updatedSearch = previousSearch.swap(search.request) != search.request
                 
                 if entries.isEmpty {
-                    entries.append(.searchEmpty(customTheme(), TelegramThemeHooks.shared.image(.iconEmptySearchResults).precomposed(customTheme().grayTextColor)))
+                    entries.append(.searchEmpty(customTheme(), AnsibleThemeHooks.shared.image(.iconEmptySearchResults).precomposed(customTheme().grayTextColor)))
                 }
                 
                 return (entries, updatedSearch)
@@ -304,7 +304,7 @@ public final class GroupCallInviteMembersBehaviour : SelectPeersBehavior {
         
         let rightActions:ShortPeerRowItem.RightActions
         if isConference {
-            rightActions = .init(actions: [.init(icon: TelegramThemeHooks.shared.image(.iconPeerVideoCall).precomposed(customTheme().accentColor), index: 0, accessibilityLabel: strings().voiceOverCommonVideoCall), .init(icon: TelegramThemeHooks.shared.image(.iconPeerAudioCall).precomposed(customTheme().accentColor), index: 1, accessibilityLabel: strings().voiceOverCommonCall)], callback: { [weak data, weak self] peerId, index in
+            rightActions = .init(actions: [.init(icon: AnsibleThemeHooks.shared.image(.iconPeerVideoCall).precomposed(customTheme().accentColor), index: 0, accessibilityLabel: strings().voiceOverCommonVideoCall), .init(icon: AnsibleThemeHooks.shared.image(.iconPeerAudioCall).precomposed(customTheme().accentColor), index: 1, accessibilityLabel: strings().voiceOverCommonCall)], callback: { [weak data, weak self] peerId, index in
                 _ = data?.call.invitePeer(peerId, isVideo: index == 0)
                 if let window = self?.window {
                     closeAllModals(window: window)
@@ -459,7 +459,7 @@ public final class GroupCallInviteMembersBehaviour : SelectPeersBehavior {
                 let updatedSearch = previousSearch.swap(search.request) != search.request
                 
                 if entries.isEmpty {
-                    entries.append(.searchEmpty(customTheme(), TelegramThemeHooks.shared.image(.iconEmptySearchResults).precomposed(customTheme().grayTextColor)))
+                    entries.append(.searchEmpty(customTheme(), AnsibleThemeHooks.shared.image(.iconEmptySearchResults).precomposed(customTheme().grayTextColor)))
                 }
                 
                 return (entries, updatedSearch)
@@ -527,7 +527,7 @@ private func groupCallAddmembers(_ data: GroupCallUIController.UIData, window: W
                     return (user: $0.getPeer(peerId), chat: $0.getPeer(callPeerId))
                 } |> deliverOnMainQueue |> mapToSignal { [weak window] values in
                     if let window = window {
-                        return verifyAlertSignal(for: window, information: strings().voiceChatInviteMemberToGroupFirstText(values.user?.displayTitle ?? "", values.chat?.displayTitle ?? ""), ok: strings().voiceChatInviteMemberToGroupFirstAdd, presentation: TelegramThemeHooks.shared.darkAppearance()) |> filter { $0 == .basic }
+                        return verifyAlertSignal(for: window, information: strings().voiceChatInviteMemberToGroupFirstText(values.user?.displayTitle ?? "", values.chat?.displayTitle ?? ""), ok: strings().voiceChatInviteMemberToGroupFirstAdd, presentation: AnsibleThemeHooks.shared.darkAppearance()) |> filter { $0 == .basic }
                             |> take(1)
                         |> mapToSignal { _ in
                             if peerId.namespace == Namespaces.Peer.CloudChannel {
@@ -598,7 +598,7 @@ private func groupCallAddmembers(_ data: GroupCallUIController.UIData, window: W
                                 subscriber.putNext(true)
                                 subscriber.putCompletion()
                                 
-                            }, presentation: TelegramThemeHooks.shared.darkAppearance())
+                            }, presentation: AnsibleThemeHooks.shared.darkAppearance())
                         } else {
                             for peerId in peerIds {
                                 _ = enqueueMessages(account: account, peerId: peerId, messages: [EnqueueMessage.message(text: links.listenerLink, attributes: [], inlineStickers: [:], mediaReference: nil, threadId: nil, replyToMessageId: nil, replyToStoryId: nil, localGroupingKey: nil, correlationId: nil, bubbleUpEmojiOrStickersets: [])]).start()

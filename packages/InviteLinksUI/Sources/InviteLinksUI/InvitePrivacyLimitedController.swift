@@ -273,7 +273,7 @@ private final class InviteViaLinkHeaderView : GeneralContainableRowView {
         textView.update(item.textLayout)
         
         button.autohighlight = false
-        button.set(image: TelegramThemeHooks.shared.image(.iconExportedInvitationLink).precomposed(theme.colors.underSelectedColor), for: .Normal)
+        button.set(image: AnsibleThemeHooks.shared.image(.iconExportedInvitationLink).precomposed(theme.colors.underSelectedColor), for: .Normal)
         button.set(background: theme.colors.accent, for: .Normal)
         button.sizeToFit(.zero, NSMakeSize(60, 40), thatFit: true)
         

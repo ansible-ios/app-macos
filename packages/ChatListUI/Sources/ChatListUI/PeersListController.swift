@@ -299,7 +299,7 @@ public struct PeerListState : Equatable {
     public var stories: EngineStorySubscriptions?
     public var isContacts: Bool
     public var filterData: FilterData
-    public var presentation: TelegramPresentationTheme
+    public var presentation: AnsiblePresentationTheme
     public var privacy: GlobalPrivacySettings?
     public var displaySavedAsTopics: Bool
     public var webapps: BrowserStateContext.FullState? = nil
@@ -1510,7 +1510,7 @@ public class PeerListContainerView : Control {
     }
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
 
 
         borderView.backgroundColor = theme.colors.border
@@ -2245,7 +2245,7 @@ private class SearchContainer : Control {
     }
 }
 
-open class PeersListController<Context: AccountContextProtocol>: TelegramGenericViewController<PeerListContainerView, Context>, TableViewDelegate {
+open class PeersListController<Context: AccountContextProtocol>: AnsibleGenericViewController<PeerListContainerView, Context>, TableViewDelegate {
     private let htmlDemoContents = HTMLDemoChatCache()
     
     
@@ -2335,7 +2335,7 @@ open class PeersListController<Context: AccountContextProtocol>: TelegramGeneric
 
         if case let .forum(peerId, _, _) = mode, mode.isFullForum {
             self.forumPeerData.set(context.account.postbox.peerView(id: peerId) |> map { view -> PeerListState.ForumData? in
-                if let peer = peerViewMainPeer(view) as? TelegramChannel, TelegramUtilsHooks.shared.peerIsForum(peer) {
+                if let peer = peerViewMainPeer(view) as? TelegramChannel, AnsibleUtilsHooks.shared.peerIsForum(peer) {
                     return .init(peer: peer, peerView: view, online: 0)
                 } else {
                     return nil
@@ -3047,7 +3047,7 @@ open class PeersListController<Context: AccountContextProtocol>: TelegramGeneric
                     break
                 }
                 return
-            } else if let peer = state.forumPeer?.peer, peer.displayForumAsTabs(splitState: state.splitState), TelegramUtilsHooks.shared.peerIsForum(peer) {
+            } else if let peer = state.forumPeer?.peer, peer.displayForumAsTabs(splitState: state.splitState), AnsibleUtilsHooks.shared.peerIsForum(peer) {
                 switch self.mode {
                 case .forum:
                     self.navigationController?.back()
@@ -3701,7 +3701,7 @@ open class PeersListController<Context: AccountContextProtocol>: TelegramGeneric
             let forumPeer: Signal<PeerListState.ForumData?, NoError>
             if let peerId = peerId {
                 forumPeer = context.account.postbox.peerView(id: peerId) |> mapToSignal { view in
-                    if let peer = peerViewMainPeer(view) as? TelegramChannel, TelegramUtilsHooks.shared.peerIsForum(peer) {
+                    if let peer = peerViewMainPeer(view) as? TelegramChannel, AnsibleUtilsHooks.shared.peerIsForum(peer) {
                         return .single(.init(peer: peer, peerView: view, online: 0))
                     } else {
                         return .single(nil)

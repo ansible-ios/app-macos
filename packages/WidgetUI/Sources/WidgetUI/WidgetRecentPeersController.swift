@@ -116,7 +116,7 @@ public final class WidgetRecentPeersContainer<Context: AccountContextProtocol>: 
     }
 }
 
-public final class WidgetRecentPeersController<Context: AccountContextProtocol> : TelegramGenericViewController<WidgetView<WidgetRecentPeersContainer<Context>>, Context> {
+public final class WidgetRecentPeersController<Context: AccountContextProtocol> : AnsibleGenericViewController<WidgetView<WidgetRecentPeersContainer<Context>>, Context> {
 
     public override var defaultBarTitle: String {
         return localizedString("Telegram.WidgetRecentPeersController")

@@ -65,7 +65,7 @@ private final class StorageUsageClearedView : TableRowView {
         super.set(item: item, animated: animated)
         
         
-        let check = TelegramThemeHooks.shared.image(.iconStorageClearedCheck).precomposed(theme.colors.greenUI)
+        let check = AnsibleThemeHooks.shared.image(.iconStorageClearedCheck).precomposed(theme.colors.greenUI)
         let circle = generateImage(NSMakeSize(200, 200), contextGenerator: { size, ctx in
             ctx.clear(size.bounds)
             let startAngle = 2.0 * (CGFloat.pi) - CGFloat.pi / 2

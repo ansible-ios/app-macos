@@ -16,7 +16,7 @@ func paidBadgeStarImage() -> NSImage {
 struct BadgeAmount { var value: Int64 }
 struct SelectPeerPresentation { var premiumRequired: Set<Int> = [] }
 struct BadgeIcons {
-    var premium_required_forward = TelegramThemeHooks.shared.source.precomposed(.purple)
+    var premium_required_forward = AnsibleThemeHooks.shared.source.precomposed(.purple)
 }
 
 class PaidBadgeEnvironment: View {

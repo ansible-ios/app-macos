@@ -61,7 +61,7 @@ b = navigation.index('private extension PremiumLimitKind {', a)
 fixture = fixture.replace('__PREMIUM_SOURCE_MAPPING__', navigation[a:b])
 a = hooks.index('    public func showPremiumBoardingObserved(')
 b = hooks.index('    public var showPremiumLimit:', a)
-method = hooks[a:b].replace('public ', '').replace('any AccountContextProtocol', 'Context').replace('Window', 'Int').replace('TelegramPresentationTheme', 'Int')
+method = hooks[a:b].replace('public ', '').replace('any AccountContextProtocol', 'Context').replace('Window', 'Int').replace('AnsiblePresentationTheme', 'Int')
 fixture = fixture.replace('__PREMIUM_HOOK__', method)
 for marker, assignment in [('CONTENT', 'controller.analyticsContext = origin'), ('MODAL', 'modalController.analyticsContext = origin')]:
     assert assignment in source

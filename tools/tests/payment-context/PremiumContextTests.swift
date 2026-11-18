@@ -25,8 +25,8 @@ public enum PremiumValue {
 __PREMIUM_SOURCE_ENUM__
 __NAVIGATION_SOURCE_ENUM__
 __SOURCE_MAPPING__
-public struct TelegramPresentationTheme { public init() {} }
-public let theme = TelegramPresentationTheme()
+public struct AnsiblePresentationTheme { public init() {} }
+public let theme = AnsiblePresentationTheme()
 public enum PremiumBoardingEntryTag {}
 public enum AnalyticsScreen { case settingsBusiness, premiumBusiness, premiumPromo }
 typealias FeatureNavigationHooks = Hooks

@@ -18,7 +18,7 @@ public struct QrStudioEmojiPickerHooks {
         }
     }
 
-    public static var make: ((_ context: any AccountContextProtocol, _ presentation: TelegramPresentationTheme, _ staticEmojiFilter: @escaping (String) -> Bool, _ select: @escaping (_ file: TelegramMediaFile?, _ unicode: String?) -> Void) -> Picker?)? = nil
+    public static var make: ((_ context: any AccountContextProtocol, _ presentation: AnsiblePresentationTheme, _ staticEmojiFilter: @escaping (String) -> Bool, _ select: @escaping (_ file: TelegramMediaFile?, _ unicode: String?) -> Void) -> Picker?)? = nil
 }
 
 final class QrStudioEmojiTabView: View {
@@ -71,13 +71,13 @@ final class QrStudioEmojiTabView: View {
         }
     }
 
-    private static func presentation(isDark: Bool) -> TelegramPresentationTheme {
+    private static func presentation(isDark: Bool) -> AnsiblePresentationTheme {
         let current = theme
         if current.colors.isDark == isDark {
             return current
         }
         if isDark {
-            return TelegramThemeHooks.shared.darkAppearance()
+            return AnsibleThemeHooks.shared.darkAppearance()
         }
         return current.withUpdatedColors(dayClassicPalette)
     }

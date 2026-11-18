@@ -329,7 +329,7 @@ private final class SearchGlobalApproveView : GeneralRowView {
                                 self.searchView = current
                                 self.addSubview(current)
                             }
-                            current.image = TelegramThemeHooks.shared.image(.iconGlobalSearch).precomposed(theme.colors.underSelectedColor)
+                            current.image = AnsibleThemeHooks.shared.image(.iconGlobalSearch).precomposed(theme.colors.underSelectedColor)
                             current.sizeToFit()
                         }
 
@@ -344,7 +344,7 @@ private final class SearchGlobalApproveView : GeneralRowView {
                                 self.chevronView = current
                                 self.addSubview(current)
                             }
-                            current.image = TelegramThemeHooks.shared.image(.iconGlobalSearchChevron).precomposed(theme.colors.underSelectedColor)
+                            current.image = AnsibleThemeHooks.shared.image(.iconGlobalSearchChevron).precomposed(theme.colors.underSelectedColor)
                             current.sizeToFit()
                         }
                     }

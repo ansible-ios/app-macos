@@ -150,7 +150,7 @@ private final class HeaderView: GeneralRowView {
         dismiss.autohighlight = false
         dismiss.setAccessibilityLabel(strings().voiceOverCommonClose)
         
-        dismiss.set(image: TelegramThemeHooks.shared.image(.iconPipClose).precomposed(.white), for: .Normal)
+        dismiss.set(image: AnsibleThemeHooks.shared.image(.iconPipClose).precomposed(.white), for: .Normal)
         dismiss.setGlassEffect(size: NSMakeSize(36, 36))
         dismiss.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
         
@@ -158,7 +158,7 @@ private final class HeaderView: GeneralRowView {
         actions.autohighlight = false
         actions.setAccessibilityLabel(strings().voiceOverCommonMore)
 
-        actions.set(image: TelegramThemeHooks.shared.image(.iconChatActionsActive).precomposed(.white), for: .Normal)
+        actions.set(image: AnsibleThemeHooks.shared.image(.iconChatActionsActive).precomposed(.white), for: .Normal)
         actions.setGlassEffect(size: NSMakeSize(36, 36))
         actions.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
 
@@ -486,7 +486,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                     ),
                     leftView: { previous in
                         let imageView = previous as? ImageView ?? ImageView()
-                        imageView.image = TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed()
+                        imageView.image = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
                         imageView.setFrameSize(18, 18)
                         imageView.contentGravity = .resizeAspectFill
                         return imageView

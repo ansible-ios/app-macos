@@ -38,7 +38,7 @@ Only the modules you will touch most. Find anything else with `grep -rn "func Na
 | `TGUIKit` | Views, `TableView`, `ViewController`, modals, `Window` |
 | `AnsibleContext` | `AccountContextProtocol`; packages take `any AccountContextProtocol` |
 | `Localization` | `strings()`, generated from `Ansible-Mac/en.lproj/Localizable.strings` by `tools/swiftgen.sh` |
-| `AnsibleTheme` | The `theme` global, `TelegramPresentationTheme`, `deliverOnPrepareQueue` |
+| `AnsibleTheme` | The `theme` global, `AnsiblePresentationTheme`, `deliverOnPrepareQueue` |
 | `ColorPalette`, `AnsibleIconsTheme` | Palette colors and `theme.icons` |
 | `InAppSettings` | App preferences stored in Postbox, `FastSettings` |
 | `AnsibleUtils` | Telegram helpers shared by many features (formatting, peer status text, `bestWindow`) |

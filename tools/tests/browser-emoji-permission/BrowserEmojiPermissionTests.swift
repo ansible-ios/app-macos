@@ -68,12 +68,12 @@ final class Queue {
     func justDispatch(_ task: @escaping () -> Void) { tasks.append(task) }
     func drain() { while !tasks.isEmpty { let batch = tasks; tasks = []; batch.forEach { $0() } } }
 }
-struct TelegramPresentationTheme {}
-let theme = TelegramPresentationTheme()
+struct AnsiblePresentationTheme {}
+let theme = AnsiblePresentationTheme()
 struct ModalAlertResult {}
 struct ModalAlertData {
     enum Mode { case confirm(text: String, isThird: Bool) }
-    struct Header { let id: String; let value: (Int, Int, TelegramPresentationTheme) -> BotEmojiStatusPermissionRowItem }
+    struct Header { let id: String; let value: (Int, Int, AnsiblePresentationTheme) -> BotEmojiStatusPermissionRowItem }
     init(title: String?, info: String, description: String?, ok: String, options: [Int], mode: Mode, header: Header) { _ = header.value(0, 0, theme) }
 }
 final class BotEmojiStatusPermissionRowItem { init(_ initialSize: Int, stableId: Int, peer: EnginePeer, context: any AccountContextProtocol) {} }
@@ -83,7 +83,7 @@ final class InputDataModalController {
     func close() { if !closed { closed = true; onDeinit?() } }
     func choose(_ allowed: Bool) { close(); if allowed { completion(.init()) } else { cancel() } }
 }
-func ModalAlertController(data: ModalAlertData, completion: @escaping (ModalAlertResult) -> Void, cancel: @escaping () -> Void = {}, onDeinit: (() -> Void)?, presentation: TelegramPresentationTheme) -> InputDataModalController { .init(completion: completion, cancel: cancel, onDeinit: onDeinit) }
+func ModalAlertController(data: ModalAlertData, completion: @escaping (ModalAlertResult) -> Void, cancel: @escaping () -> Void = {}, onDeinit: (() -> Void)?, presentation: AnsiblePresentationTheme) -> InputDataModalController { .init(completion: completion, cancel: cancel, onDeinit: onDeinit) }
 enum Animation { case scaleCenter }
 final class Window {
     var prompts: [InputDataModalController] = []; var texts: [String] = []; var onToast: (() -> Void)?

@@ -3,7 +3,7 @@ extension String { var nsstring: NSString { self as NSString } }
 extension TelegramMediaFile { var customEmojiText: String? { "emoji" } }
 extension CommonStrings { var emojiPackPremiumAlert: String { "Premium" } }
 enum PremiumBoardingSource { case premiumEmoji }
-typealias TelegramPresentationTheme = Int
+typealias AnsiblePresentationTheme = Int
 extension NSAttributedString {
     static func makeAnimated(_ file: TelegramMediaFile, text: String) -> NSAttributedString { NSAttributedString(string: text, attributes: [.init("testFileId"): file.fileId]) }
 }

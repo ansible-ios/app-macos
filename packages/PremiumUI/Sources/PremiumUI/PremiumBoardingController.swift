@@ -289,7 +289,7 @@ public enum PremiumLogEvents  {
 private final class Arguments {
     public let context: (any AccountContextProtocol)
     public let analyticsContext: AnalyticsContext
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
     public let showTerms:()->Void
     public let showPrivacy:()->Void
     public let openInfo:(PeerId, Bool, MessageId?, ChatInitialAction?)->Void
@@ -298,7 +298,7 @@ private final class Arguments {
     public let execute:(String)->Void
     public let copyLink:(String)->Void
     public let toggleAds:(Bool)->Void
-    public init(context: (any AccountContextProtocol), analyticsContext: AnalyticsContext, presentation: TelegramPresentationTheme, showTerms: @escaping()->Void, showPrivacy:@escaping()->Void, openInfo:@escaping(PeerId, Bool, MessageId?, ChatInitialAction?)->Void, openFeature:@escaping(PremiumValue, Bool)->Void, togglePeriod:@escaping(PremiumPeriod)->Void, execute:@escaping(String)->Void, copyLink:@escaping(String)->Void, toggleAds:@escaping(Bool)->Void) {
+    public init(context: (any AccountContextProtocol), analyticsContext: AnalyticsContext, presentation: AnsiblePresentationTheme, showTerms: @escaping()->Void, showPrivacy:@escaping()->Void, openInfo:@escaping(PeerId, Bool, MessageId?, ChatInitialAction?)->Void, openFeature:@escaping(PremiumValue, Bool)->Void, togglePeriod:@escaping(PremiumPeriod)->Void, execute:@escaping(String)->Void, copyLink:@escaping(String)->Void, toggleAds:@escaping(Bool)->Void) {
         self.context = context
         self.analyticsContext = analyticsContext
         self.presentation = presentation
@@ -366,7 +366,7 @@ extension PremiumValue {
         return [colors[index]]
     }
     
-    public func icon(_ index: Int, business: Bool, presentation: TelegramPresentationTheme) -> CGImage {
+    public func icon(_ index: Int, business: Bool, presentation: AnsiblePresentationTheme) -> CGImage {
         let image = self.image(presentation)
         let size = image.backingSize
         let img = generateImage(size, contextGenerator: { size, ctx in
@@ -397,74 +397,74 @@ extension PremiumValue {
         })!
     }
     
-    public func image(_ presentation: TelegramPresentationTheme) -> CGImage {
+    public func image(_ presentation: AnsiblePresentationTheme) -> CGImage {
         switch self {
         case .double_limits:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingX2).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingX2).precomposed(presentation.colors.accent)
         case .more_upload:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingFiles).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingFiles).precomposed(presentation.colors.accent)
         case .faster_download:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingSpeed).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingSpeed).precomposed(presentation.colors.accent)
         case .voice_to_text:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingVoice).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingVoice).precomposed(presentation.colors.accent)
         case .no_ads:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingAds).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingAds).precomposed(presentation.colors.accent)
         case .infinite_reactions:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingReactions).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingReactions).precomposed(presentation.colors.accent)
         case .emoji_status:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingStatus).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingStatus).precomposed(presentation.colors.accent)
         case .premium_stickers:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingStickers).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingStickers).precomposed(presentation.colors.accent)
         case .animated_emoji:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingEmoji).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingEmoji).precomposed(presentation.colors.accent)
         case .advanced_chat_management:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingChats).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingChats).precomposed(presentation.colors.accent)
         case .profile_badge:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingBadge).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingBadge).precomposed(presentation.colors.accent)
         case .animated_userpics:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingProfile).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingProfile).precomposed(presentation.colors.accent)
         case .translations:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingTranslations).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingTranslations).precomposed(presentation.colors.accent)
         case .stories:
-            return TelegramThemeHooks.shared.image(.iconPremiumStories).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumStories).precomposed(presentation.colors.accent)
         case .wallpapers:
-            return TelegramThemeHooks.shared.image(.iconPremiumWallpapers).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumWallpapers).precomposed(presentation.colors.accent)
         case .peer_colors:
-            return TelegramThemeHooks.shared.image(.iconPremiumPeerColors).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumPeerColors).precomposed(presentation.colors.accent)
         case .saved_tags:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingTag).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingTag).precomposed(presentation.colors.accent)
         case .last_seen:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingLastSeen).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingLastSeen).precomposed(presentation.colors.accent)
         case .message_privacy:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingMessagePrivacy).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingMessagePrivacy).precomposed(presentation.colors.accent)
         case .pm_noforwards:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingNoforward).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingNoforward).precomposed(presentation.colors.accent)
         case .business:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingBusiness).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingBusiness).precomposed(presentation.colors.accent)
         case .business_location:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessLocation).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessLocation).precomposed(presentation.colors.accent)
         case .business_hours:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessHours).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessHours).precomposed(presentation.colors.accent)
         case .quick_replies:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessQuickReply).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessQuickReply).precomposed(presentation.colors.accent)
         case .greeting_message:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessGreeting).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessGreeting).precomposed(presentation.colors.accent)
         case .away_message:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessAway).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessAway).precomposed(presentation.colors.accent)
         case .business_bots:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessBot).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessBot).precomposed(presentation.colors.accent)
         case .business_intro:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessIntro).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessIntro).precomposed(presentation.colors.accent)
         case .business_links:
-            return TelegramThemeHooks.shared.image(.iconPremiumBusinessLinks).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBusinessLinks).precomposed(presentation.colors.accent)
         case .folder_tags:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingTag).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingTag).precomposed(presentation.colors.accent)
         case .todo:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingTodo).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingTodo).precomposed(presentation.colors.accent)
         case .ai_compose:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingAI).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingAI).precomposed(presentation.colors.accent)
         case .rich_formatting:
-            return TelegramThemeHooks.shared.image(.iconPremiumBoardingArticle).precomposed(presentation.colors.accent)
+            return AnsibleThemeHooks.shared.image(.iconPremiumBoardingArticle).precomposed(presentation.colors.accent)
         }
     }
 
@@ -914,8 +914,8 @@ private final class PremiumBoardingView : View {
         public let dismiss = ImageButton()
         private let container = View()
         private let titleView = TextView()
-        public let presentation: TelegramPresentationTheme
-        public init(frame frameRect: NSRect, presentation: TelegramPresentationTheme) {
+        public let presentation: AnsiblePresentationTheme
+        public init(frame frameRect: NSRect, presentation: AnsiblePresentationTheme) {
             self.presentation = presentation
             super.init(frame: frameRect)
             self.layer?.masksToBounds = false
@@ -980,9 +980,9 @@ private final class PremiumBoardingView : View {
     
     private var state: State?
     private var arguments: Arguments?
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
 
-    public init(frame frameRect: NSRect, presentation: TelegramPresentationTheme) {
+    public init(frame frameRect: NSRect, presentation: AnsiblePresentationTheme) {
         self.presentation = presentation
         self.headerView = HeaderView(frame: .zero, presentation: presentation)
         super.init(frame: frameRect)
@@ -1224,15 +1224,15 @@ public final class PremiumBoardingController : ModalViewController {
     fileprivate let context: (any AccountContextProtocol)
     private let source: PremiumLogEventsSource
     private let openFeatures: Bool
-    private let presentation: TelegramPresentationTheme
+    private let presentation: AnsiblePresentationTheme
     private var focusOnItemTag: PremiumBoardingEntryTag?
     private let analyticsPresentation: AnalyticsPresentation?
 
-    public convenience init(context: (any AccountContextProtocol), source: PremiumLogEventsSource = .settings, openFeatures: Bool = false, presentation: TelegramPresentationTheme = theme, focusOnItemTag: PremiumBoardingEntryTag? = nil) {
+    public convenience init(context: (any AccountContextProtocol), source: PremiumLogEventsSource = .settings, openFeatures: Bool = false, presentation: AnsiblePresentationTheme = theme, focusOnItemTag: PremiumBoardingEntryTag? = nil) {
         self.init(context: context, source: source, openFeatures: openFeatures, presentation: presentation, focusOnItemTag: focusOnItemTag, analyticsContext: nil)
     }
 
-    public init(context: (any AccountContextProtocol), source: PremiumLogEventsSource = .settings, openFeatures: Bool = false, presentation: TelegramPresentationTheme = theme, focusOnItemTag: PremiumBoardingEntryTag? = nil, analyticsContext: AnalyticsContext?) {
+    public init(context: (any AccountContextProtocol), source: PremiumLogEventsSource = .settings, openFeatures: Bool = false, presentation: AnsiblePresentationTheme = theme, focusOnItemTag: PremiumBoardingEntryTag? = nil, analyticsContext: AnalyticsContext?) {
         self.analyticsPresentation = analyticsContext?.beginPresentation()
         self.context = context
         self.source = source

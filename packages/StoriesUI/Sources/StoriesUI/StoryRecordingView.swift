@@ -36,7 +36,7 @@ private final class LockControl : View {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         backgroundColor = theme.colors.background
         head.image = theme.icons.chatOverlayLockerHeadRecording
         head.sizeToFit()
@@ -447,7 +447,7 @@ class StoryRecordingView: View {
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
         
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         
         self.statusImage.image = self.storyState?.recordType == .voice ? theme.icons.chatVoiceRecording : theme.icons.chatVideoRecording
         self.backgroundColor = NSColor.black

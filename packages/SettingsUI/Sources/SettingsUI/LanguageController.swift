@@ -44,7 +44,7 @@ private struct State : Equatable {
     public var localication: LocalizationListState = .defaultSettings
     public var settings: BaseApplicationSettings = .defaultSettings
     public var searchState: SearchState = .init(state: .None, request: nil)
-    public var language: TelegramLocalization
+    public var language: AnsibleLocalization
     public var isPremium: Bool
     public var loading: LocalizationInfo?
 }

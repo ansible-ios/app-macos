@@ -20,7 +20,7 @@ public class ChatUnreadRowItem: ChatRowItem {
     
     public let text: TextViewLayout;
     
-    public override init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ context: any AccountContextProtocol, _ entry:ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ context: any AccountContextProtocol, _ entry:ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         
         let titleAttr:NSMutableAttributedString = NSMutableAttributedString()
         let _ = titleAttr.append(string: strings().messagesUnreadMark, color: theme.colors.grayText, font: .normal(.text))

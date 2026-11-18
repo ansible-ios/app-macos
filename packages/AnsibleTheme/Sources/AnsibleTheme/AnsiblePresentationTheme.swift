@@ -26,7 +26,7 @@ public struct ActivitiesTheme : Equatable {
 }
 
 
-public final class TelegramTabBarTheme  {
+public final class AnsibleTabBarTheme  {
     public let color: NSColor
     public let selectedColor: NSColor
     public let badgeTextColor: NSColor
@@ -49,7 +49,7 @@ public final class TelegramTabBarTheme  {
 }
 
 
-public final class TelegramChatListTheme {
+public final class AnsibleChatListTheme {
     public let selectedBackgroundColor: NSColor
     public let singleLayoutSelectedBackgroundColor: NSColor
     public let activeDraggingBackgroundColor: NSColor
@@ -192,7 +192,7 @@ public func backgroundExists(_ wallpaper: Wallpaper, palette: ColorPalette) -> B
     #endif
 }
 
-public func generateBackgroundMode(_ wallpaper: Wallpaper, palette: ColorPalette, maxSize: NSSize = NSMakeSize(1040, 1580), emoticonThemes: [(ChatTheme, TelegramPresentationTheme)], scaleFactor: CGFloat = System.backingScale) -> TableBackgroundMode {
+public func generateBackgroundMode(_ wallpaper: Wallpaper, palette: ColorPalette, maxSize: NSSize = NSMakeSize(1040, 1580), emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)], scaleFactor: CGFloat = System.backingScale) -> TableBackgroundMode {
     #if !SHARE
     var backgroundMode: TableBackgroundMode
     // Cap the decoded wallpaper at the on-screen pixel size instead of holding the full native bitmap:
@@ -200,7 +200,7 @@ public func generateBackgroundMode(_ wallpaper: Wallpaper, palette: ColorPalette
     let maxPixelSize = max(maxSize.width, maxSize.height) * scaleFactor
     switch wallpaper {
     case .builtin:
-        backgroundMode = TelegramPresentationTheme.defaultBackground(palette)
+        backgroundMode = AnsiblePresentationTheme.defaultBackground(palette)
     case let.color(color):
         backgroundMode = .color(color: NSColor(color))
     case let .gradient(_, colors, rotation):
@@ -209,7 +209,7 @@ public func generateBackgroundMode(_ wallpaper: Wallpaper, palette: ColorPalette
         if let resource = largestImageRepresentation(representation)?.resource, let image = downsampledImage(contentsOfFile: wallpaperPath(resource, palette: palette, settings: settings), maxPixelSize: maxPixelSize) {
             backgroundMode = .background(image: image, intensity: settings.intensity, colors: settings.colors.map { NSColor(argb: $0) }, rotation: settings.rotation, metadata: nil)
         } else {
-            backgroundMode = TelegramPresentationTheme.defaultBackground(palette)
+            backgroundMode = AnsiblePresentationTheme.defaultBackground(palette)
         }
         
     case let .file(_, file, settings, _, gift):
@@ -222,7 +222,7 @@ public func generateBackgroundMode(_ wallpaper: Wallpaper, palette: ColorPalette
             }
             backgroundMode = .background(image: image, intensity: settings.intensity, colors: settings.colors.map { NSColor(argb: $0) }, rotation: settings.rotation, metadata: svg_metadata)
         } else {
-            backgroundMode = TelegramPresentationTheme.defaultBackground(palette)
+            backgroundMode = AnsiblePresentationTheme.defaultBackground(palette)
         }
     case .none:
         backgroundMode = .color(color: palette.listBackground)
@@ -230,7 +230,7 @@ public func generateBackgroundMode(_ wallpaper: Wallpaper, palette: ColorPalette
         if let image = downsampledImage(contentsOfFile: wallpaperPath(representation.resource, palette: palette, settings: WallpaperSettings(blur: blurred)), maxPixelSize: maxPixelSize) {
             backgroundMode = .background(image: image, intensity: nil, colors: nil, rotation: nil, metadata: nil)
         } else {
-            backgroundMode = TelegramPresentationTheme.defaultBackground(palette)
+            backgroundMode = AnsiblePresentationTheme.defaultBackground(palette)
         }
     case let .emoticon(emoticon):
         if let first = emoticonThemes.first(where: { $0.0.id == emoticon.strippedEmoji }) {
@@ -285,17 +285,17 @@ private func builtinBackgound(_ palette: ColorPalette) -> NSImage {
     }
 }
 #endif
-open class TelegramPresentationTheme : PresentationTheme {
-    public let chatList:TelegramChatListTheme
+open class AnsiblePresentationTheme : PresentationTheme {
+    public let chatList:AnsibleChatListTheme
     #if !SHARE
-    public let chat: TelegramChatColors
+    public let chat: AnsibleChatColors
     #endif
     public let cloudTheme: AnsibleTheme?
-    public let tabBar:TelegramTabBarTheme
+    public let tabBar:AnsibleTabBarTheme
     public let icons: AnsibleIconsTheme
     public let bubbled: Bool
     public let wallpaper: ThemeWallpaper
-    public let emoticonThemes: [(ChatTheme, TelegramPresentationTheme)]
+    public let emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)]
     public let liquidGlass: Bool
     public let liteMode: LiteMode
     public let scaleFactor: CGFloat
@@ -315,7 +315,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _emptyChatNavigationPrev {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.image(.iconGeneralNext).precomposed(self.chatServiceItemTextColor, flipHorizontal: true)
+            let new = AnsibleThemeHooks.shared.image(.iconGeneralNext).precomposed(self.chatServiceItemTextColor, flipHorizontal: true)
             _emptyChatNavigationPrev = new
             return new
         }
@@ -324,7 +324,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _emptyChatNavigationNext {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.image(.iconGeneralNext).precomposed(self.chatServiceItemTextColor)
+            let new = AnsibleThemeHooks.shared.image(.iconGeneralNext).precomposed(self.chatServiceItemTextColor)
             _emptyChatNavigationNext = new
             return new
         }
@@ -336,7 +336,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _chatReadMarkServiceOverlayBubble1 {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.image(.iconMessageCheckMark1).precomposed(self.chatServiceItemTextColor)
+            let new = AnsibleThemeHooks.shared.image(.iconMessageCheckMark1).precomposed(self.chatServiceItemTextColor)
             _chatReadMarkServiceOverlayBubble1 = new
             return new
         }
@@ -345,7 +345,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _chatReadMarkServiceOverlayBubble2 {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.image(.iconMessageCheckmark2).precomposed(self.chatServiceItemTextColor)
+            let new = AnsibleThemeHooks.shared.image(.iconMessageCheckmark2).precomposed(self.chatServiceItemTextColor)
             _chatReadMarkServiceOverlayBubble2 = new
             return new
         }
@@ -358,7 +358,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _chatSendingOverlayServiceFrame {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.sendingFrame(self.chatServiceItemTextColor)
+            let new = AnsibleThemeHooks.shared.sendingFrame(self.chatServiceItemTextColor)
             _chatSendingOverlayServiceFrame = new
             return new
         }
@@ -367,7 +367,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _chatSendingOverlayServiceHour {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.clockMinImage(self.chatServiceItemTextColor)
+            let new = AnsibleThemeHooks.shared.clockMinImage(self.chatServiceItemTextColor)
             _chatSendingOverlayServiceHour = new
             return new
         }
@@ -376,7 +376,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _chatSendingOverlayServiceMin {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.clockMinImage(self.chatServiceItemTextColor)
+            let new = AnsibleThemeHooks.shared.clockMinImage(self.chatServiceItemTextColor)
             _chatSendingOverlayServiceMin = new
             return new
         }
@@ -387,7 +387,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _chatChannelViewsOverlayServiceBubble {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.image(.iconChannelViews).precomposed(self.chatServiceItemTextColor)
+            let new = AnsibleThemeHooks.shared.image(.iconChannelViews).precomposed(self.chatServiceItemTextColor)
             _chatChannelViewsOverlayServiceBubble = new
             return new
         }
@@ -398,7 +398,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _chatPaidMessageOverlayServiceBubble {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.image(.iconPaidMessageStatus).precomposed(self.chatServiceItemTextColor)
+            let new = AnsibleThemeHooks.shared.image(.iconPaidMessageStatus).precomposed(self.chatServiceItemTextColor)
             _chatPaidMessageOverlayServiceBubble = new
             return new
         }
@@ -409,7 +409,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _chatDiceStakeOverlayServiceBubble {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.image(.iconTonCurrency).precomposed(self.chatServiceItemTextColor, zoom: 0.8)
+            let new = AnsibleThemeHooks.shared.image(.iconTonCurrency).precomposed(self.chatServiceItemTextColor, zoom: 0.8)
             _chatDiceStakeOverlayServiceBubble = new
             return new
         }
@@ -420,7 +420,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _chat_pinned_message_overlay_service_bubble {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.image(.iconChatPinnedMessage).precomposed(self.chatServiceItemTextColor)
+            let new = AnsibleThemeHooks.shared.image(.iconChatPinnedMessage).precomposed(self.chatServiceItemTextColor)
             _chat_pinned_message_overlay_service_bubble = new
             return new
         }
@@ -432,7 +432,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _chat_reply_count_overlay_service_bubble {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.image(.iconChatRepliesCount).precomposed(self.chatServiceItemTextColor)
+            let new = AnsibleThemeHooks.shared.image(.iconChatRepliesCount).precomposed(self.chatServiceItemTextColor)
             _chat_reply_count_overlay_service_bubble = new
             return new
         }
@@ -444,7 +444,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _chat_comments_overlay {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.image(.iconChannelCommentsOverlay).precomposed(self.chatServiceItemTextColor)
+            let new = AnsibleThemeHooks.shared.image(.iconChannelCommentsOverlay).precomposed(self.chatServiceItemTextColor)
             _chat_comments_overlay = new
             return new
         }
@@ -454,7 +454,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _chat_toggle_selected {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.chatGroupToggleSelected(colors.accentIcon, colors.underSelectedColor)
+            let new = AnsibleThemeHooks.shared.chatGroupToggleSelected(colors.accentIcon, colors.underSelectedColor)
             _chat_toggle_selected = new
             return new
         }
@@ -464,7 +464,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _chat_toggle_unselected {
             return icon
         } else {
-            let new = TelegramThemeHooks.shared.chatGroupToggleUnselected(chatBackground ==  chatServiceItemColor ? colors.grayIcon.withAlphaComponent(0.6) : chatServiceItemColor, NSColor.black.withAlphaComponent(0.05))
+            let new = AnsibleThemeHooks.shared.chatGroupToggleUnselected(chatBackground ==  chatServiceItemColor ? colors.grayIcon.withAlphaComponent(0.6) : chatServiceItemColor, NSColor.black.withAlphaComponent(0.05))
             _chat_toggle_unselected = new
             return new
         }
@@ -475,7 +475,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _empty_chat_showtips {
             return icon
         } else {
-            _empty_chat_showtips = TelegramThemeHooks.shared.image(.iconEmptyShowTips).precomposed(chatServiceItemTextColor)
+            _empty_chat_showtips = AnsibleThemeHooks.shared.image(.iconEmptyShowTips).precomposed(chatServiceItemTextColor)
             return _empty_chat_showtips!
         }
     }
@@ -484,7 +484,7 @@ open class TelegramPresentationTheme : PresentationTheme {
         if let icon = _empty_chat_hidetips {
             return icon
         } else {
-            _empty_chat_hidetips = TelegramThemeHooks.shared.image(.iconEmptyCloseTips).precomposed(chatServiceItemTextColor)
+            _empty_chat_hidetips = AnsibleThemeHooks.shared.image(.iconEmptyCloseTips).precomposed(chatServiceItemTextColor)
             return _empty_chat_hidetips!
         }
     }
@@ -636,10 +636,10 @@ open class TelegramPresentationTheme : PresentationTheme {
         self._backgroundMode = computed
         return computed
     }
-    public init(colors: ColorPalette, cloudTheme: AnsibleTheme?, search: SearchTheme, chatList: TelegramChatListTheme, tabBar: TelegramTabBarTheme, icons: AnsibleIconsTheme, bubbled: Bool, fontSize: CGFloat, wallpaper: ThemeWallpaper, generated: Bool = false, emoticonThemes: [(ChatTheme, TelegramPresentationTheme)] = [], backgroundSize: NSSize = NSMakeSize(1040, 1580), liquidGlass: Bool = System.liquidGlassAvailable, liteMode: LiteMode = TelegramPresentationTheme.currentLiteMode(), scaleFactor: CGFloat = System.backingScale) {
+    public init(colors: ColorPalette, cloudTheme: AnsibleTheme?, search: SearchTheme, chatList: AnsibleChatListTheme, tabBar: AnsibleTabBarTheme, icons: AnsibleIconsTheme, bubbled: Bool, fontSize: CGFloat, wallpaper: ThemeWallpaper, generated: Bool = false, emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)] = [], backgroundSize: NSSize = NSMakeSize(1040, 1580), liquidGlass: Bool = System.liquidGlassAvailable, liteMode: LiteMode = AnsiblePresentationTheme.currentLiteMode(), scaleFactor: CGFloat = System.backingScale) {
         self.chatList = chatList
         #if !SHARE
-            self.chat = TelegramChatColors(colors, bubbled)
+            self.chat = AnsibleChatColors(colors, bubbled)
         #endif
         self.backgroundSize = backgroundSize
         self.tabBar = tabBar
@@ -653,14 +653,14 @@ open class TelegramPresentationTheme : PresentationTheme {
         self.liteMode = liteMode
         self.scaleFactor = scaleFactor
         let inputSelectingColor = colors.isDark ? colors.accentSelect : colors.accentSelect.withAlphaComponent(0.65)
-        super.init(colors: colors, search: search, inputTheme: .init(quote: .init(foreground: .init(main: colors.accent), icon: TelegramThemeHooks.shared.image(.iconQuote), collapse: TelegramThemeHooks.shared.image(.iconQuoteCollapse), expand: TelegramThemeHooks.shared.image(.iconQuoteExpand)), indicatorColor: colors.accent, backgroundColor: colors.background, selectingColor: inputSelectingColor, textColor: colors.text, accentColor: colors.accent, grayTextColor: colors.grayText, fontSize: fontSize))
+        super.init(colors: colors, search: search, inputTheme: .init(quote: .init(foreground: .init(main: colors.accent), icon: AnsibleThemeHooks.shared.image(.iconQuote), collapse: AnsibleThemeHooks.shared.image(.iconQuoteCollapse), expand: AnsibleThemeHooks.shared.image(.iconQuoteExpand)), indicatorColor: colors.accent, backgroundColor: colors.background, selectingColor: inputSelectingColor, textColor: colors.text, accentColor: colors.accent, grayTextColor: colors.grayText, fontSize: fontSize))
         if !Thread.isMainThread && generated {
             _ = self.backgroundMode
         }
     }
     
     public static func currentLiteMode() -> LiteMode {
-        return TelegramThemeHooks.shared.liteMode()
+        return AnsibleThemeHooks.shared.liteMode()
     }
 
     open var dark: Bool {
@@ -693,7 +693,7 @@ open class TelegramPresentationTheme : PresentationTheme {
     /// `colors + bubbled`, so equal inputs ⇒ equal outputs.
     open override func isEqual(_ other: PresentationTheme) -> Bool {
         if self === other { return true }
-        guard let other = other as? TelegramPresentationTheme else {
+        guard let other = other as? AnsiblePresentationTheme else {
             return false
         }
         if self.colors != other.colors {
@@ -732,31 +732,31 @@ open class TelegramPresentationTheme : PresentationTheme {
         return true
     }
 
-    open func withUpdatedColors(_ colors: ColorPalette) -> TelegramPresentationTheme {
-        return TelegramPresentationTheme(colors: colors, cloudTheme: self.cloudTheme, search: self.search, chatList: self.chatList, tabBar: self.tabBar, icons: TelegramThemeHooks.shared.icons(colors, self.bubbled), bubbled: self.bubbled, fontSize: self.fontSize, wallpaper: self.wallpaper, emoticonThemes: self.emoticonThemes, backgroundSize: self.backgroundSize, liquidGlass: self.liquidGlass, liteMode: self.liteMode, scaleFactor: self.scaleFactor)
+    open func withUpdatedColors(_ colors: ColorPalette) -> AnsiblePresentationTheme {
+        return AnsiblePresentationTheme(colors: colors, cloudTheme: self.cloudTheme, search: self.search, chatList: self.chatList, tabBar: self.tabBar, icons: AnsibleThemeHooks.shared.icons(colors, self.bubbled), bubbled: self.bubbled, fontSize: self.fontSize, wallpaper: self.wallpaper, emoticonThemes: self.emoticonThemes, backgroundSize: self.backgroundSize, liquidGlass: self.liquidGlass, liteMode: self.liteMode, scaleFactor: self.scaleFactor)
     }
     
-    open func withUpdatedEmoticonThemes(_ emoticonThemes: [(ChatTheme, TelegramPresentationTheme)]) -> TelegramPresentationTheme {
-        return TelegramPresentationTheme(colors: colors, cloudTheme: self.cloudTheme, search: self.search, chatList: self.chatList, tabBar: self.tabBar, icons: self.icons, bubbled: self.bubbled, fontSize: self.fontSize, wallpaper: self.wallpaper, emoticonThemes: emoticonThemes, backgroundSize: self.backgroundSize, liquidGlass: self.liquidGlass, liteMode: self.liteMode, scaleFactor: self.scaleFactor)
+    open func withUpdatedEmoticonThemes(_ emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)]) -> AnsiblePresentationTheme {
+        return AnsiblePresentationTheme(colors: colors, cloudTheme: self.cloudTheme, search: self.search, chatList: self.chatList, tabBar: self.tabBar, icons: self.icons, bubbled: self.bubbled, fontSize: self.fontSize, wallpaper: self.wallpaper, emoticonThemes: emoticonThemes, backgroundSize: self.backgroundSize, liquidGlass: self.liquidGlass, liteMode: self.liteMode, scaleFactor: self.scaleFactor)
     }
     
-    open func withUpdatedChatMode(_ bubbled: Bool) -> TelegramPresentationTheme {
-        return TelegramPresentationTheme(colors: colors, cloudTheme: self.cloudTheme, search: self.search, chatList: self.chatList, tabBar: self.tabBar, icons: TelegramThemeHooks.shared.icons(colors, bubbled), bubbled: bubbled, fontSize: self.fontSize, wallpaper: self.wallpaper, emoticonThemes: self.emoticonThemes, backgroundSize: self.backgroundSize, liquidGlass: self.liquidGlass, liteMode: self.liteMode, scaleFactor: self.scaleFactor)
+    open func withUpdatedChatMode(_ bubbled: Bool) -> AnsiblePresentationTheme {
+        return AnsiblePresentationTheme(colors: colors, cloudTheme: self.cloudTheme, search: self.search, chatList: self.chatList, tabBar: self.tabBar, icons: AnsibleThemeHooks.shared.icons(colors, bubbled), bubbled: bubbled, fontSize: self.fontSize, wallpaper: self.wallpaper, emoticonThemes: self.emoticonThemes, backgroundSize: self.backgroundSize, liquidGlass: self.liquidGlass, liteMode: self.liteMode, scaleFactor: self.scaleFactor)
     }
-    open func new() -> TelegramPresentationTheme {
-        return TelegramPresentationTheme(colors: self.colors, cloudTheme: self.cloudTheme, search: self.search, chatList: self.chatList, tabBar: self.tabBar, icons: self.icons, bubbled: self.bubbled, fontSize: self.fontSize, wallpaper: self.wallpaper, emoticonThemes: self.emoticonThemes, backgroundSize: self.backgroundSize, liteMode: TelegramPresentationTheme.currentLiteMode(), scaleFactor: System.backingScale)
+    open func new() -> AnsiblePresentationTheme {
+        return AnsiblePresentationTheme(colors: self.colors, cloudTheme: self.cloudTheme, search: self.search, chatList: self.chatList, tabBar: self.tabBar, icons: self.icons, bubbled: self.bubbled, fontSize: self.fontSize, wallpaper: self.wallpaper, emoticonThemes: self.emoticonThemes, backgroundSize: self.backgroundSize, liteMode: AnsiblePresentationTheme.currentLiteMode(), scaleFactor: System.backingScale)
     }
 
     
-    open func withUpdatedBackgroundSize(_ size: NSSize) -> TelegramPresentationTheme {
+    open func withUpdatedBackgroundSize(_ size: NSSize) -> AnsiblePresentationTheme {
         // Return a copy rather than mutating self: a preview (Appearance/color pickers) derives a small
         // backgroundSize from the LIVE theme, and now that backgroundSize drives the wallpaper decode
         // resolution, mutating self would shrink the real chat wallpaper on the next theme derivation.
-        return TelegramPresentationTheme(colors: self.colors, cloudTheme: self.cloudTheme, search: self.search, chatList: self.chatList, tabBar: self.tabBar, icons: self.icons, bubbled: self.bubbled, fontSize: self.fontSize, wallpaper: self.wallpaper, emoticonThemes: self.emoticonThemes, backgroundSize: size, liquidGlass: self.liquidGlass, liteMode: self.liteMode, scaleFactor: self.scaleFactor)
+        return AnsiblePresentationTheme(colors: self.colors, cloudTheme: self.cloudTheme, search: self.search, chatList: self.chatList, tabBar: self.tabBar, icons: self.icons, bubbled: self.bubbled, fontSize: self.fontSize, wallpaper: self.wallpaper, emoticonThemes: self.emoticonThemes, backgroundSize: size, liquidGlass: self.liquidGlass, liteMode: self.liteMode, scaleFactor: self.scaleFactor)
     }
     
-    open func withUpdatedWallpaper(_ wallpaper: ThemeWallpaper) -> TelegramPresentationTheme {
-        return TelegramPresentationTheme(colors: self.colors, cloudTheme: self.cloudTheme, search: self.search, chatList: self.chatList, tabBar: self.tabBar, icons: self.icons, bubbled: self.bubbled, fontSize: self.fontSize, wallpaper: wallpaper, emoticonThemes: self.emoticonThemes, backgroundSize: self.backgroundSize, liquidGlass: self.liquidGlass, liteMode: self.liteMode, scaleFactor: self.scaleFactor)
+    open func withUpdatedWallpaper(_ wallpaper: ThemeWallpaper) -> AnsiblePresentationTheme {
+        return AnsiblePresentationTheme(colors: self.colors, cloudTheme: self.cloudTheme, search: self.search, chatList: self.chatList, tabBar: self.tabBar, icons: self.icons, bubbled: self.bubbled, fontSize: self.fontSize, wallpaper: wallpaper, emoticonThemes: self.emoticonThemes, backgroundSize: self.backgroundSize, liquidGlass: self.liquidGlass, liteMode: self.liteMode, scaleFactor: self.scaleFactor)
     }
     
     open func activity(key:Int32, foregroundColor: NSColor, backgroundColor: NSColor) -> ActivitiesTheme {
@@ -769,9 +769,9 @@ open class TelegramPresentationTheme : PresentationTheme {
     
 }
 
-public let _themeSignal:ValuePromise<TelegramPresentationTheme> = ValuePromise(ignoreRepeated: true)
+public let _themeSignal:ValuePromise<AnsiblePresentationTheme> = ValuePromise(ignoreRepeated: true)
 
-public var themeSignal:Signal<TelegramPresentationTheme, NoError> {
+public var themeSignal:Signal<AnsiblePresentationTheme, NoError> {
     return _themeSignal.get() |> distinctUntilChanged |> deliverOnMainQueue
 }
 

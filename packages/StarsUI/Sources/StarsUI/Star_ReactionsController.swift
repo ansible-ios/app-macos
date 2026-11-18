@@ -23,14 +23,14 @@ import AppAnalytics
 
 private final class Arguments {
     let context: any AccountContextProtocol
-    let presentation: TelegramPresentationTheme
+    let presentation: AnsiblePresentationTheme
     let dismiss:()->Void
     let react:()->Void
     let updateValue:(Int64)->Void
     let openPeer:(EnginePeer)->Void
     let toggleShowInTop:()->Void
     let toggleSendAs:(EnginePeer)->Void
-    init(context: any AccountContextProtocol, presentation: TelegramPresentationTheme, dismiss:@escaping()->Void, react:@escaping()->Void, updateValue:@escaping(Int64)->Void, openPeer:@escaping(EnginePeer)->Void, toggleShowInTop:@escaping()->Void, toggleSendAs:@escaping(EnginePeer)->Void) {
+    init(context: any AccountContextProtocol, presentation: AnsiblePresentationTheme, dismiss:@escaping()->Void, react:@escaping()->Void, updateValue:@escaping(Int64)->Void, openPeer:@escaping(EnginePeer)->Void, toggleShowInTop:@escaping()->Void, toggleSendAs:@escaping(EnginePeer)->Void) {
         self.context = context
         self.dismiss = dismiss
         self.react = react
@@ -133,7 +133,7 @@ private final class HeaderItem : GeneralRowItem {
     fileprivate let openPeer:(EnginePeer)->Void
     fileprivate let toggleShowInTop:()->Void
     fileprivate let toggleSendAs:(EnginePeer)->Void
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
 
     var showMe: Bool {
         return state.showMeInTop
@@ -150,7 +150,7 @@ private final class HeaderItem : GeneralRowItem {
     fileprivate var senders: [Sender] = []
     fileprivate var sendAs: [EnginePeer] = []
 
-    init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, state: State, viewType: GeneralViewType, updateValue:@escaping(Int64)->Void, action:@escaping()->Void, close:@escaping()->Void, openPeer:@escaping(EnginePeer)->Void, toggleShowInTop:@escaping()->Void, sendAs: [EnginePeer], toggleSendAs:@escaping(EnginePeer)->Void, presentation: TelegramPresentationTheme) {
+    init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, state: State, viewType: GeneralViewType, updateValue:@escaping(Int64)->Void, action:@escaping()->Void, close:@escaping()->Void, openPeer:@escaping(EnginePeer)->Void, toggleShowInTop:@escaping()->Void, sendAs: [EnginePeer], toggleSendAs:@escaping(EnginePeer)->Void, presentation: AnsiblePresentationTheme) {
         self.context = context
         self.state = state
         self.close = close
@@ -424,7 +424,7 @@ private final class SendersView: View {
             badgeView.layer?.borderColor = item.presentation.colors.background.cgColor
             badgeView.layer?.borderWidth = 2
             
-            amountIcon.image = TelegramThemeHooks.shared.image(.iconMenuStar).precomposed(NSColor.white, zoom: 0.875)
+            amountIcon.image = AnsibleThemeHooks.shared.image(.iconMenuStar).precomposed(NSColor.white, zoom: 0.875)
             amountIcon.sizeToFit()
             
             badgeView.setFrameSize(NSMakeSize(amountView.frame.width + 14 + amountIcon.frame.width, amountView.frame.height + 5))
@@ -561,7 +561,7 @@ private final class ShowMeInTopView: View {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(showMe: Bool, presentation: TelegramPresentationTheme) {
+    func update(showMe: Bool, presentation: AnsiblePresentationTheme) {
         
         selection.update(unselectedImage: presentation.icons.chatToggleUnselected, selectedImage: presentation.icons.chatToggleSelected, selected: showMe, animated: true)
         
@@ -603,7 +603,7 @@ private final class FromPeerView: Control {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(_ peer: EnginePeer, sendas: [EnginePeer], _ context: any AccountContextProtocol, presentation: TelegramPresentationTheme, maxWidth: CGFloat, selectAction:@escaping(EnginePeer)->Void) {
+    func set(_ peer: EnginePeer, sendas: [EnginePeer], _ context: any AccountContextProtocol, presentation: AnsiblePresentationTheme, maxWidth: CGFloat, selectAction:@escaping(EnginePeer)->Void) {
         self.avatarView.setPeer(account: context.account, peer: peer._asPeer(), disableForum: true)
         setAccessibilityLabel(peer._asPeer().displayTitle)
         
@@ -620,7 +620,7 @@ private final class FromPeerView: Control {
                 self.select = current
                 addSubview(current)
             }
-            current.image = TelegramThemeHooks.shared.image(.iconAffiliateExpand).precomposed(theme.colors.accent)
+            current.image = AnsibleThemeHooks.shared.image(.iconAffiliateExpand).precomposed(theme.colors.accent)
             current.sizeToFit()
         } else if let select {
             performSubviewRemoval(select, animated: false)
@@ -1001,7 +1001,7 @@ public enum Star_ReactionsSource : Equatable {
     }
 }
 
-public func Star_ReactionsController(context: any AccountContextProtocol, source: Star_ReactionsSource, presentation: TelegramPresentationTheme = theme) -> InputDataModalController {
+public func Star_ReactionsController(context: any AccountContextProtocol, source: Star_ReactionsSource, presentation: AnsiblePresentationTheme = theme) -> InputDataModalController {
 
     let actionsDisposable = DisposableSet()
 

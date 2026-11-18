@@ -41,10 +41,10 @@ func shortStringForDistance(distance: Int32) -> String {
 
 private final class Arguments {
     let context: (any AccountContextProtocol)
-    let presentation: TelegramPresentationTheme
+    let presentation: AnsiblePresentationTheme
     let focusVenue:()->Void
     let updateUserLocation:(CLLocation)->Void
-    init(context: (any AccountContextProtocol), presentation: TelegramPresentationTheme, focusVenue:@escaping()->Void, updateUserLocation:@escaping(CLLocation)->Void) {
+    init(context: (any AccountContextProtocol), presentation: AnsiblePresentationTheme, focusVenue:@escaping()->Void, updateUserLocation:@escaping(CLLocation)->Void) {
         self.context = context
         self.presentation = presentation
         self.focusVenue = focusVenue
@@ -109,7 +109,7 @@ private final class AnnotationView : MKAnnotationView {
         
         
         
-        locationPin.image = TelegramThemeHooks.shared.darkAppearance().icons.locationMapPin
+        locationPin.image = AnsibleThemeHooks.shared.darkAppearance().icons.locationMapPin
         locationPin.sizeToFit()
 
         
@@ -160,10 +160,10 @@ private final class AnnotationView : MKAnnotationView {
 }
 private class MapRowItem: GeneralRowItem {
     let context: (any AccountContextProtocol)
-    let presentation: TelegramPresentationTheme
+    let presentation: AnsiblePresentationTheme
     let updateUserLocation: (CLLocation)->Void
     fileprivate let pin: MapPin
-    init(_ initialSize: NSSize, height: CGFloat, stableId: AnyHashable, context: (any AccountContextProtocol), latitude: Double, longitude: Double, viewType: GeneralViewType, presentation: TelegramPresentationTheme, updateUserLocation: @escaping(CLLocation)->Void) {
+    init(_ initialSize: NSSize, height: CGFloat, stableId: AnyHashable, context: (any AccountContextProtocol), latitude: Double, longitude: Double, viewType: GeneralViewType, presentation: AnsiblePresentationTheme, updateUserLocation: @escaping(CLLocation)->Void) {
         self.context = context
         self.presentation = presentation
         self.updateUserLocation = updateUserLocation
@@ -326,11 +326,11 @@ private final class MapRowItemView : TableRowView, MKMapViewDelegate {
 
 
 private class MapDataRowItem : TableRowItem {
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
     fileprivate let location: MediaArea.Venue
     fileprivate let callback:()->Void
     fileprivate let userLocation: CLLocation?
-    init(_ initialSize: NSSize, location: MediaArea.Venue, userLocation: CLLocation?, presentation: TelegramPresentationTheme, callback:@escaping()->Void) {
+    init(_ initialSize: NSSize, location: MediaArea.Venue, userLocation: CLLocation?, presentation: AnsiblePresentationTheme, callback:@escaping()->Void) {
         self.location = location
         self.callback = callback
         self.presentation = presentation
@@ -522,7 +522,7 @@ public func LocationModalPreview(_ context: any AccountContextProtocol, address:
 }
 
 @available(macOS 10.13, *)
-public func LocationModalPreview(_ context: (any AccountContextProtocol), venue: MediaArea.Venue, peer: Peer?, presentation: TelegramPresentationTheme) -> InputDataModalController {
+public func LocationModalPreview(_ context: (any AccountContextProtocol), venue: MediaArea.Venue, peer: Peer?, presentation: AnsiblePresentationTheme) -> InputDataModalController {
     
     let initialState = State(map: venue, peer: peer, userLocation: nil)
     

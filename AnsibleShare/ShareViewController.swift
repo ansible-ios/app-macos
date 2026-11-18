@@ -26,7 +26,7 @@ class ShareViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        installTelegramThemeHooks()
+        installAnsibleThemeHooks()
         
         System.legacyMenu = false
         System.updateScaleFactor(NSScreen.main?.backingScaleFactor ?? 1)
@@ -68,7 +68,7 @@ class ShareViewController: NSViewController {
             applyUILocalization(localization)
         }
         
-        telegramUpdateTheme(updateTheme(with: themeSettings), window: nil, animated: false)
+        ansibleUpdateTheme(updateTheme(with: themeSettings), window: nil, animated: false)
 
         
         let appEncryption = AppEncryptionParameters(path: rootPath)

@@ -5,7 +5,7 @@ import AnsibleTheme
 
 public final class GiftButtonStarsView : View {
 
-    private static let starImage: CGImage = TelegramThemeHooks.shared.image(.starReactionParticle).precomposed(.white)
+    private static let starImage: CGImage = AnsibleThemeHooks.shared.image(.starReactionParticle).precomposed(.white)
     private static let starsCount: Int = 9
     private static let starSize = NSMakeSize(6, 8)
 

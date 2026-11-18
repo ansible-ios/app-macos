@@ -584,12 +584,12 @@ private final class AuctionPeerRowView: GeneralRowView {
 
 private final class Arguments {
     public let context: (any AccountContextProtocol)
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
     public let updateValue:(Int64)->Void
     public let setCustom:()->Void
     public let openAcquiredItems:()->Void
     public let dismiss: ()->Void
-    public init(context: (any AccountContextProtocol), presentation: TelegramPresentationTheme, updateValue:@escaping(Int64)->Void, setCustom:@escaping()->Void, openAcquiredItems:@escaping()->Void, dismiss: @escaping()->Void) {
+    public init(context: (any AccountContextProtocol), presentation: AnsiblePresentationTheme, updateValue:@escaping(Int64)->Void, setCustom:@escaping()->Void, openAcquiredItems:@escaping()->Void, dismiss: @escaping()->Void) {
         self.context = context
         self.presentation = presentation
         self.updateValue = updateValue
@@ -1293,7 +1293,7 @@ private func inputEntries(state: InputCustomState, desc:String, setMax:@escaping
             })) : nil),
             placeholder: .init(
                 nil,
-                icon: TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed(),
+                icon: AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed(),
                 drawBorderAfterPlaceholder: false,
                 hasLimitationText: false
             ),

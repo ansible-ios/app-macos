@@ -3103,7 +3103,7 @@ public final class InstantPageV2View: View, NSViewToolTipOwner, HorizontalScroll
                     drawPollSquareSelected(
                         ctx,
                         rect: marker.frame,
-                        image: TelegramThemeHooks.shared.image(.iconPollSelected),
+                        image: AnsibleThemeHooks.shared.image(.iconPollSelected),
                         backgroundColor: colors.background,
                         foregroundColor: colors.foreground,
                         flipVertical: true

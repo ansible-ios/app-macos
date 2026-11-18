@@ -31,7 +31,7 @@ public final class PremiumDemoLegacyPhoneView : View {
     
     public required init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        phoneView.image = TelegramThemeHooks.shared.image(.iconPremiumIphone).precomposed()
+        phoneView.image = AnsibleThemeHooks.shared.image(.iconPremiumIphone).precomposed()
         addSubview(videoView)
         videoView.cornerRadius = 0
         addSubview(phoneView)

@@ -26,12 +26,12 @@ public class ContextStickerRowItem: TableRowItem {
     fileprivate let context:any AccountContextProtocol
     fileprivate let _stableId:Int64
     fileprivate let chatInteraction:ChatInteraction
-    fileprivate let presentation: TelegramPresentationTheme?
+    fileprivate let presentation: AnsiblePresentationTheme?
     public var selectedIndex:Int? = nil
     public override var stableId: AnyHashable {
         return _stableId
     }
-    public init(_ initialSize:NSSize, _ context: any AccountContextProtocol, _ entry:InputMediaStickersRow, _ stableId:Int64, _ chatInteraction:ChatInteraction, presentation: TelegramPresentationTheme?) {
+    public init(_ initialSize:NSSize, _ context: any AccountContextProtocol, _ entry:InputMediaStickersRow, _ stableId:Int64, _ chatInteraction:ChatInteraction, presentation: AnsiblePresentationTheme?) {
         self.context = context
         self.result = entry
         self.chatInteraction = chatInteraction

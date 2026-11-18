@@ -142,7 +142,7 @@ class ChatTitleBarView: TitledBarView, InteractionContentViewProtocol {
             if let storyState = story, !storyState.items.isEmpty {
                 let peer: Peer? = peerView != nil ? peerViewMainPeer(peerView!) : nil
                 
-                let compoment = AvatarStoryIndicatorComponent(state: storyState, presentation: theme, isRoundedRect: peer.map { TelegramUtilsHooks.shared.peerIsForum($0) } == true)
+                let compoment = AvatarStoryIndicatorComponent(state: storyState, presentation: theme, isRoundedRect: peer.map { AnsibleUtilsHooks.shared.peerIsForum($0) } == true)
                 avatarControl.update(component: compoment, availableSize: NSMakeSize(30, 30), transition: transition)
             } else {
                 avatarControl.update(component: nil, availableSize: NSMakeSize(36, 36), transition: transition)
@@ -602,7 +602,7 @@ class ChatTitleBarView: TitledBarView, InteractionContentViewProtocol {
                     avatarControl.setSignal(generateEmptyPhoto(avatarControl.frame.size, type: .icon(colors: theme.colors.peerColors(5), icon: icon, iconSize: icon.backingSize.aspectFitted(NSMakeSize(avatarControl.frame.size.width - 15, avatarControl.frame.size.height - 15)), cornerRadius: nil), bubble: false) |> map {($0, false)})
                 } else {
                     if peer.isMonoForum, let mainForumPeer = peerViewMonoforumMainPeer(peerView) {
-                        avatarControl.setState(account: chatInteraction.interactionContext.account, state: .PeerAvatar(peer, TelegramUtilsHooks.shared.peerLetters(mainForumPeer), mainForumPeer.smallProfileImage, mainForumPeer.namePeerColor, nil, nil, mainForumPeer.groupAccess.canManageDirect, nil))
+                        avatarControl.setState(account: chatInteraction.interactionContext.account, state: .PeerAvatar(peer, AnsibleUtilsHooks.shared.peerLetters(mainForumPeer), mainForumPeer.smallProfileImage, mainForumPeer.namePeerColor, nil, nil, mainForumPeer.groupAccess.canManageDirect, nil))
                     } else {
                         avatarControl.setPeer(account: chatInteraction.interactionContext.account, peer: peer)
                     }
@@ -688,7 +688,7 @@ class ChatTitleBarView: TitledBarView, InteractionContentViewProtocol {
         if let threadInfo = presentation.threadInfo, presentation.isTopicMode {
             let size = NSMakeSize(30, 30)
             let info = threadInfo.info
-            let fallbackFile = TelegramUtilsHooks.shared.topicFile!(info.title, info.iconColor, presentation.chatLocation.threadId == 1)
+            let fallbackFile = AnsibleUtilsHooks.shared.topicFile!(info.title, info.iconColor, presentation.chatLocation.threadId == 1)
             let targetFileId: Int64 = info.icon ?? fallbackFile.fileId.id
             let current: InlineStickerItemLayer
             if let layer = self.inlineTopicPhotoLayer, layer.file?.fileId.id == targetFileId {
@@ -814,7 +814,7 @@ class ChatTitleBarView: TitledBarView, InteractionContentViewProtocol {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         searchButton.set(image: theme.icons.chatSearch, for: .Normal)
         searchButton.set(image: theme.icons.chatSearchActive, for: .Highlight)
 

@@ -88,7 +88,7 @@ private final class HeaderItemView : GeneralRowView {
             self.backgroundColor = theme.colors.greenUI
             self.layer?.borderWidth = 2
             self.layer?.borderColor = theme.colors.background.cgColor
-            imageView.image = TelegramThemeHooks.shared.image(.iconAffiliatePersonSmall).precomposed(theme.colors.underSelectedColor)
+            imageView.image = AnsibleThemeHooks.shared.image(.iconAffiliatePersonSmall).precomposed(theme.colors.underSelectedColor)
             imageView.sizeToFit()
             
             let layout = TextViewLayout(.initialize(string: "\(count)", color: theme.colors.underSelectedColor, font: .medium(.text)))
@@ -164,7 +164,7 @@ private final class HeaderItemView : GeneralRowView {
                     self.select = current
                     addSubview(current)
                 }
-                current.image = TelegramThemeHooks.shared.image(.iconAffiliateExpand).precomposed(theme.colors.accent)
+                current.image = AnsibleThemeHooks.shared.image(.iconAffiliateExpand).precomposed(theme.colors.accent)
                 current.sizeToFit()
             } else if let select {
                 performSubviewRemoval(select, animated: false)

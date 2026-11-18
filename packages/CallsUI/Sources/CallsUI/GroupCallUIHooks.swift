@@ -32,7 +32,7 @@ public struct GroupCallUIHooks {
     public let requestOrJoinConferenceCall: (any AccountContextProtocol, GroupCallInfo, InternalGroupCallReference) -> Signal<GroupCallJoinResult, NoError>
     public let applyGroupCallResult: (any SharedAccountContextProtocol, any GroupCallContextProtocol) -> Void
     public let makeRTMPStartController: (any AccountContextProtocol, PeerId, Date?, @escaping (PeerId, Date?, Bool) -> Void) -> ModalViewController
-    public let makeShareLinkModal: (any AccountContextProtocol, String, TelegramPresentationTheme, Set<PeerId>) -> ModalViewController
+    public let makeShareLinkModal: (any AccountContextProtocol, String, AnsiblePresentationTheme, Set<PeerId>) -> ModalViewController
 
     public init(groupCallThemeMembersColor: @escaping () -> NSColor,
                 groupCallThemeGrayStatusColor: @escaping () -> NSColor,
@@ -45,7 +45,7 @@ public struct GroupCallUIHooks {
                 requestOrJoinConferenceCall: @escaping (any AccountContextProtocol, GroupCallInfo, InternalGroupCallReference) -> Signal<GroupCallJoinResult, NoError>,
                 applyGroupCallResult: @escaping (any SharedAccountContextProtocol, any GroupCallContextProtocol) -> Void,
                 makeRTMPStartController: @escaping (any AccountContextProtocol, PeerId, Date?, @escaping (PeerId, Date?, Bool) -> Void) -> ModalViewController,
-                makeShareLinkModal: @escaping (any AccountContextProtocol, String, TelegramPresentationTheme, Set<PeerId>) -> ModalViewController) {
+                makeShareLinkModal: @escaping (any AccountContextProtocol, String, AnsiblePresentationTheme, Set<PeerId>) -> ModalViewController) {
         self.groupCallThemeMembersColor = groupCallThemeMembersColor
         self.groupCallThemeGrayStatusColor = groupCallThemeGrayStatusColor
         self.groupCallThemeSpeakInactiveColor = groupCallThemeSpeakInactiveColor

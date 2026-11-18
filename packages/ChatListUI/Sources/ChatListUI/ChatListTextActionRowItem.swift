@@ -173,7 +173,7 @@ private final class ChatListTextActionRowView: TableRowView {
         self.infoView.set(text: item.info, context: item.context)
         overlay.setAccessibilityLabel(item.title.attributedString.string)
 
-        dismiss.set(image: TelegramThemeHooks.shared.image(.iconVoiceChatTooltipClose).precomposed(theme.colors.grayIcon), for: .Normal)
+        dismiss.set(image: AnsibleThemeHooks.shared.image(.iconVoiceChatTooltipClose).precomposed(theme.colors.grayIcon), for: .Normal)
         dismiss.autohighlight = false
         dismiss.scaleOnClick = true
         dismiss.sizeToFit(NSMakeSize(10, 10))

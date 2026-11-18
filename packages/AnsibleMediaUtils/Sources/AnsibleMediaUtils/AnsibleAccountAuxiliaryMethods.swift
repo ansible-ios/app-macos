@@ -4,7 +4,7 @@ import TelegramCore
 import Postbox
 import AnsibleMediaResources
 
-public let telegramAccountAuxiliaryMethods = AccountAuxiliaryMethods(fetchResource: { postbox, resource, range, tag in
+public let ansibleAccountAuxiliaryMethods = AccountAuxiliaryMethods(fetchResource: { postbox, resource, range, tag in
     if let resource = resource as? LocalFileGifMediaResource {
         return fetchGifMediaResource(resource: resource)
     } else if let resource = resource as? LocalFileArchiveMediaResource {

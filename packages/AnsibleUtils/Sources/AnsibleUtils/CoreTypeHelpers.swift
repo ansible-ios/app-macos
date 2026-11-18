@@ -42,6 +42,6 @@ public func removeFile(at path: String) {
 
 public extension MessageForwardInfo {
     var authorTitle: String {
-        return author.flatMap { TelegramUtilsHooks.shared.peerTitle($0) } ?? authorSignature ?? ""
+        return author.flatMap { AnsibleUtilsHooks.shared.peerTitle($0) } ?? authorSignature ?? ""
     }
 }

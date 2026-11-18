@@ -94,7 +94,7 @@ private func pollsEntries(_ view: PollsHistoryView, arguments: PollsArguments) -
     let index: Int32 = 0
 
     func makeItem(_ entry: ChatWrappedEntry, initialSize: NSSize) -> TableRowItem {
-        let presentation: TelegramPresentationTheme = entry.entry.additionalData.chatTheme ?? theme
+        let presentation: AnsiblePresentationTheme = entry.entry.additionalData.chatTheme ?? theme
         let item:TableRowItem = ChatRowItem.item(initialSize, from: entry.appearance.entry, interaction: arguments.chatInteraction, theme: presentation)
         _ = item.makeSize(initialSize.width)
         return item

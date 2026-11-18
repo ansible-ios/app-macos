@@ -48,7 +48,7 @@ extension StarGift.Gift {
 private let giftTileCornerRadius: CGFloat = 16
 
 private func ribbonOutlineImage(color: NSColor) -> CGImage? {
-    let image = TelegramThemeHooks.shared.image(.giftRibbon)
+    let image = AnsibleThemeHooks.shared.image(.giftRibbon)
     return generateScaledImage(image: image._cgImage, size: CGSize(width: image.size.width + 8, height: image.size.height + 8), opaque: true, color: color)
 }
 
@@ -523,7 +523,7 @@ public final class GiftOptionsRowView:  GeneralContainableRowView {
             public override init(frame frameRect: NSRect) {
                 super.init(frame: frameRect)
                 addSubview(imageView)
-                imageView.image = TelegramThemeHooks.shared.image(.menuEyeSlash).precomposed(NSColor.white)
+                imageView.image = AnsibleThemeHooks.shared.image(.menuEyeSlash).precomposed(NSColor.white)
                 imageView.isAccessibilityDecorative = true
                 imageView.sizeToFit()
                 layer?.cornerRadius = frameRect.height / 2
@@ -628,7 +628,7 @@ public final class GiftOptionsRowView:  GeneralContainableRowView {
                 addSubview(visual)
                 addSubview(imageView)
                 
-                imageView.image = TelegramThemeHooks.shared.image(.iconTonCurrency).precomposed(.white)
+                imageView.image = AnsibleThemeHooks.shared.image(.iconTonCurrency).precomposed(.white)
                 imageView.isAccessibilityDecorative = true
                 imageView.sizeToFit()
                 self.layer?.cornerRadius = 15
@@ -887,7 +887,7 @@ public final class GiftOptionsRowView:  GeneralContainableRowView {
                     self.badgeView = current
                 }
                                 
-                let ribbon = generateGradientTintedImage(image: TelegramThemeHooks.shared.image(.giftRibbon).precomposed(), colors: badge.colors, direction: .diagonal)!
+                let ribbon = generateGradientTintedImage(image: AnsibleThemeHooks.shared.image(.giftRibbon).precomposed(), colors: badge.colors, direction: .diagonal)!
 
 
                 current.image = generateGiftBadgeBackground(background: ribbon, text: badge.text, textColor: badge.textColor)
@@ -943,7 +943,7 @@ public final class GiftOptionsRowView:  GeneralContainableRowView {
                     self.pinnedView = current
                     addSubview(current)
                 }
-                current.image = TelegramThemeHooks.shared.image(.iconChatListPinned).precomposed(.white)
+                current.image = AnsibleThemeHooks.shared.image(.iconChatListPinned).precomposed(.white)
                 current.sizeToFit()
             } else if let view = self.pinnedView {
                 performSubviewRemoval(view, animated: animated)
@@ -1007,7 +1007,7 @@ public final class GiftOptionsRowView:  GeneralContainableRowView {
                     self.limitDatePurchase = current
                     addSubview(current)
                 }
-                current.image = TelegramThemeHooks.shared.image(.iconStarGiftLock).precomposed(theme.colors.redUI)
+                current.image = AnsibleThemeHooks.shared.image(.iconStarGiftLock).precomposed(theme.colors.redUI)
                 current.sizeToFit()
             } else if let view = self.limitDatePurchase {
                 performSubviewRemoval(view, animated: animated)

@@ -36,7 +36,7 @@ public final class CraftAnvilPatternView: View {
 
     public func set(color: NSColor, animated: Bool) {
         self.patternColor = color
-        self.patternImage = TelegramThemeHooks.shared.image(.iconNftAnvil).precomposed(color)
+        self.patternImage = AnsibleThemeHooks.shared.image(.iconNftAnvil).precomposed(color)
         updatePatternImages()
         updateLayout(size: frame.size, transition: animated ? .animated(duration: 0.2, curve: .easeOut) : .immediate)
     }
@@ -451,7 +451,7 @@ private final class CraftLostGiftView: View {
             badgeView = badge
         }
         let colors: [NSColor] = [NSColor(0xCC3333), NSColor(0x8B0000)]
-        let ribbon = generateGradientTintedImage(image: TelegramThemeHooks.shared.image(.giftRibbon).precomposed(), colors: colors, direction: .diagonal)!
+        let ribbon = generateGradientTintedImage(image: AnsibleThemeHooks.shared.image(.giftRibbon).precomposed(), colors: colors, direction: .diagonal)!
         let badgeImage = generateGiftBadgeBackground(background: ribbon, text: "#\(unique.number)", textColor: .white)
         let scaledSize = NSMakeSize(badgeImage.backingSize.width * 0.5, badgeImage.backingSize.height * 0.5)
         badge.image = generateScaledImage(image: badgeImage, size: scaledSize)
@@ -700,7 +700,7 @@ private final class CraftingAreaView: GeneralRowView {
 
         dismissButton.scaleOnClick = true
         dismissButton.autohighlight = false
-        dismissButton.set(image: TelegramThemeHooks.shared.image(.iconPipClose).precomposed(.white), for: .Normal)
+        dismissButton.set(image: AnsibleThemeHooks.shared.image(.iconPipClose).precomposed(.white), for: .Normal)
         dismissButton.setGlassEffect(size: NSMakeSize(36, 36))
 
         dismissButton.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
@@ -709,7 +709,7 @@ private final class CraftingAreaView: GeneralRowView {
 
         infoButton.scaleOnClick = true
         infoButton.autohighlight = false
-        infoButton.set(image: TelegramThemeHooks.shared.image(.iconChatActionInfo).precomposed(.white), for: .Normal)
+        infoButton.set(image: AnsibleThemeHooks.shared.image(.iconChatActionInfo).precomposed(.white), for: .Normal)
         infoButton.setGlassEffect(size: NSMakeSize(36, 36))
         infoButton.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
         infoButton.setAccessibilityLabel(strings().voiceOverCommonInfo)

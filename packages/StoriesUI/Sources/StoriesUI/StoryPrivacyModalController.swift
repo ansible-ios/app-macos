@@ -23,10 +23,10 @@ import AlertsUI
 
 private final class StoryPreviewHeaderItem : GeneralRowItem {
     fileprivate let context: any AccountContextProtocol
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
     fileprivate let peer: EnginePeer
     fileprivate let nameLayout: TextViewLayout
-    init(_ initialSize: NSSize, stableId: AnyHashable, viewType: GeneralViewType, presentation: TelegramPresentationTheme, context: any AccountContextProtocol, peer: EnginePeer) {
+    init(_ initialSize: NSSize, stableId: AnyHashable, viewType: GeneralViewType, presentation: AnsiblePresentationTheme, context: any AccountContextProtocol, peer: EnginePeer) {
         self.context = context
         self.presentation = presentation
         self.peer = peer
@@ -111,12 +111,12 @@ private final class StoryPreviewHeaderView : TableRowView {
 private final class StoryPreviewRowItem : GeneralRowItem {
     fileprivate let story: StoryContentItem
     fileprivate let context: any AccountContextProtocol
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
     fileprivate let interactions: TextView_Interactions
     fileprivate let state: Updated_ChatTextInputState
     fileprivate let updateState:(Updated_ChatTextInputState)->Void
     fileprivate let showEmojis:(Control)->Void
-    init(_ initialSize: NSSize, stableId: AnyHashable, viewType: GeneralViewType, presentation: TelegramPresentationTheme, context: any AccountContextProtocol, story: StoryContentItem, interactions: TextView_Interactions, state: Updated_ChatTextInputState, updateState:@escaping(Updated_ChatTextInputState)->Void, showEmojis:@escaping(Control)->Void) {
+    init(_ initialSize: NSSize, stableId: AnyHashable, viewType: GeneralViewType, presentation: AnsiblePresentationTheme, context: any AccountContextProtocol, story: StoryContentItem, interactions: TextView_Interactions, state: Updated_ChatTextInputState, updateState:@escaping(Updated_ChatTextInputState)->Void, showEmojis:@escaping(Control)->Void) {
         self.story = story
         self.context = context
         self.presentation = presentation
@@ -264,7 +264,7 @@ private final class StoryPreviewRowView : GeneralContainableRowView {
 
 private final class Arguments {
     let context: any AccountContextProtocol
-    let presentation: TelegramPresentationTheme
+    let presentation: AnsiblePresentationTheme
     let reason: StoryPrivacyReason
     let interactions: TextView_Interactions
     let togleCategory:(EngineStoryPrivacy.Base)->Void
@@ -275,7 +275,7 @@ private final class Arguments {
     let showSendAs:()->Void
     let updateBlockList:()->Void
     let showEmojis:(Control)->Void
-    init(context: any AccountContextProtocol, presentation: TelegramPresentationTheme, reason: StoryPrivacyReason, interactions: TextView_Interactions, togleCategory:@escaping(EngineStoryPrivacy.Base)->Void, toggleOption:@escaping(OptionId)->Void, selectUsers:@escaping(EngineStoryPrivacy.Base)->Void, reveal:@escaping()->Void, updateState:@escaping(Updated_ChatTextInputState)->Void, showSendAs:@escaping()->Void, updateBlockList:@escaping()->Void, showEmojis:@escaping(Control)->Void) {
+    init(context: any AccountContextProtocol, presentation: AnsiblePresentationTheme, reason: StoryPrivacyReason, interactions: TextView_Interactions, togleCategory:@escaping(EngineStoryPrivacy.Base)->Void, toggleOption:@escaping(OptionId)->Void, selectUsers:@escaping(EngineStoryPrivacy.Base)->Void, reveal:@escaping()->Void, updateState:@escaping(Updated_ChatTextInputState)->Void, showSendAs:@escaping()->Void, updateBlockList:@escaping()->Void, showEmojis:@escaping(Control)->Void) {
         self.context = context
         self.presentation = presentation
         self.reason = reason
@@ -564,7 +564,7 @@ private func storyPrivacyBlockedPeerIds(_ context: BlockedPeersContext) -> Signa
     }
 }
 
-public func StoryPrivacyModalController<Context: AccountContextProtocol>(context: Context, presentation: TelegramPresentationTheme, reason: StoryPrivacyReason, text: String? = nil) -> InputDataModalController {
+public func StoryPrivacyModalController<Context: AccountContextProtocol>(context: Context, presentation: AnsiblePresentationTheme, reason: StoryPrivacyReason, text: String? = nil) -> InputDataModalController {
 
     let actionsDisposable = DisposableSet()
     

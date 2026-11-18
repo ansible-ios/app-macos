@@ -110,7 +110,7 @@ public class MediaAnimatedStickerView: ChatMediaContentView {
         if playOnHover == true {
             accept = true
         }
-        if TelegramUtilsHooks.shared.isLite(.stickers) == true, parent != nil {
+        if AnsibleUtilsHooks.shared.isLite(.stickers) == true, parent != nil {
             if !mouseInside(), self.playerView.currentState == .playing {
                 accept = true
             } else {
@@ -331,7 +331,7 @@ public class MediaAnimatedStickerView: ChatMediaContentView {
                     
                     var playPolicy: LottiePlayPolicy = params?.playPolicy ?? (file.isEmojiAnimatedSticker || !self.chatLoopAnimated ? .loop : .loop)
                     
-                    if TelegramUtilsHooks.shared.isLite(.stickers), parent != nil {
+                    if AnsibleUtilsHooks.shared.isLite(.stickers), parent != nil {
                         playPolicy = .toStart(from: 0)
                     }
                     if self.playOnHover == true {
@@ -455,7 +455,7 @@ public class MediaAnimatedStickerView: ChatMediaContentView {
                         self.addSubview(self.thumbView)
                     }
                 case .finished:
-                    if TelegramUtilsHooks.shared.isLite(.stickers), parent != nil {
+                    if AnsibleUtilsHooks.shared.isLite(.stickers), parent != nil {
                         DispatchQueue.main.async { [weak self] in
                             self?.previousAccept = false
                             self?.updatePlayerIfNeeded()

@@ -37,7 +37,7 @@ final class PeerMediaTabsView: View, HorizontalScrollConsuming {
             fatalError("init(coder:) has not been implemented")
         }
 
-        func update(tab: Tab, account: Account, theme: TelegramPresentationTheme, animated: Bool) {
+        func update(tab: Tab, account: Account, theme: AnsiblePresentationTheme, animated: Bool) {
             let layout = TextViewLayout(.initialize(string: tab.title, color: theme.colors.text, font: .medium(.title)), maximumNumberOfLines: 1)
             layout.measure(width: .greatestFiniteMagnitude)
             textView.update(layout)
@@ -109,7 +109,7 @@ final class PeerMediaTabsView: View, HorizontalScrollConsuming {
     private(set) var selectedId: Int64?
     private var selectionPosition: CGFloat?
     private var scrollOffset: CGFloat = 0
-    private var currentTheme: TelegramPresentationTheme = theme
+    private var currentTheme: AnsiblePresentationTheme = theme
     private var account: Account?
     private var focusSelectedOnLayout = false
     private lazy var lens: GlassSelectionLens = {
@@ -270,7 +270,7 @@ final class PeerMediaTabsView: View, HorizontalScrollConsuming {
 
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        guard let theme = theme as? TelegramPresentationTheme else {
+        guard let theme = theme as? AnsiblePresentationTheme else {
             return
         }
         currentTheme = theme

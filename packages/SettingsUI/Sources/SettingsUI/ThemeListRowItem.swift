@@ -51,11 +51,11 @@ private final class HorizontalThemeItem : GeneralRowItem {
     fileprivate let themeType: ThemeSource
     fileprivate let titleLayout: TextViewLayout
     fileprivate let selected: Bool
-    fileprivate let theme: TelegramPresentationTheme
+    fileprivate let theme: AnsiblePresentationTheme
     fileprivate let context: any AccountContextProtocol
     fileprivate let togglePalette: (InstallThemeSource)->Void
     fileprivate let menuItems: (ThemeSource)->[ContextMenuItem]
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, theme: TelegramPresentationTheme, themeType: ThemeSource, selected: Bool, togglePalette: @escaping(InstallThemeSource)->Void, menuItems: @escaping(ThemeSource)->[ContextMenuItem]) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, theme: AnsiblePresentationTheme, themeType: ThemeSource, selected: Bool, togglePalette: @escaping(InstallThemeSource)->Void, menuItems: @escaping(ThemeSource)->[ContextMenuItem]) {
         self.themeType = themeType
         self.selected = selected
         self.theme = theme
@@ -262,13 +262,13 @@ private final class HorizontalThemeView : HorizontalRowView {
 
 public class ThemeListRowItem: GeneralRowItem {
     fileprivate let context: any AccountContextProtocol
-    fileprivate let theme: TelegramPresentationTheme
+    fileprivate let theme: AnsiblePresentationTheme
     fileprivate let cloudThemes:[AnsibleTheme]
     fileprivate let local:[LocalPaletteWithReference]
     fileprivate let togglePalette: (InstallThemeSource)->Void
     fileprivate let menuItems: (ThemeSource)->[ContextMenuItem]
     fileprivate let selected: ThemeSource
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, theme: TelegramPresentationTheme, selected: ThemeSource, local:[LocalPaletteWithReference], cloudThemes:[AnsibleTheme], viewType: GeneralViewType, togglePalette: @escaping(InstallThemeSource)->Void, menuItems: @escaping(ThemeSource)->[ContextMenuItem]) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, theme: AnsiblePresentationTheme, selected: ThemeSource, local:[LocalPaletteWithReference], cloudThemes:[AnsibleTheme], viewType: GeneralViewType, togglePalette: @escaping(InstallThemeSource)->Void, menuItems: @escaping(ThemeSource)->[ContextMenuItem]) {
         self.context = context
         self.theme = theme
         self.local = local

@@ -505,7 +505,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             }
             for category in categories {
                 let cat = ChatListFilterPeerCategories(rawValue: Int32(category.id._internalGetInt64Value()))
-                selectedPeers.append(TelegramFilterCategory(category: cat))
+                selectedPeers.append(AnsibleFilterCategory(category: cat))
             }
             selectedPeers.append(contentsOf: peers.map { $0._asPeer() })
 
@@ -529,7 +529,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                     }
                 }
                 let status: String?
-                if peer is TelegramFilterCategory {
+                if peer is AnsibleFilterCategory {
                     status = nil
                 } else {
                     status = state.contacts.contains(peer.id) ? strings().businessMessageContact : strings().businessMessageNonContact
@@ -761,16 +761,16 @@ public func BusinessChatbotController(context: (any AccountContextProtocol)) -> 
                 
                 var categories: [PeerId] = []
                 if connectedBot.recipients.categories.contains(.nonContacts) {
-                    categories.insert(TelegramFilterCategory(category: .nonContacts).id, at: 0)
+                    categories.insert(AnsibleFilterCategory(category: .nonContacts).id, at: 0)
                 }
                 if connectedBot.recipients.categories.contains(.contacts) {
-                    categories.insert(TelegramFilterCategory(category: .contacts).id, at: 0)
+                    categories.insert(AnsibleFilterCategory(category: .contacts).id, at: 0)
                 }
                 if connectedBot.recipients.categories.contains(.newChats) {
-                    categories.insert(TelegramFilterCategory(category: .newChats).id, at: 0)
+                    categories.insert(AnsibleFilterCategory(category: .newChats).id, at: 0)
                 }
                 if connectedBot.recipients.categories.contains(.existingChats) {
-                    categories.insert(TelegramFilterCategory(category: .existingChats).id, at: 0)
+                    categories.insert(AnsibleFilterCategory(category: .existingChats).id, at: 0)
                 }
                 
                 current.access = connectedBot.recipients.exclude ? .all : .selected

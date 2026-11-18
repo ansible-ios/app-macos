@@ -6,9 +6,9 @@ import SwiftSignalKit
 import TGUIKit
 
 public final class Appearance : Equatable {
-    public let language: TelegramLocalization
-    public var presentation: TelegramPresentationTheme
-    public init(language: TelegramLocalization, presentation: TelegramPresentationTheme) {
+    public let language: AnsibleLocalization
+    public var presentation: AnsiblePresentationTheme
+    public init(language: AnsibleLocalization, presentation: AnsiblePresentationTheme) {
         self.language = language
         self.presentation = presentation
     }
@@ -30,12 +30,12 @@ public func ==(lhs:Appearance, rhs:Appearance) -> Bool {
     return lhs.language === rhs.language && lhs.presentation === rhs.presentation
 }
 
-public var theme: TelegramPresentationTheme {
-    if let presentation = presentation as? TelegramPresentationTheme {
+public var theme: AnsiblePresentationTheme {
+    if let presentation = presentation as? AnsiblePresentationTheme {
         return presentation
     }
-    TelegramThemeHooks.shared.setDefaultTheme(nil)
-    return presentation as! TelegramPresentationTheme
+    AnsibleThemeHooks.shared.setDefaultTheme(nil)
+    return presentation as! AnsiblePresentationTheme
 }
 
 public var redActionButton: ControlStyle {

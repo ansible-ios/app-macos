@@ -159,7 +159,7 @@ public class ChatListRowItem: TableRowItem {
         if chatNameLayout != nil, forumTopicNameLayout != nil {
             if forumTopicData != nil {
                 return true
-            } else if let peer = peer, TelegramUtilsHooks.shared.peerIsForum(peer), titleMode == .forumInfo, case .topic = mode {
+            } else if let peer = peer, AnsibleUtilsHooks.shared.peerIsForum(peer), titleMode == .forumInfo, case .topic = mode {
                 return true
             } else if let peer = peer, peer.isCommunity {
                 return true
@@ -205,7 +205,7 @@ public class ChatListRowItem: TableRowItem {
     }
     
     public var isForum: Bool {
-        if let peer = peer, TelegramUtilsHooks.shared.peerIsForum(peer) && !peer.displayForumAsTabs(splitState: context.layout) {
+        if let peer = peer, AnsibleUtilsHooks.shared.peerIsForum(peer) && !peer.displayForumAsTabs(splitState: context.layout) {
             return true
         }
         return false
@@ -890,7 +890,7 @@ public class ChatListRowItem: TableRowItem {
         self.readState = readState
         
         if let story = story, peer?.id != context.peerId {
-            self.avatarStoryIndicator = .init(stats: story, presentation: theme, isRoundedRect: peer.map { TelegramUtilsHooks.shared.peerIsForum($0) } == true)
+            self.avatarStoryIndicator = .init(stats: story, presentation: theme, isRoundedRect: peer.map { AnsibleUtilsHooks.shared.peerIsForum($0) } == true)
         } else {
             self.avatarStoryIndicator = nil
         }
@@ -971,9 +971,9 @@ public class ChatListRowItem: TableRowItem {
                         
                         let topicNameAttributed = NSMutableAttributedString()
 
-                        if let forumTopicData = forumTopicData, TelegramUtilsHooks.shared.peerIsForum(peer) {
+                        if let forumTopicData = forumTopicData, AnsibleUtilsHooks.shared.peerIsForum(peer) {
                             _ = topicNameAttributed.append(string: forumTopicData.title, color: theme.chatList.peerTextColor, font: .normal(.text))
-                        } else if TelegramUtilsHooks.shared.peerIsForum(peer), titleMode == .forumInfo, case let .topic(_, data) = mode {
+                        } else if AnsibleUtilsHooks.shared.peerIsForum(peer), titleMode == .forumInfo, case let .topic(_, data) = mode {
                             peerText = author.compactDisplayTitle
                             _ = topicNameAttributed.append(string: data.info.title, color: theme.chatList.peerTextColor, font: .normal(.text))
                         } else if peer.isCommunity, let childPeer = message.peers[message.id.peerId], childPeer.id != peer.id {
@@ -1093,9 +1093,9 @@ public class ChatListRowItem: TableRowItem {
         let usesAccountAvatar = savedMessagesParentPeerId != nil && savedMessagesParentPeerId != context.peerId
         if let peer = peer, (peer.id != context.peerId || usesAccountAvatar) && peer.id != repliesPeerId, !peer.id.isAnonymousSavedMessages, !isEmpty {
             if peer.isMonoForum, let photoPeer = renderedPeer.chatOrMonoforumMainPeer?._asPeer() {
-                self.photo = .PeerAvatar(peer, TelegramUtilsHooks.shared.peerLetters(peer), photoPeer.smallProfileImage, photoPeer.namePeerColor, nil, nil, peer.groupAccess.canManageDirect, nil)
+                self.photo = .PeerAvatar(peer, AnsibleUtilsHooks.shared.peerLetters(peer), photoPeer.smallProfileImage, photoPeer.namePeerColor, nil, nil, peer.groupAccess.canManageDirect, nil)
             } else {
-                self.photo = .PeerAvatar(peer, TelegramUtilsHooks.shared.peerLetters(peer), peer.smallProfileImage, peer.namePeerColor, nil, nil, peer.isForumOrMonoForum || peer.isCommunity, nil)
+                self.photo = .PeerAvatar(peer, AnsibleUtilsHooks.shared.peerLetters(peer), peer.smallProfileImage, peer.namePeerColor, nil, nil, peer.isForumOrMonoForum || peer.isCommunity, nil)
             }
         } else {
             self.photo = .Empty
@@ -1167,7 +1167,7 @@ public class ChatListRowItem: TableRowItem {
         _ = makeSize(initialSize.width, oldWidth: 0)
         
         
-        if ChatListRowItem.playsVideoAvatars, let peer = peer, peer.isPremium, peer.id != context.peerId, peer.hasVideo, !TelegramUtilsHooks.shared.isLite(.animations) {
+        if ChatListRowItem.playsVideoAvatars, let peer = peer, peer.isPremium, peer.id != context.peerId, peer.hasVideo, !AnsibleUtilsHooks.shared.isLite(.animations) {
             self.photos = syncPeerPhotos(peerId: peer.id).map { $0.value }
             let signal = peerPhotos(context: context, peerId: peer.id, force: false) |> deliverOnMainQueue
             peerPhotosDisposable.set(signal.start(next: { [weak self] photos in

@@ -152,7 +152,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                     name: .init(.initialize(string: item.acceptedBid.amount.formattedWithSeparator, color: theme.colors.text, font: .normal(.text))),
                     leftView: { previous in
                         let imageView = previous as? ImageView ?? ImageView()
-                        imageView.image = TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed()
+                        imageView.image = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
                         imageView.setFrameSize(18, 18)
                         imageView.contentGravity = .resizeAspectFill
                         return imageView

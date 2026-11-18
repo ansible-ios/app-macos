@@ -25,9 +25,9 @@ import WallpaperUI
 
 public class ThemePreviewRowItem: GeneralRowItem {
 
-    fileprivate let theme: TelegramPresentationTheme
+    fileprivate let theme: AnsiblePresentationTheme
     fileprivate let items:[TableRowItem]
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, theme: TelegramPresentationTheme, viewType: GeneralViewType) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, theme: AnsiblePresentationTheme, viewType: GeneralViewType) {
         self.theme = theme.withUpdatedBackgroundSize(WallpaperDimensions.aspectFilled(NSMakeSize(200, 200)))
         
         let chatInteraction = SettingsHooks.shared.makeChatPreviewContext(context, context.peerId, true)

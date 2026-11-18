@@ -543,23 +543,23 @@ public func showAboutCocoonModal<Context: AccountContextProtocol>(context: Conte
         return true
     }
     let configuration = AboutFeatureConfiguration(
-        headerImage: TelegramThemeHooks.shared.image(.cocoon120).precomposed(),
+        headerImage: AnsibleThemeHooks.shared.image(.cocoon120).precomposed(),
         headerBackgroundColor: .clear,
         title: strings().aboutCocoonTitle,
         description: strings().aboutCocoonDescription,
         features: [
             .init(
-                icon: TelegramThemeHooks.shared.image(.iconOptionLock).precomposed(theme.colors.accent),
+                icon: AnsibleThemeHooks.shared.image(.iconOptionLock).precomposed(theme.colors.accent),
                 title: strings().aboutCocoonFeaturePrivateTitle,
                 description: strings().aboutCocoonFeaturePrivateDescription
             ),
             .init(
-                icon: TelegramThemeHooks.shared.image(.iconOptionStatistics).precomposed(theme.colors.accent),
+                icon: AnsibleThemeHooks.shared.image(.iconOptionStatistics).precomposed(theme.colors.accent),
                 title: strings().aboutCocoonFeatureEfficientTitle,
                 description: strings().aboutCocoonFeatureEfficientDescription
             ),
             .init(
-                icon: TelegramThemeHooks.shared.image(.iconOptionGift).precomposed(theme.colors.accent),
+                icon: AnsibleThemeHooks.shared.image(.iconOptionGift).precomposed(theme.colors.accent),
                 title: strings().aboutCocoonFeatureForEveryoneTitle,
                 description: strings().aboutCocoonFeatureForEveryoneDescription,
                 linkCallback: openLink
@@ -576,19 +576,19 @@ public func showAboutCocoonModal<Context: AccountContextProtocol>(context: Conte
 public func showDisableSharingModal(context: any AccountContextProtocol, peerId: PeerId, toggle: @escaping(Bool) -> Void) {
     let isPremium = context.isPremium
     let configuration = AboutFeatureConfiguration(
-        headerImage: TelegramThemeHooks.shared.image(.hand120).precomposed(),
+        headerImage: AnsibleThemeHooks.shared.image(.hand120).precomposed(),
         headerBackgroundColor: .clear,
         title: strings().aboutFeatureDisableSharingTitle,
         description: "",
         features: [
-            .init(icon: TelegramThemeHooks.shared.image(.iconOptionNoScreenshots).precomposed(theme.colors.accent), title: strings().aboutFeatureDisableSharingNoScreenshots, description: strings().aboutFeatureDisableSharingNoScreenshotsDesc),
+            .init(icon: AnsibleThemeHooks.shared.image(.iconOptionNoScreenshots).precomposed(theme.colors.accent), title: strings().aboutFeatureDisableSharingNoScreenshots, description: strings().aboutFeatureDisableSharingNoScreenshotsDesc),
             .init(
-                icon: TelegramThemeHooks.shared.image(.iconOptionNoForwarding).precomposed(theme.colors.accent),
+                icon: AnsibleThemeHooks.shared.image(.iconOptionNoForwarding).precomposed(theme.colors.accent),
                 title: strings().aboutFeatureDisableSharingNoForwarding,
                 description: strings().aboutFeatureDisableSharingNoForwardingDesc
             ),
             .init(
-                icon: TelegramThemeHooks.shared.image(.iconOptionNoSaving).precomposed(theme.colors.accent),
+                icon: AnsibleThemeHooks.shared.image(.iconOptionNoSaving).precomposed(theme.colors.accent),
                 title: strings().aboutFeatureDisableSharingNoSaving,
                 description: strings().aboutFeatureDisableSharingNoSavingDesc
             )
@@ -607,7 +607,7 @@ public func showDisableSharingModal(context: any AccountContextProtocol, peerId:
     showModal(with: controller, for: context.window)
     if !isPremium {
         controller.modal?.interactions?.updateDone { button in
-            let lockIcon = TelegramThemeHooks.shared.image(.iconPremiumLock).precomposed(.white)
+            let lockIcon = AnsibleThemeHooks.shared.image(.iconPremiumLock).precomposed(.white)
             button.set(image: lockIcon, for: .Normal)
             button.autohighlight = false
             button.buttonImageInset = -5
@@ -630,17 +630,17 @@ public func showFirstGramsModal(context: any AccountContextProtocol, window: Win
         description: description,
         features: [
             .init(
-                icon: TelegramThemeHooks.shared.image(.iconOptionAnsible).precomposed(theme.colors.accent),
+                icon: AnsibleThemeHooks.shared.image(.iconOptionAnsible).precomposed(theme.colors.accent),
                 title: strings().aboutFeatureModalControllerFirstGramsSend,
                 description: strings().aboutFeatureModalControllerFirstGramsSendInfo
             ),
             .init(
-                icon: TelegramThemeHooks.shared.image(.iconOptionCash).precomposed(theme.colors.accent),
+                icon: AnsibleThemeHooks.shared.image(.iconOptionCash).precomposed(theme.colors.accent),
                 title: strings().aboutFeatureModalControllerFirstGramsTrade,
                 description: strings().aboutFeatureModalControllerFirstGramsTradeInfo
             ),
             .init(
-                icon: TelegramThemeHooks.shared.image(.iconOptionGram).precomposed(theme.colors.accent),
+                icon: AnsibleThemeHooks.shared.image(.iconOptionGram).precomposed(theme.colors.accent),
                 title: strings().aboutFeatureModalControllerFirstGramsStore,
                 description: strings().aboutFeatureModalControllerFirstGramsStoreInfo
             )

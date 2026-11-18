@@ -132,7 +132,7 @@ final class SupportAccountContext {
                 
         })
         
-        telegramUpdateTheme(theme, window: window, animated: false)
+        ansibleUpdateTheme(theme, window: window, animated: false)
         let windowControls = DetachedWindowControls.install(on: window)
 
         let splitView = SplitView(frame: window.contentView?.bounds ?? window.bounds)
@@ -253,7 +253,7 @@ final class SupportAccountContext {
                 return true
             }
 
-            telegramUpdateTheme(theme, window: window, animated: false)
+            ansibleUpdateTheme(theme, window: window, animated: false)
             applicationContext.applyNewTheme()
             self.contexts.append(applicationContext)
         })

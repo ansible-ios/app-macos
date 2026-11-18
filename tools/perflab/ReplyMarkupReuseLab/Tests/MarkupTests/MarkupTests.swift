@@ -6,12 +6,12 @@ final class MarkupTests: XCTestCase {
     override func setUp() {
         TGUIKitTestBootstrap.install()
         GeneralRowsHooks.shared = GeneralRowsHooks()
-        TelegramUtilsHooks.shared = TelegramUtilsHooks()
+        AnsibleUtilsHooks.shared = AnsibleUtilsHooks()
     }
     private func rows(_ count: Int, action: ReplyMarkupButton.Action = .callback, prefix: String = "Button", embedded: Bool = false) -> [ReplyMarkupRow] {
         [.init(buttons: (0..<count).map { .init(title: "\(prefix) \($0)", action: action, embedded: embedded) })]
     }
-    private func bind(_ rows: [ReplyMarkupRow], _ host: View, _ interactions: ReplyMarkupInteractions, radius: CGFloat = 0, top: Bool = true, theme: TelegramPresentationTheme = .init(), input: Bool = false, width: CGFloat = 300) -> CandidateReplyMarkupNode {
+    private func bind(_ rows: [ReplyMarkupRow], _ host: View, _ interactions: ReplyMarkupInteractions, radius: CGFloat = 0, top: Bool = true, theme: AnsiblePresentationTheme = .init(), input: Bool = false, width: CGFloat = 300) -> CandidateReplyMarkupNode {
         let node = CandidateReplyMarkupNode(rows, [], interactions, theme, host, input, outerCornerRadius: radius, roundsTopCorners: top)
         node.measureSize(width)
         node.redraw()
@@ -111,7 +111,7 @@ final class MarkupTests: XCTestCase {
                 let newHost = ReplyMarkupContainerView()
                 let previous = bind(rows(4, action: .copyText), newHost, interactions, radius: 18, top: false)
                 let data = [ReplyMarkupRow(buttons: [.init(title: "مرحبا بالعالم", action: .url("link")), .init(title: "👋 Hello", action: .callback)]), ReplyMarkupRow(buttons: [.init(title: "你好 世界", action: .copyText, style: .blue)])]
-                let theme = TelegramPresentationTheme()
+                let theme = AnsiblePresentationTheme()
                 let radius: CGFloat = mode == 0 ? 0 : 16
                 let native = ReferenceReplyMarkupNode(data, [], interactions, theme, oldHost, mode == 1, outerCornerRadius: radius, roundsTopCorners: mode == 1)
                 native.measureSize(280)
@@ -146,7 +146,7 @@ final class MarkupTests: XCTestCase {
     func testBlurAndStyledBackgroundTransitions() {
         let host = ReplyMarkupContainerView()
         let interactions = ReplyMarkupInteractions()
-        var theme = TelegramPresentationTheme()
+        var theme = AnsiblePresentationTheme()
         theme.shouldBlurService = true
         let first = bind(rows(1), host, interactions, theme: theme)
         let button = host.subviews[0] as! InteractiveTextView

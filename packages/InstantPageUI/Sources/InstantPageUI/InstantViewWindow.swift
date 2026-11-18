@@ -144,7 +144,7 @@ private class HeaderView : View {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         borderView.backgroundColor = theme.colors.border
         backgroundColor = theme.colors.background
         titleView?.backgroundColor = theme.colors.background
@@ -444,7 +444,7 @@ class InstantViewController : GenericViewController<InstantWindowContentView> {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         __window.appearance = theme.appearance
         __window.backgroundColor = theme.colors.grayBackground
     }

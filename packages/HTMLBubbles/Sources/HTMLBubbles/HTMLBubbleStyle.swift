@@ -21,7 +21,7 @@ public enum HTMLBubbleStyle {
     private static let lock = NSLock()
     private static var cache: [String: HTMLBubbleAppearance] = [:]
 
-    public static func appearance(theme: TelegramPresentationTheme, incoming: Bool) -> HTMLBubbleAppearance {
+    public static func appearance(theme: AnsiblePresentationTheme, incoming: Bool) -> HTMLBubbleAppearance {
         let bubbled = theme.bubbled
         let palette = theme.colors
         let text = theme.chat.textColor(incoming, bubbled)
@@ -105,7 +105,7 @@ public enum HTMLBubbleStyle {
         return min(max((Double(height) * 1000).rounded() / 1000, 1), 3)
     }
 
-    static func widgetTheme(chat: TelegramChatColors, palette: ColorPalette, bubbled: Bool, fontSize: CGFloat, incoming: Bool) -> WidgetTheme {
+    static func widgetTheme(chat: AnsibleChatColors, palette: ColorPalette, bubbled: Bool, fontSize: CGFloat, incoming: Bool) -> WidgetTheme {
         let background = chat.bubbleBackgroundColor(incoming, bubbled)
         let opaque = flatten(background, over: palette.background)
         let bg = hex(opaque, over: opaque)

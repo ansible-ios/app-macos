@@ -36,7 +36,7 @@ private final class TagTokenView: Control {
         let layer: InlineStickerItemLayer = .init(account: context.account, file: tag.file, size: NSMakeSize(14, 14))
         imageView.updateLayer(layer, isLite: true, animated: animated)
         
-        let image = TelegramThemeHooks.shared.image(.iconSearchInputTag)
+        let image = AnsibleThemeHooks.shared.image(.iconSearchInputTag)
         let background = NSImage(cgImage: generateTintedImage(image: image._cgImage, color: theme.colors.accent)!, size: image.size)
         self.backgroundView.image = background
 

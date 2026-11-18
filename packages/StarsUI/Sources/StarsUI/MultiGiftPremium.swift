@@ -65,7 +65,7 @@ public func multigift(context: any AccountContextProtocol, type: MultigiftType =
         
         let additionTopItem: SelectPeers_AdditionTopItem?
         if !accountHasBirthday {
-            additionTopItem = .init(title: strings().birthdayAddYourBirthday, color: theme.colors.accent, icon: TelegramThemeHooks.shared.image(.iconCalendar).precomposed(theme.colors.accent, flipVertical: true), callback: {
+            additionTopItem = .init(title: strings().birthdayAddYourBirthday, color: theme.colors.accent, icon: AnsibleThemeHooks.shared.image(.iconCalendar).precomposed(theme.colors.accent, flipVertical: true), callback: {
                 let controller = CalendarController(NSMakeRect(0, 0, 300, 300), context.window, current: Date(), lowYear: 1900, canBeNoYear: true, selectHandler: { date in
                     StarsHooks.shared.updateBirthday(date, context)
                 })

@@ -599,7 +599,7 @@ private func entries(_ state: NewPollState, arguments: Arguments, canBePublic: B
     let optionsLimit = Int(arguments.context.appConfiguration.getGeneralValue("poll_answers_max", orElse: 10))
 
     if case let .addOption(_, existingOptions) = source {
-        let attachIcon = TelegramThemeHooks.shared.image(.iconChatAttach).precomposed(theme.colors.grayIcon)
+        let attachIcon = AnsibleThemeHooks.shared.image(.iconChatAttach).precomposed(theme.colors.grayIcon)
 
         entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().newPollOptionsHeader), data: InputDataGeneralTextData(detectBold: false, viewType: .textTopItem)))
         index += 1
@@ -672,7 +672,7 @@ private func entries(_ state: NewPollState, arguments: Arguments, canBePublic: B
     }))
     index += 1
 
-    let attachIcon = TelegramThemeHooks.shared.image(.iconChatAttach).precomposed(theme.colors.grayIcon)
+    let attachIcon = AnsibleThemeHooks.shared.image(.iconChatAttach).precomposed(theme.colors.grayIcon)
 
     struct DescTuple: Equatable {
         let state: Updated_ChatTextInputState
@@ -1062,7 +1062,7 @@ private func generateLocationPollThumbnail(latitude: Double, longitude: Double, 
                 if let cgImage = snapshot.cgImage(forProposedRect: nil, context: nil, hints: nil) {
                     ctx.draw(cgImage, in: CGRect(origin: .zero, size: thumbSize))
                 }
-                let pin = TelegramThemeHooks.shared.image(.iconLocationPin).precomposed(.white)
+                let pin = AnsibleThemeHooks.shared.image(.iconLocationPin).precomposed(.white)
                 let pinBg: CGFloat = 10
                 let pinBgRect = CGRect(x: (thumbSize.width - pinBg) / 2, y: (thumbSize.height - pinBg) / 2, width: pinBg, height: pinBg)
                 ctx.setFillColor(theme.colors.accent.cgColor)

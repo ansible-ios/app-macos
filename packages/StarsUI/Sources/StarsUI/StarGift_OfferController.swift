@@ -475,7 +475,7 @@ public func StarNftOfferController(context: (any AccountContextProtocol), peer: 
                 } else {
                     control = ImageView(frame: NSMakeRect(0, 0, 20, 20))
                 }
-                    control.image = TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed()
+                    control.image = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
                     control.setAccessibilityLabel(strings().voiceOverCommonStars)
                 return control
             })))
@@ -489,7 +489,7 @@ public func StarNftOfferController(context: (any AccountContextProtocol), peer: 
                     } else {
                         control = ImageView(frame: NSMakeRect(0, 0, 20, 20))
                     }
-                    control.image = TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed()
+                    control.image = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
                     control.setAccessibilityLabel(strings().voiceOverCommonStars)
                     return control
                 })))

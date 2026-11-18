@@ -535,7 +535,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         
         for category in categories {
             let cat = ChatListFilterPeerCategories(rawValue: Int32(category.id._internalGetInt64Value()))
-            selectedPeers.append(TelegramFilterCategory(category: cat))
+            selectedPeers.append(AnsibleFilterCategory(category: cat))
         }
         
         switch state.recepient {
@@ -555,7 +555,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                 }
             }
             let status: String?
-            if peer is TelegramFilterCategory {
+            if peer is AnsibleFilterCategory {
                 status = nil
             } else {
                 status = state.contacts.contains(peer.id) ? strings().businessMessageContact : strings().businessMessageNonContact
@@ -759,31 +759,31 @@ public func BusinessMessageController(context: (any AccountContextProtocol), typ
             case .away:
                 if let awayMessage {
                     if awayMessage.recipients.categories.contains(.nonContacts) {
-                        categories.insert(TelegramFilterCategory(category: .nonContacts).id, at: 0)
+                        categories.insert(AnsibleFilterCategory(category: .nonContacts).id, at: 0)
                     }
                     if awayMessage.recipients.categories.contains(.contacts) {
-                        categories.insert(TelegramFilterCategory(category: .contacts).id, at: 0)
+                        categories.insert(AnsibleFilterCategory(category: .contacts).id, at: 0)
                     }
                     if awayMessage.recipients.categories.contains(.newChats) {
-                        categories.insert(TelegramFilterCategory(category: .newChats).id, at: 0)
+                        categories.insert(AnsibleFilterCategory(category: .newChats).id, at: 0)
                     }
                     if awayMessage.recipients.categories.contains(.existingChats) {
-                        categories.insert(TelegramFilterCategory(category: .existingChats).id, at: 0)
+                        categories.insert(AnsibleFilterCategory(category: .existingChats).id, at: 0)
                     }
                 }
             case .greetings:
                 if let greetingMessage {
                     if greetingMessage.recipients.categories.contains(.nonContacts) {
-                        categories.insert(TelegramFilterCategory(category: .nonContacts).id, at: 0)
+                        categories.insert(AnsibleFilterCategory(category: .nonContacts).id, at: 0)
                     }
                     if greetingMessage.recipients.categories.contains(.contacts) {
-                        categories.insert(TelegramFilterCategory(category: .contacts).id, at: 0)
+                        categories.insert(AnsibleFilterCategory(category: .contacts).id, at: 0)
                     }
                     if greetingMessage.recipients.categories.contains(.newChats) {
-                        categories.insert(TelegramFilterCategory(category: .newChats).id, at: 0)
+                        categories.insert(AnsibleFilterCategory(category: .newChats).id, at: 0)
                     }
                     if greetingMessage.recipients.categories.contains(.existingChats) {
-                        categories.insert(TelegramFilterCategory(category: .existingChats).id, at: 0)
+                        categories.insert(AnsibleFilterCategory(category: .existingChats).id, at: 0)
                     }
                 }
             }

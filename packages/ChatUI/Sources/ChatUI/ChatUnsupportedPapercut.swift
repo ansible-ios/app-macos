@@ -249,8 +249,8 @@ private func papercutIconImage(background: NSColor?, foreground: NSColor) -> CGI
     if let cached = papercutIconCache[key] {
         return cached
     }
-    let backgroundImage = background.flatMap { TelegramThemeHooks.shared.image(.iconUnsupportedBackground).precomposed($0) }
-    let foregroundImage = TelegramThemeHooks.shared.image(.iconUnsupportedForeground).precomposed(foreground)
+    let backgroundImage = background.flatMap { AnsibleThemeHooks.shared.image(.iconUnsupportedBackground).precomposed($0) }
+    let foregroundImage = AnsibleThemeHooks.shared.image(.iconUnsupportedForeground).precomposed(foreground)
     let size = backgroundImage?.backingSize ?? foregroundImage.backingSize
     guard size.width > 0, size.height > 0 else {
         return nil
@@ -282,7 +282,7 @@ public func papercutIconMask() -> CGImage? {
     if let cached = papercutIconMaskImage {
         return cached
     }
-    let mask = TelegramThemeHooks.shared.image(.iconUnsupportedBackground).precomposed(NSColor.white)
+    let mask = AnsibleThemeHooks.shared.image(.iconUnsupportedBackground).precomposed(NSColor.white)
     papercutIconMaskImage = mask
     return mask
 }
@@ -313,7 +313,7 @@ public struct ChatUnsupportedPapercutStyle {
     /// False in list mode, where there is nothing to tear, and for a whole unsupported message.
     public var drawsTornEdges: Bool
 
-    private static func wellColor(_ presentation: TelegramPresentationTheme, onWallpaper: NSColor) -> NSColor {
+    private static func wellColor(_ presentation: AnsiblePresentationTheme, onWallpaper: NSColor) -> NSColor {
         if presentation.colors.isDark {
             return onWallpaper.withAlphaComponent(papercutWellAlphaDark)
         } else {
@@ -325,7 +325,7 @@ public struct ChatUnsupportedPapercutStyle {
     /// the hole torn through the bubble — so it takes the service palette, the codebase's existing answer
     /// for text over the wallpaper, instead of the bubble palette, which would be invisible there.
     /// Without a bubble both collapse to a bare row on the chat background in the accent palette.
-    public static func make(presentation: TelegramPresentationTheme, isBubbled: Bool, tornEdges: Bool) -> ChatUnsupportedPapercutStyle {
+    public static func make(presentation: AnsiblePresentationTheme, isBubbled: Bool, tornEdges: Bool) -> ChatUnsupportedPapercutStyle {
         guard isBubbled else {
             let accent = presentation.colors.accent
             return ChatUnsupportedPapercutStyle(

@@ -40,7 +40,7 @@ public class ChatEmptyPeerItem: TableRowItem {
     public private(set) var introInfo: TextViewLayout?
 
     public let chatInteraction: ChatInteraction
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
 
     private let peerViewDisposable = MetaDisposable()
 
@@ -49,7 +49,7 @@ public class ChatEmptyPeerItem: TableRowItem {
     public override var index: Int { -1000 }
     public override var height: CGFloat { table?.frame.height ?? initialSize.height }
 
-    public init(_ initialSize: NSSize, chatInteraction: ChatInteraction, theme: TelegramPresentationTheme) {
+    public init(_ initialSize: NSSize, chatInteraction: ChatInteraction, theme: AnsiblePresentationTheme) {
         self.chatInteraction = chatInteraction
         self.presentation = theme
 
@@ -98,7 +98,7 @@ public class ChatEmptyPeerItem: TableRowItem {
         var linkText: TextViewLayout? = nil
     }
 
-    private static func makeInitialContent(chatInteraction: ChatInteraction, theme: TelegramPresentationTheme) -> Content {
+    private static func makeInitialContent(chatInteraction: ChatInteraction, theme: AnsiblePresentationTheme) -> Content {
         let textColor = theme.colors.text
         let attr = NSMutableAttributedString()
         var content = Content(attr: attr, lineSpacing: 5)
@@ -137,7 +137,7 @@ public class ChatEmptyPeerItem: TableRowItem {
         }
     }
 
-    private static func fillHistoryContent(into content: inout Content, chatInteraction: ChatInteraction, theme: TelegramPresentationTheme, textColor: NSColor) {
+    private static func fillHistoryContent(into content: inout Content, chatInteraction: ChatInteraction, theme: AnsiblePresentationTheme, textColor: NSColor) {
         let attr = content.attr
         if chatInteraction.peerId.namespace == Namespaces.Peer.SecretChat {
             let lines = [
@@ -184,7 +184,7 @@ public class ChatEmptyPeerItem: TableRowItem {
         }
     }
 
-    private static func fillCustomChatContentsContent(into content: inout Content, kind: ChatCustomContentsKind, theme: TelegramPresentationTheme) {
+    private static func fillCustomChatContentsContent(into content: inout Content, kind: ChatCustomContentsKind, theme: AnsiblePresentationTheme) {
         let attr = content.attr
         let textColor = theme.colors.text
         let accentTint: NSColor = theme.colors.isDark ? theme.colors.text : theme.colors.accent
@@ -194,25 +194,25 @@ public class ChatEmptyPeerItem: TableRowItem {
             attr.append(string: strings().chatEmptyBusinessGreetingMessage, color: textColor, font: .medium(.text))
             attr.append(string: "\n\n")
             attr.append(string: strings().chatEmptyBusinessGreetingMessageInfo, color: textColor, font: .normal(.text))
-            content.standImage = (TelegramThemeHooks.shared.image(.iconBusinessChatGreetings).precomposed(accentTint), Metrics.standImageSmall)
+            content.standImage = (AnsibleThemeHooks.shared.image(.iconBusinessChatGreetings).precomposed(accentTint), Metrics.standImageSmall)
         case .awayMessageInput:
             attr.append(string: strings().chatEmptyBusinessAwayMessage, color: textColor, font: .medium(.text))
             attr.append(string: "\n\n")
             attr.append(string: strings().chatEmptyBusinessAwayMessageInfo, color: textColor, font: .normal(.text))
-            content.standImage = (TelegramThemeHooks.shared.image(.iconBusinessChatAway).precomposed(accentTint), Metrics.standImageSmall)
+            content.standImage = (AnsibleThemeHooks.shared.image(.iconBusinessChatAway).precomposed(accentTint), Metrics.standImageSmall)
         case let .quickReplyMessageInput(shortcut):
             attr.append(string: strings().chatEmptyBusinessQuickReply, color: textColor, font: .medium(.text))
             attr.append(string: "\n\n")
             attr.append(string: strings().chatEmptyBusinessQuickReplyInfo1(shortcut), color: textColor, font: .normal(.text))
             attr.append(string: "\n")
             attr.append(string: strings().chatEmptyBusinessQuickReplyInfo2, color: textColor, font: .normal(.text))
-            content.standImage = (TelegramThemeHooks.shared.image(.iconBusinessChatQuickReply).precomposed(accentTint), Metrics.standImageSmall)
+            content.standImage = (AnsibleThemeHooks.shared.image(.iconBusinessChatQuickReply).precomposed(accentTint), Metrics.standImageSmall)
             attr.detectBoldColorInString(with: .medium(.text))
         case .welcomeMessages:
             attr.append(string: strings().welcomeMessageEmptyTitle, color: textColor, font: .medium(.text))
             attr.append(string: "\n\n")
             attr.append(string: strings().welcomeMessageEmptyText, color: textColor, font: .normal(.text))
-            content.standImage = (TelegramThemeHooks.shared.image(.iconBusinessChatGreetings).precomposed(accentTint), Metrics.standImageSmall)
+            content.standImage = (AnsibleThemeHooks.shared.image(.iconBusinessChatGreetings).precomposed(accentTint), Metrics.standImageSmall)
         case .searchHashtag:
             attr.append(string: strings().chatEmptySearchHashtag, color: textColor, font: .medium(.text))
         case .htmlDemo:
@@ -220,7 +220,7 @@ public class ChatEmptyPeerItem: TableRowItem {
         }
     }
 
-    private static func fillCustomLinkContent(into content: inout Content, link: String, theme: TelegramPresentationTheme) {
+    private static func fillCustomLinkContent(into content: inout Content, link: String, theme: AnsiblePresentationTheme) {
         let attr = content.attr
         let textColor = theme.colors.text
         let accentTint: NSColor = theme.colors.isDark ? theme.colors.text : theme.colors.accent
@@ -228,7 +228,7 @@ public class ChatEmptyPeerItem: TableRowItem {
         attr.append(string: strings().chatEmptyBusinessLinkTitle, color: textColor, font: .medium(.text))
         attr.append(string: "\n\n")
         attr.append(string: strings().chatEmptyBusinessLinkText, color: textColor, font: .normal(.text))
-        content.standImage = (TelegramThemeHooks.shared.image(.iconChatLinksToChat).precomposed(accentTint), Metrics.standImageSmall)
+        content.standImage = (AnsibleThemeHooks.shared.image(.iconChatLinksToChat).precomposed(accentTint), Metrics.standImageSmall)
 
         let linkLayout = TextViewLayout(.initialize(string: link, color: textColor, font: .medium(.text)))
         linkLayout.measure(width: .greatestFiniteMagnitude)
@@ -243,7 +243,7 @@ public class ChatEmptyPeerItem: TableRowItem {
             && chatInteraction.mode.customChatLink == nil
     }
 
-    private func subscribeToCloudUserData(theme: TelegramPresentationTheme) {
+    private func subscribeToCloudUserData(theme: AnsiblePresentationTheme) {
         let context = chatInteraction.interactionContext
 
         let cachedData: Signal<CachedPeerData?, NoError> = .single(chatInteraction.presentation.cachedData)
@@ -287,7 +287,7 @@ public class ChatEmptyPeerItem: TableRowItem {
         }))
     }
 
-    private func applyManagedBot(user: Peer, managerPeer: Peer?, theme: TelegramPresentationTheme) {
+    private func applyManagedBot(user: Peer, managerPeer: Peer?, theme: AnsiblePresentationTheme) {
         let managerName = managerPeer?.displayTitle ?? "bot manager"
         let attr = NSMutableAttributedString()
         attr.append(string: "\(user.displayTitle) ", color: theme.colors.text, font: .bold(.text))
@@ -324,7 +324,7 @@ public class ChatEmptyPeerItem: TableRowItem {
     private static var managedBotPreviewCache: [ManagedBotPreviewCacheEntry] = []
     private static let managedBotPreviewLock = NSLock()
     
-    private static func managedBotPreviewImage(peerId: PeerId, theme: TelegramPresentationTheme) -> CGImage {
+    private static func managedBotPreviewImage(peerId: PeerId, theme: AnsiblePresentationTheme) -> CGImage {
         let colorIndex = Int(peerId.id._internalGetInt64Value() % 7)
         let colors = theme.colors.peerColors(colorIndex)
         let scale = System.backingScale
@@ -351,21 +351,21 @@ public class ChatEmptyPeerItem: TableRowItem {
             let gradient = CGGradient(colorsSpace: colorSpace, colors: [colors.top.darker().cgColor, colors.bottom.darker().cgColor] as CFArray, locations: [0.0, 1.0])!
             ctx.drawLinearGradient(gradient, start: .zero, end: CGPoint(x: 0, y: size.height), options: [])
 
-            let patternImage = TelegramThemeHooks.shared.image(.iconManageBotPattern).precomposed(.white, flipVertical: true)
+            let patternImage = AnsibleThemeHooks.shared.image(.iconManageBotPattern).precomposed(.white, flipVertical: true)
             let patternSize = patternImage.backingSize * 0.5
             let patternRect = CGRect(origin: CGPoint(x: (size.width - patternSize.width) / 2, y: (size.height - patternSize.height) / 2), size: patternSize)
             ctx.setBlendMode(.overlay)
             ctx.draw(patternImage, in: patternRect)
             ctx.setBlendMode(.normal)
 
-            let codeIcon = TelegramThemeHooks.shared.image(.iconManageBotCode).precomposed(.white, flipVertical: true)
+            let codeIcon = AnsibleThemeHooks.shared.image(.iconManageBotCode).precomposed(.white, flipVertical: true)
             let iconSize = NSMakeSize(codeIcon.backingSize.width / 2, codeIcon.backingSize.height / 2)
             let iconRect = CGRect(origin: CGPoint(x: (size.width - iconSize.width) / 2, y: (size.height - iconSize.height) / 2), size: iconSize)
             ctx.draw(codeIcon, in: iconRect)
         })!
     }
 
-    private func applyBotInfo(botInfo: BotInfo, cachedData: CachedUserData, user: Peer, theme: TelegramPresentationTheme) {
+    private func applyBotInfo(botInfo: BotInfo, cachedData: CachedUserData, user: Peer, theme: AnsiblePresentationTheme) {
         var about = botInfo.description
         if about.isEmpty {
             about = cachedData.about ?? strings().chatEmptyChat
@@ -392,7 +392,7 @@ public class ChatEmptyPeerItem: TableRowItem {
         self.standImage = nil
     }
 
-    private func applyPremiumRequired(user: Peer, theme: TelegramPresentationTheme) {
+    private func applyPremiumRequired(user: Peer, theme: AnsiblePresentationTheme) {
         let chatInteraction = self.chatInteraction
         let attr = NSMutableAttributedString()
         attr.append(string: strings().chatEmptyPremiumRequiredState(user.compactDisplayTitle), color: theme.colors.text, font: .medium(.text))
@@ -405,10 +405,10 @@ public class ChatEmptyPeerItem: TableRowItem {
         self.textViewLayout = TextViewLayout(attr, alignment: .center)
         self.textViewLayout.interactions = LinkHooks.shared.globalLinkExecutor()
         self.premiumRequired = true
-        self.standImage = (TelegramThemeHooks.shared.image(.iconChatPremiumRequired).precomposed(accentTint), Metrics.standImagePremium)
+        self.standImage = (AnsibleThemeHooks.shared.image(.iconChatPremiumRequired).precomposed(accentTint), Metrics.standImagePremium)
     }
 
-    private func applyBusinessIntro(intro: TelegramBusinessIntro, user: Peer, greetingSticker: FoundStickerItem?, theme: TelegramPresentationTheme) {
+    private func applyBusinessIntro(intro: TelegramBusinessIntro, user: Peer, greetingSticker: FoundStickerItem?, theme: AnsiblePresentationTheme) {
         let attr = NSMutableAttributedString()
         attr.append(string: intro.title.isEmpty ? strings().chatEmptyChat : intro.title, color: theme.colors.text, font: .medium(.text))
         attr.append(string: "\n", color: theme.colors.text, font: .medium(.text))

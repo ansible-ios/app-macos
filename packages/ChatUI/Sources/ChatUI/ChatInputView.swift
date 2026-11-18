@@ -240,7 +240,7 @@ public final class ChatInputContainerView: FlippableView {
     /// Show / update / hide the rich-draft preview. Returns true when the height changed (so the host can
     /// propagate the new input height). Measured against the current text width.
     @discardableResult
-    public func setRichDraft(_ instantPage: InstantPage?, theme presentationTheme: TelegramPresentationTheme) -> Bool {
+    public func setRichDraft(_ instantPage: InstantPage?, theme presentationTheme: AnsiblePresentationTheme) -> Bool {
         let previousHeight = richDraftPreviewHeight
         if let instantPage = instantPage {
             let current: RichTextDraftPreviewView
@@ -529,7 +529,7 @@ public final class ChatInputContainerView: FlippableView {
                 current = ImageButton()
                 current.autohighlight = false
                 current.scaleOnClick = true
-                current.set(image: TelegramThemeHooks.shared.image(.iconExpandRichText).precomposed(theme.colors.text), for: .Normal)
+                current.set(image: AnsibleThemeHooks.shared.image(.iconExpandRichText).precomposed(theme.colors.text), for: .Normal)
                 current.sizeToFit(NSZeroSize, NSMakeSize(24, 24), thatFit: true)
                 current.set(handler: { [weak self] _ in self?.openRichEditor?() }, for: .Click)
                 current.setAccessibilityLabel(strings().voiceOverCommonExpand)
@@ -693,7 +693,7 @@ public class ChatInputView: View, Notifable {
     /// `MessageActionsPanelView` when the user enters selection mode) can
     /// apply the chat palette immediately instead of waiting for the next
     /// theme pass and flashing the global app colours.
-    private var currentChatTheme: TelegramPresentationTheme?
+    private var currentChatTheme: AnsiblePresentationTheme?
     private var recordingPanelView: ChatInputRecordingView?
     private(set) var isTranscribing = false
     private var dictationHeight: ChatDictationHeightHold {
@@ -1222,7 +1222,7 @@ public class ChatInputView: View, Notifable {
             
         if let cachedData = chatInteraction.presentation.cachedData as? CachedChannelData {
             let viewForumAsMessages = cachedData.viewForumAsMessages.knownValue
-            if TelegramUtilsHooks.shared.peerIsForum(peer), viewForumAsMessages == true {
+            if AnsibleUtilsHooks.shared.peerIsForum(peer), viewForumAsMessages == true {
                 if let replyMessage = chatInteraction.presentation.interfaceState.replyMessage {
                     if let threadInfo = replyMessage.associatedThreadInfo {
                         return strings().messagePlaceholderReplyToTopic(threadInfo.title)
@@ -1268,13 +1268,13 @@ public class ChatInputView: View, Notifable {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         self.currentChatTheme = theme
 
         attachView.updateLocalizationAndTheme(theme: theme)
         attachView.setInnerGlassHidden(true)
         attachView.setSharedGlassGhost(attachGhost)
-        container.expandRichButton?.set(image: TelegramThemeHooks.shared.image(.iconExpandRichText).precomposed(theme.colors.text), for: .Normal)
+        container.expandRichButton?.set(image: AnsibleThemeHooks.shared.image(.iconExpandRichText).precomposed(theme.colors.text), for: .Normal)
 
         // Forward the appearance change to each ghost — its forceAppearance
         // didSet rebuilds the inner NSGlassEffectView at the new dark/light

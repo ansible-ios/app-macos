@@ -2543,7 +2543,7 @@ private func passportRowIcon(symbol: String, color: NSColor) -> CGImage? {
 }
 
 private func passportInfoBarImage() -> CGImage {
-    return TelegramThemeHooks.shared.image(.iconSettingsBio).precomposed(theme.colors.text)
+    return AnsibleThemeHooks.shared.image(.iconSettingsBio).precomposed(theme.colors.text)
 }
 
 public class PassportController: GenericViewController<PassportControllerView> {
@@ -2576,7 +2576,7 @@ public class PassportController: GenericViewController<PassportControllerView> {
 
     public override func backSettings() -> (String, CGImage?) {
         let color = barPresentation.foregroundColor
-        return (form == nil ? strings().navigationBack : "", form == nil ? TelegramThemeHooks.shared.image(.iconNavigationBack).precomposed(color) : theme.icons.dismissPinned)
+        return (form == nil ? strings().navigationBack : "", form == nil ? AnsibleThemeHooks.shared.image(.iconNavigationBack).precomposed(color) : theme.icons.dismissPinned)
     }
 
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {

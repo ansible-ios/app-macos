@@ -71,7 +71,7 @@ private func urlHandlingConfiguration(for appConfiguration: AppConfiguration) ->
 
 
 func resolveUsername(username: String, context: AccountContext) -> Signal<Peer?, NoError> {
-    if username.hasPrefix(privateTelegramPeerPrefix), let range = username.range(of: privateTelegramPeerPrefix) {
+    if username.hasPrefix(privateAnsiblePeerPrefix), let range = username.range(of: privateAnsiblePeerPrefix) {
         if let channelId = Int64(username[range.upperBound...]), let id = PeerId._optionalInternalFromInt64Value(channelId) {
             let peerId = PeerId(namespace: Namespaces.Peer.CloudChannel, id: id)
             
@@ -153,7 +153,7 @@ var globalLinkExecutor:TextViewInteractions {
                 case let .external(link, _):
                     if isValidEmail(link) {
                         return .email
-                    } else if telegram_me.first(where: {link.contains($0 + "joinchat/")}) != nil {
+                    } else if ansible_me.first(where: {link.contains($0 + "joinchat/")}) != nil {
                         return .inviteLink
                     } else {
                         return .plain
@@ -1145,7 +1145,7 @@ func execute(inapp:inAppLink, window: Window? = nil, isExternal: Bool = false, a
         }
         
         var peerSignal: Signal<Peer, Error> = .fail(.doesntExists)
-        if username.hasPrefix(privateTelegramPeerPrefix), let range = username.range(of: privateTelegramPeerPrefix) {
+        if username.hasPrefix(privateAnsiblePeerPrefix), let range = username.range(of: privateAnsiblePeerPrefix) {
             if let channelId = Int64(username[range.upperBound...]), let id = PeerId._optionalInternalFromInt64Value(channelId) {
                 let peerId = PeerId(namespace: Namespaces.Peer.CloudChannel, id: id)
                 peerSignal = context.account.postbox.transaction { transaction -> Peer? in
@@ -1218,7 +1218,7 @@ func execute(inapp:inAppLink, window: Window? = nil, isExternal: Bool = false, a
         }
         
         var peerSignal: Signal<Peer, Error> = .fail(.doesntExists)
-        if username.hasPrefix(privateTelegramPeerPrefix), let range = username.range(of: privateTelegramPeerPrefix) {
+        if username.hasPrefix(privateAnsiblePeerPrefix), let range = username.range(of: privateAnsiblePeerPrefix) {
             if let channelId = Int64(username[range.upperBound...]), let id = PeerId._optionalInternalFromInt64Value(channelId) {
                 let peerId = PeerId(namespace: Namespaces.Peer.CloudChannel, id: id)
                 peerSignal = context.account.postbox.transaction { transaction -> Peer? in
@@ -1271,7 +1271,7 @@ func execute(inapp:inAppLink, window: Window? = nil, isExternal: Bool = false, a
             openResolvedLinkPeer(peer, messageId: messageId, action: action, forceProfile: forceProfile, context: context, window: getWindow(context), origin: origin, callback: callback)
         }
 
-        if username.hasPrefix(privateTelegramPeerPrefix), let range = username.range(of: privateTelegramPeerPrefix) {
+        if username.hasPrefix(privateAnsiblePeerPrefix), let range = username.range(of: privateAnsiblePeerPrefix) {
             if let channelId = Int64(username[range.upperBound...]), let id = PeerId._optionalInternalFromInt64Value(channelId) {
                 let peerId = PeerId(namespace: Namespaces.Peer.CloudChannel, id: id)
                 
@@ -2120,7 +2120,7 @@ func execute(inapp:inAppLink, window: Window? = nil, isExternal: Bool = false, a
                 showModal(with: BoostChannelModalController(context: context, peer: value.0, boosts: boosts, myStatus: value.2 ), for: getWindow(context))
             } else {
                 if value == nil {
-                    if username.contains(privateTelegramPeerPrefix) {
+                    if username.contains(privateAnsiblePeerPrefix) {
                         alert(for: getWindow(context), info: strings().channelBoostPrivateError)
                     } else {
                         alert(for: getWindow(context), info: strings().alertUserDoesntExists)
@@ -2475,7 +2475,7 @@ enum inAppLink {
 
 func inApp(for url:NSString, context: AccountContext? = nil, peerId:PeerId? = nil, messageId: MessageId? = nil, openInfo:((PeerId, Bool, MessageId?, ChatInitialAction?)->Void)? = nil, hashtag:((String)->Void)? = nil, command:((String)->Void)? = nil, applyProxy:((ProxyServerSettings) -> Void)? = nil, confirm: Bool = false) -> inAppLink {
 
-    let source = normalizedTelegramLinkQuery(url as String)
+    let source = normalizedAnsibleLinkQuery(url as String)
     if let scheme = URLComponents(string: source)?.scheme?.lowercased(), ["ton", "tonsite", "tc", "tonconnect"].contains(scheme) { return .nothing }
 
     let options = InAppLinkParsingOptions(

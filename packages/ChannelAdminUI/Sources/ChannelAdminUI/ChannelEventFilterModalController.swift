@@ -318,7 +318,7 @@ private func generateEventLogAfter(_ flag: FilterParentEvent, state: ChannelEven
     let revealed = state.revealed.contains(flag)
     
     let layout = TextNode.layoutText(.initialize(string: "\(selected)/\(total)", color: theme.colors.text, font: .medium(.text)), nil, 1, .end, NSMakeSize(.greatestFiniteMagnitude, .greatestFiniteMagnitude), nil, false, .center)
-    let image = TelegramThemeHooks.shared.image(revealed ? .iconSmallChevronUp : .iconSmallChevronDown).precomposed(theme.colors.text, flipVertical: true)
+    let image = AnsibleThemeHooks.shared.image(revealed ? .iconSmallChevronUp : .iconSmallChevronDown).precomposed(theme.colors.text, flipVertical: true)
 
     return generateImage(NSMakeSize(layout.0.size.width + 3 + image.backingSize.width, layout.0.size.height), contextGenerator: { size, ctx in
         ctx.clear(size.bounds)

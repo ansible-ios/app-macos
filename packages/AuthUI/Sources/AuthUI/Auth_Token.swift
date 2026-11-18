@@ -159,7 +159,7 @@ public final class Auth_TokenView : View {
     }
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         super.updateLocalizationAndTheme(theme: theme)
         animationContainer.background = dayClassicPalette.background
         animationContainer.layer?.cornerRadius = 10

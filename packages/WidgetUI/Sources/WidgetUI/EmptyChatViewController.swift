@@ -42,7 +42,7 @@ public class EmptyChatView : View {
             self.cards = nil
         }
         containerView.change(opacity: isEnabled ? 0 : 1, animated: animated)
-        toggleTips.set(image: self.cards == nil ? TelegramThemeHooks.shared.image(.iconEmptyShowTips).precomposed(theme.colors.text) : theme.icons.glass_close, for: .Normal)
+        toggleTips.set(image: self.cards == nil ? AnsibleThemeHooks.shared.image(.iconEmptyShowTips).precomposed(theme.colors.text) : theme.icons.glass_close, for: .Normal)
         updateToggleTipsAccessibility()
 
         
@@ -80,7 +80,7 @@ public class EmptyChatView : View {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         imageView.image = theme.icons.chatEmpty
         switch theme.controllerBackgroundMode {
         case .plain:
@@ -89,7 +89,7 @@ public class EmptyChatView : View {
             imageView.isHidden = true
         }
         
-        toggleTips.set(image: cards == nil ? TelegramThemeHooks.shared.image(.iconEmptyShowTips).precomposed(theme.colors.text) : theme.icons.glass_close, for: .Normal)
+        toggleTips.set(image: cards == nil ? AnsibleThemeHooks.shared.image(.iconEmptyShowTips).precomposed(theme.colors.text) : theme.icons.glass_close, for: .Normal)
         updateToggleTipsAccessibility()
 
 
@@ -150,7 +150,7 @@ public class EmptyChatView : View {
     }
 }
 
-open class EmptyChatViewController<Context: AccountContextProtocol>: TelegramGenericViewController<EmptyChatView, Context> {
+open class EmptyChatViewController<Context: AccountContextProtocol>: AnsibleGenericViewController<EmptyChatView, Context> {
     
     open override var defaultBarTitle: String {
         return localizedString("Telegram.EmptyChatViewController")
@@ -185,7 +185,7 @@ open class EmptyChatViewController<Context: AccountContextProtocol>: TelegramGen
     }
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         self.backgroundColor = .clear
         self.cards.updateLocalizationAndTheme(theme: theme)
     }

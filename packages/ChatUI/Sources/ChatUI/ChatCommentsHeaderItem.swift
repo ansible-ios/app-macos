@@ -17,8 +17,8 @@ public class ChatCommentsHeaderItem : TableStickItem {
     fileprivate let chatInteraction:ChatInteraction?
     public let isBubbled: Bool
     public let layout:TextViewLayout
-    public let presentation: TelegramPresentationTheme
-    public init(_ initialSize:NSSize, _ entry:ChatHistoryEntry, interaction: ChatInteraction, theme: TelegramPresentationTheme) {
+    public let presentation: AnsiblePresentationTheme
+    public init(_ initialSize:NSSize, _ entry:ChatHistoryEntry, interaction: ChatInteraction, theme: AnsiblePresentationTheme) {
         self.entry = entry
         self.isBubbled = entry.renderType == .bubble
         self.chatInteraction = interaction
@@ -52,7 +52,7 @@ public class ChatCommentsHeaderItem : TableStickItem {
     }
     
     public var shouldBlurService: Bool {
-        if TelegramUtilsHooks.shared.isLite(.blur) {
+        if AnsibleUtilsHooks.shared.isLite(.blur) {
             return false
         }
         return presentation.shouldBlurService

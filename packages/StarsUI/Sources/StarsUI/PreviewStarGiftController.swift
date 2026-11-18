@@ -505,7 +505,7 @@ private final class PreviewRowItem : GeneralRowItem {
     public let includeUpgrade: Bool
     public let headerLayout: TextViewLayout
     
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
     public let titleLayout: TextViewLayout
     public let infoLayout: TextViewLayout
 
@@ -877,7 +877,7 @@ private final class PreviewRowView : GeneralContainableRowView {
                     let text: String = strings().starTransactionAvailabilityOf(1, Int(availability.total).prettyNumber)
                     let color = item.presentation.chatServiceItemColor
                     
-                    let ribbon = generateGradientTintedImage(image: TelegramThemeHooks.shared.image(.giftRibbon).precomposed(), colors: [color.withMultipliedBrightnessBy(1.1), color.withMultipliedBrightnessBy(0.9)], direction: .diagonal)!
+                    let ribbon = generateGradientTintedImage(image: AnsibleThemeHooks.shared.image(.giftRibbon).precomposed(), colors: [color.withMultipliedBrightnessBy(1.1), color.withMultipliedBrightnessBy(0.9)], direction: .diagonal)!
                     
                     current.image = generateGiftBadgeBackground(background: ribbon, text: text)
                     current.sizeToFit()

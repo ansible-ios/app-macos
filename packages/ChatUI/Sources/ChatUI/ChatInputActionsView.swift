@@ -157,7 +157,7 @@ public class ChatInputActionsView: View, Notifable {
         for button in [keyboard, muteChannelMessages, gift, suggestPost] where button.superview == nil {
             button.updateLocalizationAndTheme(theme: theme)
         }
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
 
         let muted = FastSettings.isChannelMessagesMuted(chatInteraction.peerId)
         muteChannelMessages.set(image: !muted ? theme.icons.inputChannelMute : theme.icons.inputChannelUnmute, for: .Normal)

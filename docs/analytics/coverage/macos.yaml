@@ -187,8 +187,8 @@ items:
   "class:AnsibleShare/ShareViewController": {ignore: container}
   "class:AnsibleUtils/EditableViewController": {ignore: base}
   "class:AnsibleUtils/TableViewController": {ignore: base}
-  "class:AnsibleUtils/TelegramGenericViewController": {ignore: base}
-  "class:AnsibleUtils/TelegramViewController": {ignore: base}
+  "class:AnsibleUtils/AnsibleGenericViewController": {ignore: base}
+  "class:AnsibleUtils/AnsibleViewController": {ignore: base}
   "class:WalletUI/WalletAuthorizeController": wallet.authorize
   "class:WalletUI/WalletModalController": {ignore: base}
   "class:WalletUI/WalletPeerBalanceController": wallet.peer_balance

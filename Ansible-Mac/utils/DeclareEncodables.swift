@@ -7,7 +7,7 @@ import AnsibleThemeShare
 import AnsibleTheme
 #endif
 
-private var telegramUIDeclaredEncodables: Void = {
+private var ansibleUIDeclaredEncodables: Void = {
     declareEncodable(VideoLibraryMediaResource.self, f: { VideoLibraryMediaResource(decoder: $0) })
     declareEncodable(LocalFileVideoMediaResource.self, f: { LocalFileVideoMediaResource(decoder: $0) })
     declareEncodable(LocalFileGifMediaResource.self, f: { LocalFileGifMediaResource(decoder: $0) })
@@ -18,6 +18,6 @@ private var telegramUIDeclaredEncodables: Void = {
     return
 }()
 
-public func telegramUIDeclareEncodables() {
-    let _ = telegramUIDeclaredEncodables
+public func ansibleUIDeclareEncodables() {
+    let _ = ansibleUIDeclaredEncodables
 }

@@ -656,18 +656,18 @@ private final class ChatListExpandView: View {
     }
 
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         container.backgroundColor = theme.colors.background.withAlphaComponent(0.4)
         container.layer?.borderColor = theme.colors.border.cgColor
 
-        iconView.image = TelegramThemeHooks.shared.image(.iconFilterArchive).precomposed(theme.colors.grayText)
+        iconView.image = AnsibleThemeHooks.shared.image(.iconFilterArchive).precomposed(theme.colors.grayText)
         iconView.sizeToFit()
 
         let titleLayout = TextViewLayout(.initialize(string: strings().chatListArchivedChats, color: theme.colors.grayText, font: .medium(12)), maximumNumberOfLines: 1, alwaysStaticItems: true)
         titleLayout.measure(width: .greatestFiniteMagnitude)
         titleView.update(titleLayout)
 
-        arrowView.image = TelegramThemeHooks.shared.image(.iconPeerMusicChevron).precomposed(theme.colors.grayText)
+        arrowView.image = AnsibleThemeHooks.shared.image(.iconPeerMusicChevron).precomposed(theme.colors.grayText)
         arrowView.sizeToFit()
 
         needsLayout = true
@@ -2370,7 +2370,7 @@ public class ChatListRowView: TableRowView {
                      current.setAccessibilityLabel(strings().communityViewTitle)
                      current.autohighlight = false
                      current.scaleOnClick = true
-                     current.set(image: TelegramThemeHooks.shared.image(.iconCommunityAvatarDropdown).precomposed(), for: .Normal)
+                     current.set(image: AnsibleThemeHooks.shared.image(.iconCommunityAvatarDropdown).precomposed(), for: .Normal)
                      current.sizeToFit()
                      current.setGlassEffect(forceAppearance: .forceLight)
                      current.set(handler: { [weak self] _ in

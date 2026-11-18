@@ -21,12 +21,12 @@ public struct ShareUIHooks {
     public let chatListFilterId: (ChatListFilter) -> Int32
     public let makeChatController: (any AccountContextProtocol, ChatLocation, ChatInitialAction?) -> ChatInterfaceController
     public let makeChatAdditionController: (any AccountContextProtocol, ChatLocation, ChatInitialAction?) -> ChatInterfaceController
-    public let makeEmojies: (any AccountContextProtocol, TelegramPresentationTheme?) -> ShareEmojiesController
+    public let makeEmojies: (any AccountContextProtocol, AnsiblePresentationTheme?) -> ShareEmojiesController
 
     public init(chatListFilterId: @escaping (ChatListFilter) -> Int32,
                 makeChatController: @escaping (any AccountContextProtocol, ChatLocation, ChatInitialAction?) -> ChatInterfaceController,
                 makeChatAdditionController: @escaping (any AccountContextProtocol, ChatLocation, ChatInitialAction?) -> ChatInterfaceController,
-                makeEmojies: @escaping (any AccountContextProtocol, TelegramPresentationTheme?) -> ShareEmojiesController) {
+                makeEmojies: @escaping (any AccountContextProtocol, AnsiblePresentationTheme?) -> ShareEmojiesController) {
         self.chatListFilterId = chatListFilterId
         self.makeChatController = makeChatController
         self.makeChatAdditionController = makeChatAdditionController

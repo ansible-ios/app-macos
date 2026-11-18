@@ -389,21 +389,21 @@ private final class TransactionView : GeneralContainableRowView {
             }
             switch item.transaction.type.source {
             case .appstore:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowStars).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionRowStars).precomposed()
             case .fragment:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowFragment).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionRowFragment).precomposed()
             case .ads:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowAds).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionRowAds).precomposed()
             case .playmarket:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowAndroid).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionRowAndroid).precomposed()
             case .peer:
                 break
             case .premiumbot:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowPremiumBot).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionRowPremiumBot).precomposed()
             case .unknown:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionPreviewUnknown).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionPreviewUnknown).precomposed()
             case .apiLimitExtension:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowPaidBroadcast).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionRowPaidBroadcast).precomposed()
             }
         }
 

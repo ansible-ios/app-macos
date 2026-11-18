@@ -92,7 +92,7 @@ public struct ChatInputUIHooks {
     public let getAudioPlayer: ((any AccountContextProtocol)?) -> APController?
     public let makeStickerPackPreview: (any AccountContextProtocol, PeerId?, [ChatInputStickerPackPreviewSource]) -> ModalViewController
     public let resolveInAppLink: (Any?) -> ChatInputInAppLink?
-    public let highlightRichTextSyntax: (String, String, @escaping () -> TelegramPresentationTheme, @escaping ([RichTextSyntaxToken]) -> Void) -> Void
+    public let highlightRichTextSyntax: (String, String, @escaping () -> AnsiblePresentationTheme, @escaping ([RichTextSyntaxToken]) -> Void) -> Void
     public let makeEmojiPicker: (any AccountContextProtocol, @escaping (StickerPackItem, StarGift.UniqueGift?, StickerPackCollectionInfo?, Int32?, NSRect?) -> Void, @escaping (String, CGRect?) -> Void) -> ViewController
     public var makeEmojiPickerWithContext: ((any AccountContextProtocol, AnalyticsContext, @escaping (StickerPackItem, StarGift.UniqueGift?, StickerPackCollectionInfo?, Int32?, NSRect?) -> Void, @escaping (String, CGRect?) -> Void) -> ViewController)?
 
@@ -139,7 +139,7 @@ public struct ChatInputUIHooks {
                 getAudioPlayer: @escaping ((any AccountContextProtocol)?) -> APController?,
                 makeStickerPackPreview: @escaping (any AccountContextProtocol, PeerId?, [ChatInputStickerPackPreviewSource]) -> ModalViewController,
                 resolveInAppLink: @escaping (Any?) -> ChatInputInAppLink?,
-                highlightRichTextSyntax: @escaping (String, String, @escaping () -> TelegramPresentationTheme, @escaping ([RichTextSyntaxToken]) -> Void) -> Void,
+                highlightRichTextSyntax: @escaping (String, String, @escaping () -> AnsiblePresentationTheme, @escaping ([RichTextSyntaxToken]) -> Void) -> Void,
                 makeEmojiPicker: @escaping (any AccountContextProtocol, @escaping (StickerPackItem, StarGift.UniqueGift?, StickerPackCollectionInfo?, Int32?, NSRect?) -> Void, @escaping (String, CGRect?) -> Void) -> ViewController,
                 isEntertainmentSidebarAvailable: @escaping (NSWindow?) -> Bool,
                 updateEntertainmentSidebar: @escaping (Bool) -> Void,

@@ -105,7 +105,7 @@ final class UpdateTabView : Control {
 
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         let tint: NSColor
         switch updateState {
         case .common:
@@ -387,7 +387,7 @@ final class MainController_View: View {
     }
 }
 
-class MainViewController: TelegramGenericViewController<MainController_View> {
+class MainViewController: AnsibleGenericViewController<MainController_View> {
 
     private enum MainTab: String, CaseIterable {
         case contacts, calls, chats, settings
@@ -773,7 +773,7 @@ class MainViewController: TelegramGenericViewController<MainController_View> {
 //        showPopover(for: control, with: controller, edge: .maxX, inset: NSMakePoint(control.frame.width - 12, 0))
 //        self.quickController = controller
     }
-    private var previousTheme:TelegramPresentationTheme?
+    private var previousTheme:AnsiblePresentationTheme?
     private var previousIconColor:NSColor?
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
@@ -783,7 +783,7 @@ class MainViewController: TelegramGenericViewController<MainController_View> {
         navigation.hasBarLeftBorder = true
 
 
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         //#if !APP_STORE
         updateController.updateLocalizationAndTheme(theme: theme)
         //#endif

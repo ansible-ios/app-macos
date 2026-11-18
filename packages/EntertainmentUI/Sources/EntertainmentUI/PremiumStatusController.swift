@@ -35,7 +35,7 @@ private func animateStatusAppearance(_ items: [TableRowItem]) {
     }
 }
 
-public final class PremiumStatusController<Context: AccountContextProtocol> : TelegramViewController<Context> {
+public final class PremiumStatusController<Context: AccountContextProtocol> : AnsibleViewController<Context> {
 
     public override var defaultBarTitle: String {
         return localizedString("Telegram.PremiumStatusController")
@@ -62,7 +62,7 @@ public final class PremiumStatusController<Context: AccountContextProtocol> : Te
     
     private var usesMenuGlass: Bool {
         if #available(macOS 26.0, *) {
-            return System.liquidGlass && System.liquidGlassAvailable && !TelegramUtilsHooks.shared.isLite(.blur)
+            return System.liquidGlass && System.liquidGlassAvailable && !AnsibleUtilsHooks.shared.isLite(.blur)
         }
         return false
     }
@@ -114,7 +114,7 @@ public final class PremiumStatusController<Context: AccountContextProtocol> : Te
 
 
 
-public final class SetupQuickReactionController<Context: AccountContextProtocol> : TelegramViewController<Context> {
+public final class SetupQuickReactionController<Context: AccountContextProtocol> : AnsibleViewController<Context> {
 
     public override var defaultBarTitle: String {
         return localizedString("Telegram.SetupQuickReactionController")

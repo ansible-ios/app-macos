@@ -73,9 +73,9 @@ public final class PremiumFeatureSlideView : View, SlideViewProtocol {
     }
     private var bgDecoration: BackgroundDecoration = .none
 
-    private let presentation: TelegramPresentationTheme
+    private let presentation: AnsiblePresentationTheme
 
-    public init(frame frameRect: NSRect, presentation: TelegramPresentationTheme) {
+    public init(frame frameRect: NSRect, presentation: AnsiblePresentationTheme) {
         self.presentation = presentation
         super.init(frame: frameRect)
         bottom.addSubview(descView)

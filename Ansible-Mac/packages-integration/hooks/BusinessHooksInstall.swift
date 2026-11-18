@@ -71,7 +71,7 @@ func installBusinessUIHooks() {
         guard let context = context as? AccountContext else {
             return
         }
-        let items = request.categories.map { ShareAdditionItem(peer: TelegramFilterCategory(category: filterCategory($0)), status: "") }
+        let items = request.categories.map { ShareAdditionItem(peer: AnsibleFilterCategory(category: filterCategory($0)), status: "") }
         let additionTopItems = items.isEmpty ? nil : ShareAdditionItems(items: items, topSeparator: request.categoriesTopSeparator, bottomSeparator: request.categoriesBottomSeparator)
         showModal(with: ShareModalController(BusinessSelectChatsCallbackObject(context, defaultSelectedIds: request.selected, contacts: request.contacts, additionTopItems: additionTopItems, limit: request.limit, limitReachedText: request.limitReachedText, callback: request.callback, excludePeerIds: request.excludePeerIds)), for: context.window)
     }))

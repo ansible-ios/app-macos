@@ -9,11 +9,11 @@ final class WidgetThemeMappingTests: XCTestCase {
     private let palette = dayClassicPalette
 
     private func theme(incoming: Bool, fontSize: CGFloat = 14) -> WidgetTheme {
-        return HTMLBubbleStyle.widgetTheme(chat: TelegramChatColors(palette, true), palette: palette, bubbled: true, fontSize: fontSize, incoming: incoming)
+        return HTMLBubbleStyle.widgetTheme(chat: AnsibleChatColors(palette, true), palette: palette, bubbled: true, fontSize: fontSize, incoming: incoming)
     }
 
     func testWidgetThemeTakesTheBubbleItSitsIn() {
-        let chat = TelegramChatColors(palette, true)
+        let chat = AnsibleChatColors(palette, true)
         let incoming = theme(incoming: true)
         let outgoing = theme(incoming: false)
         XCTAssertEqual(incoming.params["bg_color"], hex(chat.bubbleBackgroundColor(true, true)))

@@ -215,7 +215,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         } else {
             control = ImageView(frame: NSMakeRect(0, 0, 20, 20))
         }
-        control.image = TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed()
+        control.image = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
         control.setAccessibilityLabel(strings().voiceOverCommonStars)
         return control
     })))
@@ -279,8 +279,8 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
     }
     
     if let listedCount = state.valueInfo.listedCount {
-        let telegram = NSMutableAttributedString()
-        telegram.append(
+        let listingText = NSMutableAttributedString()
+        listingText.append(
             string: strings().starGiftValueListingTelegram(
                 Int(listedCount),
                 clown
@@ -288,13 +288,13 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             color: theme.colors.accent,
             font: .normal(.title)
         )
-        telegram.add(link: LinkHooks.shared.externalLink("telegram", false), for: telegram.range)
-        telegram.insertEmbedded(.embeddedAnimated(state.gift.file), for: clown)
+        listingText.add(link: LinkHooks.shared.externalLink("telegram", false), for: listingText.range)
+        listingText.insertEmbedded(.embeddedAnimated(state.gift.file), for: clown)
         
         entries.append(.desc(
             sectionId: sectionId,
             index: index,
-            text: .attributed(telegram),
+            text: .attributed(listingText),
             data: .init(
                 color: theme.colors.accent,
                 viewType: .textBottomItem,

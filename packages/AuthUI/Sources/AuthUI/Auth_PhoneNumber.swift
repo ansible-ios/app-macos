@@ -32,7 +32,7 @@ public final class Auth_LoginHeader : View {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         
         
         updateLogo()
@@ -147,7 +147,7 @@ public final class Auth_PhoneNumberView : View {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         self.header.setFrameSize(NSMakeSize(frame.width, self.header.height))
 
         qrButton.set(font: Auth_Insets.infoFontBold, for: .Normal)

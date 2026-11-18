@@ -131,7 +131,7 @@ public class ContextSearchMessageItem: GeneralRowItem {
         selectedDate.addAttribute(.foregroundColor, value: theme.colors.underSelectedColor, range: selectedDate.range)
         self.dateSelectedTextLayout = TextViewLayout(selectedDate, maximumNumberOfLines: 1, truncationType: .end, alwaysStaticItems: true)
 
-        self.photo = .PeerAvatar(peer, TelegramUtilsHooks.shared.peerLetters(peer), peer.smallProfileImage, peer.namePeerColor, message, nil, ChatHistoryModelHooks.shared.peerIsForum(peer), nil)
+        self.photo = .PeerAvatar(peer, AnsibleUtilsHooks.shared.peerLetters(peer), peer.smallProfileImage, peer.namePeerColor, message, nil, ChatHistoryModelHooks.shared.peerIsForum(peer), nil)
 
         super.init(initialSize, height: 44, action: action)
 

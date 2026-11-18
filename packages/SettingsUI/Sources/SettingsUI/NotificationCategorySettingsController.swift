@@ -18,11 +18,11 @@ import ShortPeerRow
 import SelectPeersUI
 import AlertsUI
 
-private let privateChatsIcon = generateSettingsIcon(TelegramThemeHooks.shared.image(.iconSettingsNotifyPrivateChats).precomposed(flipVertical: true))
-private let groupChatsIcon = generateSettingsIcon(TelegramThemeHooks.shared.image(.iconSettingsNotifyGroupChats).precomposed(flipVertical: true))
-private let channelsIcon = generateSettingsIcon(TelegramThemeHooks.shared.image(.iconSettingsNotifyChannels).precomposed(flipVertical: true))
-private let storiesIcon = generateSettingsIcon(TelegramThemeHooks.shared.image(.iconSettingsNotifyStories).precomposed(flipVertical: true))
-let reactionsNotificationIcon = generateSettingsIcon(TelegramThemeHooks.shared.image(.iconSettingsNotifyReactions).precomposed(flipVertical: true))
+private let privateChatsIcon = generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconSettingsNotifyPrivateChats).precomposed(flipVertical: true))
+private let groupChatsIcon = generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconSettingsNotifyGroupChats).precomposed(flipVertical: true))
+private let channelsIcon = generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconSettingsNotifyChannels).precomposed(flipVertical: true))
+private let storiesIcon = generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconSettingsNotifyStories).precomposed(flipVertical: true))
+let reactionsNotificationIcon = generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconSettingsNotifyReactions).precomposed(flipVertical: true))
 
 public enum NotificationSettingsCategory: Equatable {
     case privateChats

@@ -177,7 +177,7 @@ private enum RecentCallEntry : TableItemListNodeEntry {
         case .space:
             return GeneralRowItem(initialSize, height: 50, stableId: stableId, backgroundColor: .clear)
         case .newCallLink:
-            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().recentCallsNewCall, icon: TelegramThemeHooks.shared.image(.iconCreatePhoneCall).precomposed(theme.colors.accent, flipVertical: true), nameStyle: blueActionButton, viewType: .legacy, action: arguments.newCallLink, inset: NSEdgeInsets(left: 10, right: 0), customTheme: .init(backgroundColor: .clear), disableBorder: true)
+            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().recentCallsNewCall, icon: AnsibleThemeHooks.shared.image(.iconCreatePhoneCall).precomposed(theme.colors.accent, flipVertical: true), nameStyle: blueActionButton, viewType: .legacy, action: arguments.newCallLink, inset: NSEdgeInsets(left: 10, right: 0), customTheme: .init(backgroundColor: .clear), disableBorder: true)
         case .recentCalls:
             return SeparatorRowItem(initialSize, stableId, string: strings().recentCallsRecentCalls)
         case let .calls(message, messages, editing, failed):
@@ -354,7 +354,7 @@ public final class RecentCallsView: View {
 }
 
 
-public class RecentCallsViewController<Context: AccountContextProtocol>: TelegramGenericViewController<RecentCallsView, Context> {
+public class RecentCallsViewController<Context: AccountContextProtocol>: AnsibleGenericViewController<RecentCallsView, Context> {
     private let previous:Atomic<[AppearanceWrapperEntry<RecentCallEntry>]> = Atomic(value: [])
 
     private let statePromise = ValuePromise(RecentCallsControllerState(), ignoreRepeated: true)

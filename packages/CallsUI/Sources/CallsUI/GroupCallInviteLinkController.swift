@@ -24,7 +24,7 @@ private func generate(_ color: NSColor) -> CGImage {
         ctx.setFillColor(color.cgColor)
         ctx.fillEllipse(in: rect)
         
-        let image = TelegramThemeHooks.shared.image(.iconChatActionsActive).precomposed()
+        let image = AnsibleThemeHooks.shared.image(.iconChatActionsActive).precomposed()
         
         ctx.clip(to: rect, mask: image)
         ctx.clear(rect)
@@ -38,9 +38,9 @@ private final class HeaderItem : GeneralRowItem {
     fileprivate let context: any AccountContextProtocol
     fileprivate let headerLayout: TextViewLayout
     fileprivate let infoLayout: TextViewLayout
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
     fileprivate let dismiss: ()->Void
-    public init(_ initialSize: NSSize, stableId: AnyHashable, mode: GroupCallInviteMode, link: GroupCallInviteSource, presentation: TelegramPresentationTheme, context: any AccountContextProtocol, dismiss:@escaping()->Void) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, mode: GroupCallInviteMode, link: GroupCallInviteSource, presentation: AnsiblePresentationTheme, context: any AccountContextProtocol, dismiss:@escaping()->Void) {
         self.context = context
         self.presentation = presentation
         self.dismiss = dismiss
@@ -147,7 +147,7 @@ private final class HeaderItemView: GeneralRowView {
         self.headerView.update(item.headerLayout)
         self.infoView.update(item.infoLayout)
         
-        stickerView.image = TelegramThemeHooks.shared.image(.iconGroupCallInviteLarge).precomposed(item.presentation.colors.underSelectedColor)
+        stickerView.image = AnsibleThemeHooks.shared.image(.iconGroupCallInviteLarge).precomposed(item.presentation.colors.underSelectedColor)
         stickerView.sizeToFit()
         stickerView.center()
 
@@ -175,10 +175,10 @@ private final class HeaderItemView: GeneralRowView {
 private final class ButtonsRowItem: GeneralRowItem {
     fileprivate let copyLink: ()->Void
     fileprivate let shareLink: ()->Void
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
     fileprivate let joinLayout: TextViewLayout
     fileprivate let mode: GroupCallInviteMode
-    public init(_ initialSize: NSSize, stableId: AnyHashable, mode: GroupCallInviteMode, copyLink:@escaping()->Void, shareLink:@escaping()->Void, openCall:@escaping()->Void, presentation: TelegramPresentationTheme) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, mode: GroupCallInviteMode, copyLink:@escaping()->Void, shareLink:@escaping()->Void, openCall:@escaping()->Void, presentation: AnsiblePresentationTheme) {
         self.copyLink = copyLink
         self.shareLink = shareLink
         self.mode = mode
@@ -331,13 +331,13 @@ private final class ButtonsRowView: GeneralRowView {
 
 private final class Arguments {
     public let context: any AccountContextProtocol
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
     public let dismiss:()->Void
     public let copyLink:()->Void
     public let shareLink:()->Void
     public let openLink:()->Void
     public let revokeLink:()->Void
-    public init(context: any AccountContextProtocol, presentation: TelegramPresentationTheme, dismiss:@escaping()->Void, copyLink:@escaping()->Void, shareLink:@escaping()->Void, openLink:@escaping()->Void, revokeLink:@escaping()->Void) {
+    public init(context: any AccountContextProtocol, presentation: AnsiblePresentationTheme, dismiss:@escaping()->Void, copyLink:@escaping()->Void, shareLink:@escaping()->Void, openLink:@escaping()->Void, revokeLink:@escaping()->Void) {
         self.context = context
         self.presentation = presentation
         self.dismiss = dismiss
@@ -435,7 +435,7 @@ public enum GroupCallInviteMode : Equatable {
     case share
 }
 
-public func GroupCallInviteLinkController(context: any AccountContextProtocol, source: GroupCallInviteSource, mode: GroupCallInviteMode, presentation: TelegramPresentationTheme) -> InputDataModalController {
+public func GroupCallInviteLinkController(context: any AccountContextProtocol, source: GroupCallInviteSource, mode: GroupCallInviteMode, presentation: AnsiblePresentationTheme) -> InputDataModalController {
 
     let actionsDisposable = DisposableSet()
 

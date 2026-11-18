@@ -379,7 +379,7 @@ private final class LoginWidgetHeaderView: GeneralRowView {
             logoContainer.isHidden = !item.showLogo
             logoContainer.layer?.borderColor = theme.colors.border.cgColor
             logoContainer.backgroundColor = theme.colors.grayBackground
-            logoImageView.image = TelegramThemeHooks.shared.image(.iconFragmentStarTopUp).precomposed()
+            logoImageView.image = AnsibleThemeHooks.shared.image(.iconFragmentStarTopUp).precomposed()
             logoImageView.sizeToFit()
         }
 
@@ -388,7 +388,7 @@ private final class LoginWidgetHeaderView: GeneralRowView {
             accountButton.setAccessibilityLabel(selectedAccount.peer.displayTitle)
         }
 
-        accountChevron.image = TelegramThemeHooks.shared.image(.iconDoubleChevron).precomposed(theme.colors.grayIcon)
+        accountChevron.image = AnsibleThemeHooks.shared.image(.iconDoubleChevron).precomposed(theme.colors.grayIcon)
         accountChevron.sizeToFit()
 
         accountButton.setSingle(handler: { [weak item, weak self] control in

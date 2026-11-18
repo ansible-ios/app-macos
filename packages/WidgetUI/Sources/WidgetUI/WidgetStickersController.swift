@@ -182,7 +182,7 @@ public final class WidgetStickersContainer<Context: AccountContextProtocol> : Vi
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
 
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         
         let titleLayout = TextViewLayout(.initialize(string: strings().emptyChatStickersTrending, color: theme.colors.text, font: .medium(.text)))
         titleLayout.measure(width: frame.width - 20)
@@ -197,7 +197,7 @@ public final class WidgetStickersContainer<Context: AccountContextProtocol> : Vi
     }
 }
 
-public final class WidgetStickersController<Context: AccountContextProtocol> : TelegramGenericViewController<WidgetView<WidgetStickersContainer<Context>>, Context> {
+public final class WidgetStickersController<Context: AccountContextProtocol> : AnsibleGenericViewController<WidgetView<WidgetStickersContainer<Context>>, Context> {
 
     public override var defaultBarTitle: String {
         return localizedString("Telegram.WidgetStickersController")

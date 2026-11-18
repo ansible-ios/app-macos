@@ -25,7 +25,7 @@ extension ChatListFilterPeerCategories {
 }
 
 
-public final class TelegramStoryRepostPeerObject : Peer {
+public final class AnsibleStoryRepostPeerObject : Peer {
     
     public var timeoutAttribute: UInt32?
     
@@ -38,7 +38,7 @@ public final class TelegramStoryRepostPeerObject : Peer {
     public var notificationSettingsPeerId: PeerId?
     
     public func isEqual(_ other: Peer) -> Bool {
-        if let _ = other as? TelegramStoryRepostPeerObject {
+        if let _ = other as? AnsibleStoryRepostPeerObject {
             return true
         }
         return false
@@ -69,7 +69,7 @@ public final class TelegramStoryRepostPeerObject : Peer {
 
 
 
-public final class TelegramFilterCategory : Peer {
+public final class AnsibleFilterCategory : Peer {
     
     public var timeoutAttribute: UInt32? 
     
@@ -82,7 +82,7 @@ public final class TelegramFilterCategory : Peer {
     public var notificationSettingsPeerId: PeerId?
     
     public func isEqual(_ other: Peer) -> Bool {
-        if let other = other as? TelegramFilterCategory {
+        if let other = other as? AnsibleFilterCategory {
             return other.category == self.category
         }
         return false
@@ -236,13 +236,13 @@ extension Peer {
                 return " "
             }
             return community.title
-        case let filter as TelegramFilterCategory:
+        case let filter as AnsibleFilterCategory:
             let folder = filter.displayTitle ?? ""
             if folder.isEmpty {
                 return " "
             }
             return folder
-        case let repost as TelegramStoryRepostPeerObject:
+        case let repost as AnsibleStoryRepostPeerObject:
             return repost.displayTitle ?? ""
         default:
             return " "
@@ -351,13 +351,13 @@ public struct StoryInitialIndex {
     }
 }
 
-extension TelegramStoryRepostPeerObject {
+extension AnsibleStoryRepostPeerObject {
     public var icon: EmptyAvatartType? {
-        return .icon(colors: theme.colors.peerColors(4), icon: TelegramThemeHooks.shared.image(.iconStoryRepost).precomposed(), iconSize: NSMakeSize(36, 36), cornerRadius: nil)
+        return .icon(colors: theme.colors.peerColors(4), icon: AnsibleThemeHooks.shared.image(.iconStoryRepost).precomposed(), iconSize: NSMakeSize(36, 36), cornerRadius: nil)
     }
 }
 
-extension TelegramFilterCategory {
+extension AnsibleFilterCategory {
     public var icon: EmptyAvatartType? {
         if category == .contacts {
             return .icon(colors: theme.colors.peerColors(5), icon: theme.icons.chat_filter_private_chats_avatar, iconSize: NSMakeSize(24, 24), cornerRadius: nil)
@@ -390,10 +390,10 @@ extension TelegramFilterCategory {
             return .icon(colors: theme.colors.peerColors(2), icon: theme.icons.chat_filter_existing_chats, iconSize: NSMakeSize(24, 24), cornerRadius: nil)
         }
         if category == .premiumUsers {
-            return .icon(colors: (top: premiumGradient[1], bottom: premiumGradient[0]), icon: TelegramThemeHooks.shared.image(.iconPeerPremium).precomposed(.white), iconSize: NSMakeSize(20, 20), cornerRadius: 8)
+            return .icon(colors: (top: premiumGradient[1], bottom: premiumGradient[0]), icon: AnsibleThemeHooks.shared.image(.iconPeerPremium).precomposed(.white), iconSize: NSMakeSize(20, 20), cornerRadius: 8)
         }
         if category == .miniApps {
-            return .icon(colors: (top: premiumGradient[1], bottom: premiumGradient[0]), icon: TelegramThemeHooks.shared.image(.iconFilterBots).precomposed(.white), iconSize: NSMakeSize(20, 20), cornerRadius: 8)
+            return .icon(colors: (top: premiumGradient[1], bottom: premiumGradient[0]), icon: AnsibleThemeHooks.shared.image(.iconFilterBots).precomposed(.white), iconSize: NSMakeSize(20, 20), cornerRadius: 8)
         }
         return nil
     }
@@ -401,10 +401,10 @@ extension TelegramFilterCategory {
 
 extension Peer {
     public var emptyAvatar: EmptyAvatartType? {
-        if let peer = self as? TelegramFilterCategory {
+        if let peer = self as? AnsibleFilterCategory {
             return peer.icon
         }
-        if let peer = self as? TelegramStoryRepostPeerObject {
+        if let peer = self as? AnsibleStoryRepostPeerObject {
             return peer.icon
         }
         return nil

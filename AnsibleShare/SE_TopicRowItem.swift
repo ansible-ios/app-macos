@@ -442,8 +442,8 @@ final class SE_TopicRowItem: GeneralRowItem {
     fileprivate let context: AccountContext
     fileprivate let nameLayout: TextViewLayout
     fileprivate let nameSelectedLayout: TextViewLayout
-    fileprivate let presentation: TelegramPresentationTheme?
-    init(_ initialSize: NSSize, stableId: AnyHashable, item: EngineChatList.Item, context: AccountContext, action: @escaping()->Void = {}, presentation: TelegramPresentationTheme? = nil) {
+    fileprivate let presentation: AnsiblePresentationTheme?
+    init(_ initialSize: NSSize, stableId: AnyHashable, item: EngineChatList.Item, context: AccountContext, action: @escaping()->Void = {}, presentation: AnsiblePresentationTheme? = nil) {
         self.item = item
         self.context = context
         self.presentation = presentation

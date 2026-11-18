@@ -67,13 +67,13 @@ public class ChatDateStickItem : TableStickItem {
     public let isBubbled: Bool
     public let layout:TextViewLayout
     public let serviceLayout: TextViewLayout
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
     
     public var monoforumState: MonoforumUIState? {
         return entry.additionalData.monoforumState
     }
     
-    public init(_ initialSize:NSSize, _ entry:ChatHistoryEntry, interaction: ChatInteraction, theme: TelegramPresentationTheme) {
+    public init(_ initialSize:NSSize, _ entry:ChatHistoryEntry, interaction: ChatInteraction, theme: AnsiblePresentationTheme) {
         self.entry = entry
         self.isBubbled = entry.renderType == .bubble
         self.chatInteraction = interaction
@@ -149,7 +149,7 @@ public class ChatDateStickItem : TableStickItem {
     }
 
     public var shouldBlurService: Bool {
-        if TelegramUtilsHooks.shared.isLite(.blur) {
+        if AnsibleUtilsHooks.shared.isLite(.blur) {
             return false
         }
         return presentation.shouldBlurService
@@ -212,7 +212,7 @@ public class ChatDateStickView : TableStickView {
     #else
     private let glassView = LiquidGlassView(frame: .zero, hasShadow: true, hasBorder: true)
     #endif
-    private var appliedColors: (presentation: TelegramPresentationTheme, usesGlass: Bool)?
+    private var appliedColors: (presentation: AnsiblePresentationTheme, usesGlass: Bool)?
     public required init(frame frameRect: NSRect) {
         
         
@@ -347,7 +347,7 @@ public class ChatDateStickView : TableStickView {
     }
 
     private var usesGlass: Bool {
-        return header && !TelegramUtilsHooks.shared.isLite(.blur)
+        return header && !AnsibleUtilsHooks.shared.isLite(.blur)
     }
 
     private func textLayout(_ item: ChatDateStickItem) -> TextViewLayout {
@@ -369,7 +369,7 @@ public class ChatDateStickView : TableStickView {
             updateLayout(size: frame.size, transition: .immediate)
         }
         self.expanded = expanded
-        let animate = animated && !TelegramUtilsHooks.shared.isLite(.animations) && !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
+        let animate = animated && !AnsibleUtilsHooks.shared.isLite(.animations) && !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
         let transition: ContainedViewLayoutTransition = animate ? .animated(duration: 0.25, curve: .easeOut) : .immediate
         updateLayout(size: frame.size, transition: transition)
     }
@@ -501,7 +501,7 @@ public class ChatDateStickView : TableStickView {
                 return
             }
             let styleChanged = self.appliedColors.flatMap { $0.usesGlass != usesGlass } ?? false
-            let animated = styleChanged && !TelegramUtilsHooks.shared.isLite(.animations) && !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
+            let animated = styleChanged && !AnsibleUtilsHooks.shared.isLite(.animations) && !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
             self.appliedColors = (presentation, usesGlass)
             glassView.updateLocalizationAndTheme(theme: presentation)
             if animated {
@@ -595,7 +595,7 @@ public class ChatDateStickView : TableStickView {
     }
     
     public override func onInsert(_ animation: NSTableView.AnimationOptions, appearAnimated: Bool) {
-        if let item = item as? ChatDateStickItem, !TelegramUtilsHooks.shared.isLite(.animations) {
+        if let item = item as? ChatDateStickItem, !AnsibleUtilsHooks.shared.isLite(.animations) {
             if item.isBubbled, appearAnimated {
                 self.containerView.layer?.animateScaleSpring(from: 0.5, to: 1, duration: 0.4, bounce: false)
                 self.containerView.layer?.animateAlpha(from: 0, to: 1, duration: 0.35)

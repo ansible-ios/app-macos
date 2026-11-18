@@ -107,7 +107,7 @@ public final class AppMenuAnimatedImage : LottiePlayerView, AppMenuItemImageDraw
     public func updateState(_ controlState: ControlState) {
         switch controlState {
         case .Hover:
-            if !TelegramUtilsHooks.shared.isLite(.menu_animations) {
+            if !AnsibleUtilsHooks.shared.isLite(.menu_animations) {
                 if self.animation?.playPolicy == .framesCount(1) {
                     self.set(self.animation?.withUpdatedPolicy(.once), reset: false)
                 } else if self.currentState != .playing {
@@ -194,7 +194,7 @@ public final class AppMenuAnimatedRemoteImage : LottiePlayerView, AppMenuItemIma
     public func updateState(_ controlState: ControlState) {
         switch controlState {
         case .Hover:
-            if !TelegramUtilsHooks.shared.isLite(.menu_animations) {
+            if !AnsibleUtilsHooks.shared.isLite(.menu_animations) {
                 if self.animation?.playPolicy == .framesCount(1) {
                     self.set(self.animation?.withUpdatedPolicy(.once), reset: false)
                 } else {

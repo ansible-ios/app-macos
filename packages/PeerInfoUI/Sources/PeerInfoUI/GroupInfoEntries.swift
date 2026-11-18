@@ -2246,7 +2246,7 @@ func groupInfoEntries<Context: AccountContextProtocol>(view: PeerView, arguments
 
                 
                 if access.isCreator, canSetupTopics {
-                    actionBlock.append(.toggleForum(section: GroupInfoSection.type.rawValue, enabled: TelegramUtilsHooks.shared.peerIsForum(channel), convert: false, limit: topicsLimitedReason, viewType: .singleItem))
+                    actionBlock.append(.toggleForum(section: GroupInfoSection.type.rawValue, enabled: AnsibleUtilsHooks.shared.peerIsForum(channel), convert: false, limit: topicsLimitedReason, viewType: .singleItem))
                 }
                 applyBlock(actionBlock)
                 

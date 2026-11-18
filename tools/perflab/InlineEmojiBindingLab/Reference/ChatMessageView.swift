@@ -95,7 +95,7 @@ public class ChatMessageView: ChatRowView, ModalPreviewRowViewProtocol {
             
             separator.backgroundColor = theme.colors.grayIcon.withAlphaComponent(0.4)
 
-            close.set(image: TelegramThemeHooks.shared.image(.iconAdHide).precomposed(theme.colors.grayIcon), for: .Normal)
+            close.set(image: AnsibleThemeHooks.shared.image(.iconAdHide).precomposed(theme.colors.grayIcon), for: .Normal)
             close.sizeToFit(.zero, NSMakeSize(30, 30), thatFit: true)
             separator.isHidden = !item.isFragmentAd
             
@@ -128,7 +128,7 @@ public class ChatMessageView: ChatRowView, ModalPreviewRowViewProtocol {
                         })
                     }
                 }, for: .Down)
-                current.set(image: TelegramThemeHooks.shared.image(.iconAdMore).precomposed(theme.colors.grayIcon), for: .Normal)
+                current.set(image: AnsibleThemeHooks.shared.image(.iconAdMore).precomposed(theme.colors.grayIcon), for: .Normal)
                 current.sizeToFit(.zero, NSMakeSize(30, 30), thatFit: true)
             } else if let view = self.more {
                 performSubviewRemoval(view, animated: animated)

@@ -269,7 +269,7 @@ func StorageUsage_Block_MediaList<Context: AccountContextProtocol>(context: Cont
         
         items.append(.init(strings().storageUsageMessageContextShowInChat, handler: {
             if let peer = message.peers[message.id.peerId] {
-                if TelegramUtilsHooks.shared.peerIsForum(peer), let threadId = message.threadId {
+                if AnsibleUtilsHooks.shared.peerIsForum(peer), let threadId = message.threadId {
                     DataUsageHooks.shared.openForum(message.id.peerId, true, context, threadId)
                 } else {
                     context.bindings.rootNavigation().push(DataUsageHooks.shared.makeChatAdditionController(context, .peer(message.id.peerId), message.id))

@@ -45,7 +45,7 @@ public class MonoforumHorizontalView : View {
     
     public func set(items: [MonoforumItem], selected: Int64?, chatInteraction: ChatInteraction, animated: Bool) {
 
-        toggleButton.set(image: TelegramThemeHooks.shared.image(.iconMonoforumToggle).precomposed(theme.colors.text), for: .Normal)
+        toggleButton.set(image: AnsibleThemeHooks.shared.image(.iconMonoforumToggle).precomposed(theme.colors.text), for: .Normal)
         toggleButton.sizeToFit(.zero, NSMakeSize(40, 40), thatFit: true)
         toggleButton.setSingle(handler: { [weak chatInteraction] _ in
             chatInteraction?.toggleMonoforumState()
@@ -136,7 +136,7 @@ public class MonoforumHorizontalView : View {
 
                 icon = badge
             } else if tab.item?.chatListIndex.pinningIndex != nil || tab.item?.threadData?.isClosed == true {
-                let pinned = TelegramThemeHooks.shared.image(.iconMonoforumPin).precomposed(theme.colors.background, flipVertical: true)
+                let pinned = AnsibleThemeHooks.shared.image(.iconMonoforumPin).precomposed(theme.colors.background, flipVertical: true)
                 
                 var icons: [CGImage] = []
                 if tab.item?.chatListIndex.pinningIndex != nil {

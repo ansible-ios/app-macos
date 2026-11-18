@@ -103,7 +103,7 @@ public final class ChatMediaSendFlight {
     }
 
     private var reduceMotion: Bool {
-        return NSWorkspace.shared.accessibilityDisplayShouldReduceMotion || TelegramUtilsHooks.shared.isLite(.animations)
+        return NSWorkspace.shared.accessibilityDisplayShouldReduceMotion || AnsibleUtilsHooks.shared.isLite(.animations)
     }
 
     public func launch(_ source: ChatMediaSendFlightSource) {

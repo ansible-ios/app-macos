@@ -67,7 +67,7 @@ private struct State : Equatable {
 private let _id_input_url = InputDataIdentifier("_id_input_url")
 private let _id_text = InputDataIdentifier("_id_text")
 
-private func entries(state: State, presentation: TelegramPresentationTheme) -> [InputDataEntry] {
+private func entries(state: State, presentation: AnsiblePresentationTheme) -> [InputDataEntry] {
     var entries: [InputDataEntry] = []
     
     var sectionId: Int32 = 0
@@ -103,7 +103,7 @@ private func entries(state: State, presentation: TelegramPresentationTheme) -> [
     return entries
 }
 
-public func InputURLFormatterModalController(string: String, defaultUrl: String? = nil, completion: @escaping(String, String?) -> Void, presentation: TelegramPresentationTheme? = nil, hosts: [String] = []) -> InputDataModalController {
+public func InputURLFormatterModalController(string: String, defaultUrl: String? = nil, completion: @escaping(String, String?) -> Void, presentation: AnsiblePresentationTheme? = nil, hosts: [String] = []) -> InputDataModalController {
     
     
     let initialState = State(text: string, url: defaultUrl?.removingPercentEncoding ?? urlFromPasteboard(), hosts: hosts)

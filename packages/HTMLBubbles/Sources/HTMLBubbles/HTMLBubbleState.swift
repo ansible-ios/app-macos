@@ -26,7 +26,7 @@ struct HTMLBubbleSummary {
 
 public enum HTMLWidgetAction {
     case openLink(URL)
-    case openTelegramLink(URL)
+    case openAnsibleLink(URL)
 }
 
 public final class HTMLBubbleState: NSObject, HTMLScriptHost {
@@ -983,7 +983,7 @@ public final class HTMLBubbleState: NSObject, HTMLScriptHost {
         case let .openLink(url):
             request = .openLink(url)
         case let .openTelegramLink(url):
-            request = .openTelegramLink(url)
+            request = .openAnsibleLink(url)
         case .ready, .haptic:
             return
         }

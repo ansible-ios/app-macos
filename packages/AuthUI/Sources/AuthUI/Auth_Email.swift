@@ -31,7 +31,7 @@ private final class Auth_EmailHeaderView : View {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         if let data = LocalAnimatedSticker.email_recovery.data {
             self.playerView.set(LottieAnimation(compressed: data, key: .init(key: .bundle("email_recovery"), size: Auth_Insets.logoSize, backingScale: Int(System.backingScale), fitzModifier: nil, colors: []), playPolicy: .onceEnd))
         }

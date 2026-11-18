@@ -190,7 +190,7 @@ public class ChatMediaItem: ChatRowItem {
     
     public var positionFlags: LayoutPositionFlags? = nil
     
-    public override init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         
         let message = object.message!
         

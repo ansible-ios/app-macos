@@ -106,13 +106,13 @@ final class ChatDictationEnhanceView: Control {
 
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         textColor = theme.colors.underSelectedColor
         accentColor = theme.colors.accent
         glass.customTint = theme.colors.accent
         divider.backgroundColor = textColor.withAlphaComponent(0.35).cgColor
         chevron.strokeColor = textColor.cgColor
-        icon.image = TelegramThemeHooks.shared.image(.iconAiInput).precomposed(textColor)
+        icon.image = AnsibleThemeHooks.shared.image(.iconAiInput).precomposed(textColor)
         let layout = TextViewLayout(.initialize(string: strings().chatInputDictationEnhance, color: textColor, font: .medium(12.5)), maximumNumberOfLines: 1)
         layout.measure(width: 300)
         label.update(layout)

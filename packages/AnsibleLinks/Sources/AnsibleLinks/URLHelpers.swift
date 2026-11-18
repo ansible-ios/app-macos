@@ -36,7 +36,7 @@ public func urlVars(with url: String) -> ([String: String], Set<String>) {
 /// Telegram links reach us with the query introduced by "&" as often as by "?",
 /// and a strict URL parser reads the whole tail as the host. Give the query the
 /// separator it needs so such a link can be understood.
-public func normalizedTelegramLinkQuery(_ url: String) -> String {
+public func normalizedAnsibleLinkQuery(_ url: String) -> String {
     guard !url.contains("?"), let separator = url.range(of: "&") else {
         return url
     }
@@ -64,8 +64,8 @@ public func proxySettings(from url:String) -> (ProxyServerSettings?, Bool) {
         return (settings, true)
     }
     let url = url.nsstring
-    if url.hasPrefix(telegram_scheme), let _ = URL(string: url as String) {
-        let action = url.substring(from: telegram_scheme.length)
+    if url.hasPrefix(ansible_scheme), let _ = URL(string: url as String) {
+        let action = url.substring(from: ansible_scheme.length)
 
         let (vars, _) = urlVars(with: url as String)
         if action.hasPrefix("socks") {

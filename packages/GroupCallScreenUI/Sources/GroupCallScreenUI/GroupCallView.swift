@@ -180,7 +180,7 @@ public final class GroupCallView : View {
     public required init(frame frameRect: NSRect, callMode: GroupCallUIState.Mode) {
         controlsContainer = GroupCallControlsView(frame: .init(x: 0, y: 0, width: 360, height: 320), callMode: callMode)
         liquidGlassBackgroundView = LiquidGlassView(frame: frameRect.size.bounds, cornerRadius: 0, hasShadow: true, hasBorder: true, tintAlpha: 0.5, forceAppearance: .forceDark)
-        liquidGlassBackgroundView.customTint = TelegramThemeHooks.shared.darkAppearance().colors.listBackground.withAlphaComponent(0.6)
+        liquidGlassBackgroundView.customTint = AnsibleThemeHooks.shared.darkAppearance().colors.listBackground.withAlphaComponent(0.6)
         super.init(frame: frameRect)
 
         self.addSubview(liquidGlassBackgroundView)

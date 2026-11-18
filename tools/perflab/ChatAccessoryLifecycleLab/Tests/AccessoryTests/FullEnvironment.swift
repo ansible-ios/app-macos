@@ -37,9 +37,9 @@ final class SummarizeReplyModel: ChatAccessoryModel {
 struct AccessoryStrings { var voiceOverCommonInfo: String { "Info" } }
 func strings() -> AccessoryStrings { AccessoryStrings() }
 
-struct TelegramThemeHooks {
+struct AnsibleThemeHooks {
     enum Icon { case starReactionParticle, menuCocoon }
-    static let shared = TelegramThemeHooks()
+    static let shared = AnsibleThemeHooks()
     func image(_ icon: Icon) -> NSImage {
         NSImage(size: NSSize(width: 16, height: 16), flipped: false) { rect in
             NSColor.white.setFill()

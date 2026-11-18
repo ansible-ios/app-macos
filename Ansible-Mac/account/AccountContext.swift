@@ -272,8 +272,8 @@ final class AccountContext {
     private var chatInterfaceTempState:[PeerId : ChatInterfaceTempState] = [:]
     
     
-    private let _chatThemes: Promise<[(ChatTheme, TelegramPresentationTheme)]> = Promise([])
-    var chatThemes: Signal<[(ChatTheme, TelegramPresentationTheme)], NoError> {
+    private let _chatThemes: Promise<[(ChatTheme, AnsiblePresentationTheme)]> = Promise([])
+    var chatThemes: Signal<[(ChatTheme, AnsiblePresentationTheme)], NoError> {
         return _chatThemes.get() |> deliverOnMainQueue
     }
     
@@ -299,8 +299,8 @@ final class AccountContext {
     #endif
 
     
-    private let _emoticonThemes = Atomic<[(ChatTheme, TelegramPresentationTheme)]>(value: [])
-    var emoticonThemes: [(ChatTheme, TelegramPresentationTheme)] {
+    private let _emoticonThemes = Atomic<[(ChatTheme, AnsiblePresentationTheme)]>(value: [])
+    var emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)] {
         return _emoticonThemes.with { $0 }
     }
     

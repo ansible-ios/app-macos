@@ -35,7 +35,7 @@ public class WPArticleLayout: WPLayout {
     public private(set) var groupLayout: GroupedLayout?
     public private(set) var parameters:[ChatMediaLayoutParameters] = []
 
-    public init(with content: TelegramMediaWebpageLoadedContent, context: any AccountContextProtocol, chatInteraction:ChatInteraction, parent:Message, fontSize: CGFloat, presentation: WPLayoutPresentation, approximateSynchronousValue: Bool, downloadSettings: AutomaticMediaDownloadSettings, autoplayMedia: AutoplayMediaPreferences, theme: TelegramPresentationTheme, mayCopyText: Bool, entities: [MessageTextEntity]? = nil, adAttribute: AdMessageAttribute? = nil) {
+    public init(with content: TelegramMediaWebpageLoadedContent, context: any AccountContextProtocol, chatInteraction:ChatInteraction, parent:Message, fontSize: CGFloat, presentation: WPLayoutPresentation, approximateSynchronousValue: Bool, downloadSettings: AutomaticMediaDownloadSettings, autoplayMedia: AutoplayMediaPreferences, theme: AnsiblePresentationTheme, mayCopyText: Bool, entities: [MessageTextEntity]? = nil, adAttribute: AdMessageAttribute? = nil) {
         
         var content = content
         

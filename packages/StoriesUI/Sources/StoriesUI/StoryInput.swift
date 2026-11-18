@@ -65,7 +65,7 @@ extension StoryInput where Self: NSView {
             }
         }
         textView.context = arguments?.context
-        textView.inputTheme = .init(quote: .init(foreground: colors, icon: TelegramThemeHooks.shared.image(.iconQuote), collapse: TelegramThemeHooks.shared.image(.iconQuoteCollapse), expand: TelegramThemeHooks.shared.image(.iconQuoteExpand)), indicatorColor: darkAppearance.inputTheme.indicatorColor, backgroundColor: darkAppearance.inputTheme.backgroundColor, selectingColor: darkAppearance.inputTheme.selectingColor, textColor: darkAppearance.inputTheme.textColor, accentColor: darkAppearance.inputTheme.accentColor, grayTextColor: darkAppearance.inputTheme.grayTextColor, fontSize: darkAppearance.inputTheme.fontSize)
+        textView.inputTheme = .init(quote: .init(foreground: colors, icon: AnsibleThemeHooks.shared.image(.iconQuote), collapse: AnsibleThemeHooks.shared.image(.iconQuoteCollapse), expand: AnsibleThemeHooks.shared.image(.iconQuoteExpand)), indicatorColor: darkAppearance.inputTheme.indicatorColor, backgroundColor: darkAppearance.inputTheme.backgroundColor, selectingColor: darkAppearance.inputTheme.selectingColor, textColor: darkAppearance.inputTheme.textColor, accentColor: darkAppearance.inputTheme.accentColor, grayTextColor: darkAppearance.inputTheme.grayTextColor, fontSize: darkAppearance.inputTheme.fontSize)
         self.updateInputState(animated: true)
         
         if let input = arguments?.interaction.presentation.findInput(groupId) {

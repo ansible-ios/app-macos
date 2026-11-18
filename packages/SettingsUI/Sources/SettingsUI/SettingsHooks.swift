@@ -39,10 +39,10 @@ public protocol AppearanceSmartThemePreviewRow: TableRowItem {
 public struct AppearanceThemeTuple {
     public var chatTheme: ChatTheme?
     public var image: CGImage?
-    public var theme: TelegramPresentationTheme
+    public var theme: AnsiblePresentationTheme
     public var index: Int
     public var selected: Bool = false
-    public init(chatTheme: ChatTheme?, image: CGImage?, theme: TelegramPresentationTheme, index: Int, selected: Bool = false) {
+    public init(chatTheme: ChatTheme?, image: CGImage?, theme: AnsiblePresentationTheme, index: Int, selected: Bool = false) {
         self.chatTheme = chatTheme
         self.image = image
         self.theme = theme
@@ -141,7 +141,7 @@ public struct SettingsHooks {
     public let openPeerInfo: (NavigationViewController, any AccountContextProtocol, PeerId) -> Void
     public let selectPrivacyPeers: (Window, any AccountContextProtocol, String, Bool, Bool, Set<PeerId>) -> Signal<[PeerId], NoError>
     public let makeChatPreviewContext: (any AccountContextProtocol, PeerId, Bool) -> AppearanceChatPreviewContext
-    public let makeChatPreviewItem: (NSSize, AppearanceChatPreviewContext, ChatHistoryEntry, TelegramPresentationTheme) -> TableRowItem
+    public let makeChatPreviewItem: (NSSize, AppearanceChatPreviewContext, ChatHistoryEntry, AnsiblePresentationTheme) -> TableRowItem
     public let makeSelectColorController: (any AccountContextProtocol, Peer) -> ViewController
     public let downloadAndApplyCloudTheme: (any AccountContextProtocol, AnsibleTheme, ColorPalette?, Bool) -> Signal<Never, Void>
     public let generateThemePreview: (ColorPalette, Wallpaper, TableBackgroundMode) -> CGImage
@@ -163,7 +163,7 @@ public struct SettingsHooks {
     public let makeGroupEmojiPackController: (any AccountContextProtocol, PeerId, StickerPackCollectionInfo?, @escaping (StickerPackCollectionInfo?) -> Void) -> ViewController
     public let makePremiumStatusController: (any AccountContextProtocol, @escaping (TelegramMediaFile, StarGift.UniqueGift?, Int32?, CGRect?) -> Void, TelegramUser) -> ViewController
     public let setPeerInfoSpawnEmoji: (PeerInfoSpawnEmojiView, Int64, NSColor, any AccountContextProtocol, Bool) -> Void
-    public let makeSmartThemePreviewRow: (NSSize, any AccountContextProtocol, AnyHashable, Bool, [String: StickerPackItem], AppearanceThemeTuple, Bool, @escaping ((ChatTheme, TelegramPresentationTheme)?) -> Void) -> AppearanceSmartThemePreviewRow
+    public let makeSmartThemePreviewRow: (NSSize, any AccountContextProtocol, AnyHashable, Bool, [String: StickerPackItem], AppearanceThemeTuple, Bool, @escaping ((ChatTheme, AnsiblePresentationTheme)?) -> Void) -> AppearanceSmartThemePreviewRow
     public let makeChatController: (any AccountContextProtocol, ChatLocation) -> ViewController
     public let resolveInstantViewUrl: (Account, String) -> Signal<SettingsSearchInAppLinkValue, NoError>
     public let instantViewInAppLink: (String, TelegramMediaWebpage, String?) -> SettingsSearchInAppLinkValue
@@ -197,7 +197,7 @@ public struct SettingsHooks {
                 openPeerInfo: @escaping (NavigationViewController, any AccountContextProtocol, PeerId) -> Void,
                 selectPrivacyPeers: @escaping (Window, any AccountContextProtocol, String, Bool, Bool, Set<PeerId>) -> Signal<[PeerId], NoError>,
                 makeChatPreviewContext: @escaping (any AccountContextProtocol, PeerId, Bool) -> AppearanceChatPreviewContext,
-                makeChatPreviewItem: @escaping (NSSize, AppearanceChatPreviewContext, ChatHistoryEntry, TelegramPresentationTheme) -> TableRowItem,
+                makeChatPreviewItem: @escaping (NSSize, AppearanceChatPreviewContext, ChatHistoryEntry, AnsiblePresentationTheme) -> TableRowItem,
                 makeSelectColorController: @escaping (any AccountContextProtocol, Peer) -> ViewController,
                 downloadAndApplyCloudTheme: @escaping (any AccountContextProtocol, AnsibleTheme, ColorPalette?, Bool) -> Signal<Never, Void>,
                 generateThemePreview: @escaping (ColorPalette, Wallpaper, TableBackgroundMode) -> CGImage,
@@ -219,7 +219,7 @@ public struct SettingsHooks {
                 makeGroupEmojiPackController: @escaping (any AccountContextProtocol, PeerId, StickerPackCollectionInfo?, @escaping (StickerPackCollectionInfo?) -> Void) -> ViewController,
                 makePremiumStatusController: @escaping (any AccountContextProtocol, @escaping (TelegramMediaFile, StarGift.UniqueGift?, Int32?, CGRect?) -> Void, TelegramUser) -> ViewController,
                 setPeerInfoSpawnEmoji: @escaping (PeerInfoSpawnEmojiView, Int64, NSColor, any AccountContextProtocol, Bool) -> Void,
-                makeSmartThemePreviewRow: @escaping (NSSize, any AccountContextProtocol, AnyHashable, Bool, [String: StickerPackItem], AppearanceThemeTuple, Bool, @escaping ((ChatTheme, TelegramPresentationTheme)?) -> Void) -> AppearanceSmartThemePreviewRow,
+                makeSmartThemePreviewRow: @escaping (NSSize, any AccountContextProtocol, AnyHashable, Bool, [String: StickerPackItem], AppearanceThemeTuple, Bool, @escaping ((ChatTheme, AnsiblePresentationTheme)?) -> Void) -> AppearanceSmartThemePreviewRow,
                 makeChatController: @escaping (any AccountContextProtocol, ChatLocation) -> ViewController,
                 resolveInstantViewUrl: @escaping (Account, String) -> Signal<SettingsSearchInAppLinkValue, NoError>,
                 instantViewInAppLink: @escaping (String, TelegramMediaWebpage, String?) -> SettingsSearchInAppLinkValue,

@@ -877,7 +877,7 @@ open class ShortPeerRowView: TableRowView, Notifable, ViewDisplayDelegate {
                 avatarRemoveControl = control
             }
             control.layer?.mask?.contents = image.avatar.imageContents
-            let icon = TelegramThemeHooks.shared.image(.iconPipClose).precomposed(.white)
+            let icon = AnsibleThemeHooks.shared.image(.iconPipClose).precomposed(.white)
             control.set(image: icon, for: .Hover)
             control.set(image: icon, for: .Highlight)
             control.setAccessibilityLabel(strings().voiceOverCommonRemove)
@@ -1021,7 +1021,7 @@ open class ShortPeerRowView: TableRowView, Notifable, ViewDisplayDelegate {
                     choiceControl?.isAccessibilityDecorative = true
                     containerView.addSubview(choiceControl!)
                 }
-                let image = TelegramThemeHooks.shared.image(.iconUsernameAvailability)
+                let image = AnsibleThemeHooks.shared.image(.iconUsernameAvailability)
                 let color = item.customTheme?.accentColor ?? theme.colors.accent
                 let scale = System.backingScale
                 if choiceImageStyle?.image !== image || choiceImageStyle?.color != color || choiceImageStyle?.scale != scale {

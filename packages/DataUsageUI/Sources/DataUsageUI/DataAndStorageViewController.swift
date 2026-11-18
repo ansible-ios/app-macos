@@ -155,8 +155,8 @@ private final class DataAndStorageControllerArguments {
     public let toggleAutoplaySoundOnHover:(Bool) -> Void
     public let openProxySettings:()->Void
     public let toggleSensitiveContent:(Bool)->Void
-    public let openExportTelegramData:()->Void
-    public init(openStorageUsage: @escaping () -> Void, openNetworkUsage: @escaping () -> Void, openCategorySettings: @escaping(AutomaticMediaDownloadCategoryPeers, String) -> Void, toggleAutomaticDownload:@escaping(Bool) -> Void, resetDownloadSettings:@escaping()->Void, selectDownloadFolder: @escaping() -> Void, toggleAutoplayGifs: @escaping(Bool) -> Void, toggleAutoplayVideos:@escaping(Bool) -> Void, toggleAutoplaySoundOnHover:@escaping(Bool) -> Void, openProxySettings: @escaping()->Void, toggleSensitiveContent:@escaping(Bool)->Void, openExportTelegramData:@escaping()->Void) {
+    public let openExportAnsibleData:()->Void
+    public init(openStorageUsage: @escaping () -> Void, openNetworkUsage: @escaping () -> Void, openCategorySettings: @escaping(AutomaticMediaDownloadCategoryPeers, String) -> Void, toggleAutomaticDownload:@escaping(Bool) -> Void, resetDownloadSettings:@escaping()->Void, selectDownloadFolder: @escaping() -> Void, toggleAutoplayGifs: @escaping(Bool) -> Void, toggleAutoplayVideos:@escaping(Bool) -> Void, toggleAutoplaySoundOnHover:@escaping(Bool) -> Void, openProxySettings: @escaping()->Void, toggleSensitiveContent:@escaping(Bool)->Void, openExportAnsibleData:@escaping()->Void) {
         self.openStorageUsage = openStorageUsage
         self.openNetworkUsage = openNetworkUsage
         self.openCategorySettings = openCategorySettings
@@ -168,7 +168,7 @@ private final class DataAndStorageControllerArguments {
         self.toggleAutoplaySoundOnHover = toggleAutoplaySoundOnHover
         self.openProxySettings = openProxySettings
         self.toggleSensitiveContent = toggleSensitiveContent
-        self.openExportTelegramData = openExportTelegramData
+        self.openExportAnsibleData = openExportAnsibleData
     }
 }
 
@@ -319,7 +319,7 @@ private enum DataAndStorageEntry: TableItemListNodeEntry {
             } else {
                 next = .next
             }
-            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: text, icon: TelegramThemeHooks.shared.image(.iconStorageUsage).precomposed(flipVertical: true), type: next, viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: text, icon: AnsibleThemeHooks.shared.image(.iconStorageUsage).precomposed(flipVertical: true), type: next, viewType: viewType, action: {
                 arguments.openStorageUsage()
             })
         case let .networkUsage(_, text, totalCount, viewType):
@@ -329,7 +329,7 @@ private enum DataAndStorageEntry: TableItemListNodeEntry {
             } else {
                 next = .next
             }
-            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: text, icon: TelegramThemeHooks.shared.image(.iconNetworkUsage).precomposed(flipVertical: true), type: next, viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: text, icon: AnsibleThemeHooks.shared.image(.iconNetworkUsage).precomposed(flipVertical: true), type: next, viewType: viewType, action: {
                 arguments.openNetworkUsage()
             })
         case let .automaticMediaDownloadHeader(_, text, viewType):
@@ -401,7 +401,7 @@ private enum DataAndStorageEntry: TableItemListNodeEntry {
             })
         case let .exportData(_, viewType):
             return GeneralInteractedRowItem(initialSize, stableId: stableId, name: FeatureNavigationHooks.shared.fullExportRowTitle(), type: .next, viewType: viewType, action: {
-                arguments.openExportTelegramData()
+                arguments.openExportAnsibleData()
             })
         case let .exportDataInfo(_, viewType):
             return GeneralTextRowItem(initialSize, stableId: stableId, text: FeatureNavigationHooks.shared.fullExportRowInfo(), viewType: viewType)
@@ -713,7 +713,7 @@ open class DataAndStorageViewController<Context: AccountContextProtocol>: TableV
             } else {
                 updateSensitiveContent(value)
             }
-        }, openExportTelegramData: {
+        }, openExportAnsibleData: {
             FeatureNavigationHooks.shared.showFullExportModal(context)
         })
 

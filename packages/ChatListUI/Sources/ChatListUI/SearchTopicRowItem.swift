@@ -19,8 +19,8 @@ public final class SearchTopicRowItem: GeneralRowItem {
     fileprivate let context: any AccountContextProtocol
     fileprivate let nameLayout: TextViewLayout
     fileprivate let nameSelectedLayout: TextViewLayout
-    fileprivate let presentation: TelegramPresentationTheme?
-    public init(_ initialSize: NSSize, stableId: AnyHashable, item: EngineChatList.Item, context: any AccountContextProtocol, action: @escaping()->Void = {}, presentation: TelegramPresentationTheme? = nil) {
+    fileprivate let presentation: AnsiblePresentationTheme?
+    public init(_ initialSize: NSSize, stableId: AnyHashable, item: EngineChatList.Item, context: any AccountContextProtocol, action: @escaping()->Void = {}, presentation: AnsiblePresentationTheme? = nil) {
         self.item = item
         self.context = context
         self.presentation = presentation

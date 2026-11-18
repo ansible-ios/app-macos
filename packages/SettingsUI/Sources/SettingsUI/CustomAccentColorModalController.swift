@@ -31,7 +31,7 @@ private final class CustomAccentColorView : View {
     fileprivate let segmentControl = CatalinaStyledSegmentController(frame: NSMakeRect(0, 0, 290, 30))
     private let segmentContainer = View()
 
-    public required init(frame frameRect: NSRect, theme: TelegramPresentationTheme, context: any AccountContextProtocol) {
+    public required init(frame frameRect: NSRect, theme: AnsiblePresentationTheme, context: any AccountContextProtocol) {
         self.context = context
         super.init(frame: frameRect)
         self.addSubview(backgroundView)
@@ -97,7 +97,7 @@ private final class CustomAccentColorView : View {
         fatalError("init(frame:) has not been implemented")
     }
     
-    fileprivate func addTableItems(_ context: any AccountContextProtocol, theme: TelegramPresentationTheme) {
+    fileprivate func addTableItems(_ context: any AccountContextProtocol, theme: AnsiblePresentationTheme) {
         
         segmentContainer.backgroundColor = theme.colors.background
         segmentContainer.borderColor = theme.colors.border
@@ -158,7 +158,7 @@ private final class CustomAccentColorView : View {
 
     }
     
-    public func updateMode(_ mode: WallpaperColorSelectMode, newTheme: TelegramPresentationTheme) {
+    public func updateMode(_ mode: WallpaperColorSelectMode, newTheme: AnsiblePresentationTheme) {
         self.colorPicker.colorPicker.needsLayout = true
         self.addTableItems(self.context, theme: newTheme)
         self.tableView.updateLocalizationAndTheme(theme: newTheme)
@@ -193,11 +193,11 @@ public class CustomAccentColorModalController: ModalViewController {
         super.init(frame: NSMakeRect(0, 0, 350, 380))
         self.bar = .init(height: 0)
     }
-    private var currentTheme: TelegramPresentationTheme = theme
+    private var currentTheme: AnsiblePresentationTheme = theme
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        currentTheme = theme as! TelegramPresentationTheme
+        currentTheme = theme as! AnsiblePresentationTheme
         self.modal?.updateLocalizationAndTheme(theme: theme)
     }
     private func updateSelectMode(_ selectMode: SelectMode, animated: Bool) {

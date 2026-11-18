@@ -175,8 +175,8 @@ public final class PremiumBoardingDoubleView: View, PremiumSlideView {
     public final class HeaderView: View {
         private let container = View()
         private let titleView = TextView()
-        private let presentation: TelegramPresentationTheme
-        public required init(frame frameRect: NSRect, presentation: TelegramPresentationTheme) {
+        private let presentation: AnsiblePresentationTheme
+        public required init(frame frameRect: NSRect, presentation: AnsiblePresentationTheme) {
             self.presentation = presentation
             super.init(frame: frameRect)            
             
@@ -219,9 +219,9 @@ public final class PremiumBoardingDoubleView: View, PremiumSlideView {
 
     public let headerView: HeaderView
     public let bottomBorder = View(frame: .zero)
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
     public let tableView: TableView = TableView()
-    public required init(frame frameRect: NSRect, presentation: TelegramPresentationTheme) {
+    public required init(frame frameRect: NSRect, presentation: AnsiblePresentationTheme) {
         self.presentation = presentation
         self.headerView = HeaderView(frame: .zero, presentation: presentation)
         super.init(frame: frameRect)

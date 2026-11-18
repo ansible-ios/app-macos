@@ -23,7 +23,7 @@ public final class LocationPinAnnotationView : MKAnnotationView {
         self.wantsLayer = true
         layer?.masksToBounds = false
         
-        locationPin.image = TelegramThemeHooks.shared.darkAppearance().icons.locationMapPin
+        locationPin.image = AnsibleThemeHooks.shared.darkAppearance().icons.locationMapPin
         locationPin.sizeToFit()
         locationPin.isAccessibilityDecorative = true
         

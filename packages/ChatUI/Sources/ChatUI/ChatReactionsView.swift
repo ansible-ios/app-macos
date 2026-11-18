@@ -36,7 +36,7 @@ private enum ReactionCountTooltip {
 import InlineStickerLayer
 
 private func tagImage(_ color: NSColor)->NSImage? {
-    let image = TelegramThemeHooks.shared.image(.iconReactionTagBackground)
+    let image = AnsibleThemeHooks.shared.image(.iconReactionTagBackground)
     return NSImage(cgImage: generateTintedImage(image: image._cgImage, color: color)!, size: image.size)
 }
 
@@ -95,7 +95,7 @@ public final class ChatReactionsLayout {
         public let hasWallpaper: Bool
         public let tagBackground: NSImage?
         
-        public static func Current(theme: TelegramPresentationTheme, renderType: ChatItemRenderType, isIncoming: Bool, isOutOfBounds: Bool, hasWallpaper: Bool, stateOverlayTextColor: NSColor, mode: ChatReactionsLayout.Mode, isStars: Bool) -> Theme {
+        public static func Current(theme: AnsiblePresentationTheme, renderType: ChatItemRenderType, isIncoming: Bool, isOutOfBounds: Bool, hasWallpaper: Bool, stateOverlayTextColor: NSColor, mode: ChatReactionsLayout.Mode, isStars: Bool) -> Theme {
             let bgColor: NSColor
             let textColor: NSColor
             let textSelectedColor: NSColor
@@ -470,7 +470,7 @@ public final class ChatReactionsLayout {
                 }, peer: peer, context: context, reaction: source, readTimestamp: readTimestamp, message: message, reactionValue: reactionValue, analyticsContext: peerOrigin)
                 
                 let signal:Signal<(CGImage?, Bool), NoError>
-                signal = peerAvatarImage(account: account, photo: .peer(peer, peer.smallProfileImage, peer.namePeerColor, TelegramUtilsHooks.shared.peerLetters(peer), nil, nil), displayDimensions: NSMakeSize(18 * System.backingScale, 18 * System.backingScale), font: .avatar(13), genCap: true, synchronousLoad: false) |> deliverOnMainQueue
+                signal = peerAvatarImage(account: account, photo: .peer(peer, peer.smallProfileImage, peer.namePeerColor, AnsibleUtilsHooks.shared.peerLetters(peer), nil, nil), displayDimensions: NSMakeSize(18 * System.backingScale, 18 * System.backingScale), font: .avatar(13), genCap: true, synchronousLoad: false) |> deliverOnMainQueue
                 avatarDisposables.add(peerOrigin.preservingPresentation(signal).start(next: { [weak item] image, _ in
                     if let image = image {
                         item?.image = NSImage(cgImage: image, size: NSMakeSize(18, 18))
@@ -538,7 +538,7 @@ public final class ChatReactionsLayout {
     public let mode: Mode
     
     
-    public init(context: any AccountContextProtocol, message: Message, available: AvailableReactions?, peerAllowed: PeerAllowedReactions?, savedMessageTags: SavedMessageTags?, engine:Reactions, theme: TelegramPresentationTheme, renderType: ChatItemRenderType, currentTag: MessageReaction.Reaction?, isIncoming: Bool, isOutOfBounds: Bool, hasWallpaper: Bool, stateOverlayTextColor: NSColor, canSendReactions: @escaping () -> Bool, sendStars: @escaping () -> Void, openInfo:@escaping(PeerId)->Void, runEffect: @escaping(MessageReaction.Reaction, Bool)->Void, tagAction:@escaping(MessageReaction.Reaction)->Void, starReact:@escaping()->Void, reactionsDisabled:@escaping()->Void = {}, analyticsContext: AnalyticsContext? = nil) {
+    public init(context: any AccountContextProtocol, message: Message, available: AvailableReactions?, peerAllowed: PeerAllowedReactions?, savedMessageTags: SavedMessageTags?, engine:Reactions, theme: AnsiblePresentationTheme, renderType: ChatItemRenderType, currentTag: MessageReaction.Reaction?, isIncoming: Bool, isOutOfBounds: Bool, hasWallpaper: Bool, stateOverlayTextColor: NSColor, canSendReactions: @escaping () -> Bool, sendStars: @escaping () -> Void, openInfo:@escaping(PeerId)->Void, runEffect: @escaping(MessageReaction.Reaction, Bool)->Void, tagAction:@escaping(MessageReaction.Reaction)->Void, starReact:@escaping()->Void, reactionsDisabled:@escaping()->Void = {}, analyticsContext: AnalyticsContext? = nil) {
         
         let inherited = message.containsSecretMedia ? Analytics.shared.unresolvedContext() : (analyticsContext ?? Analytics.shared.unresolvedContext())
         let origin = Analytics.shared.captureContext(engine: context.engine, peerId: message.id.peerId, inherited: inherited)
@@ -1196,7 +1196,7 @@ final class ChatReactionsView : ChatLayerSceneView {
                 size = NSMakeSize(imageView.frame.width * 2, imageView.frame.height * 2)
             }
             
-            if TelegramUtilsHooks.shared.isLite(.emoji_effects) {
+            if AnsibleUtilsHooks.shared.isLite(.emoji_effects) {
                 return
             }
 
@@ -1450,7 +1450,7 @@ final class ChatReactionsView : ChatLayerSceneView {
             }
 
             if layerUpdated {
-                self.imageView.updateLayer(reaction.getInlineLayer(reaction.mode), isLite: TelegramUtilsHooks.shared.isLite(.emoji), animated: animated, host: self)
+                self.imageView.updateLayer(reaction.getInlineLayer(reaction.mode), isLite: AnsibleUtilsHooks.shared.isLite(.emoji), animated: animated, host: self)
             }
         }
         
@@ -1653,7 +1653,7 @@ final class ChatReactionsView : ChatLayerSceneView {
                 size = NSMakeSize(emoji.frame.width * 2, emoji.frame.height * 2)
             }
 
-            if TelegramUtilsHooks.shared.isLite(.emoji_effects) {
+            if AnsibleUtilsHooks.shared.isLite(.emoji_effects) {
                 return
             }
 
@@ -1904,7 +1904,7 @@ final class ChatReactionsView : ChatLayerSceneView {
             }
 
             if layerUpdated, let container {
-                self.emoji.updateLayer(reaction.getInlineLayer(reaction.mode), isLite: TelegramUtilsHooks.shared.isLite(.emoji), animated: animated, host: container)
+                self.emoji.updateLayer(reaction.getInlineLayer(reaction.mode), isLite: AnsibleUtilsHooks.shared.isLite(.emoji), animated: animated, host: container)
             }
         }
 
@@ -2079,7 +2079,7 @@ final class ChatReactionsView : ChatLayerSceneView {
             guard let reaction = reaction, let file = reaction.effectFile else {
                 return
             }
-            if TelegramUtilsHooks.shared.isLite(.emoji_effects) {
+            if AnsibleUtilsHooks.shared.isLite(.emoji_effects) {
                 return
             }
 
@@ -2207,7 +2207,7 @@ final class ChatReactionsView : ChatLayerSceneView {
             }
 
             if layerUpdated {
-                self.imageView.updateLayer(reaction.getInlineLayer(reaction.mode), isLite: TelegramUtilsHooks.shared.isLite(.emoji), animated: animated, host: self)
+                self.imageView.updateLayer(reaction.getInlineLayer(reaction.mode), isLite: AnsibleUtilsHooks.shared.isLite(.emoji), animated: animated, host: self)
             }
         }
         

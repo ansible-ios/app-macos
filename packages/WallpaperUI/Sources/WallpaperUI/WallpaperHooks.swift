@@ -25,22 +25,22 @@ public protocol WallpaperPremiumConfiguration {
 
 public struct WallpaperHooks {
     public let makeChatPreviewContext: (any AccountContextProtocol, @escaping () -> CGRect) -> WallpaperChatPreviewContext
-    public let makeChatPreviewItem: (NSSize, WallpaperChatPreviewContext, ChatHistoryEntry, TelegramPresentationTheme) -> TableRowItem
+    public let makeChatPreviewItem: (NSSize, WallpaperChatPreviewContext, ChatHistoryEntry, AnsiblePresentationTheme) -> TableRowItem
     public let updateChatPreviewBackground: (NSView, Bool, Bool) -> Void
     public let shareLink: (any AccountContextProtocol, String) -> Void
     public let makeStickerView: (NSRect) -> WallpaperStickerView
     public let premiumConfiguration: (any AccountContextProtocol) -> any WallpaperPremiumConfiguration
     public let boostLevelBadgeImage: (String) -> CGImage
-    public let generateTheme: (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper, NSSize) -> TelegramPresentationTheme
+    public let generateTheme: (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper, NSSize) -> AnsiblePresentationTheme
 
     public init(makeChatPreviewContext: @escaping (any AccountContextProtocol, @escaping () -> CGRect) -> WallpaperChatPreviewContext,
-                makeChatPreviewItem: @escaping (NSSize, WallpaperChatPreviewContext, ChatHistoryEntry, TelegramPresentationTheme) -> TableRowItem,
+                makeChatPreviewItem: @escaping (NSSize, WallpaperChatPreviewContext, ChatHistoryEntry, AnsiblePresentationTheme) -> TableRowItem,
                 updateChatPreviewBackground: @escaping (NSView, Bool, Bool) -> Void,
                 shareLink: @escaping (any AccountContextProtocol, String) -> Void,
                 makeStickerView: @escaping (NSRect) -> WallpaperStickerView,
                 premiumConfiguration: @escaping (any AccountContextProtocol) -> any WallpaperPremiumConfiguration,
                 boostLevelBadgeImage: @escaping (String) -> CGImage,
-                generateTheme: @escaping (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper, NSSize) -> TelegramPresentationTheme) {
+                generateTheme: @escaping (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper, NSSize) -> AnsiblePresentationTheme) {
         self.makeChatPreviewContext = makeChatPreviewContext
         self.makeChatPreviewItem = makeChatPreviewItem
         self.updateChatPreviewBackground = updateChatPreviewBackground

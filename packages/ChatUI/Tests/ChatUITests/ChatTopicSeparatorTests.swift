@@ -13,7 +13,7 @@ final class ChatTopicSeparatorTests: XCTestCase {
     override func setUp() {
         super.setUp()
         UITestBootstrap.install()
-        TelegramUtilsHooks.install(.init(animationsAreLite: { false }, isLite: { _ in false }, peerTitle: { _ in "" }, peerLetters: { _ in [] }, peerIsForum: { _ in false }, peerCompactTitle: { _ in "" }, repliesPeerId: { .init(0) }))
+        AnsibleUtilsHooks.install(.init(animationsAreLite: { false }, isLite: { _ in false }, peerTitle: { _ in "" }, peerLetters: { _ in [] }, peerIsForum: { _ in false }, peerCompactTitle: { _ in "" }, repliesPeerId: { .init(0) }))
     }
 
     func testSourceChatHeaderDoesNotInsertAnExtraFortyPointGap() {
@@ -35,7 +35,7 @@ final class ChatTopicSeparatorTests: XCTestCase {
         XCTAssertEqual(insets, [24])
     }
 
-    private func makeSeparator(presentation: TelegramPresentationTheme = theme) -> TableStickView {
+    private func makeSeparator(presentation: AnsiblePresentationTheme = theme) -> TableStickView {
         let item = ChatTopicSeparatorItem(NSSize(width: 400, height: 28), entry: .topicSeparator(.absoluteLowerBound(), .topic(1, .init(title: "Separator Test", icon: nil, iconColor: 0, isClosed: false)), .bubble, .init(nil, .init(monoforumState: .horizontal))), theme: presentation)
         _ = item.makeSize(400, oldWidth: 0)
         let view = (item.viewClass() as! TableStickView.Type).init(frame: NSRect(x: 0, y: 0, width: 400, height: 28))

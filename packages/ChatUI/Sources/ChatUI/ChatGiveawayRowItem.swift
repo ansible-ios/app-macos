@@ -72,7 +72,7 @@ public final class ChatGiveawayRowItem : ChatRowItem {
 
     
     
-    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         
         let isIncoming: Bool = object.message!.isIncoming(context.account, object.renderType == .bubble)
 

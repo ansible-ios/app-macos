@@ -128,7 +128,7 @@ public enum ChatState : Equatable {
         case monoforum_suggestion
         case channel_gift
 
-        public func resolve(_ theme: TelegramPresentationTheme) -> CGImage {
+        public func resolve(_ theme: AnsiblePresentationTheme) -> CGImage {
             switch self {
             case .gigagroup_info:
                 return theme.icons.chat_action_gigagroup_info

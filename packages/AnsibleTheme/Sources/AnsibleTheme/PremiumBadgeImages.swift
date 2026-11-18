@@ -10,9 +10,9 @@ public func generatePremium(_ reversed: Bool = false, color: NSColor? = nil, sma
 
         let image: CGImage
         if small {
-            image = TelegramThemeHooks.shared.image(.iconPeerPremium).precomposed()
+            image = AnsibleThemeHooks.shared.image(.iconPeerPremium).precomposed()
         } else {
-            image = TelegramThemeHooks.shared.image(.iconPremiumStickerPack).precomposed()
+            image = AnsibleThemeHooks.shared.image(.iconPremiumStickerPack).precomposed()
         }
         ctx.clip(to: size.bounds, mask: image)
 
@@ -55,7 +55,7 @@ public func generatePremium(_ reversed: Bool = false, color: NSColor? = nil, sma
 }
 
 public func generateCheckSelected(foregroundColor: NSColor, backgroundColor: NSColor) -> CGImage {
-    let icon = TelegramThemeHooks.shared.image(.iconCheck).precomposed(foregroundColor)
+    let icon = AnsibleThemeHooks.shared.image(.iconCheck).precomposed(foregroundColor)
     return generateImage(NSMakeSize(icon.backingSize.width, icon.backingSize.height), contextGenerator: { size, ctx in
         ctx.clear(NSMakeRect(0, 0, size.width, size.height))
         ctx.setFillColor(backgroundColor.cgColor)

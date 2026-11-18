@@ -41,9 +41,9 @@ final class ThemeSwitchBenchmarkTests: XCTestCase {
         return Double(value.tv_sec) + Double(value.tv_nsec) / 1_000_000_000
     }
 
-    private func baseline(presentation: Signal<TelegramPresentationTheme, NoError>, themes: [AnsibleTheme]) -> Signal<[(ChatTheme, TelegramPresentationTheme)], NoError> {
+    private func baseline(presentation: Signal<AnsiblePresentationTheme, NoError>, themes: [AnsibleTheme]) -> Signal<[(ChatTheme, AnsiblePresentationTheme)], NoError> {
         return presentation |> mapToSignal { presentation in
-            var signals: [Signal<(ChatTheme, TelegramPresentationTheme), NoError>] = []
+            var signals: [Signal<(ChatTheme, AnsiblePresentationTheme), NoError>] = []
             for theme in themes {
                 if let settings = theme.effectiveSettings(isDark: presentation.dark), let emoji = theme.emoticon {
                     let newTheme = presentation.withUpdatedColors(settings.palette)
@@ -61,8 +61,8 @@ final class ThemeSwitchBenchmarkTests: XCTestCase {
     }
 
     @available(macOS 14.0, *)
-    private func runScenario(prepared: Bool, fixtures: [AnsibleTheme], presentations: [TelegramPresentationTheme]) -> [String: Any] {
-        let input = ValuePromise<TelegramPresentationTheme>(PreparedChatThemesTests.presentation(), ignoreRepeated: false)
+    private func runScenario(prepared: Bool, fixtures: [AnsibleTheme], presentations: [AnsiblePresentationTheme]) -> [String: Any] {
+        let input = ValuePromise<AnsiblePresentationTheme>(PreparedChatThemesTests.presentation(), ignoreRepeated: false)
         let signal = prepared ? preparedChatThemes(presentation: input.get(), themes: .single(fixtures), cacheWallpaper: { .single($0) }) : baseline(presentation: input.get(), themes: fixtures)
         let probe = ThemeSwitchFrameProbe()
         var ready: XCTestExpectation? = expectation(description: "Initial themes")

@@ -13,7 +13,7 @@ public class ComposeState<T> {
     }
 }
 
-open class EmptyComposeController<I,T,R,Context>: TelegramGenericViewController<R, Context> where R:NSView, Context: AccountContextProtocol {
+open class EmptyComposeController<I,T,R,Context>: AnsibleGenericViewController<R, Context> where R:NSView, Context: AccountContextProtocol {
     public let onChange:Promise<T> = Promise()
     public let onComplete:Promise<T> = Promise()
     public let onCancel:Promise<Void> = Promise()

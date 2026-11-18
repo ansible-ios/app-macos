@@ -19,7 +19,7 @@ public final class ChatUserInfoRowItem : ChatRowItem {
     private let _peer: EnginePeer
     public let groupsCount: Int
     
-    public init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ entry: ChatHistoryEntry, settings: PeerStatusSettings, peer: EnginePeer, commonGroups: GroupsInCommonState?, theme: TelegramPresentationTheme) {
+    public init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ entry: ChatHistoryEntry, settings: PeerStatusSettings, peer: EnginePeer, commonGroups: GroupsInCommonState?, theme: AnsiblePresentationTheme) {
         self.settings = settings
         self._peer = peer
         
@@ -28,7 +28,7 @@ public final class ChatUserInfoRowItem : ChatRowItem {
         let countries = ChatHistoryUIHooks.shared.currentCountriesConfiguration(context).with { $0 }
         
         var attrs: [ChatServiceItem.GiftData.UniqueAttributes.Attribute] = []
-        let textColor: NSColor = TelegramUtilsHooks.shared.isLite(.blur) ? theme.colors.text : theme.chatServiceItemTextColor
+        let textColor: NSColor = AnsibleUtilsHooks.shared.isLite(.blur) ? theme.colors.text : theme.chatServiceItemTextColor
 
         
         let groupsCount: Int

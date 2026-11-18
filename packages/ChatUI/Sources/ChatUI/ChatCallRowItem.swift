@@ -27,7 +27,7 @@ public class ChatCallRowItem: ChatRowItem {
     
     private var activeConferenceUpdateTimer: SwiftSignalKit.Timer?
     
-    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         
         let message = object.message!
         let action = message.media[0] as! TelegramMediaAction

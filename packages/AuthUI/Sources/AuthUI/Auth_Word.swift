@@ -163,7 +163,7 @@ private final class Auth_WordHeaderView : View {
         
         
         
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         if let data = LocalAnimatedSticker.login_word.data {
             self.playerView.set(LottieAnimation(compressed: data, key: .init(key: .bundle("login_word"), size: Auth_Insets.wordSize, backingScale: Int(System.backingScale), fitzModifier: nil, colors: []), playPolicy: .onceEnd))
         }

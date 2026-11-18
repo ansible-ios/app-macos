@@ -829,7 +829,7 @@ public final class RichTextEditorCoordinator {
             // 2px background-colored outline ring separates the badge from the send circle underneath.
             let ring: CGFloat = 2
             let badgeSize = NSMakeSize(20 + ring * 2, 20 + ring * 2)
-            let lockIcon = TelegramThemeHooks.shared.image(.iconRichEditorLock).precomposed(presentation.colors.underSelectedColor)
+            let lockIcon = AnsibleThemeHooks.shared.image(.iconRichEditorLock).precomposed(presentation.colors.underSelectedColor)
             let image = generateImage(badgeSize, contextGenerator: { size, ctx in
                 ctx.clear(size.bounds)
                 ctx.setFillColor(presentation.colors.background.cgColor)
@@ -898,7 +898,7 @@ public final class RichTextEditorCoordinator {
         let aiAction = self.aiAction
         let iconColor = presentation.colors.text   // enabled tint (gray would read as disabled)
 
-        func richIcon(_ resource: TelegramThemeImage) -> CGImage { TelegramThemeHooks.shared.image(resource).precomposed(iconColor) }
+        func richIcon(_ resource: AnsibleThemeImage) -> CGImage { AnsibleThemeHooks.shared.image(resource).precomposed(iconColor) }
         func sfIcon(_ name: String) -> CGImage {
             let cfg = NSImage.SymbolConfiguration(pointSize: 16, weight: .medium)   // match the 24pt custom glyphs' weight
             let img = NSImage(systemSymbolName: name, accessibilityDescription: nil)?.withSymbolConfiguration(cfg)
@@ -1022,11 +1022,11 @@ public final class RichTextEditorCoordinator {
         let formatButton = RichTextEditorCoordinator.makeMenuButton(icon: richIcon(.iconRichTextFormat)) {
             let cs = editor.currentFormatState()
             let ps = editor.currentParagraphFormatState().style
-            func fmt(_ title: String, _ on: Bool, _ icon: TelegramThemeImage, _ apply: @escaping () -> Void) -> ContextMenuItem {
+            func fmt(_ title: String, _ on: Bool, _ icon: AnsibleThemeImage, _ apply: @escaping () -> Void) -> ContextMenuItem {
                 ContextMenuItem(title, handler: formatAction(apply), state: on ? .on : nil,
                                 itemImage: RichTextEditorCoordinator.menuIcon(icon))
             }
-            func sty(_ title: String, _ name: ParagraphStyleName, _ icon: TelegramThemeImage, premium: Bool = false, titleFont: NSFont? = nil) -> ContextMenuItem {
+            func sty(_ title: String, _ name: ParagraphStyleName, _ icon: AnsibleThemeImage, premium: Bool = false, titleFont: NSFont? = nil) -> ContextMenuItem {
                 let handler = formatAction { editor.setParagraphStyle(name) }
                 let state: NSControl.StateValue? = ps == name ? .on : nil
                 let image = RichTextEditorCoordinator.menuIcon(icon)
@@ -1038,7 +1038,7 @@ public final class RichTextEditorCoordinator {
                 } else {
                     item = ContextMenuItem(title, handler: handler, state: state, itemImage: image, locked: locked)
                 }
-                if item.locked { item.lockImage = TelegramThemeHooks.shared.image(.iconMenuStar) }
+                if item.locked { item.lockImage = AnsibleThemeHooks.shared.image(.iconMenuStar) }
                 return item
             }
             let heading = ContextMenuItem(strings().richTextEditorHeading, itemImage: RichTextEditorCoordinator.menuIcon(.menuHeading))
@@ -1064,7 +1064,7 @@ public final class RichTextEditorCoordinator {
                 { () -> ContextMenuItem in
                     let item = ContextMenuItem(strings().richTextEditorFormula, handler: { RichTextEditorCoordinator.presentLatexPrompt(editor, context: context) },
                                                itemImage: RichTextEditorCoordinator.menuIcon(.menuFormula), locked: !context.isPremium)
-                    if item.locked { item.lockImage = TelegramThemeHooks.shared.image(.iconMenuStar) }
+                    if item.locked { item.lockImage = AnsibleThemeHooks.shared.image(.iconMenuStar) }
                     return item
                 }(),
                 ContextSeparatorItem(),
@@ -1076,7 +1076,7 @@ public final class RichTextEditorCoordinator {
                     let item = ContextMenuItem(strings().richTextEditorMenuInlineButton, handler: {
                         RichTextEditorCoordinator.presentNewButtonSheet(editor, isBlockPill: false, context: context)
                     }, itemImage: RichTextEditorCoordinator.menuIcon(.menuAddButton), locked: !context.isPremium)
-                    if item.locked { item.lockImage = TelegramThemeHooks.shared.image(.iconMenuStar) }
+                    if item.locked { item.lockImage = AnsibleThemeHooks.shared.image(.iconMenuStar) }
                     // The command's own guard (a text run, not a code block), so the item is never
                     // enabled-yet-inert.
                     item.isEnabled = editor.canInsertInlineButton && !editor.hasStructuralTableSelection
@@ -1086,7 +1086,7 @@ public final class RichTextEditorCoordinator {
                     let item = ContextMenuItem(strings().richTextEditorMenuButtonRow, handler: {
                         RichTextEditorCoordinator.presentNewButtonSheet(editor, isBlockPill: true, context: context)
                     }, itemImage: RichTextEditorCoordinator.menuIcon(.menuButtonRow), locked: !context.isPremium)
-                    if item.locked { item.lockImage = TelegramThemeHooks.shared.image(.iconMenuStar) }
+                    if item.locked { item.lockImage = AnsibleThemeHooks.shared.image(.iconMenuStar) }
                     // Rows are creatable only in a top-level paragraph.
                     item.isEnabled = editor.canInsertButtonRow
                     return item
@@ -1100,8 +1100,8 @@ public final class RichTextEditorCoordinator {
             guard !context.isPremium else { return }
             // The outline star, tinted to the pill background, knocks a halo out of the glyph; the colored
             // star draws above it (see the reference design).
-            let outline = TelegramThemeHooks.shared.image(.iconMenuStarOutline).precomposed(presentation.colors.background)
-            let star = TelegramThemeHooks.shared.image(.iconMenuStar)._cgImage
+            let outline = AnsibleThemeHooks.shared.image(.iconMenuStarOutline).precomposed(presentation.colors.background)
+            let star = AnsibleThemeHooks.shared.image(.iconMenuStar)._cgImage
             let size = outline.backingSize
             let composed = generateImage(size, contextGenerator: { sz, ctx in
                 ctx.clear(sz.bounds)
@@ -1122,12 +1122,12 @@ public final class RichTextEditorCoordinator {
         // List / block popup.
         let listButton = RichTextEditorCoordinator.makeMenuButton(icon: richIcon(.iconRichTextList)) {
             let list = editor.currentParagraphFormatState().list
-            func icon(_ r: TelegramThemeImage) -> (NSColor, ContextMenuItem) -> AppMenuItemImageDrawable { RichTextEditorCoordinator.menuIcon(r) }
+            func icon(_ r: AnsibleThemeImage) -> (NSColor, ContextMenuItem) -> AppMenuItemImageDrawable { RichTextEditorCoordinator.menuIcon(r) }
             // Lists have no message-entity representation — they send as a rich (premium) message.
             // Lists aren't supported inside table cells — disable them there like the other cell-locked tools.
             let inTable = editor.isCaretInTable
             func premium(_ item: ContextMenuItem) -> ContextMenuItem {
-                if item.locked { item.lockImage = TelegramThemeHooks.shared.image(.iconMenuStar) }
+                if item.locked { item.lockImage = AnsibleThemeHooks.shared.image(.iconMenuStar) }
                 item.isEnabled = !inTable
                 return item
             }
@@ -1149,7 +1149,7 @@ public final class RichTextEditorCoordinator {
 
         // Quote / code block popup: Quote · Pull Quote · Code Block (apply/insert actions).
         let quoteButton = RichTextEditorCoordinator.makeMenuButton(icon: richIcon(.iconRichTextQuote)) {
-            func icon(_ r: TelegramThemeImage) -> (NSColor, ContextMenuItem) -> AppMenuItemImageDrawable { RichTextEditorCoordinator.menuIcon(r) }
+            func icon(_ r: AnsibleThemeImage) -> (NSColor, ContextMenuItem) -> AppMenuItemImageDrawable { RichTextEditorCoordinator.menuIcon(r) }
             // These are apply/insert actions, not a radio selection — no active-state checkmark.
             let items: [ContextMenuItem] = [
                 { () -> ContextMenuItem in
@@ -1194,9 +1194,9 @@ public final class RichTextEditorCoordinator {
         // (insert row/column · highlight · align · delete) — the structural commands no-op outside a table
         // anyway, so they'd otherwise be dead items.
         let tableButton = RichTextEditorCoordinator.makeMenuButton(icon: richIcon(.iconRichTextTable)) {
-            func item(_ title: String, _ icon: TelegramThemeImage, mode: AppMenu.ItemMode = .normal, premium: Bool = false, _ apply: @escaping () -> Void) -> ContextMenuItem {
+            func item(_ title: String, _ icon: AnsibleThemeImage, mode: AppMenu.ItemMode = .normal, premium: Bool = false, _ apply: @escaping () -> Void) -> ContextMenuItem {
                 let item = ContextMenuItem(title, handler: formatAction(apply), itemMode: mode, itemImage: RichTextEditorCoordinator.menuIcon(icon), locked: premium && !context.isPremium)
-                if item.locked { item.lockImage = TelegramThemeHooks.shared.image(.iconMenuStar) }
+                if item.locked { item.lockImage = AnsibleThemeHooks.shared.image(.iconMenuStar) }
                 return item
             }
             guard editor.isCaretInTable else {
@@ -1230,7 +1230,7 @@ public final class RichTextEditorCoordinator {
         let attachButton = RichTextEditorCoordinator.makeMenuButton(icon: richIcon(.iconRichTextAttach)) {
             // Inline media makes the message a rich (premium) message.
             func premium(_ item: ContextMenuItem) -> ContextMenuItem {
-                if item.locked { item.lockImage = TelegramThemeHooks.shared.image(.iconMenuStar) }
+                if item.locked { item.lockImage = AnsibleThemeHooks.shared.image(.iconMenuStar) }
                 item.isEnabled = !editor.isCaretInTable   // media can't be embedded in table cells
                 return item
             }
@@ -1251,7 +1251,7 @@ public final class RichTextEditorCoordinator {
 
         // Send: accent glass circle (same height as the pills) with the white paper-plane inset inside it.
         let sendIcon: CGImage = {
-            let img = TelegramThemeHooks.shared.image(.iconSendMessageLarge)
+            let img = AnsibleThemeHooks.shared.image(.iconSendMessageLarge)
             return img.precomposed(presentation.colors.underSelectedColor)
         }()
         let sendButton = EditorIconButton(image: sendIcon, size: 38) { _ in sendAction.action?() }
@@ -1362,8 +1362,8 @@ public final class RichTextEditorCoordinator {
     }
 
     /// Same, by asset symbol — the `menu_*` rich-editor menu glyphs (`.menuBold`, `.menuAlignLeft`, …).
-    private static func menuIcon(_ resource: TelegramThemeImage) -> (NSColor, ContextMenuItem) -> AppMenuItemImageDrawable {
-        return menuIcon(TelegramThemeHooks.shared.image(resource))
+    private static func menuIcon(_ resource: AnsibleThemeImage) -> (NSColor, ContextMenuItem) -> AppMenuItemImageDrawable {
+        return menuIcon(AnsibleThemeHooks.shared.image(resource))
     }
 
 
@@ -1554,7 +1554,7 @@ public final class RichTextEditorCoordinator {
     /// `canvas.syntaxHighlighter` nil, and the same document then renders plain in one surface while it is
     /// highlighted in the other and in the sent bubble.
     public static func installSyntaxHighlighter(on editor: RichTextEditorView,
-                                         theme: @escaping () -> TelegramPresentationTheme) {
+                                         theme: @escaping () -> AnsiblePresentationTheme) {
         editor.registerSyntaxHighlighter { language, code, completion in
             ChatInputUIHooks.shared.highlightRichTextSyntax(language, code, theme, completion)
         }
@@ -1668,7 +1668,7 @@ public final class RichTextEditorCoordinator {
         let origin = Analytics.shared.captureContext(engine: context.engine, peerId: context.peerId, inherited: analyticsContext)
         let analyticsPresentation = origin.beginPresentation()
         defer { analyticsPresentation.end() }
-        func icon(_ r: TelegramThemeImage) -> (NSColor, ContextMenuItem) -> AppMenuItemImageDrawable { menuIcon(r) }
+        func icon(_ r: AnsibleThemeImage) -> (NSColor, ContextMenuItem) -> AppMenuItemImageDrawable { menuIcon(r) }
         var items: [ContextMenuItem] = []
         if hasSelection {
             items.append(ContextMenuItem(strings().richTextEditorCut, handler: { editor.makeEditorFirstResponder(); editor.cut() }, itemImage: icon(.menuCut)))
@@ -1730,7 +1730,7 @@ public final class RichTextEditorCoordinator {
             // Right-clicked inside a table cell (the package moved the caret there): the table editing
             // actions, mirroring the toolbar's in-table menu. Each refocuses the editor; the caret (in
             // the clicked cell) drives the command.
-            func tItem(_ title: String, _ glyph: TelegramThemeImage, mode: AppMenu.ItemMode = .normal, _ apply: @escaping () -> Void) -> ContextMenuItem {
+            func tItem(_ title: String, _ glyph: AnsibleThemeImage, mode: AppMenu.ItemMode = .normal, _ apply: @escaping () -> Void) -> ContextMenuItem {
                 ContextMenuItem(title, handler: { editor.makeEditorFirstResponder(); apply() }, itemMode: mode, itemImage: icon(glyph))
             }
             let hl = cellHighlightColor

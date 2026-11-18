@@ -360,7 +360,7 @@ class SharedAccountContext {
                         addedSignals.append(loadDeveloperAppResetBackup(store: resetBackup)
                             |> deliverOnMainQueue
                             |> mapToSignal { backupData -> Signal<AccountResult, DeveloperAppResetBackupError> in
-                                return accountWithId(accountManager: accountManager, networkArguments: networkArguments, id: id, encryptionParameters: encryptionParameters, supplementary: supplementary, isSupportUser: false, rootPath: rootPath, beginWithTestingEnvironment: attributes.isTestingEnvironment, backupData: backupData?.data, auxiliaryMethods: telegramAccountAuxiliaryMethods)
+                                return accountWithId(accountManager: accountManager, networkArguments: networkArguments, id: id, encryptionParameters: encryptionParameters, supplementary: supplementary, isSupportUser: false, rootPath: rootPath, beginWithTestingEnvironment: attributes.isTestingEnvironment, backupData: backupData?.data, auxiliaryMethods: ansibleAccountAuxiliaryMethods)
                                 |> map { result in
                                     if case .authorized = result {
                                         try? resetBackup.completeRestoration(backupData)
@@ -393,7 +393,7 @@ class SharedAccountContext {
                     }
                 }
                 if let authRecord = authRecord, authRecord.0 != self.activeAccountsValue?.currentAuth?.id {
-                    addedAuthSignal = accountWithId(accountManager: accountManager, networkArguments: networkArguments, id: authRecord.0, encryptionParameters: encryptionParameters, supplementary: supplementary, isSupportUser: false, rootPath: rootPath, beginWithTestingEnvironment: authRecord.1, backupData: nil, auxiliaryMethods: telegramAccountAuxiliaryMethods)
+                    addedAuthSignal = accountWithId(accountManager: accountManager, networkArguments: networkArguments, id: authRecord.0, encryptionParameters: encryptionParameters, supplementary: supplementary, isSupportUser: false, rootPath: rootPath, beginWithTestingEnvironment: authRecord.1, backupData: nil, auxiliaryMethods: ansibleAccountAuxiliaryMethods)
                         |> map { result -> UnauthorizedAccount? in
                             switch result {
                             case let .unauthorized(account):
@@ -523,7 +523,7 @@ class SharedAccountContext {
                     
                     if (authAccount != nil || self.activeAccountsValue!.primary != nil) && !self.cleaningUpAccounts {
                         self.cleaningUpAccounts = true
-                        let _ = managedCleanupAccounts(networkArguments: networkArguments, accountManager: self.accountManager, rootPath: rootPath, auxiliaryMethods: telegramAccountAuxiliaryMethods, encryptionParameters: encryptionParameters).start()
+                        let _ = managedCleanupAccounts(networkArguments: networkArguments, accountManager: self.accountManager, rootPath: rootPath, auxiliaryMethods: ansibleAccountAuxiliaryMethods, encryptionParameters: encryptionParameters).start()
                     }
                 }))
             })

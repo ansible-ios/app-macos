@@ -4,7 +4,7 @@ import AnsibleTheme
 import SwiftSignalKit
 
 public class MediaDustView2: View {
-    private static let speckleImage: CGImage? = TelegramThemeHooks.shared.image(.textSpeckleNormal).cgImage(forProposedRect: nil, context: nil, hints: nil)
+    private static let speckleImage: CGImage? = AnsibleThemeHooks.shared.image(.textSpeckleNormal).cgImage(forProposedRect: nil, context: nil, hints: nil)
 
     private var currentParams: (size: CGSize, color: NSColor)?
     private var emitter: CAEmitterCell?

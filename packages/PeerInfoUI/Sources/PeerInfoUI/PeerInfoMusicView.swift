@@ -74,11 +74,11 @@ public final class PeerInfoMusicView : View {
         self.textView.update(textLayout)
         control.setAccessibilityLabel(attr.string)
         
-        imageView.image = TelegramThemeHooks.shared.image(.iconPeerMusicWaveform).precomposed(primaryText)
+        imageView.image = AnsibleThemeHooks.shared.image(.iconPeerMusicWaveform).precomposed(primaryText)
         imageView.sizeToFit()
 
         
-        chevron.image = TelegramThemeHooks.shared.image(.iconPeerMusicChevron).precomposed(secondaryText)
+        chevron.image = AnsibleThemeHooks.shared.image(.iconPeerMusicChevron).precomposed(secondaryText)
         chevron.sizeToFit()
         
         needsLayout = true

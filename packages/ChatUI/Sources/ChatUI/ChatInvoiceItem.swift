@@ -19,7 +19,7 @@ public class ChatInvoiceItem: ChatRowItem {
     fileprivate let textLayout:TextViewLayout
     fileprivate var arguments:TransformImageArguments?
     fileprivate let paymentText:String?
-    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         let message = object.message!
         
         let isIncoming: Bool = message.isIncoming(context.account, object.renderType == .bubble)

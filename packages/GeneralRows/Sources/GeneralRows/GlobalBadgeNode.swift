@@ -252,7 +252,7 @@ public func forceUpdateStatusBarIconByDockTile(sharedContext: any SharedAccountC
 }
 
 private func generateStatusBarIcon(_ unreadCount: Int, color: NSColor) -> NSImage {
-    let icon = TelegramThemeHooks.shared.image(.statusIcon)
+    let icon = AnsibleThemeHooks.shared.image(.statusIcon)
     
     var string = "\(unreadCount)"
     if string.count > 3 {

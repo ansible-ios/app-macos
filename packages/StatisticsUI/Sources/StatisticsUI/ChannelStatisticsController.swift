@@ -23,7 +23,7 @@ import MessageTextUtils
 
 
 
-open class ChannelStatisticsController<Context: AccountContextProtocol>: TelegramGenericViewController<WebView, Context> {
+open class ChannelStatisticsController<Context: AccountContextProtocol>: AnsibleGenericViewController<WebView, Context> {
     private let peerId:PeerId
     
     private let disposable = MetaDisposable()

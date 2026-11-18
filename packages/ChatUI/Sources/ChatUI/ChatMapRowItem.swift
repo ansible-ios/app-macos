@@ -13,7 +13,7 @@ import AnsibleTheme
 public class ChatMapRowItem: ChatMediaItem {
     fileprivate var liveText: TextViewLayout?
     fileprivate var updatedText: TextViewLayout?
-    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         super.init(initialSize, chatInteraction, context, object, theme: theme)
         let map = media as! TelegramMediaMap
       //  let isVenue = map.venue != nil

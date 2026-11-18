@@ -49,7 +49,7 @@ public func generateWebAppThemeParams(_ presentationTheme: PresentationTheme) ->
 }
 
 public func generateContextMenuInstantView(color: NSColor, size: NSSize = NSMakeSize(20, 20)) -> NSImage {
-    let icon = TelegramThemeHooks.shared.image(.iconInstantViewFavicon).precomposed(theme.colors.darkGrayText, flipVertical: true)
+    let icon = AnsibleThemeHooks.shared.image(.iconInstantViewFavicon).precomposed(theme.colors.darkGrayText, flipVertical: true)
     return generateImage(size, rotatedContext: { size, ctx in
         ctx.clear(size.bounds)
         ctx.round(size, 4)
@@ -94,7 +94,7 @@ public func generateContextMenuSubsCount(_ count: Int32?) -> CGImage? {
     }
     
     let presentation = AppMenu.Presentation.current(theme.colors)
-    let membersImage = TelegramThemeHooks.shared.image(.iconMiniAppMembers).precomposed(presentation.disabledTextColor, flipVertical: true)
+    let membersImage = AnsibleThemeHooks.shared.image(.iconMiniAppMembers).precomposed(presentation.disabledTextColor, flipVertical: true)
 
     let textNode = TextNode.layoutText(.initialize(string: Int64(count).prettyNumber, color: presentation.disabledTextColor, font: .normal(.text)), nil, 1, .end, NSMakeSize(.greatestFiniteMagnitude, 20), nil, false, .center)
     var size = textNode.0.size

@@ -105,7 +105,7 @@ private final class HeaderItemView : GeneralRowView {
                     self.select = current
                     addSubview(current)
                 }
-                current.image = TelegramThemeHooks.shared.image(.iconAffiliateExpand).precomposed(theme.colors.accent)
+                current.image = AnsibleThemeHooks.shared.image(.iconAffiliateExpand).precomposed(theme.colors.accent)
                 current.sizeToFit()
             } else if let select {
                 performSubviewRemoval(select, animated: false)
@@ -196,7 +196,7 @@ private final class HeaderItemView : GeneralRowView {
             item?.arguments.close()
         }, for: .Click)
         
-        next.image = TelegramThemeHooks.shared.image(.iconAffiliateChevron).precomposed(theme.colors.grayIcon)
+        next.image = AnsibleThemeHooks.shared.image(.iconAffiliateChevron).precomposed(theme.colors.grayIcon)
         next.sizeToFit()
         
         badge.image = generateImage(NSMakeSize(35, 35), contextGenerator: { size, ctx in
@@ -205,7 +205,7 @@ private final class HeaderItemView : GeneralRowView {
             ctx.round(size, size.width / 2)
             ctx.fill(size.bounds)
             
-            let image = TelegramThemeHooks.shared.image(.iconAffiliateBadge).precomposed()
+            let image = AnsibleThemeHooks.shared.image(.iconAffiliateBadge).precomposed()
             
             ctx.draw(image, in: size.bounds.focus(image.systemSize))
         })

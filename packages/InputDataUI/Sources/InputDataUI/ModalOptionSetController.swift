@@ -9,9 +9,9 @@ import AppAnalytics
 
 private final class ModalOptionsArguments {
     public let context: any AccountContextProtocol
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
     public let toggleOption: (Int)->Void
-    public init(context: any AccountContextProtocol, presentation: TelegramPresentationTheme, toggleOption:@escaping(Int)->Void) {
+    public init(context: any AccountContextProtocol, presentation: AnsiblePresentationTheme, toggleOption:@escaping(Int)->Void) {
         self.context = context
         self.presentation = presentation
         self.toggleOption = toggleOption
@@ -108,7 +108,7 @@ private func modalOptionsSetEntries(state: ModalOptionsState, desc: String?, hea
     return entries
 }
 
-public func ModalOptionSetController(context: any AccountContextProtocol, options: [ModalOptionSet], selectOne: Bool = false, actionText: (String, NSColor), desc: String? = nil, header: String? = nil, title: String, result: @escaping ([ModalOptionSetResult])->Void, presentation: TelegramPresentationTheme = theme) -> InputDataModalController {
+public func ModalOptionSetController(context: any AccountContextProtocol, options: [ModalOptionSet], selectOne: Bool = false, actionText: (String, NSColor), desc: String? = nil, header: String? = nil, title: String, result: @escaping ([ModalOptionSetResult])->Void, presentation: AnsiblePresentationTheme = theme) -> InputDataModalController {
     
     let initialState: ModalOptionsState = ModalOptionsState(options: options, selectOne: selectOne)
     let stateValue: Atomic<ModalOptionsState> = Atomic(value: initialState)

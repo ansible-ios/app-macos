@@ -35,7 +35,7 @@ public class ChaneNumberIntroView : View {
         
     }
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         if let data = LocalAnimatedSticker.change_sim.data {
             self.imageView.setFrameSize(NSMakeSize(120, 120))
             self.imageView.set(LottieAnimation(compressed: data, key: .init(key: .bundle("change_sim"), size: NSMakeSize(120, 120), backingScale: Int(System.backingScale), fitzModifier: nil), playPolicy: .loop, colors: []))

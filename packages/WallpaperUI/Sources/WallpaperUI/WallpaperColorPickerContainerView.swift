@@ -226,7 +226,7 @@ public final class WallpaperColorPickerContainerView : View {
     
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         if useTransparentBackground {
             colorsContainer.backgroundColor = .clear
             colorsContainer.border = []

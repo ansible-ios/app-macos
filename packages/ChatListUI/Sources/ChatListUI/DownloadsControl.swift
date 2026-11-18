@@ -67,7 +67,7 @@ public final class DownloadsControl : Control {
 
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         self.backgroundColor = .clear
         self.border = []
 

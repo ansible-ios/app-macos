@@ -48,7 +48,7 @@ fileprivate class ShareModalView : Control, TokenizedProtocol {
     fileprivate var scheduleMessage: (()->Void)? = nil
     fileprivate var scheduleWhenOnline: (()->Void)? = nil
     
-    fileprivate var presentation: TelegramPresentationTheme? {
+    fileprivate var presentation: AnsiblePresentationTheme? {
         didSet {
             updateLocalizationAndTheme(theme: presentation ?? theme)
         }
@@ -63,7 +63,7 @@ fileprivate class ShareModalView : Control, TokenizedProtocol {
     }
     
     
-    required init(frame frameRect: NSRect, shareObject: ShareObject, presentation: TelegramPresentationTheme? = nil) {
+    required init(frame frameRect: NSRect, shareObject: ShareObject, presentation: AnsiblePresentationTheme? = nil) {
         tokenizedView = TokenizedView(frame: NSMakeRect(0, 0, 300, 30), localizationFunc: { key in
             return translate(key: key, [])
         }, placeholderKey: shareObject.searchPlaceholderKey, customTheme: {
@@ -155,7 +155,7 @@ fileprivate class ShareModalView : Control, TokenizedProtocol {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         share.set(image: theme.icons.modalShare, for: .Normal)
         _ = share.sizeToFit()
         share.setAccessibilityLabel(strings().voiceOverCommonShare)
@@ -266,9 +266,9 @@ fileprivate class ShareModalView : Control, TokenizedProtocol {
     
     private class ForumTopicArguments {
         let context: any AccountContextProtocol
-        let presentation: TelegramPresentationTheme
+        let presentation: AnsiblePresentationTheme
         let select:(Int64)->Void
-        init(context: any AccountContextProtocol, presentation: TelegramPresentationTheme, select:@escaping(Int64)->Void) {
+        init(context: any AccountContextProtocol, presentation: AnsiblePresentationTheme, select:@escaping(Int64)->Void) {
             self.context = context
             self.select = select
             self.presentation = presentation
@@ -384,7 +384,7 @@ fileprivate class ShareModalView : Control, TokenizedProtocol {
         var index: Int = 0
         for peer in peers {
             let item = ShortPeerRowItem(tableView.frame.size, peer: peer, account: context.account, context: context, stableId: AnyHashable(peer.id), height: 48, photoSize: NSMakeSize(36, 36), titleStyle: ControlStyle(font: .medium(.title), foregroundColor: theme.colors.text), inset: NSEdgeInsets(left: 10, right: 10), drawSeparatorIgnoringInset: true, interactionType: multipleSelection ? .selectable(interactions, side: .right) : .interactable(interactions), action: { [weak interactions] in
-                if TelegramUtilsHooks.shared.peerIsForum(peer) || (peer.groupAccess.canManageDirect && peer.isMonoForum) {
+                if AnsibleUtilsHooks.shared.peerIsForum(peer) || (peer.groupAccess.canManageDirect && peer.isMonoForum) {
                     _ = interactions?.openForum(peer.id, peer.isMonoForum)
                 } else {
                     interactions?.action(peer.id, nil)
@@ -1627,7 +1627,7 @@ fileprivate func prepareEntries(from:[SelectablePeersEntry]?, to:[SelectablePeer
             return ShortPeerRowItem(initialSize, peer: peer, account: context.account, context: context, stableId: entry.stableId, height: 48, photoSize:NSMakeSize(36, 36), titleStyle: ControlStyle(font: .medium(.title), foregroundColor: theme.colors.text), statusStyle: share.statusStyle(peer, presence: presence, autoDeletion: autoDeletion), status: share.statusString(peer, presence: presence, autoDeletion: autoDeletion), drawCustomSeparator: drawSeparator, isLookSavedMessage : peer.id == context.peerId, inset:NSEdgeInsets(left: 10, right: 10), drawSeparatorIgnoringInset: true, interactionType: multiple ? .selectable(selectInteraction, side: .right) : .interactable(selectInteraction), action: {
                 if peer.isCommunity {
                     selectInteraction.toggleSelection(peer)
-                } else if share.selectTopics, TelegramUtilsHooks.shared.peerIsForum(peer) || (peer.groupAccess.canManageDirect && peer.isMonoForum) {
+                } else if share.selectTopics, AnsibleUtilsHooks.shared.peerIsForum(peer) || (peer.groupAccess.canManageDirect && peer.isMonoForum) {
                     _ = selectInteraction.openForum(peer.id, peer.isMonoForum)
                 } else {
                     selectInteraction.action(peer.id, nil)
@@ -3223,7 +3223,7 @@ public class ShareModalController: ModalViewController, Notifable, TableViewDele
     }
 
     private let emoji: ShareEmojiesController
-    private let presentation: TelegramPresentationTheme?
+    private let presentation: AnsiblePresentationTheme?
     private var completion:((Bool)->Void)? = nil
     
     private var success: Bool = false
@@ -3232,11 +3232,11 @@ public class ShareModalController: ModalViewController, Notifable, TableViewDele
     private var analyticsForwardJourney: AnalyticsForwardPickerJourney?
     public var resultCompletion: ((SharePickerResult) -> Void)?
     
-    public convenience init(_ share:ShareObject, presentation: TelegramPresentationTheme? = nil, completion:((Bool)->Void)? = nil) {
+    public convenience init(_ share:ShareObject, presentation: AnsiblePresentationTheme? = nil, completion:((Bool)->Void)? = nil) {
         self.init(share, presentation: presentation, completion: completion, analyticsContext: (share as? ForwardMessagesObject)?.forwardingAnalyticsContext)
     }
 
-    public init(_ share:ShareObject, presentation: TelegramPresentationTheme? = nil, completion:((Bool)->Void)? = nil, analyticsContext: AnalyticsContext?) {
+    public init(_ share:ShareObject, presentation: AnsiblePresentationTheme? = nil, completion:((Bool)->Void)? = nil, analyticsContext: AnalyticsContext?) {
         var origin = Analytics.shared.captureContext(engine: share.context.engine, peerId: share.context.peerId, inherited: analyticsContext ?? (share as? ForwardMessagesObject)?.forwardingAnalyticsContext ?? Analytics.shared.unresolvedContext())
         if !origin.isExcluded, origin.scope != nil, let forward = share as? ForwardMessagesObject {
             origin = Analytics.shared.captureContext(engine: share.context.engine, peerId: share.context.peerId, inherited: forward.forwardingAnalyticsContext)

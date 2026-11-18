@@ -19,7 +19,7 @@ import SystemPermissions
 import AnsibleMediaUtils
 
 
-public func CallSettingsModalController(_ sharedContext: any SharedAccountContextProtocol, presentation: TelegramPresentationTheme = theme) -> InputDataModalController {
+public func CallSettingsModalController(_ sharedContext: any SharedAccountContextProtocol, presentation: AnsiblePresentationTheme = theme) -> InputDataModalController {
     
     var close: (()->Void)? = nil
 

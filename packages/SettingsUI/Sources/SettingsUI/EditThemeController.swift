@@ -31,12 +31,12 @@ private let _id_input_slug = InputDataIdentifier("_id_input_slug")
 
 private struct EditThemeState : Equatable {
     public let current: AnsibleTheme
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
     public let name: String
     public let slug: String?
     public let path: String?
     public let errors:[InputDataIdentifier : InputDataValueError]
-    public init(current:AnsibleTheme, presentation: TelegramPresentationTheme, name: String, slug: String?, path: String?, errors:[InputDataIdentifier : InputDataValueError]) {
+    public init(current:AnsibleTheme, presentation: AnsiblePresentationTheme, name: String, slug: String?, path: String?, errors:[InputDataIdentifier : InputDataValueError]) {
         self.current = current
         self.presentation = presentation
         self.name = name
@@ -59,7 +59,7 @@ private struct EditThemeState : Equatable {
     public func withUpdatedSlug(_ slug: String?) -> EditThemeState {
         return EditThemeState(current: self.current, presentation: self.presentation, name: self.name, slug: slug, path: self.path, errors: self.errors)
     }
-    public func withUpdatedPresentation(_ presentation: TelegramPresentationTheme) -> EditThemeState {
+    public func withUpdatedPresentation(_ presentation: AnsiblePresentationTheme) -> EditThemeState {
         return EditThemeState(current: self.current, presentation: presentation, name: self.name, slug: self.slug, path: self.path, errors: self.errors)
     }
 }
@@ -159,7 +159,7 @@ private func editThemeEntries(state: EditThemeState, chatInteraction: Appearance
     return entries
 }
 
-public func EditThemeController(context: any AccountContextProtocol, telegramTheme: AnsibleTheme, presentation: TelegramPresentationTheme) -> InputDataModalController {
+public func EditThemeController(context: any AccountContextProtocol, telegramTheme: AnsibleTheme, presentation: AnsiblePresentationTheme) -> InputDataModalController {
     let initialState = EditThemeState(current: telegramTheme, presentation: presentation, name: telegramTheme.title, slug: telegramTheme.slug, path: nil, errors: [:])
     
     let statePromise = ValuePromise(initialState, ignoreRepeated: true)
@@ -298,7 +298,7 @@ public func EditThemeController(context: any AccountContextProtocol, telegramThe
             
             var mediaResource: MediaResource? = nil
             var thumbnailData: Data? = nil
-            let newTheme: TelegramPresentationTheme = state.presentation
+            let newTheme: AnsiblePresentationTheme = state.presentation
             
             if newTheme.colors != presentation.colors || state.current.file == nil {
                 let temp = NSTemporaryDirectory() + "\(arc4random()).palette"

@@ -97,7 +97,7 @@ private enum QuickSwitcherEntry : TableItemListNodeEntry {
             }
             return SeparatorRowItem(initialSize, stableId, string: text.uppercased())
         case .addAccount:
-            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountSettingsAddAccount, icon: theme.icons.account_add_account, activeIcon: TelegramThemeHooks.shared.image(.iconAccountAddAccount).precomposed(theme.colors.underSelectedColor, flipVertical: true), nameStyle: ControlStyle(font: .normal(.title), foregroundColor: theme.colors.accentIcon), type: .none, viewType: .legacy, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountSettingsAddAccount, icon: theme.icons.account_add_account, activeIcon: AnsibleThemeHooks.shared.image(.iconAccountAddAccount).precomposed(theme.colors.underSelectedColor, flipVertical: true), nameStyle: ControlStyle(font: .normal(.title), foregroundColor: theme.colors.accentIcon), type: .none, viewType: .legacy, action: {
                 
             }, border:[BorderType.Right], inset:NSEdgeInsets(left: 0, right: 0), iconTextInset: 50, iconInset: 14)
         case .empty:
@@ -564,7 +564,7 @@ public class QuickSwitcherModalController: ModalViewController, TableViewDelegat
         if let selectedItem = genericView.tableView.selectedItem() as? ShortPeerRowItem {
             switch source {
             case .quick:
-                if TelegramUtilsHooks.shared.peerIsForum(selectedItem.peer) {
+                if AnsibleUtilsHooks.shared.peerIsForum(selectedItem.peer) {
                     openForum(selectedItem.peer.id, animated: true)
                     return .invoked
                 }

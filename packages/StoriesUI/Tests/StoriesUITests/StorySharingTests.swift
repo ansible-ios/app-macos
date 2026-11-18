@@ -35,7 +35,7 @@ final class StorySharingTests: XCTestCase {
         _ = NSApplication.shared
         NSApp.setActivationPolicy(.accessory)
         _ = StorySharingTests.retainedImages
-        TelegramThemeHooks.install(TelegramThemeHooks(
+        AnsibleThemeHooks.install(AnsibleThemeHooks(
             image: { _ in StorySharingTests.image },
             icons: { generateIcons(from: $0, bubbled: $1) },
             sendingFrame: { generateSendingFrame($0) },

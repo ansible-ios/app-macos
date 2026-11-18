@@ -25,20 +25,20 @@ import AppAnalytics
 
 
 public enum ThemePreviewSource {
-    case localTheme(TelegramPresentationTheme, name: String?)
+    case localTheme(AnsiblePresentationTheme, name: String?)
     case cloudTheme(AnsibleTheme)
 }
 
 
 private final class ThemeChatPreviewRowItem: GeneralRowItem {
-    public let previewTheme: TelegramPresentationTheme
+    public let previewTheme: AnsiblePresentationTheme
     public let context: any AccountContextProtocol
     public let bubbled: Bool
     public let toggleBubbled: (Bool) -> Void
     public let applyTheme: () -> Void
     public let dismiss: () -> Void
     public let share: (() -> Void)?
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, previewTheme: TelegramPresentationTheme, bubbled: Bool, toggleBubbled: @escaping (Bool) -> Void, applyTheme: @escaping () -> Void, dismiss: @escaping () -> Void, share: (() -> Void)?) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, previewTheme: AnsiblePresentationTheme, bubbled: Bool, toggleBubbled: @escaping (Bool) -> Void, applyTheme: @escaping () -> Void, dismiss: @escaping () -> Void, share: (() -> Void)?) {
         self.previewTheme = previewTheme
         self.context = context
         self.bubbled = bubbled
@@ -85,7 +85,7 @@ private final class ThemeChatPreviewRowView: TableRowView {
         dismissButton.setAccessibilityLabel(strings().voiceOverCommonClose)
         addSubview(dismissButton)
 
-        shareButton.set(image: TelegramThemeHooks.shared.image(.iconShareStickerPack).precomposed(theme.colors.text), for: .Normal)
+        shareButton.set(image: AnsibleThemeHooks.shared.image(.iconShareStickerPack).precomposed(theme.colors.text), for: .Normal)
         shareButton.setGlassEffect()
         shareButton.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
         shareButton.setAccessibilityLabel(strings().voiceOverCommonShare)
@@ -228,7 +228,7 @@ private final class Arguments {
 }
 
 private struct State: Equatable {
-    public var previewTheme: TelegramPresentationTheme
+    public var previewTheme: AnsiblePresentationTheme
     public var bubbled: Bool
 
     public static func == (lhs: State, rhs: State) -> Bool {
@@ -256,7 +256,7 @@ public func ThemePreviewModalController(context: any AccountContextProtocol, sou
 
     let actionsDisposable = DisposableSet()
 
-    let baseTheme: TelegramPresentationTheme
+    let baseTheme: AnsiblePresentationTheme
     let shareLink: String?
 
     switch source {

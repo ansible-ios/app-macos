@@ -15,7 +15,7 @@ final class PollPercentageImageTests: XCTestCase {
     }
 
     func testStaticPollBuildsOnlyTheShownValue() {
-        let colors = TelegramChatColors(dayClassicPalette, true)
+        let colors = AnsibleChatColors(dayClassicPalette, true)
         let first = colors.pollPercentAnimatedIcon(true, true, value: 42)
         let again = colors.pollPercentAnimatedIcon(true, true, value: 42)
         XCTAssertTrue(first === again)
@@ -28,7 +28,7 @@ final class PollPercentageImageTests: XCTestCase {
     }
 
     func testAnimationFramesAreTheRoundedValues() {
-        let colors = TelegramChatColors(dayClassicPalette, true)
+        let colors = AnsibleChatColors(dayClassicPalette, true)
         let duration = 0.25
         let frames = colors.pollPercentAnimatedIcons(false, true, from: 10, to: 40, duration: duration)
         let count = max(1, Int(duration / (1.0 / 60)))
@@ -42,7 +42,7 @@ final class PollPercentageImageTests: XCTestCase {
     }
 
     func testValuesAreClampedToTheRange() {
-        let colors = TelegramChatColors(dayClassicPalette, false)
+        let colors = AnsibleChatColors(dayClassicPalette, false)
         XCTAssertTrue(colors.pollPercentAnimatedIcon(false, false, value: -3) === colors.pollPercentAnimatedIcon(false, false, value: 0))
         XCTAssertTrue(colors.pollPercentAnimatedIcon(false, false, value: 140) === colors.pollPercentAnimatedIcon(false, false, value: 100))
         XCTAssertEqual(colors.generatedPercentageImageCount, 2)
@@ -67,7 +67,7 @@ final class PollPercentageImageTests: XCTestCase {
         let path = NSTemporaryDirectory() + "poll-percentage-test.palette"
         try "name = PollTest\nisDark = 0\ntext = #ff0000\ntextBubble_incoming = #00ff00\ntextBubble_outgoing = #0000ff\n".write(toFile: path, atomically: true, encoding: .utf8)
         let palette = try XCTUnwrap(importPalette(path))
-        let colors = TelegramChatColors(palette, true)
+        let colors = AnsibleChatColors(palette, true)
         let plain = try XCTUnwrap(dominantColor(colors.pollPercentAnimatedIcon(true, false, value: 88)))
         let incoming = try XCTUnwrap(dominantColor(colors.pollPercentAnimatedIcon(true, true, value: 88)))
         let outgoing = try XCTUnwrap(dominantColor(colors.pollPercentAnimatedIcon(false, true, value: 88)))
@@ -77,7 +77,7 @@ final class PollPercentageImageTests: XCTestCase {
     }
 
     func testConcurrentReadersGetOneImagePerValue() {
-        let colors = TelegramChatColors(dayClassicPalette, true)
+        let colors = AnsibleChatColors(dayClassicPalette, true)
         let results = (0 ..< 8).map { _ in NSMutableArray() }
         DispatchQueue.concurrentPerform(iterations: 8) { worker in
             for value in 0 ... 100 {
@@ -94,12 +94,12 @@ final class PollPercentageImageTests: XCTestCase {
     }
 
     func testFirstStaticIconIsCheaperThanBuildingTheWholeSet() {
-        let lazy = TelegramChatColors(dayClassicPalette, true)
+        let lazy = AnsibleChatColors(dayClassicPalette, true)
         var started = CFAbsoluteTimeGetCurrent()
         _ = lazy.pollPercentAnimatedIcon(true, true, value: 50)
         let firstIcon = CFAbsoluteTimeGetCurrent() - started
 
-        let eager = TelegramChatColors(dayClassicPalette, true)
+        let eager = AnsibleChatColors(dayClassicPalette, true)
         started = CFAbsoluteTimeGetCurrent()
         for value in 0 ... 100 {
             _ = eager.pollPercentAnimatedIcon(true, true, value: value)

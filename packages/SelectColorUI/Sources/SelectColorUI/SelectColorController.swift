@@ -271,14 +271,14 @@ private final class GroupInfoRowView: GeneralContainableRowView {
         guard let item = item as? GroupInfoRowItem else {
             return
         }
-        self.imageView.image = TelegramThemeHooks.shared.image(.iconGroupBlockBoost).precomposed(theme.colors.accent)
+        self.imageView.image = AnsibleThemeHooks.shared.image(.iconGroupBlockBoost).precomposed(theme.colors.accent)
         self.imageView.sizeToFit()
         textView.update(item.text)
     }
 }
 
 private class ProfilePreviewRowItem : GeneralRowItem {
-    fileprivate let theme: TelegramPresentationTheme
+    fileprivate let theme: AnsiblePresentationTheme
     fileprivate let peer: Peer
     fileprivate let nameColor: PeerColor?
     fileprivate let backgroundEmojiId: Int64?
@@ -286,7 +286,7 @@ private class ProfilePreviewRowItem : GeneralRowItem {
     fileprivate let nameLayout: TextViewLayout
     fileprivate let statusLayout: TextViewLayout
     fileprivate let getColor:(PeerColor)->PeerNameColors.Colors
-    init(_ initialSize: NSSize, stableId: AnyHashable, peer: Peer, subscribers: Int?, isGroup: Bool, nameColor: PeerColor?, backgroundEmojiId: Int64?, context: any AccountContextProtocol, theme: TelegramPresentationTheme, viewType: GeneralViewType, getColor:@escaping(PeerColor)->PeerNameColors.Colors) {
+    init(_ initialSize: NSSize, stableId: AnyHashable, peer: Peer, subscribers: Int?, isGroup: Bool, nameColor: PeerColor?, backgroundEmojiId: Int64?, context: any AccountContextProtocol, theme: AnsiblePresentationTheme, viewType: GeneralViewType, getColor:@escaping(PeerColor)->PeerNameColors.Colors) {
         self.theme = theme
         self.peer = peer
         self.getColor = getColor
@@ -490,10 +490,10 @@ private final class ProfilePreviewRowView : GeneralContainableRowView {
 
 private class PreviewRowItem: GeneralRowItem {
 
-    fileprivate let theme: TelegramPresentationTheme
+    fileprivate let theme: AnsiblePresentationTheme
     fileprivate let items:[TableRowItem]
     fileprivate let getColor:(PeerColor)->PeerNameColors.Colors
-    init(_ initialSize: NSSize, stableId: AnyHashable, peer: Peer, nameColor: PeerColor?, backgroundEmojiId: Int64?, emojiStatus: PeerEmojiStatus?, context: any AccountContextProtocol, theme: TelegramPresentationTheme, viewType: GeneralViewType, getColor:@escaping(PeerColor)->PeerNameColors.Colors) {
+    init(_ initialSize: NSSize, stableId: AnyHashable, peer: Peer, nameColor: PeerColor?, backgroundEmojiId: Int64?, emojiStatus: PeerEmojiStatus?, context: any AccountContextProtocol, theme: AnsiblePresentationTheme, viewType: GeneralViewType, getColor:@escaping(PeerColor)->PeerNameColors.Colors) {
         self.theme = theme.withUpdatedBackgroundSize(WallpaperDimensions.aspectFilled(NSMakeSize(200, 200)))
         self.getColor = getColor
         let peerId = PeerId(namespace: Namespaces.Peer.CloudGroup, id: ._internalFromInt64Value(0))
@@ -1138,7 +1138,7 @@ struct SelectColorState : Equatable {
     var icon_profile: CGImage?
     var icon_emojiStatus: CGImage?
     
-    var theme: TelegramPresentationTheme
+    var theme: AnsiblePresentationTheme
     
     var wallpaper: TelegramWallpaper?
     var actualWallpaper: TelegramWallpaper?

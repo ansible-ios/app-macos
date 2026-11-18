@@ -52,7 +52,7 @@ final class ChatRemovalUndoView: Control {
         textView.isSelectable = false
 
         undoButton.set(font: .medium(.title), for: .Normal)
-        undoButton.set(color: TelegramThemeHooks.shared.darkAppearance().colors.accent, for: .Normal)
+        undoButton.set(color: AnsibleThemeHooks.shared.darkAppearance().colors.accent, for: .Normal)
         undoButton.set(background: .clear, for: .Normal)
         undoButton.set(text: strings().chatUndoManagerUndo, for: .Normal)
         _ = undoButton.sizeToFit(NSMakeSize(24, 0), NSMakeSize(0, ChatRemovalUndoView.height), thatFit: false)

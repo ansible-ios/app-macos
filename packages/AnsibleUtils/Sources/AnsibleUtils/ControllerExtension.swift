@@ -12,7 +12,7 @@ import AnsibleTheme
 import AnsibleContext
 #endif
 
-open class TelegramGenericViewController<T: NSView, Context: AccountContextProtocol>: GenericViewController<T> {
+open class AnsibleGenericViewController<T: NSView, Context: AccountContextProtocol>: GenericViewController<T> {
 
     public let context:Context
     private let languageDisposable:MetaDisposable = MetaDisposable()
@@ -45,14 +45,14 @@ open class TelegramGenericViewController<T: NSView, Context: AccountContextProto
 
 
 
-open class TelegramViewController<Context: AccountContextProtocol>: TelegramGenericViewController<View, Context> {
+open class AnsibleViewController<Context: AccountContextProtocol>: AnsibleGenericViewController<View, Context> {
 
 }
 
 
 
 
-open class TableViewController<Context: AccountContextProtocol>: TelegramGenericViewController<TableView, Context>, TableViewDelegate {
+open class TableViewController<Context: AccountContextProtocol>: AnsibleGenericViewController<TableView, Context>, TableViewDelegate {
 
 
 
@@ -109,7 +109,7 @@ public enum ViewControllerState : Equatable {
 }
 
 
-open class EditableViewController<T: NSView, Context: AccountContextProtocol>: TelegramGenericViewController<T, Context> {
+open class EditableViewController<T: NSView, Context: AccountContextProtocol>: AnsibleGenericViewController<T, Context> {
 
     open var stackedBar: StackedBarView!
     public private(set) weak var editButton: TextButton?

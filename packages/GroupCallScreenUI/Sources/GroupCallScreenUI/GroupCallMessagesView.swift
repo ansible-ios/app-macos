@@ -75,7 +75,7 @@ private final class MessageItemRow : TableRowItem {
         
         
                 
-        let textAttr = GroupCallScreenUIHooks.shared.formatMessageText(entities, text, arguments.context, 13, TelegramThemeHooks.shared.darkAppearance().colors.text, TelegramThemeHooks.shared.darkAppearance().colors.accent).mutableCopy() as! NSMutableAttributedString
+        let textAttr = GroupCallScreenUIHooks.shared.formatMessageText(entities, text, arguments.context, 13, AnsibleThemeHooks.shared.darkAppearance().colors.text, AnsibleThemeHooks.shared.darkAppearance().colors.accent).mutableCopy() as! NSMutableAttributedString
         
         InlineStickerItem.apply(to: textAttr, associatedMedia: files, entities: entities, isPremium: true, playPolicy: .onceEnd)
         
@@ -84,7 +84,7 @@ private final class MessageItemRow : TableRowItem {
         
         let peerName = (message.author?._asPeer().compactDisplayTitle ?? "").prefixWithDots(30)
         
-        self.nameLayout = .init(.initialize(string: peerName, color: TelegramThemeHooks.shared.darkAppearance().colors.text, font: .medium(.text)))
+        self.nameLayout = .init(.initialize(string: peerName, color: AnsibleThemeHooks.shared.darkAppearance().colors.text, font: .medium(.text)))
         self.nameLayout.measure(width: .greatestFiniteMagnitude)
                 
 //        let text = message.text.makeAttributeString().mutableCopy() as! NSMutableAttributedString

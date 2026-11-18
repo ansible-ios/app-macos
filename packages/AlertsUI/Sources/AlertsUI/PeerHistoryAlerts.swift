@@ -18,7 +18,7 @@ public func clearHistory(context: any AccountContextProtocol, peer: Peer, mainPe
     }
     if canRemoveGlobally {
         if let peer = peer as? TelegramUser {
-            thridTitle = strings().chatMessageDeleteForMeAndPerson(TelegramUtilsHooks.shared.peerTitle(peer))
+            thridTitle = strings().chatMessageDeleteForMeAndPerson(AnsibleUtilsHooks.shared.peerTitle(peer))
         } else {
             thridTitle = strings().chatMessageDeleteForAll
         }

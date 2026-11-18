@@ -175,7 +175,7 @@ private func channelAdminsControllerEntries(context: any AccountContextProtocol,
         
         let members = cachedData.participantsSummary.memberCount ?? 0
         
-        if isGroup, TelegramUtilsHooks.shared.peerIsForum(peer), members >= configuration.group_size_min {
+        if isGroup, AnsibleUtilsHooks.shared.peerIsForum(peer), members >= configuration.group_size_min {
             entries.append(.eventLogs(sectionId: sectionId, .firstItem))
             entries.append(.antispam(sectionId: sectionId, cachedData.flags.contains(.antiSpamEnabled), .lastItem))
             entries.append(.antispamInfo(sectionId: sectionId, .textBottomItem))

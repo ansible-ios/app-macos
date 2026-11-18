@@ -10,8 +10,8 @@ class SEFoldersRowItem: TableStickItem {
     fileprivate let context: AccountContext?
     fileprivate let tabs: [ChatListFilter]
     fileprivate let selected: ChatListFilter
-    fileprivate let presentation: TelegramPresentationTheme
-    init(_ initialSize: NSSize, context: AccountContext, tabs: [ChatListFilter], selected: ChatListFilter, action: ((ChatListFilter)->Void)? = nil, presentation: TelegramPresentationTheme = theme) {
+    fileprivate let presentation: AnsiblePresentationTheme
+    init(_ initialSize: NSSize, context: AccountContext, tabs: [ChatListFilter], selected: ChatListFilter, action: ((ChatListFilter)->Void)? = nil, presentation: AnsiblePresentationTheme = theme) {
         self.action = action
         self.context = context
         self.tabs = tabs

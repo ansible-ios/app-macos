@@ -158,14 +158,14 @@ public enum ChatHistoryLink {
 @available(macOS 12, *)
 public struct ChatHistoryRichTextHooks {
     public let blocksFromInAppPasteboard: () -> [Block]?
-    public let installSyntaxHighlighter: (RichTextEditorView, @escaping () -> TelegramPresentationTheme) -> Void
+    public let installSyntaxHighlighter: (RichTextEditorView, @escaping () -> AnsiblePresentationTheme) -> Void
     public let makeMediaContentView: (Media, CGFloat, Bool, any AccountContextProtocol, ChatInteraction) -> NSView
     public let makeCollageTileView: (Media, NSSize, Bool, any AccountContextProtocol, ChatInteraction) -> NSView
     public let makeSliderView: ([String], CGFloat, @escaping (String) -> Media?, any AccountContextProtocol) -> NSView?
     public let makeSpoilerEffect: () -> SpoilerEffect
 
     public init(blocksFromInAppPasteboard: @escaping () -> [Block]?,
-                installSyntaxHighlighter: @escaping (RichTextEditorView, @escaping () -> TelegramPresentationTheme) -> Void,
+                installSyntaxHighlighter: @escaping (RichTextEditorView, @escaping () -> AnsiblePresentationTheme) -> Void,
                 makeMediaContentView: @escaping (Media, CGFloat, Bool, any AccountContextProtocol, ChatInteraction) -> NSView,
                 makeCollageTileView: @escaping (Media, NSSize, Bool, any AccountContextProtocol, ChatInteraction) -> NSView,
                 makeSliderView: @escaping ([String], CGFloat, @escaping (String) -> Media?, any AccountContextProtocol) -> NSView?,
@@ -208,7 +208,7 @@ public struct ChatHistoryUIHooks {
     public let detectLinks: (NSMutableAttributedString, ParsingType, Bool, (any AccountContextProtocol)?, NSColor, ((PeerId, Bool, MessageId?, ChatInitialAction?) -> Void)?, ((String) -> Void)?, ((String) -> Void)?, ((ProxyServerSettings) -> Void)?, Bool) -> Void
     public let copyContextText: (LinkType) -> String
     public let applyCodeSyntax: (NSMutableAttributedString, NSRange, String?, Message?, Bool, Bool, Bool, NSColor, CGFloat, [CodeSyntaxKey : CodeSyntaxResult], @escaping (MessageId, NSRange, String, String, ChatInterfaceSyntaxTheme) -> Void) -> Void
-    public let generateSyntaxThemeParams: (TelegramPresentationTheme, Bool, Bool) -> [String: NSColor]
+    public let generateSyntaxThemeParams: (AnsiblePresentationTheme, Bool, Bool) -> [String: NSColor]
     public let makeShareMessageModal: (any AccountContextProtocol, Message) -> ModalViewController
     public let makeShareGroupedMessagesModal: (any AccountContextProtocol, Message, [Message]) -> ModalViewController
     public var makeShareMessagesModalWithContext: ((any AccountContextProtocol, Message, [Message]?, AnalyticsContext) -> ModalViewController)?
@@ -360,7 +360,7 @@ public struct ChatHistoryUIHooks {
                 detectLinks: @escaping (NSMutableAttributedString, ParsingType, Bool, (any AccountContextProtocol)?, NSColor, ((PeerId, Bool, MessageId?, ChatInitialAction?) -> Void)?, ((String) -> Void)?, ((String) -> Void)?, ((ProxyServerSettings) -> Void)?, Bool) -> Void,
                 copyContextText: @escaping (LinkType) -> String,
                 applyCodeSyntax: @escaping (NSMutableAttributedString, NSRange, String?, Message?, Bool, Bool, Bool, NSColor, CGFloat, [CodeSyntaxKey : CodeSyntaxResult], @escaping (MessageId, NSRange, String, String, ChatInterfaceSyntaxTheme) -> Void) -> Void,
-                generateSyntaxThemeParams: @escaping (TelegramPresentationTheme, Bool, Bool) -> [String: NSColor],
+                generateSyntaxThemeParams: @escaping (AnsiblePresentationTheme, Bool, Bool) -> [String: NSColor],
                 makeShareMessageModal: @escaping (any AccountContextProtocol, Message) -> ModalViewController,
                 makeShareGroupedMessagesModal: @escaping (any AccountContextProtocol, Message, [Message]) -> ModalViewController,
                 pushReactionPeerInfo: @escaping (NavigationViewController, any AccountContextProtocol, PeerId, MessageId) -> Void,

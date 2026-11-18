@@ -27,10 +27,10 @@ public class ReplyMarkupButtonLayout {
     public let text:TextViewLayout
     fileprivate let paymentAccessibilityLabel: String?
     public let button:ReplyMarkupButton
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
     public let styleBackgroundColor: NSColor?
 
-    public init(button:ReplyMarkupButton, theme: TelegramPresentationTheme, isInput: Bool, paid: Bool, xtrAmount: Int64?) {
+    public init(button:ReplyMarkupButton, theme: AnsiblePresentationTheme, isInput: Bool, paid: Bool, xtrAmount: Int64?) {
         self.button = button
         self.presentation = theme
         let attr = NSMutableAttributedString()
@@ -150,7 +150,7 @@ public class ReplyMarkupNode: Node {
 
     private let interactions:ReplyMarkupInteractions
     private let isInput: Bool
-    private let theme: TelegramPresentationTheme
+    private let theme: AnsiblePresentationTheme
     private let xtr: Bool
     private let isPostSuggest: Bool
     public let outerCornerRadius: CGFloat
@@ -158,7 +158,7 @@ public class ReplyMarkupNode: Node {
     /// When false (bubble-attached buttons) only the last row's bottom-outer corners round, and the
     /// other buttons keep their normal small radius instead of being squared.
     public let roundsTopCorners: Bool
-    public init(_ rows:[ReplyMarkupRow], _ flags:ReplyMarkupMessageFlags, _ interactions:ReplyMarkupInteractions, _ theme: TelegramPresentationTheme, _ view:View? = nil, _ isInput: Bool = false, paid: Bool = false, xtrAmount: Int64? = nil, isPostSuggest: Bool = false, outerCornerRadius: CGFloat = 0, roundsTopCorners: Bool = true) {
+    public init(_ rows:[ReplyMarkupRow], _ flags:ReplyMarkupMessageFlags, _ interactions:ReplyMarkupInteractions, _ theme: AnsiblePresentationTheme, _ view:View? = nil, _ isInput: Bool = false, paid: Bool = false, xtrAmount: Int64? = nil, isPostSuggest: Bool = false, outerCornerRadius: CGFloat = 0, roundsTopCorners: Bool = true) {
         self.flags = flags
         self.isInput = isInput
         self.isPostSuggest = isPostSuggest
@@ -178,7 +178,7 @@ public class ReplyMarkupNode: Node {
     }
     
     public var shouldBlurService: Bool {
-        return !TelegramUtilsHooks.shared.isLite(.blur) && theme.shouldBlurService
+        return !AnsibleUtilsHooks.shared.isLite(.blur) && theme.shouldBlurService
     }
     
     public func redraw() {

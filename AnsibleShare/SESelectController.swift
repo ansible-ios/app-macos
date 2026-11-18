@@ -345,9 +345,9 @@ class ShareModalView : View {
     
     private class ForumTopicArguments {
         let context: AccountContext
-        let presentation: TelegramPresentationTheme
+        let presentation: AnsiblePresentationTheme
         let select:(Int64)->Void
-        init(context: AccountContext, presentation: TelegramPresentationTheme, select:@escaping(Int64)->Void) {
+        init(context: AccountContext, presentation: AnsiblePresentationTheme, select:@escaping(Int64)->Void) {
             self.context = context
             self.select = select
             self.presentation = presentation

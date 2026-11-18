@@ -104,7 +104,7 @@ private final class PollOption : Equatable {
     let isIncoming: Bool
     let isBubbled: Bool
     let isLoading: Bool
-    let presentation: TelegramPresentationTheme
+    let presentation: AnsiblePresentationTheme
     let contentSize: NSSize
     let vote:(Control)-> Void
     let isCorrect: Bool?
@@ -116,7 +116,7 @@ private final class PollOption : Equatable {
     let voteCountText: TextViewLayout?
     let optionMedia: Media?
     let hideResults: Bool
-    init(option:TelegramMediaPollOption, nameText: TextViewLayout, percent: Float?, realPercent: Float, voteCount: Int32, isSelected: Bool, isIncoming: Bool, isBubbled: Bool, voted: Bool, isLoading: Bool, presentation: TelegramPresentationTheme, isCorrect: Bool?, isQuiz: Bool, isMultipleSelected: Bool, isMultipleChoice: Bool, optionMedia: Media? = nil, anyOptionHasMedia: Bool = false, hideResults: Bool = false, vote: @escaping(Control)->Void = { _ in }, contentSize: NSSize = NSZeroSize, isTranslateLoading: Bool, recentVoters: [PeerId] = [], voteCountText: TextViewLayout? = nil) {
+    init(option:TelegramMediaPollOption, nameText: TextViewLayout, percent: Float?, realPercent: Float, voteCount: Int32, isSelected: Bool, isIncoming: Bool, isBubbled: Bool, voted: Bool, isLoading: Bool, presentation: AnsiblePresentationTheme, isCorrect: Bool?, isQuiz: Bool, isMultipleSelected: Bool, isMultipleChoice: Bool, optionMedia: Media? = nil, anyOptionHasMedia: Bool = false, hideResults: Bool = false, vote: @escaping(Control)->Void = { _ in }, contentSize: NSSize = NSZeroSize, isTranslateLoading: Bool, recentVoters: [PeerId] = [], voteCountText: TextViewLayout? = nil) {
         self.option = option
         self.nameText = nameText
         self.percent = percent
@@ -422,7 +422,7 @@ public class ChatPollItem: ChatRowItem {
         return peer.map { !$0.isCopyProtected(cachedData: chatInteraction.presentation.cachedData) } ?? false
     }
     
-    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         
         
         var poll = object.message!.media[0] as! TelegramMediaPoll
@@ -1938,7 +1938,7 @@ private final class PollView : Control {
                 button.setFrameOrigin(NSMakePoint(item.bubbleContentInset + explanationLayout.size.width - button.frame.width - 4, 4))
             }
             if let closeButton = self.explanationCloseButton {
-                closeButton.set(image: TelegramThemeHooks.shared.image(.iconBrowserCloseTab).precomposed(item.wpPresentation.activity.main), for: .Normal)
+                closeButton.set(image: AnsibleThemeHooks.shared.image(.iconBrowserCloseTab).precomposed(item.wpPresentation.activity.main), for: .Normal)
                 closeButton.sizeToFit()
                 closeButton.removeAllHandlers()
                 closeButton.set(handler: { [weak item] _ in
@@ -2046,7 +2046,7 @@ private final class PollView : Control {
                     ChatNavigationHooks.shared.showNewPoll(item.chatInteraction, source, item.context.window, { [weak self] in self?.addOptionButton })
                 }, for: .Click)
             }
-            self.addOptionIcon?.image = TelegramThemeHooks.shared.image(.menuAdd).precomposed(iconColor)
+            self.addOptionIcon?.image = AnsibleThemeHooks.shared.image(.menuAdd).precomposed(iconColor)
             self.addOptionIcon?.sizeToFit()
 
             let layout = TextViewLayout(.initialize(string: strings().chatPollAddOption, color: textColor, font: .normal(.text)), maximumNumberOfLines: 1)

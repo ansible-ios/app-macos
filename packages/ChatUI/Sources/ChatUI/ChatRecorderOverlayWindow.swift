@@ -192,13 +192,13 @@ public class ChatRecorderRoundButton : ImageButton {
         updateLocalizationAndTheme(theme: theme)
     }
 
-    public func icon(_ theme: TelegramPresentationTheme) -> CGImage? {
+    public func icon(_ theme: AnsiblePresentationTheme) -> CGImage? {
         return nil
     }
 
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         backgroundColor = .clear
         if let icon = icon(theme) {
             set(image: icon, for: .Normal)
@@ -228,7 +228,7 @@ public final class ChatRecorderSingleTimeControl : ChatRecorderRoundButton {
         }
     }
 
-    public override func icon(_ theme: TelegramPresentationTheme) -> CGImage? {
+    public override func icon(_ theme: AnsiblePresentationTheme) -> CGImage? {
         return NSImage(named: isSelected ? "Icon_OnceView_Filled" : "Icon_OnceView")!.precomposed(theme.colors.text)
     }
 
@@ -257,7 +257,7 @@ public final class ChatRecorderPauseControl : ChatRecorderRoundButton {
 
     private static let iconSize: NSSize = NSMakeSize(30, 30)
 
-    public override func icon(_ theme: TelegramPresentationTheme) -> CGImage? {
+    public override func icon(_ theme: AnsiblePresentationTheme) -> CGImage? {
         switch kind {
         case .pause:
             let color = theme.colors.text
@@ -290,7 +290,7 @@ public final class ChatRecorderTranscribeControl : ChatRecorderRoundButton {
         setAccessibilityLabel(strings().chatRecorderOverlayWindowConvertToText)
     }
 
-    public override func icon(_ theme: TelegramPresentationTheme) -> CGImage? {
+    public override func icon(_ theme: AnsiblePresentationTheme) -> CGImage? {
         return NSImage(named: "Icon_ChannelFeature_VoiceToText")?.precomposed(theme.colors.text)
     }
 

@@ -142,8 +142,8 @@ public final class PremiumSelectPeriodRowItem : GeneralRowItem {
     public let context: (any AccountContextProtocol)
     public let selectedPeriod: PremiumPeriod
     public let callback: (PremiumPeriod)->Void
-    public let presentation: TelegramPresentationTheme
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: (any AccountContextProtocol), presentation: TelegramPresentationTheme, periods: [PremiumPeriod], selectedPeriod: PremiumPeriod, viewType: GeneralViewType, callback:@escaping(PremiumPeriod)->Void) {
+    public let presentation: AnsiblePresentationTheme
+    public init(_ initialSize: NSSize, stableId: AnyHashable, context: (any AccountContextProtocol), presentation: AnsiblePresentationTheme, periods: [PremiumPeriod], selectedPeriod: PremiumPeriod, viewType: GeneralViewType, callback:@escaping(PremiumPeriod)->Void) {
         self.periods = periods
         self.callback = callback
         self.context = context
@@ -219,7 +219,7 @@ private final class PremiumSelectPeriodRowView: GeneralContainableRowView {
             
         }
         
-        public func update(_ option: PremiumPeriod, presentation: TelegramPresentationTheme, selected: Bool, isLast: Bool, context: (any AccountContextProtocol), animated: Bool, select: @escaping(PremiumPeriod)->Void) {
+        public func update(_ option: PremiumPeriod, presentation: AnsiblePresentationTheme, selected: Bool, isLast: Bool, context: (any AccountContextProtocol), animated: Bool, select: @escaping(PremiumPeriod)->Void) {
             
             let selected_image = generateChatGroupToggleSelected(foregroundColor: presentation.colors.premium, backgroundColor: presentation.colors.underSelectedColor)
             

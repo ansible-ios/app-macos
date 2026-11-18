@@ -26,7 +26,7 @@ private struct StoryChatListEntry : Equatable, Comparable, Identifiable {
     public let item: EngineStorySubscriptions.Item
     public let name: Name
     public let index: Int
-    public let appearance: TelegramPresentationTheme
+    public let appearance: AnsiblePresentationTheme
     
     public static func <(lhs: StoryChatListEntry, rhs: StoryChatListEntry) -> Bool {
         return lhs.index < rhs.index
@@ -751,7 +751,7 @@ public final class StoryListChatListRowView: TableRowView {
 
     private var lastState: EngineStorySubscriptions?
     private var lastIsArchive: Bool?
-    private weak var lastTheme: TelegramPresentationTheme?
+    private weak var lastTheme: AnsiblePresentationTheme?
     private var lastMyStoryTitle: String?
     
     

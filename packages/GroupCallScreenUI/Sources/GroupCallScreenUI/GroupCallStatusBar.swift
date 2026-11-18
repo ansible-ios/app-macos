@@ -52,20 +52,20 @@ public final class GroupCallStatusBar {
         if state.hasScreencast {
             items.append(.init(strings().groupCallStatusBarStopScreen, handler: { [weak self] in
                 self?.arguments.cancelShareScreencast()
-            }, image: TelegramThemeHooks.shared.image(.groupCallStopShareScreen)))
+            }, image: AnsibleThemeHooks.shared.image(.groupCallStopShareScreen)))
         } else if !state.cantRunVideo {
             items.append(.init(strings().groupCallStatusBarStartScreen, handler: { [weak self] in
                 self?.arguments.shareSource(.screencast, true)
-            }, image: TelegramThemeHooks.shared.image(.groupCallShareScreen)))
+            }, image: AnsibleThemeHooks.shared.image(.groupCallShareScreen)))
         }
         if state.hasVideo {
             items.append(.init(strings().groupCallStatusBarStopVideo, handler: { [weak self] in
                 self?.arguments.cancelShareVideo()
-            }, image: TelegramThemeHooks.shared.image(.groupCallStopShareVideo)))
+            }, image: AnsibleThemeHooks.shared.image(.groupCallStopShareVideo)))
         } else if !state.cantRunVideo {
             items.append(.init(strings().groupCallStatusBarStartVideo, handler: { [weak self] in
                 self?.arguments.shareSource(.video, true)
-            }, image: TelegramThemeHooks.shared.image(.groupCallShareVideo)))
+            }, image: AnsibleThemeHooks.shared.image(.groupCallShareVideo)))
         }
         
         if !items.isEmpty {

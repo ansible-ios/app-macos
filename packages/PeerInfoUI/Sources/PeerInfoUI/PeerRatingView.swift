@@ -94,7 +94,7 @@ public final class PeerRatingView : Control {
         let backgroundImage: CGImage?
         
         if data.level == -1 {
-            backgroundImage = TelegramThemeHooks.shared.image(.iconRatingAlert).precomposed(bgColor)
+            backgroundImage = AnsibleThemeHooks.shared.image(.iconRatingAlert).precomposed(bgColor)
         } else {
             backgroundImage = generateImage(iconSize, rotatedContext: { size, context in
                 

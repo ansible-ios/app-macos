@@ -218,7 +218,7 @@ public func ==(lhs:InputContextEntry, rhs:InputContextEntry) -> Bool {
     }
 }
 
-fileprivate func prepareEntries(left:[AppearanceWrapperEntry<InputContextEntry>]?, right:[AppearanceWrapperEntry<InputContextEntry>], context: any AccountContextProtocol, initialSize:NSSize, chatInteraction:ChatInteraction, getPresentation:(()->TelegramPresentationTheme)?) -> TableUpdateTransition {
+fileprivate func prepareEntries(left:[AppearanceWrapperEntry<InputContextEntry>]?, right:[AppearanceWrapperEntry<InputContextEntry>], context: any AccountContextProtocol, initialSize:NSSize, chatInteraction:ChatInteraction, getPresentation:(()->AnsiblePresentationTheme)?) -> TableUpdateTransition {
     
     let (removed,inserted, updated) = proccessEntriesWithoutReverse(left, right: right, { entry -> TableRowItem in
     
@@ -884,7 +884,7 @@ public class InputContextHelper: NSObject {
     }
     public var didScroll:(()->Void)?
     public var onDisappear:(()->Void)?
-    public var getPresentation:(()->TelegramPresentationTheme)?
+    public var getPresentation:(()->AnsiblePresentationTheme)?
     public var getBackground:(()->NSColor)?
     private var listener: TableScrollListener!
 

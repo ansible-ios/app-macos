@@ -1223,12 +1223,12 @@ enum ChannelInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
                 arguments.openNameColor(peer: peer.peer)
             }, afterNameImage: level == 0 ? generateDisclosureActionBoostLevelBadgeImage(text: strings().boostBadgeLevelPLus(1)) : nil)
         case let .postSuggestion(_, enabled, _, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoDirectMessagesText, icon: TelegramThemeHooks.shared.image(.iconPeerInfoPostSuggestion).precomposed(flipVertical: true), type: .nextContext(enabled ? strings().peerInfoDirectMessagesOn : strings().peerInfoDirectMessagesOff), viewType: viewType, action: arguments.openPostSuggestions)
+            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoDirectMessagesText, icon: AnsibleThemeHooks.shared.image(.iconPeerInfoPostSuggestion).precomposed(flipVertical: true), type: .nextContext(enabled ? strings().peerInfoDirectMessagesOn : strings().peerInfoDirectMessagesOff), viewType: viewType, action: arguments.openPostSuggestions)
         case let .autotranslate(_, peer, enabled, viewType):
             
             let level = (peer.peer as? TelegramChannel)?.approximateBoostLevel ?? 0
             let targetLevel = PeerInfoUIHooks.shared.premiumConfiguration(arguments.context).minChannelAutotranslationLevel
-            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoAutoTranslateMessages, icon: TelegramThemeHooks.shared.image(.iconAutoTranslate).precomposed(flipVertical: true), type: .switchable(enabled), viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoAutoTranslateMessages, icon: AnsibleThemeHooks.shared.image(.iconAutoTranslate).precomposed(flipVertical: true), type: .switchable(enabled), viewType: viewType, action: {
                 arguments.toggleAutoTranslate(value: !enabled)
             }, enabled: level >= targetLevel, disabledAction: arguments.openBoostInfo, afterNameImage: level >= targetLevel ? nil : generateDisclosureActionBoostLevelBadgeImage(text: strings().boostBadgeLevelPLus(Int(targetLevel))))
         case let .stats(_, datacenterId, monetization, stars, viewType):

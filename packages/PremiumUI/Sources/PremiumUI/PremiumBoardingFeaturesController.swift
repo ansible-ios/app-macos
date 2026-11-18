@@ -33,8 +33,8 @@ public final class PremiumBoardingFeaturesView: View {
     private var slideView = SliderView(frame: .zero)
     private let contentView = View()
     private var playbackDisposable: Disposable?
-    private let presentation: TelegramPresentationTheme
-    public init(frame frameRect: NSRect, presentation: TelegramPresentationTheme) {
+    private let presentation: AnsiblePresentationTheme
+    public init(frame frameRect: NSRect, presentation: AnsiblePresentationTheme) {
         self.presentation = presentation
         super.init(frame: frameRect)
         addSubview(headerView)
@@ -52,7 +52,7 @@ public final class PremiumBoardingFeaturesView: View {
         dismiss.scaleOnClick = true
         dismiss.autohighlight = false
         
-        dismiss.set(image: TelegramThemeHooks.shared.image(.iconChatNavigationBack).precomposed(.white), for: .Normal)
+        dismiss.set(image: AnsibleThemeHooks.shared.image(.iconChatNavigationBack).precomposed(.white), for: .Normal)
         dismiss.setAccessibilityLabel(strings().voiceOverCommonBack)
         dismiss.sizeToFit(NSMakeSize(20, 20), .zero, thatFit: false)
         
@@ -94,13 +94,13 @@ public final class PremiumBoardingFeaturesView: View {
         needsLayout = true
     }
     
-    public func setup(context: (any AccountContextProtocol), presentation: TelegramPresentationTheme, value: PremiumValue, stickers: [TelegramMediaFile], configuration: PremiumPromoConfiguration) {
+    public func setup(context: (any AccountContextProtocol), presentation: AnsiblePresentationTheme, value: PremiumValue, stickers: [TelegramMediaFile], configuration: PremiumPromoConfiguration) {
         
         let bounds = slideView.bounds
 
         
-        let navigationGray: CGImage = TelegramThemeHooks.shared.image(.iconChatNavigationBack).precomposed(presentation.colors.grayIcon)
-        let navigationWhite: CGImage = TelegramThemeHooks.shared.image(.iconChatNavigationBack).precomposed(.white)
+        let navigationGray: CGImage = AnsibleThemeHooks.shared.image(.iconChatNavigationBack).precomposed(presentation.colors.grayIcon)
+        let navigationWhite: CGImage = AnsibleThemeHooks.shared.image(.iconChatNavigationBack).precomposed(.white)
         
         let stories = PremiumFeatureSlideView(frame: slideView.bounds, presentation: presentation)
         stories.setup(context: context, type: .stories, decoration: .none, getView: { _ in
@@ -496,8 +496,8 @@ public final class PremiumBoardingFeaturesController : GenericViewController<Pre
     private let configuration: PremiumPromoConfiguration
     private let value: PremiumValue
     private let stickers: [TelegramMediaFile]
-    private let presentation: TelegramPresentationTheme
-    public init(_ context: (any AccountContextProtocol), presentation: TelegramPresentationTheme, value: PremiumValue, stickers: [TelegramMediaFile], configuration: PremiumPromoConfiguration, back: @escaping()->Void, makeAcceptView: @escaping()->Control?) {
+    private let presentation: AnsiblePresentationTheme
+    public init(_ context: (any AccountContextProtocol), presentation: AnsiblePresentationTheme, value: PremiumValue, stickers: [TelegramMediaFile], configuration: PremiumPromoConfiguration, back: @escaping()->Void, makeAcceptView: @escaping()->Control?) {
         self.back = back
         self.presentation = presentation
         self.value = value

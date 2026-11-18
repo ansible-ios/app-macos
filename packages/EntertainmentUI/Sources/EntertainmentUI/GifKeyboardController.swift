@@ -125,7 +125,7 @@ private func _id_tab(_ stableId: AnyHashable) -> InputDataIdentifier {
 }
 
 
-private func packEntries(_ state: State, arguments: Arguments, presentation: TelegramPresentationTheme) -> [InputDataEntry] {
+private func packEntries(_ state: State, arguments: Arguments, presentation: AnsiblePresentationTheme) -> [InputDataEntry] {
     var entries:[InputDataEntry] = []
     
     var index: Int32 = 0
@@ -247,7 +247,7 @@ public final class GifKeyboardView : View {
     private var searchStatus: PanelSearchPresentation = .hidden
 
     
-    public var presentation: TelegramPresentationTheme?
+    public var presentation: AnsiblePresentationTheme?
 
     public var isGlass: Bool = false {
         didSet {
@@ -349,7 +349,7 @@ public final class GifKeyboardView : View {
         transition.updateFrame(view: borderView, frame: NSMakeRect(0, tabs.frame.maxY, size.width, .borderSize))
         borderView.isHidden = usesMenuPanel
 
-        let headerInset: CGFloat = usesMenuPanel && !TelegramUtilsHooks.shared.isLite(.blur) ? 46 : 0
+        let headerInset: CGFloat = usesMenuPanel && !AnsibleUtilsHooks.shared.isLite(.blur) ? 46 : 0
         let tableY = headerInset > 0 ? max(0, tabs.frame.maxY - headerInset) : tabs.frame.maxY
         let topInset = headerInset > 0 ? tabs.frame.maxY - tableY : 0
         if tableView.contentInsets.top != topInset {
@@ -390,7 +390,7 @@ public final class GifKeyboardView : View {
         super.updateLocalizationAndTheme(theme: theme)
         let border: NSColor = isGlass ? theme.colors.grayIcon.withAlphaComponent(0.1) : theme.colors.border
         self.backgroundColor = isGlass ? .clear : theme.colors.background
-        searchStatusView.updateSearchStatus(searchStatus, kind: .gifs, query: searchView.query, theme: presentation ?? (theme as! TelegramPresentationTheme), clearBackground: usesMenuPanel)
+        searchStatusView.updateSearchStatus(searchStatus, kind: .gifs, query: searchView.query, theme: presentation ?? (theme as! AnsiblePresentationTheme), clearBackground: usesMenuPanel)
         borderView.backgroundColor = border
         tabs.backgroundColor = isGlass ? .clear : theme.colors.background
         searchContainer.backgroundColor = isGlass ? .clear : theme.colors.background
@@ -398,7 +398,7 @@ public final class GifKeyboardView : View {
         searchBackdrop.backgroundColor = theme.colors.background.withAlphaComponent(0.85)
         searchBackdrop.isHidden = !isGlass || usesMenuPanel
         self.searchView.updateLocalizationAndTheme(theme: theme)
-        searchFrost.isHidden = !usesMenuPanel || TelegramUtilsHooks.shared.isLite(.blur)
+        searchFrost.isHidden = !usesMenuPanel || AnsibleUtilsHooks.shared.isLite(.blur)
         searchFrost.appearance = NSAppearance.themed(isDark: theme.colors.isDark)
         if isGlass {
             let searchBackground = searchFrost.isHidden ? theme.colors.vibrant.mixedWith(NSColor(0x000000), alpha: 0.1) : .clear
@@ -411,7 +411,7 @@ public final class GifKeyboardView : View {
 
     private func applyChromeTint() {
         let tint = pickerChromeColor(isGlass, theme: presentation ?? theme)
-        let frosted = isGlass && !TelegramUtilsHooks.shared.isLite(.blur)
+        let frosted = isGlass && !AnsibleUtilsHooks.shared.isLite(.blur)
         packsView.enumerateItems(with: { item in
             if let item = item as? GifKeyboardTabRowItem, item.tint != tint || item.frosted != frosted {
                 item.tint = tint
@@ -448,7 +448,7 @@ public final class GifKeyboardView : View {
     }
 }
 
-public final class GifKeyboardController<Context: AccountContextProtocol> : TelegramGenericViewController<GifKeyboardView, Context> {
+public final class GifKeyboardController<Context: AccountContextProtocol> : AnsibleGenericViewController<GifKeyboardView, Context> {
     public override var defaultBarTitle: String {
         return localizedString("Telegram.GifKeyboardController")
     }
@@ -470,9 +470,9 @@ public final class GifKeyboardController<Context: AccountContextProtocol> : Tele
             self.searchValue.set(searchState)
         }
     }
-    private var presentation: TelegramPresentationTheme?
+    private var presentation: AnsiblePresentationTheme?
     
-    public init(_ context: Context, presentation: TelegramPresentationTheme? = nil) {
+    public init(_ context: Context, presentation: AnsiblePresentationTheme? = nil) {
         self.presentation = presentation
         super.init(context)
         bar = .init(height: 0)
@@ -743,7 +743,7 @@ public final class GifKeyboardController<Context: AccountContextProtocol> : Tele
         }
         let presentation = self.presentation
         
-        let takePresentation:()->TelegramPresentationTheme = {
+        let takePresentation:()->AnsiblePresentationTheme = {
             return presentation ?? theme
         }
         

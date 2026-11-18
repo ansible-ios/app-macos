@@ -930,7 +930,7 @@ public class PCallSession {
                     guard let self else {
                         return
                     }
-                    let keyPair: TelegramKeyPair? = TelegramE2EEncryptionProviderImpl.shared.generateKeyPair()
+                    let keyPair: TelegramKeyPair? = AnsibleE2EEncryptionProviderImpl.shared.generateKeyPair()
                     guard let keyPair, let groupCall, let accountContext = self.accountContext else {
                         self.updateSessionState(sessionState: CallSession(
                             id: self.internalId,

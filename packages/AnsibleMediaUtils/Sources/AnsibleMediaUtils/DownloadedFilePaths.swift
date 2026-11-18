@@ -56,7 +56,7 @@ public func copyToDownloads(_ file: TelegramMediaFile, postbox: Postbox, saveAny
 //        let deletedPathExt = adopted.nsstring.deletingPathExtension
 //        while FileManager.default.fileExists(atPath: adopted, isDirectory: nil) {
 //            let ext = adopted.nsstring.pathExtension
-//            let box = FileManager.xattrStringValue(forKey: TelegramFileMediaBoxPath, at: URL(fileURLWithPath: adopted))
+//            let box = FileManager.xattrStringValue(forKey: AnsibleFileMediaBoxPath, at: URL(fileURLWithPath: adopted))
 //            if box == boxPath {
 //                return
 //            }
@@ -66,7 +66,7 @@ public func copyToDownloads(_ file: TelegramMediaFile, postbox: Postbox, saveAny
 //        }
 //
 //        try? FileManager.default.copyItem(atPath: boxPath, toPath: adopted)
-//        FileManager.setXAttrStringValue(boxPath, forKey: TelegramFileMediaBoxPath, at: URL(fileURLWithPath: adopted))
+//        FileManager.setXAttrStringValue(boxPath, forKey: AnsibleFileMediaBoxPath, at: URL(fileURLWithPath: adopted))
 //    }
 //
 }

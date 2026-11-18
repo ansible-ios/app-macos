@@ -13,7 +13,7 @@ def effects(text):
     return text[text.index('public final class StarsButtonEffectLayer:'):text.index('public struct Star_SliderAmount:')]
 reference = (lab / 'Reference.swift.txt').read_text()
 assert reference == effects(original)
-fixed_reference = reference.replace('private static let whiteParticle: CGImage = BadgeStarsViewEffect.whiteParticle', 'private static let whiteParticle: CGImage = TelegramThemeHooks.shared.image(.starReactionParticle).precomposed(.white)')
+fixed_reference = reference.replace('private static let whiteParticle: CGImage = BadgeStarsViewEffect.whiteParticle', 'private static let whiteParticle: CGImage = AnsibleThemeHooks.shared.image(.starReactionParticle).precomposed(.white)')
 output = 'import AppKit\nimport QuartzCore\nimport TGUIKit\n'
 for prefix, code in [('Candidate', effects(source)), ('Reference', fixed_reference)]:
     output += code.replace('StarsButtonEffectLayer', prefix + 'Button').replace('BadgeStarsViewEffect', prefix + 'Badge')

@@ -165,14 +165,14 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
     entries.append(.sectionId(sectionId, type: .normal)); sectionId += 1
 
     let adminsCount = state.cachedData?.adminsCount ?? 0
-    entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_admins, data: .init(name: strings().communityEditAdministrators, color: theme.colors.text, icon: TelegramThemeHooks.shared.image(.iconChatAdmins).precomposed(flipVertical: true), type: .nextContext("\(adminsCount)"), viewType: .firstItem, enabled: !state.isSaving && !state.isDeleting, action: {
+    entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_admins, data: .init(name: strings().communityEditAdministrators, color: theme.colors.text, icon: AnsibleThemeHooks.shared.image(.iconChatAdmins).precomposed(flipVertical: true), type: .nextContext("\(adminsCount)"), viewType: .firstItem, enabled: !state.isSaving && !state.isDeleting, action: {
         arguments.openAdmins()
     })))
     index += 1
 
     let pendingCount = state.cachedData?.pendingRequests ?? 0
     if pendingCount > 0 {
-        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_pending, data: .init(name: strings().communityEditPendingRequests, color: theme.colors.text, icon: TelegramThemeHooks.shared.image(.iconCommunityPendingRequests).precomposed(flipVertical: true), type: .badge("\(pendingCount)", theme.colors.accent), viewType: .innerItem, enabled: !state.isSaving && !state.isDeleting, action: {
+        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_pending, data: .init(name: strings().communityEditPendingRequests, color: theme.colors.text, icon: AnsibleThemeHooks.shared.image(.iconCommunityPendingRequests).precomposed(flipVertical: true), type: .badge("\(pendingCount)", theme.colors.accent), viewType: .innerItem, enabled: !state.isSaving && !state.isDeleting, action: {
             arguments.openPendingRequests()
         })))
         index += 1

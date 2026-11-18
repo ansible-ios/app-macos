@@ -102,7 +102,7 @@ public class StatisticRowItem: GeneralRowItem {
             controller = StackedBarsChartController(chartsCollection: collection, currency: graphCurrency, drawCurrency: { context, color, point in
                 switch graphCurrency {
                 case .xtr:
-                    let image = TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed()
+                    let image = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
                     let size = image.backingSize
                     context.saveGState()
                     context.resetClip()

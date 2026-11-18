@@ -209,7 +209,7 @@ public func peerAvatarImage(account: Account, photo: PeerPhoto, displayDimension
             |> filter { $0 != nil }
             |> map { $0! }
         } else {
-            file = .single(TelegramUtilsHooks.shared.topicFile!(info.title, info.iconColor, isGeneral))
+            file = .single(AnsibleUtilsHooks.shared.topicFile!(info.title, info.iconColor, isGeneral))
         }
 
         return file |> mapToSignal { file in
@@ -231,13 +231,13 @@ public func peerAvatarImage(account: Account, photo: PeerPhoto, displayDimension
                 signal = chatMessageSticker(postbox: account.postbox, file: reference, small: false, scale: System.backingScale, fetched: true)
             case "bundle/topic":
                 if let resource = file.resource as? ForumTopicIconResource {
-                    signal = TelegramUtilsHooks.shared.topicImage!(resource.title, resource.bgColors, resource.strokeColors)
+                    signal = AnsibleUtilsHooks.shared.topicImage!(resource.title, resource.bgColors, resource.strokeColors)
                 } else {
                     signal = .complete()
                 }
             case "bundle/jpeg":
                 if let resource = file.resource as? LocalBundleResource {
-                    signal = TelegramUtilsHooks.shared.generalTopicImage!(resource, System.backingScale)
+                    signal = AnsibleUtilsHooks.shared.generalTopicImage!(resource, System.backingScale)
                 } else {
                     signal = .complete()
                 }
@@ -266,7 +266,7 @@ public func peerAvatarImage(account: Account, photo: PeerPhoto, displayDimension
 
 public func generateEmptyRoundAvatar(_ displayDimensions:NSSize, font: NSFont, account:Account, peer:Peer) -> Signal<CGImage?, NoError> {
     return Signal { subscriber in
-        let letters = TelegramUtilsHooks.shared.peerLetters(peer)
+        let letters = AnsibleUtilsHooks.shared.peerLetters(peer)
 
         //peer.nameColor?.index ??
         let number = peer.id.id._internalGetInt64Value()

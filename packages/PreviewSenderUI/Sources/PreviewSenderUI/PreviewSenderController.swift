@@ -167,9 +167,9 @@ fileprivate class PreviewSenderView : Control {
     
     
     private let disposable = MetaDisposable()
-    private let theme: TelegramPresentationTheme
+    private let theme: AnsiblePresentationTheme
     
-    required init(frame frameRect: NSRect, theme: TelegramPresentationTheme) {
+    required init(frame frameRect: NSRect, theme: AnsiblePresentationTheme) {
         self.theme = theme
         self.textView = UITextView(frame: NSMakeRect(0, 0, 280, 34))
         super.init(frame: frameRect)
@@ -194,7 +194,7 @@ fileprivate class PreviewSenderView : Control {
         
         actions.isSelected = false
         actions.scaleOnClick = true 
-        actions.set(image: TelegramThemeHooks.shared.image(.iconChatActionsActive).precomposed(theme.colors.text), for: .Normal)
+        actions.set(image: AnsibleThemeHooks.shared.image(.iconChatActionsActive).precomposed(theme.colors.text), for: .Normal)
         actions.setGlassEffect(size: NSMakeSize(36, 36))
         actions.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
         actions.setAccessibilityLabel(strings().voiceOverCommonMore)
@@ -789,12 +789,12 @@ fileprivate class PreviewSenderView : Control {
 
 private final class SenderPreviewArguments {
     let context: any AccountContextProtocol
-    let theme: TelegramPresentationTheme
+    let theme: AnsiblePresentationTheme
     let edit:(URL)->Void
     let paint: (URL)->Void
     let delete:(URL)->Void
     let reorder:(URL, URL) -> Void
-    init(context: any AccountContextProtocol, theme: TelegramPresentationTheme, edit: @escaping(URL)->Void, paint: @escaping(URL)->Void, delete: @escaping(URL)->Void, reorder: @escaping(URL, URL) -> Void) {
+    init(context: any AccountContextProtocol, theme: AnsiblePresentationTheme, edit: @escaping(URL)->Void, paint: @escaping(URL)->Void, delete: @escaping(URL)->Void, reorder: @escaping(URL, URL) -> Void) {
         self.context = context
         self.theme = theme
         self.edit = edit
@@ -3068,10 +3068,10 @@ public class PreviewSenderController: ModalViewController, Notifable {
     
     private let asMedia: Bool
     private let attributedString: NSAttributedString?
-    private let presentation: TelegramPresentationTheme?
+    private let presentation: AnsiblePresentationTheme?
     private let appFile: TelegramMediaFile?
 
-    public init(appFile: TelegramMediaFile, chatInteraction: ChatInteraction, presentation: TelegramPresentationTheme? = nil, analyticsContext: AnalyticsContext? = nil) {
+    public init(appFile: TelegramMediaFile, chatInteraction: ChatInteraction, presentation: AnsiblePresentationTheme? = nil, analyticsContext: AnalyticsContext? = nil) {
         let analyticsContext = chatInteraction.captureAnalyticsContext(inherited: analyticsContext ?? chatInteraction.captureAnalyticsContext())
         let analyticsPresentation = analyticsContext.beginPresentation()
         defer { analyticsPresentation.end() }
@@ -3117,7 +3117,7 @@ public class PreviewSenderController: ModalViewController, Notifable {
         self.chatInteraction.add(observer: self)
     }
 
-    public init(urls:[URL], chatInteraction:ChatInteraction, asMedia:Bool = true, attributedString: NSAttributedString? = nil, presentation: TelegramPresentationTheme? = nil, analyticsContext: AnalyticsContext? = nil) {
+    public init(urls:[URL], chatInteraction:ChatInteraction, asMedia:Bool = true, attributedString: NSAttributedString? = nil, presentation: AnsiblePresentationTheme? = nil, analyticsContext: AnalyticsContext? = nil) {
         let analyticsContext = chatInteraction.captureAnalyticsContext(inherited: analyticsContext ?? chatInteraction.captureAnalyticsContext())
         let analyticsPresentation = analyticsContext.beginPresentation()
         defer { analyticsPresentation.end() }

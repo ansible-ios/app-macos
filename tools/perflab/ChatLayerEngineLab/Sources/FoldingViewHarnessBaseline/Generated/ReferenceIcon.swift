@@ -55,7 +55,7 @@ final class ReferenceIconQuoteLayer: SimpleLayer {
                 let rect = NSMakeRect(blockFrame.minX, blockFrame.minY, blockFrame.width, headerHeight)
                 ctx.drawRoundedRect(rect: rect, topLeftRadius: radius, topRightRadius: radius)
                 header.1.draw(CGRect(x: blockFrame.minX + 8, y: blockFrame.minY + (headerHeight - header.0.size.height) / 2 - 1, width: header.0.size.width, height: header.0.size.height), in: ctx, backingScaleFactor: System.backingScale, backgroundColor: .clear)
-                let image = TelegramThemeHooks.shared.image(.iconCopyCode).precomposed(blockQuote.colors.main, flipVertical: true)
+                let image = AnsibleThemeHooks.shared.image(.iconCopyCode).precomposed(blockQuote.colors.main, flipVertical: true)
                 ctx.draw(image, in: CGRect(origin: NSMakePoint(blockFrame.width - image.backingSize.width - 3, blockFrame.minY + (headerHeight - image.backingSize.height) / 2), size: image.backingSize))
             }
         }

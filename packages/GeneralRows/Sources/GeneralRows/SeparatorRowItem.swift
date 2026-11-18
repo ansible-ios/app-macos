@@ -175,7 +175,7 @@ public class SeparatorRowView: TableRowView {
                 var inset: CGFloat = 0
                 switch item.state {
                 case .dropdown:
-                    let image = TelegramThemeHooks.shared.image(.iconSearchMessagesChevron).precomposed(theme.colors.grayText, flipVertical: true)
+                    let image = AnsibleThemeHooks.shared.image(.iconSearchMessagesChevron).precomposed(theme.colors.grayText, flipVertical: true)
                     ctx.draw(image, in: NSMakeRect(frame.width - 10 - image.backingSize.width, round((frame.height - image.backingSize.height)/2.0), image.backingSize.width, image.backingSize.height))
                     inset += image.backingSize.width + 2
                 default:

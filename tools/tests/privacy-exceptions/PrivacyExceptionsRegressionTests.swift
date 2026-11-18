@@ -20,7 +20,7 @@ private class Peer {
     init(_ id: PeerId) { self.id = id }
 }
 
-private final class TelegramFilterCategory: Peer {
+private final class AnsibleFilterCategory: Peer {
     init(category: ChatListFilterPeerCategories) {
         super.init(PeerId(namespace: ChatListFilterPeerCategories.Namespace, id: Int64(category.rawValue)))
     }
@@ -62,7 +62,7 @@ private final class Transaction {
 
 final class PrivacyExceptionsRegressionTests: XCTestCase {
     private func category(_ value: ChatListFilterPeerCategories) -> SelectivePrivacyPeer {
-        SelectivePrivacyPeer(peer: TelegramFilterCategory(category: value))
+        SelectivePrivacyPeer(peer: AnsibleFilterCategory(category: value))
     }
 
     func testPremiumCategoryDoesNotEnableBots() {

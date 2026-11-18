@@ -34,8 +34,8 @@ enum AccessoryIcon {
     case starSmall
 }
 
-final class TelegramThemeHooks {
-    static let shared = TelegramThemeHooks()
+final class AnsibleThemeHooks {
+    static let shared = AnsibleThemeHooks()
     var source = NSImage(size: NSSize(width: 16, height: 16), flipped: false) { _ in
         NSColor.black.setFill()
         NSBezierPath(ovalIn: NSRect(x: 2, y: 2, width: 12, height: 12)).fill()

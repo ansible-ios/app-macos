@@ -2,8 +2,8 @@ import AppKit
 import TGUIKit
 
 enum ThemeImage { case starReactionParticle }
-struct TelegramThemeHooks {
-    static let shared = TelegramThemeHooks()
+struct AnsibleThemeHooks {
+    static let shared = AnsibleThemeHooks()
     private static let particle: NSImage = {
         let image = NSImage(size: CGSize(width: 22, height: 22))
         for name in ["star", "star@2x"] {

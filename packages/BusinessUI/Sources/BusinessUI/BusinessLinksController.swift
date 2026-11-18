@@ -37,7 +37,7 @@ private var linkIcon: CGImage {
         ctx.clear(size.bounds)
         ctx.setFillColor(theme.colors.accent.cgColor)
         ctx.fillEllipse(in: size.bounds)
-        let image = TelegramThemeHooks.shared.image(.iconExportedInvitationLink).precomposed(.white)
+        let image = AnsibleThemeHooks.shared.image(.iconExportedInvitationLink).precomposed(.white)
         ctx.draw(image, in: size.bounds.focus(image.backingSize))
     })!
 }
@@ -269,7 +269,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
     sectionId += 1
     
     
-    entries.append(.general(sectionId: sectionId, index: 0, value: .none, error: nil, identifier: _id_add, data: .init(name: strings().businessLinksCreate, color: theme.colors.accent, icon: TelegramThemeHooks.shared.image(.iconBusinessLinksAdd).precomposed(theme.colors.accent, flipVertical: true), type: .none, viewType: .singleItem, action: arguments.add)))
+    entries.append(.general(sectionId: sectionId, index: 0, value: .none, error: nil, identifier: _id_add, data: .init(name: strings().businessLinksCreate, color: theme.colors.accent, icon: AnsibleThemeHooks.shared.image(.iconBusinessLinksAdd).precomposed(theme.colors.accent, flipVertical: true), type: .none, viewType: .singleItem, action: arguments.add)))
     
     if let peer = arguments.context.myPeer as? TelegramUser {
         let text: String

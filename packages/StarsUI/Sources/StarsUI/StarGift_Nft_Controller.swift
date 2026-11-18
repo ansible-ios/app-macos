@@ -326,9 +326,9 @@ private final class TransferHeaderView : GeneralRowView {
         
         switch item.transferType {
         case .buy, .transfer, .sell:
-            chevron.image = TelegramThemeHooks.shared.image(.iconAffiliateChevron).precomposed(theme.colors.grayIcon.withAlphaComponent(0.8))
+            chevron.image = AnsibleThemeHooks.shared.image(.iconAffiliateChevron).precomposed(theme.colors.grayIcon.withAlphaComponent(0.8))
         case .resetTheme:
-            chevron.image = TelegramThemeHooks.shared.image(.iconGiftThemeUndo).precomposed(theme.colors.grayIcon.withAlphaComponent(0.8))
+            chevron.image = AnsibleThemeHooks.shared.image(.iconGiftThemeUndo).precomposed(theme.colors.grayIcon.withAlphaComponent(0.8))
         }
         chevron.sizeToFit()
         
@@ -337,9 +337,9 @@ private final class TransferHeaderView : GeneralRowView {
         container.setFrameSize(NSMakeSize(transferContainer.frame.width + avatar.frame.width + 45, 70))
         
         if item.transferType == .sell {
-            avatar.setSignal(generateEmptyPhoto(avatar.frame.size, type: .icon(colors: (top: theme.colors.listBackground, bottom: theme.colors.listBackground), icon: TelegramThemeHooks.shared.image(.iconMarket).precomposed(), iconSize: avatar.frame.size, cornerRadius: nil), bubble: false) |> map {($0, false)})
+            avatar.setSignal(generateEmptyPhoto(avatar.frame.size, type: .icon(colors: (top: theme.colors.listBackground, bottom: theme.colors.listBackground), icon: AnsibleThemeHooks.shared.image(.iconMarket).precomposed(), iconSize: avatar.frame.size, cornerRadius: nil), bubble: false) |> map {($0, false)})
         } else if item.toPeer.id == item.context.peerId, item.transferType == .transfer {
-            avatar.setSignal(generateEmptyPhoto(avatar.frame.size, type: .icon(colors: (top: theme.colors.listBackground, bottom: theme.colors.listBackground), icon: TelegramThemeHooks.shared.image(.iconStarTransactionRowFragment).precomposed(), iconSize: avatar.frame.size, cornerRadius: nil), bubble: false) |> map {($0, false)})
+            avatar.setSignal(generateEmptyPhoto(avatar.frame.size, type: .icon(colors: (top: theme.colors.listBackground, bottom: theme.colors.listBackground), icon: AnsibleThemeHooks.shared.image(.iconStarTransactionRowFragment).precomposed(), iconSize: avatar.frame.size, cornerRadius: nil), bubble: false) |> map {($0, false)})
         } else {
             avatar.setPeer(account: item.context.account, peer: item.toPeer._asPeer())
         }
@@ -462,9 +462,9 @@ private final class RowItem : GeneralRowItem {
             title3 = strings().giftWearProofTitle
             info3 = strings().giftWearProofText
             
-            image1 = TelegramThemeHooks.shared.image(.iconNFTRadiantBadge).precomposed(theme.colors.accent)
-            image2 = TelegramThemeHooks.shared.image(.iconChannelFeatureCoverIcon).precomposed(theme.colors.accent)
-            image3 = TelegramThemeHooks.shared.image(.iconNFTVerification).precomposed(theme.colors.accent)
+            image1 = AnsibleThemeHooks.shared.image(.iconNFTRadiantBadge).precomposed(theme.colors.accent)
+            image2 = AnsibleThemeHooks.shared.image(.iconChannelFeatureCoverIcon).precomposed(theme.colors.accent)
+            image3 = AnsibleThemeHooks.shared.image(.iconNFTVerification).precomposed(theme.colors.accent)
         default:
             title1 = strings().giftUpgradeUniqueTitle
             info1 = isPreview ? strings().giftUpgradeUniqueIncludeDescription : strings().giftUpgradeUniqueDescription
@@ -475,9 +475,9 @@ private final class RowItem : GeneralRowItem {
             title3 = strings().giftUpgradeTradableTitle
             info3 = isPreview ? strings().giftUpgradeUniqueIncludeDescription : strings().giftUpgradeUniqueDescription
             
-            image1 = TelegramThemeHooks.shared.image(.iconNFTUnique).precomposed(theme.colors.accent)
-            image2 = TelegramThemeHooks.shared.image(.iconNFTTransferable).precomposed(theme.colors.accent)
-            image3 = TelegramThemeHooks.shared.image(.iconNFTTradable).precomposed(theme.colors.accent)
+            image1 = AnsibleThemeHooks.shared.image(.iconNFTUnique).precomposed(theme.colors.accent)
+            image2 = AnsibleThemeHooks.shared.image(.iconNFTTransferable).precomposed(theme.colors.accent)
+            image3 = AnsibleThemeHooks.shared.image(.iconNFTTradable).precomposed(theme.colors.accent)
         }
 
         
@@ -815,18 +815,18 @@ private final class HeaderItem : GeneralRowItem {
         case .quickLook(_, _):
             if let uniqueGift = uniqueGift, let owner = state.owner, owner.id == context.peerId || owner._asPeer().groupAccess.canManageGifts || owner.id == uniqueGift.hostPeerId {
                 let actionColor: NSColor = (uniqueGift.backdrop?.first?.lightness ?? 1.0) > 0.8 ? .black : .white
-                actions = [.init(context: context, title: strings().starNftTransfer, image: TelegramThemeHooks.shared.image(.iconNFTTransfer).precomposed(.white), action: {
+                actions = [.init(context: context, title: strings().starNftTransfer, image: AnsibleThemeHooks.shared.image(.iconNFTTransfer).precomposed(.white), action: {
                     arguments.transfer()
-                }, locked: uniqueGift.hostPeerId != nil, color: actionColor), .init(context: context, title: state.weared ? strings().starNftTakeOff : strings().starNftWear, image: TelegramThemeHooks.shared.image(.iconNFTWear).precomposed(.white), action: {
+                }, locked: uniqueGift.hostPeerId != nil, color: actionColor), .init(context: context, title: state.weared ? strings().starNftTakeOff : strings().starNftWear, image: AnsibleThemeHooks.shared.image(.iconNFTWear).precomposed(.white), action: {
                     arguments.toggleWear(uniqueGift)
                 }, color: actionColor)]
 
                 if case .starGift = state.purpose {
-                    actions.append(.init(context: context, title: uniqueGift.resellStars(context) != nil ? strings().starNftUnlist : strings().starNftSell, image: TelegramThemeHooks.shared.image(uniqueGift.resellStars(context) != nil ? .iconNftUnlist : .iconNftSell).precomposed(.white), action: {
+                    actions.append(.init(context: context, title: uniqueGift.resellStars(context) != nil ? strings().starNftUnlist : strings().starNftSell, image: AnsibleThemeHooks.shared.image(uniqueGift.resellStars(context) != nil ? .iconNftUnlist : .iconNftSell).precomposed(.white), action: {
                         arguments.sellNft(uniqueGift, false)
                     }, locked: uniqueGift.hostPeerId != nil, color: actionColor))
                 } else {
-                    actions.append(.init(context: context, title: strings().starNftShare, image: TelegramThemeHooks.shared.image(.iconNFTShare).precomposed(.white), action: {
+                    actions.append(.init(context: context, title: strings().starNftShare, image: AnsibleThemeHooks.shared.image(.iconNFTShare).precomposed(.white), action: {
                         arguments.shareNft(uniqueGift)
                     }, color: actionColor))
                 }
@@ -1112,7 +1112,7 @@ private final class HeaderView : GeneralRowView {
         
         let iconColor: NSColor = (item.uniqueGift?.backdrop?.first?.lightness ?? 1.0) > 0.8 ? NSColor(0x000000) : NSColor(0xffffff)
 
-        dismiss.set(image: TelegramThemeHooks.shared.image(.iconPipClose).precomposed(iconColor), for: .Normal)
+        dismiss.set(image: AnsibleThemeHooks.shared.image(.iconPipClose).precomposed(iconColor), for: .Normal)
         dismiss.scaleOnClick = true
         dismiss.autohighlight = false
         dismiss.setGlassEffect(size: NSMakeSize(36, 36), tintColor: item.uniqueGift?.backdrop?.first, forceAppearance: .forceLight)
@@ -1138,7 +1138,7 @@ private final class HeaderView : GeneralRowView {
                 current.scaleOnClick = true
                 current.setAccessibilityLabel(strings().voiceOverCommonMore)
             }
-            current.set(image: TelegramThemeHooks.shared.image(.iconChatActions).precomposed(iconColor), for: .Normal)
+            current.set(image: AnsibleThemeHooks.shared.image(.iconChatActions).precomposed(iconColor), for: .Normal)
             current.setGlassEffect(size: NSMakeSize(36, 36), tintColor: item.uniqueGift?.backdrop?.first, forceAppearance: .forceLight)
 
             current.glassTintColor = item.uniqueGift?.backdrop?.first
@@ -1229,7 +1229,7 @@ private final class HeaderView : GeneralRowView {
                     craftBtn.setAccessibilityLabel(strings().starGiftCraftMenuItem)
                 }
                 let craftColor: NSColor = iconColor
-                craftBtn.set(image: TelegramThemeHooks.shared.image(.iconNftAnvil).precomposed(craftColor), for: .Normal)
+                craftBtn.set(image: AnsibleThemeHooks.shared.image(.iconNftAnvil).precomposed(craftColor), for: .Normal)
                 craftBtn.setGlassEffect(size: NSMakeSize(36, 36), tintColor: item.uniqueGift?.backdrop?.first, forceAppearance: .forceLight)
                 craftBtn.glassTintColor = item.uniqueGift?.backdrop?.first
 
@@ -2062,17 +2062,17 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
 
         let features: [GiftCraftFeature] = [
             .init(
-                icon: TelegramThemeHooks.shared.image(.iconOptionDiamond).precomposed(theme.colors.accent),
+                icon: AnsibleThemeHooks.shared.image(.iconOptionDiamond).precomposed(theme.colors.accent),
                 title: strings().starGiftCraftFeatureRareModels,
                 description: strings().starGiftCraftFeatureRareModelsDesc
             ),
             .init(
-                icon: TelegramThemeHooks.shared.image(.iconOptionDice).precomposed(theme.colors.accent),
+                icon: AnsibleThemeHooks.shared.image(.iconOptionDice).precomposed(theme.colors.accent),
                 title: strings().starGiftCraftFeatureMaximizeChances,
                 description: strings().starGiftCraftFeatureMaximizeChancesDesc
             ),
             .init(
-                icon: TelegramThemeHooks.shared.image(.iconOptionCraft).precomposed(theme.colors.accent),
+                icon: AnsibleThemeHooks.shared.image(.iconOptionCraft).precomposed(theme.colors.accent),
                 title: strings().starGiftCraftFeatureAffectResult,
                 description: strings().starGiftCraftFeatureAffectResultDesc
             )
@@ -2214,10 +2214,10 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
     //            badge = nil
             }
             
-            let isBlockchainTelegram = state.gift.unique?.hostPeerId != nil && state.gift.unique?.giftAddress != nil
+            let isBlockchainAnsible = state.gift.unique?.hostPeerId != nil && state.gift.unique?.giftAddress != nil
             
             
-            if isBlockchainTelegram, let address = state.gift.unique?.giftAddress {
+            if isBlockchainAnsible, let address = state.gift.unique?.giftAddress {
                 let ownerAttr = parseMarkdownIntoAttributedString("[\(address.prefixWithDots(20, mode: .middle))](\(address))", attributes: MarkdownAttributes(body: MarkdownAttributeSet(font: .medium(.text), textColor: theme.colors.text), bold: MarkdownAttributeSet(font: .bold(.text), textColor: theme.colors.text), link: MarkdownAttributeSet(font: .medium(.text), textColor: theme.colors.accentIcon), linkAttribute: { contents in
                     return (NSAttributedString.Key.link.rawValue, contents)
                 }))
@@ -2230,7 +2230,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                 rows.append(.init(left: .init(.initialize(string:strings().giftUniqueOwner, color: theme.colors.text, font: .normal(.text))), right: .init(name: layout, leftView: nil, rightView: nil, badge: nil)))
             }
             
-            rows.append(.init(left: .init(.initialize(string: isBlockchainTelegram ? strings().giftUniqueTelegram : strings().giftUniqueOwner, color: theme.colors.text, font: .normal(.text))), right: .init(name: ownerText, leftView: leftView, rightView: rightView, badge: nil)))
+            rows.append(.init(left: .init(.initialize(string: isBlockchainAnsible ? strings().giftUniqueTelegram : strings().giftUniqueOwner, color: theme.colors.text, font: .normal(.text))), right: .init(name: ownerText, leftView: leftView, rightView: rightView, badge: nil)))
             
             switch state.gift {
             case let .unique(gift):
@@ -2255,9 +2255,9 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
 //                            control = ImageView(frame: NSMakeRect(0, 0, 20, 20))
 //                        }
 //                        if gift.resellForTonOnly {
-//                            control.image = TelegramThemeHooks.shared.image(.iconTonCurrency).precomposed()
+//                            control.image = AnsibleThemeHooks.shared.image(.iconTonCurrency).precomposed()
 //                        } else {
-//                            control.image = TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed()
+//                            control.image = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
 //                        }
 //                        return control
 //                    }, badge: badge)))
@@ -2327,7 +2327,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                             } else {
                                 control = ImageButton()
                             }
-                            control.set(image: TelegramThemeHooks.shared.image(.menuDelete).precomposed(theme.colors.accent), for: .Normal)
+                            control.set(image: AnsibleThemeHooks.shared.image(.menuDelete).precomposed(theme.colors.accent), for: .Normal)
                             control.sizeToFit()
                             control.autohighlight = false
                             control.scaleOnClick = true
@@ -4318,11 +4318,11 @@ private final class AddGiftMessageInputView : View {
 
         emojiButton.autohighlight = false
         emojiButton.scaleOnClick = true
-        emojiButton.set(image: TelegramThemeHooks.shared.image(.iconCustomEmojiSmall).precomposed(theme.colors.grayIcon), for: .Normal)
+        emojiButton.set(image: AnsibleThemeHooks.shared.image(.iconCustomEmojiSmall).precomposed(theme.colors.grayIcon), for: .Normal)
         emojiButton.sizeToFit()
         emojiButton.setAccessibilityLabel(strings().voiceOverCommonEmoji)
 
-        let plane = TelegramThemeHooks.shared.image(.iconSendMessage).precomposed(.white)
+        let plane = AnsibleThemeHooks.shared.image(.iconSendMessage).precomposed(.white)
         let planeIcon = generateImage(NSMakeSize(16, 16), contextGenerator: { size, ctx in
             ctx.clear(size.bounds)
             ctx.draw(plane, in: size.bounds)
@@ -4670,7 +4670,7 @@ public func StarGift_AddMessage_Controller(context: (any AccountContextProtocol)
     let dismiss = ImageButton()
     dismiss.scaleOnClick = true
     dismiss.autohighlight = false
-    dismiss.set(image: TelegramThemeHooks.shared.image(.iconPipClose).precomposed(theme.colors.grayText), for: .Normal)
+    dismiss.set(image: AnsibleThemeHooks.shared.image(.iconPipClose).precomposed(theme.colors.grayText), for: .Normal)
     dismiss.setGlassEffect(size: NSMakeSize(36, 36), tintColor: backgroundColors[1].darker(amount: 0.1))
     dismiss.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
     dismiss.setFrameOrigin(NSMakePoint(10, 10))

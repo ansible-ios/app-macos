@@ -123,7 +123,7 @@ public final class LeftSidebarView: LiquidGlassView {
 
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         edit.set(image: theme.icons.folders_sidebar_edit, for: .Normal)
         edit.borderColor = theme.colors.grayIcon.withAlphaComponent(0.1)
         needsLayout = true

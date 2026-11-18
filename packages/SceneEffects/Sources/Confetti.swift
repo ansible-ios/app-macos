@@ -84,7 +84,7 @@ public final class ConfettiView: View {
             for color in colors {
                 if imageType == 0 {
                     if stars {
-                        images.append((TelegramThemeHooks.shared.image(.iconPeerPremium).precomposed(color), NSMakeSize(12, 12)))
+                        images.append((AnsibleThemeHooks.shared.image(.iconPeerPremium).precomposed(color), NSMakeSize(12, 12)))
                     } else {
                         images.append((generateFilledCircleImage(diameter: imageSize.width, color: color), imageSize))
                     }

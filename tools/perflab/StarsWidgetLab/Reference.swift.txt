@@ -1,5 +1,5 @@
 public final class StarsButtonEffectLayer: SimpleLayer {
-    private static let whiteParticle: CGImage = TelegramThemeHooks.shared.image(.starReactionParticle).precomposed(.white)
+    private static let whiteParticle: CGImage = AnsibleThemeHooks.shared.image(.starReactionParticle).precomposed(.white)
 
     public let emitterLayer = CAEmitterLayer()
     

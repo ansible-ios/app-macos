@@ -21,14 +21,14 @@ public final class ReplyMarkupInteractions {
 }
 struct FixtureColors { var grayForeground = NSColor.gray }
 struct FixtureChat {
-    func chatActionUrl(theme: TelegramPresentationTheme) -> CGImage { theme.icon }
-    func chatInvoiceAction(theme: TelegramPresentationTheme) -> CGImage { theme.icon }
-    func chatActionShare(theme: TelegramPresentationTheme) -> CGImage { theme.icon }
-    func chatActionProfile(theme: TelegramPresentationTheme) -> CGImage { theme.icon }
-    func chatActionWebUrl(theme: TelegramPresentationTheme) -> CGImage { theme.icon }
-    func chatActionCopy(theme: TelegramPresentationTheme) -> CGImage { theme.icon }
+    func chatActionUrl(theme: AnsiblePresentationTheme) -> CGImage { theme.icon }
+    func chatInvoiceAction(theme: AnsiblePresentationTheme) -> CGImage { theme.icon }
+    func chatActionShare(theme: AnsiblePresentationTheme) -> CGImage { theme.icon }
+    func chatActionProfile(theme: AnsiblePresentationTheme) -> CGImage { theme.icon }
+    func chatActionWebUrl(theme: AnsiblePresentationTheme) -> CGImage { theme.icon }
+    func chatActionCopy(theme: AnsiblePresentationTheme) -> CGImage { theme.icon }
 }
-public struct TelegramPresentationTheme {
+public struct AnsiblePresentationTheme {
     var colors = FixtureColors()
     var chat = FixtureChat()
     var hasWallpaper = false
@@ -41,8 +41,8 @@ public struct TelegramPresentationTheme {
         ctx.fill(CGRect(x: 1, y: 1, width: 4, height: 5))
     })!
 }
-struct TelegramUtilsHooks {
-    static var shared = TelegramUtilsHooks()
+struct AnsibleUtilsHooks {
+    static var shared = AnsibleUtilsHooks()
     var isLite: (LiteFeature) -> Bool = { _ in false }
 }
 extension String { var isSingleEmoji: Bool { self == "😀" } }
@@ -50,9 +50,9 @@ public final class ReplyMarkupButtonLayout {
     public private(set) var width: CGFloat = 0
     public let text: TextViewLayout
     public let button: ReplyMarkupButton
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
     public let styleBackgroundColor: NSColor?
-    init(button: ReplyMarkupButton, theme: TelegramPresentationTheme, isInput: Bool, paid: Bool, xtrAmount: Int64?) {
+    init(button: ReplyMarkupButton, theme: AnsiblePresentationTheme, isInput: Bool, paid: Bool, xtrAmount: Int64?) {
         self.button = button
         self.presentation = theme
         self.styleBackgroundColor = button.style

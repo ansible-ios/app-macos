@@ -581,7 +581,7 @@ public class ChatInteractiveContentView: ChatMediaContentView {
     }
     
     private var lite: Bool {
-        return (isGif && TelegramUtilsHooks.shared.isLite(.gif)) || (!isGif && TelegramUtilsHooks.shared.isLite(.video))
+        return (isGif && AnsibleUtilsHooks.shared.isLite(.gif)) || (!isGif && AnsibleUtilsHooks.shared.isLite(.video))
 
     }
     

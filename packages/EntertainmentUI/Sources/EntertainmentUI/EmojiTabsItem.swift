@@ -10,9 +10,9 @@ public final class EmojiTabsItem: TableRowItem {
     public let selected: EmojiSegment?
     public let select:(EmojiSegment)->Void
     private let _stableId: AnyHashable
-    public let presentation: TelegramPresentationTheme?
+    public let presentation: AnsiblePresentationTheme?
     public let tint: NSColor?
-    public init(_ initialSize: NSSize, stableId: AnyHashable, segments:[EmojiSegment], selected: EmojiSegment?, select:@escaping(EmojiSegment)->Void, presentation: TelegramPresentationTheme?, tint: NSColor? = nil) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, segments:[EmojiSegment], selected: EmojiSegment?, select:@escaping(EmojiSegment)->Void, presentation: AnsiblePresentationTheme?, tint: NSColor? = nil) {
         self.tint = tint
         self._stableId = stableId
         self.segments = segments

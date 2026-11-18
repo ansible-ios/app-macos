@@ -773,7 +773,7 @@ public class FastSettings {
     }
 }
 
-fileprivate let TelegramFileMediaBoxPath:String = "TelegramFileMediaBoxPathAttributeKey"
+fileprivate let AnsibleFileMediaBoxPath:String = "TelegramFileMediaBoxPathAttributeKey"
 
 
 

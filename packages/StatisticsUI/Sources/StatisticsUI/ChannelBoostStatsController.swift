@@ -18,7 +18,7 @@ import InviteLinksUI
 import AvatarUI
 import AppAnalytics
 
-private func actionItems(state: State, width: CGFloat, arguments: Arguments, theme: TelegramPresentationTheme) -> [ActionItem] {
+private func actionItems(state: State, width: CGFloat, arguments: Arguments, theme: AnsiblePresentationTheme) -> [ActionItem] {
     var items: [ActionItem] = []
 
     var rowItemsCount: Int = 1
@@ -77,7 +77,7 @@ private func generateBoostReason(_ text: String, color: NSColor = theme.colors.a
         textNode.1.draw(rect.focus(textNode.0.size), in: ctx, backingScaleFactor: System.backingScale, backgroundColor: .clear)
     })!
 }
-private let light = TelegramThemeHooks.shared.image(.iconBoosterMultiplier).precomposed(.white, flipVertical: true)
+private let light = AnsibleThemeHooks.shared.image(.iconBoosterMultiplier).precomposed(.white, flipVertical: true)
 private func generateBoostMultiply(_ text: String, color: NSColor = premiumGradient[1]) -> CGImage {
     let attr = NSMutableAttributedString()
     
@@ -132,7 +132,7 @@ private final class BoosterRowItem : GeneralRowItem {
                 }
                 self.empty = .icon(colors: color, icon: theme.icons.chat_filter_non_contacts_avatar, iconSize: NSMakeSize(24, 24), cornerRadius: nil)
             } else {
-                self.empty = .icon(colors: (top: .clear, bottom: .clear), icon: TelegramThemeHooks.shared.image(.iconGiveawayStars).precomposed(), iconSize: NSMakeSize(37, 37), cornerRadius: nil)
+                self.empty = .icon(colors: (top: .clear, bottom: .clear), icon: AnsibleThemeHooks.shared.image(.iconGiveawayStars).precomposed(), iconSize: NSMakeSize(37, 37), cornerRadius: nil)
             }
         } else {
             self.empty = nil
@@ -721,12 +721,12 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                 switch prepaid.prize {
                 case let .premium(months):
                     countIcon = generalPrepaidGiveawayIcon(theme.colors.accent, count: .initialize(string: "\(prepaid.quantity)", color: theme.colors.accent, font: .avatar(.text)))
-                    icon = generateGiveawayTypeImage(TelegramThemeHooks.shared.image(.iconGiveawayRandom), colorIndex: Int(months) % 7)
+                    icon = generateGiveawayTypeImage(AnsibleThemeHooks.shared.image(.iconGiveawayRandom), colorIndex: Int(months) % 7)
                     title = strings().giveawayTypePrepaidTitle(Int(prepaid.quantity))
                     info = strings().giveawayTypePrepaidDesc(Int(months))
                 case let .stars(stars, boosts):
                     countIcon = generalPrepaidGiveawayIcon(theme.colors.accent, count: .initialize(string: "\(boosts)", color: theme.colors.accent, font: .avatar(.text)))
-                    icon = TelegramThemeHooks.shared.image(.iconGiveawayStars).precomposed(flipVertical: true)
+                    icon = AnsibleThemeHooks.shared.image(.iconGiveawayStars).precomposed(flipVertical: true)
                     title = strings().giveawayStarsPrepaidTitle(Int(stars))
                     info = strings().giveawayStarsPrepaidDescOther(Int(prepaid.quantity))
                 }
@@ -830,7 +830,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             entries.append(.sectionId(sectionId, type: .normal))
             sectionId += 1
             
-            entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_giveaway, data: .init(name: strings().channelBoostsStatsGetBoostsViaGifts, color: theme.colors.accent, icon: TelegramThemeHooks.shared.image(.iconBoostGiveaway).precomposed(theme.colors.accent, flipVertical: true), viewType: .singleItem, action: {
+            entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_giveaway, data: .init(name: strings().channelBoostsStatsGetBoostsViaGifts, color: theme.colors.accent, icon: AnsibleThemeHooks.shared.image(.iconBoostGiveaway).precomposed(theme.colors.accent, flipVertical: true), viewType: .singleItem, action: {
                 arguments.giveaway(nil)
             })))
 

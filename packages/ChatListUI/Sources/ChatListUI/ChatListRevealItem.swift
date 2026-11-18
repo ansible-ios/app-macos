@@ -19,11 +19,11 @@ public class ChatListRevealItem: TableStickItem {
     fileprivate let selected: ChatListFilter
     fileprivate let openSettings: (()->Void)?
     fileprivate let counters: ChatListFilterBadges
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
     fileprivate let _menuItems: ((ChatListFilter, Int?, Bool?)->[ContextMenuItem])?
     fileprivate let getCurrentStoriesState:()->(StoryListChatListRowItem.InterfaceState, NSView)?
     fileprivate let customBackgroundColor: NSColor?
-    public init(_ initialSize: NSSize, context: any AccountContextProtocol, tabs: [ChatListFilter], selected: ChatListFilter, counters: ChatListFilterBadges, action: ((ChatListFilter)->Void)? = nil, openSettings: (()->Void)? = nil, menuItems: ((ChatListFilter, Int?, Bool?)->[ContextMenuItem])? = nil, presentation: TelegramPresentationTheme = theme, customBackgroundColor: NSColor? = nil, getCurrentStoriesState:@escaping()->(StoryListChatListRowItem.InterfaceState, NSView)? = { return nil }) {
+    public init(_ initialSize: NSSize, context: any AccountContextProtocol, tabs: [ChatListFilter], selected: ChatListFilter, counters: ChatListFilterBadges, action: ((ChatListFilter)->Void)? = nil, openSettings: (()->Void)? = nil, menuItems: ((ChatListFilter, Int?, Bool?)->[ContextMenuItem])? = nil, presentation: AnsiblePresentationTheme = theme, customBackgroundColor: NSColor? = nil, getCurrentStoriesState:@escaping()->(StoryListChatListRowItem.InterfaceState, NSView)? = { return nil }) {
         self.action = action
         self.context = context
         self.tabs = tabs

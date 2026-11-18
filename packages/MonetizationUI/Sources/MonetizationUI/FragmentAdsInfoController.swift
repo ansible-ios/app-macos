@@ -87,7 +87,7 @@ private final class RowItem : GeneralRowItem {
         }
 
         let removeText = mode == .fragment ? strings().fragmentAdsInfoOption3Info : strings().searchAdAboutRemove
-        options.append(.init(image: TelegramThemeHooks.shared.image(.iconFragmentNoAds).precomposed(theme.colors.accent), header: .init(.initialize(string:  strings().fragmentAdsInfoOption3Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: removeText, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
+        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconFragmentNoAds).precomposed(theme.colors.accent), header: .init(.initialize(string:  strings().fragmentAdsInfoOption3Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: removeText, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
 
         
         self.options = options
@@ -159,7 +159,7 @@ private final class RowView: GeneralContainableRowView {
         
         moreActions.autohighlight = false
         moreActions.scaleOnClick = true
-        moreActions.set(image: TelegramThemeHooks.shared.image(.iconChatActionsActive).precomposed(theme.colors.grayIcon), for: .Normal)
+        moreActions.set(image: AnsibleThemeHooks.shared.image(.iconChatActionsActive).precomposed(theme.colors.grayIcon), for: .Normal)
         moreActions.sizeToFit()
         moreActions.setAccessibilityLabel(strings().voiceOverCommonMore)
         
@@ -226,7 +226,7 @@ private final class RowView: GeneralContainableRowView {
         self.gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
         self.gradient.type = .radial
 
-        stickerView.image = TelegramThemeHooks.shared.image(.iconFragmentAdsLogo).precomposed(.white)
+        stickerView.image = AnsibleThemeHooks.shared.image(.iconFragmentAdsLogo).precomposed(.white)
         stickerView.sizeToFit()
         
         infoBlock.setFrameSize(NSMakeSize(frame.width - 40, 10 + infoHeaderView.frame.height + 10 + infoView.frame.height + 10))

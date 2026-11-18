@@ -162,7 +162,7 @@ private final class StarsView: View {
         
         let staticEmitter = CAEmitterCell()
         staticEmitter.name = "emitter"
-        staticEmitter.contents = TelegramThemeHooks.shared.image(.starReactionParticle).precomposed(color)
+        staticEmitter.contents = AnsibleThemeHooks.shared.image(.starReactionParticle).precomposed(color)
         staticEmitter.birthRate = 20.0
         staticEmitter.lifetime = 3.2
         staticEmitter.velocity = 18.0
@@ -627,7 +627,7 @@ public class ChatAccessoryView : Button {
                 let iconSize = NSMakeSize(16, 16)
                 let cocoonIcon = generateImage(iconSize, contextGenerator: { size, ctx in
                     ctx.clear(size.bounds)
-                    let image = TelegramThemeHooks.shared.image(.menuCocoon).precomposed(model.presentation.colors.main)
+                    let image = AnsibleThemeHooks.shared.image(.menuCocoon).precomposed(model.presentation.colors.main)
                     ctx.draw(image, in: size.bounds)
                 })!
                 infoButton.set(image: cocoonIcon, for: .Normal)
@@ -912,8 +912,8 @@ public struct ChatAccessoryPresentation {
     public let quoteIcon: CGImage
     public let pattern: Int64?
     public let giftEmojiFileId: Int64?
-    public let app: TelegramPresentationTheme
-    public init(background: NSColor, colors: PeerNameColors.Colors, enabledText: NSColor, disabledText: NSColor, quoteIcon: CGImage, pattern: Int64?, giftEmojiFileId: Int64?, app: TelegramPresentationTheme) {
+    public let app: AnsiblePresentationTheme
+    public init(background: NSColor, colors: PeerNameColors.Colors, enabledText: NSColor, disabledText: NSColor, quoteIcon: CGImage, pattern: Int64?, giftEmojiFileId: Int64?, app: AnsiblePresentationTheme) {
         self.background = background
         self.colors = colors
         self.enabledText = enabledText

@@ -86,9 +86,9 @@ public struct MonoforumItem : Equatable {
                 return .avatar(peer)
             }
         case .allChats:
-            return .image(TelegramThemeHooks.shared.image(.iconSidebarAllChats).precomposed(selected ? theme.colors.accent : theme.colors.text))
+            return .image(AnsibleThemeHooks.shared.image(.iconSidebarAllChats).precomposed(selected ? theme.colors.accent : theme.colors.text))
         case .newChat:
-            return .image(TelegramThemeHooks.shared.image(.iconNewThreadSmall).precomposed(selected ? theme.colors.accent : theme.colors.text))
+            return .image(AnsibleThemeHooks.shared.image(.iconNewThreadSmall).precomposed(selected ? theme.colors.accent : theme.colors.text))
         }
         
         return nil
@@ -250,7 +250,7 @@ private final class MonoforumToggleView : TableRowView {
             item?.action()
         }, for: .Click)
         
-        imageView.image = TelegramThemeHooks.shared.image(.iconMonoforumToggle).precomposed(theme.colors.accent)
+        imageView.image = AnsibleThemeHooks.shared.image(.iconMonoforumToggle).precomposed(theme.colors.accent)
         imageView.sizeToFit()
     }
     
@@ -327,8 +327,8 @@ private final class Monoforum_VerticalItem : TableRowItem {
 
                 icon = badge
             } else if pinnedState != nil || item.item?.threadData?.isClosed == true {
-                let pinned = TelegramThemeHooks.shared.image(.iconMonoforumPin).precomposed(theme.colors.background, flipVertical: true)
-                let closed = TelegramThemeHooks.shared.image(.iconMonoforumLock).precomposed(theme.colors.background, flipVertical: true)
+                let pinned = AnsibleThemeHooks.shared.image(.iconMonoforumPin).precomposed(theme.colors.background, flipVertical: true)
+                let closed = AnsibleThemeHooks.shared.image(.iconMonoforumLock).precomposed(theme.colors.background, flipVertical: true)
                 
                 var icons: [CGImage] = []
                 if pinnedState != nil {
@@ -703,7 +703,7 @@ public class MonoforumVerticalView : View, TableViewDelegate {
     public func set(items: [MonoforumItem], selected: Int64?, chatInteraction: ChatInteraction, animated: Bool) {
 
         toggleButton.isHidden = (chatInteraction.presentation.mainPeer as? TelegramUser)?.botInfo?.flags.contains(.displayForumAsSidebar) == true
-        toggleButton.set(image: TelegramThemeHooks.shared.image(.iconMonoforumToggle).precomposed(theme.colors.text), for: .Normal)
+        toggleButton.set(image: AnsibleThemeHooks.shared.image(.iconMonoforumToggle).precomposed(theme.colors.text), for: .Normal)
         toggleButton.sizeToFit(.zero, NSMakeSize(frame.width, 40), thatFit: true)
         toggleButton.setSingle(handler: { [weak chatInteraction] _ in
             chatInteraction?.toggleMonoforumState()

@@ -2,8 +2,8 @@ import Cocoa
 import TGUIKit
 
 enum ReferenceIcon { case iconQuote, iconCopyCode }
-struct TelegramThemeHooks {
-    static let shared = TelegramThemeHooks()
+struct AnsibleThemeHooks {
+    static let shared = AnsibleThemeHooks()
     static var imageOverride: ((ReferenceIcon) -> NSImage)?
     func image(_ icon: ReferenceIcon) -> NSImage {
         if let imageOverride = Self.imageOverride { return imageOverride(icon) }

@@ -347,7 +347,7 @@ private class HeaderItemView: GeneralRowView {
             imageView.isAccessibilityDecorative = true
             
             
-            imageView.image = TelegramThemeHooks.shared.image(.iconAffiliateExpand).precomposed(theme.colors.darkGrayText)
+            imageView.image = AnsibleThemeHooks.shared.image(.iconAffiliateExpand).precomposed(theme.colors.darkGrayText)
             imageView.sizeToFit()
         }
         
@@ -546,11 +546,11 @@ private struct State : Equatable {
             case .sort:
                 switch state?.sorting {
                 case .date:
-                    return TelegramThemeHooks.shared.image(.menuCalendarUp).precomposed(theme.colors.darkGrayText)
+                    return AnsibleThemeHooks.shared.image(.menuCalendarUp).precomposed(theme.colors.darkGrayText)
                 case .value:
-                    return TelegramThemeHooks.shared.image(.menuCashUp).precomposed(theme.colors.darkGrayText)
+                    return AnsibleThemeHooks.shared.image(.menuCashUp).precomposed(theme.colors.darkGrayText)
                 case .number:
-                    return TelegramThemeHooks.shared.image(.menuHashtagUp).precomposed(theme.colors.darkGrayText)
+                    return AnsibleThemeHooks.shared.image(.menuHashtagUp).precomposed(theme.colors.darkGrayText)
                 case .none:
                     return nil
                 }
@@ -825,7 +825,7 @@ private final class CraftGiftsRowView: GeneralRowView {
                 addSubview(badge)
                 badgeView = badge
             }
-            let ribbon = generateGradientTintedImage(image: TelegramThemeHooks.shared.image(.giftRibbon).precomposed(), colors: colors, direction: .diagonal)!
+            let ribbon = generateGradientTintedImage(image: AnsibleThemeHooks.shared.image(.giftRibbon).precomposed(), colors: colors, direction: .diagonal)!
             badge.image = generateGiftBadgeBackground(background: ribbon, text: "#\(unique.number)", textColor: .white)
             badge.sizeToFit()
 
@@ -966,7 +966,7 @@ private final class FilterRowView: TableStickView {
             textView.isSelectable = false
             textView.isAccessibilityDecorative = true
             imageView.isAccessibilityDecorative = true
-            imageView.image = TelegramThemeHooks.shared.image(.iconAffiliateExpand).precomposed(theme.colors.darkGrayText)
+            imageView.image = AnsibleThemeHooks.shared.image(.iconAffiliateExpand).precomposed(theme.colors.darkGrayText)
             imageView.sizeToFit()
         }
 

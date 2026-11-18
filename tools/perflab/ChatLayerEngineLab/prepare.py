@@ -77,7 +77,7 @@ verified_painter = verified_painter.replace(declaration(verified_painter, '    p
 verified_painter = verified_painter.replace(declaration(verified_painter, '    public override var bounds: CGRect {'), '')
 verified_painter = verified_painter.replace(declaration(verified_painter, '    public override var contentsScale: CGFloat {'), '')
 verified_painter = verified_painter.replace('            if contents == nil || drawingState?.matches(self) != true {\n                setNeedsDisplay()\n            }', '            setNeedsDisplay()')
-verified_painter = verified_painter.replace('CopyIconCache.shared.image(TelegramThemeHooks.shared.image(.iconCopyCode), color: blockQuote.colors.main, scale: System.backingScale)', 'TelegramThemeHooks.shared.image(.iconCopyCode).precomposed(blockQuote.colors.main, flipVertical: true)')
+verified_painter = verified_painter.replace('CopyIconCache.shared.image(AnsibleThemeHooks.shared.image(.iconCopyCode), color: blockQuote.colors.main, scale: System.backingScale)', 'AnsibleThemeHooks.shared.image(.iconCopyCode).precomposed(blockQuote.colors.main, flipVertical: true)')
 assert [line.strip() for line in original_painter.splitlines() if line.strip()] == [line.strip() for line in verified_painter.splitlines() if line.strip()], 'Shared quote painter changed beyond the verified icon cache'
 (folding_output / 'QuoteLayer.swift').write_text(quote_text)
 wrapper = reference_wrapper.read_text() + '\n' + wrapper.replace('WrapperView', 'CandidateWrapperView')

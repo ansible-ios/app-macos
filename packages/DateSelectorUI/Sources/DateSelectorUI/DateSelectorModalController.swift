@@ -112,7 +112,7 @@ public final class DateSelectorModalView : View {
                     self.lockedView = current
                     container.addSubview(current)
                 }
-                current.image = TelegramThemeHooks.shared.image(.iconEmojiLock).precomposed(theme.colors.text)
+                current.image = AnsibleThemeHooks.shared.image(.iconEmojiLock).precomposed(theme.colors.text)
                 current.sizeToFit()
             } else if let lockedView {
                 lockedView.removeFromSuperview()

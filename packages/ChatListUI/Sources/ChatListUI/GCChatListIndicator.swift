@@ -43,7 +43,7 @@ public final class GCChatListIndicator : View {
     public override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
 
-        if window == nil || TelegramUtilsHooks.shared.isLite(.animations) {
+        if window == nil || AnsibleUtilsHooks.shared.isLite(.animations) {
             stopAnimation()
             keyDispose.set(nil)
         } else {

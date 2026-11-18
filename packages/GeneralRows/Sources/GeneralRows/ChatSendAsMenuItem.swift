@@ -182,7 +182,7 @@ private final class ContextAccountMenuRowView : AppMenuRowView {
                 addSubview(current)
                 self.lockView = current
             }
-            current.image = TelegramThemeHooks.shared.image(.iconEmojiLock).precomposed(item.presentation.disabledTextColor)
+            current.image = AnsibleThemeHooks.shared.image(.iconEmojiLock).precomposed(item.presentation.disabledTextColor)
             current.sizeToFit()
         } else if let view = self.lockView {
             performSubviewRemoval(view, animated: animated)

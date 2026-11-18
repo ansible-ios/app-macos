@@ -54,7 +54,7 @@ private final class WidgetNavigationButton : Control {
         layout.measure(width: .greatestFiniteMagnitude)
         textView.update(layout)
 
-        let tinted = TelegramThemeHooks.shared.image(.iconGeneralNext).precomposed(theme.colors.text, flipHorizontal: direction == .left)
+        let tinted = AnsibleThemeHooks.shared.image(.iconGeneralNext).precomposed(theme.colors.text, flipHorizontal: direction == .left)
         iconLayer.contents = tinted
         iconLayer.frame.size = tinted.backingSize
         updateLocalizationAndTheme(theme: theme)
@@ -201,7 +201,7 @@ final class WidgetListView: View {
         backgroundColor = .clear
         documentView.backgroundColor = .clear
         
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         
         if let prev = prev {
             prev.setup(strings().emptyChatNavigationPrev, image: theme.emptyChatNavigationPrev, direction: .left)
@@ -232,7 +232,7 @@ final class WidgetListView: View {
     }
 }
 
-final class WidgetController<Context: AccountContextProtocol> : TelegramGenericViewController<WidgetListView, Context> {
+final class WidgetController<Context: AccountContextProtocol> : AnsibleGenericViewController<WidgetListView, Context> {
     
     override var defaultBarTitle: String {
         return localizedString("Telegram.WidgetController")

@@ -15,10 +15,10 @@ import AnsibleMediaUtils
 import MessageUtils
 import AvatarUI
 
-private let story_privacy_some_users = TelegramThemeHooks.shared.image(.iconPeerStorySomeUsers).precomposed(.white)
-private let story_privacy_contacts = TelegramThemeHooks.shared.image(.iconPeerStoryContacts).precomposed(.white)
-private let story_privacy_close_friends = TelegramThemeHooks.shared.image(.iconPeerStoryCloseFriends).precomposed(.white)
-private let story_pinned = TelegramThemeHooks.shared.image(.iconPeerStoryPinned).precomposed(.white)
+private let story_privacy_some_users = AnsibleThemeHooks.shared.image(.iconPeerStorySomeUsers).precomposed(.white)
+private let story_privacy_contacts = AnsibleThemeHooks.shared.image(.iconPeerStoryContacts).precomposed(.white)
+private let story_privacy_close_friends = AnsibleThemeHooks.shared.image(.iconPeerStoryCloseFriends).precomposed(.white)
+private let story_pinned = AnsibleThemeHooks.shared.image(.iconPeerStoryPinned).precomposed(.white)
 
 public protocol MediaCellLayoutable {
     var context: any AccountContextProtocol { get }
@@ -119,7 +119,7 @@ public struct MediaCellLayoutItem : Equatable, MediaCellLayoutable {
 }
 
 final class StoryViewsView: ShadowView {
-    private static let icon = TelegramThemeHooks.shared.image(.iconChannelViews).precomposed(.white)
+    private static let icon = AnsibleThemeHooks.shared.image(.iconChannelViews).precomposed(.white)
     
     let iconLayer = SimpleLayer()
     private let textView = TextView()
@@ -595,7 +595,7 @@ public class MediaVideoCell : MediaCell {
     }
     
     public func preloadStreamblePart() {
-        if let layoutItem = self.layoutItem, !TelegramUtilsHooks.shared.isLite(.any) {
+        if let layoutItem = self.layoutItem, !AnsibleUtilsHooks.shared.isLite(.any) {
             let context = layoutItem.context
             if context.autoplayMedia.preloadVideos {
                 if let fileMedia = layoutItem.fileMedia {

@@ -96,9 +96,9 @@ public class AccentColorRowItem: GeneralRowItem {
     public let menuItems: (AppearanceAccentColor)->[ContextMenuItem]
     public let list: [AppearanceAccentColor]
     public let isNative: Bool
-    public let theme: TelegramPresentationTheme
+    public let theme: AnsiblePresentationTheme
     public let context: any AccountContextProtocol
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, list: [AppearanceAccentColor], isNative: Bool, theme: TelegramPresentationTheme, viewType: GeneralViewType = .legacy, selectAccentColor: @escaping(AppearanceAccentColor?)->Void, menuItems: @escaping(AppearanceAccentColor)->[ContextMenuItem]) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, list: [AppearanceAccentColor], isNative: Bool, theme: AnsiblePresentationTheme, viewType: GeneralViewType = .legacy, selectAccentColor: @escaping(AppearanceAccentColor?)->Void, menuItems: @escaping(AppearanceAccentColor)->[ContextMenuItem]) {
         self.selectAccentColor = selectAccentColor
         self.list = list
         self.theme = theme

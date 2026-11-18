@@ -52,7 +52,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         ctx.clear(size.bounds)
         ctx.setFillColor(theme.colors.accent.cgColor)
         ctx.fillEllipse(in: size.bounds)
-        let image = TelegramThemeHooks.shared.image(.iconAgeVerification).precomposed(theme.colors.underSelectedColor)
+        let image = AnsibleThemeHooks.shared.image(.iconAgeVerification).precomposed(theme.colors.underSelectedColor)
         ctx.draw(image, in: size.bounds.focus(image.backingSize))
     })
 

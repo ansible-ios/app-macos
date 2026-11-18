@@ -320,7 +320,7 @@ final class SE_TextInputState: Equatable {
     }
 
 
-    func subInputState(from range: NSRange, theme: TelegramPresentationTheme = theme) -> SE_TextInputState {
+    func subInputState(from range: NSRange, theme: AnsiblePresentationTheme = theme) -> SE_TextInputState {
         
         let subText = attributedString().attributedSubstring(from: range).trimmed
 

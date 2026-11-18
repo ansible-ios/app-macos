@@ -63,7 +63,7 @@ public func applyUILocalization(_ settings: LocalizationSettings) {
     let primaryLanguage = Language(languageCode: settings.primaryComponent.languageCode, customPluralizationCode: settings.primaryComponent.customPluralizationCode, strings: dictFromLocalization(settings.primaryComponent.localization))
     let secondaryLanguage = settings.secondaryComponent != nil ? Language.init(languageCode: settings.secondaryComponent!.languageCode, customPluralizationCode: settings.secondaryComponent!.customPluralizationCode, strings: dictFromLocalization(settings.secondaryComponent!.localization)) : nil
     
-    let language = TelegramLocalization(primaryLanguage: primaryLanguage, secondaryLanguage: secondaryLanguage, localizedName: settings.primaryComponent.localizedName)
+    let language = AnsibleLocalization(primaryLanguage: primaryLanguage, secondaryLanguage: secondaryLanguage, localizedName: settings.primaryComponent.localizedName)
     _ = _appCurrentLanguage.swap(language)
     languagePromise.set(.single(language))
 }
@@ -196,7 +196,7 @@ internal func extractArgumentRanges(_ value: String) -> [(Int, NSRange, Int)] {
     return result
 }
 
-public final class TelegramLocalization : Equatable {
+public final class AnsibleLocalization : Equatable {
     
     
     public let primaryLanguage: Language
@@ -214,7 +214,7 @@ public final class TelegramLocalization : Equatable {
         return baseLanguageCode
     }
     
-    public static func == (lhs: TelegramLocalization, rhs: TelegramLocalization) -> Bool {
+    public static func == (lhs: AnsibleLocalization, rhs: AnsibleLocalization) -> Bool {
         return lhs.primaryLanguage == rhs.primaryLanguage && lhs.secondaryLanguage == rhs.secondaryLanguage && lhs.baseLanguageCode == rhs.baseLanguageCode
     }
     
@@ -224,13 +224,13 @@ public final class TelegramLocalization : Equatable {
     
 }
 
-private let _appCurrentLanguage:Atomic<TelegramLocalization> = Atomic(value: TelegramLocalization(primaryLanguage: Language(languageCode: "en", customPluralizationCode: nil, strings: [:]), secondaryLanguage: nil, localizedName: "English"))
-public var appCurrentLanguage:TelegramLocalization {
+private let _appCurrentLanguage:Atomic<AnsibleLocalization> = Atomic(value: AnsibleLocalization(primaryLanguage: Language(languageCode: "en", customPluralizationCode: nil, strings: [:]), secondaryLanguage: nil, localizedName: "English"))
+public var appCurrentLanguage:AnsibleLocalization {
     return _appCurrentLanguage.modify {$0}
 }
-private let languagePromise:Promise<TelegramLocalization> = Promise(appCurrentLanguage)
+private let languagePromise:Promise<AnsibleLocalization> = Promise(appCurrentLanguage)
 
-public var languageSignal:Signal<TelegramLocalization, NoError> {
+public var languageSignal:Signal<AnsibleLocalization, NoError> {
     return languagePromise.get() |> distinctUntilChanged |> deliverOnMainQueue
 }
 

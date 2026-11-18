@@ -216,7 +216,7 @@ public func callScreen(_ result:PCallResult, source: CallWindowSource? = nil) {
                         default:
                             break
                         }
-                    }, presentation: TelegramThemeHooks.shared.darkAppearance())
+                    }, presentation: AnsibleThemeHooks.shared.darkAppearance())
                 }
             default:
                 break
@@ -239,7 +239,7 @@ public func callScreen(_ result:PCallResult, source: CallWindowSource? = nil) {
                         default:
                             break
                         }
-                    }, presentation: TelegramThemeHooks.shared.darkAppearance())
+                    }, presentation: AnsibleThemeHooks.shared.darkAppearance())
                 }
             }
         }, endcall: { [weak session] state in
@@ -292,7 +292,7 @@ public func callScreen(_ result:PCallResult, source: CallWindowSource? = nil) {
         }, audioLevel: { [weak session] in
             return session?.audioLevel ?? .single(0)
         }, openSettings: { window in
-            showModal(with: CallSettingsModalController(sharedContext, presentation: TelegramThemeHooks.shared.darkAppearance()), for: window)
+            showModal(with: CallSettingsModalController(sharedContext, presentation: AnsibleThemeHooks.shared.darkAppearance()), for: window)
         }, upgradeToConference: { [weak session] window in
             if let session, let context = ownContext() {
                 let peerIds = [session.peerId]

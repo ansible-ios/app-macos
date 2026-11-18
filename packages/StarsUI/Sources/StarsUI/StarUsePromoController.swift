@@ -68,7 +68,7 @@ private final class RowItem : GeneralRowItem {
         
         var options:[OptionsListView.Option] = []
         
-        options.append(.init(image: TelegramThemeHooks.shared.image(.iconStarInfoGift).precomposed(theme.colors.text), header: .init(.initialize(string: strings().starsPromoOption1Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().starsPromoOption1Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
+        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconStarInfoGift).precomposed(theme.colors.text), header: .init(.initialize(string: strings().starsPromoOption1Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().starsPromoOption1Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
         
         
         let option2Info = parseMarkdownIntoAttributedString(strings().starsPromoOption2Info, attributes: .init(body: .init(font: .medium(.text), textColor: theme.colors.grayText), link: .init(font: .normal(.text), textColor: theme.colors.link), linkAttribute: { contents in
@@ -81,12 +81,12 @@ private final class RowItem : GeneralRowItem {
             showModal(with: Star_AppExamples(context: context), for: context.window)
         }
         
-        options.append(.init(image: TelegramThemeHooks.shared.image(.iconStarInfoBot).precomposed(theme.colors.text), header: .init(.initialize(string: strings().starsPromoOption2Title, color: theme.colors.text, font: .medium(.text))), text: option2InfoLayout, width: initialSize.width - 40))
+        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconStarInfoBot).precomposed(theme.colors.text), header: .init(.initialize(string: strings().starsPromoOption2Title, color: theme.colors.text, font: .medium(.text))), text: option2InfoLayout, width: initialSize.width - 40))
 
         
-        options.append(.init(image: TelegramThemeHooks.shared.image(.iconStarInfoLock).precomposed(theme.colors.text), header: .init(.initialize(string:  strings().starsPromoOption3Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().starsPromoOption3Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
+        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconStarInfoLock).precomposed(theme.colors.text), header: .init(.initialize(string:  strings().starsPromoOption3Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().starsPromoOption3Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
 
-        options.append(.init(image: TelegramThemeHooks.shared.image(.iconStarInfoCash).precomposed(theme.colors.text), header: .init(.initialize(string:  strings().starsPromoOption4Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().starsPromoOption4Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
+        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconStarInfoCash).precomposed(theme.colors.text), header: .init(.initialize(string:  strings().starsPromoOption4Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().starsPromoOption4Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
 
         
         self.options = options

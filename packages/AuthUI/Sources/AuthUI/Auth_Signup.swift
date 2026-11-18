@@ -71,7 +71,7 @@ public final class Auth_SignupHeader : View {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         if let path = selectedPath, let image = NSImage(contentsOf: URL(fileURLWithPath: path)) {
             self.logo.set(image: generateImage(Auth_Insets.logoSize, contextGenerator: { size, ctx in
                 ctx.clear(size.bounds)
@@ -87,7 +87,7 @@ public final class Auth_SignupHeader : View {
                 ctx.clear(size.bounds)
                 ctx.setFillColor(theme.colors.accent.cgColor)
                 ctx.fillEllipse(in: size.bounds)
-                let image = TelegramThemeHooks.shared.image(.iconRegisterAddPhoto).precomposed(theme.colors.underSelectedColor)
+                let image = AnsibleThemeHooks.shared.image(.iconRegisterAddPhoto).precomposed(theme.colors.underSelectedColor)
                 ctx.draw(image, in: size.bounds.focus(image.backingSize))
             })!, for: .Normal)
         }
@@ -277,7 +277,7 @@ public final class Auth_SignupView : View {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         self.header.setFrameSize(NSMakeSize(frame.width, self.header.height))
         
         let attr = parseMarkdownIntoAttributedString(strings().loginNewRegisterFooter, attributes: MarkdownAttributes(body: MarkdownAttributeSet(font: Auth_Insets.infoFont, textColor: theme.colors.grayText), bold: MarkdownAttributeSet(font: Auth_Insets.infoFontBold, textColor: theme.colors.grayText), link: MarkdownAttributeSet(font: Auth_Insets.infoFont, textColor: theme.colors.link), linkAttribute: { [self] contents in

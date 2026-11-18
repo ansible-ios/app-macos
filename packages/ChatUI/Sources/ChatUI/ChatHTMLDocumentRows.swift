@@ -7,7 +7,7 @@ import AnsibleTheme
 import HTMLBubbles
 
 enum ChatHTMLDocumentRows {
-    static func item(_ initialSize: NSSize, interaction: ChatInteraction, entry: ChatHistoryEntry, message: Message, theme: TelegramPresentationTheme, fallback: () -> TableRowItem) -> TableRowItem {
+    static func item(_ initialSize: NSSize, interaction: ChatInteraction, entry: ChatHistoryEntry, message: Message, theme: AnsiblePresentationTheme, fallback: () -> TableRowItem) -> TableRowItem {
         guard let file = HTMLDocumentBubbles.document(in: message) else {
             return fallback()
         }

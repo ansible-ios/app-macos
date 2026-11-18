@@ -395,11 +395,11 @@ private final class Reaction_InteractiveMedia : Control, InteractiveMedia {
     }
     
     private static let shadowImage: NSImage = {
-        return TelegramThemeHooks.shared.image(.iconStoryInlineReactionShadow)
+        return AnsibleThemeHooks.shared.image(.iconStoryInlineReactionShadow)
     }()
     
     private static let coverImage: NSImage = {
-        return TelegramThemeHooks.shared.image(.iconStoryInlineReaction)
+        return AnsibleThemeHooks.shared.image(.iconStoryInlineReaction)
     }()
 
     
@@ -873,7 +873,7 @@ private final class StoryMusicBadgeView: Control {
         let title = music.0.isEmpty ? (file.fileName ?? "Audio") : music.0
         let artist = music.1
 
-        iconView.image = TelegramThemeHooks.shared.image(.iconPeerMusicWaveform).precomposed(.white)
+        iconView.image = AnsibleThemeHooks.shared.image(.iconPeerMusicWaveform).precomposed(.white)
         iconView.sizeToFit()
         iconView.isAccessibilityDecorative = true
         setAccessibilityLabel(artist.isEmpty ? title : strings().voiceOverChatMusicTitle(title, artist))

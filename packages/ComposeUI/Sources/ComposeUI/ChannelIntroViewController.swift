@@ -28,7 +28,7 @@ class ChannelIntroView : NSScrollView, AppearanceViewProtocol {
         
     }
     func updateLocalizationAndTheme(theme: PresentationTheme) {
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         imageView.image = theme.icons.channelIntro
         imageView.sizeToFit()
         

@@ -28,16 +28,16 @@ public final class ChatHTMLRowItem: ChatRowItem, HTMLTwidgetRow {
     private let documentStyle: HTMLDocumentBubbles.Style?
     private let documentWidth: CGFloat
 
-    public convenience override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public convenience override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         self.init(initialSize, chatInteraction, context, object, theme: theme, document: nil)
     }
 
-    public convenience init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ entry: ChatHistoryEntry, theme: TelegramPresentationTheme, previewWidget: TelegramMediaWidget, heightDidChange: @escaping () -> Void) {
+    public convenience init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ entry: ChatHistoryEntry, theme: AnsiblePresentationTheme, previewWidget: TelegramMediaWidget, heightDidChange: @escaping () -> Void) {
         let state = HTMLWidgetStore.preview(widget: previewWidget, locale: appCurrentLanguage.languageCode)
         self.init(initialSize, chatInteraction, context, entry, theme: theme, document: nil, widget: previewWidget, widgetState: state, previewHeightDidChange: heightDidChange)
     }
 
-    init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme, document: HTMLBubbleState?, widget: TelegramMediaWidget? = nil, widgetState: HTMLBubbleState? = nil, previewHeightDidChange: (() -> Void)? = nil) {
+    init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme, document: HTMLBubbleState?, widget: TelegramMediaWidget? = nil, widgetState: HTMLBubbleState? = nil, previewHeightDidChange: (() -> Void)? = nil) {
         let message = object.message!
         let state = widgetState ?? document ?? message.htmlBubbleState!
         self.state = state
@@ -79,7 +79,7 @@ public final class ChatHTMLRowItem: ChatRowItem, HTMLTwidgetRow {
         }
     }
 
-    private func makeCaption(message: Message, entry: ChatHistoryEntry, context: any AccountContextProtocol, theme: TelegramPresentationTheme, incoming: Bool) {
+    private func makeCaption(message: Message, entry: ChatHistoryEntry, context: any AccountContextProtocol, theme: AnsiblePresentationTheme, incoming: Bool) {
         let bubbled = entry.renderType == .bubble
         var text = message.text
         var entities = message.textEntities?.entities ?? []
@@ -181,7 +181,7 @@ public final class ChatHTMLRowItem: ChatRowItem, HTMLTwidgetRow {
             confirmWidgetLink(url) {
                 NSWorkspace.shared.open(url)
             }
-        case let .openTelegramLink(url):
+        case let .openAnsibleLink(url):
             let link = ChatHistoryLink.inApp(for: url.absoluteString as NSString, context: context, peerId: message?.id.peerId, messageId: message?.id, openInfo: chatInteraction.openInfo)
             ChatHistoryLink.execute(inapp: link)
         }

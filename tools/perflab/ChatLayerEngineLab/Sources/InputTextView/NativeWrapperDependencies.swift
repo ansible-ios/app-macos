@@ -16,8 +16,8 @@ struct FoldingInlineStickers {
 }
 
 enum ReferenceIcon { case iconQuote, iconCopyCode }
-struct TelegramThemeHooks {
-    static let shared = TelegramThemeHooks()
+struct AnsibleThemeHooks {
+    static let shared = AnsibleThemeHooks()
     func image(_ icon: ReferenceIcon) -> NSImage {
         return NSImage(named: icon == .iconQuote ? "Icon_Quote" : "Icon_CopyCode")!
     }

@@ -96,7 +96,7 @@
             if stateback {
                 choiceControl = ImageView()
                 choiceControl?.isAccessibilityDecorative = true
-                choiceControl?.image = TelegramThemeHooks.shared.image(.iconUsernameAvailability).precomposed(item.customTheme?.accentColor ?? theme.colors.accent)
+                choiceControl?.image = AnsibleThemeHooks.shared.image(.iconUsernameAvailability).precomposed(item.customTheme?.accentColor ?? theme.colors.accent)
                 choiceControl?.sizeToFit()
                 containerView.addSubview(choiceControl!)
             }

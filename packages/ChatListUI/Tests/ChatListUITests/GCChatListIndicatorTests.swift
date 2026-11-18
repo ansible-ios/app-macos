@@ -9,7 +9,7 @@ final class GCChatListIndicatorTests: XCTestCase {
     override func setUp() {
         super.setUp()
         UITestBootstrap.install()
-        TelegramUtilsHooks.install(TelegramUtilsHooks(animationsAreLite: { false }, isLite: { _ in false }, peerTitle: { _ in "" }, peerLetters: { _ in [] }, peerIsForum: { _ in false }, peerCompactTitle: { _ in "" }, repliesPeerId: { PeerId(0) }))
+        AnsibleUtilsHooks.install(AnsibleUtilsHooks(animationsAreLite: { false }, isLite: { _ in false }, peerTitle: { _ in "" }, peerLetters: { _ in [] }, peerIsForum: { _ in false }, peerCompactTitle: { _ in "" }, repliesPeerId: { PeerId(0) }))
     }
 
     func testIndicatorUsesOneCoreAnimationAndFreezesOutsideAKeyWindow() {

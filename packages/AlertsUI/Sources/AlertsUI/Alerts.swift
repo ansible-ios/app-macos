@@ -15,7 +15,7 @@ import Localization
 
 
 
-public func alert(for window:Window, header:String? = appName, info:String?, ok: String = strings().modalOK, disclaimer: String? = nil, completion: (()->Void)? = nil, onDeinit:(()->Void)? = nil, presentation: TelegramPresentationTheme = theme) {
+public func alert(for window:Window, header:String? = appName, info:String?, ok: String = strings().modalOK, disclaimer: String? = nil, completion: (()->Void)? = nil, onDeinit:(()->Void)? = nil, presentation: AnsiblePresentationTheme = theme) {
     
     
     let data = ModalAlertData(title: header, info: info ?? "", ok: ok, options: [], disclaimer: disclaimer)
@@ -31,12 +31,12 @@ public enum ConfirmResult {
     case basic
 }
 
-public func verifyAlert_button(for window:Window, header: String = appName, information:String?, ok:String = strings().alertOK, cancel:String = strings().alertCancel, option:String? = nil, successHandler:@escaping (ConfirmResult)->Void, cancelHandler: @escaping()->Void = { }, presentation: TelegramPresentationTheme = theme, onDeinit: @escaping()->Void = {}) {
+public func verifyAlert_button(for window:Window, header: String = appName, information:String?, ok:String = strings().alertOK, cancel:String = strings().alertCancel, option:String? = nil, successHandler:@escaping (ConfirmResult)->Void, cancelHandler: @escaping()->Void = { }, presentation: AnsiblePresentationTheme = theme, onDeinit: @escaping()->Void = {}) {
 
     verifyAlert(for: window, header: header, information: information, ok: ok, cancel: cancel, option: option, optionIsSelected: nil, successHandler: successHandler, cancelHandler: cancelHandler, presentation: presentation, onDeinit: onDeinit)
 }
 
-public func verifyAlert(for window:Window, header: String = appName, information:String? = nil, ok:String = strings().alertOK, cancel:String = strings().alertCancel, option:String? = nil, optionIsSelected: Bool? = true, successHandler:@escaping(ConfirmResult)->Void, cancelHandler:@escaping()->Void = { }, presentation: TelegramPresentationTheme = theme, onDeinit: @escaping()->Void = {}, headerItem: ModalAlertData.Header? = nil) {
+public func verifyAlert(for window:Window, header: String = appName, information:String? = nil, ok:String = strings().alertOK, cancel:String = strings().alertCancel, option:String? = nil, optionIsSelected: Bool? = true, successHandler:@escaping(ConfirmResult)->Void, cancelHandler:@escaping()->Void = { }, presentation: AnsiblePresentationTheme = theme, onDeinit: @escaping()->Void = {}, headerItem: ModalAlertData.Header? = nil) {
     
     
     var options: [ModalAlertData.Option] = []
@@ -68,7 +68,7 @@ public func verifyAlert(for window:Window, header: String = appName, information
     
 }
 
-public func verifyAlertSignal(for window:Window, header: String = appName, information:String? = nil, ok:String = strings().alertOK, cancel:String = strings().alertCancel, option: String? = nil, optionIsSelected: Bool = true, presentation: TelegramPresentationTheme = theme, headerItem: ModalAlertData.Header? = nil, completeWhenDismissed: Bool = false) -> Signal<ConfirmResult?, NoError> {
+public func verifyAlertSignal(for window:Window, header: String = appName, information:String? = nil, ok:String = strings().alertOK, cancel:String = strings().alertCancel, option: String? = nil, optionIsSelected: Bool = true, presentation: AnsiblePresentationTheme = theme, headerItem: ModalAlertData.Header? = nil, completeWhenDismissed: Bool = false) -> Signal<ConfirmResult?, NoError> {
     let value:ValuePromise<ConfirmResult?> = ValuePromise(ignoreRepeated: true)
     let dismissed = DisposableSet()
     

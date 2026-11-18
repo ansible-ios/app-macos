@@ -168,7 +168,7 @@ private struct GroupCallHeaderModel: Equatable {
     let isMuted: Bool
     let theme: ObjectIdentifier
 
-    init(title: String, state: PresentationGroupCallState, isMuted: Bool, data: GroupCallPanelData, members: PresentationGroupCallMembers?, theme: TelegramPresentationTheme) {
+    init(title: String, state: PresentationGroupCallState, isMuted: Bool, data: GroupCallPanelData, members: PresentationGroupCallMembers?, theme: AnsiblePresentationTheme) {
         self.title = title
         self.isMuted = isMuted
         self.theme = ObjectIdentifier(theme)

@@ -244,7 +244,7 @@ open class GeneralInteractedRowView: GeneralContainableRowView, ViewDisplayDeleg
                 nextView.isHidden = false
                                 
                 let color = (item.customTheme?.grayTextColor ?? theme.colors.grayText).withAlphaComponent(0.5)
-                nextImage = item.isSelected ? nil : TelegramThemeHooks.shared.image(.iconGeneralNext).precomposed(color)
+                nextImage = item.isSelected ? nil : AnsibleThemeHooks.shared.image(.iconGeneralNext).precomposed(color)
                 nextView.frame.size = nextImage?.backingSize ?? nextView.frame.size
             }
             

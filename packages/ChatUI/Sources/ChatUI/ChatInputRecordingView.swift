@@ -388,7 +388,7 @@ public class ChatInputRecordingView: View {
 
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         statusImage.image = FastSettings.recordingState == .voice ? theme.icons.chatVoiceRecording : theme.icons.chatVideoRecording
         recView.backgroundColor = theme.colors.accent
         deleteButton.set(image: theme.icons.chatDeleteMessagesActive, for: .Normal)

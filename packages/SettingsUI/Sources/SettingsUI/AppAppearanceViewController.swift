@@ -152,7 +152,7 @@ public func generatePeerNameColorImage(colors: PeerNameColors, peer: Peer?) -> C
     })!
 }
 
-private extension TelegramBuiltinTheme {
+private extension AnsibleBuiltinTheme {
     var baseTheme: TelegramBaseTheme {
         switch self {
         case .dark:
@@ -180,7 +180,7 @@ public struct SmartThemeCachedData : Equatable {
         case cloud(AnsibleTheme)
     }
     public struct Data : Equatable {
-        public let appTheme: TelegramPresentationTheme
+        public let appTheme: AnsiblePresentationTheme
         public let previewIcon: CGImage
         public let emoticon: String
     }
@@ -386,7 +386,7 @@ private func appAppearanceEntries(appearance: Appearance, state: State, settings
     cloudThemes.removeAll(where:{ $0.settings != nil })
 
     struct ListEquatable : Equatable {
-        let theme: TelegramPresentationTheme
+        let theme: AnsiblePresentationTheme
         let cloudThemes:[AnsibleTheme]
     }
     
@@ -454,7 +454,7 @@ private func appAppearanceEntries(appearance: Appearance, state: State, settings
 
         struct ALEquatable : Equatable {
             let accentList: [AppearanceAccentColor]
-            let theme: TelegramPresentationTheme
+            let theme: AnsiblePresentationTheme
         }
 
 
@@ -830,9 +830,9 @@ public func AppAppearanceViewController(context: any AccountContextProtocol, foc
                          _ = updateThemeInteractivetly(accountManager: context.sharedContext.accountManager, f: { settings in
                             var settings = settings
                             if settings.defaultIsDark {
-                                settings = settings.withUpdatedDefaultDark(DefaultTheme(local: TelegramBuiltinTheme.nightAccent, cloud: nil)).saveDefaultAccent(color: PaletteAccentColor(nightAccentPalette.accent))
+                                settings = settings.withUpdatedDefaultDark(DefaultTheme(local: AnsibleBuiltinTheme.nightAccent, cloud: nil)).saveDefaultAccent(color: PaletteAccentColor(nightAccentPalette.accent))
                             } else {
-                                settings = settings.withUpdatedDefaultDay(DefaultTheme(local: TelegramBuiltinTheme.dayClassic, cloud: nil)).saveDefaultAccent(color: PaletteAccentColor(dayClassicPalette.accent))
+                                settings = settings.withUpdatedDefaultDay(DefaultTheme(local: AnsibleBuiltinTheme.dayClassic, cloud: nil)).saveDefaultAccent(color: PaletteAccentColor(dayClassicPalette.accent))
                             }
                             
                             return settings.installDefaultAccent().withUpdatedCloudTheme(nil).updateWallpaper({ _ -> ThemeWallpaper in

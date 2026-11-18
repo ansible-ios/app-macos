@@ -19,7 +19,7 @@ private struct PageState : Equatable {
 }
 
 
-open class InstantViewInBrowser<Context: AccountContextProtocol> : TelegramGenericViewController<View, Context>, BrowserPage {
+open class InstantViewInBrowser<Context: AccountContextProtocol> : AnsibleGenericViewController<View, Context>, BrowserPage {
 
     open override var defaultBarTitle: String {
         return localizedString("Telegram.InstantViewInBrowser")
@@ -237,7 +237,7 @@ open class InstantViewInBrowser<Context: AccountContextProtocol> : TelegramGener
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        _ = (theme as! TelegramPresentationTheme)
+        _ = (theme as! AnsiblePresentationTheme)
     }
     
     

@@ -257,7 +257,7 @@ private final class WallpaperPreviewView: View {
         dismissButton.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
         addSubview(dismissButton)
 
-        shareButton.set(image: TelegramThemeHooks.shared.image(.iconShareStickerPack).precomposed(theme.colors.text), for: .Normal)
+        shareButton.set(image: AnsibleThemeHooks.shared.image(.iconShareStickerPack).precomposed(theme.colors.text), for: .Normal)
         shareButton.setGlassEffect()
         shareButton.setAccessibilityLabel(strings().voiceOverCommonShare)
         shareButton.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)

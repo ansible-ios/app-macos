@@ -7,7 +7,7 @@ import SwiftSignalKit
 
 
 
-let telegramAccountAuxiliaryMethods = AccountAuxiliaryMethods(fetchResource: { account, resource, range, _ in
+let ansibleAccountAuxiliaryMethods = AccountAuxiliaryMethods(fetchResource: { account, resource, range, _ in
     return nil
 }, fetchResourceMediaReferenceHash: { resource in
     return .single(nil)

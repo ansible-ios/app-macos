@@ -96,7 +96,7 @@ private final class TitleAndInfoAlertItemView: GeneralContainableRowView {
             return
         }
         
-        imageView.image = TelegramThemeHooks.shared.image(.iconMessageSentFailed).precomposed()
+        imageView.image = AnsibleThemeHooks.shared.image(.iconMessageSentFailed).precomposed()
         imageView.sizeToFit()
         
         textView.update(item.text)

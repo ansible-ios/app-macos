@@ -60,9 +60,9 @@ private final class ExternalVideoStatusContext {
 private let youtubeName = "YouTube"
 private let vimeoName = "Vimeo"
 
-fileprivate let twitterIcon = TelegramThemeHooks.shared.image(.icons8CircledPlay48).precomposed()
-fileprivate let youtubeIcon = TelegramThemeHooks.shared.image(.iconYouTubePlay).precomposed()
-fileprivate let vimeoIcon = TelegramThemeHooks.shared.image(.iconVimeoPlay).precomposed()
+fileprivate let twitterIcon = AnsibleThemeHooks.shared.image(.icons8CircledPlay48).precomposed()
+fileprivate let youtubeIcon = AnsibleThemeHooks.shared.image(.iconYouTubePlay).precomposed()
+fileprivate let vimeoIcon = AnsibleThemeHooks.shared.image(.iconVimeoPlay).precomposed()
 
 public class ExternalVideoLoader {
     

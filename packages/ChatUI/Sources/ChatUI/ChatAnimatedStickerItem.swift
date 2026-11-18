@@ -10,7 +10,7 @@ import AnsibleMediaUtils
 import AnsibleTheme
 
 public class ChatAnimatedStickerItem: ChatMediaItem {
-    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         super.init(initialSize, chatInteraction, context, object, theme: theme)
         
         let file = (object.message!.anyMedia as! TelegramMediaFile)

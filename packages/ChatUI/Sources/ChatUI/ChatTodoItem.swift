@@ -57,12 +57,12 @@ private final class TodoItem : Equatable {
     let isIncoming: Bool
     let isBubbled: Bool
     let isLoading: Bool
-    let presentation: TelegramPresentationTheme
+    let presentation: AnsiblePresentationTheme
     let contentSize: NSSize
     let vote:(Control)-> Void
     let isTranslateLoading: Bool
     let canFinish: Bool
-    init(option:TelegramMediaTodo.Item, nameText: TextViewLayout, author: TextViewLayout?, isSelected: Bool, canFinish: Bool, isIncoming: Bool, isBubbled: Bool, isLoading: Bool, presentation: TelegramPresentationTheme, vote: @escaping(Control)->Void = { _ in }, contentSize: NSSize = NSZeroSize, isTranslateLoading: Bool, peer: EnginePeer?) {
+    init(option:TelegramMediaTodo.Item, nameText: TextViewLayout, author: TextViewLayout?, isSelected: Bool, canFinish: Bool, isIncoming: Bool, isBubbled: Bool, isLoading: Bool, presentation: AnsiblePresentationTheme, vote: @escaping(Control)->Void = { _ in }, contentSize: NSSize = NSZeroSize, isTranslateLoading: Bool, peer: EnginePeer?) {
         self.option = option
         self.nameText = nameText
         self.author = author
@@ -142,7 +142,7 @@ public class ChatRowTodoItem: ChatRowItem {
     
     public let isTranslateLoading: Bool
     
-    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         
         
         var todo = object.message!.media[0] as! TelegramMediaTodo

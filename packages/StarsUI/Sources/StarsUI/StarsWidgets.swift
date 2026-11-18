@@ -17,7 +17,7 @@ import InlineStickerLayer
 public var starsGradient: [NSColor] { DiamondAppearance.gradient }
 
 public final class StarsButtonEffectLayer: SimpleLayer {
-    fileprivate static let whiteParticle: CGImage = TelegramThemeHooks.shared.image(.starReactionParticle).precomposed(.white)
+    fileprivate static let whiteParticle: CGImage = AnsibleThemeHooks.shared.image(.starReactionParticle).precomposed(.white)
 
     public let emitterLayer = CAEmitterLayer()
     
@@ -473,7 +473,7 @@ public final class Star_SliderView : Control {
 //                dotLayer.addSubview(current)
 //                self.addCustomView_Dot = current
 //            }
-//            current.image = TelegramThemeHooks.shared.image(.iconPremiumPlus).precomposed(self.effectLayer.color)
+//            current.image = AnsibleThemeHooks.shared.image(.iconPremiumPlus).precomposed(self.effectLayer.color)
 //            current.sizeToFit()
 //        } else if let view = self.addCustomView_Dot {
 //            performSubviewRemoval(view, animated: false)
@@ -492,7 +492,7 @@ public final class Star_SliderView : Control {
                 addSubview(current)
                 self.addCustomView_Line = current
             }
-            current.set(image: TelegramThemeHooks.shared.image(.iconPremiumPlus).precomposed(theme.colors.grayIcon), for: .Normal)
+            current.set(image: AnsibleThemeHooks.shared.image(.iconPremiumPlus).precomposed(theme.colors.grayIcon), for: .Normal)
             current.sizeToFit()
             current.setSingle(handler: { _ in
                 addCustom()

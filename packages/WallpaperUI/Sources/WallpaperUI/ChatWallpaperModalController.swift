@@ -34,14 +34,14 @@ private func _id_wallpaper_row_at(_ i: Int) -> InputDataIdentifier {
 private struct WallpaperEntry: Equatable {
     public let index: Int
     public let wallpaper: Wallpaper
-    public let telegramWallpaper: TelegramWallpaper?
+    public let ansibleWallpaper: TelegramWallpaper?
     public let selected: Bool
 
     public static func == (lhs: WallpaperEntry, rhs: WallpaperEntry) -> Bool {
         return lhs.index == rhs.index
             && lhs.selected == rhs.selected
             && lhs.wallpaper == rhs.wallpaper
-            && lhs.telegramWallpaper == rhs.telegramWallpaper
+            && lhs.ansibleWallpaper == rhs.ansibleWallpaper
     }
 }
 
@@ -86,7 +86,7 @@ private final class ChatWallpaperRowItem: GeneralRowItem {
         var x: CGFloat = insets.left
         for entry in entries {
             if location.x >= x && location.x < x + itemSize.width + 10 {
-                if let telegramWallpaper = entry.telegramWallpaper, !entry.selected {
+                if let ansibleWallpaper = entry.ansibleWallpaper, !entry.selected {
                     switch entry.wallpaper {
                     case .builtin, .none:
                         return .single([])
@@ -94,7 +94,7 @@ private final class ChatWallpaperRowItem: GeneralRowItem {
                         let interaction = self.interaction
                         let wallpaper = entry.wallpaper
                         let item = ContextMenuItem(strings().messageContextDelete, handler: {
-                            interaction.deleteWallpaper(wallpaper, telegramWallpaper)
+                            interaction.deleteWallpaper(wallpaper, ansibleWallpaper)
                         }, itemMode: .destruct, itemImage: MenuAnimation.menu_delete.value)
                         return .single([item])
                     }
@@ -179,7 +179,7 @@ private final class ChatWallpaperRowView: GeneralContainableRowView {
             let cell = Cell(frame: .zero)
             cell.set(handler: { [weak self, weak cell] _ in
                 guard let rowItem = self?.item as? ChatWallpaperRowItem, let entry = cell?.entry else { return }
-                rowItem.interaction.openWallpaper(entry.wallpaper, entry.telegramWallpaper)
+                rowItem.interaction.openWallpaper(entry.wallpaper, entry.ansibleWallpaper)
             }, for: .Click)
             content.addSubview(cell)
         }
@@ -257,11 +257,11 @@ public func ChatWallpaperModalController(_ context: any AccountContextProtocol, 
         deleted.set(deletedValue.modify(f))
     }
 
-    let interaction = ThemeGridControllerInteraction(openWallpaper: { wallpaper, telegramWallpaper in
+    let interaction = ThemeGridControllerInteraction(openWallpaper: { wallpaper, ansibleWallpaper in
         switch wallpaper {
         case .image, .file, .color, .gradient:
             var src = source
-            if let wallpaper = telegramWallpaper {
+            if let wallpaper = ansibleWallpaper {
                 src = src.withWallpaper(wallpaper)
             }
             showModal(with: WallpaperPreviewController(context, wallpaper: wallpaper, source: src, onComplete: onComplete), for: context.window)
@@ -278,13 +278,13 @@ public func ChatWallpaperModalController(_ context: any AccountContextProtocol, 
                 })
             }
         }
-    }, deleteWallpaper: { wallpaper, telegramWallpaper in
+    }, deleteWallpaper: { wallpaper, ansibleWallpaper in
         if wallpaper.isSemanticallyEqual(to: selected) {
             _ = updateThemeInteractivetly(accountManager: context.sharedContext.accountManager, f: { settings in
                 return settings.updateWallpaper({ $0.withUpdatedWallpaper(settings.palette.wallpaper.wallpaper) }).saveDefaultWallpaper()
             }).start()
         }
-        _ = deleteWallpaper(account: context.account, wallpaper: telegramWallpaper).start()
+        _ = deleteWallpaper(account: context.account, wallpaper: ansibleWallpaper).start()
         updateDeleted { current in current + [wallpaper] }
     })
 
@@ -293,17 +293,17 @@ public func ChatWallpaperModalController(_ context: any AccountContextProtocol, 
             var entries: [WallpaperEntry] = []
             var index = 0
 
-            entries.append(WallpaperEntry(index: index, wallpaper: .none, telegramWallpaper: nil, selected: selected.isSemanticallyEqual(to: .none)))
+            entries.append(WallpaperEntry(index: index, wallpaper: .none, ansibleWallpaper: nil, selected: selected.isSemanticallyEqual(to: .none)))
             index += 1
 
-            let matchedTelegramWallpaper: TelegramWallpaper? = wallpapers.first(where: { wallpaper -> Bool in
+            let matchedAnsibleWallpaper: TelegramWallpaper? = wallpapers.first(where: { wallpaper -> Bool in
                 let wallpaper: Wallpaper = Wallpaper(wallpaper)
                 return wallpaper.isSemanticallyEqual(to: selected)
             })
 
             switch selected {
             case .gradient:
-                entries.append(WallpaperEntry(index: index, wallpaper: selected, telegramWallpaper: nil, selected: true))
+                entries.append(WallpaperEntry(index: index, wallpaper: selected, ansibleWallpaper: nil, selected: true))
             default:
                 let wallpaper: Wallpaper
                 if theme.colors.accent != theme.colors.basicAccent {
@@ -311,7 +311,7 @@ public func ChatWallpaperModalController(_ context: any AccountContextProtocol, 
                 } else {
                     wallpaper = .color(theme.colors.basicAccent.lighter(amount: 0.25).argb)
                 }
-                entries.append(WallpaperEntry(index: index, wallpaper: wallpaper, telegramWallpaper: nil, selected: selected.isSemanticallyEqual(to: wallpaper)))
+                entries.append(WallpaperEntry(index: index, wallpaper: wallpaper, ansibleWallpaper: nil, selected: selected.isSemanticallyEqual(to: wallpaper)))
             }
             index += 1
 
@@ -319,7 +319,7 @@ public func ChatWallpaperModalController(_ context: any AccountContextProtocol, 
             case .none, .color, .gradient:
                 break
             default:
-                entries.append(WallpaperEntry(index: index, wallpaper: selected, telegramWallpaper: matchedTelegramWallpaper, selected: true))
+                entries.append(WallpaperEntry(index: index, wallpaper: selected, ansibleWallpaper: matchedAnsibleWallpaper, selected: true))
                 index += 1
             }
 
@@ -337,7 +337,7 @@ public func ChatWallpaperModalController(_ context: any AccountContextProtocol, 
                     if selected.isSemanticallyEqual(to: wallpaper) {
                         continue
                     }
-                    entries.append(WallpaperEntry(index: index, wallpaper: wallpaper, telegramWallpaper: item, selected: false))
+                    entries.append(WallpaperEntry(index: index, wallpaper: wallpaper, ansibleWallpaper: item, selected: false))
                     index += 1
                 }
             }

@@ -739,7 +739,7 @@ public class NStickersView : View {
     fileprivate var restrictedView:RestrictionWrappedView?
     private let searchStatusView = PanelSearchStatusView(frame: .zero)
     private var searchStatus: PanelSearchPresentation = .hidden
-    private var searchPresentationTheme: TelegramPresentationTheme?
+    private var searchPresentationTheme: AnsiblePresentationTheme?
     
     public let searchView = SearchView(frame: .zero)
     private let searchContainer = View()
@@ -986,7 +986,7 @@ public class NStickersView : View {
         let rect = NSMakeRect(view.frame.origin.y - point.y, 5, item.height, packsView.frame.height)
         
         selectionView.layer?.cornerRadius = item.height == item.width ? .cornerRadius : item.width / 2
-        if isGlass || usesMenuPanel, !TelegramUtilsHooks.shared.isLite(.blur) {
+        if isGlass || usesMenuPanel, !AnsibleUtilsHooks.shared.isLite(.blur) {
             let frost: NSVisualEffectView
             if let current = selectionFrost {
                 frost = current
@@ -1017,7 +1017,7 @@ public class NStickersView : View {
     private var context: (any AccountContextProtocol)?
     private var arguments: StickerPanelArguments?
     
-    public var presentation: TelegramPresentationTheme? {
+    public var presentation: AnsiblePresentationTheme? {
         didSet {
             categories?.presentation = presentation
         }
@@ -1100,7 +1100,7 @@ public class NStickersView : View {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         self.restrictedView?.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         let background: NSColor = isGlass ? .clear : theme.colors.background
         let border: NSColor = isGlass ? theme.colors.grayIcon.withAlphaComponent(0.1) : theme.colors.border
         self.separator.backgroundColor = border
@@ -1116,7 +1116,7 @@ public class NStickersView : View {
         self.searchBackdrop.backgroundColor = theme.colors.background.withAlphaComponent(0.85)
         self.searchBackdrop.isHidden = !isGlass || usesMenuPanel
 
-        self.searchFrost.isHidden = !usesMenuPanel || TelegramUtilsHooks.shared.isLite(.blur)
+        self.searchFrost.isHidden = !usesMenuPanel || AnsibleUtilsHooks.shared.isLite(.blur)
         self.searchFrost.appearance = NSAppearance.themed(isDark: theme.colors.isDark)
         if isGlass {
             let searchBackground = searchFrost.isHidden ? theme.colors.vibrant.mixedWith(NSColor(0x000000), alpha: 0.1) : .clear
@@ -1154,7 +1154,7 @@ public class NStickersView : View {
         transition.updateFrame(view: packsView, frame: tabsContainer.focus(NSMakeSize(size.width, 36)))
 
         
-        let headerInset: CGFloat = usesMenuPanel && !TelegramUtilsHooks.shared.isLite(.blur) ? 46 : 0
+        let headerInset: CGFloat = usesMenuPanel && !AnsibleUtilsHooks.shared.isLite(.blur) ? 46 : 0
         let tableY = headerInset > 0 ? max(0, tabsContainer.frame.maxY - headerInset) : tabsContainer.frame.maxY
         let topInset = headerInset > 0 ? tabsContainer.frame.maxY - tableY : 0
         if tableView.contentInsets.top != topInset {
@@ -1222,7 +1222,7 @@ public class NStickersView : View {
 
 
 
-public class NStickersViewController<Context: AccountContextProtocol>: TelegramGenericViewController<NStickersView, Context>, TableViewDelegate, Notifable {
+public class NStickersViewController<Context: AccountContextProtocol>: AnsibleGenericViewController<NStickersView, Context>, TableViewDelegate, Notifable {
     public override var defaultBarTitle: String {
         return localizedString("Telegram.NStickersViewController")
     }
@@ -1252,9 +1252,9 @@ public class NStickersViewController<Context: AccountContextProtocol>: TelegramG
             updateAnalyticsScreen()
         }
     }
-    private var presentation: TelegramPresentationTheme?
+    private var presentation: AnsiblePresentationTheme?
     
-    public init(_ context: Context, presentation: TelegramPresentationTheme? = nil) {
+    public init(_ context: Context, presentation: AnsiblePresentationTheme? = nil) {
         self.presentation = presentation
         super.init(context)
         updateAnalyticsScreen()

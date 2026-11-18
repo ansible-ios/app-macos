@@ -424,7 +424,7 @@ class TextAndLabelRowView: GeneralRowView {
                     self.toggleVisibility = current
                     insert(current, above: [labelView])
                 }
-                current.set(image: TelegramThemeHooks.shared.image(hideText ? .iconEyeOn : .iconEyeOff).precomposed(item.accentColor), for: .Normal)
+                current.set(image: AnsibleThemeHooks.shared.image(hideText ? .iconEyeOn : .iconEyeOff).precomposed(item.accentColor), for: .Normal)
                 current.sizeToFit()
             } else if let view = self.toggleVisibility {
                 view.removeFromSuperview()
@@ -480,7 +480,7 @@ class TextAndLabelRowView: GeneralRowView {
                     self.copyView = current
                     insert(current, above: [labelView, toggleVisibility, shadowView, moreView])
                 }
-                current.set(image: TelegramThemeHooks.shared.image(item.gift != nil ? .iconGiftBirthday : .iconFastCopyLink).precomposed(item.accentColor), for: .Normal)
+                current.set(image: AnsibleThemeHooks.shared.image(item.gift != nil ? .iconGiftBirthday : .iconFastCopyLink).precomposed(item.accentColor), for: .Normal)
                 current.sizeToFit()
                 current.scaleOnClick = true
             } else if let view = self.copyView {
@@ -501,7 +501,7 @@ class TextAndLabelRowView: GeneralRowView {
                     self.qrView = current
                     insert(current, above: [labelView, toggleVisibility, shadowView, moreView])
                 }
-                current.set(image: TelegramThemeHooks.shared.image(.iconWalletQR).precomposed(item.accentColor), for: .Normal)
+                current.set(image: AnsibleThemeHooks.shared.image(.iconWalletQR).precomposed(item.accentColor), for: .Normal)
                 current.sizeToFit()
                 current.scaleOnClick = true
             } else if let view = self.qrView {

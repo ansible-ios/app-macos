@@ -88,7 +88,7 @@ private final class HeaderItemView : GeneralRowView {
 
         
         
-        dismiss.set(image: TelegramThemeHooks.shared.image(.iconPipClose).precomposed(.white), for: .Normal)
+        dismiss.set(image: AnsibleThemeHooks.shared.image(.iconPipClose).precomposed(.white), for: .Normal)
         dismiss.setGlassEffect(size: NSMakeSize(36, 36))
         dismiss.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
         dismiss.scaleOnClick = true
@@ -154,9 +154,9 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
     let title3 = strings().giftUpgradeTradableTitle
     let info3 = strings().giftUpgradeUniqueDescription
     
-    let image1 = TelegramThemeHooks.shared.image(.iconNFTUnique)
-    let image2 = TelegramThemeHooks.shared.image(.iconNFTTransferable)
-    let image3 = TelegramThemeHooks.shared.image(.iconNFTTradable)
+    let image1 = AnsibleThemeHooks.shared.image(.iconNFTUnique)
+    let image2 = AnsibleThemeHooks.shared.image(.iconNFTTransferable)
+    let image3 = AnsibleThemeHooks.shared.image(.iconNFTTradable)
     
     entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: .init("options"), equatable: .init(state), comparable: nil, item: { initialSize, stableId in
         return GeneralOptionsRowItem(initialSize, stableId: stableId, input: [

@@ -40,7 +40,7 @@ final class LegacyGCChatListIndicator : View {
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
 
-        if window == nil || TelegramUtilsHooks.shared.isLite(.animations) {
+        if window == nil || AnsibleUtilsHooks.shared.isLite(.animations) {
             stopAnimation()
             keyDispose.set(nil)
             progressStage = 8

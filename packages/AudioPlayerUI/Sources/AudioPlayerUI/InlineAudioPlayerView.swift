@@ -349,7 +349,7 @@ public class InlineAudioPlayerView: NavigationHeaderView, APDelegate {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         
         progressView.fetchingColor = theme.colors.text.withAlphaComponent(0.3)
         progressView.previewColor = theme.colors.text.withAlphaComponent(0.25)
@@ -482,7 +482,7 @@ public class InlineAudioPlayerView: NavigationHeaderView, APDelegate {
         
         let iconColor = theme.colors.text
         let dimColor = theme.colors.darkGrayText
-        dismiss.set(image: TelegramThemeHooks.shared.image(.iconPipClose).precomposed(iconColor), for: .Normal)
+        dismiss.set(image: AnsibleThemeHooks.shared.image(.iconPipClose).precomposed(iconColor), for: .Normal)
 
         switch song.entry {
         case let .song(message):
@@ -496,16 +496,16 @@ public class InlineAudioPlayerView: NavigationHeaderView, APDelegate {
 
         switch controller.nextEnabled {
         case true:
-            next.set(image: TelegramThemeHooks.shared.image(.iconInlinePlayerNext).precomposed(iconColor), for: .Normal)
+            next.set(image: AnsibleThemeHooks.shared.image(.iconInlinePlayerNext).precomposed(iconColor), for: .Normal)
         case false:
-            next.set(image: TelegramThemeHooks.shared.image(.iconInlinePlayerNext).precomposed(dimColor), for: .Normal)
+            next.set(image: AnsibleThemeHooks.shared.image(.iconInlinePlayerNext).precomposed(dimColor), for: .Normal)
         }
 
         switch controller.prevEnabled {
         case true:
-            previous.set(image: TelegramThemeHooks.shared.image(.iconInlinePlayerNext).precomposed(iconColor, flipHorizontal: true), for: .Normal)
+            previous.set(image: AnsibleThemeHooks.shared.image(.iconInlinePlayerNext).precomposed(iconColor, flipHorizontal: true), for: .Normal)
         case false:
-            previous.set(image: TelegramThemeHooks.shared.image(.iconInlinePlayerNext).precomposed(dimColor, flipHorizontal: true), for: .Normal)
+            previous.set(image: AnsibleThemeHooks.shared.image(.iconInlinePlayerNext).precomposed(dimColor, flipHorizontal: true), for: .Normal)
         }
                 
         let attr = attributedTitle(for: song)
@@ -550,27 +550,27 @@ public class InlineAudioPlayerView: NavigationHeaderView, APDelegate {
         volumeControl.setAccessibilityValue(FastSettings.volumeRate == 0 ? strings().voiceOverCommonMuted : nil)
         switch FastSettings.volumeRate {
         case 0:
-            volumeControl.set(image: TelegramThemeHooks.shared.image(.iconInlinePlayerVolumeOff).precomposed(dimColor), for: .Normal)
+            volumeControl.set(image: AnsibleThemeHooks.shared.image(.iconInlinePlayerVolumeOff).precomposed(dimColor), for: .Normal)
         default:
-            volumeControl.set(image: TelegramThemeHooks.shared.image(.iconInlinePlayerVolumeOn).precomposed(iconColor), for: .Normal)
+            volumeControl.set(image: AnsibleThemeHooks.shared.image(.iconInlinePlayerVolumeOn).precomposed(iconColor), for: .Normal)
         }
 
         if hasPlayerList {
             repeatControl.setAccessibilityLabel(strings().voiceOverCommonPlaylist)
             repeatControl.setAccessibilityValue(nil)
-            repeatControl.set(image: TelegramThemeHooks.shared.image(.iconAudioPlayerList).precomposed(dimColor), for: .Normal)
+            repeatControl.set(image: AnsibleThemeHooks.shared.image(.iconAudioPlayerList).precomposed(dimColor), for: .Normal)
         } else {
             repeatControl.setAccessibilityLabel(strings().dateSelectorScheduleRepeat)
             switch controller.state.repeatState {
             case .circle:
                 repeatControl.setAccessibilityValue(strings().voiceOverCommonRepeatAll)
-                repeatControl.set(image: TelegramThemeHooks.shared.image(.iconInlinePlayerRepeat).precomposed(iconColor), for: .Normal)
+                repeatControl.set(image: AnsibleThemeHooks.shared.image(.iconInlinePlayerRepeat).precomposed(iconColor), for: .Normal)
             case .one:
                 repeatControl.setAccessibilityValue(strings().voiceOverCommonRepeatOne)
-                repeatControl.set(image: TelegramThemeHooks.shared.image(.iconInlinePlayerRepeatOne).precomposed(iconColor), for: .Normal)
+                repeatControl.set(image: AnsibleThemeHooks.shared.image(.iconInlinePlayerRepeatOne).precomposed(iconColor), for: .Normal)
             case .none:
                 repeatControl.setAccessibilityValue(strings().dateSelectorScheduleRepeatNever)
-                repeatControl.set(image: TelegramThemeHooks.shared.image(.iconInlinePlayerRepeat).precomposed(dimColor), for: .Normal)
+                repeatControl.set(image: AnsibleThemeHooks.shared.image(.iconInlinePlayerRepeat).precomposed(dimColor), for: .Normal)
             }
 
         }

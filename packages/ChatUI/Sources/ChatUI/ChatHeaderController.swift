@@ -1117,7 +1117,7 @@ private final class ChatSponsoredView : Control, ChatHeaderProtocol {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         self.backgroundColor = .clear
         self.dismiss.set(image: theme.icons.chat_header_dismiss, for: .Normal)
         container.backgroundColor = .clear
@@ -1303,20 +1303,20 @@ class ChatPinnedView : Control, ChatHeaderProtocol {
                 oldContainer.removeFromSuperview()
             }
             
-            var telegramCall: TelegramMediaWebpageLoadedContent? = nil
+            var ansibleCall: TelegramMediaWebpageLoadedContent? = nil
             
             if let media = pinnedMessage.message?.media.first as? TelegramMediaWebpage {
                 switch media.content {
                 case let .Loaded(content):
                     if content.type == "telegram_call" {
-                        telegramCall = content
+                        ansibleCall = content
                     }
                 default:
                     break
                 }
             }
             
-            if let content = telegramCall {
+            if let content = ansibleCall {
 
                 self.dismiss.isHidden = true
                 let current: TextButton
@@ -1424,7 +1424,7 @@ class ChatPinnedView : Control, ChatHeaderProtocol {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
 
         // ReplyModel bakes attributed strings against the presentation it was
         // initialized with, so a plain `node?.update()` redraws with stale
@@ -1575,7 +1575,7 @@ class ChatReportView : Control, ChatHeaderProtocol {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         dismiss.set(image: theme.icons.chat_header_dismiss, for: .Normal)
         report.set(text: strings().chatHeaderReportSpam, for: .Normal)
         report.style = ControlStyle(font: .normal(.text), foregroundColor: theme.colors.redUI, backgroundColor: .clear, highlightColor: theme.colors.redUI)
@@ -1755,7 +1755,7 @@ class ShareInfoView : Control, ChatHeaderProtocol {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         dismiss.set(image: theme.icons.chat_header_dismiss, for: .Normal)
         share.style = ControlStyle(font: .normal(.text), foregroundColor: theme.colors.text, backgroundColor: .clear, highlightColor: theme.colors.accentSelect)
         
@@ -1830,7 +1830,7 @@ class AddContactView : Control, ChatHeaderProtocol {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         dismiss.set(image: theme.icons.chat_header_dismiss, for: .Normal)
         add.style = ControlStyle(font: .normal(.text), foregroundColor: theme.colors.text, backgroundColor: .clear, highlightColor: theme.colors.accentSelect)
         blockButton.style = ControlStyle(font: .normal(.text), foregroundColor: theme.colors.redUI, backgroundColor: .clear, highlightColor: theme.colors.redUI)
@@ -2445,7 +2445,7 @@ private final class ChatRequestChat : Control, ChatHeaderProtocol {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         self.backgroundColor = .clear
         self.dismiss.set(image: theme.icons.chat_header_dismiss, for: .Normal)
     }
@@ -2610,7 +2610,7 @@ final class ChatPendingRequests : Control, ChatHeaderProtocol {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         self.backgroundColor = .clear
         self.dismiss.set(image: theme.icons.chat_header_dismiss, for: .Normal)
     }
@@ -2709,7 +2709,7 @@ private final class ChatRestartTopic : Control, ChatHeaderProtocol {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        _ = (theme as! TelegramPresentationTheme)
+        _ = (theme as! AnsiblePresentationTheme)
         self.backgroundColor = .clear
     }
     
@@ -2764,7 +2764,7 @@ private final class ChatSetBotPhotoView : Control, ChatHeaderProtocol {
 
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         button.style = ControlStyle(font: .normal(.text), foregroundColor: theme.colors.accent, backgroundColor: .clear, highlightColor: theme.colors.accent.highlighted)
         button.set(color: theme.colors.accent.highlighted, for: .Highlight)
         button.set(image: theme.icons.chatAttachCamera, for: .Normal)
@@ -3074,7 +3074,7 @@ private final class ChatBotManager : Control, ChatHeaderProtocol {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         self.backgroundColor = .clear
         self.setup.set(image: theme.icons.chat_header_bot_settings, for: .Normal)
         self.setup.sizeToFit()

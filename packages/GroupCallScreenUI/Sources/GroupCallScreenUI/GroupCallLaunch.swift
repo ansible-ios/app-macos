@@ -132,7 +132,7 @@ public func requestOrJoinConferenceCall(context: any AccountContextProtocol, ini
 
 private func startGroupCall(context: any AccountContextProtocol, peerId: PeerId?, joinAs: PeerId, initialCall: CachedChannelData.ActiveCall?, initialInfo: GroupCallInfo? = nil, internalId: CallSessionInternalId = CallSessionInternalId(), joinHash: String? = nil, peer: Peer? = nil, conferenceFromCallId: CallId?, isConference: Bool, isChannel: Bool, reference: InternalGroupCallReference?) -> GroupCallContext {
     
-    let keyPair: TelegramKeyPair? = isConference ? TelegramE2EEncryptionProviderImpl.shared.generateKeyPair() : nil
+    let keyPair: TelegramKeyPair? = isConference ? AnsibleE2EEncryptionProviderImpl.shared.generateKeyPair() : nil
     
     var initial: (description: EngineGroupCallDescription, reference: InternalGroupCallReference)?
     

@@ -68,7 +68,7 @@ private final class ChangePeerRowItemView: GeneralRowView {
         fromAvatar.setFrameSize(NSMakeSize(45, 45))
         toAvatar.setFrameSize(NSMakeSize(45, 45))
         
-        chevron.image = TelegramThemeHooks.shared.image(.iconAffiliateChevron).precomposed(theme.colors.grayIcon)
+        chevron.image = AnsibleThemeHooks.shared.image(.iconAffiliateChevron).precomposed(theme.colors.grayIcon)
         chevron.sizeToFit()
         chevron.isAccessibilityDecorative = true
     }

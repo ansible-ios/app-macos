@@ -18,7 +18,7 @@ public func peerCompactDisplayTitles(_ peerIds: [PeerId], _ dict: SimpleDictiona
     var names:String = ""
     for peerId in peerIds {
         if let peer = dict[peerId] {
-            names += TelegramUtilsHooks.shared.peerCompactTitle(peer)
+            names += AnsibleUtilsHooks.shared.peerCompactTitle(peer)
             if peerId != peerIds.last {
                 names += ", "
             }

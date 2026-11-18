@@ -20,8 +20,8 @@ public final class ChatMediaPresentation : Equatable {
     public let text: NSColor
     public let grayText: NSColor
     public let link: NSColor
-    public let presentation: TelegramPresentationTheme
-    public init(presentation: TelegramPresentationTheme, isIncoming: Bool, isBubble: Bool, activityBackground: NSColor, activityForeground: NSColor, text: NSColor, grayText: NSColor, link: NSColor, waveformBackground: NSColor, waveformForeground: NSColor) {
+    public let presentation: AnsiblePresentationTheme
+    public init(presentation: AnsiblePresentationTheme, isIncoming: Bool, isBubble: Bool, activityBackground: NSColor, activityForeground: NSColor, text: NSColor, grayText: NSColor, link: NSColor, waveformBackground: NSColor, waveformForeground: NSColor) {
         self.presentation = presentation
         self.isIncoming = isIncoming
         self.isBubble = isBubble
@@ -38,7 +38,7 @@ public final class ChatMediaPresentation : Equatable {
         return !self.isIncoming && self.isBubble ? .clear : .normal
     }
     
-    public static func make(for message: Message, account: Account, renderType: ChatItemRenderType, theme: TelegramPresentationTheme) -> ChatMediaPresentation {
+    public static func make(for message: Message, account: Account, renderType: ChatItemRenderType, theme: AnsiblePresentationTheme) -> ChatMediaPresentation {
         let isIncoming: Bool = message.isIncoming(account, renderType == .bubble)
         
         
@@ -54,7 +54,7 @@ public final class ChatMediaPresentation : Equatable {
                                      waveformBackground: theme.chat.waveformBackground(isIncoming, renderType == .bubble),
                                      waveformForeground: theme.chat.waveformForeground(isIncoming, renderType == .bubble))
     }
-    public static func make(theme: TelegramPresentationTheme) -> ChatMediaPresentation {
+    public static func make(theme: AnsiblePresentationTheme) -> ChatMediaPresentation {
         let isIncoming: Bool = false
         
         let grayText = theme.chat.grayText(isIncoming, false)
@@ -183,7 +183,7 @@ private func generatePercentageImage(color: NSColor, value: Int, font: NSFont) -
 }
 
 
-public final class TelegramChatColors {
+public final class AnsibleChatColors {
     
 
     
@@ -261,131 +261,131 @@ public final class TelegramChatColors {
     
     //chatGotoMessageWallpaper / chatShareWallpaper / chatSwipeReplyWallpaper
     
-    public func chat_goto_message_bubble(theme: TelegramPresentationTheme) -> CGImage {
+    public func chat_goto_message_bubble(theme: AnsiblePresentationTheme) -> CGImage {
         if let value = cacheDict["chat_goto_message_bubble"] {
             return value
         } else {
-            let image = TelegramThemeHooks.shared.image(.iconGotoBubbleMessage).precomposed(theme.chatServiceItemTextColor)
+            let image = AnsibleThemeHooks.shared.image(.iconGotoBubbleMessage).precomposed(theme.chatServiceItemTextColor)
             cacheDict["chat_goto_message_bubble"] = image
             return image
         }
     }
-    public func chat_share_bubble(theme: TelegramPresentationTheme) -> CGImage {
+    public func chat_share_bubble(theme: AnsiblePresentationTheme) -> CGImage {
         if let value = cacheDict["chat_share_bubble"] {
             return value
         } else {
-            let image = TelegramThemeHooks.shared.image(.iconChannelShare).precomposed(theme.chatServiceItemTextColor)
+            let image = AnsibleThemeHooks.shared.image(.iconChannelShare).precomposed(theme.chatServiceItemTextColor)
             cacheDict["chat_share_bubble"] = image
             return image
         }
     }
-    public func chat_reply_swipe_bubble(theme: TelegramPresentationTheme) -> CGImage {
+    public func chat_reply_swipe_bubble(theme: AnsiblePresentationTheme) -> CGImage {
         if let value = cacheDict["chat_reply_swipe_bubble"] {
             return value
         } else {
-            let image = TelegramThemeHooks.shared.image(.iconChannelShare).precomposed(theme.chatServiceItemTextColor, flipHorizontal: true)
+            let image = AnsibleThemeHooks.shared.image(.iconChannelShare).precomposed(theme.chatServiceItemTextColor, flipHorizontal: true)
             cacheDict["chat_reply_swipe_bubble"] = image
             return image
         }
     }
-    public func chat_like_message_bubble(theme: TelegramPresentationTheme) -> CGImage {
+    public func chat_like_message_bubble(theme: AnsiblePresentationTheme) -> CGImage {
         if let value = cacheDict["chat_like_message_bubble"] {
             return value
         } else {
-            let image = TelegramThemeHooks.shared.image(.iconLikeMessageButton).precomposed(theme.chatServiceItemTextColor)
+            let image = AnsibleThemeHooks.shared.image(.iconLikeMessageButton).precomposed(theme.chatServiceItemTextColor)
             cacheDict["chat_like_message_bubble"] = image
             return image
         }
     }
-    public func chat_like_message_unlike_bubble(theme: TelegramPresentationTheme) -> CGImage {
+    public func chat_like_message_unlike_bubble(theme: AnsiblePresentationTheme) -> CGImage {
         if let value = cacheDict["chat_like_message_unlike_bubble"] {
             return value
         } else {
-            let image = TelegramThemeHooks.shared.image(.iconLikeMessageButtonUnlike).precomposed(theme.chatServiceItemTextColor)
+            let image = AnsibleThemeHooks.shared.image(.iconLikeMessageButtonUnlike).precomposed(theme.chatServiceItemTextColor)
             cacheDict["chat_like_message_unlike_bubble"] = image
             return image
         }
     }
     
     private var _chatActionUrl: CGImage?
-    public func chatActionUrl(theme: TelegramPresentationTheme) -> CGImage {
+    public func chatActionUrl(theme: AnsiblePresentationTheme) -> CGImage {
         if let chatActionUrl = _chatActionUrl {
             return chatActionUrl
         } else {
-            let image = TelegramThemeHooks.shared.image(.iconInlineBotUrl).precomposed(theme.chatServiceItemTextColor)
+            let image = AnsibleThemeHooks.shared.image(.iconInlineBotUrl).precomposed(theme.chatServiceItemTextColor)
             _chatActionUrl = image
             return image
         }
     }
 
     private var _chatActionShare: CGImage?
-    public func chatActionShare(theme: TelegramPresentationTheme) -> CGImage {
+    public func chatActionShare(theme: AnsiblePresentationTheme) -> CGImage {
         if let chatActionShare = _chatActionShare {
             return chatActionShare
         } else {
-            let image = TelegramThemeHooks.shared.image(.iconInlineBotShare).precomposed(theme.chatServiceItemTextColor)
+            let image = AnsibleThemeHooks.shared.image(.iconInlineBotShare).precomposed(theme.chatServiceItemTextColor)
             _chatActionShare = image
             return image
         }
     }
 
     private var _chatActionProfile: CGImage?
-    public func chatActionProfile(theme: TelegramPresentationTheme) -> CGImage {
+    public func chatActionProfile(theme: AnsiblePresentationTheme) -> CGImage {
         if let chatActionProfile = _chatActionProfile {
             return chatActionProfile
         } else {
-            let image = TelegramThemeHooks.shared.image(.iconInlineBotProfile).precomposed(theme.chatServiceItemTextColor)
+            let image = AnsibleThemeHooks.shared.image(.iconInlineBotProfile).precomposed(theme.chatServiceItemTextColor)
             _chatActionProfile = image
             return image
         }
     }
     
     private var _chatActionSuggestApprove: CGImage?
-    public func chatActionSuggestApprove(theme: TelegramPresentationTheme) -> CGImage {
+    public func chatActionSuggestApprove(theme: AnsiblePresentationTheme) -> CGImage {
         if let chatActionSuggestApprove = _chatActionSuggestApprove {
             return chatActionSuggestApprove
         } else {
-            let image = TelegramThemeHooks.shared.image(.iconSuggestPostApprove).precomposed(theme.chatServiceItemTextColor)
+            let image = AnsibleThemeHooks.shared.image(.iconSuggestPostApprove).precomposed(theme.chatServiceItemTextColor)
             _chatActionSuggestApprove = image
             return image
         }
     }
     
     private var _chatActionSuggestDecline: CGImage?
-    public func chatActionSuggestDecline(theme: TelegramPresentationTheme) -> CGImage {
+    public func chatActionSuggestDecline(theme: AnsiblePresentationTheme) -> CGImage {
         if let chatActionSuggestDecline = _chatActionSuggestDecline {
             return chatActionSuggestDecline
         } else {
-            let image = TelegramThemeHooks.shared.image(.iconSuggestPostDecline).precomposed(theme.chatServiceItemTextColor)
+            let image = AnsibleThemeHooks.shared.image(.iconSuggestPostDecline).precomposed(theme.chatServiceItemTextColor)
             _chatActionSuggestDecline = image
             return image
         }
     }
     
     private var _chatActionSuggestEdit: CGImage?
-    public func chatActionSuggestEdit(theme: TelegramPresentationTheme) -> CGImage {
+    public func chatActionSuggestEdit(theme: AnsiblePresentationTheme) -> CGImage {
         if let chatActionSuggestEdit = _chatActionSuggestEdit {
             return chatActionSuggestEdit
         } else {
-            let image = TelegramThemeHooks.shared.image(.iconSuggestPostEdit).precomposed(theme.chatServiceItemTextColor)
+            let image = AnsibleThemeHooks.shared.image(.iconSuggestPostEdit).precomposed(theme.chatServiceItemTextColor)
             _chatActionSuggestEdit = image
             return image
         }
     }
     
     private var _chatActionCopy: CGImage?
-    public func chatActionCopy(theme: TelegramPresentationTheme) -> CGImage {
+    public func chatActionCopy(theme: AnsiblePresentationTheme) -> CGImage {
         if let chatActionUrl = _chatActionCopy {
             return chatActionUrl
         } else {
-            let image = TelegramThemeHooks.shared.image(.iconInlineBotCopy).precomposed(theme.chatServiceItemTextColor)
+            let image = AnsibleThemeHooks.shared.image(.iconInlineBotCopy).precomposed(theme.chatServiceItemTextColor)
             _chatActionCopy = image
             return image
         }
     }
     
     private var _chatActionWebUrl: CGImage?
-    public func chatActionWebUrl(theme: TelegramPresentationTheme) -> CGImage {
+    public func chatActionWebUrl(theme: AnsiblePresentationTheme) -> CGImage {
         if let chatActionWebUrl = _chatActionWebUrl {
             return chatActionWebUrl
         } else {
@@ -396,11 +396,11 @@ public final class TelegramChatColors {
     }
     
     private var _chatInvoiceAction: CGImage?
-    public func chatInvoiceAction(theme: TelegramPresentationTheme) -> CGImage {
+    public func chatInvoiceAction(theme: AnsiblePresentationTheme) -> CGImage {
         if let _chatInvoiceAction = _chatInvoiceAction {
             return _chatInvoiceAction
         } else {
-            let image = TelegramThemeHooks.shared.image(.iconChatInvoice).precomposed(theme.chatServiceItemTextColor)
+            let image = AnsibleThemeHooks.shared.image(.iconChatInvoice).precomposed(theme.chatServiceItemTextColor)
             _chatInvoiceAction = image
             return image
         }

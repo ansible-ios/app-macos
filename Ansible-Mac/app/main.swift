@@ -13,13 +13,13 @@ if let groupURL = ApiEnvironment.legacyContainerURL {
     armCrashMarker(folder: groupURL.appendingPathComponent(ApiEnvironment.prefix).path)
 }
 
-installTelegramThemeHooks()
+installAnsibleThemeHooks()
 installGeneralRowsHooks()
 installInputDataUIHooks()
 installFeatureNavigationHooks()
 installPasscodeUIHooks()
 installFilePanelsHooks()
-installTelegramLinksHooks()
+installAnsibleLinksHooks()
 installPhoneNumberUtilsHooks()
 installInputTextViewHooks()
 installInstantPageRenderHooks()

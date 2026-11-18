@@ -76,7 +76,7 @@ private final class RowItem : GeneralRowItem {
         options.append(.init(image: MonetizationHooks.shared.iconFragmentSplitRevenue().precomposed(theme.colors.accent), header: .init(.initialize(string: strings().monetizationIntroSplitTitle, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().monetizationIntroSplitText("%"), color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
 
         
-        options.append(.init(image: TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed(theme.colors.accent), header: .init(.initialize(string: strings().monetizationIntroWithdrawalTitle, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().monetizationIntroWithdrawalText, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
+        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed(theme.colors.accent), header: .init(.initialize(string: strings().monetizationIntroWithdrawalTitle, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().monetizationIntroWithdrawalText, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
 
         
         self.options = options

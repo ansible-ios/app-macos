@@ -10,12 +10,12 @@ final class QuoteIconBenchmarkTests: XCTestCase {
         guard let path = ProcessInfo.processInfo.environment["CHAT_COPY_ICON_BUNDLE"], let bundle = Bundle(path: path) else { throw XCTSkip("Supply the asset-only probe bundle") }
         TGUIKitTestBootstrap.install()
         let reverse = ProcessInfo.processInfo.environment["CHAT_QUOTE_ICON_REVERSE"] == "1"
-        let oldScale = System.backingScale, previous = TelegramThemeHooks.imageOverride
+        let oldScale = System.backingScale, previous = AnsibleThemeHooks.imageOverride
         System.updateScaleFactor(2)
-        defer { System.updateScaleFactor(oldScale); TelegramThemeHooks.imageOverride = previous }
+        defer { System.updateScaleFactor(oldScale); AnsibleThemeHooks.imageOverride = previous }
         let factory = QuoteIconTests()
         let makeSource = { bundle.image(forResource: NSImage.Name("Icon_CopyCode"))! }
-        TelegramThemeHooks.imageOverride = { name in name == .iconCopyCode ? makeSource() : NSImage(named: "Icon_Quote")! }
+        AnsibleThemeHooks.imageOverride = { name in name == .iconCopyCode ? makeSource() : NSImage(named: "Icon_Quote")! }
         var results: [String: [[Double]]] = [:]
         var sink = 0
         func record(_ name: String, count: Int, operations: [() -> Int]) {

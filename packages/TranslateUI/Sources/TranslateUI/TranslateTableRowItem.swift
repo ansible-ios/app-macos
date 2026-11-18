@@ -274,7 +274,7 @@ private final class TranslateHeaderButton : Control {
 
         if hasMenu {
             let circleSize: CGFloat = 16
-            let chevronIcon = TelegramThemeHooks.shared.image(.iconSmallChevronDown).precomposed(theme.colors.accent, flipVertical: false)
+            let chevronIcon = AnsibleThemeHooks.shared.image(.iconSmallChevronDown).precomposed(theme.colors.accent, flipVertical: false)
             let image = generateImage(NSMakeSize(circleSize, circleSize), contextGenerator: { size, ctx in
                 ctx.clear(size.bounds)
                 ctx.setFillColor(theme.colors.accent.withAlphaComponent(0.2).cgColor)
@@ -606,13 +606,13 @@ private final class TranslateTableRowView : GeneralContainableRowView {
                 containerView.addSubview(button)
                 self.copyButton = button
 
-                button.set(image: TelegramThemeHooks.shared.image(.iconCopyLink).precomposed(theme.colors.accent), for: .Normal)
+                button.set(image: AnsibleThemeHooks.shared.image(.iconCopyLink).precomposed(theme.colors.accent), for: .Normal)
                 button.sizeToFit()
                 let x = containerView.frame.width - item.viewType.innerInset.right - button.frame.width
                 let y = containerView.frame.height - item.viewType.innerInset.bottom - button.frame.height + 4
                 button.frame = CGRect(origin: CGPoint(x: x, y: y), size: button.frame.size)
             }
-            button.set(image: TelegramThemeHooks.shared.image(.iconCopyLink).precomposed(theme.colors.accent), for: .Normal)
+            button.set(image: AnsibleThemeHooks.shared.image(.iconCopyLink).precomposed(theme.colors.accent), for: .Normal)
             button.sizeToFit()
             button.removeAllHandlers()
             button.set(handler: { [weak self] _ in

@@ -55,7 +55,7 @@ private final class Auth_CodeEntryHeaderView : View {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         
         
         let layout = TextViewLayout(.initialize(string: self.type.header, color: theme.colors.text, font: Auth_Insets.headerFont))

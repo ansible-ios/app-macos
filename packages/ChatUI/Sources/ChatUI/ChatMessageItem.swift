@@ -225,7 +225,7 @@ public class ChatMessageItem: ChatRowItem {
     
     public private(set) var webpageLayout:WPLayout?
     
-    public override init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction,_ context: any AccountContextProtocol, _ entry: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction,_ context: any AccountContextProtocol, _ entry: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         let relativeDateReferenceTimestamp = Date().timeIntervalSince1970
         
          if let message = entry.message {

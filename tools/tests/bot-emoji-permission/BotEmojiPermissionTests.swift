@@ -108,7 +108,7 @@ final class ProfileController: BaseController {
     init(_ context: Context = Context()) { self.context = context; self._userArguments = Profile(context) }
     __LIFECYCLE__
 }
-struct TelegramThemeHooks {
+struct AnsibleThemeHooks {
     static let shared = Self(); enum Image { case iconPeerInfoBotStatus }
     func image(_ image: Image) -> Int { 0 }
 }

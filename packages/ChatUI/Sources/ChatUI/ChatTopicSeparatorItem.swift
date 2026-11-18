@@ -37,18 +37,18 @@ public class ChatTopicSeparatorItem : TableStickItem {
     public let color: NSColor
     public let entry: ChatHistoryEntry
     public let interaction: ChatInteraction?
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
     
     public var context: (any AccountContextProtocol)? {
         return interaction?.interactionContext
     }
 
     
-    public convenience init(_ initialSize:NSSize, _ entry:ChatHistoryEntry, interaction: ChatInteraction, theme: TelegramPresentationTheme) {
+    public convenience init(_ initialSize:NSSize, _ entry:ChatHistoryEntry, interaction: ChatInteraction, theme: AnsiblePresentationTheme) {
         self.init(initialSize, entry: entry, interaction: interaction, theme: theme)
     }
 
-    init(_ initialSize: NSSize, entry: ChatHistoryEntry, interaction: ChatInteraction? = nil, theme: TelegramPresentationTheme) {
+    init(_ initialSize: NSSize, entry: ChatHistoryEntry, interaction: ChatInteraction? = nil, theme: AnsiblePresentationTheme) {
         self.entry = entry
         self.interaction = interaction
         self.presentation = theme
@@ -68,7 +68,7 @@ public class ChatTopicSeparatorItem : TableStickItem {
     }
     
     public var shouldBlurService: Bool {
-        if TelegramUtilsHooks.shared.isLite(.blur) {
+        if AnsibleUtilsHooks.shared.isLite(.blur) {
             return false
         }
         return presentation.shouldBlurService || presentation.bubbled && presentation.backgroundMode.hasWallpaper
@@ -219,7 +219,7 @@ private class ChatTopicSeparatorItemView : TableStickView {
     }
 
     private var usesGlass: Bool {
-        return header && !TelegramUtilsHooks.shared.isLite(.blur)
+        return header && !AnsibleUtilsHooks.shared.isLite(.blur)
     }
 
     private func updateStyle(animated: Bool) {
@@ -228,7 +228,7 @@ private class ChatTopicSeparatorItemView : TableStickView {
         }
         let usesGlass = self.usesGlass
         let styleChanged = appliedGlass.flatMap { $0 != usesGlass } ?? false
-        let animated = animated && styleChanged && !TelegramUtilsHooks.shared.isLite(.animations) && !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
+        let animated = animated && styleChanged && !AnsibleUtilsHooks.shared.isLite(.animations) && !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
         appliedGlass = usesGlass
         if animated {
             glassView.isHidden = false
@@ -249,7 +249,7 @@ private class ChatTopicSeparatorItemView : TableStickView {
         }
         serviceView.change(opacity: usesGlass ? 0 : 1, animated: animated)
         let textColor = usesGlass ? item.presentation.colors.text : item.color
-        chevron.image = TelegramThemeHooks.shared.image(.iconAffiliateChevron).precomposed(textColor.withAlphaComponent(0.6), zoom: 0.8)
+        chevron.image = AnsibleThemeHooks.shared.image(.iconAffiliateChevron).precomposed(textColor.withAlphaComponent(0.6), zoom: 0.8)
         chevron.sizeToFit()
         textView.update(usesGlass ? item.glassLayout : item.layout)
         if case let .topicSeparator(_, .topic(threadId, info), _, _) = item.entry {

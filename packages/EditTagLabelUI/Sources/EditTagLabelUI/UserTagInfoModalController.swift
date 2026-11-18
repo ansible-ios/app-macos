@@ -404,7 +404,7 @@ private func entries(_ state: State, arguments: Arguments, config: UserTagInfoCo
     }
 
     entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_header, equatable: .init(state), comparable: nil, item: { initialSize, stableId in
-        return UserTagHeaderItem(initialSize, stableId: stableId, headerImage: TelegramThemeHooks.shared.image(.iconUserTag).precomposed(.white), circleColor: headerColor, dismiss: arguments.dismiss)
+        return UserTagHeaderItem(initialSize, stableId: stableId, headerImage: AnsibleThemeHooks.shared.image(.iconUserTag).precomposed(.white), circleColor: headerColor, dismiss: arguments.dismiss)
     }))
     index += 1
 
@@ -462,7 +462,7 @@ private func entries(_ state: State, arguments: Arguments, config: UserTagInfoCo
     sectionId += 1
 
     entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_preview, equatable: .init(state), comparable: nil, item: { initialSize, stableId in
-        return UserTagPreviewItem(initialSize, stableId: stableId, bubbleImage: TelegramThemeHooks.shared.image(.iconUserTagMessageBubble).precomposed(theme.colors.grayBackground), contentImage: TelegramThemeHooks.shared.image(.iconUserTagMessageContent).precomposed(), badgeType: config.badgeType)
+        return UserTagPreviewItem(initialSize, stableId: stableId, bubbleImage: AnsibleThemeHooks.shared.image(.iconUserTagMessageBubble).precomposed(theme.colors.grayBackground), contentImage: AnsibleThemeHooks.shared.image(.iconUserTagMessageContent).precomposed(), badgeType: config.badgeType)
     }))
     index += 1
 

@@ -38,13 +38,13 @@ public final class PremiumBoardingHeaderItem : GeneralRowItem {
     public let peer: Peer?
     public let context: (any AccountContextProtocol)
     public let status: PremiumEmojiStatusInfo?
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
     public let sceneType: SceneType
-    public convenience init(_ initialSize: NSSize, stableId: AnyHashable, context: (any AccountContextProtocol), presentation: TelegramPresentationTheme, isPremium: Bool, peer: Peer?, emojiStatus: PremiumEmojiStatusInfo?, source: PremiumLogEventsSource, premiumText: NSAttributedString?, viewType: GeneralViewType, sceneType: SceneType) {
+    public convenience init(_ initialSize: NSSize, stableId: AnyHashable, context: (any AccountContextProtocol), presentation: AnsiblePresentationTheme, isPremium: Bool, peer: Peer?, emojiStatus: PremiumEmojiStatusInfo?, source: PremiumLogEventsSource, premiumText: NSAttributedString?, viewType: GeneralViewType, sceneType: SceneType) {
         self.init(initialSize, stableId: stableId, context: context, presentation: presentation, isPremium: isPremium, peer: peer, emojiStatus: emojiStatus, source: source, premiumText: premiumText, viewType: viewType, sceneType: sceneType, analyticsContext: Analytics.shared.unresolvedContext())
     }
 
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: (any AccountContextProtocol), presentation: TelegramPresentationTheme, isPremium: Bool, peer: Peer?, emojiStatus: PremiumEmojiStatusInfo?, source: PremiumLogEventsSource, premiumText: NSAttributedString?, viewType: GeneralViewType, sceneType: SceneType, analyticsContext: AnalyticsContext) {
+    public init(_ initialSize: NSSize, stableId: AnyHashable, context: (any AccountContextProtocol), presentation: AnsiblePresentationTheme, isPremium: Bool, peer: Peer?, emojiStatus: PremiumEmojiStatusInfo?, source: PremiumLogEventsSource, premiumText: NSAttributedString?, viewType: GeneralViewType, sceneType: SceneType, analyticsContext: AnalyticsContext) {
         
         self.context = context
         self.peer = peer

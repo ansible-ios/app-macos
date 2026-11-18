@@ -289,7 +289,7 @@ private func entriesForView(_ view: EngineContactList, accountPeer: Peer?, searc
     var entries: [SelectPeerEntry] = []
     
     if let linkInvation = linkInvation {
-        let icon = TelegramThemeHooks.shared.image(.iconInviteViaLink).precomposed(theme.accentColor, flipVertical: true)
+        let icon = AnsibleThemeHooks.shared.image(.iconInviteViaLink).precomposed(theme.accentColor, flipVertical: true)
         entries.append(SelectPeerEntry.actionButton(strings().peerSelectInviteViaLink, icon, 0, theme, linkInvation, true, theme.accentColor))
     }
     if let item = additionTopItem {
@@ -394,7 +394,7 @@ private func entriesForView(_ view: EngineContactList, accountPeer: Peer?, searc
     }
     
     if entries.isEmpty {
-        entries.append(.searchEmpty(.init(), TelegramThemeHooks.shared.image(.iconEmptySearchResults).precomposed(theme.grayTextColor)))
+        entries.append(.searchEmpty(.init(), AnsibleThemeHooks.shared.image(.iconEmptySearchResults).precomposed(theme.grayTextColor)))
     }
     
     return entries
@@ -1175,7 +1175,7 @@ open class SelectChatsBehavior: SelectPeersBehavior {
             entries.append(.separator(index, customTheme(), strings().selectPeersUserTypes))
             index += 1
 
-            entries.append(.peer(SelectPeerValue(peer: TelegramFilterCategory(category: .premiumUsers), presence: nil, subscribers: nil, ignoreStatus: true), index, true))
+            entries.append(.peer(SelectPeerValue(peer: AnsibleFilterCategory(category: .premiumUsers), presence: nil, subscribers: nil, ignoreStatus: true), index, true))
             index += 1
             
             entries.append(.separator(index, customTheme(), strings().selectPeersChats))
@@ -1187,7 +1187,7 @@ open class SelectChatsBehavior: SelectPeersBehavior {
             entries.append(.separator(index, customTheme(), strings().selectPeersUserTypes))
             index += 1
 
-            entries.append(.peer(SelectPeerValue(peer: TelegramFilterCategory(category: .miniApps), presence: nil, subscribers: nil, ignoreStatus: true), index, true))
+            entries.append(.peer(SelectPeerValue(peer: AnsibleFilterCategory(category: .miniApps), presence: nil, subscribers: nil, ignoreStatus: true), index, true))
             index += 1
             
             entries.append(.separator(index, customTheme(), strings().selectPeersChats))
@@ -1902,7 +1902,7 @@ open class SelectPeersModalController : ModalViewController, Notifable {
                 if let peer = transaction.getPeer(peerId) {
                     peers.append(peer)
                 } else if peerId.namespace._internalGetInt32Value() == ChatListFilterPeerCategories.Namespace {
-                    peers.append(TelegramFilterCategory(category: .init(rawValue: Int32(peerId.id._internalGetInt64Value()))))
+                    peers.append(AnsibleFilterCategory(category: .init(rawValue: Int32(peerId.id._internalGetInt64Value()))))
                 }
             }
             return peers
@@ -2026,7 +2026,7 @@ open class SelectPeersModalController : ModalViewController, Notifable {
     }
     
     public override var modalHeader: (left: ModalHeaderData?, center: ModalHeaderData?, right: ModalHeaderData?)? {
-        return (left: ModalHeaderData(image: TelegramThemeHooks.shared.image(.iconChatSearchCancel).precomposed(behavior.customTheme().accentColor), handler: {  [weak self] in
+        return (left: ModalHeaderData(image: AnsibleThemeHooks.shared.image(.iconChatSearchCancel).precomposed(behavior.customTheme().accentColor), handler: {  [weak self] in
             self?.close()
         }), center: ModalHeaderData(title: self.defaultTitle, subtitle: self.defaultStatus), right: nil)
     }

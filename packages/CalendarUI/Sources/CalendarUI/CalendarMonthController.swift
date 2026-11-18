@@ -552,7 +552,7 @@ final class CalendarMonthHeaderView: TitledBarView {
         titleView.update(layout)
         titleView.userInteractionEnabled = false
         titleView.isSelectable = false
-        chevronView.image = TelegramThemeHooks.shared.image(.iconGeneralNext).precomposed(theme.colors.accent)
+        chevronView.image = AnsibleThemeHooks.shared.image(.iconGeneralNext).precomposed(theme.colors.accent)
         chevronView.sizeToFit()
         chevronView.isHidden = true
         titleControl.addSubview(titleView)

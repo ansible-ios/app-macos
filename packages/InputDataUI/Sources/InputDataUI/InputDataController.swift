@@ -33,7 +33,7 @@ open class InputDataModalController : ModalViewController {
     public var alwaysActiveHeader: Bool = false
     public var allowsVerticalScrollElasticity: Bool = true
 
-    public init(_ controller: InputDataController, modalInteractions: ModalInteractions? = nil, closeHandler: @escaping(@escaping()-> Void) -> Void = { $0() }, size: NSSize = NSMakeSize(340, 300), presentation: TelegramPresentationTheme = theme, isMain: Bool = true) {
+    public init(_ controller: InputDataController, modalInteractions: ModalInteractions? = nil, closeHandler: @escaping(@escaping()-> Void) -> Void = { $0() }, size: NSSize = NSMakeSize(340, 300), presentation: AnsiblePresentationTheme = theme, isMain: Bool = true) {
         controller.isModal = true
         self.controller = controller
         self._modalInteractions = modalInteractions

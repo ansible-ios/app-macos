@@ -68,7 +68,7 @@ public func generateGradientTintedImage(image: CGImage?, colors: [NSColor], dire
 }
 
 public func generateChatGroupToggleSelected(foregroundColor: NSColor, backgroundColor: NSColor) -> CGImage {
-    let icon = TelegramThemeHooks.shared.image(.iconCheck).precomposed(foregroundColor)
+    let icon = AnsibleThemeHooks.shared.image(.iconCheck).precomposed(foregroundColor)
     return generateImage(NSMakeSize(icon.backingSize.width + 2, icon.backingSize.height + 2), contextGenerator: { size, ctx in
         ctx.clear(NSMakeRect(0, 0, size.width, size.height))
         ctx.round(size, size.width/2)
@@ -80,7 +80,7 @@ public func generateChatGroupToggleSelected(foregroundColor: NSColor, background
 }
 
 public func generateChatGroupToggleUnselected(foregroundColor: NSColor, backgroundColor: NSColor) -> CGImage {
-    let icon = TelegramThemeHooks.shared.image(.iconSelectionUncheck).precomposed(foregroundColor)
+    let icon = AnsibleThemeHooks.shared.image(.iconSelectionUncheck).precomposed(foregroundColor)
     return generateImage(NSMakeSize(icon.backingSize.width, icon.backingSize.height), contextGenerator: { size, ctx in
         ctx.clear(NSMakeRect(0, 0, size.width, size.height))
         ctx.round(size, size.width/2)

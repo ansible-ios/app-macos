@@ -497,7 +497,7 @@ public enum UIChatListEntry : Identifiable, Comparable {
     public var stableId: UIChatListEntryId {
         switch self {
         case let .chat(entry, _, _, filterId, _, _, _, _, _, _, _):
-            if entry.renderedPeer.peer.map({ TelegramUtilsHooks.shared.peerIsForum($0._asPeer()) }) == true, entry.threadData == nil {
+            if entry.renderedPeer.peer.map({ AnsibleUtilsHooks.shared.peerIsForum($0._asPeer()) }) == true, entry.threadData == nil {
                 return .forum(entry.renderedPeer.peerId)
             } else {
                 return .chatId(entry.id, entry.renderedPeer.peerId, ChatListUIHooks.shared.chatListFilterId(filterId))

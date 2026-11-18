@@ -21,8 +21,8 @@ public final class Affiliate_HeaderItem : GeneralRowItem {
     fileprivate let infoLayout: TextViewLayout
     public let peer: Peer?
     public let context: (any AccountContextProtocol)
-    public let presentation: TelegramPresentationTheme
-    public init(_ initialSize: NSSize, stableId: AnyHashable, context: (any AccountContextProtocol), presentation: TelegramPresentationTheme, peer: Peer?, title: String, info: String, detectBold: Bool, viewType: GeneralViewType) {
+    public let presentation: AnsiblePresentationTheme
+    public init(_ initialSize: NSSize, stableId: AnyHashable, context: (any AccountContextProtocol), presentation: AnsiblePresentationTheme, peer: Peer?, title: String, info: String, detectBold: Bool, viewType: GeneralViewType) {
         
         self.context = context
         self.peer = peer

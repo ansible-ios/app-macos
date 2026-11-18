@@ -62,7 +62,7 @@ public func installCommunityHooks(_ hooks: CommunityHooks) {
 }
 
 public func generateCommunityHiddenIcon(backgroundColor: NSColor, iconColor: NSColor) -> CGImage {
-    let icon = TelegramThemeHooks.shared.image(.iconCommunityHidden).precomposed(iconColor)
+    let icon = AnsibleThemeHooks.shared.image(.iconCommunityHidden).precomposed(iconColor)
     let diameter: CGFloat = 20
     return generateImage(NSMakeSize(diameter, diameter), contextGenerator: { size, ctx in
         ctx.interpolationQuality = .high

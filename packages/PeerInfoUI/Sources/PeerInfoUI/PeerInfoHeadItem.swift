@@ -41,7 +41,7 @@ private func profileButtonColor(over background: NSColor, isDark: Bool) -> NSCol
     return NSColor(srgbRed: overlay(red), green: overlay(green), blue: overlay(blue), alpha: 1)
 }
 
-private func actionItems<Context: AccountContextProtocol>(item: PeerInfoHeadItem<Context>, width: CGFloat, theme: TelegramPresentationTheme) -> [ActionItem] {
+private func actionItems<Context: AccountContextProtocol>(item: PeerInfoHeadItem<Context>, width: CGFloat, theme: AnsiblePresentationTheme) -> [ActionItem] {
     
     var items:[ActionItem] = []
     var analyticsItems: [ObjectIdentifier: AnalyticsMenuItems.PeerInfoMore] = [:]
@@ -836,7 +836,7 @@ class PeerInfoHeadItem<Context: AccountContextProtocol>: GeneralRowItem {
                 colors = .default
             }
             
-            let compoment = AvatarStoryIndicatorComponent(state: storyState, presentation: theme, activeColors: colors, isRoundedRect: peer.map({ TelegramUtilsHooks.shared.peerIsForum($0) }) == true)
+            let compoment = AvatarStoryIndicatorComponent(state: storyState, presentation: theme, activeColors: colors, isRoundedRect: peer.map({ AnsibleUtilsHooks.shared.peerIsForum($0) }) == true)
             self.avatarStoryComponent = compoment
             
             self.hasLiveStream = storyState.hasLiveItems
@@ -992,7 +992,7 @@ class PeerInfoHeadItem<Context: AccountContextProtocol>: GeneralRowItem {
     }
    
     var isForum: Bool {
-        return self.peer.map({ TelegramUtilsHooks.shared.peerIsForum($0) }) == true
+        return self.peer.map({ AnsibleUtilsHooks.shared.peerIsForum($0) }) == true
     }
     var isTopic: Bool {
         return self.isForum && threadData != nil
@@ -2636,7 +2636,7 @@ private final class PeerInfoHeadView<Context: AccountContextProtocol> : GeneralC
         item.table?.addScroll(listener: listener)
         
         if let monoforum = peerViewMonoforumMainPeer(item.peerView), let peer = item.effectivePeer, item.threadPeer == nil {
-            photoView.setState(account: item.context.account, state: .PeerAvatar(peer, TelegramUtilsHooks.shared.peerLetters(monoforum), monoforum.smallProfileImage, monoforum.namePeerColor, nil, nil, true, nil))
+            photoView.setState(account: item.context.account, state: .PeerAvatar(peer, AnsibleUtilsHooks.shared.peerLetters(monoforum), monoforum.smallProfileImage, monoforum.namePeerColor, nil, nil, true, nil))
         } else {
             photoView.setPeer(account: item.context.account, peer: item.effectivePeer)
         }

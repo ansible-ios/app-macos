@@ -29,11 +29,11 @@ public protocol PreviewSenderEmojiesController: ViewController {
 }
 
 public struct PreviewSenderUIHooks {
-    public let makeEmojies: (any AccountContextProtocol, TelegramPresentationTheme) -> PreviewSenderEmojiesController
+    public let makeEmojies: (any AccountContextProtocol, AnsiblePresentationTheme) -> PreviewSenderEmojiesController
     public let updateEmojies: (PreviewSenderEmojiesController, PeerId, @escaping (String, CGRect?) -> Void, @escaping (StickerPackItem, StarGift.UniqueGift?, StickerPackCollectionInfo?, Int32?, NSRect?) -> Void, ChatInteraction) -> Void
     public let showMessageEffectsWindow: (any AccountContextProtocol, PeerId, [PreviewSenderEmojiSelectedItem], @escaping (StickerPackItem, NSRect?) -> Void, NSView & StickerFramesCollector) -> Void
 
-    public init(makeEmojies: @escaping (any AccountContextProtocol, TelegramPresentationTheme) -> PreviewSenderEmojiesController,
+    public init(makeEmojies: @escaping (any AccountContextProtocol, AnsiblePresentationTheme) -> PreviewSenderEmojiesController,
                 updateEmojies: @escaping (PreviewSenderEmojiesController, PeerId, @escaping (String, CGRect?) -> Void, @escaping (StickerPackItem, StarGift.UniqueGift?, StickerPackCollectionInfo?, Int32?, NSRect?) -> Void, ChatInteraction) -> Void,
                 showMessageEffectsWindow: @escaping (any AccountContextProtocol, PeerId, [PreviewSenderEmojiSelectedItem], @escaping (StickerPackItem, NSRect?) -> Void, NSView & StickerFramesCollector) -> Void) {
         self.makeEmojies = makeEmojies

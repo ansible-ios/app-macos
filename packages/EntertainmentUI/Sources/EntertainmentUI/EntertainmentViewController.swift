@@ -138,7 +138,7 @@ public final class EntertainmentView : View {
 
         self.edgeView.direction = .vertical(true)
         self.edgeView.isEventLess = true
-        self.tabs.usesMenuMaterial = !TelegramUtilsHooks.shared.isLite(.blur)
+        self.tabs.usesMenuMaterial = !AnsibleUtilsHooks.shared.isLite(.blur)
 
         self.glassSettingObserver = NotificationCenter.default.addObserver(forName: systemLiquidGlassDidChange, object: nil, queue: .main) { [weak self] _ in
             self?.installMenuBackground(retheme: true)
@@ -189,13 +189,13 @@ public final class EntertainmentView : View {
         menuVeil = nil
         menuRim = nil
         menuHairline = nil
-        if #available(macOS 26.0, *), System.liquidGlass, System.liquidGlassAvailable, !TelegramUtilsHooks.shared.isLite(.blur) {
+        if #available(macOS 26.0, *), System.liquidGlass, System.liquidGlassAvailable, !AnsibleUtilsHooks.shared.isLite(.blur) {
             let glass = NSGlassEffectView(frame: .zero)
             glass.style = .regular
             glass.cornerRadius = 18
             glass.tintColor = nil
             menuGlass = glass
-        } else if System.blurEnabled, !TelegramUtilsHooks.shared.isLite(.blur) {
+        } else if System.blurEnabled, !AnsibleUtilsHooks.shared.isLite(.blur) {
             let blur = NSVisualEffectView(frame: .zero)
             blur.wantsLayer = true
             blur.material = .menu
@@ -360,7 +360,7 @@ public enum EntertainmentViewControllerMode {
     case intro
 }
 
-public class EntertainmentViewController<Context: AccountContextProtocol>: TelegramGenericViewController<EntertainmentView, Context> {
+public class EntertainmentViewController<Context: AccountContextProtocol>: AnsibleGenericViewController<EntertainmentView, Context> {
     public override var defaultBarTitle: String {
         return localizedString("Telegram.EntertainmentViewController")
     }
@@ -495,9 +495,9 @@ public class EntertainmentViewController<Context: AccountContextProtocol>: Teleg
     }
     
 
-    private var presentation: TelegramPresentationTheme? = nil
+    private var presentation: AnsiblePresentationTheme? = nil
     
-    public init(size:NSSize, context:Context, mode: Mode = .common, presentation: TelegramPresentationTheme? = nil) {
+    public init(size:NSSize, context:Context, mode: Mode = .common, presentation: AnsiblePresentationTheme? = nil) {
         self.mode = mode
         self.presentation = presentation
         self.emoji = EmojiesController(context, mode: mode == .stories ? .stories : .emoji, presentation: presentation)

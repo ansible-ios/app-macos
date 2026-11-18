@@ -267,7 +267,7 @@ private final class AffiliateRowView : GeneralContainableRowView {
                 ctx.setFillColor(theme.colors.accent.cgColor)
                 ctx.fillEllipse(in: size.bounds.insetBy(dx: 2, dy: 2))
                 
-                let image = TelegramThemeHooks.shared.image(.iconAffiliateLinkSmallBadge).precomposed(theme.colors.underSelectedColor)
+                let image = AnsibleThemeHooks.shared.image(.iconAffiliateLinkSmallBadge).precomposed(theme.colors.underSelectedColor)
                 ctx.draw(image, in: size.bounds.focus(image.systemSize))
                 
             })
@@ -401,9 +401,9 @@ private func entries(_ state: State, arguments: Arguments, onlyDemo: Bool) -> [I
        
         entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_promo, equatable: .init(state), comparable: nil, item: { initialSize, stableId in
             return Affiliate_PromoItem(initialSize, stableId: stableId, context: arguments.context, options: [
-                .init(image: TelegramThemeHooks.shared.image(.iconBotAffiliateShield).precomposed(theme.colors.accent), title: strings().affiliateSetupIntroJoinTitle1, text: strings().affiliateSetupIntroJoinText1),
-                .init(image: TelegramThemeHooks.shared.image(.iconBotAffiliateEye).precomposed(theme.colors.accent), title: strings().affiliateSetupIntroJoinTitle2, text: strings().affiliateSetupIntroJoinText2),
-                .init(image: TelegramThemeHooks.shared.image(.iconBotAffiliateThumb).precomposed(theme.colors.accent), title: strings().affiliateSetupIntroJoinTitle3, text: strings().affiliateSetupIntroJoinText3)
+                .init(image: AnsibleThemeHooks.shared.image(.iconBotAffiliateShield).precomposed(theme.colors.accent), title: strings().affiliateSetupIntroJoinTitle1, text: strings().affiliateSetupIntroJoinText1),
+                .init(image: AnsibleThemeHooks.shared.image(.iconBotAffiliateEye).precomposed(theme.colors.accent), title: strings().affiliateSetupIntroJoinTitle2, text: strings().affiliateSetupIntroJoinText2),
+                .init(image: AnsibleThemeHooks.shared.image(.iconBotAffiliateThumb).precomposed(theme.colors.accent), title: strings().affiliateSetupIntroJoinTitle3, text: strings().affiliateSetupIntroJoinText3)
             ])
         }))
         
@@ -457,7 +457,7 @@ private func entries(_ state: State, arguments: Arguments, onlyDemo: Bool) -> [I
                 }))
             }
             return items
-        }, afterImage: TelegramThemeHooks.shared.image(.iconAffiliateExpand).precomposed(theme.colors.accent))
+        }, afterImage: AnsibleThemeHooks.shared.image(.iconAffiliateExpand).precomposed(theme.colors.accent))
     } else {
         rightItem = .init(isLoading: false, text: nil)
     }

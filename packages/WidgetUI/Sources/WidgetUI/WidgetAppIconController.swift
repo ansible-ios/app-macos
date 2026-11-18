@@ -59,7 +59,7 @@ private struct State : Equatable {
     }
 }
 
-final class WidgetAppIconController<Context: AccountContextProtocol> : TelegramGenericViewController<WidgetView<WidgetAppIconContainer>, Context> {
+final class WidgetAppIconController<Context: AccountContextProtocol> : AnsibleGenericViewController<WidgetView<WidgetAppIconContainer>, Context> {
     
     override var defaultBarTitle: String {
         return localizedString("Telegram.WidgetAppIconController")

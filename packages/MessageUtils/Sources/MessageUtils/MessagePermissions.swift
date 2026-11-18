@@ -153,7 +153,7 @@ public func canDeleteForEveryoneMessage(_ message:Message, context: any AccountC
     } else if let user = message.peers[message.id.peerId] as? TelegramUser, user.isBot {
         return false
     } else if message.peers[message.id.peerId] is TelegramUser || message.peers[message.id.peerId] is TelegramGroup {
-        if message.id.peerId == TelegramUtilsHooks.shared.repliesPeerId() {
+        if message.id.peerId == AnsibleUtilsHooks.shared.repliesPeerId() {
             return false
         }
         if context.limitConfiguration.canRemoveIncomingMessagesInPrivateChats && message.peers[message.id.peerId] is TelegramUser {

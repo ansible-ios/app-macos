@@ -143,8 +143,8 @@ public class OngoingGroupCallEncryptionContextImpl: OngoingGroupCallEncryptionCo
 
 
 
-public final class TelegramE2EEncryptionProviderImpl: TelegramE2EEncryptionProvider {
-    public static let shared = TelegramE2EEncryptionProviderImpl()
+public final class AnsibleE2EEncryptionProviderImpl: TelegramE2EEncryptionProvider {
+    public static let shared = AnsibleE2EEncryptionProviderImpl()
     
     public func generateKeyPair() -> TelegramKeyPair? {
         guard let keyPair = TdKeyPair.generate() else {

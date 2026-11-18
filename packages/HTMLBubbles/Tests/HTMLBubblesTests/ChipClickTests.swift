@@ -59,8 +59,8 @@ final class ChipClickTests: XCTestCase {
                 switch action {
                 case let .openLink(url):
                     recorded.urls.append("openLink " + url.absoluteString)
-                case let .openTelegramLink(url):
-                    recorded.urls.append("openTelegramLink " + url.absoluteString)
+                case let .openAnsibleLink(url):
+                    recorded.urls.append("openAnsibleLink " + url.absoluteString)
                 }
             }
             let appearance = HTMLBubbleAppearance(key: "test", css: "", dark: false, incoming: true)

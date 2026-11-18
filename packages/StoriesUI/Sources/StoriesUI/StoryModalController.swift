@@ -43,7 +43,7 @@ struct StoryReactionAction {
 
 private let storedTheme = StoriesHooks.shared.generateTheme(nightAccentPalette, nil, false, 13, .init())
 
-public var darkAppearance: TelegramPresentationTheme {
+public var darkAppearance: AnsiblePresentationTheme {
     if theme.colors.isDark {
         return theme
     } else {
@@ -511,11 +511,11 @@ final class StoryArguments {
     }
 }
 
-private let next_chevron_hover = TelegramThemeHooks.shared.image(.iconStoryChevron).precomposed(NSColor.white.withAlphaComponent(1))
-private let prev_chevron_hover = TelegramThemeHooks.shared.image(.iconStoryChevron).precomposed(NSColor.white.withAlphaComponent(1), flipHorizontal: true)
+private let next_chevron_hover = AnsibleThemeHooks.shared.image(.iconStoryChevron).precomposed(NSColor.white.withAlphaComponent(1))
+private let prev_chevron_hover = AnsibleThemeHooks.shared.image(.iconStoryChevron).precomposed(NSColor.white.withAlphaComponent(1), flipHorizontal: true)
 
-private let close_image = TelegramThemeHooks.shared.image(.iconStoryClose).precomposed(NSColor.white.withAlphaComponent(0.53))
-private let close_image_hover = TelegramThemeHooks.shared.image(.iconStoryClose).precomposed(NSColor.white.withAlphaComponent(1))
+private let close_image = AnsibleThemeHooks.shared.image(.iconStoryClose).precomposed(NSColor.white.withAlphaComponent(0.53))
+private let close_image_hover = AnsibleThemeHooks.shared.image(.iconStoryClose).precomposed(NSColor.white.withAlphaComponent(1))
 
 
 func storyReactionsWindow(context: any AccountContextProtocol, peerId: PeerId, react: @escaping(StoryReactionAction)->Void, onClose: @escaping()->Void, selectedItems: [EmojiesSectionRowItem.SelectedItem]) -> Signal<Window?, NoError> {

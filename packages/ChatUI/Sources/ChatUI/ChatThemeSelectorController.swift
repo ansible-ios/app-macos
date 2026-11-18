@@ -22,11 +22,11 @@ public struct ThemeTuple : Comparable, Identifiable {
     
     public var chatTheme: ChatTheme?
     public var image: CGImage?
-    public var theme: TelegramPresentationTheme
+    public var theme: AnsiblePresentationTheme
     public var index: Int
     public var selected: Bool = false
     
-    public init(chatTheme: ChatTheme? = nil, image: CGImage? = nil, theme: TelegramPresentationTheme, index: Int, selected: Bool = false) {
+    public init(chatTheme: ChatTheme? = nil, image: CGImage? = nil, theme: AnsiblePresentationTheme, index: Int, selected: Bool = false) {
         self.chatTheme = chatTheme
         self.image = image
         self.theme = theme
@@ -140,7 +140,7 @@ final class ChatThemeSelectorView : View {
     private var pendingSnapButtons: Set<TextButton> = []
     
     
-    fileprivate func updateThemes(_ peer: Peer?, _ themes: [ThemeTuple], installedTheme: ChatTheme?, wallpaper: ThemeWallpaper, bubbled: Bool, emojies: [String: StickerPackItem], context: any AccountContextProtocol, chatTheme: (ChatTheme?, TelegramPresentationTheme)?, previewCurrent: @escaping((ChatTheme?, TelegramPresentationTheme)?) -> Void, updateBubbled:@escaping(Bool)->Void) {
+    fileprivate func updateThemes(_ peer: Peer?, _ themes: [ThemeTuple], installedTheme: ChatTheme?, wallpaper: ThemeWallpaper, bubbled: Bool, emojies: [String: StickerPackItem], context: any AccountContextProtocol, chatTheme: (ChatTheme?, AnsiblePresentationTheme)?, previewCurrent: @escaping((ChatTheme?, AnsiblePresentationTheme)?) -> Void, updateBubbled:@escaping(Bool)->Void) {
         
         let animated = !first
         first = false
@@ -379,7 +379,7 @@ final class ChatThemeSelectorView : View {
     }
 }
 
-final class ChatThemeSelectorController<Context: AccountContextProtocol> : TelegramGenericViewController<ChatThemeSelectorView, Context> {
+final class ChatThemeSelectorController<Context: AccountContextProtocol> : AnsibleGenericViewController<ChatThemeSelectorView, Context> {
     override var defaultBarTitle: String {
         return localizedString("Telegram.ChatThemeSelectorController")
     }
@@ -389,23 +389,23 @@ final class ChatThemeSelectorController<Context: AccountContextProtocol> : Teleg
     
     private let giftsContext: UniqueGiftChatThemesContext
     
-    private let chatTheme: Signal<(ChatTheme?, TelegramPresentationTheme), NoError>
-    private var currentSelected: (ChatTheme?, TelegramPresentationTheme)? {
+    private let chatTheme: Signal<(ChatTheme?, AnsiblePresentationTheme), NoError>
+    private var currentSelected: (ChatTheme?, AnsiblePresentationTheme)? {
         didSet {
             currentSelectedValue.set(.single(currentSelected))
         }
     }
     
-    private let currentSelectedValue: Promise<(ChatTheme?, TelegramPresentationTheme)?> = Promise(nil)
+    private let currentSelectedValue: Promise<(ChatTheme?, AnsiblePresentationTheme)?> = Promise(nil)
     
     var onReady:(ChatThemeSelectorController)->Void = { _ in }
     var close: (Bool)->Void = { _ in }
 
-    var previewCurrent: ((ChatTheme?, TelegramPresentationTheme?)) -> Void = { _ in }
+    var previewCurrent: ((ChatTheme?, AnsiblePresentationTheme?)) -> Void = { _ in }
     
     private let bubbled = ValuePromise(theme.bubbled, ignoreRepeated: true)
     private let installedTheme: ChatTheme?
-    init(_ context: Context, installedTheme: ChatTheme?, chatTheme: Signal<(ChatTheme?, TelegramPresentationTheme), NoError>, chatInteraction: ChatInteraction) {
+    init(_ context: Context, installedTheme: ChatTheme?, chatTheme: Signal<(ChatTheme?, AnsiblePresentationTheme), NoError>, chatInteraction: ChatInteraction) {
         self.chatTheme = chatTheme
         self.installedTheme = installedTheme
         self.chatInteraction = chatInteraction
@@ -488,7 +488,7 @@ final class ChatThemeSelectorController<Context: AccountContextProtocol> : Teleg
         
         
         currentSelectedValue.set(chatTheme |> take(1) |> map { $0 })
-        var temprorary: (ChatTheme?, TelegramPresentationTheme)? = nil
+        var temprorary: (ChatTheme?, AnsiblePresentationTheme)? = nil
 
         _ = (currentSelectedValue.get() |> take(1)).start(next: { [weak self] value in
             self?.currentSelected = value
@@ -498,7 +498,7 @@ final class ChatThemeSelectorController<Context: AccountContextProtocol> : Teleg
         let animatedEmojiStickers = context.diceCache.animatedEmojies
         disposable.set(combineLatest(queue: .mainQueue(), themesAndThumbs, chatTheme, currentSelectedValue.get(), animatedEmojiStickers).start(next: { [weak self] themes, chatTheme, currentSelected, emojies in
             
-            let selected: (ChatTheme?, TelegramPresentationTheme)? = temprorary
+            let selected: (ChatTheme?, AnsiblePresentationTheme)? = temprorary
             let bubbled = themes.1
                         
             self?.genericView.updateThemes(peer, themes.0, installedTheme: installedTheme, wallpaper: chatTheme.1.wallpaper, bubbled: bubbled, emojies: emojies, context: context, chatTheme: selected, previewCurrent: { preview in

@@ -78,7 +78,7 @@ public final class AvatarContentView: View {
         let frameSize = self.frame.size
 
         
-        let signal: Signal<(CGImage, CGImage)?, NoError> = peerAvatarImage(account: account, photo: .peer(peer, peer.smallProfileImage, peer.namePeerColor, TelegramUtilsHooks.shared.peerLetters(peer), nil, nil), displayDimensions: size, scale: System.backingScale, font: .avatar(size.height / 3 + 3), genCap: true, synchronousLoad: synchronousLoad) |> runOn(.mainQueue()) |> map { image in
+        let signal: Signal<(CGImage, CGImage)?, NoError> = peerAvatarImage(account: account, photo: .peer(peer, peer.smallProfileImage, peer.namePeerColor, AnsibleUtilsHooks.shared.peerLetters(peer), nil, nil), displayDimensions: size, scale: System.backingScale, font: .avatar(size.height / 3 + 3), genCap: true, synchronousLoad: synchronousLoad) |> runOn(.mainQueue()) |> map { image in
             if let image = image.0 {
                 let clipImage = avatarClipImage(image, frameSize: frameSize, inset: inset)
                 return (image, clipImage)
@@ -211,7 +211,7 @@ public final class AvatarContentLayer: SimpleLayer {
         let frameSize = self.frame.size
 
         
-        let signal: Signal<(CGImage, CGImage)?, NoError> = peerAvatarImage(account: context.account, photo: .peer(peer, peer.smallProfileImage, peer.namePeerColor, TelegramUtilsHooks.shared.peerLetters(peer), nil, nil), displayDimensions: size, scale: System.backingScale, font: .avatar(size.height / 3 + 3), genCap: true, synchronousLoad: synchronousLoad) |> map { image in
+        let signal: Signal<(CGImage, CGImage)?, NoError> = peerAvatarImage(account: context.account, photo: .peer(peer, peer.smallProfileImage, peer.namePeerColor, AnsibleUtilsHooks.shared.peerLetters(peer), nil, nil), displayDimensions: size, scale: System.backingScale, font: .avatar(size.height / 3 + 3), genCap: true, synchronousLoad: synchronousLoad) |> map { image in
             if let image = image.0 {
                 let clipImage = avatarClipImage(image, frameSize: frameSize, inset: inset)
                 return (image, clipImage)

@@ -15,7 +15,7 @@ final class PreparedChatThemesTests: XCTestCase {
         purgeImageCachesForMemoryPressure()
     }
 
-    static func presentation(fontSize: CGFloat = 13) -> TelegramPresentationTheme {
+    static func presentation(fontSize: CGFloat = 13) -> AnsiblePresentationTheme {
         return generateTheme(palette: nightAccentPalette, cloudTheme: nil, bubbled: true, fontSize: fontSize, wallpaper: ThemeWallpaper(), liquidGlass: false)
     }
 
@@ -43,7 +43,7 @@ final class PreparedChatThemesTests: XCTestCase {
     func testEquivalentPresentationInputsDoNotRebuildThemes() {
         let queue = Queue(name: "PreparedChatThemesTests")
         let presentation = Self.presentation()
-        let input = ValuePromise<TelegramPresentationTheme>(presentation, ignoreRepeated: false)
+        let input = ValuePromise<AnsiblePresentationTheme>(presentation, ignoreRepeated: false)
         let reads = Atomic<Int>(value: 0)
         var emissions = 0
         let prepared = expectation(description: "Initial preparation")
@@ -68,7 +68,7 @@ final class PreparedChatThemesTests: XCTestCase {
         let queue = Queue(name: "PreparedChatThemesCancellationTests")
         let gate = DispatchSemaphore(value: 0)
         queue.justDispatch { gate.wait() }
-        let input = ValuePromise<TelegramPresentationTheme>(Self.presentation(), ignoreRepeated: false)
+        let input = ValuePromise<AnsiblePresentationTheme>(Self.presentation(), ignoreRepeated: false)
         let prepared = expectation(description: "Latest selection prepared")
         var values: [CGFloat] = []
         let disposable = preparedChatThemes(presentation: input.get(), themes: .single([Self.cloudTheme()]), cacheWallpaper: { .single($0) }, queue: queue).start(next: { themes in
@@ -221,7 +221,7 @@ final class PreparedChatThemesTests: XCTestCase {
         let dark = TelegramThemeSettings(baseTheme: .tinted, accentColor: 0xff0000, outgoingAccentColor: nil, messageColors: [], animateMessageColors: false, wallpaper: .color(0xff0000))
         let light = TelegramThemeSettings(baseTheme: .day, accentColor: 0x00ff00, outgoingAccentColor: nil, messageColors: [], animateMessageColors: false, wallpaper: .color(0x00ff00))
         let theme = AnsibleTheme(id: 1, accessHash: 0, slug: "test", emoticon: "🎨", title: "Test", file: nil, settings: [dark, light], isCreator: false, isDefault: false, installCount: nil)
-        let input = ValuePromise<TelegramPresentationTheme>(Self.presentation(), ignoreRepeated: false)
+        let input = ValuePromise<AnsiblePresentationTheme>(Self.presentation(), ignoreRepeated: false)
         let darkReady = expectation(description: "Dark theme ready")
         let lightReady = expectation(description: "Light theme ready")
         let disposable = preparedChatThemes(presentation: input.get(), themes: .single([theme]), cacheWallpaper: { .single($0) }).start(next: { themes in

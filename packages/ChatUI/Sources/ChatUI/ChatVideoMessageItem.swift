@@ -15,7 +15,7 @@ public class ChatVideoMessageItem: ChatMediaItem {
 
     fileprivate var isTranslateLoading: Bool
 
-    public override init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         self.isTranslateLoading = object.additionalData.transcribeTranslateLoading
 
         super.init(initialSize, chatInteraction, context, object, theme: theme)

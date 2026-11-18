@@ -114,7 +114,7 @@ public final class ChatRichTextRowItem: ChatMessageItem {
         self.chatInteraction.toggleDetails(DetailsMessageIndex(messageId: messageId, index: index))
     }
 
-    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ entry: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public override init(_ initialSize: NSSize, _ chatInteraction: ChatInteraction, _ context: any AccountContextProtocol, _ entry: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         var richAttribute = entry.message?.attributes.compactMap({ $0 as? RichTextMessageAttribute }).first
         self.hasTranslationState = entry.additionalData.translate != nil
         // Live translation: a rich message's translated content arrives as an InstantPage on the
@@ -397,7 +397,7 @@ public final class ChatRichTextRowItem: ChatMessageItem {
         return (requiredRichSpacing + 0.5) / richLineHeight
     }
 
-    public static func buildInstantPageTheme(for theme: TelegramPresentationTheme, isIncoming: Bool, isBubbled: Bool, quoteAccentColor: NSColor? = nil) -> InstantPageTheme {
+    public static func buildInstantPageTheme(for theme: AnsiblePresentationTheme, isIncoming: Bool, isBubbled: Bool, quoteAccentColor: NSColor? = nil) -> InstantPageTheme {
         let isDark = theme.colors.isDark
         let palette = theme.colors
 
@@ -1343,7 +1343,7 @@ public final class RichTextDraftPreviewView: View {
     private let documentControl = RichDraftDocumentView()
     private let pageView = InstantPageV2View(frame: .zero)
     private var page: InstantPage?
-    private var presentationTheme: TelegramPresentationTheme = theme
+    private var presentationTheme: AnsiblePresentationTheme = theme
     private weak var chatInteraction: ChatInteraction?
     /// Reopen the draft in the editor when its content is clicked.
     public var onReopen: (() -> Void)?
@@ -1593,7 +1593,7 @@ public final class RichTextDraftPreviewView: View {
     /// Supplies `InstantPageV2View` what it needs to render embedded media (photo/video/file/map/audio):
     /// a synthetic local parent `Message` carrying the media + the matching layout parameters. Without it,
     /// media falls back to grey placeholders.
-    private func makeMediaConfig(_ chatInteraction: ChatInteraction, _ presentationTheme: TelegramPresentationTheme) -> (Media, CGSize, Int, Bool) -> (parent: Message, parameters: ChatMediaLayoutParameters)? {
+    private func makeMediaConfig(_ chatInteraction: ChatInteraction, _ presentationTheme: AnsiblePresentationTheme) -> (Media, CGSize, Int, Bool) -> (parent: Message, parameters: ChatMediaLayoutParameters)? {
         return { [weak chatInteraction] media, size, _, isFile in
             guard let interaction = chatInteraction else { return nil }
             let context = interaction.interactionContext
@@ -1645,7 +1645,7 @@ public final class RichTextDraftPreviewView: View {
 
     /// Lays the draft out at `width` and returns the (capped) height the host should reserve.
     @discardableResult
-    public func update(instantPage: InstantPage, width: CGFloat, chatInteraction: ChatInteraction?, theme presentationTheme: TelegramPresentationTheme) -> CGFloat {
+    public func update(instantPage: InstantPage, width: CGFloat, chatInteraction: ChatInteraction?, theme presentationTheme: AnsiblePresentationTheme) -> CGFloat {
         self.page = instantPage
         self.presentationTheme = presentationTheme
         self.chatInteraction = chatInteraction

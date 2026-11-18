@@ -987,7 +987,7 @@ public final class GroupCallUIController : ViewController {
                 verifyAlert(for: window, header: strings().voiceChatEndTitle, information: strings().voiceChatEndText, ok: strings().voiceChatEndOK, option: strings().voiceChatEndThird, optionIsSelected: false, successHandler: {
                     [weak self] result in
                     _ = self?.data.call.sharedContext.endGroupCall(terminate: result == .thrid).start()
-                }, presentation: TelegramThemeHooks.shared.darkAppearance())
+                }, presentation: AnsibleThemeHooks.shared.darkAppearance())
             } else {
                 _ = self.data.call.sharedContext.endGroupCall(terminate: false).start()
             }
@@ -1105,7 +1105,7 @@ public final class GroupCallUIController : ViewController {
                 } else if let window = window {
                     _ = showModalProgress(signal: accountContext.engine.peers.removePeerMember(peerId: peerId, memberId: peer.id), for: window).start()
                 }
-            }, presentation: TelegramThemeHooks.shared.darkAppearance())
+            }, presentation: AnsibleThemeHooks.shared.darkAppearance())
         }, openInfo: { [weak self] peer in
             guard let strongSelf = self else {
                 return
@@ -1144,7 +1144,7 @@ public final class GroupCallUIController : ViewController {
                 guard let info, let inviteLinks else {
                     return
                 }
-                showModal(with: GroupCallInviteLinkController(context: context, source: .groupCall(.init(slug: "", link: inviteLinks.listenerLink, callInfo: info)), mode: .share, presentation: TelegramThemeHooks.shared.darkAppearance()), for: window)
+                showModal(with: GroupCallInviteLinkController(context: context, source: .groupCall(.init(slug: "", link: inviteLinks.listenerLink, callInfo: info)), mode: .share, presentation: AnsibleThemeHooks.shared.darkAppearance()), for: window)
 
             })
         }, shareSource: { [weak self] mode, takeFirst in
@@ -1189,7 +1189,7 @@ public final class GroupCallUIController : ViewController {
                                 f(true)
                             }, cancelHandler: {
                                 f(false)
-                            }, presentation: TelegramThemeHooks.shared.darkAppearance())
+                            }, presentation: AnsibleThemeHooks.shared.darkAppearance())
                         } else {
                             f(true)
                         }
@@ -1360,7 +1360,7 @@ public final class GroupCallUIController : ViewController {
                         if let window = window {
                             showModalText(for: window, text: strings().voiceChatToastStop)
                         }
-                    }, presentation: TelegramThemeHooks.shared.darkAppearance())
+                    }, presentation: AnsibleThemeHooks.shared.darkAppearance())
                 } else {
                     showModalText(for: window, text: strings().voiceChatAlertRecording)
                 }
@@ -2201,7 +2201,7 @@ public final class GroupCallUIController : ViewController {
                 default:
                     break
                 }
-            }, presentation: TelegramThemeHooks.shared.darkAppearance())
+            }, presentation: AnsibleThemeHooks.shared.darkAppearance())
         }
         
         data.call.permissions = { [weak self] action, f in
@@ -2329,9 +2329,9 @@ public final class GroupCallUIController : ViewController {
             guard let self, self.acceptsInvitationErrors, let window else {
                 return
             }
-            let controller = GroupCallUIHooks.shared.makeShareLinkModal(self.data.call.accountContext, link, TelegramThemeHooks.shared.darkAppearance(), Set(peers.map { $0.id }))
+            let controller = GroupCallUIHooks.shared.makeShareLinkModal(self.data.call.accountContext, link, AnsibleThemeHooks.shared.darkAppearance(), Set(peers.map { $0.id }))
             showModal(with: controller, for: window)
-        }, presentation: TelegramThemeHooks.shared.darkAppearance())
+        }, presentation: AnsibleThemeHooks.shared.darkAppearance())
     }
 
     deinit {

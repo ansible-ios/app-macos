@@ -28,7 +28,7 @@ public final class ChannelSuggestData {
     public private(set) var channels:[Channel] = []
     public private(set) var size: NSSize = .zero
     
-    public init(channels: RecommendedChannels, context: any AccountContextProtocol, presentation: TelegramPresentationTheme) {
+    public init(channels: RecommendedChannels, context: any AccountContextProtocol, presentation: AnsiblePresentationTheme) {
         var list: [Channel] = []
         for channel in channels.channels {
             let attr = NSMutableAttributedString()
@@ -96,8 +96,8 @@ private final class ChannelView : Control {
             disposable.dispose()
         }
         
-        func set(subscribers: TextViewLayout, locked: Bool, presentation: TelegramPresentationTheme) {
-            imageView.image = locked ? TelegramThemeHooks.shared.image(.iconEmojiLock).precomposed(.white) : TelegramThemeHooks.shared.image(.iconReplyUser).precomposed(.white)
+        func set(subscribers: TextViewLayout, locked: Bool, presentation: AnsiblePresentationTheme) {
+            imageView.image = locked ? AnsibleThemeHooks.shared.image(.iconEmojiLock).precomposed(.white) : AnsibleThemeHooks.shared.image(.iconReplyUser).precomposed(.white)
             imageView.contentGravity = .resizeAspectFill
             imageView.setFrameSize(NSMakeSize(12, 12))
             textView.update(subscribers)
@@ -226,7 +226,7 @@ private final class ChannelView : Control {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(channel: ChannelSuggestData.Channel, presentation: TelegramPresentationTheme, context: any AccountContextProtocol, animated: Bool) {
+    func set(channel: ChannelSuggestData.Channel, presentation: AnsiblePresentationTheme, context: any AccountContextProtocol, animated: Bool) {
         
         avatar.contentUpdated = { [weak self] value in
             if let value = value {

@@ -208,7 +208,7 @@ private final class PeerCallLabSession {
             guard let self else {
                 return
             }
-            showModal(with: CallSettingsModalController(self.context.sharedContext, presentation: TelegramThemeHooks.shared.darkAppearance()), for: window)
+            showModal(with: CallSettingsModalController(self.context.sharedContext, presentation: AnsibleThemeHooks.shared.darkAppearance()), for: window)
         }, upgradeToConference: { _ in
         })
         let screen = PeerCallScreen(external: arguments, isConference: false)

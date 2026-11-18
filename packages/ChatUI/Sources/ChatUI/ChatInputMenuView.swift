@@ -183,7 +183,7 @@ public final class ChatInputMenuView : View {
         button.set(background: .clear, for: .Hover)
         button.set(background: .clear, for: .Highlight)
         glass.customTint = nil
-        accentFill.backgroundColor = (theme as! TelegramPresentationTheme).colors.accent
+        accentFill.backgroundColor = (theme as! AnsiblePresentationTheme).colors.accent
     }
 
     public override func layout() {

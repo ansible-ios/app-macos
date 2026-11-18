@@ -22,10 +22,10 @@ import AppAnalytics
 
 private final class Arguments {
     public let context: any AccountContextProtocol
-    public let presentaiton: TelegramPresentationTheme
+    public let presentaiton: AnsiblePresentationTheme
     public let loadMore: () -> Void
     public let openStory:(StoryInitialIndex?)->Void
-    public init(context: any AccountContextProtocol, presentaiton: TelegramPresentationTheme, openStory:@escaping(StoryInitialIndex?)->Void, loadMore: @escaping () -> Void) {
+    public init(context: any AccountContextProtocol, presentaiton: AnsiblePresentationTheme, openStory:@escaping(StoryInitialIndex?)->Void, loadMore: @escaping () -> Void) {
         self.context = context
         self.presentaiton = presentaiton
         self.openStory = openStory
@@ -37,11 +37,11 @@ private final class Arguments {
 private class MapRowItem: GeneralRowItem {
     public let context: any AccountContextProtocol
     fileprivate let location: State.Location
-    fileprivate let presentation: TelegramPresentationTheme
+    fileprivate let presentation: AnsiblePresentationTheme
     fileprivate let userLocation: CLLocation?
     fileprivate let geocodedPlacemark: ReverseGeocodedPlacemark?
     fileprivate let userLocationError: UserLocationError?
-    public init(_ initialSize: NSSize, height: CGFloat, stableId: AnyHashable, context: any AccountContextProtocol, location: State.Location, userLocation: CLLocation?, geocodedPlacemark: ReverseGeocodedPlacemark?, userLocationError: UserLocationError?, presentation: TelegramPresentationTheme, viewType: GeneralViewType, action: @escaping()->Void) {
+    public init(_ initialSize: NSSize, height: CGFloat, stableId: AnyHashable, context: any AccountContextProtocol, location: State.Location, userLocation: CLLocation?, geocodedPlacemark: ReverseGeocodedPlacemark?, userLocationError: UserLocationError?, presentation: AnsiblePresentationTheme, viewType: GeneralViewType, action: @escaping()->Void) {
         self.context = context
         self.location = location
         self.userLocation = userLocation
@@ -352,7 +352,7 @@ private extension SearchStoryListContext.Source {
     }
 }
 
-public func StoryFoundListController(context: any AccountContextProtocol, source: SearchStoryListContext.Source, presentation: TelegramPresentationTheme, existingsContext: SearchStoryListContext? = nil, analyticsContext: AnalyticsContext? = nil) -> InputDataModalController {
+public func StoryFoundListController(context: any AccountContextProtocol, source: SearchStoryListContext.Source, presentation: AnsiblePresentationTheme, existingsContext: SearchStoryListContext? = nil, analyticsContext: AnalyticsContext? = nil) -> InputDataModalController {
     var origin = Analytics.shared.captureContext(engine: context.engine, peerId: context.peerId, inherited: analyticsContext ?? Analytics.shared.unresolvedContext())
     if case let .hashtag(peerId, _) = source, let peerId {
         origin = origin.restricting(peerId: peerId)
@@ -463,7 +463,7 @@ public func StoryFoundListController(context: any AccountContextProtocol, source
         switch area {
         case let .venue(_, venue):
             
-            let shareImage = TelegramThemeHooks.shared.image(.iconStoryShare).precomposed(presentation.colors.accent)
+            let shareImage = AnsibleThemeHooks.shared.image(.iconStoryShare).precomposed(presentation.colors.accent)
             
             controller.rightModalHeader = ModalHeaderData(image: shareImage, handler: {
                 verifyAlert(for: context.window, information: strings().locationPreviewOpenInMaps, ok: strings().inAppLinksConfirmOpenExternalOK, successHandler: { _ in

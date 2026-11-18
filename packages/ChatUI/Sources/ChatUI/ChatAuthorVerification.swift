@@ -12,7 +12,7 @@ struct ChatAuthorVerification {
         return author
     }
 
-    static func color(incoming: Bool, bubbled: Bool, presentation: TelegramPresentationTheme) -> NSColor {
+    static func color(incoming: Bool, bubbled: Bool, presentation: AnsiblePresentationTheme) -> NSColor {
         return presentation.chat.linkColor(incoming, bubbled)
     }
 

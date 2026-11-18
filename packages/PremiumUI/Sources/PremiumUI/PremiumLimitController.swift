@@ -28,35 +28,35 @@ extension PremiumLimitController.LimitType {
     public var icon: CGImage {
         switch self {
         case .pin:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitPin).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitPin).precomposed(NSColor(hexString: "#FFFFFF"))
         case .pinInArchive:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitPin).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitPin).precomposed(NSColor(hexString: "#FFFFFF"))
         case .chatInFolders:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitChats).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitChats).precomposed(NSColor(hexString: "#FFFFFF"))
         case .channels:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitChats).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitChats).precomposed(NSColor(hexString: "#FFFFFF"))
         case .pinInFolders:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitPin).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitPin).precomposed(NSColor(hexString: "#FFFFFF"))
         case .faveStickers:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitSticker).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitSticker).precomposed(NSColor(hexString: "#FFFFFF"))
         case .folders:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitFolders).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitFolders).precomposed(NSColor(hexString: "#FFFFFF"))
         case .publicLink:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitLink).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitLink).precomposed(NSColor(hexString: "#FFFFFF"))
         case .savedGifs:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitGIF).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitGIF).precomposed(NSColor(hexString: "#FFFFFF"))
         case .uploadFile:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitFile).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitFile).precomposed(NSColor(hexString: "#FFFFFF"))
         case .caption:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitChats).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitChats).precomposed(NSColor(hexString: "#FFFFFF"))
         case .about:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitChats).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitChats).precomposed(NSColor(hexString: "#FFFFFF"))
         case .accounts:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitAccounts).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitAccounts).precomposed(NSColor(hexString: "#FFFFFF"))
         case .sharedInvites:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitLink).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitLink).precomposed(NSColor(hexString: "#FFFFFF"))
         case .sharedFolders:
-            return TelegramThemeHooks.shared.image(.iconPremiumLimitFolders).precomposed(NSColor(hexString: "#FFFFFF"))
+            return AnsibleThemeHooks.shared.image(.iconPremiumLimitFolders).precomposed(NSColor(hexString: "#FFFFFF"))
         }
     }
     public var acceptText: String {
@@ -559,7 +559,7 @@ public final class PremiumLimitView: View {
     
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         
         dismiss.set(image: theme.icons.glass_close, for: .Normal)
         dismiss.setAccessibilityLabel(strings().voiceOverCommonClose)

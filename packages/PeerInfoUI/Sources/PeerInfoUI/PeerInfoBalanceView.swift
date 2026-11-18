@@ -105,7 +105,7 @@ public final class PeerInfoBalanceView: View {
         iconView.image = peerInfoBalanceIcon(iconColor, colorfull: colorfull)
         iconView.setFrameSize(NSMakeSize(14, 14))
 
-        chevron.image = TelegramThemeHooks.shared.image(.iconPeerMusicChevron).precomposed(textColor)
+        chevron.image = AnsibleThemeHooks.shared.image(.iconPeerMusicChevron).precomposed(textColor)
         chevron.sizeToFit()
 
         control.setAccessibilityLabel(strings().peerInfoBalanceViewAccessibility(amountText))

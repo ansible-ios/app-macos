@@ -119,7 +119,7 @@ public final class ChatInputAttachButton: View, MorphHoldObserving {
 
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = (theme as! TelegramPresentationTheme)
+        let theme = (theme as! AnsiblePresentationTheme)
         button.set(image: theme.icons.chat_input_attach, for: .Normal)
         button.setGlassEffect(size: NSMakeSize(40, 40))
         aiButton?.set(image: theme.icons.chat_input_ai, for: .Normal)

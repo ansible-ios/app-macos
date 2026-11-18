@@ -577,7 +577,7 @@ private final class HeaderView : GeneralContainableRowView {
                     current.scaleOnClick = true
                     current.setAccessibilityLabel(strings().voiceOverCommonMore)
                 }
-                current.set(image: TelegramThemeHooks.shared.image(.iconChatActions).precomposed(.white), for: .Normal)
+                current.set(image: AnsibleThemeHooks.shared.image(.iconChatActions).precomposed(.white), for: .Normal)
                 current.setGlassEffect(size: NSMakeSize(36, 36))
                 current.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
                 
@@ -619,7 +619,7 @@ private final class HeaderView : GeneralContainableRowView {
                     current.scaleOnClick = true
                     current.setAccessibilityLabel(strings().voiceOverCommonMore)
                 }
-                current.set(image: TelegramThemeHooks.shared.image(.iconChatActions).precomposed(theme.colors.text), for: .Normal)
+                current.set(image: AnsibleThemeHooks.shared.image(.iconChatActions).precomposed(theme.colors.text), for: .Normal)
                 current.setGlassEffect(size: NSMakeSize(36, 36))
                 current.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
                 current.contextMenu = {
@@ -878,7 +878,7 @@ private final class HeaderView : GeneralContainableRowView {
         self.headerView.update(item.headerLayout)
         self.infoView.set(text: item.infoLayout, context: item.context)
         
-        self.dismiss.set(image: item.uniqueGift != nil ? TelegramThemeHooks.shared.image(.iconPipClose).precomposed(.white) : theme.icons.glass_close, for: .Normal)
+        self.dismiss.set(image: item.uniqueGift != nil ? AnsibleThemeHooks.shared.image(.iconPipClose).precomposed(.white) : theme.icons.glass_close, for: .Normal)
         self.dismiss.setGlassEffect(size: NSMakeSize(36, 36))
         self.dismiss.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
         self.dismiss.scaleOnClick = true
@@ -902,21 +902,21 @@ private final class HeaderView : GeneralContainableRowView {
             }
             switch item.transaction.peer {
             case .appStore:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionPreviewAppStore).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionPreviewAppStore).precomposed()
             case .fragment:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionPreviewFragment).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionPreviewFragment).precomposed()
             case .playMarket:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionPreviewAndroid).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionPreviewAndroid).precomposed()
             case .peer:
                 break
             case .premiumBot:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionPreviewPremiumBot).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionPreviewPremiumBot).precomposed()
             case .unsupported:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionPreviewUnknown).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionPreviewUnknown).precomposed()
             case .ads:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionPreviewAds).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionPreviewAds).precomposed()
             case .apiLimitExtension:
-                current.image = TelegramThemeHooks.shared.image(.iconStarTransactionRowPaidBroadcast).precomposed()
+                current.image = AnsibleThemeHooks.shared.image(.iconStarTransactionRowPaidBroadcast).precomposed()
             }
             current.setFrameSize(NSMakeSize(80, 80))
         } else if let view = self.outgoingView {
@@ -1247,7 +1247,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                 } else {
                     control = ImageView(frame: NSMakeRect(0, 0, 20, 20))
                 }
-                control.image = TelegramThemeHooks.shared.image(.iconStarTransactionAnonymous).precomposed()
+                control.image = AnsibleThemeHooks.shared.image(.iconStarTransactionAnonymous).precomposed()
                 control.isAccessibilityDecorative = true
                 return control
             } else {
@@ -1322,7 +1322,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                             } else {
                                 control = ImageView(frame: NSMakeRect(0, 0, 20, 20))
                             }
-                            control.image = TelegramThemeHooks.shared.image(.iconStarTransactionAnonymous).precomposed()
+                            control.image = AnsibleThemeHooks.shared.image(.iconStarTransactionAnonymous).precomposed()
                             control.isAccessibilityDecorative = true
                             return control
                         } else {
@@ -1391,7 +1391,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                 } else {
                     control = ImageView(frame: NSMakeRect(0, 0, 20, 20))
                 }
-                control.image = TelegramThemeHooks.shared.image(.iconStarTransactionAnonymous).precomposed()
+                control.image = AnsibleThemeHooks.shared.image(.iconStarTransactionAnonymous).precomposed()
                 control.isAccessibilityDecorative = true
                 return control
             })))
@@ -1455,7 +1455,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             rows.append(.init(left: .init(.initialize(string: strings().starTransactionValue, color: theme.colors.text, font: .normal(.text))), right: InputDataTableBasedItem.Row.Right(name: .init(.initialize(string: gift.price.formattedWithSeparator, color: theme.colors.text, font: .normal(.text))), leftView: { previous in
                 
                 let imageView = previous as? ImageView ?? ImageView()
-                imageView.image = TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed()
+                imageView.image = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
                 imageView.setFrameSize(18, 18)
                 imageView.contentGravity = .resizeAspectFill
                 return imageView
@@ -1473,7 +1473,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             rows.append(.init(left: .init(.initialize(string: strings().starTransactionValue, color: theme.colors.text, font: .normal(.text))), right: InputDataTableBasedItem.Row.Right(name: .init(.initialize(string: giftValue.formattedWithSeparator, color: theme.colors.text, font: .normal(.text))), leftView: { previous in
                 
                 let imageView = previous as? ImageView ?? ImageView()
-                imageView.image = TelegramThemeHooks.shared.image(.iconStarCurrency).precomposed()
+                imageView.image = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
                 imageView.setFrameSize(18, 18)
                 imageView.contentGravity = .resizeAspectFill
                 return imageView

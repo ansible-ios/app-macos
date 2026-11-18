@@ -3,13 +3,13 @@ import TGUIKit
 import TelegramCore
 import AnsibleTheme
 
-private let story_privacy_some_users = TelegramThemeHooks.shared.image(.iconPeerStorySomeUsers).precomposed(.white)
-private let story_privacy_contacts = TelegramThemeHooks.shared.image(.iconPeerStoryContacts).precomposed(.white)
-private let story_privacy_close_friends = TelegramThemeHooks.shared.image(.iconPeerStoryCloseFriends).precomposed(.white)
-private let story_pinned = TelegramThemeHooks.shared.image(.iconPeerStoryPinned).precomposed(.white)
+private let story_privacy_some_users = AnsibleThemeHooks.shared.image(.iconPeerStorySomeUsers).precomposed(.white)
+private let story_privacy_contacts = AnsibleThemeHooks.shared.image(.iconPeerStoryContacts).precomposed(.white)
+private let story_privacy_close_friends = AnsibleThemeHooks.shared.image(.iconPeerStoryCloseFriends).precomposed(.white)
+private let story_pinned = AnsibleThemeHooks.shared.image(.iconPeerStoryPinned).precomposed(.white)
 
 final class LegacyStoryViewsView: ShadowView {
-    private static let icon = TelegramThemeHooks.shared.image(.iconChannelViews).precomposed(.white)
+    private static let icon = AnsibleThemeHooks.shared.image(.iconChannelViews).precomposed(.white)
     
     private let imageView = ImageView()
     private let textView = TextView()
@@ -50,7 +50,7 @@ final class LegacyStoryViewsView: ShadowView {
 }
 
 final class LegacyStoryPrivacyView: ShadowView {
-    private static let icon = TelegramThemeHooks.shared.image(.iconChannelViews).precomposed(.white)
+    private static let icon = AnsibleThemeHooks.shared.image(.iconChannelViews).precomposed(.white)
     
     private let imageView = ImageView()
     required init(frame frameRect: NSRect) {

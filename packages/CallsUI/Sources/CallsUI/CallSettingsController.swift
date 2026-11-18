@@ -40,7 +40,7 @@ private let _id_input_audio = InputDataIdentifier("_id_input_audio")
 private let _id_output_audio = InputDataIdentifier("_id_output_audio")
 private let _id_micro = InputDataIdentifier("_id_micro")
 
-private func callSettingsEntries(settings: VoiceCallSettings, devices: IODevices, arguments: CallSettingsArguments, theme: TelegramPresentationTheme) -> [InputDataEntry] {
+private func callSettingsEntries(settings: VoiceCallSettings, devices: IODevices, arguments: CallSettingsArguments, theme: AnsiblePresentationTheme) -> [InputDataEntry] {
     var entries:[InputDataEntry] = []
     
     var sectionId: Int32 = 0
@@ -151,7 +151,7 @@ private func callSettingsEntries(settings: VoiceCallSettings, devices: IODevices
 
 
 
-public func CallSettingsController(sharedContext: any SharedAccountContextProtocol, presentation: TelegramPresentationTheme = theme) -> InputDataController {
+public func CallSettingsController(sharedContext: any SharedAccountContextProtocol, presentation: AnsiblePresentationTheme = theme) -> InputDataController {
     
     let devicesContext = CallSettingsHooks.shared.devicesContext(sharedContext)
     

@@ -11,12 +11,12 @@ extension ChatListFilterVisibilityItem {
 
 public func sidebarImage(_ image: SidebarImage) -> NSImage {
     switch image {
-    case .iconSharedFolder: return TelegramThemeHooks.shared.image(.iconSharedFolder)
-    case .tabsselectTopGray: return TelegramThemeHooks.shared.image(.tabsselectTopGray)
-    case .tabsselectTopSystemcol: return TelegramThemeHooks.shared.image(.tabsselectTopSystemcol)
-    case .tabsselectLeftGray: return TelegramThemeHooks.shared.image(.tabsselectLeftGray)
-    case .tabsselectLeftSystemcol: return TelegramThemeHooks.shared.image(.tabsselectLeftSystemcol)
-    case .iconForumTabs: return TelegramThemeHooks.shared.image(.iconForumTabs)
-    case .iconForumList: return TelegramThemeHooks.shared.image(.iconForumList)
+    case .iconSharedFolder: return AnsibleThemeHooks.shared.image(.iconSharedFolder)
+    case .tabsselectTopGray: return AnsibleThemeHooks.shared.image(.tabsselectTopGray)
+    case .tabsselectTopSystemcol: return AnsibleThemeHooks.shared.image(.tabsselectTopSystemcol)
+    case .tabsselectLeftGray: return AnsibleThemeHooks.shared.image(.tabsselectLeftGray)
+    case .tabsselectLeftSystemcol: return AnsibleThemeHooks.shared.image(.tabsselectLeftSystemcol)
+    case .iconForumTabs: return AnsibleThemeHooks.shared.image(.iconForumTabs)
+    case .iconForumList: return AnsibleThemeHooks.shared.image(.iconForumList)
     }
 }

@@ -154,7 +154,7 @@ public final class GroupCallMainVideoContainerView: Control {
         self.set(handler: { [weak self] control in
             if let data = self?.participant {
                 if let menuItems = self?.arguments?.contextMenuItems(data), let event = NSApp.currentEvent {
-                    ContextMenu.show(items: menuItems, view: control, event: event, presentation: .current(TelegramThemeHooks.shared.darkAppearance().colors), isLegacy: false)
+                    ContextMenu.show(items: menuItems, view: control, event: event, presentation: .current(AnsibleThemeHooks.shared.darkAppearance().colors), isLegacy: false)
                 }
             }
         }, for: .RightDown)

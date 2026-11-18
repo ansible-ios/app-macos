@@ -4,7 +4,7 @@ import ColorPalette
 import AnsibleIconsTheme
 import InAppSettings
 
-private func themeHookImage(_ image: TelegramThemeImage) -> NSImage {
+private func themeHookImage(_ image: AnsibleThemeImage) -> NSImage {
         switch image {
             case .iconCheck: return NSImage(resource: .iconCheck)
             case .iconSelectionUncheck: return NSImage(resource: .iconSelectionUncheck)
@@ -904,8 +904,8 @@ private func themeHookImage(_ image: TelegramThemeImage) -> NSImage {
         }
 }
 
-func installTelegramThemeHooks() {
-    TelegramThemeHooks.install(TelegramThemeHooks(image: themeHookImage, icons: { palette, bubbled in
+func installAnsibleThemeHooks() {
+    AnsibleThemeHooks.install(AnsibleThemeHooks(image: themeHookImage, icons: { palette, bubbled in
         return generateIcons(from: palette, bubbled: bubbled)
     }, sendingFrame: { color in
         return generateSendingFrame(color)
@@ -933,5 +933,5 @@ func installTelegramThemeHooks() {
     }, liveStreamBadgeColor: {
         return AvatarStoryIndicatorComponent.ActiveColors.default.stream[0]
     }))
-    installTelegramUtilsHooks()
+    installAnsibleUtilsHooks()
 }

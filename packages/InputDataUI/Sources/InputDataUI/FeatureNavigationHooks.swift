@@ -100,10 +100,10 @@ public enum FeatureModalKind {
 }
 
 public struct FeatureNavigationHooks {
-    public var showPremiumBoarding: (any AccountContextProtocol, Window, PremiumBoardingSource?, Bool, TelegramPresentationTheme?) -> Void = { _, _, _, _, _ in }
-    public var showPremiumBoardingWithContext: ((any AccountContextProtocol, Window, PremiumBoardingSource?, Bool, TelegramPresentationTheme?, AnalyticsContext) -> Void)?
+    public var showPremiumBoarding: (any AccountContextProtocol, Window, PremiumBoardingSource?, Bool, AnsiblePresentationTheme?) -> Void = { _, _, _, _, _ in }
+    public var showPremiumBoardingWithContext: ((any AccountContextProtocol, Window, PremiumBoardingSource?, Bool, AnsiblePresentationTheme?, AnalyticsContext) -> Void)?
 
-    public func showPremiumBoardingObserved(_ context: any AccountContextProtocol, _ window: Window, _ source: PremiumBoardingSource?, _ openFeatures: Bool, _ theme: TelegramPresentationTheme?, analyticsContext: AnalyticsContext) {
+    public func showPremiumBoardingObserved(_ context: any AccountContextProtocol, _ window: Window, _ source: PremiumBoardingSource?, _ openFeatures: Bool, _ theme: AnsiblePresentationTheme?, analyticsContext: AnalyticsContext) {
         let presentation = analyticsContext.beginPresentation()
         defer { presentation.end() }
         if let showPremiumBoardingWithContext {
@@ -186,7 +186,7 @@ public struct FeatureNavigationHooks {
             openStoryStats(context, item, peer)
         }
     }
-    public var showBoostInfo: (any AccountContextProtocol, Window, Peer, ChannelBoostStatus, MyBoostStatus?, BoostInfoSource, TelegramPresentationTheme?) -> Void = { _, _, _, _, _, _, _ in }
+    public var showBoostInfo: (any AccountContextProtocol, Window, Peer, ChannelBoostStatus, MyBoostStatus?, BoostInfoSource, AnsiblePresentationTheme?) -> Void = { _, _, _, _, _, _, _ in }
     public var hasFeatureModal: (FeatureModalKind, ModalViewController?) -> Bool = { _, _ in false }
     public var makeVerifyAgeController: (any AccountContextProtocol) -> ModalViewController? = { _ in nil }
     public var makeCalendarController: (Window, Date, Int, Bool, @escaping (Date) -> Void) -> ViewController? = { _, _, _, _, _ in nil }
@@ -273,8 +273,8 @@ public struct FeatureNavigationHooks {
     public var applyGroupCallResult: (any SharedAccountContextProtocol, AnyObject) -> Void = { _, _ in }
     public var fileSizeLimitExceed: (any AccountContextProtocol, Int64) -> Bool = { _, _ in true }
     public var showFileLimit: (any AccountContextProtocol, Int64?) -> Void = { _, _ in }
-    public var makePreviewSender: ([URL], AnyObject, Bool, NSAttributedString?, TelegramPresentationTheme?) -> ModalViewController? = { _, _, _, _, _ in nil }
-    public var makePreviewSenderWithContext: ([URL], AnyObject, Bool, NSAttributedString?, TelegramPresentationTheme?, AnalyticsContext) -> ModalViewController? = { _, _, _, _, _, _ in nil }
+    public var makePreviewSender: ([URL], AnyObject, Bool, NSAttributedString?, AnsiblePresentationTheme?) -> ModalViewController? = { _, _, _, _, _ in nil }
+    public var makePreviewSenderWithContext: ([URL], AnyObject, Bool, NSAttributedString?, AnsiblePresentationTheme?, AnalyticsContext) -> ModalViewController? = { _, _, _, _, _, _ in nil }
     public var makeArchiveSettingsController: (any AccountContextProtocol, GlobalPrivacySettings?, @escaping (GlobalPrivacySettings) -> Void) -> ViewController? = { _, _, _ in nil }
     public var updateAccountBirthday: (Date, any AccountContextProtocol) -> Void = { _, _ in }
 

@@ -253,6 +253,6 @@ func installImageCanvasUIHooks() {
     }, confirm: { window, information, ok, action in
         verifyAlert(for: window, information: information, ok: ok, successHandler: { _ in
             action()
-        }, presentation: TelegramThemeHooks.shared.darkAppearance())
+        }, presentation: AnsibleThemeHooks.shared.darkAppearance())
     }))
 }

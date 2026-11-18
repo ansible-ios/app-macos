@@ -372,7 +372,7 @@ enum StorageUsageCollection : Int32 {
 
 
 
-class StorageUsageBlockController<Context: AccountContextProtocol>: TelegramGenericViewController<StorageUsageMediaContainerView, Context>, StorageUsageBlockControlling {
+class StorageUsageBlockController<Context: AccountContextProtocol>: AnsibleGenericViewController<StorageUsageMediaContainerView, Context>, StorageUsageBlockControlling {
     var mediaView: View { genericView }
     var mainTable: TableView? { genericView.mainTable }
    

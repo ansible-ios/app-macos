@@ -274,7 +274,7 @@ public final class StoryMessageItemRow : TableRowItem {
     }
 }
 
-private let crown = TelegramThemeHooks.shared.image(.iconLiveStreamTopCrown).precomposed(NSColor.white.withAlphaComponent(0.7))
+private let crown = AnsibleThemeHooks.shared.image(.iconLiveStreamTopCrown).precomposed(NSColor.white.withAlphaComponent(0.7))
 
 private final class MessageItemView: TableRowView {
     
@@ -896,13 +896,13 @@ private final class FixedMessageItemView: HorizontalRowView {
 
 private func generateReaction(account: Account, _ item: StoryReactionsView.Item) -> Signal<CGImage?, NoError> {
     if let peer = item.message.author?._asPeer(), let stars = item.message.paidStars {
-        return peerAvatarImage(account: account, photo: .peer(peer, peer.smallProfileImage, peer.namePeerColor, TelegramUtilsHooks.shared.peerLetters(peer), nil, nil), displayDimensions: NSMakeSize(14 * System.backingScale, 14 * System.backingScale), font: .avatar(9), genCap: false, synchronousLoad: false) |> take(1) |> map { avatar in
+        return peerAvatarImage(account: account, photo: .peer(peer, peer.smallProfileImage, peer.namePeerColor, AnsibleUtilsHooks.shared.peerLetters(peer), nil, nil), displayDimensions: NSMakeSize(14 * System.backingScale, 14 * System.backingScale), font: .avatar(9), genCap: false, synchronousLoad: false) |> take(1) |> map { avatar in
             
             if let avatar = avatar.0  {
                 let textNode = TextNode.layoutText(.initialize(string: "\(stars)", color: .white, font: .avatar(10)), nil, 1, .end, NSMakeSize(.greatestFiniteMagnitude, 20), nil, false, .center)
                 var size = textNode.0.size
                 
-                let icon = TelegramThemeHooks.shared.image(.starSmall).precomposed(.white, flipVertical: true, zoom: 0.9)
+                let icon = AnsibleThemeHooks.shared.image(.starSmall).precomposed(.white, flipVertical: true, zoom: 0.9)
 
                 size.width += 2 + (14 + icon.backingSize.width) + 4 + 2
                 size.height = 16

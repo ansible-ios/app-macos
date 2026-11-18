@@ -135,7 +135,7 @@ public final class AuthView : Control {
 
     public override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        let theme = theme as! TelegramPresentationTheme
+        let theme = theme as! AnsiblePresentationTheme
         back.set(image: theme.icons.glass_close, for: .Normal)
         back.sizeToFit(.zero, NSMakeSize(36, 36), thatFit: true)
         needsLayout = true

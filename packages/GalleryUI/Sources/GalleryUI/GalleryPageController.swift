@@ -1040,7 +1040,7 @@ public class GalleryPageController : NSObject, NSPageControllerDelegate {
             current.set(text: adAttribute.buttonText, for: .Normal)
             current.set(font: .medium(.text), for: .Normal)
             current.set(color: .white, for: .Normal)
-            current.set(background: TelegramThemeHooks.shared.darkAppearance().colors.grayBackground, for: .Normal)
+            current.set(background: AnsibleThemeHooks.shared.darkAppearance().colors.grayBackground, for: .Normal)
             current.sizeToFit(.zero, NSMakeSize(300, 40), thatFit: true)
             current.layer?.cornerRadius = 10
             

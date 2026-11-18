@@ -1602,7 +1602,7 @@ public class ChatRowItem: TableRowItem {
 
     public let downloadSettings: AutomaticMediaDownloadSettings
     
-    public let presentation: TelegramPresentationTheme
+    public let presentation: AnsiblePresentationTheme
 
 
     
@@ -1818,7 +1818,7 @@ public class ChatRowItem: TableRowItem {
     public var topicLinkLayout: TopicReplyItemLayout? {
         if let value = _topicLinkLayout {
             return value
-        } else if let message = self.message, let threadInfo = message.associatedThreadInfo, chatInteraction.mode == .history || (chatInteraction.mode == .preview && chatInteraction.chatLocation.threadId == nil), let peer = message.peers[message.id.peerId], TelegramUtilsHooks.shared.peerIsForum(peer), !peer.displayForumAsTabs(splitState: chatInteraction.interactionContext.layout) {
+        } else if let message = self.message, let threadInfo = message.associatedThreadInfo, chatInteraction.mode == .history || (chatInteraction.mode == .preview && chatInteraction.chatLocation.threadId == nil), let peer = message.peers[message.id.peerId], AnsibleUtilsHooks.shared.peerIsForum(peer), !peer.displayForumAsTabs(splitState: chatInteraction.interactionContext.layout) {
             var ignore: Bool = false
             
             if renderType == .bubble {
@@ -1934,7 +1934,7 @@ public class ChatRowItem: TableRowItem {
 
     
     
-    public init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ context: any AccountContextProtocol, _ object: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         self.entry = object
         self.hasVerticalMonoforum = ChatRowItem.hasVerticalMonoforum(object)
         self.effectiveCommentMessage = ChatRowItem.effectiveCommentMessage(object)
@@ -2932,7 +2932,7 @@ public class ChatRowItem: TableRowItem {
         return fullDate + "\n\n" + strings().chatContextMenuAutoDelete(smartTimeleftText(left))
     }
 
-    public init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ entry: ChatHistoryEntry, theme: TelegramPresentationTheme) {
+    public init(_ initialSize:NSSize, _ chatInteraction:ChatInteraction, _ entry: ChatHistoryEntry, theme: AnsiblePresentationTheme) {
         self.entry = entry
         self.hasVerticalMonoforum = ChatRowItem.hasVerticalMonoforum(entry)
         self.effectiveCommentMessage = ChatRowItem.effectiveCommentMessage(entry)
@@ -2958,7 +2958,7 @@ public class ChatRowItem: TableRowItem {
         super.init(initialSize)
     }
     
-    public static func item(_ initialSize:NSSize, from entry:ChatHistoryEntry, interaction:ChatInteraction, theme: TelegramPresentationTheme) -> TableRowItem {
+    public static func item(_ initialSize:NSSize, from entry:ChatHistoryEntry, interaction:ChatInteraction, theme: AnsiblePresentationTheme) -> TableRowItem {
         
         switch entry {
         case .UnreadEntry:

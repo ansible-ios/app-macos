@@ -29,7 +29,7 @@ apply_peers = 'private func applyPeers(_ peerIds: [PeerId], peers: [SelectivePri
 categories = (root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/TelegramEngine/Peers/ChatListFiltering.swift').read_text()
 categories = categories[categories.index('public struct ChatListFilterPeerCategories:'):categories.index('private struct ChatListFilterPeerApiCategories:')]
 extensions = (root / 'packages/AnsibleUtils/Sources/AnsibleUtils/PeerDisplay.swift').read_text()
-extensions = extensions[extensions.index('extension ChatListFilterPeerCategories'):extensions.index('public final class TelegramStoryRepostPeerObject')]
+extensions = extensions[extensions.index('extension ChatListFilterPeerCategories'):extensions.index('public final class AnsibleStoryRepostPeerObject')]
 package = pathlib.Path(tempfile.mkdtemp(prefix='telegram-privacy-exceptions-'))
 tests = package / 'Tests'
 tests.mkdir()

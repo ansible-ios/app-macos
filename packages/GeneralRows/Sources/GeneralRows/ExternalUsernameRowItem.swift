@@ -153,10 +153,10 @@ private final class ExternalUsernameRowView: GeneralContainableRowView {
         imageView.contentGravity = .center
         if item.username.flags.contains(.isActive) {
             imageView.background = theme.colors.accent
-            imageView.image = TelegramThemeHooks.shared.image(.iconExportedInvitationLink).precomposed(.white)
+            imageView.image = AnsibleThemeHooks.shared.image(.iconExportedInvitationLink).precomposed(.white)
         } else {
             imageView.background = theme.colors.grayBackground.darker()
-            imageView.image = TelegramThemeHooks.shared.image(.iconExportedInvitationExpired).precomposed(.white)
+            imageView.image = AnsibleThemeHooks.shared.image(.iconExportedInvitationExpired).precomposed(.white)
         }
         if animated {
             imageView.layer?.animateBackground()

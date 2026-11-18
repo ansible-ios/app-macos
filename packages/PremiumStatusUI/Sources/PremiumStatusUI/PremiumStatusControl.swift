@@ -482,7 +482,7 @@ public final class PremiumStatusControl : Control, PremiumStatusRenderHost {
             current = cached ?? PremiumStatusControl(frame: .zero)
         }
                 
-        current?.set(peer, account: account, inlinePacksContext: inlinePacksContext, left: left, color: color, isSelected: isSelected, isBig: isBig, animated: animated, playTwice: playTwice, isLite: TelegramUtilsHooks.shared.isLite(.emoji), autoupdate: autoupdate)
+        current?.set(peer, account: account, inlinePacksContext: inlinePacksContext, left: left, color: color, isSelected: isSelected, isBig: isBig, animated: animated, playTwice: playTwice, isLite: AnsibleUtilsHooks.shared.isLite(.emoji), autoupdate: autoupdate)
         return current
     }
     
@@ -599,7 +599,7 @@ public final class PremiumStatusLayer: SimpleLayer, PremiumStatusRenderHost {
             return nil
         }
         let current = cached ?? PremiumStatusLayer()
-        current.set(peer, account: account, inlinePacksContext: inlinePacksContext, left: left, color: color, isSelected: isSelected, isBig: isBig, animated: animated, playTwice: playTwice, isLite: TelegramUtilsHooks.shared.isLite(.emoji), autoupdate: autoupdate)
+        current.set(peer, account: account, inlinePacksContext: inlinePacksContext, left: left, color: color, isSelected: isSelected, isBig: isBig, animated: animated, playTwice: playTwice, isLite: AnsibleUtilsHooks.shared.isLite(.emoji), autoupdate: autoupdate)
         return current
     }
 }

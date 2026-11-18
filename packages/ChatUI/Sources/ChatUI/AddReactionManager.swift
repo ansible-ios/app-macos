@@ -37,7 +37,7 @@ public final class ContextAddReactionsListView : View, StickerFramesCollector, A
         private var currentKey: String?
         
         private var selectionView : NSView?
-        private let presentation: TelegramPresentationTheme
+        private let presentation: AnsiblePresentationTheme
         
         private var starEffect: StarsButtonEffectLayer?
         
@@ -45,7 +45,7 @@ public final class ContextAddReactionsListView : View, StickerFramesCollector, A
         
         private let parentWindow: Window?
         
-        required init(frame frameRect: NSRect, context: any AccountContextProtocol, reaction: ContextReaction, add: @escaping(MessageReaction.Reaction, Bool, NSRect?)->Void, addLarge: ((MessageReaction.Reaction, NSRect?)->Void)?, canSendReactions: @escaping () -> Bool, theme: TelegramPresentationTheme, message: Message?, parentWindow: Window? = nil) {
+        required init(frame frameRect: NSRect, context: any AccountContextProtocol, reaction: ContextReaction, add: @escaping(MessageReaction.Reaction, Bool, NSRect?)->Void, addLarge: ((MessageReaction.Reaction, NSRect?)->Void)?, canSendReactions: @escaping () -> Bool, theme: AnsiblePresentationTheme, message: Message?, parentWindow: Window? = nil) {
             
             let size: NSSize = reaction.isSelected ? NSMakeSize(25, 24) : NSMakeSize(frameRect.width, 30)
             let rect = CGRect(origin: .zero, size: size)
@@ -214,7 +214,7 @@ public final class ContextAddReactionsListView : View, StickerFramesCollector, A
             if reaction.isSelected {
                 let size = ContextAddReactionsListView.showMoreSize
                 let view: NSView
-                if TelegramUtilsHooks.shared.isLite(.blur) {
+                if AnsibleUtilsHooks.shared.isLite(.blur) {
                     let solid = View()
                     solid.backgroundColor = theme.colors.vibrant.mixedWith(NSColor(0x000000), alpha: 0.1)
                     view = solid
@@ -392,11 +392,11 @@ public final class ContextAddReactionsListView : View, StickerFramesCollector, A
             super.mouseEntered(with: event)
             onEnter?()
         }
-        public required init(frame frameRect: NSRect, theme: TelegramPresentationTheme) {
+        public required init(frame frameRect: NSRect, theme: AnsiblePresentationTheme) {
             super.init(frame: frameRect)
             self.scaleOnClick = true
             self.layer?.cornerRadius = frameRect.height / 2
-            if TelegramUtilsHooks.shared.isLite(.blur) {
+            if AnsibleUtilsHooks.shared.isLite(.blur) {
                 self.backgroundColor = theme.colors.vibrant.mixedWith(NSColor(0x000000), alpha: 0.1)
             } else {
                 frost.wantsLayer = true
@@ -495,10 +495,10 @@ public final class ContextAddReactionsListView : View, StickerFramesCollector, A
     private let maskLayer = SimpleShapeLayer()
     private let backgroundColorView = View()
     private let shadowLayer = SimpleShapeLayer()
-    private let presentation: TelegramPresentationTheme
+    private let presentation: AnsiblePresentationTheme
     private var hasBubble: Bool
     private let aboveText: TextViewLayout?
-    public required init(frame frameRect: NSRect, context: any AccountContextProtocol, list: [ContextReaction], add:@escaping(MessageReaction.Reaction, Bool, NSRect?)->Void, addLarge: ((MessageReaction.Reaction, NSRect?)->Void)? = nil, canSendReactions: @escaping () -> Bool = { true }, radiusLayer: CGFloat? = 15, revealReactions:((ContextAddReactionsListView & StickerFramesCollector)->Void)? = nil, presentation: TelegramPresentationTheme = theme, hasBubble: Bool = true, aboveText: TextViewLayout? = nil, message: Message? = nil, parentWindow: Window? = nil) {
+    public required init(frame frameRect: NSRect, context: any AccountContextProtocol, list: [ContextReaction], add:@escaping(MessageReaction.Reaction, Bool, NSRect?)->Void, addLarge: ((MessageReaction.Reaction, NSRect?)->Void)? = nil, canSendReactions: @escaping () -> Bool = { true }, radiusLayer: CGFloat? = 15, revealReactions:((ContextAddReactionsListView & StickerFramesCollector)->Void)? = nil, presentation: AnsiblePresentationTheme = theme, hasBubble: Bool = true, aboveText: TextViewLayout? = nil, message: Message? = nil, parentWindow: Window? = nil) {
         self.list = list
         self.showMore = ShowMore(frame: NSMakeRect(0, 0, ContextAddReactionsListView.showMoreSize, ContextAddReactionsListView.showMoreSize), theme: presentation)
         self.revealReactions = revealReactions
@@ -511,7 +511,7 @@ public final class ContextAddReactionsListView : View, StickerFramesCollector, A
         
         let theme = presentation
         
-        if #available(macOS 26.0, *), System.liquidGlass, System.liquidGlassAvailable, !TelegramUtilsHooks.shared.isLite(.blur) {
+        if #available(macOS 26.0, *), System.liquidGlass, System.liquidGlassAvailable, !AnsibleUtilsHooks.shared.isLite(.blur) {
             let container = FlippedGlassEffectContainerView(frame: frameRect.size.bounds, flipped: true)
             container.spacing = 8
             let content = GlassContentView(frame: frameRect.size.bounds)
@@ -529,7 +529,7 @@ public final class ContextAddReactionsListView : View, StickerFramesCollector, A
             addSubview(container)
         }
         backgroundView.layer?.mask = maskLayer
-        if !TelegramUtilsHooks.shared.isLite(.blur) {
+        if !AnsibleUtilsHooks.shared.isLite(.blur) {
             self.visualEffect.state = .active
             self.visualEffect.wantsLayer = true
             self.visualEffect.blendingMode = hasBubble ? .behindWindow : .withinWindow
@@ -576,7 +576,7 @@ public final class ContextAddReactionsListView : View, StickerFramesCollector, A
         topGradient.direction = .horizontal(false)
         
         let usesMaterial: Bool
-        if #available(macOS 11.0, *), !TelegramUtilsHooks.shared.isLite(.blur) {
+        if #available(macOS 11.0, *), !AnsibleUtilsHooks.shared.isLite(.blur) {
             usesMaterial = true
             visualEffect.material = .menu
             visualEffect.appearance = NSAppearance.themed(isDark: theme.colors.isDark)
@@ -585,7 +585,7 @@ public final class ContextAddReactionsListView : View, StickerFramesCollector, A
             usesMaterial = false
             backgroundColorView.backgroundColor = theme.colors.background
         }
-        if #available(macOS 11.0, *), !TelegramUtilsHooks.shared.isLite(.blur), glassContainer == nil {
+        if #available(macOS 11.0, *), !AnsibleUtilsHooks.shared.isLite(.blur), glassContainer == nil {
             backgroundView.addSubview(visualEffect)
         }
         backgroundView.addSubview(backgroundColorView)
@@ -848,7 +848,7 @@ public final class ContextAddReactionsListView : View, StickerFramesCollector, A
     }
 
     public var canAppearFromCursor: Bool {
-        return glassContainer != nil && hasBubble && !TelegramUtilsHooks.shared.isLite(.animations)
+        return glassContainer != nil && hasBubble && !AnsibleUtilsHooks.shared.isLite(.animations)
     }
 
     public func appearFromCursor(_ point: NSPoint) {

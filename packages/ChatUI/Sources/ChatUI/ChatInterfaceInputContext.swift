@@ -94,7 +94,7 @@ public func textInputStateContextQueryRangeAndType(_ inputState: ChatTextInputSt
         if maxIndex == inputText.startIndex {
             return nil
         }
-        if let commandQueryRange = TelegramCommandAutocomplete.queryRange(in: inputText, cursorUTF16Offset: inputState.selectionRange.lowerBound) {
+        if let commandQueryRange = AnsibleCommandAutocomplete.queryRange(in: inputText, cursorUTF16Offset: inputState.selectionRange.lowerBound) {
             return (commandQueryRange, [.command], nil)
         }
         var index = inputText.index(before: maxIndex)

@@ -46,7 +46,7 @@ final class ChatStarReactionUndoView : Control {
         self.undo.userInteractionEnabled = false
         self.undo.isSelectable = false
         
-        let undo: TextViewLayout = .init(.initialize(string: strings().chatReactionUndo, color: TelegramThemeHooks.shared.darkAppearance().colors.accent, font: .medium(.title)), maximumNumberOfLines: 1)
+        let undo: TextViewLayout = .init(.initialize(string: strings().chatReactionUndo, color: AnsibleThemeHooks.shared.darkAppearance().colors.accent, font: .medium(.title)), maximumNumberOfLines: 1)
         undo.measure(width: .greatestFiniteMagnitude)
         
         
@@ -71,7 +71,7 @@ final class ChatStarReactionUndoView : Control {
 
         self.timerAnimationView?.removeFromSuperview()
         self.timerAnimationView = .init(account: context.account, file: LocalAnimatedSticker.countdown5s.file, size: NSMakeSize(30, 30), getColors: { _ in
-            return [.init(keyPath: "", color: TelegramThemeHooks.shared.darkAppearance().colors.accent)]
+            return [.init(keyPath: "", color: AnsibleThemeHooks.shared.darkAppearance().colors.accent)]
         }, playPolicy: .onceEnd, controlContent: false)
         addSubview(self.timerAnimationView!)
 
