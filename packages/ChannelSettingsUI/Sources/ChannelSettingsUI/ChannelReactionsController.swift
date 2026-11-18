@@ -398,9 +398,9 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             entries.append(.sectionId(sectionId, type: .normal))
             sectionId += 1
             
-            entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_stars_allowed, data: .init(name: strings().channelReactionsEnableStars, color: theme.colors.text, type: .switchable(starsAllowed), viewType: .singleItem, action: arguments.togglePaidReactions)))
+            entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_stars_allowed, data: .init(name: strings().channelReactionsEnableDiamonds, color: theme.colors.text, type: .switchable(starsAllowed), viewType: .singleItem, action: arguments.togglePaidReactions)))
             
-            entries.append(.desc(sectionId: sectionId, index: index, text: .markdown(strings().channelReactionsEnableStarsInfo, linkHandler: { link in
+            entries.append(.desc(sectionId: sectionId, index: index, text: .markdown(strings().channelReactionsEnableDiamondsInfo, linkHandler: { link in
                 LinkHooks.shared.openExternalLink(link, false)
             }), data: .init(color: theme.colors.listGrayText, viewType: .textBottomItem)))
             index += 1

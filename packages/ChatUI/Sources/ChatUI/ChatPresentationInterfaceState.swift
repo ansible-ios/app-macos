@@ -671,7 +671,7 @@ public class ChatPresentationInterfaceState: Equatable {
 //                    return .paidMessage(starsAmount, { chatInteraction in
 //                        let amount = strings().starListItemCountOther(Int(starsAmount.value))
 //                        if starsState.balance.value > starsAmount.value {
-//                            verifyAlert(for: chatInteraction.context.window, header: strings().chatPayStarsConfirmTitle, information: strings().chatPayStarsConfirmText(peer.displayTitle, amount, amount), ok: strings().chatPayStarsConfirmPay, option: strings().chatPayStarsConfirmCheckbox, optionIsSelected: false, successHandler: { result in
+//                            verifyAlert(for: chatInteraction.context.window, header: strings().chatPayDiamondsConfirmTitle, information: strings().chatPayDiamondsConfirmText(peer.displayTitle, amount, amount), ok: strings().chatPayStarsConfirmPay, option: strings().chatPayDiamondsConfirmCheckbox, optionIsSelected: false, successHandler: { result in
 //                                chatInteraction.update({ current in
 //                                    return current
 //                                        .withUpdatedAcknowledgedPaidMessage(true)

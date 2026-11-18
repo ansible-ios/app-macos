@@ -87,7 +87,7 @@ final class PhoneNumberConfirmView : View {
 final class PhoneNumberConfirmController : GenericViewController<PhoneNumberConfirmView> {
 
     override var defaultBarTitle: String {
-        return strings().telegramPhoneNumberConfirmController
+        return strings().ansiblePhoneNumberConfirmController
     }
 
     private let context: (any AccountContextProtocol)

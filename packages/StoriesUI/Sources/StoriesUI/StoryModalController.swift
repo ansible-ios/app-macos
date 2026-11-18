@@ -2728,8 +2728,8 @@ public final class StoryModalController<Context: AccountContextProtocol> : Modal
                 let amount = strings().starListItemCountOther(starsPrice)
                 let messagesCount = 1
                 if !state.alwaysPaidMessage {
-                    let messageCountText = strings().chatPayStarsConfirmMessagesOther(messagesCount)
-                    verifyChatSendPayment(for: chatInteraction.interactionContext.window, header: strings().chatPayStarsConfirmTitle, information: strings().chatPayStarsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayStarsConfirmPayOther(messagesCount), option: strings().chatPayStarsConfirmCheckbox, analyticsContext: analyticsContext, successHandler: { result in
+                    let messageCountText = strings().chatPayDiamondsConfirmMessagesOther(messagesCount)
+                    verifyChatSendPayment(for: chatInteraction.interactionContext.window, header: strings().chatPayDiamondsConfirmTitle, information: strings().chatPayDiamondsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayDiamondsConfirmPayOther(messagesCount), option: strings().chatPayDiamondsConfirmCheckbox, analyticsContext: analyticsContext, successHandler: { result in
                         guard let origin = resolveOrigin() else { return }
                         let presentation = origin.beginPresentation()
                         defer { presentation.end() }
@@ -3424,9 +3424,9 @@ public final class StoryModalController<Context: AccountContextProtocol> : Modal
                 let amount = strings().starListItemCountOther(starsPrice)
                 let messagesCount = 1
                 if !state.alwaysPaidMessage {
-                    let messageCountText = strings().chatPayStarsConfirmMessagesOther(messagesCount)
+                    let messageCountText = strings().chatPayDiamondsConfirmMessagesOther(messagesCount)
                     stickerRequest?.step(.openConfirmation)
-                    verifyChatSendPayment(for: chatInteraction.interactionContext.window, header: strings().chatPayStarsConfirmTitle, information: strings().chatPayStarsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayStarsConfirmPayOther(messagesCount), option: strings().chatPayStarsConfirmCheckbox, analyticsContext: analyticsContext, successHandler: { result in
+                    verifyChatSendPayment(for: chatInteraction.interactionContext.window, header: strings().chatPayDiamondsConfirmTitle, information: strings().chatPayDiamondsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayDiamondsConfirmPayOther(messagesCount), option: strings().chatPayDiamondsConfirmCheckbox, analyticsContext: analyticsContext, successHandler: { result in
                         guard let origin = resolveOrigin() else { return }
                         let presentation = origin.beginPresentation()
                         defer { presentation.end() }
@@ -3704,9 +3704,9 @@ public final class StoryModalController<Context: AccountContextProtocol> : Modal
                 let amount = strings().starListItemCountOther(starsPrice)
                 let messagesCount = 1
                 if !presentation.alwaysPaidMessage {
-                    let messageCountText = strings().chatPayStarsConfirmMessagesOther(messagesCount)
+                    let messageCountText = strings().chatPayDiamondsConfirmMessagesOther(messagesCount)
                     recordingRequest?.step(.openConfirmation)
-                    verifyChatSendPayment(for: chatInteraction.interactionContext.window, header: strings().chatPayStarsConfirmTitle, information: strings().chatPayStarsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayStarsConfirmPayOther(messagesCount), option: strings().chatPayStarsConfirmCheckbox, analyticsContext: analyticsContext, successHandler: { result in
+                    verifyChatSendPayment(for: chatInteraction.interactionContext.window, header: strings().chatPayDiamondsConfirmTitle, information: strings().chatPayDiamondsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayDiamondsConfirmPayOther(messagesCount), option: strings().chatPayDiamondsConfirmCheckbox, analyticsContext: analyticsContext, successHandler: { result in
                         guard let origin = resolveSendContext() else { return }
                         let presentation = origin.beginPresentation()
                         defer { presentation.end() }

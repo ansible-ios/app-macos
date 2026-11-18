@@ -117,13 +117,13 @@ final class UpdateTabView : Control {
         }
         glassView.customTint = tint
         let foreground = tint.lightness > 0.8 ? NSColor(0x000000) : NSColor(0xffffff)
-        let layout = TextViewLayout(.initialize(string: strings().updateUpdateTelegram, color: foreground, font: .medium(.title)), maximumNumberOfLines: 1)
+        let layout = TextViewLayout(.initialize(string: strings().updateUpdateAnsible, color: foreground, font: .medium(.title)), maximumNumberOfLines: 1)
         layout.measure(width: max(280, frame.width))
         textView.update(layout)
         imageView.image = NSImage(resource: .iconAppUpdate).precomposed(foreground)
         imageView.sizeToFit()
         progressView.progressColor = foreground
-        setAccessibilityLabel(strings().updateUpdateTelegram)
+        setAccessibilityLabel(strings().updateUpdateAnsible)
         updateContent(animated: false)
     }
 
@@ -742,7 +742,7 @@ class MainViewController: AnsibleGenericViewController<MainController_View> {
                 self.context.bindings.rootNavigation().push(PasscodeSettingsViewController(self.context))
             }, itemImage: MenuAnimation.menu_lock.value))
         default:
-            items.append(ContextMenuItem(strings().fastSettingsLockTelegram, handler: {
+            items.append(ContextMenuItem(strings().fastSettingsLockAnsible, handler: {
                 context.window.sendKeyEvent(KeyboardKey.L, modifierFlags: [.command])
             }, itemImage: MenuAnimation.menu_lock.value))
         }
@@ -818,9 +818,9 @@ class MainViewController: AnsibleGenericViewController<MainController_View> {
             if tab.controller === contacts {
                 title = strings().contactsContacsSeparator
             } else if tab.controller === phoneCalls {
-                title = strings().telegramLayoutRecentCallsViewController
+                title = strings().ansibleLayoutRecentCallsViewController
             } else if tab.controller === settings {
-                title = strings().telegramLayoutAccountController
+                title = strings().ansibleLayoutAccountController
             } else {
                 title = strings().peerMediaSavedMessages
             }

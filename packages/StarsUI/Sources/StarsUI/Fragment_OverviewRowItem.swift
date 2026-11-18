@@ -127,7 +127,7 @@ public final class Fragment_OverviewRowItem : GeneralRowItem {
     public override var accessibilityValue: String? {
         var parts: [String] = [amount.attributedString.string]
         if let stars = overview.stars {
-            parts.append("\(stars.amount.stringValue) \(strings().starListTelegramStars)")
+            parts.append("\(stars.amount.stringValue) \(strings().starListAnsibleDiamonds)")
         }
         return parts.joined(separator: ", ")
     }

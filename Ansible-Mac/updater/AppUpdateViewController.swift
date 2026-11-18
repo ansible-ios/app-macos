@@ -202,7 +202,7 @@ private func appUpdateEntries(state: AppUpdateState) -> [InputDataEntry] {
         
         currentItem = item
     case let .readyToInstall(item):
-        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_install_update, data: InputDataGeneralData(name: strings().updateUpdateTelegram, color: theme.colors.accent, icon: nil, type: .none, viewType: .singleItem, action: nil)))
+        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_install_update, data: InputDataGeneralData(name: strings().updateUpdateAnsible, color: theme.colors.accent, icon: nil, type: .none, viewType: .singleItem, action: nil)))
         index += 1
         
         currentItem = item

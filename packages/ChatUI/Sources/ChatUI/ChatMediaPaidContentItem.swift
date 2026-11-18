@@ -523,7 +523,7 @@ private final class Button: Control {
     func update(textLayout: TextViewLayout, item: ChatMediaPaidContentItem, context: any AccountContextProtocol) {
         self.item = item
         setAccessibilityRole(.button)
-        setAccessibilityLabel(textLayout.attributedString.string.replacingOccurrences(of: clown, with: strings().starListTelegramStars))
+        setAccessibilityLabel(textLayout.attributedString.string.replacingOccurrences(of: clown, with: strings().starListAnsibleDiamonds))
         self.textView.set(text: textLayout, context: context)
         self.setFrameSize(NSMakeSize(textView.frame.width + 20, 30))
     }

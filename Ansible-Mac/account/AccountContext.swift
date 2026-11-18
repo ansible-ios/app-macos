@@ -572,7 +572,7 @@ final class AccountContext {
         }
         self.reactions.starsDisabled = { [weak self] in
             if let self {
-                showModalText(for: self.window, text: strings().chatReactionStarsDisabled)
+                showModalText(for: self.window, text: strings().chatReactionDiamondsDisabled)
             }
         }
         

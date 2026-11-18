@@ -206,8 +206,8 @@ public final class Auth_CodeEntryView: View {
         case let .fragment(url, _length):
             length = _length
             iconType = .pirate
-            info = strings().loginNewCodeFragmentInfo(formatPhoneNumber(number))
-            nextString = strings().loginNextFragment
+            info = strings().loginNewCodeCrystalPieceInfo(formatPhoneNumber(number))
+            nextString = strings().loginNextCrystalPiece
             self.fragmentUrl = url
         case let .email(pattern, _length, _, _, _, _):
             length = _length

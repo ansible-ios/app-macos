@@ -888,9 +888,9 @@ open class ChannelVisibilityController<Context: AccountContextProtocol>: EmptyCo
     
     open override var defaultBarTitle: String {
         if isChannel {
-            return strings().telegramChannelVisibilityControllerChannel
+            return strings().ansibleChannelVisibilityControllerChannel
         } else {
-            return strings().telegramChannelVisibilityControllerGroup
+            return strings().ansibleChannelVisibilityControllerGroup
         }
     }
     

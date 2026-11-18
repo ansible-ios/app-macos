@@ -458,7 +458,7 @@ public enum RecentSessionsEntryTag {
 open class RecentSessionsController<Context: AccountContextProtocol>: TableViewController<Context> {
 
     open override var defaultBarTitle: String {
-        return strings().telegramRecentSessionsController
+        return strings().ansibleRecentSessionsController
     }
 
     private var focusOnItemTag: RecentSessionsEntryTag?

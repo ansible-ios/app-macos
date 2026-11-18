@@ -75,12 +75,12 @@ public final class Star_TransactionItem : GeneralRowItem {
         case .appstore:
             name = strings().starListTransactionAppStore
         case .fragment:
-            name = strings().starListTransactionFragment
+            name = strings().starListTransactionCrystalPiece
         case .playmarket:
             name = strings().starListTransactionPlayMarket
         case .peer:
             if !transaction.native.media.isEmpty {
-                name = strings().starsTransactionMediaPurchase
+                name = strings().diamondsTransactionMediaPurchase
             } else {
                 name = transaction.peer?._asPeer().displayTitle ?? ""
             }
@@ -91,7 +91,7 @@ public final class Star_TransactionItem : GeneralRowItem {
         case .unknown:
             name = strings().starListTransactionUnknown
         case .apiLimitExtension:
-            name = strings().starsIntroTransactionTelegramBotApiTitle
+            name = strings().diamondsIntroTransactionAnsibleBotApiTitle
         }
         
         self.nameLayout = .init(.initialize(string: name, color: theme.colors.text, font: .medium(.title)), maximumNumberOfLines: 1)
@@ -106,13 +106,13 @@ public final class Star_TransactionItem : GeneralRowItem {
         if transaction.native.flags.contains(.isStarGiftResale)  {
             descString = transaction.amount.value < 0 ? strings().starTransactionGiftPurchase : strings().starTransactionGiftSale
         } else if transaction.native.flags.contains(.isStarGiftAuctionBid)  {
-            descString = strings().starsTransactionGiftAuctionBid
+            descString = strings().diamondsTransactionGiftAuctionBid
         } else if let count = transaction.native.paidMessageCount {
             descString = strings().starTransactionMessageFeeOther(Int(count))
         } else if let premiumGiftMonths = transaction.native.premiumGiftMonths {
-            descString = strings().starsTransactionPremiumFor(Int(premiumGiftMonths))
+            descString = strings().diamondsTransactionPremiumFor(Int(premiumGiftMonths))
         }  else if let commission = transaction.native.starrefCommissionPermille {
-            descString = strings().starsTransactionCommission("\(commission.decemial.string)%")
+            descString = strings().diamondsTransactionCommission("\(commission.decemial.string)%")
         } else if !transaction.native.media.isEmpty {
             switch transaction.native.peer {
             case let .peer(peer):
@@ -121,25 +121,25 @@ public final class Star_TransactionItem : GeneralRowItem {
                 break
             }
         } else if transaction.native.giveawayMessageId != nil {
-            descString = strings().starsTransactionReceivedPrize
+            descString = strings().diamondsTransactionReceivedPrize
         } else if transaction.native.starGift != nil {
-            descString = strings().starsTransactionGift
+            descString = strings().diamondsTransactionGift
         } else if let floodskipNumber = transaction.native.floodskipNumber {
             descString = strings().starTransactionBroadcastMessagesOther(Int(floodskipNumber)).replacingOccurrences(of: "\(floodskipNumber)", with: floodskipNumber.formattedWithSeparator)
         } else {
             if transaction.native.flags.contains(.isGift) {
-                descString = strings().starsTransactionReceivedGift
+                descString = strings().diamondsTransactionReceivedGift
             } else if transaction.native.flags.contains(.isReaction) {
-                descString = strings().starsTransactionPaidReaction
+                descString = strings().diamondsTransactionPaidReaction
             } else if let period = transaction.native.subscriptionPeriod {
                 if period == 30 * 24 * 60 * 60 {
-                    descString = strings().starsSubscriptionPeriodMonthly
+                    descString = strings().diamondsSubscriptionPeriodMonthly
                 } else if period == 7 * 24 * 60 * 60 {
-                    descString = strings().starsSubscriptionPeriodWeekly
+                    descString = strings().diamondsSubscriptionPeriodWeekly
                 } else if period == 1 * 24 * 60 * 60 {
-                    descString = strings().starsSubscriptionPeriodDaily
+                    descString = strings().diamondsSubscriptionPeriodDaily
                 } else {
-                    descString = strings().starsSubscriptionPeriodUnknown
+                    descString = strings().diamondsSubscriptionPeriodUnknown
                 }
             } else {
                 if let desc = transaction.native.description {
@@ -149,7 +149,7 @@ public final class Star_TransactionItem : GeneralRowItem {
                         if transaction.native.flags.contains(.isRefund) {
                             descString = strings().starListRefund
                         } else {
-                            descString = strings().starsTransactionTopUp
+                            descString = strings().diamondsTransactionTopUp
                         }
                     } else {
                         descString = ""
@@ -173,7 +173,7 @@ public final class Star_TransactionItem : GeneralRowItem {
     public override var accessibilityValue: String? {
         let amount = amountLayout.attributedString.string.replacingOccurrences(of: clown, with: "").trimmingCharacters(in: .whitespaces)
         let currency: String
-        currency = strings().starListTelegramStars
+        currency = strings().starListAnsibleDiamonds
         return ["\(amount) \(currency)", descLayout?.attributedString.string, dateLayout.attributedString.string].compactMap { $0 }.joined(separator: ", ")
     }
     

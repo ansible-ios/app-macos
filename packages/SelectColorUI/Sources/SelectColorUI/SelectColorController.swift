@@ -2458,7 +2458,7 @@ public func SelectColorController(context: any AccountContextProtocol, peer: Pee
     }
     
 
-    let controller = InputDataController(dataSignal: signal, title: strings().telegramAppearanceViewController, removeAfterDisappear: false, hasDone: true, doneString: {
+    let controller = InputDataController(dataSignal: signal, title: strings().ansibleAppearanceViewController, removeAfterDisappear: false, hasDone: true, doneString: {
         return strings().selectColorApply
     })
     

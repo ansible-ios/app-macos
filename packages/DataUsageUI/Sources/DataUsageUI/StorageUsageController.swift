@@ -613,13 +613,13 @@ private func storageUsageControllerEntries<Context: AccountContextProtocol>(stat
         if let usageProgress {
             if usageProgress < 0.01 {
                 if let _ = state.peer {
-                    usageText = strings().storageUsageTelegramUsageEmptyPeer("1%")
+                    usageText = strings().storageUsageAnsibleUsageEmptyPeer("1%")
                 } else {
                     usageText = strings().storageUsageControllerUsageLessThan("0.01%")
                 }
             } else {
                 if let _ = state.peer {
-                    usageText = strings().storageUsageTelegramUsageTextPeer(String(format: "%.02f%%", usageProgress))
+                    usageText = strings().storageUsageAnsibleUsageTextPeer(String(format: "%.02f%%", usageProgress))
                 } else {
                     usageText = strings().storageUsageControllerUsageText(String(format: "%.02f%%", usageProgress))
                 }

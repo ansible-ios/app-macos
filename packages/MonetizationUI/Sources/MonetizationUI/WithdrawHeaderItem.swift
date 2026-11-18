@@ -35,9 +35,9 @@ final class WithdrawHeaderItem : GeneralRowItem {
     fileprivate let balance: TextViewLayout
     fileprivate let arguments: WithdrawArguments
     init(_ initialSize: NSSize, stableId: AnyHashable, balance: NSAttributedString, currency: CurrencyAmount.Currency, arguments: WithdrawArguments) {
-        self.currencyName = strings().starListTelegramStars
+        self.currencyName = strings().starListAnsibleDiamonds
         self.arguments = arguments
-        self.titleLayout = .init(.initialize(string: strings().fragmentStarWithdraw, color: theme.colors.text, font: .medium(.text)), maximumNumberOfLines: 1)
+        self.titleLayout = .init(.initialize(string: strings().crystalPieceDiamondWithdraw, color: theme.colors.text, font: .medium(.text)), maximumNumberOfLines: 1)
         
         self.balance = .init(balance)
         self.balance.measure(width: .greatestFiniteMagnitude)

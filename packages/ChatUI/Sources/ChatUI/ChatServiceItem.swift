@@ -1027,7 +1027,7 @@ public class ChatServiceItem: ChatRowItem {
                     let permissions = types.map({$0.rawValue}).joined(separator: ", ")
                      _ = attributedString.append(string: strings().chatServiceSecureIdAccessGranted(peer.displayTitle, permissions), color: grayTextColor, font: NSFont.normal(theme.fontSize))
                 case .peerJoined:
-                    let _ =  attributedString.append(string: strings().chatServicePeerJoinedTelegram(authorName), color: grayTextColor, font: NSFont.normal(theme.fontSize))
+                    let _ =  attributedString.append(string: strings().chatServicePeerJoinedAnsible(authorName), color: grayTextColor, font: NSFont.normal(theme.fontSize))
                     
                     if let authorId = authorId {
                         let range = attributedString.string.nsstring.range(of: authorName)
@@ -1580,7 +1580,7 @@ public class ChatServiceItem: ChatRowItem {
                 case let .giveawayLaunched(stars):
                     let text: String
                     if let stars {
-                        text = strings().chatServiceGiveawayStartedStarsOther(authorName, Int(stars))
+                        text = strings().chatServiceGiveawayStartedDiamondsOther(authorName, Int(stars))
                     } else {
                         text = strings().chatServiceGiveawayStarted(authorName)
                     }
@@ -1603,14 +1603,14 @@ public class ChatServiceItem: ChatRowItem {
                 case let .giveawayResults(winners, unclaimed, stars):
                     var text: String
                     if winners == 0 {
-                        text = stars ? strings().chatServiceGiveawayResultsNoWinnersStarsOther(Int(unclaimed)) : strings().chatServiceGiveawayResultsNoWinnersOther(Int(unclaimed))
+                        text = stars ? strings().chatServiceGiveawayResultsNoWinnersDiamondsOther(Int(unclaimed)) : strings().chatServiceGiveawayResultsNoWinnersOther(Int(unclaimed))
                     } else if unclaimed > 0 {
-                        text = stars ? strings().chatServiceGiveawayResultsStarsOther(Int(winners)) : strings().chatServiceGiveawayResultsOther(Int(winners))
-                        let winnersString = stars ? strings().chatServiceGiveawayResultsMixedWinnersStarsOther(Int(winners)) : strings().chatServiceGiveawayResultsMixedWinnersOther(Int(winners))
-                        let unclaimedString = stars ? strings().chatServiceGiveawayResultsMixedUnclaimedStarsOther(Int(unclaimed)) : strings().chatServiceGiveawayResultsMixedUnclaimedOther(Int(unclaimed))
+                        text = stars ? strings().chatServiceGiveawayResultsDiamondsOther(Int(winners)) : strings().chatServiceGiveawayResultsOther(Int(winners))
+                        let winnersString = stars ? strings().chatServiceGiveawayResultsMixedWinnersDiamondsOther(Int(winners)) : strings().chatServiceGiveawayResultsMixedWinnersOther(Int(winners))
+                        let unclaimedString = stars ? strings().chatServiceGiveawayResultsMixedUnclaimedDiamondsOther(Int(unclaimed)) : strings().chatServiceGiveawayResultsMixedUnclaimedOther(Int(unclaimed))
                         text = winnersString + "\n" + unclaimedString
                     } else {
-                        text = stars ? strings().chatServiceGiveawayResultsStarsOther(Int(winners)) : strings().chatServiceGiveawayResultsOther(Int(winners))
+                        text = stars ? strings().chatServiceGiveawayResultsDiamondsOther(Int(winners)) : strings().chatServiceGiveawayResultsOther(Int(winners))
                     }
                     let _ = attributedString.append(string: text, color: grayTextColor, font: NSFont.normal(theme.fontSize))
                     attributedString.detectBoldColorInString(with: .medium(theme.fontSize))
@@ -1679,7 +1679,7 @@ public class ChatServiceItem: ChatRowItem {
                     header.append(string: strings().starListItemCountOther(Int(count)), color: grayTextColor, font: .medium(theme.fontSize + 1))
                     
                     
-                    _ = info.append(string: strings().starsGiftServiceInfo, color: grayTextColor, font: .normal(theme.fontSize))
+                    _ = info.append(string: strings().diamondsGiftServiceInfo, color: grayTextColor, font: .normal(theme.fontSize))
                     info.detectBoldColorInString(with: .medium(theme.fontSize))
                     
                     
@@ -1796,30 +1796,30 @@ public class ChatServiceItem: ChatRowItem {
                         let text: String
 
                         if message.id.peerId == context.peerId {
-                            text = strings().notificationStarsGiftSubtitleSelf
+                            text = strings().notificationDiamondsGiftSubtitleSelf
                         } else {
                             let displayTitle = message.peers[message.id.peerId]?.compactDisplayTitle ?? ""
                             let convertStarsString = strings().starListItemCountOther(Int(convertStars))
 
                             if isIncoming {
                                 if savedToProfile {
-                                    text = strings().starsStarGiftTextKeptOnPageIncoming
+                                    text = strings().diamondsStarGiftTextKeptOnPageIncoming
                                 } else if convertedToStars {
-                                    text = strings().starsStarGiftTextConvertedIncoming(convertStarsString)
+                                    text = strings().diamondsStarGiftTextConvertedIncoming(convertStarsString)
                                 } else {
                                     if let peerId, peerId.namespace == Namespaces.Peer.CloudChannel {
-                                        text = strings().starsStarGiftTextIncomingChannel(convertStarsString)
+                                        text = strings().diamondsStarGiftTextIncomingChannel(convertStarsString)
                                     } else {
-                                        text = strings().starsStarGiftTextIncoming(convertStarsString)
+                                        text = strings().diamondsStarGiftTextIncoming(convertStarsString)
                                     }
                                 }
                             } else {
                                 if savedToProfile {
-                                    text = strings().starsStarGiftTextKeptOnPageOutgoing(displayTitle)
+                                    text = strings().diamondsStarGiftTextKeptOnPageOutgoing(displayTitle)
                                 } else if convertedToStars {
-                                    text = strings().starsStarGiftTextConvertedOutgoing(displayTitle, convertStarsString)
+                                    text = strings().diamondsStarGiftTextConvertedOutgoing(displayTitle, convertStarsString)
                                 } else {
-                                    text = strings().starsStarGiftTextOutgoing(displayTitle, convertStarsString)
+                                    text = strings().diamondsStarGiftTextOutgoing(displayTitle, convertStarsString)
                                 }
                             }
                         }
@@ -1857,7 +1857,7 @@ public class ChatServiceItem: ChatRowItem {
                     let text: String
                     if authorId == context.peerId {
                         if message.id.peerId == context.peerId {
-                            text = strings().notificationStarsGiftSelfBought(
+                            text = strings().notificationDiamondsGiftSelfBought(
                                 strings().starListItemCountOther(Int(finalPrice))
                             )
                         } else {
@@ -1867,13 +1867,13 @@ public class ChatServiceItem: ChatRowItem {
 
                                 if let senderId, let author = message.peers[senderId] {
                                     if senderId == context.peerId {
-                                        text = strings().notificationStarsGiftUpgradeToSelf(giftValue, toPeerName)
+                                        text = strings().notificationDiamondsGiftUpgradeToSelf(giftValue, toPeerName)
                                     } else {
                                         let authorName = author.compactDisplayTitle
-                                        text = strings().notificationStarsGiftUpgradeFromOther(giftValue, toPeerName, authorName)
+                                        text = strings().notificationDiamondsGiftUpgradeFromOther(giftValue, toPeerName, authorName)
                                     }
                                 } else {
-                                    text = strings().notificationStarsGiftUpgradeGeneric(giftValue, toPeerName)
+                                    text = strings().notificationDiamondsGiftUpgradeGeneric(giftValue, toPeerName)
                                 }
                             } else {
                                 text = strings().chatServiceStarGiftSentYou(
@@ -1884,19 +1884,19 @@ public class ChatServiceItem: ChatRowItem {
                     } else {
 
                         if auctionAcquired {
-                            text = strings().notificationStarsGiftSelfAuctionBought(
+                            text = strings().notificationDiamondsGiftSelfAuctionBought(
                                 strings().starListItemCountOther(Int(gift.price)))
                         } else if isPrepaidUpgrade, let upgradeStars {
                             let formattedStars = strings().starListItemCountOther(Int(upgradeStars))
 
                             if let senderId, let author = message.peers[senderId] {
                                 if senderId == context.peerId {
-                                    text = strings().chatStarsGiftUpgradeSelf(authorName, formattedStars)
+                                    text = strings().chatDiamondsGiftUpgradeSelf(authorName, formattedStars)
                                 } else {
-                                    text = strings().chatStarsGiftUpgradeOther(authorName, formattedStars, author.compactDisplayTitle)
+                                    text = strings().chatDiamondsGiftUpgradeOther(authorName, formattedStars, author.compactDisplayTitle)
                                 }
                             } else {
-                                text = strings().chatStarsGiftUpgradeSelf(authorName, formattedStars)
+                                text = strings().chatDiamondsGiftUpgradeSelf(authorName, formattedStars)
                             }
                         } else {
                             if let senderId, let author = message.peers[senderId], let peerId = peerId, let toPeer = message.peers[peerId] {
@@ -1973,24 +1973,24 @@ public class ChatServiceItem: ChatRowItem {
                             } else if isUpgrade {
                                 if message.author?.id == context.account.peerId {
                                     if isPrepaidUpgrade {
-                                        text = strings().notificationStarsGiftUpgradePrepaidYou(peerName)
+                                        text = strings().notificationDiamondsGiftUpgradePrepaidYou(peerName)
                                     } else {
-                                        text = strings().notificationStarsGiftUpgradeYou(peerName)
+                                        text = strings().notificationDiamondsGiftUpgradeYou(peerName)
                                     }
                                 } else {
                                     if isPrepaidUpgrade {
-                                        text = strings().notificationStarsGiftUpgradePrepaid(peerName)
+                                        text = strings().notificationDiamondsGiftUpgradePrepaid(peerName)
                                     } else if let _ = senderId {
-                                        text = strings().notificationStarsGiftUpgradeChannel(peerName)
+                                        text = strings().notificationDiamondsGiftUpgradeChannel(peerName)
                                     } else {
-                                        text = strings().notificationStarsGiftUpgrade(peerName)
+                                        text = strings().notificationDiamondsGiftUpgrade(peerName)
                                     }
                                 }
                             } else if isTransferred {
                                 if message.author?.id == context.account.peerId {
-                                    text = strings().notificationStarsGiftTransferYou
+                                    text = strings().notificationDiamondsGiftTransferYou
                                 } else {
-                                    text = strings().notificationStarsGiftTransfer(peerName)
+                                    text = strings().notificationDiamondsGiftTransfer(peerName)
                                 }
                             }
                         }
@@ -3323,7 +3323,7 @@ public class ChatServiceRowView: TableRowView, RevealTableView {
             button.set(color: isUnique ? .white : item.presentation.chatServiceItemTextColor, for: .Normal)
             button.set(background: overlayColor, for: .Normal)
             if data.isPrepaidUpgrade, data.to == context.peerId {
-                button.set(text: strings().chatStarsGiftButtonUnpack, for: .Normal)
+                button.set(text: strings().chatDiamondsGiftButtonUnpack, for: .Normal)
             } else {
                 button.set(text: strings().chatServiceGiftView, for: .Normal)
             }

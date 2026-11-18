@@ -67,11 +67,11 @@ public final class PremiumBoardingHeaderItem : GeneralRowItem {
             info.detectBoldColorInString(with: .medium(.text))
 
         case .coin:
-            title = .initialize(string: strings().premiumBoardingBusinessTelegramBusiness, color: presentation.colors.text, font: .medium(.header))
+            title = .initialize(string: strings().premiumBoardingBusinessAnsibleBusiness, color: presentation.colors.text, font: .medium(.header))
             if isPremium {
-                _ = info.append(string: strings().premiumBoardingBusinessTelegramBusinessHeaderInfo1, color: presentation.colors.text, font: .normal(.text))
+                _ = info.append(string: strings().premiumBoardingBusinessAnsibleBusinessHeaderInfo1, color: presentation.colors.text, font: .normal(.text))
             } else {
-                _ = info.append(string: strings().premiumBoardingBusinessTelegramBusinessHeaderInfo2, color: presentation.colors.text, font: .normal(.text))
+                _ = info.append(string: strings().premiumBoardingBusinessAnsibleBusinessHeaderInfo2, color: presentation.colors.text, font: .normal(.text))
             }
         case .grace:
             title = .initialize(string: strings().premiumBoardingGraceTitle, color: presentation.colors.text, font: .medium(.header))

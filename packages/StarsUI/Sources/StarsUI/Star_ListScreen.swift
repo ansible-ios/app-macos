@@ -151,31 +151,31 @@ private final class FloatingHeaderView : Control {
         case let .buy(_, amount):
             if let amount {
                 let need = Int(amount - myBalance.value)
-                text = strings().starListStarsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator)
+                text = strings().starListDiamondsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator)
             } else {
-                text = strings().starListGetStars
+                text = strings().starListGetDiamonds
             }
             balanceView.isHidden = false
         case let .purchase(_, requested):
             let need = Int(requested - myBalance.value)
-            text = strings().starListStarsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator)
+            text = strings().starListDiamondsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator)
             balanceView.isHidden = false
         case let .purchaseSubscribe(_, requested):
             let need = Int(requested - myBalance.value)
-            text = strings().starListStarsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator)
+            text = strings().starListDiamondsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator)
             balanceView.isHidden = false
         case .account:
-            text = strings().starListTelegramStars
+            text = strings().starListAnsibleDiamonds
             balanceView.isHidden = true
         case .reactions:
-            text = strings().starListTelegramStars
+            text = strings().starListAnsibleDiamonds
             balanceView.isHidden = false
         case let .prolongSubscription(_, requested):
             let need = Int(requested - myBalance.value)
-            text = strings().starListStarsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator)
+            text = strings().starListDiamondsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator)
             balanceView.isHidden = false
         case .gift:
-            text = strings().starsGiftTitle
+            text = strings().diamondsGiftTitle
             balanceView.isHidden = true
         }
         
@@ -255,7 +255,7 @@ private final class BalanceItem : GeneralRowItem {
         
         
         let giftAttr = NSMutableAttributedString()
-        giftAttr.append(string: strings().starsGiftToFriends(clown_space), color: theme.colors.accent, font: .normal(.title))
+        giftAttr.append(string: strings().diamondsGiftToFriends(clown_space), color: theme.colors.accent, font: .normal(.title))
         giftAttr.insertEmbedded(.embedded(name: "Icon_Gift_Stars", color: theme.colors.accent, resize: false), for: clown)
         self.giftPremiumLayout = TextViewLayout(giftAttr)
         
@@ -290,7 +290,7 @@ private final class BalanceItem : GeneralRowItem {
     }
     
     override var accessibilityValue: String? {
-        return "\(myBalanceLayout.attributedString.string) \(strings().starListTelegramStars)"
+        return "\(myBalanceLayout.attributedString.string) \(strings().starListAnsibleDiamonds)"
     }
     
     public override func viewClass() -> AnyClass {
@@ -298,7 +298,7 @@ private final class BalanceItem : GeneralRowItem {
     }
     
     public var actionText: String {
-        return self.canWithdraw ? strings().starListTopUp : strings().starListBuyMoreStars
+        return self.canWithdraw ? strings().starListTopUp : strings().starListBuyMoreDiamonds
     }
     
     public var actionIsHidden: Bool {
@@ -478,9 +478,9 @@ private final class HeaderItem : GeneralRowItem {
         case let .buy(suffix, amount):
             if let amount {
                 let need = Int(amount - myBalance.value)
-                headerAttr.append(string: strings().starListStarsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator), color: theme.colors.text, font: .medium(.header))
+                headerAttr.append(string: strings().starListDiamondsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator), color: theme.colors.text, font: .medium(.header))
             } else {
-                headerAttr.append(string: strings().starListGetStars, color: theme.colors.text, font: .medium(.header))
+                headerAttr.append(string: strings().starListGetDiamonds, color: theme.colors.text, font: .medium(.header))
             }
             if let suffix {
                 let suffixKey = "Star.Buy.Custom_\(suffix)"
@@ -495,26 +495,26 @@ private final class HeaderItem : GeneralRowItem {
             }
         case let .purchase(peer, requested):
             let need = Int(requested - myBalance.value)
-            headerAttr.append(string: strings().starListStarsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator), color: theme.colors.text, font: .medium(.header))
+            headerAttr.append(string: strings().starListDiamondsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator), color: theme.colors.text, font: .medium(.header))
             headerInfo.append(string: strings().starListBuyAndUse(peer._asPeer().displayTitle), color: theme.colors.text, font: .normal(.text))
         case .account:
-            headerAttr.append(string: strings().starListTelegramStars, color: theme.colors.text, font: .medium(.header))
+            headerAttr.append(string: strings().starListAnsibleDiamonds, color: theme.colors.text, font: .medium(.header))
             headerInfo.append(string: strings().starListBuyAndUserNobot, color: theme.colors.text, font: .normal(.text))
         case let .reactions(_, requested):
             let need = Int(requested - myBalance.value)
-            headerAttr.append(string: strings().starListStarsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator), color: theme.colors.text, font: .medium(.header))
+            headerAttr.append(string: strings().starListDiamondsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator), color: theme.colors.text, font: .medium(.header))
             headerInfo.append(string: strings().starListBuyAndUserNobot, color: theme.colors.text, font: .normal(.text))
         case let .prolongSubscription(peer, requested):
             let need = Int(requested - myBalance.value)
-            headerAttr.append(string: strings().starListStarsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator), color: theme.colors.text, font: .medium(.header))
+            headerAttr.append(string: strings().starListDiamondsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator), color: theme.colors.text, font: .medium(.header))
             headerInfo.append(string: strings().starBuyScreenProlongSubs(peer._asPeer().displayTitle), color: theme.colors.text, font: .normal(.text))
         case let .purchaseSubscribe(peer, requested):
             let need = Int(requested - myBalance.value)
-            headerAttr.append(string: strings().starListStarsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator), color: theme.colors.text, font: .medium(.header))
+            headerAttr.append(string: strings().starListDiamondsNeededOther(need).replacingOccurrences(of: "\(need)", with: need.formattedWithSeparator), color: theme.colors.text, font: .medium(.header))
             headerInfo.append(string: strings().starBuyScreenPurschaseSub(peer._asPeer().displayTitle), color: theme.colors.text, font: .normal(.text))
 
         case let .gift(peer):
-            headerAttr.append(string: strings().starsGiftTitle, color: theme.colors.text, font: .medium(.header))
+            headerAttr.append(string: strings().diamondsGiftTitle, color: theme.colors.text, font: .medium(.header))
             
             let text = strings().starBuyScreenGift(peer._asPeer().displayTitle)
             

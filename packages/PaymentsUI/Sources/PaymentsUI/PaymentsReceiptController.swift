@@ -77,7 +77,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         let isDiamondReceipt = receipt.invoice.currency == XTR
         func priceText(_ amount: Int64) -> String {
             let number = formatCurrencyAmount(amount, currency: receipt.invoice.currency)
-            return isDiamondReceipt ? "\(number) \(strings().starListTelegramStars)" : number
+            return isDiamondReceipt ? "\(number) \(strings().starListAnsibleDiamonds)" : number
         }
 
         var prices = receipt.invoice.prices
@@ -129,7 +129,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         }
         
         var fields = receipt.invoice.requestedFields.intersection([.shippingAddress, .email, .name, .phone])
-        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_checkout_payment_method, data: .init(name: strings().checkoutPaymentMethod, color: theme.colors.text, type: .context(isDiamondReceipt ? strings().starListTelegramStars : receipt.credentialsTitle), viewType: fields.isEmpty ? .singleItem : .firstItem, enabled: false)))
+        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_checkout_payment_method, data: .init(name: strings().checkoutPaymentMethod, color: theme.colors.text, type: .context(isDiamondReceipt ? strings().starListAnsibleDiamonds : receipt.credentialsTitle), viewType: fields.isEmpty ? .singleItem : .firstItem, enabled: false)))
         index += 1
         
         

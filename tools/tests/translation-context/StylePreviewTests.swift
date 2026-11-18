@@ -71,7 +71,7 @@ final class PreviewModal {
 func showModal(with modal: PreviewModal, for window: Int) { Probe.check?(); PreviewProbe.presented = modal }
 extension Strings {
     var aiStylePreviewAddStyle: String { "Add Style" }
-    var aiStylePreviewOpenLinkOnTelegram: String { "Open in Telegram" }
+    var aiStylePreviewOpenLinkOnAnsible: String { "Open in Ansible" }
     var inAppLinksStyleNotFound: String { "Not found" }
 }
 extension ParsedAboutLink {

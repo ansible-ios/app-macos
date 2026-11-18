@@ -86,7 +86,7 @@ private final class StarNftOfferInputItem : GeneralRowItem {
     }
     
     override var accessibilityLabel: String? {
-        return strings().fragmentStarAmountPlaceholder
+        return strings().crystalPieceDiamondAmountPlaceholder
     }
     
     override var accessibilityValue: String? {
@@ -137,7 +137,7 @@ private final class StarNftOfferInputView : GeneralRowView {
             
 
             
-            inputView.placeholder = strings().fragmentStarAmountPlaceholder
+            inputView.placeholder = strings().crystalPieceDiamondAmountPlaceholder
             
             inputView.context = item.arguments.context
             inputView.interactions.max_height = 500
@@ -344,7 +344,7 @@ private func entries(_ state: StarNftOfferState, arguments: Arguments) -> [Input
         )
     ))
     
-    let currency = strings().starGiftOfferCurrencyStars
+    let currency = strings().starGiftOfferCurrencyDiamonds
 
     entries.append(.desc(
         sectionId: sectionId,
@@ -476,7 +476,7 @@ public func StarNftOfferController(context: (any AccountContextProtocol), peer: 
                     control = ImageView(frame: NSMakeRect(0, 0, 20, 20))
                 }
                     control.image = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
-                    control.setAccessibilityLabel(strings().voiceOverCommonStars)
+                    control.setAccessibilityLabel(strings().voiceOverCommonDiamonds)
                 return control
             })))
             
@@ -490,7 +490,7 @@ public func StarNftOfferController(context: (any AccountContextProtocol), peer: 
                         control = ImageView(frame: NSMakeRect(0, 0, 20, 20))
                     }
                     control.image = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
-                    control.setAccessibilityLabel(strings().voiceOverCommonStars)
+                    control.setAccessibilityLabel(strings().voiceOverCommonDiamonds)
                     return control
                 })))
             }

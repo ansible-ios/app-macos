@@ -250,7 +250,7 @@ private func webAuthorizationEntries(webSessions: WebSessionsContextState, state
 open class WebSessionsController<Context: AccountContextProtocol>: TableViewController<Context> {
 
     open override var defaultBarTitle: String {
-        return strings().telegramWebSessionsController
+        return strings().ansibleWebSessionsController
     }
 
     private let disposable = MetaDisposable()

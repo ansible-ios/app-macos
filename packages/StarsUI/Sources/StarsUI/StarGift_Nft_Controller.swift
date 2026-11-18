@@ -2230,7 +2230,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                 rows.append(.init(left: .init(.initialize(string:strings().giftUniqueOwner, color: theme.colors.text, font: .normal(.text))), right: .init(name: layout, leftView: nil, rightView: nil, badge: nil)))
             }
             
-            rows.append(.init(left: .init(.initialize(string: isBlockchainAnsible ? strings().giftUniqueTelegram : strings().giftUniqueOwner, color: theme.colors.text, font: .normal(.text))), right: .init(name: ownerText, leftView: leftView, rightView: rightView, badge: nil)))
+            rows.append(.init(left: .init(.initialize(string: isBlockchainAnsible ? strings().giftUniqueAnsible : strings().giftUniqueOwner, color: theme.colors.text, font: .normal(.text))), right: .init(name: ownerText, leftView: leftView, rightView: rightView, badge: nil)))
             
             switch state.gift {
             case let .unique(gift):
@@ -3800,7 +3800,7 @@ private final class SellNftInputView : GeneralRowView {
             
 
             
-            inputView.placeholder = strings().fragmentStarAmountPlaceholder
+            inputView.placeholder = strings().crystalPieceDiamondAmountPlaceholder
             
             inputView.context = item.arguments.context
             inputView.interactions.max_height = 500

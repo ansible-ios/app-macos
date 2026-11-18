@@ -74,7 +74,7 @@ public final class ChatGiveawayResultRowItem : ChatRowItem {
         case .premium:
             winnerText = strings().chatGiveawayMessageWinnersInfoOther(Int(media.winnersCount))
         case .stars(let amount):
-            winnerText = strings().chatGiveawayMessageWinnersInfoStarOther(Int(media.winnersCount), strings().chatGiveawayMessageStarsOther(Int(amount)))
+            winnerText = strings().chatGiveawayMessageWinnersInfoStarOther(Int(media.winnersCount), strings().chatGiveawayMessageDiamondsOther(Int(amount)))
         }
         
         _ = winners_attr.append(string: winnerText, color: givePresentation.text, font: .normal(.text))

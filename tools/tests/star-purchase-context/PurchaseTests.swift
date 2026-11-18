@@ -145,8 +145,8 @@ struct Strings {
     func starPurchaseTextInOther(_ count: Int) -> String { "count" }
     func starPurchaseSuccess(_ info: String, _ peer: String, _ amount: String) -> String { "paid" }
     func starPurchasePaidMediaSuccess(_ amount: String) -> String { "media" }
-    func starsPurchaseSubscribeSuccess(_ title: String) -> String { "subscription" }
-    func starsPurchaseBotSubscribeSuccess(_ title: String, _ peer: String) -> String { "bot subscription" }
+    func diamondsPurchaseSubscribeSuccess(_ title: String) -> String { "subscription" }
+    func diamondsPurchaseBotSubscribeSuccess(_ title: String, _ peer: String) -> String { "bot subscription" }
 }
 func strings() -> Strings { Strings() }
 __SESSION__

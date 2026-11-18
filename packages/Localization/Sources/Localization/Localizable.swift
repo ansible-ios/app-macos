@@ -55,17 +55,17 @@ public final class L10n {
   public static var yourCardsZipCodeIsInvalid: String  { return L10n.tr("Localizable", "Your_cards_zip_code_is_invalid") }
   /// Check for Updates
   public static var _1000Title: String  { return L10n.tr("Localizable", "1000.title") }
-  /// Telegram
+  /// Ansible
   public static var _1XtHYUBwTitle: String  { return L10n.tr("Localizable", "1Xt-HY-uBw.title") }
   /// Transformations
   public static var _2oIRnZJCTitle: String  { return L10n.tr("Localizable", "2oI-Rn-ZJC.title") }
   /// Enter Full Screen
   public static var _4J7DPTxaTitle: String  { return L10n.tr("Localizable", "4J7-dP-txa.title") }
-  /// Quit Telegram
+  /// Quit Ansible
   public static var _4sb4sVLiTitle: String  { return L10n.tr("Localizable", "4sb-4s-VLi.title") }
   /// Edit
   public static var _5QFOaP0TTitle: String  { return L10n.tr("Localizable", "5QF-Oa-p0T.title") }
-  /// About Telegram
+  /// About Ansible
   public static var _5kVVbQxSTitle: String  { return L10n.tr("Localizable", "5kV-Vb-QxS.title") }
   /// Redo
   public static var _6dhZSVamTitle: String  { return L10n.tr("Localizable", "6dh-zS-Vam.title") }
@@ -97,7 +97,7 @@ public final class L10n {
   public static var aiStyleModalNewStyleTitle: String  { return L10n.tr("Localizable", "AIStyleModal.NewStyleTitle") }
   /// Save
   public static var aiStyleModalSave: String  { return L10n.tr("Localizable", "AIStyleModal.Save") }
-  /// You can save up to %1$d styles. Subscribe to Telegram Premium to increase this limit to %2$d.
+  /// You can save up to %1$d styles. Subscribe to Ansible Premium to increase this limit to %2$d.
   public static func aiStyleModalSavedLimitPremiumOther(_ p1: Int, _ p2: Int) -> String {
     return L10n.tr("Localizable", "AIStyleModal.SavedLimitPremium_other", p1, p2)
   }
@@ -113,11 +113,11 @@ public final class L10n {
   public static var aboutDescription: String  { return L10n.tr("Localizable", "About.Description") }
   /// Cocoon (**Co**nfidential **Co**mpute **O**pen **N**etwork) handles AI tasks **safely** and **efficiently.
   public static var aboutCocoonDescription: String  { return L10n.tr("Localizable", "AboutCocoon.Description") }
-  /// Want to integrate Cocoon into your projects?\nReach out at [t.me/cocoon](t.me/cocoon)
+  /// Want to integrate Cocoon into your projects?\nReach out at [asme.su/cocoon](https://asme.su/cocoon)
   public static var aboutCocoonFooter: String  { return L10n.tr("Localizable", "AboutCocoon.Footer") }
   /// COCOON
   public static var aboutCocoonTitle: String  { return L10n.tr("Localizable", "AboutCocoon.Title") }
-  /// Cocoon has allowed Telegram to reduce translation costs by 6x.
+  /// Cocoon has allowed Ansible to reduce translation costs by 6x.
   public static var aboutCocoonFeatureEfficientDescription: String  { return L10n.tr("Localizable", "AboutCocoon.Feature.Efficient.Description") }
   /// Efficient
   public static var aboutCocoonFeatureEfficientTitle: String  { return L10n.tr("Localizable", "AboutCocoon.Feature.Efficient.Title") }
@@ -159,7 +159,7 @@ public final class L10n {
   public static var aboutFeatureModalControllerFirstGramsSendInfo: String  { return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsSendInfo") }
   /// Store
   public static var aboutFeatureModalControllerFirstGramsStore: String  { return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsStore") }
-  /// Keep your Grams in Telegram (Settings > Wallet) or other wallets.
+  /// Keep your Grams in Ansible (Settings > Wallet) or other wallets.
   public static var aboutFeatureModalControllerFirstGramsStoreInfo: String  { return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsStoreInfo") }
   /// Your first Grams!
   public static var aboutFeatureModalControllerFirstGramsTitle: String  { return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsTitle") }
@@ -173,7 +173,7 @@ public final class L10n {
   public static var accentColorsTinted: String  { return L10n.tr("Localizable", "AccentColors.Tinted") }
   /// Open In Window
   public static var accountOpenInWindow: String  { return L10n.tr("Localizable", "Account.OpenInWindow") }
-  /// Please note that Telegram Support is done by volunteers. We try to respond as quickly as possible, but it may take some time.\n\nPlease take a look at the Telegram FAQ: it has important troubleshooting tips and answers to most questions.
+  /// Please note that Ansible Support is done by volunteers. We try to respond as quickly as possible, but it may take some time.\n\nPlease take a look at the Ansible FAQ: it has important troubleshooting tips and answers to most questions.
   public static var accountConfirmAskQuestion: String  { return L10n.tr("Localizable", "Account.Confirm.AskQuestion") }
   /// Open FAQ
   public static var accountConfirmGoToFaq: String  { return L10n.tr("Localizable", "Account.Confirm.GoToFaq") }
@@ -203,7 +203,7 @@ public final class L10n {
   public static var accountSettingsDataAndStorage: String  { return L10n.tr("Localizable", "AccountSettings.DataAndStorage") }
   /// Remove Account
   public static var accountSettingsDeleteAccount: String  { return L10n.tr("Localizable", "AccountSettings.DeleteAccount") }
-  /// Telegram FAQ
+  /// Ansible FAQ
   public static var accountSettingsFAQ: String  { return L10n.tr("Localizable", "AccountSettings.FAQ") }
   /// Chat Folders
   public static var accountSettingsFilters: String  { return L10n.tr("Localizable", "AccountSettings.Filters") }
@@ -221,9 +221,9 @@ public final class L10n {
   public static var accountSettingsMyStories: String  { return L10n.tr("Localizable", "AccountSettings.MyStories") }
   /// Notifications and Sounds
   public static var accountSettingsNotifications: String  { return L10n.tr("Localizable", "AccountSettings.Notifications") }
-  /// Telegram Passport
+  /// Ansible Passport
   public static var accountSettingsPassport: String  { return L10n.tr("Localizable", "AccountSettings.Passport") }
-  /// Telegram Premium
+  /// Ansible Premium
   public static var accountSettingsPremium: String  { return L10n.tr("Localizable", "AccountSettings.Premium") }
   /// Privacy and Security
   public static var accountSettingsPrivacyAndSecurity: String  { return L10n.tr("Localizable", "AccountSettings.PrivacyAndSecurity") }
@@ -241,14 +241,14 @@ public final class L10n {
   public static var accountSettingsSetProfilePhoto: String  { return L10n.tr("Localizable", "AccountSettings.SetProfilePhoto") }
   /// Set a Username
   public static var accountSettingsSetUsername: String  { return L10n.tr("Localizable", "AccountSettings.SetUsername") }
-  /// My Stars
-  public static var accountSettingsStars: String  { return L10n.tr("Localizable", "AccountSettings.Stars") }
+  /// My Ansible Diamonds
+  public static var accountSettingsDiamonds: String  { return L10n.tr("Localizable", "AccountSettings.Stars") }
   /// Stickers and Emoji
   public static var accountSettingsStickers: String  { return L10n.tr("Localizable", "AccountSettings.Stickers") }
   /// Stickers and Emoji
   public static var accountSettingsStickersAndEmoji: String  { return L10n.tr("Localizable", "AccountSettings.StickersAndEmoji") }
-  /// Telegram Business
-  public static var accountSettingsTelegramBusiness: String  { return L10n.tr("Localizable", "AccountSettings.TelegramBusiness") }
+  /// Ansible Business
+  public static var accountSettingsAnsibleBusiness: String  { return L10n.tr("Localizable", "AccountSettings.TelegramBusiness") }
   /// Appearance
   public static var accountSettingsTheme: String  { return L10n.tr("Localizable", "AccountSettings.Theme") }
   /// Update Status
@@ -309,9 +309,9 @@ public final class L10n {
   public static var adminsWhoCanInviteEveryone: String  { return L10n.tr("Localizable", "Admins.WhoCanInvite.Everyone") }
   /// Who can add members
   public static var adminsWhoCanInviteText: String  { return L10n.tr("Localizable", "Admins.WhoCanInvite.Text") }
-  /// Earn Stars
+  /// Earn Ansible Diamonds
   public static var affilateProgramEarn: String  { return L10n.tr("Localizable", "AffilateProgram.Earn") }
-  /// Distribute links to mini apps and earn a share of their revenue in Stars
+  /// Distribute links to mini apps and earn a share of their revenue in Ansible Diamonds
   public static var affilateProgramEarnInfo: String  { return L10n.tr("Localizable", "AffilateProgram.Earn.Info") }
   /// DURATION
   public static var affiliateDuration: String  { return L10n.tr("Localizable", "Affiliate.Duration") }
@@ -355,7 +355,7 @@ public final class L10n {
   public static func affiliateProgramJoinSubtitleYearsAny(_ p1: Int) -> String {
     return L10n.tr("Localizable", "AffiliateProgram.JoinSubtitleYears_any", p1)
   }
-  /// By joining this program, you agree to the [terms and conditions](https://telegram.org/tos/affiliate-program) of Affiliate Programs.
+  /// By joining this program, you agree to the [terms and conditions](https://ansible.su/tos/affiliate-program) of Affiliate Programs.
   public static var affiliateProgramJoinTerms: String  { return L10n.tr("Localizable", "AffiliateProgram.JoinTerms") }
   /// Affiliate Program
   public static var affiliateProgramJoinTitle: String  { return L10n.tr("Localizable", "AffiliateProgram.JoinTitle") }
@@ -435,7 +435,7 @@ public final class L10n {
   public static var affiliateSetupProgramLeave: String  { return L10n.tr("Localizable", "AffiliateSetup.ProgramLeave") }
   /// COMMISSION
   public static var affiliateSetupSectionCommission: String  { return L10n.tr("Localizable", "AffiliateSetup.SectionCommission") }
-  /// Define the percentage of star revenue your affiliates earn for referring users to your bot.
+  /// Define the percentage of Ansible Diamond revenue your affiliates earn for referring users to your bot.
   public static var affiliateSetupSectionCommissionFooter: String  { return L10n.tr("Localizable", "AffiliateSetup.SectionCommissionFooter") }
   /// DURATION
   public static var affiliateSetupSectionDuration: String  { return L10n.tr("Localizable", "AffiliateSetup.SectionDuration") }
@@ -451,9 +451,9 @@ public final class L10n {
   public static var affiliateSetupSuggestedSectionEmpty: String  { return L10n.tr("Localizable", "AffiliateSetup.SuggestedSectionEmpty") }
   /// PROGRAMS
   public static var affiliateSetupSuggestedSectionTitle: String  { return L10n.tr("Localizable", "AffiliateSetup.SuggestedSectionTitle") }
-  /// By creating an affiliate program, you agree to the [terms and conditions](https://telegram.org/terms) of Affiliate Programs.
+  /// By creating an affiliate program, you agree to the [terms and conditions](https://ansible.su/tos) of Affiliate Programs.
   public static var affiliateSetupTermsFooter: String  { return L10n.tr("Localizable", "AffiliateSetup.TermsFooter") }
-  /// Earn a commission each time a user who first accessed a mini app through your referral link spends **Stars** within it.
+  /// Earn a commission each time a user who first accessed a mini app through your referral link spends **Ansible Diamonds** within it.
   public static var affiliateSetupTextJoin: String  { return L10n.tr("Localizable", "AffiliateSetup.TextJoin") }
   /// Reward those who help grow your user base.
   public static var affiliateSetupTextNew: String  { return L10n.tr("Localizable", "AffiliateSetup.TextNew") }
@@ -491,7 +491,7 @@ public final class L10n {
   public static var affiliateSetupIntroJoinText1: String  { return L10n.tr("Localizable", "AffiliateSetup.IntroJoin.Text1") }
   /// Track your commissions from referred users in real time.
   public static var affiliateSetupIntroJoinText2: String  { return L10n.tr("Localizable", "AffiliateSetup.IntroJoin.Text2") }
-  /// Choose a mini app below, get your referral link, and start earning Stars.
+  /// Choose a mini app below, get your referral link, and start earning Ansible Diamonds.
   public static var affiliateSetupIntroJoinText3: String  { return L10n.tr("Localizable", "AffiliateSetup.IntroJoin.Text3") }
   /// Reliable
   public static var affiliateSetupIntroJoinTitle1: String  { return L10n.tr("Localizable", "AffiliateSetup.IntroJoin.Title1") }
@@ -501,7 +501,7 @@ public final class L10n {
   public static var affiliateSetupIntroJoinTitle3: String  { return L10n.tr("Localizable", "AffiliateSetup.IntroJoin.Title3") }
   /// Set the commission for revenue generated by users referred to you.
   public static var affiliateSetupIntroNewText1: String  { return L10n.tr("Localizable", "AffiliateSetup.IntroNew.Text1") }
-  /// Telegram will feature your program for millions of potential affiliates.
+  /// Ansible will feature your program for millions of potential affiliates.
   public static var affiliateSetupIntroNewText2: String  { return L10n.tr("Localizable", "AffiliateSetup.IntroNew.Text2") }
   /// Affiliates will share your referral link with their audience.
   public static var affiliateSetupIntroNewText3: String  { return L10n.tr("Localizable", "AffiliateSetup.IntroNew.Text3") }
@@ -525,13 +525,13 @@ public final class L10n {
   public static var affiliateSetupToastTerminatedText: String  { return L10n.tr("Localizable", "AffiliateSetup.ToastTerminated.Text") }
   /// Affiliate Program Ended
   public static var affiliateSetupToastTerminatedTitle: String  { return L10n.tr("Localizable", "AffiliateSetup.ToastTerminated.Title") }
-  /// To access this content, you must confirm you are at least **18** years old.\n\nThis is a one-time process using your phone's camera. Your selfie will not be stored by Telegram.
+  /// To access this content, you must confirm you are at least **18** years old.\n\nThis is a one-time process using your phone's camera. Your selfie will not be stored by Ansible.
   public static var ageVerificationText: String  { return L10n.tr("Localizable", "AgeVerification.Text") }
   /// Age Verification
   public static var ageVerificationTitle: String  { return L10n.tr("Localizable", "AgeVerification.Title") }
   /// Verify My Age
   public static var ageVerificationVerify: String  { return L10n.tr("Localizable", "AgeVerification.Verify") }
-  /// To access this content, you must confirm you are at least **18** years old as required by UK law.\n\nThis is a one-time process using your phone's camera. Your selfie will not be stored by Telegram.
+  /// To access this content, you must confirm you are at least **18** years old as required by UK law.\n\nThis is a one-time process using your phone's camera. Your selfie will not be stored by Ansible.
   public static var ageVerificationTextGB: String  { return L10n.tr("Localizable", "AgeVerification.Text.GB") }
   /// Add this style by [%1$@](%1$@) to transform your messages in the AI editor.
   public static func aiStylePreviewAddByAuthor(_ p1: String) -> String {
@@ -551,8 +551,8 @@ public final class L10n {
   public static var aiStylePreviewLabelAfter: String  { return L10n.tr("Localizable", "AiStylePreview.LabelAfter") }
   /// Before
   public static var aiStylePreviewLabelBefore: String  { return L10n.tr("Localizable", "AiStylePreview.LabelBefore") }
-  /// Open the link on Telegram to add this style.
-  public static var aiStylePreviewOpenLinkOnTelegram: String  { return L10n.tr("Localizable", "AiStylePreview.OpenLinkOnTelegram") }
+  /// Open the link on Ansible to add this style.
+  public static var aiStylePreviewOpenLinkOnAnsible: String  { return L10n.tr("Localizable", "AiStylePreview.OpenLinkOnTelegram") }
   /// Cancel
   public static var alertCancel: String  { return L10n.tr("Localizable", "Alert.Cancel") }
   /// Discard
@@ -631,7 +631,7 @@ public final class L10n {
   public static var appUpdateTitle: String  { return L10n.tr("Localizable", "AppUpdate.Title") }
   /// Unarchiving...
   public static var appUpdateUnarchiving: String  { return L10n.tr("Localizable", "AppUpdate.Unarchiving") }
-  /// You have the latest version of Telegram.
+  /// You have the latest version of Ansible.
   public static var appUpdateUptodate: String  { return L10n.tr("Localizable", "AppUpdate.Uptodate") }
   /// Failed to download archive. Please try again.
   public static var appUpdateErrorFailedDownload: String  { return L10n.tr("Localizable", "AppUpdate.Error.FailedDownload") }
@@ -669,7 +669,7 @@ public final class L10n {
   public static var appearanceConfirmRemoveTitle: String  { return L10n.tr("Localizable", "Appearance.Confirm.RemoveTitle") }
   /// The file size must not exceed 10MB and the image dimensions must not exceed 500x500px.
   public static var appearanceCustomBackgroundFileError: String  { return L10n.tr("Localizable", "Appearance.CustomBackground.FileError") }
-  /// Subscribe to **Telegram Premium** to unlock a wider range of app Icons.
+  /// Subscribe to **Ansible Premium** to unlock a wider range of app Icons.
   public static var appearanceDockIconPremium: String  { return L10n.tr("Localizable", "Appearance.DockIcon.Premium") }
   /// Auto-Night Mode
   public static var appearanceSettingsAutoNight: String  { return L10n.tr("Localizable", "Appearance.Settings.AutoNight") }
@@ -769,7 +769,7 @@ public final class L10n {
   }
   /// Translation Platform
   public static var applyLanguageUnsufficientDataOpenPlatform: String  { return L10n.tr("Localizable", "ApplyLanguage.UnsufficientDataOpenPlatform") }
-  /// Unfortunately, this custom language pack (%@) doesn't contain data for Telegram macOS. You can contribute to this language pack using the translations platform.
+  /// Unfortunately, this custom language pack (%@) doesn't contain data for Ansible macOS. You can contribute to this language pack using the translations platform.
   public static func applyLanguageUnsufficientDataText(_ p1: String) -> String {
     return L10n.tr("Localizable", "ApplyLanguage.UnsufficientDataText", p1)
   }
@@ -785,7 +785,7 @@ public final class L10n {
   public static var archiveFoldersTitle: String  { return L10n.tr("Localizable", "Archive.Folders.Title") }
   /// Automatically archive and mute new private chats, groups and channels from non-contacts.
   public static var archiveNewChatsDesc: String  { return L10n.tr("Localizable", "Archive.NewChats.Desc") }
-  /// This setting is available only to the subscribers of [Telegram Premium]()
+  /// This setting is available only to the subscribers of [Ansible Premium]()
   public static var archiveNewChatsPremium: String  { return L10n.tr("Localizable", "Archive.NewChats.Premium") }
   /// Automatically Archive
   public static var archiveNewChatsText: String  { return L10n.tr("Localizable", "Archive.NewChats.Text") }
@@ -873,7 +873,7 @@ public final class L10n {
   public static var authLoginWithPasskey: String  { return L10n.tr("Localizable", "Auth.LoginWithPasskey") }
   /// SMS Fee
   public static var authControllerSmsFeeHeader: String  { return L10n.tr("Localizable", "Auth.Controller.SmsFeeHeader") }
-  /// Telecom providers charge very high prices for SMS to this number, so Telegram can't send a login code here. Log in from Telegram on your phone or another device, for example by scanning the QR code.
+  /// Telecom providers charge very high prices for SMS to this number, so Ansible can't send a login code here. Log in from Ansible on your phone or another device, for example by scanning the QR code.
   public static var authControllerSmsFeeInfo: String  { return L10n.tr("Localizable", "Auth.Controller.SmsFeeInfo") }
   /// Is %@ your phone number?
   public static func authLoginConfirmPhone(_ p1: String) -> String {
@@ -1003,7 +1003,7 @@ public final class L10n {
   public static var birthdaySeparatorTomorrow: String  { return L10n.tr("Localizable", "Birthday.Separator.Tomorrow") }
   /// BIRTHDAY YESTERDAY
   public static var birthdaySeparatorYesterday: String  { return L10n.tr("Localizable", "Birthday.Separator.Yesterday") }
-  /// Do you want to block %@ from messaging and calling you on Telegram?
+  /// Do you want to block %@ from messaging and calling you on Ansible?
   public static func blockContactTitle(_ p1: String) -> String {
     return L10n.tr("Localizable", "BlockContact.Title", p1)
   }
@@ -1019,7 +1019,7 @@ public final class L10n {
   public static var blockContactOptionsTitle: String  { return L10n.tr("Localizable", "BlockContact.Options.Title") }
   /// Blocked users can't send you messages or add you to groups. They will not see your profile photos, stories, online and last seen status.
   public static var blockedPeersEmptyDescrpition: String  { return L10n.tr("Localizable", "BlockedPeers.EmptyDescrpition") }
-  /// Boost your channel by gifting your subscribers Telegram Premium. [Get boosts]()
+  /// Boost your channel by gifting your subscribers Ansible Premium. [Get boosts]()
   public static var boostGetBoosts: String  { return L10n.tr("Localizable", "Boost.GetBoosts") }
   /// Level %d
   public static func boostBadgeLevel(_ p1: Int) -> String {
@@ -1029,7 +1029,7 @@ public final class L10n {
   public static func boostBadgeLevelPLus(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Boost.Badge.LevelPLus", p1)
   }
-  /// To boost **%@**, get more boosts by gifting **Telegram Premium** to a friend.
+  /// To boost **%@**, get more boosts by gifting **Ansible Premium** to a friend.
   public static func boostGiftToGetMoreInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Boost.GiftToGetMore.Info", p1)
   }
@@ -1047,11 +1047,11 @@ public final class L10n {
   public static func boostGiftAdditionalPrizesInfoOn(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "BoostGift.AdditionalPrizesInfoOn", p1, p2, p3)
   }
-  /// %d Telegram Premium subscriptions
+  /// %d Ansible Premium subscriptions
   public static func boostGiftAdditionalPrizesInfoSubscriptionsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "BoostGift.AdditionalPrizesInfoSubscriptions_other", p1)
   }
-  /// with %d Telegram Premium subscriptions
+  /// with %d Ansible Premium subscriptions
   public static func boostGiftAdditionalPrizesInfoWithSubscriptionsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "BoostGift.AdditionalPrizesInfoWithSubscriptions_other", p1)
   }
@@ -1073,7 +1073,7 @@ public final class L10n {
   public static var boostGroupChatInputBoost: String  { return L10n.tr("Localizable", "BoostGroup.ChatInput.Boost") }
   /// Boost this group to send media.
   public static var boostGroupChatInputSendMedia: String  { return L10n.tr("Localizable", "BoostGroup.ChatInput.SendMedia") }
-  /// To boost **%1$@**, reassign a previous boost or gift **Telegram Premium** to a friend to get **%2$@** additional boosts
+  /// To boost **%1$@**, reassign a previous boost or gift **Ansible Premium** to a friend to get **%2$@** additional boosts
   public static func boostReassignInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "BoostReassign.Info", p1, p2)
   }
@@ -1107,7 +1107,7 @@ public final class L10n {
   public static var botGrossingDisclaimerAlertHeader: String  { return L10n.tr("Localizable", "Bot.Grossing.Disclaimer.Alert.Header") }
   /// Understood
   public static var botGrossingDisclaimerAlertOk: String  { return L10n.tr("Localizable", "Bot.Grossing.Disclaimer.Alert.ok") }
-  /// This catalogue ranks mini apps based on their daily revenue, measured in Stars. To be listed, developers must set their main mini app in [@botfather](https://t.me/botfather) (as described [here](https://core.telegram.org/api/bots/webapps)), have over **1,000** daily users, and earn a daily revenue above **1,000** Stars, based on the weekly average.
+  /// This catalogue ranks mini apps based on their daily revenue, measured in Ansible Diamonds. To be listed, developers must set their main mini app in [@botfather](https://asme.su/botfather), have over **1,000** daily users, and earn a daily revenue above **1,000** Ansible Diamonds, based on the weekly average.
   public static var botGrossingDisclaimerAlertText: String  { return L10n.tr("Localizable", "Bot.Grossing.Disclaimer.Alert.Text") }
   /// Open Link
   public static var botInlineAuthHeader: String  { return L10n.tr("Localizable", "Bot.InlineAuth.Header") }
@@ -1135,13 +1135,13 @@ public final class L10n {
   public static var botTransferOwnershipPasswordDesc: String  { return L10n.tr("Localizable", "Bot.TransferOwnership.Password.Desc") }
   /// Two-Step Verification
   public static var botTransferOwnershipPasswordTitle: String  { return L10n.tr("Localizable", "Bot.TransferOwnership.Password.Title") }
-  /// By publishing this mini app, you agree to the [Telegram Terms of Service for Developers](https://telegram.org/tos/bot-developers).
+  /// By publishing this mini app, you agree to the [Ansible Terms of Service for Developers](https://ansible.su/tos/bot-developers).
   public static var botInfoLaunchInfo: String  { return L10n.tr("Localizable", "BotInfo.LaunchInfo") }
   /// Open App
   public static var botInfoOpenApp: String  { return L10n.tr("Localizable", "BotInfo.OpenApp") }
-  /// https://telegram.org/privacy-tpa
+  /// https://ansible.su/privacy-tpa
   public static var botInfoLaunchInfoPrivacyUrl: String  { return L10n.tr("Localizable", "BotInfo.LaunchInfo.PrivacyUrl") }
-  /// By launching this mini app, you agree to the [Telegram Terms of Service Mini Apps.](%@)
+  /// By launching this mini app, you agree to the [Ansible Terms of Service Mini Apps.](%@)
   public static func botInfoLaunchInfoUser(_ p1: String) -> String {
     return L10n.tr("Localizable", "BotInfo.LaunchInfo.User", p1)
   }
@@ -1149,7 +1149,7 @@ public final class L10n {
   public static var botUsernameActive: String  { return L10n.tr("Localizable", "BotUsername.Active") }
   /// USERNAME
   public static var botUsernameHeader: String  { return L10n.tr("Localizable", "BotUsername.Header") }
-  /// This username cannot be edited. You can aquire additional usernames on [Fragment]().
+  /// This username cannot be edited. You can aquire additional usernames on [Crystal Piece]().
   public static var botUsernameInfo: String  { return L10n.tr("Localizable", "BotUsername.Info") }
   /// not active
   public static var botUsernameNotActive: String  { return L10n.tr("Localizable", "BotUsername.NotActive") }
@@ -1243,7 +1243,7 @@ public final class L10n {
   public static var businessScheduleStart: String  { return L10n.tr("Localizable", "Business.ScheduleStart") }
   /// Do Not Hide Ads
   public static var businessSwitchAd: String  { return L10n.tr("Localizable", "Business.SwitchAd") }
-  /// Your Telegram Business has been updated
+  /// Your Ansible Business has been updated
   public static var businessUpdated: String  { return L10n.tr("Localizable", "Business.Updated") }
   /// Only if Offline
   public static var businessAwayOnlyOffline: String  { return L10n.tr("Localizable", "Business.Away.OnlyOffline") }
@@ -1257,7 +1257,7 @@ public final class L10n {
   public static var businessAwayMessageHeader: String  { return L10n.tr("Localizable", "Business.AwayMessage.Header") }
   /// Away Message
   public static var businessAwayMessageTitle: String  { return L10n.tr("Localizable", "Business.AwayMessage.Title") }
-  /// Manage Gifts and Stars
+  /// Manage Gifts and Ansible Diamonds
   public static var businessChatBotManageGifts: String  { return L10n.tr("Localizable", "Business.ChatBot.ManageGifts") }
   /// Manage Messages
   public static var businessChatBotManageMessages: String  { return L10n.tr("Localizable", "Business.ChatBot.ManageMessages") }
@@ -1265,15 +1265,15 @@ public final class L10n {
   public static var businessChatBotManageProfile: String  { return L10n.tr("Localizable", "Business.ChatBot.ManageProfile") }
   /// Manage Stories
   public static var businessChatBotManageStories: String  { return L10n.tr("Localizable", "Business.ChatBot.ManageStories") }
-  /// Convert Gifts to Stars
+  /// Convert Gifts to Ansible Diamonds
   public static var businessChatBotManageGiftsSell: String  { return L10n.tr("Localizable", "Business.ChatBot.ManageGifts.Sell") }
   /// Change Gift Settings
   public static var businessChatBotManageGiftsSettings: String  { return L10n.tr("Localizable", "Business.ChatBot.ManageGifts.Settings") }
   /// Transfer and Upgrade Gifts
   public static var businessChatBotManageGiftsTransfer: String  { return L10n.tr("Localizable", "Business.ChatBot.ManageGifts.Transfer") }
-  /// Transfer Stars
-  public static var businessChatBotManageGiftsTransferStars: String  { return L10n.tr("Localizable", "Business.ChatBot.ManageGifts.TransferStars") }
-  /// View Gifts and Stars
+  /// Transfer Ansible Diamonds
+  public static var businessChatBotManageGiftsTransferDiamonds: String  { return L10n.tr("Localizable", "Business.ChatBot.ManageGifts.TransferStars") }
+  /// View Gifts and Ansible Diamonds
   public static var businessChatBotManageGiftsView: String  { return L10n.tr("Localizable", "Business.ChatBot.ManageGifts.View") }
   /// Delete Received Messages
   public static var businessChatBotManageMessagesDeleteReceived: String  { return L10n.tr("Localizable", "Business.ChatBot.ManageMessages.DeleteReceived") }
@@ -1293,9 +1293,9 @@ public final class L10n {
   public static var businessChatBotManageProfileName: String  { return L10n.tr("Localizable", "Business.ChatBot.ManageProfile.Name") }
   /// Edit Username
   public static var businessChatBotManageProfileUsername: String  { return L10n.tr("Localizable", "Business.ChatBot.ManageProfile.Username") }
-  /// This bot doesn't support Telegram Business yet.
+  /// This bot doesn't support Ansible Business yet.
   public static var businessChatBotsBotNotSupported: String  { return L10n.tr("Localizable", "Business.ChatBots.BotNotSupported") }
-  /// Enter the username or URL of the Telegram bot that you want to automatically process your chats.
+  /// Enter the username or URL of the Ansible bot that you want to automatically process your chats.
   public static var businessChatBotsFooter: String  { return L10n.tr("Localizable", "Business.ChatBots.Footer") }
   /// ADD
   public static var businessChatbotsAdd: String  { return L10n.tr("Localizable", "Business.Chatbots.Add") }
@@ -1303,7 +1303,7 @@ public final class L10n {
   public static var businessChatbotsChats: String  { return L10n.tr("Localizable", "Business.Chatbots.Chats") }
   /// CHATS ACCESSIBLE FOR THE BOT
   public static var businessChatbotsChatTypes: String  { return L10n.tr("Localizable", "Business.Chatbots.ChatTypes") }
-  /// Add a bot to your account to help you automatically process and respond to the messages you receive. [Learn More >](https://telegram.org/blog/telegram-business#chatbots-for-business)
+  /// Add a bot to your account to help you automatically process and respond to the messages you receive. [Learn More >](https://ansible.su/tos/business)
   public static var businessChatbotsHeader: String  { return L10n.tr("Localizable", "Business.Chatbots.Header") }
   /// No bots found
   public static var businessChatbotsNotFound: String  { return L10n.tr("Localizable", "Business.Chatbots.NotFound") }
@@ -1509,11 +1509,11 @@ public final class L10n {
   public static var businessQuickReplyEditTitle: String  { return L10n.tr("Localizable", "Business.QuickReply.Edit.Title") }
   /// Limit Reached
   public static var businessSelectPeersLimit: String  { return L10n.tr("Localizable", "Business.SelectPeers.Limit") }
-  /// As a Premium subscriber, you don't see any ads on Telegram, but you can turn them on, for example, to view your own ads that you launched on the [Telegram Ad Platform >](https://ads.telegram.org)
+  /// As a Premium subscriber, you don't see any ads on Ansible, but you can turn them on, for example, to view your own ads that you launched on the [Ansible Ad Platform >](https://ads.ansible.su)
   public static var businessSwitchAdInfo: String  { return L10n.tr("Localizable", "Business.SwitchAd.Info") }
   /// ADS IN CHANNELS
   public static var businessSwitchAdTitle: String  { return L10n.tr("Localizable", "Business.SwitchAd.Title") }
-  /// Hide Telegram
+  /// Hide Ansible
   public static var cagYXWT6Title: String  { return L10n.tr("Localizable", "Cag-YX-WT6.title") }
   /// F
   public static var calendarWeekDaysFriday: String  { return L10n.tr("Localizable", "Calendar.WeekDays.Friday") }
@@ -1595,7 +1595,7 @@ public final class L10n {
   public static func callVideoPaused(_ p1: String) -> String {
     return L10n.tr("Localizable", "Call.VideoPaused", p1)
   }
-  /// Telegram needs access to camera for Video Call.
+  /// Ansible needs access to camera for Video Call.
   public static var callCameraError: String  { return L10n.tr("Localizable", "Call.Camera.Error") }
   /// Call in Progress
   public static var callConfirmDiscardCallHeader: String  { return L10n.tr("Localizable", "Call.Confirm.Discard.Call.Header") }
@@ -1629,7 +1629,7 @@ public final class L10n {
   public static var callRatingModalNotNow: String  { return L10n.tr("Localizable", "Call.RatingModal.NotNow") }
   /// Leave comment...
   public static var callRatingModalPlaceholder: String  { return L10n.tr("Localizable", "Call.RatingModal.Placeholder") }
-  /// Please rate the quality of your Telegram call
+  /// Please rate the quality of your Ansible call
   public static var callRatingModalText: String  { return L10n.tr("Localizable", "Call.RatingModal.Text") }
   /// Incoming
   public static var callRecentIncoming: String  { return L10n.tr("Localizable", "Call.Recent.Incoming") }
@@ -1639,7 +1639,7 @@ public final class L10n {
   public static var callRecentOutgoing: String  { return L10n.tr("Localizable", "Call.Recent.Outgoing") }
   /// Sorry, you can’t make a call between two accounts on the same device.
   public static var callSameDeviceError: String  { return L10n.tr("Localizable", "Call.SameDevice.Error") }
-  /// Telegram needs access for Screen Sharing.
+  /// Ansible needs access for Screen Sharing.
   public static var callScreenError: String  { return L10n.tr("Localizable", "Call.Screen.Error") }
   /// Group Call
   public static var callStatusGroupCall: String  { return L10n.tr("Localizable", "Call.Status.GroupCall") }
@@ -1723,7 +1723,7 @@ public final class L10n {
   public static func cancelResetAccountSuccess(_ p1: String) -> String {
     return L10n.tr("Localizable", "CancelResetAccount.Success", p1)
   }
-  /// Somebody with access to your phone number **%@** has requested to delete your Telegram account and reset your 2-Step Verification password.\n\nIf it wasn't you, please enter the code we've just sent you via SMS to your number. You can also cancel this by **changing your phone number** to a number you control.
+  /// Somebody with access to your phone number **%@** has requested to delete your Ansible account and reset your 2-Step Verification password.\n\nIf it wasn't you, please enter the code we've just sent you via SMS to your number. You can also cancel this by **changing your phone number** to a number you control.
   public static func cancelResetAccountTextSMS(_ p1: String) -> String {
     return L10n.tr("Localizable", "CancelResetAccount.TextSMS", p1)
   }
@@ -1763,15 +1763,15 @@ public final class L10n {
   public static var changeNumberSendDataErrorInvalidPhoneNumber: String  { return L10n.tr("Localizable", "ChangeNumber.SendData.Error.InvalidPhoneNumber") }
   /// You have requested for an authorization code too many times. Please try again later.
   public static var changeNumberSendDataErrorLimitExceeded: String  { return L10n.tr("Localizable", "ChangeNumber.SendData.Error.LimitExceeded") }
-  /// The number %@ is already connected to a Telegram account. Please delete that account before using this number.
+  /// The number %@ is already connected to an Ansible account. Please delete that account before using this number.
   public static func changeNumberSendDataErrorPhoneNumberOccupied(_ p1: String) -> String {
     return L10n.tr("Localizable", "ChangeNumber.SendData.Error.PhoneNumberOccupied", p1)
   }
-  /// You can only change your phone number using mobile Telegram apps. Please use an official Telegram app on your phone to update your number.
+  /// You can only change your phone number using mobile Ansible apps. Please use an official Ansible app on your phone to update your number.
   public static var changePhoneUseMobile: String  { return L10n.tr("Localizable", "ChangePhone.UseMobile") }
   /// Users will see your new number if they have it in their address book or your privacy settings allow them to see it. You can modify this in Settings > Privacy and Security > Phone number.
   public static var changePhoneNumberIntroAlert: String  { return L10n.tr("Localizable", "ChangePhoneNumber.Intro.Alert") }
-  /// You can change your Telegram number here. Your account and all your cloud data — messages, media, contacts, etc. will be moved to the new number.
+  /// You can change your Ansible number here. Your account and all your cloud data — messages, media, contacts, etc. will be moved to the new number.
   public static var changePhoneNumberIntroDescription: String  { return L10n.tr("Localizable", "ChangePhoneNumber.Intro.Description") }
   /// Sorry, you can't add this user as an admin because they are in the Removed Users list and you can't unban them.
   public static var channelAddAdminKickedError: String  { return L10n.tr("Localizable", "Channel.AddAdminKickedError") }
@@ -1837,7 +1837,7 @@ public final class L10n {
   public static var channelTypeHeaderGroup: String  { return L10n.tr("Localizable", "Channel.TypeHeaderGroup") }
   /// If you set a public link, other people will be able to find and join your channel.\n\nYou can use a–z, 0–9 and underscores.\nMinimum length is 5 characters.
   public static var channelUsernameAboutChannel: String  { return L10n.tr("Localizable", "Channel.UsernameAboutChannel") }
-  /// People can share this link with others and find your group using Telegram search.
+  /// People can share this link with others and find your group using Ansible search.
   public static var channelUsernameAboutGroup: String  { return L10n.tr("Localizable", "Channel.UsernameAboutGroup") }
   /// USER RESTRICTIONS
   public static var channelUserRestriction: String  { return L10n.tr("Localizable", "Channel.UserRestriction") }
@@ -2091,7 +2091,7 @@ public final class L10n {
   public static func channelBoostsStatsPrepaidMonths(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Channel.BoostsStats.Prepaid.Months", p1)
   }
-  /// %d Telegram Premium
+  /// %d Ansible Premium
   public static func channelBoostsStatsPrepaidQuantity(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Channel.BoostsStats.Prepaid.Quantity", p1)
   }
@@ -2493,7 +2493,7 @@ public final class L10n {
   public static var channelSelectPeersContacts: String  { return L10n.tr("Localizable", "Channel.SelectPeers.Contacts") }
   /// global
   public static var channelSelectPeersGlobal: String  { return L10n.tr("Localizable", "Channel.SelectPeers.Global") }
-  /// Subscribe to **[Telegram Premium]()** to unlock up to **%d** similar channels
+  /// Subscribe to **[Ansible Premium]()** to unlock up to **%d** similar channels
   public static func channelSimilarPremium(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Channel.Similar.Premium", p1)
   }
@@ -2563,7 +2563,7 @@ public final class L10n {
   public static var channelAdminsAggressiveAntiSpam: String  { return L10n.tr("Localizable", "ChannelAdmins.AggressiveAntiSpam") }
   /// Recent Actions
   public static var channelAdminsRecentActions: String  { return L10n.tr("Localizable", "ChannelAdmins.RecentActions") }
-  /// Telegram will filter more spam but may occasionally affect ordinary messages. You can report false positives in Recent Actions.
+  /// Ansible will filter more spam but may occasionally affect ordinary messages. You can report false positives in Recent Actions.
   public static var channelAdminsAggressiveAntiSpamInfo: String  { return L10n.tr("Localizable", "ChannelAdmins.AggressiveAntiSpam.Info") }
   /// Restrict Member
   public static var channelBlacklistAddMember: String  { return L10n.tr("Localizable", "ChannelBlacklist.AddMember") }
@@ -2731,8 +2731,8 @@ public final class L10n {
   public static func channelBoostBoosterDuration(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChannelBoost.Booster.Duration", p1)
   }
-  /// %d Stars
-  public static func channelBoostBoosterStarsOther(_ p1: Int) -> String {
+  /// %d Ansible Diamonds
+  public static func channelBoostBoosterDiamondsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChannelBoost.Booster.Stars_other", p1)
   }
   /// To Be Distributed
@@ -2765,11 +2765,11 @@ public final class L10n {
   }
   /// Can't Boost Too Often
   public static var channelBoostErrorBoostTooOftenTitle: String  { return L10n.tr("Localizable", "ChannelBoost.Error.BoostTooOftenTitle") }
-  /// Because your **Telegram Premium** subscription was gifted to you, you can't use it to boost channels.
+  /// Because your **Ansible Premium** subscription was gifted to you, you can't use it to boost channels.
   public static var channelBoostErrorGiftedPremiumNotAllowedText: String  { return L10n.tr("Localizable", "ChannelBoost.Error.GiftedPremiumNotAllowedText") }
   /// Can't Boost with Gifted Premium
   public static var channelBoostErrorGiftedPremiumNotAllowedTitle: String  { return L10n.tr("Localizable", "ChannelBoost.Error.GiftedPremiumNotAllowedTitle") }
-  /// Only **Telegram Premium** subscribers can boost channels. Do you want to subscribe to **Telegram Premium**?
+  /// Only **Ansible Premium** subscribers can boost channels. Do you want to subscribe to **Ansible Premium**?
   public static var channelBoostErrorPremiumNeededText: String  { return L10n.tr("Localizable", "ChannelBoost.Error.PremiumNeededText") }
   /// Premium Needed
   public static var channelBoostErrorPremiumNeededTitle: String  { return L10n.tr("Localizable", "ChannelBoost.Error.PremiumNeededTitle") }
@@ -2903,7 +2903,7 @@ public final class L10n {
   public static var channelEventFilterSendMessages: String  { return L10n.tr("Localizable", "ChannelEventFilter.SendMessages") }
   /// Video Chats
   public static var channelEventFilterVoiceChats: String  { return L10n.tr("Localizable", "ChannelEventFilter.VoiceChats") }
-  /// If a person has left a channel in the past, you need to be in their Telegram contacts to add them back.\n\nThey can still join via an invite link as long as they are not on the Removed Users list.
+  /// If a person has left a channel in the past, you need to be in their Ansible contacts to add them back.\n\nThey can still join via an invite link as long as they are not on the Removed Users list.
   public static var channelInfoAddUserLeftError: String  { return L10n.tr("Localizable", "ChannelInfo.AddUserLeftError") }
   /// ⚠️ Warning: Many users reported that this channel impersonates a famous person or organization.
   public static var channelInfoFakeWarning: String  { return L10n.tr("Localizable", "ChannelInfo.FakeWarning") }
@@ -2981,10 +2981,10 @@ public final class L10n {
   public static var channelParticipantControllerPermissionsUnverified: String  { return L10n.tr("Localizable", "ChannelParticipant.Controller.PermissionsUnverified") }
   /// Do Not Restrict Boosters
   public static var channelPermissionRestrictBoosters: String  { return L10n.tr("Localizable", "ChannelPermission.RestrictBoosters") }
-  /// Charge Stars for Messages
-  public static var channelPermissionPaidMessagesChargeStars: String  { return L10n.tr("Localizable", "ChannelPermission.PaidMessages.ChargeStars") }
-  /// If you turn this on, regular members of the group will have to pay Stars to send messages.
-  public static var channelPermissionPaidMessagesChargeStarsInfo: String  { return L10n.tr("Localizable", "ChannelPermission.PaidMessages.ChargeStars.Info") }
+  /// Charge Ansible Diamonds for Messages
+  public static var channelPermissionPaidMessagesChargeDiamonds: String  { return L10n.tr("Localizable", "ChannelPermission.PaidMessages.ChargeStars") }
+  /// If you turn this on, regular members of the group will have to pay Ansible Diamonds to send messages.
+  public static var channelPermissionPaidMessagesChargeDiamondsInfo: String  { return L10n.tr("Localizable", "ChannelPermission.PaidMessages.ChargeStars.Info") }
   /// SET YOUR PRICE PER MESSAGE
   public static var channelPermissionPaidMessagesSetupHeader: String  { return L10n.tr("Localizable", "ChannelPermission.PaidMessages.Setup.Header") }
   /// Your group will receive %1$@ of the selected fee (~%2$@$) for each incoming message.
@@ -3008,7 +3008,7 @@ public final class L10n {
   /// Enable Reaction
   public static var channelReactionsEnableReactions: String  { return L10n.tr("Localizable", "ChannelReactions.EnableReactions") }
   /// Enable Paid Reactions
-  public static var channelReactionsEnableStars: String  { return L10n.tr("Localizable", "ChannelReactions.EnableStars") }
+  public static var channelReactionsEnableDiamonds: String  { return L10n.tr("Localizable", "ChannelReactions.EnableStars") }
   /// %d Boost Level Required
   public static func channelReactionsLevelRequired(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChannelReactions.LevelRequired", p1)
@@ -3025,8 +3025,8 @@ public final class L10n {
   public static var channelReactionsAddInfo: String  { return L10n.tr("Localizable", "ChannelReactions.Add.Info") }
   /// You can add emoji from any emoji pack as reactions.
   public static var channelReactionsEnableReactionsInfo: String  { return L10n.tr("Localizable", "ChannelReactions.EnableReactions.Info") }
-  /// Switch this on to let your subscribers react to posts with Ansible Diamonds, which you will be able to withdraw as TON. [Learn More >](https://ansible.su/tos/content-creator-rewards#2-3-subscriber-donations)
-  public static var channelReactionsEnableStarsInfo: String  { return L10n.tr("Localizable", "ChannelReactions.EnableStars.Info") }
+  /// Switch this on to let your subscribers react to posts with Ansible Diamonds. [Learn More >](https://ansible.su/tos/content-creator-rewards#2-3-subscriber-donations)
+  public static var channelReactionsEnableDiamondsInfo: String  { return L10n.tr("Localizable", "ChannelReactions.EnableStars.Info") }
   /// Limit the number of different reactions that can be added to a post, including already published posts.
   public static var channelReactionsMaxCountInfo: String  { return L10n.tr("Localizable", "ChannelReactions.MaxCount.Info") }
   /// MAXIMUM REACTIONS PER POST
@@ -3585,13 +3585,13 @@ public final class L10n {
   public static var chatContextPeerOpenStory: String  { return L10n.tr("Localizable", "Chat.Context.Peer.OpenStory") }
   /// Send Message
   public static var chatContextPeerSendMessage: String  { return L10n.tr("Localizable", "Chat.Context.Peer.SendMessage") }
-  /// This number is not on Telegram
-  public static var chatContextPhoneNotTelegram: String  { return L10n.tr("Localizable", "Chat.Context.Phone.NotTelegram") }
+  /// This number is not on Ansible
+  public static var chatContextPhoneNotAnsible: String  { return L10n.tr("Localizable", "Chat.Context.Phone.NotTelegram") }
   /// Hide pinned message
   public static var chatContextPinnedHide: String  { return L10n.tr("Localizable", "Chat.Context.Pinned.Hide") }
   /// Set As Quick
   public static var chatContextReactionQuick: String  { return L10n.tr("Localizable", "Chat.Context.Reaction.Quick") }
-  /// Telegram moderators will review your report. Thank you!
+  /// Ansible moderators will review your report. Thank you!
   public static var chatContextReportFalsePositiveThanks: String  { return L10n.tr("Localizable", "Chat.Context.ReportFalsePositive.Thanks") }
   /// Save for Notifications
   public static var chatContextSaveRingtoneAdd: String  { return L10n.tr("Localizable", "Chat.Context.SaveRingtone.Add") }
@@ -3661,25 +3661,25 @@ public final class L10n {
   public static var chatDateScheduledUntilOnline: String  { return L10n.tr("Localizable", "Chat.Date.ScheduledUntilOnline") }
   /// Delete Anyway
   public static var chatDeleteMessageSuggestedPostActionDeleteAnyway: String  { return L10n.tr("Localizable", "Chat.DeleteMessage.SuggestedPost.Action.DeleteAnyway") }
-  /// Stars Will Be Lost
-  public static var chatDeleteMessageSuggestedPostHeaderStars: String  { return L10n.tr("Localizable", "Chat.DeleteMessage.SuggestedPost.Header.Stars") }
+  /// Ansible Diamonds Will Be Lost
+  public static var chatDeleteMessageSuggestedPostHeaderDiamonds: String  { return L10n.tr("Localizable", "Chat.DeleteMessage.SuggestedPost.Header.Stars") }
   /// TON Will Be Lost
   public static var chatDeleteMessageSuggestedPostHeaderTon: String  { return L10n.tr("Localizable", "Chat.DeleteMessage.SuggestedPost.Header.Ton") }
-  /// You won't receive Stars for this post if you delete it now. The post must remain visible for at least 24 hours after publication.
-  public static var chatDeleteMessageSuggestedPostInfoStars: String  { return L10n.tr("Localizable", "Chat.DeleteMessage.SuggestedPost.Info.Stars") }
+  /// You won't receive Ansible Diamonds for this post if you delete it now. The post must remain visible for at least 24 hours after publication.
+  public static var chatDeleteMessageSuggestedPostInfoDiamonds: String  { return L10n.tr("Localizable", "Chat.DeleteMessage.SuggestedPost.Info.Stars") }
   /// You won't receive TON for this post if you delete it now. The post must remain visible for at least 24 hours after publication.
   public static var chatDeleteMessageSuggestedPostInfoTon: String  { return L10n.tr("Localizable", "Chat.DeleteMessage.SuggestedPost.Info.Ton") }
-  /// Send a 🎲 emoji to any chat to get a random number from Telegram.
+  /// Send a 🎲 emoji to any chat to get a random number from Ansible.
   public static var chatDiceResult: String  { return L10n.tr("Localizable", "Chat.Dice.Result") }
-  /// Send a %@ emoji to any chat to get a random number from Telegram.
+  /// Send a %@ emoji to any chat to get a random number from Ansible.
   public static func chatDiceResultNew(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Dice.ResultNew", p1)
   }
-  /// You will no longer see ads from Telegram.
+  /// You will no longer see ads from Ansible.
   public static var chatDisableAdTooltip: String  { return L10n.tr("Localizable", "Chat.DisableAd.Tooltip") }
   /// Sorry, this post has been removed from the discussion group.
   public static var chatDiscussionMessageDeleted: String  { return L10n.tr("Localizable", "Chat.Discussion.MessageDeleted") }
-  /// Subscribe to [Telegram Premium]() to increase download speeds %d times.
+  /// Subscribe to [Ansible Premium]() to increase download speeds %d times.
   public static func chatDownloadLimitTextOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.DownloadLimit.Text_other", p1)
   }
@@ -3765,7 +3765,7 @@ public final class L10n {
   public static var chatGiveawayInfoAlmostOver: String  { return L10n.tr("Localizable", "Chat.Giveaway.Info.AlmostOver") }
   /// You didn't win a prize in this giveaway.
   public static var chatGiveawayInfoDidntWin: String  { return L10n.tr("Localizable", "Chat.Giveaway.Info.DidntWin") }
-  /// On **%1$@**, Telegram automatically selected %2$@ of **%3$@**.
+  /// On **%1$@**, Ansible automatically selected %2$@ of **%3$@**.
   public static func chatGiveawayInfoEnded(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.Ended", p1, p2, p3)
   }
@@ -3773,15 +3773,15 @@ public final class L10n {
   public static func chatGiveawayInfoEndedIntro(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.EndedIntro", p1, p2, p3)
   }
-  /// On **%1$@**, Telegram automatically selected %2$@ of **%3$@** and other listed channels.
+  /// On **%1$@**, Ansible automatically selected %2$@ of **%3$@** and other listed channels.
   public static func chatGiveawayInfoEndedMany(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.EndedMany", p1, p2, p3)
   }
-  /// On **%1$@**, Telegram automatically selected %2$@ that joined **%3$@** after **%4$@**.
+  /// On **%1$@**, Ansible automatically selected %2$@ that joined **%3$@** after **%4$@**.
   public static func chatGiveawayInfoEndedNew(_ p1: String, _ p2: String, _ p3: String, _ p4: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.EndedNew", p1, p2, p3, p4)
   }
-  /// On **%1$@**, Telegram automatically selected %2$@ that joined **%3$@** and other listed channels after **%4$@**.
+  /// On **%1$@**, Ansible automatically selected %2$@ that joined **%3$@** and other listed channels after **%4$@**.
   public static func chatGiveawayInfoEndedNewMany(_ p1: String, _ p2: String, _ p3: String, _ p4: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.EndedNewMany", p1, p2, p3, p4)
   }
@@ -3809,7 +3809,7 @@ public final class L10n {
   public static func chatGiveawayInfoNotQualifiedMany(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.NotQualifiedMany", p1, p2, p3)
   }
-  /// On **%1$@**, Telegram will automatically select %2$@ of **%3$@**.
+  /// On **%1$@**, Ansible will automatically select %2$@ of **%3$@**.
   public static func chatGiveawayInfoOngoing(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.Ongoing", p1, p2, p3)
   }
@@ -3817,15 +3817,15 @@ public final class L10n {
   public static func chatGiveawayInfoOngoingIntro(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.OngoingIntro", p1, p2, p3)
   }
-  /// On **%1$@**, Telegram will automatically select %2$@ of **%3$@** and %4$@.
+  /// On **%1$@**, Ansible will automatically select %2$@ of **%3$@** and %4$@.
   public static func chatGiveawayInfoOngoingMany(_ p1: String, _ p2: String, _ p3: String, _ p4: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.OngoingMany", p1, p2, p3, p4)
   }
-  /// On **%1$@**, Telegram will automatically select %2$@ that joined **%3$@** after **%4$@**.
+  /// On **%1$@**, Ansible will automatically select %2$@ that joined **%3$@** after **%4$@**.
   public static func chatGiveawayInfoOngoingNew(_ p1: String, _ p2: String, _ p3: String, _ p4: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.OngoingNew", p1, p2, p3, p4)
   }
-  /// On **%1$@**, Telegram will automatically select %2$@ that joined **%3$@** and %4$@ after **%5$@**.
+  /// On **%1$@**, Ansible will automatically select %2$@ that joined **%3$@** and %4$@ after **%5$@**.
   public static func chatGiveawayInfoOngoingNewMany(_ p1: String, _ p2: String, _ p3: String, _ p4: String, _ p5: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.OngoingNewMany", p1, p2, p3, p4, p5)
   }
@@ -3851,7 +3851,7 @@ public final class L10n {
   }
   /// The channel canceled the prizes by refunding the payment for them.
   public static var chatGiveawayInfoRefunded: String  { return L10n.tr("Localizable", "Chat.Giveaway.Info.Refunded") }
-  /// **%d Telegram Premium** subscriptions
+  /// **%d Ansible Premium** subscriptions
   public static func chatGiveawayInfoSubscriptionsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.Subscriptions_other", p1)
   }
@@ -3864,11 +3864,11 @@ public final class L10n {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.Won", p1)
   }
   /// The giveaway was sponsored by the admins of **%1$@**, who acquired %2$@ for its followers.
-  public static func chatGiveawayInfoEndedIntroStars(_ p1: String, _ p2: String) -> String {
+  public static func chatGiveawayInfoEndedIntroDiamonds(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.EndedIntro.Stars", p1, p2)
   }
   /// The giveaway is sponsored by the admins of **%1$@**, who acquired %2$@ for its followers.
-  public static func chatGiveawayInfoOngoingIntroStars(_ p1: String, _ p2: String) -> String {
+  public static func chatGiveawayInfoOngoingIntroDiamonds(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Info.OngoingIntro.Stars", p1, p2)
   }
   /// , 
@@ -3901,15 +3901,15 @@ public final class L10n {
   }
   /// Giveaway Prizes
   public static var chatGiveawayMessagePrizeTitle: String  { return L10n.tr("Localizable", "Chat.Giveaway.Message.PrizeTitle") }
-  /// **%d** Stars
-  public static func chatGiveawayMessageStarsOther(_ p1: Int) -> String {
+  /// **%d** Ansible Diamonds
+  public static func chatGiveawayMessageDiamondsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Message.Stars_other", p1)
   }
   /// among **%d** winners
   public static func chatGiveawayMessageStarWinnersOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Message.StarWinners_other", p1)
   }
-  /// **%d** Telegram Premium Subscriptions
+  /// **%d** Ansible Premium Subscriptions
   public static func chatGiveawayMessageSubscriptionsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Message.Subscriptions_other", p1)
   }
@@ -3917,7 +3917,7 @@ public final class L10n {
   public static func chatGiveawayMessageWinnersInfoOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Message.WinnersInfo_other", p1)
   }
-  /// **%d** winners of the [Giveaway]() were randomly selected by Telegram.
+  /// **%d** winners of the [Giveaway]() were randomly selected by Ansible.
   public static func chatGiveawayMessageWinnersSelectedTextOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Message.WinnersSelectedText_other", p1)
   }
@@ -3926,7 +3926,7 @@ public final class L10n {
     return L10n.tr("Localizable", "Chat.Giveaway.Message.WinnersSelectedTitle_other", p1)
   }
   /// %1$@ will be distributed\n%2$@.
-  public static func chatGiveawayMessageStarsPrizeText(_ p1: String, _ p2: String) -> String {
+  public static func chatGiveawayMessageDiamondsPrizeText(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Chat.Giveaway.Message.Stars.PrizeText", p1, p2)
   }
   /// All winners received a total of %2$@.
@@ -4065,11 +4065,11 @@ public final class L10n {
   public static var chatInputDictationEnhanceStyles: String  { return L10n.tr("Localizable", "Chat.Input.Dictation.Enhance.Styles") }
   /// Dictation is not available for your current input language.
   public static var chatInputDictationErrorLanguage: String  { return L10n.tr("Localizable", "Chat.Input.Dictation.Error.Language") }
-  /// Telegram needs access to your microphone to dictate messages. You can allow it in System Settings → Privacy & Security → Microphone.
+  /// Ansible needs access to your microphone to dictate messages. You can allow it in System Settings → Privacy & Security → Microphone.
   public static var chatInputDictationErrorMicrophone: String  { return L10n.tr("Localizable", "Chat.Input.Dictation.Error.Microphone") }
   /// No microphone found. Connect a microphone and try again.
   public static var chatInputDictationErrorNoInput: String  { return L10n.tr("Localizable", "Chat.Input.Dictation.Error.NoInput") }
-  /// Telegram needs Speech Recognition access to turn your voice into text. You can allow it in System Settings → Privacy & Security → Speech Recognition.
+  /// Ansible needs Speech Recognition access to turn your voice into text. You can allow it in System Settings → Privacy & Security → Speech Recognition.
   public static var chatInputDictationErrorSpeech: String  { return L10n.tr("Localizable", "Chat.Input.Dictation.Error.Speech") }
   /// Speech recognition is not available right now. Please try again later.
   public static var chatInputDictationErrorUnavailable: String  { return L10n.tr("Localizable", "Chat.Input.Dictation.Error.Unavailable") }
@@ -4168,7 +4168,7 @@ public final class L10n {
   /// Open Gift Link
   public static var chatMessageOpenGiftLink: String  { return L10n.tr("Localizable", "Chat.Message.OpenGiftLink") }
   /// Open
-  public static var chatMessageOpenGiftStars: String  { return L10n.tr("Localizable", "Chat.Message.OpenGiftStars") }
+  public static var chatMessageOpenGiftDiamonds: String  { return L10n.tr("Localizable", "Chat.Message.OpenGiftStars") }
   /// Open Link
   public static var chatMessageOpenLink: String  { return L10n.tr("Localizable", "Chat.Message.OpenLink") }
   /// VIEW STORY
@@ -4181,9 +4181,9 @@ public final class L10n {
   public static var chatMessageSponsored: String  { return L10n.tr("Localizable", "Chat.Message.Sponsored") }
   /// Unsend my messages
   public static var chatMessageUnsendMessages: String  { return L10n.tr("Localizable", "Chat.Message.UnsendMessages") }
-  /// This message is not supported by your version of Telegram. Please update to the latest version from the AppStore or install it from https://macos.telegram.org
+  /// This message is not supported by your version of Ansible. Please update to the latest version from https://ansible.su
   public static var chatMessageUnsupported: String  { return L10n.tr("Localizable", "Chat.Message.Unsupported") }
-  /// This message is not supported in your version of Telegram. Please update to the latest version.
+  /// This message is not supported in your version of Ansible. Please update to the latest version.
   public static var chatMessageUnsupportedNew: String  { return L10n.tr("Localizable", "Chat.Message.UnsupportedNew") }
   /// via
   public static var chatMessageVia: String  { return L10n.tr("Localizable", "Chat.Message.Via") }
@@ -4197,11 +4197,11 @@ public final class L10n {
   public static var chatMessageViewGroup: String  { return L10n.tr("Localizable", "Chat.Message.ViewGroup") }
   /// Read More
   public static var chatMessageAdReadMore: String  { return L10n.tr("Localizable", "Chat.Message.Ad.ReadMore") }
-  /// Unlike other apps, Telegram never uses your private data to target ads. Sponsored messages on Telegram are based solely on the topic of the public channels in which they are shown. This means that no user data is mined or analyzed to display ads, and every user viewing a channel on Telegram sees the same sponsored messages.\n\nUnlike other apps, Telegram doesn't track whether you tapped on a sponsored message and doesn't profile you based on your activity. We also prevent external links in sponsored messages to ensure that third parties can’t spy on our users. We believe that everyone has the right to privacy, and technological platforms should respect that.\n\nTelegram offers a free and unlimited service to hundreds of millions of users, which involves significant server and traffic costs. In order to remain independent and stay true to its values, Telegram developed a paid tool to promote messages with user privacy in mind. We welcome responsible advertisers at:\n\n%@\n\nSponsored Messages are currently in test mode. Once they are fully launched and allow Telegram to cover its basic costs, we will start sharing ad revenue with the owners of public channels in which sponsored messages are displayed.\n\nOnline ads should no longer be synonymous with abuse of user privacy. Let us redefine how a tech company should operate – together.
+  /// Unlike other apps, Ansible never uses your private data to target ads. Sponsored messages on Ansible are based solely on the topic of the public channels in which they are shown. This means that no user data is mined or analyzed to display ads, and every user viewing a channel on Ansible sees the same sponsored messages.\n\nUnlike other apps, Ansible doesn't track whether you tapped on a sponsored message and doesn't profile you based on your activity. We also prevent external links in sponsored messages to ensure that third parties can’t spy on our users. We believe that everyone has the right to privacy, and technological platforms should respect that.\n\nAnsible offers a free and unlimited service to hundreds of millions of users, which involves significant server and traffic costs. In order to remain independent and stay true to its values, Ansible developed a paid tool to promote messages with user privacy in mind. We welcome responsible advertisers at:\n\n%@\n\nSponsored Messages are currently in test mode. Once they are fully launched and allow Ansible to cover its basic costs, we will start sharing ad revenue with the owners of public channels in which sponsored messages are displayed.\n\nOnline ads should no longer be synonymous with abuse of user privacy. Let us redefine how a tech company should operate – together.
   public static func chatMessageAdText(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Message.Ad.Text", p1)
   }
-  /// https://ads.telegram.org
+  /// https://ads.ansible.su
   public static var chatMessageAdUrl: String  { return L10n.tr("Localizable", "Chat.Message.Ad.Url") }
   /// Quote
   public static var chatMessageContextQuote: String  { return L10n.tr("Localizable", "Chat.Message.Context.Quote") }
@@ -4259,7 +4259,7 @@ public final class L10n {
   public static var chatMessageSocks5Config: String  { return L10n.tr("Localizable", "Chat.Message.Socks5.Config") }
   /// Advertiser info
   public static var chatMessageSponsoredAdvertiser: String  { return L10n.tr("Localizable", "Chat.Message.Sponsored.Advertiser") }
-  /// https://ads.telegram.org
+  /// https://ads.ansible.su
   public static var chatMessageSponsoredLink: String  { return L10n.tr("Localizable", "Chat.Message.Sponsored.Link") }
   /// What are sponsored messages?
   public static var chatMessageSponsoredWhat: String  { return L10n.tr("Localizable", "Chat.Message.Sponsored.What") }
@@ -4293,7 +4293,7 @@ public final class L10n {
   public static var chatMessageActionShowMessage: String  { return L10n.tr("Localizable", "Chat.MessageAction.ShowMessage") }
   /// Send Money
   public static var chatMessageMenuItemsSendMoney: String  { return L10n.tr("Localizable", "Chat.MessageMenuItems.SendMoney") }
-  /// Unlike other apps, Telegram never uses your private data to target ads. [Learn more in the Privacy Policy](https://telegram.org/privacy#5-6-no-ads-based-on-user-data)\nYou are seeing this message only because someone chose this public one-to many channel as a space to promote their messages. This means that no user data is mined or analyzed to display ads, and every user viewing a channel on Telegram sees the same sponsored message.\n\nUnline other apps, Telegram doesn't track whether you tapped on a sponsored message and doesn't profile you based on your activity. We also prevent external links in sponsored messages to ensure that third parties can't spy on our users. We believe that everyone has the right to privacy, and technological platforms should respect that.\n\nTelegram offers free and unlimited service to hundreds of millions of users, which involves significant server and traffic costs. In order to remain independent and stay true to its values, Telegram developed a paid tool to promote messages with user privacy in mind. We welcome responsible adverticers at:\n[url]\nAds should no longer be synonymous with abuse of user privacy. Let us redefine how a tech compony should operate — together.
+  /// This is a sponsored message.\n\nLearn more about Ansible in our [Privacy Policy](https://ansible.su/privacy).\n\nFor advertising enquiries:\n[url]
   public static var chatMessageMenuItemsSponsoredInfo: String  { return L10n.tr("Localizable", "Chat.MessageMenuItems.SponsoredInfo") }
   /// Messages for %1$d day deleted for both sides.
   public static func chatMessageRangeDeletedForBothSidesOne(_ p1: Int) -> String {
@@ -4324,27 +4324,27 @@ public final class L10n {
   /// Message doesn't exist
   public static var chatOpenMessageNotExist: String  { return L10n.tr("Localizable", "Chat.Open.MessageNotExist") }
   /// Don't ask again
-  public static var chatPayStarsConfirmCheckbox: String  { return L10n.tr("Localizable", "Chat.PayStars.Confirm.Checkbox") }
+  public static var chatPayDiamondsConfirmCheckbox: String  { return L10n.tr("Localizable", "Chat.PayStars.Confirm.Checkbox") }
   /// %d medias
-  public static func chatPayStarsConfirmMediasOther(_ p1: Int) -> String {
+  public static func chatPayDiamondsConfirmMediasOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.PayStars.Confirm.Medias_other", p1)
   }
   /// %d messages
-  public static func chatPayStarsConfirmMessagesOther(_ p1: Int) -> String {
+  public static func chatPayDiamondsConfirmMessagesOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.PayStars.Confirm.Messages_other", p1)
   }
   /// Pay for %d Messages
-  public static func chatPayStarsConfirmPayOther(_ p1: Int) -> String {
+  public static func chatPayDiamondsConfirmPayOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.PayStars.Confirm.Pay_other", p1)
   }
   /// **%1$@** charges **%2$@** per incoming message. Would you like to pay **%3$@** to send **%4$@**?
-  public static func chatPayStarsConfirmText(_ p1: String, _ p2: String, _ p3: String, _ p4: String) -> String {
+  public static func chatPayDiamondsConfirmText(_ p1: String, _ p2: String, _ p3: String, _ p4: String) -> String {
     return L10n.tr("Localizable", "Chat.PayStars.Confirm.Text", p1, p2, p3, p4)
   }
   /// Confirm Payment
-  public static var chatPayStarsConfirmTitle: String  { return L10n.tr("Localizable", "Chat.PayStars.Confirm.Title") }
+  public static var chatPayDiamondsConfirmTitle: String  { return L10n.tr("Localizable", "Chat.PayStars.Confirm.Title") }
   /// Pay for %d Medias
-  public static func chatPayStarsConfirmPayMediaOther(_ p1: Int) -> String {
+  public static func chatPayDiamondsConfirmPayMediaOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.PayStars.Confirm.Pay.Media_other", p1)
   }
   /// Don't Show Pinned Messages
@@ -4401,7 +4401,7 @@ public final class L10n {
   public static var chatProxySponsoredAlertHeader: String  { return L10n.tr("Localizable", "Chat.ProxySponsored.AlertHeader") }
   /// Settings
   public static var chatProxySponsoredAlertSettings: String  { return L10n.tr("Localizable", "Chat.ProxySponsored.AlertSettings") }
-  /// This channel is shown by your proxy server. To remove this channel from your chat list, disable the proxy in Telegram Settings > Data and Storage.
+  /// This channel is shown by your proxy server. To remove this channel from your chat list, disable the proxy in Ansible Settings > Data and Storage.
   public static var chatProxySponsoredAlertText: String  { return L10n.tr("Localizable", "Chat.ProxySponsored.AlertText") }
   /// This channel is shown by your proxy server
   public static var chatProxySponsoredCapDesc: String  { return L10n.tr("Localizable", "Chat.ProxySponsored.CapDesc") }
@@ -4489,7 +4489,7 @@ public final class L10n {
   public static var chatSecretChatPreviewNO: String  { return L10n.tr("Localizable", "Chat.SecretChat.Preview.NO") }
   /// YES
   public static var chatSecretChatPreviewOK: String  { return L10n.tr("Localizable", "Chat.SecretChat.Preview.OK") }
-  /// Would you like to enable extended link previews in Secret Chats? Note that link previews are generated on Telegram servers.
+  /// Would you like to enable extended link previews in Secret Chats? Note that link previews are generated on Ansible servers.
   public static var chatSecretChatPreviewText: String  { return L10n.tr("Localizable", "Chat.SecretChat.Preview.Text") }
   /// Add to Calendar
   public static var chatSendAddToCalendar: String  { return L10n.tr("Localizable", "Chat.Send.AddToCalendar") }
@@ -4553,7 +4553,7 @@ public final class L10n {
   }
   /// You received a gift
   public static var chatServiceGiftLink: String  { return L10n.tr("Localizable", "Chat.Service.GiftLink") }
-  /// %1$@ just started a giveaway of Telegram Premium subscriptions for its followers.
+  /// %1$@ just started a giveaway of Ansible Premium subscriptions for its followers.
   public static func chatServiceGiveawayStarted(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.GiveawayStarted", p1)
   }
@@ -4615,8 +4615,8 @@ public final class L10n {
   public static func chatServicePaymentSentRecurringUsedNoTitle(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.PaymentSentRecurringUsedNoTitle", p1, p2)
   }
-  /// %@ joined Telegram
-  public static func chatServicePeerJoinedTelegram(_ p1: String) -> String {
+  /// %@ joined Ansible
+  public static func chatServicePeerJoinedAnsible(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.PeerJoinedTelegram", p1)
   }
   /// You shared %1$@ with %2$@.
@@ -4657,7 +4657,7 @@ public final class L10n {
   public static func chatServiceStoryMentioned(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.StoryMentioned", p1)
   }
-  /// %@ suggests this photo for your Telegram profile
+  /// %@ suggests this photo for your Ansible profile
   public static func chatServiceSuggestedPhoto(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.SuggestedPhoto", p1)
   }
@@ -4778,7 +4778,7 @@ public final class L10n {
     return L10n.tr("Localizable", "Chat.Service.GiftUnpack.Outgoing", p1)
   }
   /// %1$@ just started a giveaway of %2$d Ansible Diamonds for its followers.
-  public static func chatServiceGiveawayStartedStarsOther(_ p1: String, _ p2: Int) -> String {
+  public static func chatServiceGiveawayStartedDiamondsOther(_ p1: String, _ p2: Int) -> String {
     return L10n.tr("Localizable", "Chat.Service.GiveawayStarted.Stars_other", p1, p2)
   }
   /// %@ added %@
@@ -4989,7 +4989,7 @@ public final class L10n {
   }
   /// Unknown user
   public static var chatServicePremiumUnknown: String  { return L10n.tr("Localizable", "Chat.Service.Premium.Unknown") }
-  /// **Telegram Premium**\nfor %d months
+  /// **Ansible Premium**\nfor %d months
   public static func chatServicePremiumGiftInfoOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.Service.PremiumGift.Info_other", p1)
   }
@@ -5059,7 +5059,7 @@ public final class L10n {
   public static func chatServiceStarGiftFrom(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.StarGift.From", p1)
   }
-  /// This gift cannot be converted to Stars because the payment related to it was refunded.
+  /// This gift cannot be converted to Ansible Diamonds because the payment related to it was refunded.
   public static var chatServiceStarGiftRefunded: String  { return L10n.tr("Localizable", "Chat.Service.StarGift.Refunded") }
   /// %1$@ sent you a gift for %2$@
   public static func chatServiceStarGiftSent(_ p1: String, _ p2: String) -> String {
@@ -5073,13 +5073,13 @@ public final class L10n {
   public static func chatServiceStoryMentionedYou(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.StoryMentioned.You", p1)
   }
-  /// %@ suggests this photo for your Telegram profile.
+  /// %@ suggests this photo for your Ansible profile.
   public static func chatServiceSuggestPhotoInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.SuggestPhoto.Info", p1)
   }
   /// Suggested Photo
   public static var chatServiceSuggestPhotoTitle: String  { return L10n.tr("Localizable", "Chat.Service.SuggestPhoto.Title") }
-  /// You suggested %@ to use this photo for their Telegram profile.
+  /// You suggested %@ to use this photo for their Ansible profile.
   public static func chatServiceSuggestPhotoInfoYou(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.SuggestPhoto.Info.You", p1)
   }
@@ -5108,7 +5108,7 @@ public final class L10n {
   public static func chatServiceSuggestPostStatusTonSettlement(_ peer: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.TonSettlement", peer)
   }
-  /// 🔁 If %1$@ removes the post before it has been live for 24 hours, your Diamonds will be refunded.
+  /// 🔁 If %1$@ removes the post before it has been live for 24 hours, your Ansible Diamonds will be refunded.
   public static func chatServiceSuggestPostStatusRefundCondition(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.RefundCondition", p1)
   }
@@ -5136,7 +5136,7 @@ public final class L10n {
   public static var chatServiceSuggestPostStatusRejectedLowBalanceTitle: String  { return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.Rejected.LowBalanceTitle") }
   /// ❌ Rejected
   public static var chatServiceSuggestPostStatusRejectedTitle: String  { return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.Rejected.Title") }
-  /// **%1$@** was unable to post your message, because you did not have enough Stars.
+  /// **%1$@** was unable to post your message, because you did not have enough Ansible Diamonds.
   public static func chatServiceSuggestPostStatusRejectedIncomingLowBalance(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.Rejected.Incoming.LowBalance", p1)
   }
@@ -5148,7 +5148,7 @@ public final class L10n {
   public static func chatServiceSuggestPostStatusRejectedIncomingWithComment(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.Rejected.Incoming.WithComment", p1, p2)
   }
-  /// **%1$@** was unable to post the message, because the user did not have enough Stars.
+  /// **%1$@** was unable to post the message, because the user did not have enough Ansible Diamonds.
   public static func chatServiceSuggestPostStatusRejectedOutgoingLowBalance(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.Rejected.Outgoing.LowBalance", p1)
   }
@@ -5158,11 +5158,11 @@ public final class L10n {
   public static func chatServiceSuggestPostStatusRejectedOutgoingWithComment(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.Rejected.Outgoing.WithComment", p1)
   }
-  /// ⌛️ %1$@ will receive your Stars once the post has been live for 24 hours.
+  /// ⌛️ %1$@ will receive your Ansible Diamonds once the post has been live for 24 hours.
   public static func chatServiceSuggestPostStatusReleaseIncoming(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.Release.Incoming", p1)
   }
-  /// ⌛️ %1$@ will receive Stars once the post has been live for 24 hours.
+  /// ⌛️ %1$@ will receive Ansible Diamonds once the post has been live for 24 hours.
   public static func chatServiceSuggestPostStatusReleaseOutgoing(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.Release.Outgoing", p1)
   }
@@ -5178,7 +5178,7 @@ public final class L10n {
   public static var chatServiceTodoAddedYou: String  { return L10n.tr("Localizable", "Chat.Service.Todo.Added.You") }
   /// You added new tasks {values} to {task}.
   public static var chatServiceTodoAddedMultiYou: String  { return L10n.tr("Localizable", "Chat.Service.Todo.Added.Multi.You") }
-  /// Subscribe to Telegram Premium to unlock Checklists. [Read More]()
+  /// Subscribe to Ansible Premium to unlock Checklists. [Read More]()
   public static var chatServiceTodoCompletePremium: String  { return L10n.tr("Localizable", "Chat.Service.Todo.Complete.Premium") }
   /// {author} marked {values} as done.
   public static var chatServiceTodoMarkedDone: String  { return L10n.tr("Localizable", "Chat.Service.Todo.Marked.Done") }
@@ -5261,33 +5261,33 @@ public final class L10n {
   /// Show Chats
   public static var chatSidebarShowChats: String  { return L10n.tr("Localizable", "Chat.Sidebar.ShowChats") }
   /// %@ sent %@
-  public static func chatStarsGiftSentBy(_ p1: String, _ p2: String) -> String {
+  public static func chatDiamondsGiftSentBy(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Chat.StarsGift.SentBy", p1, p2)
   }
   /// %@ sent %@ to %@
-  public static func chatStarsGiftSentInChannel(_ p1: String, _ p2: String, _ p3: String) -> String {
+  public static func chatDiamondsGiftSentInChannel(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "Chat.StarsGift.SentInChannel", p1, p2, p3)
   }
   /// %@ gift sent
-  public static func chatStarsGiftSentYou(_ p1: String) -> String {
+  public static func chatDiamondsGiftSentYou(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.StarsGift.SentYou", p1)
   }
   /// You sent an upgrade worth %@ for the gift
-  public static func chatStarsGiftUpgradeSent(_ p1: String) -> String {
+  public static func chatDiamondsGiftUpgradeSent(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.StarsGift.UpgradeSent", p1)
   }
   /// %@ sent an upgrade worth %@ for the gift
-  public static func chatStarsGiftUpgradeSentBy(_ p1: String, _ p2: String) -> String {
+  public static func chatDiamondsGiftUpgradeSentBy(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Chat.StarsGift.UpgradeSentBy", p1, p2)
   }
   /// Unpack
-  public static var chatStarsGiftButtonUnpack: String  { return L10n.tr("Localizable", "Chat.StarsGift.Button.Unpack") }
+  public static var chatDiamondsGiftButtonUnpack: String  { return L10n.tr("Localizable", "Chat.StarsGift.Button.Unpack") }
   /// **%@** sent an upgrade worth **%@** for the gift you received from **%@**
-  public static func chatStarsGiftUpgradeOther(_ p1: String, _ p2: String, _ p3: String) -> String {
+  public static func chatDiamondsGiftUpgradeOther(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "Chat.StarsGift.Upgrade.Other", p1, p2, p3)
   }
   /// **%@** sent an upgrade worth **%@** for the gift
-  public static func chatStarsGiftUpgradeSelf(_ p1: String, _ p2: String) -> String {
+  public static func chatDiamondsGiftUpgradeSelf(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Chat.StarsGift.Upgrade.Self", p1, p2)
   }
   /// Hide Other Messages
@@ -5366,7 +5366,7 @@ public final class L10n {
   public static func chatTitleTopicsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.Title.Topics_other", p1)
   }
-  /// Telegram moderators will review your report. Thank you!
+  /// Ansible moderators will review your report. Thank you!
   public static var chatToastReportSuccess: String  { return L10n.tr("Localizable", "Chat.Toast.ReportSuccess") }
   /// The account was hidden by the user
   public static var chatTooltipHiddenForwardName: String  { return L10n.tr("Localizable", "Chat.Tooltip.HiddenForwardName") }
@@ -5434,11 +5434,11 @@ public final class L10n {
   }
   /// Undo
   public static var chatUndoManagerUndo: String  { return L10n.tr("Localizable", "Chat.UndoManager.Undo") }
-  /// Update Telegram to view this part of the message
+  /// Update Ansible to view this part of the message
   public static var chatUnsupportedBlockInfo: String  { return L10n.tr("Localizable", "Chat.Unsupported.BlockInfo") }
   /// Unsupported block
   public static var chatUnsupportedBlockTitle: String  { return L10n.tr("Localizable", "Chat.Unsupported.BlockTitle") }
-  /// Update Telegram to view this message
+  /// Update Ansible to view this message
   public static var chatUnsupportedMessageInfo: String  { return L10n.tr("Localizable", "Chat.Unsupported.MessageInfo") }
   /// Unsupported message
   public static var chatUnsupportedMessageTitle: String  { return L10n.tr("Localizable", "Chat.Unsupported.MessageTitle") }
@@ -5446,7 +5446,7 @@ public final class L10n {
   public static var chatUnsupportedUpdate: String  { return L10n.tr("Localizable", "Chat.Unsupported.Update") }
   /// UPDATE
   public static var chatUnsupportedUpdatedApp: String  { return L10n.tr("Localizable", "Chat.Unsupported.UpdatedApp") }
-  /// Subscribe to [Telegram Premium]() to increase upload speeds %d times.
+  /// Subscribe to [Ansible Premium]() to increase upload speeds %d times.
   public static func chatUploadLimitTextOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.UploadLimit.Text_other", p1)
   }
@@ -5544,7 +5544,7 @@ public final class L10n {
   public static func chatAudioFileTranscriptionLimitExceededOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChatAudio.FileTranscription.LimitExceeded_other", p1)
   }
-  /// Your free transcriptions have been used. Telegram Premium is required to transcribe more audio.
+  /// Your free transcriptions have been used. Ansible Premium is required to transcribe more audio.
   public static var chatAudioFileTranscriptionPremiumRequired: String  { return L10n.tr("Localizable", "ChatAudio.FileTranscription.PremiumRequired") }
   /// The audio is too large to transcribe. Trim the recording to less than 1 MB.
   public static var chatAudioFileTranscriptionTooBig: String  { return L10n.tr("Localizable", "ChatAudio.FileTranscription.TooBig") }
@@ -5652,27 +5652,27 @@ public final class L10n {
   public static var chatExportControllerRangePresent: String  { return L10n.tr("Localizable", "ChatExport.Controller.RangePresent") }
   /// To
   public static var chatExportControllerRangeTo: String  { return L10n.tr("Localizable", "ChatExport.Controller.RangeTo") }
-  /// You won a prize in a giveaway organized by **%1$@**.\n\nYour prize is a **Telegram Premium** subscription for **%2$@** months.
+  /// You won a prize in a giveaway organized by **%1$@**.\n\nYour prize is a **Ansible Premium** subscription for **%2$@** months.
   public static func chatGiftInfoFromGiveAway(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "ChatGift.Info.FromGiveAway", p1, p2)
   }
-  /// You won a prize in a giveaway organized by **%1$@**.\n\nYour prize is **%2$@ Stars**.
-  public static func chatGiftInfoGiveawayStarsOther(_ p1: Int, _ p2: String, _ p3: String) -> String {
+  /// You won a prize in a giveaway organized by **%1$@**.\n\nYour prize is **%2$@ Ansible Diamonds**.
+  public static func chatGiftInfoGiveawayDiamondsOther(_ p1: Int, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "ChatGift.Info.GiveawayStars_other", p1, p2, p3)
   }
-  /// You've received a gift from **%1$@**.\n\nYour gift is a **Telegram Premium** subscription for **%2$@** months.
+  /// You've received a gift from **%1$@**.\n\nYour gift is a **Ansible Premium** subscription for **%2$@** months.
   public static func chatGiftInfoNormal(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "ChatGift.Info.Normal", p1, p2)
   }
-  /// You have an unclaimed prize from a giveaway by **%1$@**.\n\nThis prize is a **Telegram Premium** subscription for **%2$@** months.
+  /// You have an unclaimed prize from a giveaway by **%1$@**.\n\nThis prize is a **Ansible Premium** subscription for **%2$@** months.
   public static func chatGiftInfoUnclaimed(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "ChatGift.Info.Unclaimed", p1, p2)
   }
-  /// You gifted **Telegram Premium** subscription for **%1$@** months.
+  /// You gifted **Ansible Premium** subscription for **%1$@** months.
   public static func chatGiftInfoUnclaimedGift(_ p1: String) -> String {
     return L10n.tr("Localizable", "ChatGift.Info.Unclaimed.Gift", p1)
   }
-  /// You received **Telegram Premium** subscription for **%1$@** months.
+  /// You received **Ansible Premium** subscription for **%1$@** months.
   public static func chatGiftInfoUnclaimedGiftYou(_ p1: String) -> String {
     return L10n.tr("Localizable", "ChatGift.Info.Unclaimed.Gift.You", p1)
   }
@@ -5744,7 +5744,7 @@ public final class L10n {
   public static var chatInputRecordingViewResumeDiscardTrimmed: String  { return L10n.tr("Localizable", "ChatInput.RecordingView.ResumeDiscardTrimmed") }
   /// Reply in Another Chat
   public static var chatInputReplyReplyToAnother: String  { return L10n.tr("Localizable", "ChatInput.Reply.ReplyToAnother") }
-  /// Hiding the sender's name for AI-composed messages is available with Telegram Premium.
+  /// Hiding the sender's name for AI-composed messages is available with Ansible Premium.
   public static var chatInputAccessoryHideSenderPremium: String  { return L10n.tr("Localizable", "ChatInputAccessory.HideSenderPremium") }
   /// Sorry, this link doesn't seem to exist.
   public static var chatLinkUnavailable: String  { return L10n.tr("Localizable", "ChatLink.Unavailable") }
@@ -5784,7 +5784,7 @@ public final class L10n {
   public static var chatListEmptyText: String  { return L10n.tr("Localizable", "ChatList.EmptyText") }
   /// Channels
   public static var chatListFeeds: String  { return L10n.tr("Localizable", "ChatList.Feeds") }
-  /// Your account has been frozen for a serious violation of Telegram's [Terms and Conditions](https://telegram.org/tos). Your account is now in read-only mode (since %1$@). You can appeal via [@SpamBot](%2$@) if you believe this was a mistake. If we don't hear from you until %3$@, your account will be fully deactivated and terminated.
+  /// Your account has been frozen for a serious violation of Ansible's [Terms and Conditions](https://ansible.su/tos). Your account is now in read-only mode (since %1$@). You can appeal via [@SpamBot](%2$@) if you believe this was a mistake. If we don't hear from you until %3$@, your account will be fully deactivated and terminated.
   public static func chatListFreezeAccount(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "ChatList.FreezeAccount", p1, p2, p3)
   }
@@ -5810,7 +5810,7 @@ public final class L10n {
   public static var chatListStory: String  { return L10n.tr("Localizable", "ChatList.Story") }
   /// mentioned you in a story
   public static var chatListStoryMentioned: String  { return L10n.tr("Localizable", "ChatList.StoryMentioned") }
-  /// %d Stars needed
+  /// %d Ansible Diamonds needed
   public static func chatListSubscriptionsLowBalanceOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChatList.SubscriptionsLowBalance_other", p1)
   }
@@ -6132,7 +6132,7 @@ public final class L10n {
   public static var chatListFolderDisableAnimations: String  { return L10n.tr("Localizable", "ChatList.Folder.DisableAnimations") }
   /// enable animations
   public static var chatListFolderEnableAnimations: String  { return L10n.tr("Localizable", "ChatList.Folder.EnableAnimations") }
-  /// Subscribe to Telegram Premium to add colors for your folders.
+  /// Subscribe to Ansible Premium to add colors for your folders.
   public static var chatListFolderPremiumAlert: String  { return L10n.tr("Localizable", "ChatList.Folder.PremiumAlert") }
   /// Show Folder Tags
   public static var chatListFolderTags: String  { return L10n.tr("Localizable", "ChatList.Folder.Tags") }
@@ -6144,7 +6144,7 @@ public final class L10n {
   public static func chatListFolderUpdatesTitleOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChatList.FolderUpdates.Title_other", p1)
   }
-  /// Your account has been frozen for a serious violation of Telegram's [Terms and Conditions](https://telegram.org/tos). Your account is now in read-only mode (since %1$@). You can appeal via [@SpamBot](%2$@) if you believe this was a mistake. If we don't hear from you until %3$@, your account will be fully deactivated and terminated.
+  /// Your account has been frozen for a serious violation of Ansible's [Terms and Conditions](https://ansible.su/tos). Your account is now in read-only mode (since %1$@). You can appeal via [@SpamBot](%2$@) if you believe this was a mistake. If we don't hear from you until %3$@, your account will be fully deactivated and terminated.
   public static func chatListFreezeAccountAlert(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "ChatList.FreezeAccount.Alert", p1, p2, p3)
   }
@@ -6402,11 +6402,11 @@ public final class L10n {
   public static var chatMessageSponsoredTitle: String  { return L10n.tr("Localizable", "ChatMessage.Sponsored.Title") }
   /// This Ad is already reported
   public static var chatMessageSponsoredReportAready: String  { return L10n.tr("Localizable", "ChatMessage.Sponsored.Report.Aready") }
-  /// Learn more about [Telegram Ad Policies and Guidelines](https://ads.telegram.org/guidelines).
+  /// Learn more about [Ansible Ad Policies and Guidelines](https://ads.ansible.su/guidelines).
   public static var chatMessageSponsoredReportLearnMore: String  { return L10n.tr("Localizable", "ChatMessage.Sponsored.Report.LearnMore") }
   /// WHAT IS WRONG WITH THIS AD?
   public static var chatMessageSponsoredReportOptionTitle: String  { return L10n.tr("Localizable", "ChatMessage.Sponsored.Report.OptionTitle") }
-  /// Telegram moderators will review your report. Thank you.
+  /// Ansible moderators will review your report. Thank you.
   public static var chatMessageSponsoredReportSuccess: String  { return L10n.tr("Localizable", "ChatMessage.Sponsored.Report.Success") }
   /// views
   public static var chatMessageTooltipViews: String  { return L10n.tr("Localizable", "ChatMessage.Tooltip.Views") }
@@ -6444,16 +6444,16 @@ public final class L10n {
   public static func chatPollViewVotesOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChatPoll.ViewVotes_other", p1)
   }
-  /// Star reactions have been disabled for this channel.
-  public static var chatReactionStarsDisabled: String  { return L10n.tr("Localizable", "ChatReaction.StarsDisabled") }
+  /// Ansible Diamond reactions have been disabled for this channel.
+  public static var chatReactionDiamondsDisabled: String  { return L10n.tr("Localizable", "ChatReaction.StarsDisabled") }
   /// Undo
   public static var chatReactionUndo: String  { return L10n.tr("Localizable", "ChatReaction.Undo") }
-  /// You have reacted with %d stars.
+  /// You have reacted with %d Ansible Diamonds.
   public static func chatReactionUndoReactedOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChatReaction.Undo.Reacted_other", p1)
   }
-  /// Stars Sent!
-  public static var chatReactionUndoStarsSent: String  { return L10n.tr("Localizable", "ChatReaction.Undo.StarsSent") }
+  /// Ansible Diamonds Sent!
+  public static var chatReactionUndoDiamondsSent: String  { return L10n.tr("Localizable", "ChatReaction.Undo.StarsSent") }
   /// Tag the message with an emoji for quick search
   public static var chatReactionsTagMessage: String  { return L10n.tr("Localizable", "ChatReactions.TagMessage") }
   /// Organize your Saved Messages with tags\nfor quicker access. [Learn More...]()
@@ -6492,7 +6492,7 @@ public final class L10n {
   public static var chatSendFailureMessageTooLong: String  { return L10n.tr("Localizable", "ChatSend.Failure.MessageTooLong") }
   /// You can’t send text messages in this chat.
   public static var chatSendFailurePlainForbidden: String  { return L10n.tr("Localizable", "ChatSend.Failure.PlainForbidden") }
-  /// Telegram Premium is required to send this message.
+  /// Ansible Premium is required to send this message.
   public static var chatSendFailurePremiumRequired: String  { return L10n.tr("Localizable", "ChatSend.Failure.PremiumRequired") }
   /// This message could not be sent. Server error: %1$@
   public static func chatSendFailureServerError(_ p1: String) -> String {
@@ -6538,7 +6538,7 @@ public final class L10n {
   public static var chatServiceCraftedUniqueCollectible: String  { return L10n.tr("Localizable", "ChatService.CraftedUniqueCollectible") }
   /// This gift was used for crafting and is no longer available.
   public static var chatServiceGiftUsedForCrafting: String  { return L10n.tr("Localizable", "ChatService.GiftUsedForCrafting") }
-  /// %d winners of the giveaway were randomly selected by Telegram and received their gift links in private messages.
+  /// %d winners of the giveaway were randomly selected by Ansible and received their gift links in private messages.
   public static func chatServiceGiveawayResultsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChatService.GiveawayResults_other", p1)
   }
@@ -6546,11 +6546,11 @@ public final class L10n {
   public static func chatServiceGiveawayResultsMixedUnclaimedOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChatService.GiveawayResultsMixedUnclaimed_other", p1)
   }
-  /// **%d** winners of the giveaway were randomly selected by Telegram and received their gift links in private messages.
+  /// **%d** winners of the giveaway were randomly selected by Ansible and received their gift links in private messages.
   public static func chatServiceGiveawayResultsMixedWinnersOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChatService.GiveawayResultsMixedWinners_other", p1)
   }
-  /// Due to the giveaway terms, no winners could be selected by Telegram, a gift code was forwarded to channel administrators.
+  /// Due to the giveaway terms, no winners could be selected by Ansible, a gift code was forwarded to channel administrators.
   public static func chatServiceGiveawayResultsNoWinnersOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChatService.GiveawayResultsNoWinners_other", p1)
   }
@@ -6577,7 +6577,7 @@ public final class L10n {
   /// Remove
   public static var chatServiceRemoveBackground: String  { return L10n.tr("Localizable", "ChatService.RemoveBackground") }
   /// You won a prize in a giveaway organized by %1$@.\n\nYour prize is %2$@.
-  public static func chatServiceStarsPrize(_ p1: String, _ p2: String) -> String {
+  public static func chatServiceDiamondsPrize(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "ChatService.StarsPrize", p1, p2)
   }
   /// Update Wallpaper
@@ -6678,20 +6678,20 @@ public final class L10n {
   public static func chatServiceGiftOfferValueLower(_ p1: String) -> String {
     return L10n.tr("Localizable", "ChatService.GiftOffer.ValueLower", p1)
   }
-  /// %d winners of the giveaway were randomly selected by Telegram and received their prize in a private message.
-  public static func chatServiceGiveawayResultsStarsOther(_ p1: Int) -> String {
+  /// %d winners of the giveaway were randomly selected by Ansible and received their prize in a private message.
+  public static func chatServiceGiveawayResultsDiamondsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChatService.GiveawayResults.Stars_other", p1)
   }
   /// %d undistributed prize codes were forwarded to channel administrators
-  public static func chatServiceGiveawayResultsMixedUnclaimedStarsOther(_ p1: Int) -> String {
+  public static func chatServiceGiveawayResultsMixedUnclaimedDiamondsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChatService.GiveawayResultsMixedUnclaimed.Stars_other", p1)
   }
-  /// **%d** winners of the giveaway were randomly selected by Telegram and received a private message with prize.
-  public static func chatServiceGiveawayResultsMixedWinnersStarsOther(_ p1: Int) -> String {
+  /// **%d** winners of the giveaway were randomly selected by Ansible and received a private message with prize.
+  public static func chatServiceGiveawayResultsMixedWinnersDiamondsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChatService.GiveawayResultsMixedWinners.Stars_other", p1)
   }
-  /// Due to the giveaway terms, no winners could be selected by Telegram, prize codes were forwarded to channel administrators.
-  public static func chatServiceGiveawayResultsNoWinnersStarsOther(_ p1: Int) -> String {
+  /// Due to the giveaway terms, no winners could be selected by Ansible, prize codes were forwarded to channel administrators.
+  public static func chatServiceGiveawayResultsNoWinnersDiamondsOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "ChatService.GiveawayResultsNoWinners.Stars_other", p1)
   }
   /// You successfully updated your profile photo
@@ -6732,7 +6732,7 @@ public final class L10n {
   public static var chatVoiceTranscriptionShortcutInfo: String  { return L10n.tr("Localizable", "ChatVoice.Transcription.ShortcutInfo") }
   /// Default
   public static var chatWallpaperEmpty: String  { return L10n.tr("Localizable", "ChatWallpaper.Empty") }
-  /// The bot **%@** will be able to **manage your gifts and stars**, including giving them away to other users.
+  /// The bot **%@** will be able to **manage your gifts and Ansible Diamonds**, including giving them away to other users.
   public static func chatbotSetupGiftWarningCombinedText(_ p1: String) -> String {
     return L10n.tr("Localizable", "ChatbotSetup.Gift.Warning.CombinedText", p1)
   }
@@ -6742,8 +6742,8 @@ public final class L10n {
   }
   /// Proceed
   public static var chatbotSetupGiftWarningProceed: String  { return L10n.tr("Localizable", "ChatbotSetup.Gift.Warning.Proceed") }
-  /// The bot **%@** will be able to **transfer your stars**.
-  public static func chatbotSetupGiftWarningStarsText(_ p1: String) -> String {
+  /// The bot **%@** will be able to **transfer your Ansible Diamonds**.
+  public static func chatbotSetupGiftWarningDiamondsText(_ p1: String) -> String {
     return L10n.tr("Localizable", "ChatbotSetup.Gift.Warning.StarsText", p1)
   }
   /// Warning
@@ -6814,7 +6814,7 @@ public final class L10n {
   public static var checkoutNewCardSaveInfo: String  { return L10n.tr("Localizable", "Checkout.NewCard.SaveInfo") }
   /// You can save your payment information for future use.\nPlease [turn on Two-Step Verification] to enable this.
   public static var checkoutNewCardSaveInfoEnableHelp: String  { return L10n.tr("Localizable", "Checkout.NewCard.SaveInfoEnableHelp") }
-  /// You can save your payment info for future use. It will be stored directly with the payment provider. Telegram has no access to your credit card data.
+  /// You can save your payment info for future use. It will be stored directly with the payment provider. Ansible has no access to your credit card data.
   public static var checkoutNewCardSaveInfoHelp: String  { return L10n.tr("Localizable", "Checkout.NewCard.SaveInfoHelp") }
   /// New Card
   public static var checkoutNewCardTitle: String  { return L10n.tr("Localizable", "Checkout.NewCard.Title") }
@@ -6952,7 +6952,7 @@ public final class L10n {
   public static var choosePeerTitleUserMultiple: String  { return L10n.tr("Localizable", "ChoosePeer.Title.User.Multiple") }
   /// Learn More
   public static var collectibleItemInfoButtonOpenInfo: String  { return L10n.tr("Localizable", "CollectibleItemInfo.ButtonOpenInfo") }
-  /// The phone number **%1$@** was acquired on\nFragment on %2$@ for %3$@ **%4$@** (~%5$@).\n\n[Copy Link]()
+  /// The phone number **%1$@** was acquired on\nCrystalpiece on %2$@ for %3$@ **%4$@** (~%5$@).\n\n[Copy Link]()
   public static func collectibleItemInfoPhoneText(_ p1: String, _ p2: String, _ p3: String, _ p4: String, _ p5: String) -> String {
     return L10n.tr("Localizable", "CollectibleItemInfo.PhoneText", p1, p2, p3, p4, p5)
   }
@@ -6960,7 +6960,7 @@ public final class L10n {
   public static func collectibleItemInfoPhoneTitle(_ p1: String) -> String {
     return L10n.tr("Localizable", "CollectibleItemInfo.PhoneTitle", p1)
   }
-  /// The **@%1$@** username was acquired on\nFragment on %2$@ for %3$@ **%4$@** (~%5$@).\n\n[Copy Link]()
+  /// The **@%1$@** username was acquired on\nCrystalpiece on %2$@ for %3$@ **%4$@** (~%5$@).\n\n[Copy Link]()
   public static func collectibleItemInfoUsernameText(_ p1: String, _ p2: String, _ p3: String, _ p4: String, _ p5: String) -> String {
     return L10n.tr("Localizable", "CollectibleItemInfo.UsernameText", p1, p2, p3, p4, p5)
   }
@@ -7298,7 +7298,7 @@ public final class L10n {
   public static var confirmDeleteChatUser: String  { return L10n.tr("Localizable", "Confirm.DeleteChatUser") }
   /// Are you sure you want to leave this group?
   public static var confirmLeaveGroup: String  { return L10n.tr("Localizable", "Confirm.LeaveGroup") }
-  /// The bot will know your phone number. This can be useful for integration with other services.\n\n⚠️ Warning! Never enter your Telegram login codes in mini apps.
+  /// The bot will know your phone number. This can be useful for integration with other services.\n\n⚠️ Warning! Never enter your Ansible login codes in mini apps.
   public static var confirmDescPermissionInlineBotContact: String  { return L10n.tr("Localizable", "Confirm.Desc.PermissionInlineBotContact") }
   /// Share Your Phone Number?
   public static var confirmHeaderPermissionInlineBotContact: String  { return L10n.tr("Localizable", "Confirm.Header.PermissionInlineBotContact") }
@@ -7356,9 +7356,9 @@ public final class L10n {
   public static var contactsAddContact: String  { return L10n.tr("Localizable", "Contacts.AddContact") }
   /// Contacts
   public static var contactsContacsSeparator: String  { return L10n.tr("Localizable", "Contacts.ContacsSeparator") }
-  /// This person is not registered on Telegram yet.\n\nYou will be able to send them a Telegram message as soon as they sign up.
+  /// This person is not registered on Ansible yet.\n\nYou will be able to send them an Ansible message as soon as they sign up.
   public static var contactsNotRegistredDescription: String  { return L10n.tr("Localizable", "Contacts.NotRegistredDescription") }
-  /// Not a Telegram User
+  /// Not an Ansible User
   public static var contactsNotRegistredTitle: String  { return L10n.tr("Localizable", "Contacts.NotRegistredTitle") }
   /// First Name
   public static var contactsFirstNamePlaceholder: String  { return L10n.tr("Localizable", "Contacts.FirstName.Placeholder") }
@@ -7366,7 +7366,7 @@ public final class L10n {
   public static var contactsLastNamePlaceholder: String  { return L10n.tr("Localizable", "Contacts.LastName.Placeholder") }
   /// phone number can't be empty
   public static var contactsPhoneNumberInvalid: String  { return L10n.tr("Localizable", "Contacts.PhoneNumber.Invalid") }
-  /// The person with this phone number is not registered on Telegram yet.
+  /// The person with this phone number is not registered on Ansible yet.
   public static var contactsPhoneNumberNotRegistred: String  { return L10n.tr("Localizable", "Contacts.PhoneNumber.NotRegistred") }
   /// Phone Number
   public static var contactsPhoneNumberPlaceholder: String  { return L10n.tr("Localizable", "Contacts.PhoneNumber.Placeholder") }
@@ -7424,7 +7424,7 @@ public final class L10n {
   public static func conversationFreeTranscriptionLimitTooltipOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Conversation.FreeTranscriptionLimitTooltip_other", p1)
   }
-  /// Wait until **%@** to use it again or subscribe to [Telegram Premium]() now.
+  /// Wait until **%@** to use it again or subscribe to [Ansible Premium]() now.
   public static func conversationFreeTranscriptionWaitOrSubscribe(_ p1: String) -> String {
     return L10n.tr("Localizable", "Conversation.FreeTranscriptionWaitOrSubscribe", p1)
   }
@@ -7470,7 +7470,7 @@ public final class L10n {
   public static var copyRestrictedGroup: String  { return L10n.tr("Localizable", "CopyRestricted.Group") }
   /// Cancel
   public static var crashOnLaunchCancel: String  { return L10n.tr("Localizable", "CrashOnLaunch.Cancel") }
-  /// If Telegram keeps crashing immediately after you open it, click OK to log out of the app. This should solve this issue.
+  /// If Ansible keeps crashing immediately after you open it, click OK to log out of the app. This should solve this issue.
   public static var crashOnLaunchInformation: String  { return L10n.tr("Localizable", "CrashOnLaunch.Information") }
   /// Something's not right.
   public static var crashOnLaunchMessage: String  { return L10n.tr("Localizable", "CrashOnLaunch.Message") }
@@ -7478,7 +7478,7 @@ public final class L10n {
   public static var crashOnLaunchOK: String  { return L10n.tr("Localizable", "CrashOnLaunch.OK") }
   /// Update from the App Store
   public static var crashRecoveryAppStore: String  { return L10n.tr("Localizable", "CrashRecovery.AppStore") }
-  /// The App Store has the newest version of Telegram.
+  /// The App Store has the newest version of Ansible.
   public static var crashRecoveryAppStoreDetail: String  { return L10n.tr("Localizable", "CrashRecovery.AppStoreDetail") }
   /// Cancel
   public static var crashRecoveryCancel: String  { return L10n.tr("Localizable", "CrashRecovery.Cancel") }
@@ -7486,17 +7486,17 @@ public final class L10n {
   public static var crashRecoveryCheckAgain: String  { return L10n.tr("Localizable", "CrashRecovery.CheckAgain") }
   /// Checking for updates…
   public static var crashRecoveryChecking: String  { return L10n.tr("Localizable", "CrashRecovery.Checking") }
-  /// Looking for a newer version of Telegram.
+  /// Looking for a newer version of Ansible.
   public static var crashRecoveryCheckingDetail: String  { return L10n.tr("Localizable", "CrashRecovery.CheckingDetail") }
   /// Continue Anyway
   public static var crashRecoveryContinueAnyway: String  { return L10n.tr("Localizable", "CrashRecovery.ContinueAnyway") }
-  /// Telegram closed right after it opened. The latest version usually fixes this.
+  /// Ansible closed right after it opened. The latest version usually fixes this.
   public static var crashRecoveryDescription: String  { return L10n.tr("Localizable", "CrashRecovery.Description") }
   /// Downloading…
   public static var crashRecoveryDownloadingButton: String  { return L10n.tr("Localizable", "CrashRecovery.DownloadingButton") }
   /// Downloading the update…
   public static var crashRecoveryDownloadingUpdate: String  { return L10n.tr("Localizable", "CrashRecovery.DownloadingUpdate") }
-  /// Downloading Telegram %1$@…
+  /// Downloading Ansible %1$@…
   public static func crashRecoveryDownloadingVersion(_ p1: String) -> String {
     return L10n.tr("Localizable", "CrashRecovery.DownloadingVersion", p1)
   }
@@ -7506,9 +7506,9 @@ public final class L10n {
   }
   /// Starting the download…
   public static var crashRecoveryDownloadStarting: String  { return L10n.tr("Localizable", "CrashRecovery.DownloadStarting") }
-  /// Couldn’t update Telegram
+  /// Couldn’t update Ansible
   public static var crashRecoveryFailed: String  { return L10n.tr("Localizable", "CrashRecovery.Failed") }
-  /// Try again, or download the latest version from macos.telegram.org.
+  /// Try again, or visit ansible.su for information about Ansible and support.
   public static var crashRecoveryFailedDetail: String  { return L10n.tr("Localizable", "CrashRecovery.FailedDetail") }
   /// Install and Relaunch
   public static var crashRecoveryInstall: String  { return L10n.tr("Localizable", "CrashRecovery.Install") }
@@ -7516,11 +7516,11 @@ public final class L10n {
   public static var crashRecoveryInstalling: String  { return L10n.tr("Localizable", "CrashRecovery.Installing") }
   /// Installing…
   public static var crashRecoveryInstallingButton: String  { return L10n.tr("Localizable", "CrashRecovery.InstallingButton") }
-  /// Telegram will reopen in a moment.
+  /// Ansible will reopen in a moment.
   public static var crashRecoveryInstallingDetail: String  { return L10n.tr("Localizable", "CrashRecovery.InstallingDetail") }
   /// Open App Store
   public static var crashRecoveryOpenAppStore: String  { return L10n.tr("Localizable", "CrashRecovery.OpenAppStore") }
-  /// Open macos.telegram.org
+  /// Open ansible.su
   public static var crashRecoveryOpenWebsite: String  { return L10n.tr("Localizable", "CrashRecovery.OpenWebsite") }
   /// Preparing…
   public static var crashRecoveryPreparingButton: String  { return L10n.tr("Localizable", "CrashRecovery.PreparingButton") }
@@ -7528,17 +7528,17 @@ public final class L10n {
   public static var crashRecoveryPreparingDetail: String  { return L10n.tr("Localizable", "CrashRecovery.PreparingDetail") }
   /// Preparing the update…
   public static var crashRecoveryPreparingUpdate: String  { return L10n.tr("Localizable", "CrashRecovery.PreparingUpdate") }
-  /// Preparing Telegram %1$@…
+  /// Preparing Ansible %1$@…
   public static func crashRecoveryPreparingVersion(_ p1: String) -> String {
     return L10n.tr("Localizable", "CrashRecovery.PreparingVersion", p1)
   }
-  /// Quit Telegram
+  /// Quit Ansible
   public static var crashRecoveryQuit: String  { return L10n.tr("Localizable", "CrashRecovery.Quit") }
-  /// Telegram will relaunch with the new version.
+  /// Ansible will relaunch with the new version.
   public static var crashRecoveryReadyDetail: String  { return L10n.tr("Localizable", "CrashRecovery.ReadyDetail") }
   /// The update is ready
   public static var crashRecoveryReadyUpdate: String  { return L10n.tr("Localizable", "CrashRecovery.ReadyUpdate") }
-  /// Telegram %1$@ is ready
+  /// Ansible %1$@ is ready
   public static func crashRecoveryReadyVersion(_ p1: String) -> String {
     return L10n.tr("Localizable", "CrashRecovery.ReadyVersion", p1)
   }
@@ -7546,35 +7546,35 @@ public final class L10n {
   public static var crashRecoveryReset: String  { return L10n.tr("Localizable", "CrashRecovery.Reset") }
   /// Reset
   public static var crashRecoveryResetConfirm: String  { return L10n.tr("Localizable", "CrashRecovery.ResetConfirm") }
-  /// Telegram will log out of all accounts on this Mac and delete its local data, including secret chats and downloaded files. Cloud chats will be available after you log in again.
+  /// Ansible will log out of all accounts on this Mac and delete its local data, including secret chats and downloaded files. Cloud chats will be available after you log in again.
   public static var crashRecoveryResetInfo: String  { return L10n.tr("Localizable", "CrashRecovery.ResetInfo") }
   /// Reset Local Data?
   public static var crashRecoveryResetTitle: String  { return L10n.tr("Localizable", "CrashRecovery.ResetTitle") }
-  /// Telegram Quit Unexpectedly
+  /// Ansible Quit Unexpectedly
   public static var crashRecoveryTitle: String  { return L10n.tr("Localizable", "CrashRecovery.Title") }
   /// Try Again
   public static var crashRecoveryTryAgain: String  { return L10n.tr("Localizable", "CrashRecovery.TryAgain") }
-  /// Update Telegram
+  /// Update Ansible
   public static var crashRecoveryUpdate: String  { return L10n.tr("Localizable", "CrashRecovery.Update") }
   /// You have the latest version
   public static var crashRecoveryUpToDate: String  { return L10n.tr("Localizable", "CrashRecovery.UpToDate") }
-  /// If Telegram keeps quitting, try resetting its local data.
+  /// If Ansible keeps quitting, try resetting its local data.
   public static var crashRecoveryUpToDateDetail: String  { return L10n.tr("Localizable", "CrashRecovery.UpToDateDetail") }
   /// Download the latest version
   public static var crashRecoveryWebsite: String  { return L10n.tr("Localizable", "CrashRecovery.Website") }
-  /// The newest Telegram is always at macos.telegram.org.
+  /// Information about Ansible and support is available at ansible.su.
   public static var crashRecoveryWebsiteDetail: String  { return L10n.tr("Localizable", "CrashRecovery.WebsiteDetail") }
-  /// Download from macos.telegram.org
+  /// Visit ansible.su
   public static var crashRecoveryWebsiteLink: String  { return L10n.tr("Localizable", "CrashRecovery.WebsiteLink") }
-  /// Crash report from Telegram %1$@ (%2$@, %3$@)
+  /// Crash report from Ansible %1$@ (%2$@, %3$@)
   public static func crashReportCaption(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "CrashReport.Caption", p1, p2, p3)
   }
   /// Send the report to help us fix it.
   public static var crashReportCardInfo: String  { return L10n.tr("Localizable", "CrashReport.CardInfo") }
-  /// Telegram quit unexpectedly
+  /// Ansible quit unexpectedly
   public static var crashReportCardTitle: String  { return L10n.tr("Localizable", "CrashReport.CardTitle") }
-  /// Telegram quit unexpectedly %1$d times
+  /// Ansible quit unexpectedly %1$d times
   public static func crashReportCardTitleTimesOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "CrashReport.CardTitleTimes_other", p1)
   }
@@ -7600,7 +7600,7 @@ public final class L10n {
   public static func createBotDescription(_ p1: String) -> String {
     return L10n.tr("Localizable", "CreateBot.Description", p1)
   }
-  /// You have reached the limit of %1$d bots. Subscribe to Telegram Premium to create up to %2$d bots.
+  /// You have reached the limit of %1$d bots. Subscribe to Ansible Premium to create up to %2$d bots.
   public static func createBotLimitReached(_ p1: Int, _ p2: Int) -> String {
     return L10n.tr("Localizable", "CreateBot.LimitReached", p1, p2)
   }
@@ -7652,15 +7652,15 @@ public final class L10n {
   public static func createBotUsernameEndingsOr(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "CreateBot.Username.EndingsOr", p1, p2)
   }
-  /// Telegram Premium
+  /// Ansible Premium
   public static var createBotUsernamePremium: String  { return L10n.tr("Localizable", "CreateBot.Username.Premium") }
   /// Must end in %1$@ – or %2$@ with %3$@.
   public static func createBotUsernamePremiumHint(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "CreateBot.Username.PremiumHint", p1, p2, p3)
   }
-  /// [Telegram Premium]()
+  /// [Ansible Premium]()
   public static var createBotUsernamePremiumLink: String  { return L10n.tr("Localizable", "CreateBot.Username.PremiumLink") }
-  /// Usernames ending in %1$@ require Telegram Premium.
+  /// Usernames ending in %1$@ require Ansible Premium.
   public static func createBotUsernamePremiumRequired(_ p1: String) -> String {
     return L10n.tr("Localizable", "CreateBot.Username.PremiumRequired", p1)
   }
@@ -7702,17 +7702,17 @@ public final class L10n {
   public static var customAvatarTitleText: String  { return L10n.tr("Localizable", "CustomAvatar.Title.Text") }
   /// Artists are welcome to add their own emoji sets using our [@stickers]() bot.
   public static var customEmojiInfo: String  { return L10n.tr("Localizable", "CustomEmoji.Info") }
-  /// Subscribe to Telegram Premium to unlock this emoji. [Read More]()
+  /// Subscribe to Ansible Premium to unlock this emoji. [Read More]()
   public static var customEmojiPremiumAlert: String  { return L10n.tr("Localizable", "CustomEmoji.PremiumAlert") }
   /// Suggest Animated Emoji
   public static var customEmojiSuggest: String  { return L10n.tr("Localizable", "CustomEmoji.Suggest") }
-  /// Subscribe to Telegram Premium to unlock this reaction. [Read More]()
+  /// Subscribe to Ansible Premium to unlock this reaction. [Read More]()
   public static var customReactionPremiumAlert: String  { return L10n.tr("Localizable", "CustomReaction.PremiumAlert") }
   /// YOUR STATUS EXPIRES IN %@
   public static func customStatusExpires(_ p1: String) -> String {
     return L10n.tr("Localizable", "CustomStatus.Expires", p1)
   }
-  /// This account uses 🤡 as a custom status next to its name. Such emoji statuses are available to all subscribers of [Telegram Premium]().
+  /// This account uses 🤡 as a custom status next to its name. Such emoji statuses are available to all subscribers of [Ansible Premium]().
   public static var customStatusReportSpam: String  { return L10n.tr("Localizable", "CustomStatus.ReportSpam") }
   /// RIGHT CLICK TO SET A TIMER
   public static var customStatusExpiresPromo: String  { return L10n.tr("Localizable", "CustomStatus.Expires.Promo") }
@@ -7824,7 +7824,7 @@ public final class L10n {
   public static var dateSelectorScheduleRepeatEveryYear: String  { return L10n.tr("Localizable", "DateSelector.Schedule.Repeat.EveryYear") }
   /// Never
   public static var dateSelectorScheduleRepeatNever: String  { return L10n.tr("Localizable", "DateSelector.Schedule.Repeat.Never") }
-  /// Subscribe to Telegram Premium to schedule repeating messages. [Read More]()
+  /// Subscribe to Ansible Premium to schedule repeating messages. [Read More]()
   public static var dateSelectorScheduleRepeatPremiumInfo: String  { return L10n.tr("Localizable", "DateSelector.Schedule.Repeat.PremiumInfo") }
   /// You can leave an optional comment
   public static var declineSuggestPostDescription: String  { return L10n.tr("Localizable", "DeclineSuggestPost.Description") }
@@ -7868,7 +7868,7 @@ public final class L10n {
   public static var deprecatedText: String  { return L10n.tr("Localizable", "Deprecated.Text") }
   /// Update macOS
   public static var deprecatedTitle: String  { return L10n.tr("Localizable", "Deprecated.Title") }
-  /// We are no longer updating the app for your system version. Please update your system to receive the latest Telegram updates.
+  /// We are no longer updating the app for your system version. Please update your system to receive the latest Ansible updates.
   public static var deprecatedAlertText: String  { return L10n.tr("Localizable", "Deprecated.Alert.Text") }
   /// Hide for a month
   public static var deprecatedAlertThird: String  { return L10n.tr("Localizable", "Deprecated.Alert.Third") }
@@ -8036,8 +8036,8 @@ public final class L10n {
   }
   /// Update Terms
   public static var editPostSuggestionActionUpdate: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Action.Update") }
-  /// Stars
-  public static var editPostSuggestionCurrencyStars: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Currency.Stars") }
+  /// Ansible Diamonds
+  public static var editPostSuggestionCurrencyDiamonds: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Currency.Stars") }
   /// OK
   public static var editPostSuggestionDateDone: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Date.Done") }
   /// Reset to Anytime
@@ -8046,11 +8046,11 @@ public final class L10n {
   public static var editPostSuggestionDateTitle: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Date.Title") }
   /// Enter amount
   public static var editPostSuggestionInputPlaceholder: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Input.Placeholder") }
-  /// Choose how many Stars you want to offer %1$@ to publish this post.
+  /// Choose how many Ansible Diamonds you want to offer %1$@ to publish this post.
   public static func editPostSuggestionPriceDescription(_ p1: String) -> String {
     return L10n.tr("Localizable", "Edit.PostSuggestion.Price.Description", p1)
   }
-  /// ENTER PRICE IN STARS
+  /// ENTER PRICE IN DIAMONDS
   public static var editPostSuggestionPriceLabel: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Price.Label") }
   /// Choose how many TON you want to offer %1$@ to publish this message.
   public static func editPostSuggestionPriceTonDescription(_ p1: String) -> String {
@@ -8350,7 +8350,7 @@ public final class L10n {
   }
   /// Hover mouse here to choose more emoji
   public static var emojiPackMoreEmoji: String  { return L10n.tr("Localizable", "EmojiPack.MoreEmoji") }
-  /// Subscribe to Telegram Premium to unlock this emoji. [Read More]()
+  /// Subscribe to Ansible Premium to unlock this emoji. [Read More]()
   public static var emojiPackPremiumAlert: String  { return L10n.tr("Localizable", "EmojiPack.PremiumAlert") }
   /// RESTORE
   public static var emojiPackRestore: String  { return L10n.tr("Localizable", "EmojiPack.Restore") }
@@ -8414,11 +8414,11 @@ public final class L10n {
   public static var emptyChatStickersNone: String  { return L10n.tr("Localizable", "EmptyChat.Stickers.None") }
   /// Trending Stickers
   public static var emptyChatStickersTrending: String  { return L10n.tr("Localizable", "EmptyChat.Stickers.Trending") }
-  /// Telegram uses **%@** of your storage.
+  /// Ansible uses **%@** of your storage.
   public static func emptyChatStorageUsageCacheDesc(_ p1: String) -> String {
     return L10n.tr("Localizable", "EmptyChat.StorageUsage.CacheDesc", p1)
   }
-  /// Telegram cache is empty.
+  /// Ansible cache is empty.
   public static var emptyChatStorageUsageCacheDescEmpty: String  { return L10n.tr("Localizable", "EmptyChat.StorageUsage.CacheDescEmpty") }
   /// Clear Cache
   public static var emptyChatStorageUsageClear: String  { return L10n.tr("Localizable", "EmptyChat.StorageUsage.Clear") }
@@ -8434,7 +8434,7 @@ public final class L10n {
   public static var emptyChatStorageUsageMedium: String  { return L10n.tr("Localizable", "EmptyChat.StorageUsage.Medium") }
   /// No Limit
   public static var emptyChatStorageUsageNoLimit: String  { return L10n.tr("Localizable", "EmptyChat.StorageUsage.NoLimit") }
-  /// Telegram\n%@
+  /// Ansible\n%@
   public static func emptyChatStorageUsageTooltipApp(_ p1: String) -> String {
     return L10n.tr("Localizable", "EmptyChat.StorageUsage.Tooltip.App", p1)
   }
@@ -8668,7 +8668,7 @@ public final class L10n {
   public static var exportDataChatsSection: String  { return L10n.tr("Localizable", "ExportData.ChatsSection") }
   /// Contacts list
   public static var exportDataContacts: String  { return L10n.tr("Localizable", "ExportData.Contacts") }
-  /// If you allow access, contacts are continuously synced with Telegram. You can adjust this in Settings > Privacy & Security on mobile devices.
+  /// If you allow access, contacts are continuously synced with Ansible. You can adjust this in Settings > Privacy & Security on mobile devices.
   public static var exportDataContactsAbout: String  { return L10n.tr("Localizable", "ExportData.ContactsAbout") }
   /// {count} hours
   public static var exportDataDelayHours: String  { return L10n.tr("Localizable", "ExportData.DelayHours") }
@@ -8676,7 +8676,7 @@ public final class L10n {
   public static var exportDataDelayLessThanHour: String  { return L10n.tr("Localizable", "ExportData.DelayLessThanHour") }
   /// For security reasons, you will be able to begin downloading your data in {hours}. We have notified all your devices about the export request to make sure it's authorized and give you time to react if it's not.\n\nPlease come back on {date} and repeat the request using the same device.
   public static var exportDataDelayText: String  { return L10n.tr("Localizable", "ExportData.DelayText") }
-  /// Exporting Telegram Data
+  /// Exporting Ansible Data
   public static var exportDataExportingTitle: String  { return L10n.tr("Localizable", "ExportData.ExportingTitle") }
   /// Format
   public static var exportDataFormat: String  { return L10n.tr("Localizable", "ExportData.Format") }
@@ -8688,7 +8688,7 @@ public final class L10n {
   public static var exportDataFormatHtml: String  { return L10n.tr("Localizable", "ExportData.FormatHtml") }
   /// Machine-readable JSON
   public static var exportDataFormatJson: String  { return L10n.tr("Localizable", "ExportData.FormatJson") }
-  /// Export Telegram Data
+  /// Export Ansible Data
   public static var exportDataMenuRow: String  { return L10n.tr("Localizable", "ExportData.MenuRow") }
   /// Export your account data — personal information, contacts, active sessions, story archive and the history of your chats — to a folder of HTML and/or JSON files.
   public static var exportDataMenuRowInfo: String  { return L10n.tr("Localizable", "ExportData.MenuRowInfo") }
@@ -8722,11 +8722,11 @@ public final class L10n {
   public static var exportDataSessionsAbout: String  { return L10n.tr("Localizable", "ExportData.SessionsAbout") }
   /// Story archive
   public static var exportDataStories: String  { return L10n.tr("Localizable", "ExportData.Stories") }
-  /// All stories you posted from Telegram mobile apps.
+  /// All stories you posted from Ansible mobile apps.
   public static var exportDataStoriesAbout: String  { return L10n.tr("Localizable", "ExportData.StoriesAbout") }
   /// Could not start the export. Please try again later.
   public static var exportDataTakeoutFailed: String  { return L10n.tr("Localizable", "ExportData.TakeoutFailed") }
-  /// Export Telegram Data
+  /// Export Ansible Data
   public static var exportDataTitle: String  { return L10n.tr("Localizable", "ExportData.Title") }
   /// Done
   public static var exportedInvitationDone: String  { return L10n.tr("Localizable", "ExportedInvitation.Done") }
@@ -8756,7 +8756,7 @@ public final class L10n {
   }
   /// revoked
   public static var exportedInvitationStatusRevoked: String  { return L10n.tr("Localizable", "ExportedInvitation.Status.Revoked") }
-  /// This clarification was provided by Telegram.
+  /// This clarification was provided by Ansible.
   public static var factCheckInfo: String  { return L10n.tr("Localizable", "FactCheck.Info") }
   /// Add Fact Check
   public static var factCheckPlaceholder: String  { return L10n.tr("Localizable", "FactCheck.Placeholder") }
@@ -8784,8 +8784,8 @@ public final class L10n {
   public static var fastSettingsDisableDarkMode: String  { return L10n.tr("Localizable", "FastSettings.DisableDarkMode") }
   /// Enable Dark Mode
   public static var fastSettingsEnableDarkMode: String  { return L10n.tr("Localizable", "FastSettings.EnableDarkMode") }
-  /// Lock Telegram
-  public static var fastSettingsLockTelegram: String  { return L10n.tr("Localizable", "FastSettings.LockTelegram") }
+  /// Lock Ansible
+  public static var fastSettingsLockAnsible: String  { return L10n.tr("Localizable", "FastSettings.LockTelegram") }
   /// Mute For 2 Hours
   public static var fastSettingsMute2Hours: String  { return L10n.tr("Localizable", "FastSettings.Mute2Hours") }
   /// Set a Passcode
@@ -9001,86 +9001,86 @@ public final class L10n {
     return L10n.tr("Localizable", "ForwardModalAction.Title_other", p1)
   }
   /// Understood
-  public static var fragmentAdsInfoOK: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.OK") }
-  /// Telegram Ads are very different from ads on other platforms. Ads such as this one:
-  public static var fragmentAdsInfoText: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Text") }
+  public static var crystalPieceAdsInfoOK: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.OK") }
+  /// Ansible Ads are very different from ads on other platforms. Ads such as this one:
+  public static var crystalPieceAdsInfoText: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Text") }
   /// About These Ads
-  public static var fragmentAdsInfoTitle: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Title") }
-  /// Anyone can create an ad to display in this channel — with minimal budgets. Check out the Telegram Ad Platform for details. [Learn More >](https://ads.telegram.org)
-  public static var fragmentAdsInfoBlockText: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Block.Text") }
+  public static var crystalPieceAdsInfoTitle: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Title") }
+  /// Anyone can create an ad to display in this channel — with minimal budgets. Check out the Ansible Ad Platform for details. [Learn More >](https://ads.ansible.su)
+  public static var crystalPieceAdsInfoBlockText: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Block.Text") }
   /// Can I Launch an Ad?
-  public static var fragmentAdsInfoBlockTitle: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Block.Title") }
-  /// Ads on Telegram do not use your personal information and are based on the channel in which you see them.
-  public static var fragmentAdsInfoOption1Info: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Option1.Info") }
+  public static var crystalPieceAdsInfoBlockTitle: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Block.Title") }
+  /// Ads on Ansible do not use your personal information and are based on the channel in which you see them.
+  public static var crystalPieceAdsInfoOption1Info: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Option1.Info") }
   /// Respect Your Privacy
-  public static var fragmentAdsInfoOption1Title: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Option1.Title") }
-  /// 50%@ of the revenue from Telegram Ads goes to the owner of the channel where they are displayed.
-  public static func fragmentAdsInfoOption2Info(_ p1: String) -> String {
+  public static var crystalPieceAdsInfoOption1Title: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Option1.Title") }
+  /// 50%@ of the revenue from Ansible Ads goes to the owner of the channel where they are displayed.
+  public static func crystalPieceAdsInfoOption2Info(_ p1: String) -> String {
     return L10n.tr("Localizable", "Fragment.AdsInfo.Option2.Info", p1)
   }
   /// Help the Channel Creator
-  public static var fragmentAdsInfoOption2Title: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Option2.Title") }
-  /// You can turn off ads by subscribing to Telegram Premium, and Level 50 channels can remove them for their subscribers.
-  public static var fragmentAdsInfoOption3Info: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Option3.Info") }
+  public static var crystalPieceAdsInfoOption2Title: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Option2.Title") }
+  /// You can turn off ads by subscribing to Ansible Premium, and Level 50 channels can remove them for their subscribers.
+  public static var crystalPieceAdsInfoOption3Info: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Option3.Info") }
   /// Can Be Removed
-  public static var fragmentAdsInfoOption3Title: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Option3.Title") }
-  /// Stars Amount
-  public static var fragmentStarAmountPlaceholder: String  { return L10n.tr("Localizable", "Fragment.Star.AmountPlaceholder") }
+  public static var crystalPieceAdsInfoOption3Title: String  { return L10n.tr("Localizable", "Fragment.AdsInfo.Option3.Title") }
+  /// Ansible Diamonds Amount
+  public static var crystalPieceDiamondAmountPlaceholder: String  { return L10n.tr("Localizable", "Fragment.Star.AmountPlaceholder") }
   /// Withdraw
-  public static var fragmentStarWithdraw: String  { return L10n.tr("Localizable", "Fragment.Star.Withdraw") }
+  public static var crystalPieceDiamondWithdraw: String  { return L10n.tr("Localizable", "Fragment.Star.Withdraw") }
   /// Withdraw %@
-  public static func fragmentStarWithdrawInput(_ p1: String) -> String {
+  public static func crystalPieceDiamondWithdrawInput(_ p1: String) -> String {
     return L10n.tr("Localizable", "Fragment.Star.WithdrawInput", p1)
   }
   /// ENTER AMOUNT TO WITHDRAW
-  public static var fragmentStarWithdrawPlaceholder: String  { return L10n.tr("Localizable", "Fragment.Star.WithdrawPlaceholder") }
+  public static var crystalPieceDiamondWithdrawPlaceholder: String  { return L10n.tr("Localizable", "Fragment.Star.WithdrawPlaceholder") }
   /// Available Balance
-  public static var fragmentStarsAvailableBalance: String  { return L10n.tr("Localizable", "Fragment.Stars.AvailableBalance") }
+  public static var crystalPieceDiamondsAvailableBalance: String  { return L10n.tr("Localizable", "Fragment.Stars.AvailableBalance") }
   /// AVAILABLE BALANCE
-  public static var fragmentStarsBalanceTitle: String  { return L10n.tr("Localizable", "Fragment.Stars.BalanceTitle") }
-  /// You cannot withdraw more than %d Stars at once.
-  public static func fragmentStarsMaxWithdraw(_ p1: Int) -> String {
+  public static var crystalPieceDiamondsBalanceTitle: String  { return L10n.tr("Localizable", "Fragment.Stars.BalanceTitle") }
+  /// You cannot withdraw more than %d Ansible Diamonds at once.
+  public static func crystalPieceDiamondsMaxWithdraw(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Fragment.Stars.MaxWithdraw", p1)
   }
-  /// You cannot withdraw less than %d Stars.
-  public static func fragmentStarsMinWithdraw(_ p1: Int) -> String {
+  /// You cannot withdraw less than %d Ansible Diamonds.
+  public static func crystalPieceDiamondsMinWithdraw(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Fragment.Stars.MinWithdraw", p1)
   }
   /// PROCEEDS OVERVIEW
-  public static var fragmentStarsOvervew: String  { return L10n.tr("Localizable", "Fragment.Stars.Overvew") }
+  public static var crystalPieceDiamondsOvervew: String  { return L10n.tr("Localizable", "Fragment.Stars.Overvew") }
   /// REVENUE
-  public static var fragmentStarsRevenueTitle: String  { return L10n.tr("Localizable", "Fragment.Stars.RevenueTitle") }
+  public static var crystalPieceDiamondsRevenueTitle: String  { return L10n.tr("Localizable", "Fragment.Stars.RevenueTitle") }
   /// Show More
-  public static var fragmentStarsShowMore: String  { return L10n.tr("Localizable", "Fragment.Stars.ShowMore") }
-  /// Stars Balance
-  public static var fragmentStarsTitle: String  { return L10n.tr("Localizable", "Fragment.Stars.Title") }
+  public static var crystalPieceDiamondsShowMore: String  { return L10n.tr("Localizable", "Fragment.Stars.ShowMore") }
+  /// Ansible Diamonds Balance
+  public static var crystalPieceDiamondsTitle: String  { return L10n.tr("Localizable", "Fragment.Stars.Title") }
   /// Total Balance
-  public static var fragmentStarsTotalCurrent: String  { return L10n.tr("Localizable", "Fragment.Stars.TotalCurrent") }
+  public static var crystalPieceDiamondsTotalCurrent: String  { return L10n.tr("Localizable", "Fragment.Stars.TotalCurrent") }
   /// Lifetime Proceeds
-  public static var fragmentStarsTotalLifetime: String  { return L10n.tr("Localizable", "Fragment.Stars.TotalLifetime") }
-  /// Stars from your total balance can be used for ads or withdrawn as rewards 21 days after they are earned.
-  public static var fragmentStarsWithdrawInfo: String  { return L10n.tr("Localizable", "Fragment.Stars.WithdrawInfo") }
+  public static var crystalPieceDiamondsTotalLifetime: String  { return L10n.tr("Localizable", "Fragment.Stars.TotalLifetime") }
+  /// Ansible Diamonds from your total balance can be used for ads or withdrawn as rewards 21 days after they are earned.
+  public static var crystalPieceDiamondsWithdrawInfo: String  { return L10n.tr("Localizable", "Fragment.Stars.WithdrawInfo") }
   /// You cannot withdraw more than %d TON at once.
-  public static func fragmentTonMaxWithdraw(_ p1: Int) -> String {
+  public static func crystalPieceTonMaxWithdraw(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Fragment.Ton.MaxWithdraw", p1)
   }
   /// You cannot withdraw less than %d TON.
-  public static func fragmentTonMinWithdraw(_ p1: Int) -> String {
+  public static func crystalPieceTonMinWithdraw(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Fragment.Ton.MinWithdraw", p1)
   }
   /// %1$@ TON Needed
-  public static func fragmentTonAddFundsHeaderAmount(_ p1: String) -> String {
+  public static func crystalPieceTonAddFundsHeaderAmount(_ p1: String) -> String {
     return L10n.tr("Localizable", "Fragment.Ton.AddFunds.Header.Amount", p1)
   }
   /// You cannot withdraw less than 10 Grams.
-  public static var fragmentMonetizationControllerWithdrawMinimum: String  { return L10n.tr("Localizable", "FragmentMonetization.Controller.WithdrawMinimum") }
+  public static var crystalPieceMonetizationControllerWithdrawMinimum: String  { return L10n.tr("Localizable", "FragmentMonetization.Controller.WithdrawMinimum") }
   /// Click to view details
   public static var freezeAccountClickDetails: String  { return L10n.tr("Localizable", "FreezeAccount.ClickDetails") }
   /// Submit an Appeal
   public static var freezeAccountOK: String  { return L10n.tr("Localizable", "FreezeAccount.OK") }
   /// Your Account is Frozen
   public static var freezeAccountTitle: String  { return L10n.tr("Localizable", "FreezeAccount.Title") }
-  /// Your account was frozen for violating Telegram’s Terms of Service.
+  /// Your account was frozen for violating Ansible’s Terms of Service.
   public static var freezeAccountOption1Text: String  { return L10n.tr("Localizable", "FreezeAccount.Option1.Text") }
   /// Violation of Terms
   public static var freezeAccountOption1Title: String  { return L10n.tr("Localizable", "FreezeAccount.Option1.Title") }
@@ -9358,7 +9358,7 @@ public final class L10n {
   public static var giftMarketplaceSortPrice: String  { return L10n.tr("Localizable", "Gift.Marketplace.Sort.Price") }
   /// Gift moved to your account.
   public static var giftMoveToGiftsSuccess: String  { return L10n.tr("Localizable", "Gift.MoveToGifts.Success") }
-  /// Transfer this collectible off-chain to your Telegram account?
+  /// Transfer this collectible off-chain to your Ansible account?
   public static var giftMoveToGiftsText: String  { return L10n.tr("Localizable", "Gift.MoveToGifts.Text") }
   /// Move to My Gifts
   public static var giftMoveToGiftsTitle: String  { return L10n.tr("Localizable", "Gift.MoveToGifts.Title") }
@@ -9383,7 +9383,7 @@ public final class L10n {
     return L10n.tr("Localizable", "Gift.Premium.Header", p1)
   }
   /// or %@
-  public static func giftPremiumPayOrStars(_ p1: String) -> String {
+  public static func giftPremiumPayOrDiamonds(_ p1: String) -> String {
     return L10n.tr("Localizable", "Gift.Premium.PayOrStars", p1)
   }
   /// Pay with %@
@@ -9394,9 +9394,9 @@ public final class L10n {
   public static func giftPremiumPreviewInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Gift.Premium.PreviewInfo", p1)
   }
-  /// Subscription for exclusive Telegram features
+  /// Subscription for exclusive Ansible features
   public static var giftPremiumText: String  { return L10n.tr("Localizable", "Gift.Premium.Text") }
-  /// Your balance is %@. [Get More Stars >]()
+  /// Your balance is %@. [Get More Ansible Diamonds >]()
   public static func giftPremiumYourBalance(_ p1: String) -> String {
     return L10n.tr("Localizable", "Gift.Premium.YourBalance", p1)
   }
@@ -9470,13 +9470,13 @@ public final class L10n {
   }
   /// Too Early
   public static var giftTransferUnavailableTitle: String  { return L10n.tr("Localizable", "Gift.Transfer.Unavailable.Title") }
-  /// In %@, you'll be able to send this collectible to any TON blockchain address outside Telegram for sale or auction.
+  /// In %@, you'll be able to send this collectible to any TON blockchain address outside Ansible for sale or auction.
   public static func giftTransferUnlockPendingText(_ p1: String) -> String {
     return L10n.tr("Localizable", "Gift.Transfer.UnlockPending.Text", p1)
   }
   /// Unlocking In Progress
   public static var giftTransferUnlockPendingTitle: String  { return L10n.tr("Localizable", "Gift.Transfer.UnlockPending.Title") }
-  /// Please update your Telegram application to the latest version.
+  /// Please update your Ansible application to the latest version.
   public static var giftTransferUpdateRequiredText: String  { return L10n.tr("Localizable", "Gift.Transfer.UpdateRequired.Text") }
   /// Update Required
   public static var giftTransferUpdateRequiredTitle: String  { return L10n.tr("Localizable", "Gift.Transfer.UpdateRequired.Title") }
@@ -9522,11 +9522,11 @@ public final class L10n {
   public static var giftUniqueOwner: String  { return L10n.tr("Localizable", "Gift.Unique.Owner") }
   /// Symbol
   public static var giftUniqueSymbol: String  { return L10n.tr("Localizable", "Gift.Unique.Symbol") }
-  /// Telegram
-  public static var giftUniqueTelegram: String  { return L10n.tr("Localizable", "Gift.Unique.Telegram") }
+  /// Ansible
+  public static var giftUniqueAnsible: String  { return L10n.tr("Localizable", "Gift.Unique.Telegram") }
   /// change
   public static var giftUniqueTransfer: String  { return L10n.tr("Localizable", "Gift.Unique.Transfer") }
-  /// Subscribe to [Telegram Premium](premium) to wear this collectible.
+  /// Subscribe to [Ansible Premium](premium) to wear this collectible.
   public static var giftUniqueNeedsPremium: String  { return L10n.tr("Localizable", "Gift.Unique.Needs.Premium") }
   /// epic
   public static var giftUniqueRarityEpic: String  { return L10n.tr("Localizable", "Gift.Unique.Rarity.Epic") }
@@ -9578,9 +9578,9 @@ public final class L10n {
   public static var giftUpgradeTradableIncludeDescription: String  { return L10n.tr("Localizable", "Gift.Upgrade.Tradable.IncludeDescription") }
   /// Tradable
   public static var giftUpgradeTradableTitle: String  { return L10n.tr("Localizable", "Gift.Upgrade.Tradable.Title") }
-  /// Send your upgraded gift to any of your friends on Telegram.
+  /// Send your upgraded gift to any of your friends on Ansible.
   public static var giftUpgradeTransferableDescription: String  { return L10n.tr("Localizable", "Gift.Upgrade.Transferable.Description") }
-  /// The recipient will be able to send the gift to anyone Telegram.
+  /// The recipient will be able to send the gift to anyone Ansible.
   public static var giftUpgradeTransferableIncludeDescription: String  { return L10n.tr("Localizable", "Gift.Upgrade.Transferable.IncludeDescription") }
   /// Transferable
   public static var giftUpgradeTransferableTitle: String  { return L10n.tr("Localizable", "Gift.Upgrade.Transferable.Title") }
@@ -9592,7 +9592,7 @@ public final class L10n {
   public static var giftUpgradeUniqueTitle: String  { return L10n.tr("Localizable", "Gift.Upgrade.Unique.Title") }
   /// The gift is visible on your profile. [Hide >]()
   public static var giftViewDisplayedInfoHide: String  { return L10n.tr("Localizable", "Gift.View.DisplayedInfoHide") }
-  /// You can keep this gift, upgrade it, or sell it for %@. [More About Stars >]()
+  /// You can keep this gift, upgrade it, or sell it for %@. [More About Ansible Diamonds >]()
   public static func giftViewKeepUpgradeOrConvertDescription(_ p1: String) -> String {
     return L10n.tr("Localizable", "Gift.View.KeepUpgradeOrConvertDescription", p1)
   }
@@ -9604,11 +9604,11 @@ public final class L10n {
   public static var giftViewContextHideFromProfile: String  { return L10n.tr("Localizable", "Gift.View.Context.HideFromProfile") }
   /// Show on Profile
   public static var giftViewContextShowOnProfile: String  { return L10n.tr("Localizable", "Gift.View.Context.ShowOnProfile") }
-  /// Your channel can add this gift to its profile or convert it to %@. [More About Stars >](https://telegram.org)
+  /// Your channel can add this gift to its profile or convert it to %@. [More About Ansible Diamonds >](https://ansible.su/tos/diamonds)
   public static func giftViewKeepOrConvertDescriptionChannel(_ p1: String) -> String {
     return L10n.tr("Localizable", "Gift.View.KeepOrConvertDescription.Channel", p1)
   }
-  /// Your channel can keep this gift, upgrade it, or sell it for %@. [More About Stars >](https://telegram.org)
+  /// Your channel can keep this gift, upgrade it, or sell it for %@. [More About Ansible Diamonds >](https://ansible.su/tos/diamonds)
   public static func giftViewKeepUpgradeOrConvertDescriptionChannel(_ p1: String) -> String {
     return L10n.tr("Localizable", "Gift.View.KeepUpgradeOrConvertDescription.Channel", p1)
   }
@@ -9638,7 +9638,7 @@ public final class L10n {
   public static var giftWearProofTitle: String  { return L10n.tr("Localizable", "Gift.Wear.Proof.Title") }
   /// \n\nPlease come back later.
   public static var giftWithdrawComeBackLater: String  { return L10n.tr("Localizable", "Gift.Withdraw.ComeBackLater") }
-  /// Open Fragment
+  /// Open Crystal Piece
   public static var giftWithdrawProceed: String  { return L10n.tr("Localizable", "Gift.Withdraw.Proceed") }
   /// Security Check
   public static var giftWithdrawSecurityCheck: String  { return L10n.tr("Localizable", "Gift.Withdraw.SecurityCheck") }
@@ -9646,11 +9646,11 @@ public final class L10n {
   public static var giftWithdrawSecurityRequirements: String  { return L10n.tr("Localizable", "Gift.Withdraw.SecurityRequirements") }
   /// Enable 2-Step Verification
   public static var giftWithdrawSetupTwoStepAuth: String  { return L10n.tr("Localizable", "Gift.Withdraw.SetupTwoStepAuth") }
-  /// You can use Fragment, a third-party service, to transfer **%@** to the TON blockchain. After that, you can manage it as an NFT with any TON wallet application.\n\nYou can also move such NFTs back to your Telegram account via Fragment.
+  /// You can use Crystal Piece, a third-party service, to transfer **%@** to the TON blockchain. After that, you can manage it as an NFT with any TON wallet application.\n\nYou can also move such NFTs back to your Ansible account via Crystal Piece.
   public static func giftWithdrawText(_ p1: String) -> String {
     return L10n.tr("Localizable", "Gift.Withdraw.Text", p1)
   }
-  /// Manage with Fragment
+  /// Manage with Crystal Piece
   public static var giftWithdrawTitle: String  { return L10n.tr("Localizable", "Gift.Withdraw.Title") }
   /// No Recipient
   public static var giftLinkNoRecipient: String  { return L10n.tr("Localizable", "GiftLink.NoRecipient") }
@@ -9660,9 +9660,9 @@ public final class L10n {
   public static var giftLinkUseLink: String  { return L10n.tr("Localizable", "GiftLink.UseLink") }
   /// You successfully activated gift link.
   public static var giftLinkUseSuccess: String  { return L10n.tr("Localizable", "GiftLink.UseSuccess") }
-  /// This link allows you to activate a **Telegram Premium** subscription.
+  /// This link allows you to activate a **Ansible Premium** subscription.
   public static var giftLinkInfoNotUsed: String  { return L10n.tr("Localizable", "GiftLink.Info.NotUsed") }
-  /// This link was used to activate a **Telegram Premium** subscription.
+  /// This link was used to activate a **Ansible Premium** subscription.
   public static var giftLinkInfoUsed: String  { return L10n.tr("Localizable", "GiftLink.Info.Used") }
   /// You can also send this [link](share) to a friend as a gift.
   public static var giftLinkInfoNotUsedInfo: String  { return L10n.tr("Localizable", "GiftLink.Info.NotUsed.Info") }
@@ -9670,11 +9670,11 @@ public final class L10n {
   public static func giftLinkInfoUsedInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "GiftLink.Info.Used.Info", p1)
   }
-  /// Telegram Premium for %d months
+  /// Ansible Premium for %d months
   public static func giftLinkPremiumDurationMonths(_ p1: Int) -> String {
     return L10n.tr("Localizable", "GiftLink.PremiumDuration.Months", p1)
   }
-  /// Telegram Premium 1 Year
+  /// Ansible Premium 1 Year
   public static var giftLinkPremiumDurationYear: String  { return L10n.tr("Localizable", "GiftLink.PremiumDuration.Year") }
   /// Date
   public static var giftLinkRowDate: String  { return L10n.tr("Localizable", "GiftLink.Row.Date") }
@@ -9699,16 +9699,16 @@ public final class L10n {
   /// Send a Gift
   public static var giftingTitle: String  { return L10n.tr("Localizable", "Gifting.Title") }
   /// **%1$@** charges **%2$@** for each message. That price has been added to the cost of the gift.
-  public static func giftingUserChargeStars(_ p1: String, _ p2: String) -> String {
+  public static func giftingUserChargeDiamonds(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Gifting.UserChargeStars", p1, p2)
   }
-  /// Are you sure you want to gift **Telegram Premium** to **%1$@** for **%2$@**?
-  public static func giftingPremWithStarsConfirmInfo(_ p1: String, _ p2: String) -> String {
+  /// Are you sure you want to gift **Ansible Premium** to **%1$@** for **%2$@**?
+  public static func giftingPremWithDiamondsConfirmInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Gifting.PremWithStars.Confirm.Info", p1, p2)
   }
   /// Send a Gift
-  public static var giftingPremWithStarsConfirmTitle: String  { return L10n.tr("Localizable", "Gifting.PremWithStars.Confirm.Title") }
-  /// Give %@ access to exclusive features with Telegram Premium. [See Features >](premium)
+  public static var giftingPremWithDiamondsConfirmTitle: String  { return L10n.tr("Localizable", "Gifting.PremWithStars.Confirm.Title") }
+  /// Give %@ access to exclusive features with Ansible Premium. [See Features >](premium)
   public static func giftingPremiumInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Gifting.Premium.Info", p1)
   }
@@ -9716,7 +9716,7 @@ public final class L10n {
   public static var giftingPremiumTitle: String  { return L10n.tr("Localizable", "Gifting.Premium.Title") }
   /// All
   public static var giftingStarGiftAll: String  { return L10n.tr("Localizable", "Gifting.StarGift.All") }
-  /// Give %@ gifts that can be kept on the profile or converted to Stars. [What are Stars >](stars)
+  /// Give %@ gifts that can be kept on the profile or converted to Ansible Diamonds. [What are Ansible Diamonds >](diamonds)
   public static func giftingStarGiftInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Gifting.StarGift.Info", p1)
   }
@@ -9726,7 +9726,7 @@ public final class L10n {
   public static var giftingStarGiftLimited: String  { return L10n.tr("Localizable", "Gifting.StarGift.Limited") }
   /// Resale
   public static var giftingStarGiftResale: String  { return L10n.tr("Localizable", "Gifting.StarGift.Resale") }
-  /// Gift Stars
+  /// Gift Ansible Diamonds
   public static var giftingStarGiftTitle: String  { return L10n.tr("Localizable", "Gifting.StarGift.Title") }
   /// %d left
   public static func giftingStarGiftBadgeRemainingOther(_ p1: Int) -> String {
@@ -9794,7 +9794,7 @@ public final class L10n {
   public static var giveawayChannelsHeaderGroup: String  { return L10n.tr("Localizable", "Giveaway.Channels.Header.Group") }
   /// Ends
   public static var giveawayDateEnds: String  { return L10n.tr("Localizable", "Giveaway.Date.Ends") }
-  /// Choose when subscribers of your channel will be randomly selected to receive Telegram Premium.
+  /// Choose when subscribers of your channel will be randomly selected to receive Ansible Premium.
   public static var giveawayDateInfo: String  { return L10n.tr("Localizable", "Giveaway.Date.Info") }
   /// %d
   public static func giveawayDateInfoCountable(_ p1: Int) -> String {
@@ -9804,17 +9804,17 @@ public final class L10n {
   public static var giveawayDateSelectDate: String  { return L10n.tr("Localizable", "Giveaway.Date.SelectDate") }
   /// DATE WHEN GIVEAWAY ENDS
   public static var giveawayDateTitle: String  { return L10n.tr("Localizable", "Giveaway.Date.Title") }
-  /// Choose when members of your group will be randomly selected to receive Telegram Premium.
+  /// Choose when members of your group will be randomly selected to receive Ansible Premium.
   public static var giveawayDateInfoGroup: String  { return L10n.tr("Localizable", "Giveaway.Date.Info.Group") }
   /// OK
   public static var giveawayDateSelectDateOK: String  { return L10n.tr("Localizable", "Giveaway.Date.SelectDate.OK") }
   /// Get more boosts for your channel by gifting
   public static var giveawayHeaderText: String  { return L10n.tr("Localizable", "Giveaway.Header.Text") }
-  /// **Gift Telegram Premium**
+  /// **Gift Ansible Premium**
   public static var giveawayHeaderTitle: String  { return L10n.tr("Localizable", "Giveaway.Header.Title") }
   /// Get more boosts for your group by gifting
   public static var giveawayHeaderTextGroup: String  { return L10n.tr("Localizable", "Giveaway.Header.Text.Group") }
-  /// You can review the list of features and more details about Telegram Premium [here](premium).
+  /// You can review the list of features and more details about Ansible Premium [here](premium).
   public static var giveawayPaymentOptionsInfo: String  { return L10n.tr("Localizable", "Giveaway.PaymentOptions.Info") }
   /// %d Months
   public static func giveawayPaymentOptionsMonths(_ p1: Int) -> String {
@@ -9860,23 +9860,23 @@ public final class L10n {
   }
   /// Choose Randomly
   public static var giveawayStarChooseRandomly: String  { return L10n.tr("Localizable", "Giveaway.Star.ChooseRandomly") }
-  /// Choose how many stars to give away and how many boosts to receive for 1 year.
+  /// Choose how many Ansible Diamonds to give away and how many boosts to receive for 1 year.
   public static var giveawayStarOptionsInfo: String  { return L10n.tr("Localizable", "Giveaway.Star.OptionsInfo") }
-  /// STARS TO DISTRIBUTE
+  /// DIAMONDS TO DISTRIBUTE
   public static var giveawayStarOptionsHeader: String  { return L10n.tr("Localizable", "Giveaway.Star.Options.Header") }
   /// NUMBER OF WINNERS
   public static var giveawayStarQuantityHeader: String  { return L10n.tr("Localizable", "Giveaway.Star.Quantity.Header") }
-  /// Choose how many winners you want to distribute stars among.
+  /// Choose how many winners you want to distribute Ansible Diamonds among.
   public static var giveawayStarQuantityInfo: String  { return L10n.tr("Localizable", "Giveaway.Star.Quantity.Info") }
   /// for %d users
-  public static func giveawayStarsPrepaidDescOther(_ p1: Int) -> String {
+  public static func giveawayDiamondsPrepaidDescOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Giveaway.Stars.Prepaid.Desc_other", p1)
   }
   /// %d Ansible Diamonds
-  public static func giveawayStarsPrepaidTitle(_ p1: Int) -> String {
+  public static func giveawayDiamondsPrepaidTitle(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Giveaway.Stars.Prepaid.Title", p1)
   }
-  /// Telegram Premium
+  /// Ansible Premium
   public static var giveawayTypePremiumTitle: String  { return L10n.tr("Localizable", "Giveaway.Type.Premium.Title") }
   /// winners are chosen randomly
   public static var giveawayTypePremiumRandomText: String  { return L10n.tr("Localizable", "Giveaway.Type.Premium.Random.Text") }
@@ -9884,7 +9884,7 @@ public final class L10n {
   public static func giveawayTypePrepaidDesc(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Giveaway.Type.Prepaid.Desc", p1)
   }
-  /// %d Telegram Premium
+  /// %d Ansible Premium
   public static func giveawayTypePrepaidTitle(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Giveaway.Type.Prepaid.Title", p1)
   }
@@ -9899,9 +9899,9 @@ public final class L10n {
   /// Select Users
   public static var giveawayTypeSpecificModalSelectUsers: String  { return L10n.tr("Localizable", "Giveaway.Type.Specific.Modal.SelectUsers") }
   /// winners are chosen randomly
-  public static var giveawayTypeStarsText: String  { return L10n.tr("Localizable", "Giveaway.Type.Stars.Text") }
+  public static var giveawayTypeDiamondsText: String  { return L10n.tr("Localizable", "Giveaway.Type.Stars.Text") }
   /// Ansible Diamonds
-  public static var giveawayTypeStarsTitle: String  { return L10n.tr("Localizable", "Giveaway.Type.Stars.Title") }
+  public static var giveawayTypeDiamondsTitle: String  { return L10n.tr("Localizable", "Giveaway.Type.Stars.Title") }
   /// Choose the channels users need to join to take part in the giveaway.
   public static var givewayChannelsInfo: String  { return L10n.tr("Localizable", "Giveway.Channels.Info") }
   /// Choose additional groups and channels users need to join to take part in the giveaway.
@@ -9935,7 +9935,7 @@ public final class L10n {
     return L10n.tr("Localizable", "GlobalSearch.Empty.Title.SearchWithPrice", p1, p2)
   }
   /// %@ spent on extra search.
-  public static func globalSearchPayAlertStarsSpent(_ p1: String) -> String {
+  public static func globalSearchPayAlertDiamondsSpent(_ p1: String) -> String {
     return L10n.tr("Localizable", "GlobalSearch.Pay.Alert.StarsSpent", p1)
   }
   /// Off
@@ -10004,7 +10004,7 @@ public final class L10n {
   public static var groupUsersTooMuchError: String  { return L10n.tr("Localizable", "Group.UsersTooMuchError") }
   /// Change Group Info
   public static var groupEditAdminPermissionChangeInfo: String  { return L10n.tr("Localizable", "Group.EditAdmin.Permission.ChangeInfo") }
-  /// All members will be able to use these emoji in the group, even if they don't have Telegram Premium.\n\nYou can create your own custom emoji set using the [@stickers](stickers) bot.
+  /// All members will be able to use these emoji in the group, even if they don't have Ansible Premium.\n\nYou can create your own custom emoji set using the [@stickers](stickers) bot.
   public static var groupEmojiPackCreateInfo: String  { return L10n.tr("Localizable", "Group.EmojiPack.CreateInfo") }
   /// CHOOSE EMOJI PACK
   public static var groupEmojiPackHeader: String  { return L10n.tr("Localizable", "Group.EmojiPack.Header") }
@@ -10076,13 +10076,13 @@ public final class L10n {
   public static var groupCallInputPlaceholder: String  { return L10n.tr("Localizable", "GroupCall.Input.Placeholder") }
   /// Group call is no longer available
   public static var groupCallInviteNotAvailable: String  { return L10n.tr("Localizable", "GroupCall.Invite.NotAvailable") }
-  /// Anyone on Telegram will be able to join your call by following this link.
+  /// Anyone on Ansible will be able to join your call by following this link.
   public static var groupCallInviteLinkBasic: String  { return L10n.tr("Localizable", "GroupCall.InviteLink.Basic") }
   /// This link is no longer active
   public static var groupCallInviteLinkExpired: String  { return L10n.tr("Localizable", "GroupCall.InviteLink.Expired") }
   /// The invite link has been revoked
   public static var groupCallInviteLinkRevoked: String  { return L10n.tr("Localizable", "GroupCall.InviteLink.Revoked") }
-  /// Anyone on Telegram can join your call by following the link below.
+  /// Anyone on Ansible can join your call by following the link below.
   public static var groupCallInviteLinkShare: String  { return L10n.tr("Localizable", "GroupCall.InviteLink.Share") }
   /// Call Link
   public static var groupCallInviteLinkTitle: String  { return L10n.tr("Localizable", "GroupCall.InviteLink.Title") }
@@ -10126,7 +10126,7 @@ public final class L10n {
   public static var groupCallStatusBarStopVideo: String  { return L10n.tr("Localizable", "GroupCall.StatusBar.StopVideo") }
   /// Add Group to a Community
   public static var groupInfoAddGroupToCommunity: String  { return L10n.tr("Localizable", "GroupInfo.AddGroupToCommunity") }
-  /// If a person has left the group in the past, you need to be in their Telegram contacts to add them back.\n\nThey can still join via an invite link as long as they are not on the Removed Users list.
+  /// If a person has left the group in the past, you need to be in their Ansible contacts to add them back.\n\nThey can still join via an invite link as long as they are not on the Removed Users list.
   public static var groupInfoAddUserLeftError: String  { return L10n.tr("Localizable", "GroupInfo.AddUserLeftError") }
   /// Administrators
   public static var groupInfoAdministrators: String  { return L10n.tr("Localizable", "GroupInfo.Administrators") }
@@ -10162,11 +10162,11 @@ public final class L10n {
   public static var groupInfoPermissionsSearchPlaceholder: String  { return L10n.tr("Localizable", "GroupInfo.Permissions.SearchPlaceholder") }
   /// WHAT CAN MEMBERS OF THIS GROUP DO?
   public static var groupInfoPermissionsSectionTitle: String  { return L10n.tr("Localizable", "GroupInfo.Permissions.SectionTitle") }
-  /// Anyone who has Telegram installed will be able to join your channel by following this link
+  /// Anyone who has Ansible installed will be able to join your channel by following this link
   public static var groupInvationChannelDescription: String  { return L10n.tr("Localizable", "GroupInvation.ChannelDescription") }
   /// Copy Link
   public static var groupInvationCopyLink: String  { return L10n.tr("Localizable", "GroupInvation.CopyLink") }
-  /// Anyone who has Telegram installed will be able to join your group by opening this link.
+  /// Anyone who has Ansible installed will be able to join your group by opening this link.
   public static var groupInvationGroupDescription: String  { return L10n.tr("Localizable", "GroupInvation.GroupDescription") }
   /// Revoke
   public static var groupInvationRevoke: String  { return L10n.tr("Localizable", "GroupInvation.Revoke") }
@@ -10472,7 +10472,7 @@ public final class L10n {
   public static var inviteFailedSkip: String  { return L10n.tr("Localizable", "InviteFailed.Skip") }
   /// Invite Via Link
   public static var inviteFailedTitle: String  { return L10n.tr("Localizable", "InviteFailed.Title") }
-  /// Subscribe to Telegram Premium
+  /// Subscribe to Ansible Premium
   public static var inviteFailedPremiumAction: String  { return L10n.tr("Localizable", "InviteFailed.Premium.Action") }
   /// Upgrade to Premium
   public static var inviteFailedPremiumTitle: String  { return L10n.tr("Localizable", "InviteFailed.Premium.Title") }
@@ -10542,9 +10542,9 @@ public final class L10n {
   public static var inviteLinkShareLink: String  { return L10n.tr("Localizable", "InviteLink.ShareLink") }
   /// Link created and copied to clipboard.
   public static var inviteLinkCreateCopied: String  { return L10n.tr("Localizable", "InviteLink.Create.Copied") }
-  /// Everyone on Telegram can scan this code to join your channel.
+  /// Everyone on Ansible can scan this code to join your channel.
   public static var inviteLinkQrCodeInfoChannel: String  { return L10n.tr("Localizable", "InviteLink.QrCode.InfoChannel") }
-  /// Everyone on Telegram can scan this code to join your group.
+  /// Everyone on Ansible can scan this code to join your group.
   public static var inviteLinkQrCodeInfoGroup: String  { return L10n.tr("Localizable", "InviteLink.QrCode.InfoGroup") }
   /// Copy Image
   public static var inviteLinkQrCodeMenuCopyImage: String  { return L10n.tr("Localizable", "InviteLink.QrCode.MenuCopyImage") }
@@ -10568,13 +10568,13 @@ public final class L10n {
   public static func inviteLinkStickerTimeLeft(_ p1: String) -> String {
     return L10n.tr("Localizable", "InviteLink.Sticker.TimeLeft", p1)
   }
-  /// Charge a subscription fee from people who join your channel via this link. [Learn More >](https://telegram.org/tos/stars)
+  /// Charge a subscription fee from people who join your channel via this link. [Learn More >](https://ansible.su/tos/diamonds)
   public static var inviteLinkSubInfo: String  { return L10n.tr("Localizable", "InviteLink.Sub.Info") }
   /// You can't enable admin approval for links that require a monthly fee.
   public static var inviteLinkSubReqApproval: String  { return L10n.tr("Localizable", "InviteLink.Sub.ReqApproval") }
   /// Require Monthly Fee
   public static var inviteLinkSubText: String  { return L10n.tr("Localizable", "InviteLink.Sub.Text") }
-  /// Stars Amount per month
+  /// Ansible Diamonds Amount per month
   public static var inviteLinkSubAmountPlaceholder: String  { return L10n.tr("Localizable", "InviteLink.Sub.Amount.Placeholder") }
   /// To change the subscription fee, create a new invite link with a different price.
   public static var inviteLinkSubInfoEditing: String  { return L10n.tr("Localizable", "InviteLink.Sub.Info.Editing") }
@@ -10604,7 +10604,7 @@ public final class L10n {
   public static var languageTranslateMessagesHeader: String  { return L10n.tr("Localizable", "Language.TranslateMessages.Header") }
   /// Translate all messages in chat. This is available only for [Premium Users]().
   public static var languageTranslateMessagesChannelInfo: String  { return L10n.tr("Localizable", "Language.TranslateMessages.Channel.Info") }
-  /// Subscribe to [Telegram Premium](premium) to translate entire chats.
+  /// Subscribe to [Ansible Premium](premium) to translate entire chats.
   public static var languageTranslateMessagesChannelPremium: String  { return L10n.tr("Localizable", "Language.TranslateMessages.Channel.Premium") }
   /// last seen %d hours ago
   public static func lastSeenHoursAgoOther(_ p1: Int) -> String {
@@ -10628,7 +10628,7 @@ public final class L10n {
   public static var leaveChatActionsRemovedFromChatList: String  { return L10n.tr("Localizable", "LeaveChat.Actions.RemovedFromChatList") }
   /// Secret Chat deleted
   public static var leaveChatActionsSecretChatDeleted: String  { return L10n.tr("Localizable", "LeaveChat.Actions.SecretChatDeleted") }
-  /// Welcome to the new super-fast and stable Telegram for macOS, fully rewritten in Swift 3.0.
+  /// Welcome to the new super-fast and stable Ansible for macOS, fully rewritten in Swift 3.0.
   public static var legacyIntroDescription1: String  { return L10n.tr("Localizable", "Legacy.Intro.Description1") }
   /// Please note that your existing secret chats will be available in read-only mode. You can of course create new ones to continue chatting.
   public static var legacyIntroDescription2: String  { return L10n.tr("Localizable", "Legacy.Intro.Description2") }
@@ -10656,7 +10656,7 @@ public final class L10n {
   public static var liteModeLowPower: String  { return L10n.tr("Localizable", "LiteMode.LowPower") }
   /// Power Saving
   public static var liteModeTitle: String  { return L10n.tr("Localizable", "LiteMode.Title") }
-  /// Other animations that make Telegram look amazing.
+  /// Other animations that make Ansible look amazing.
   public static var liteModeKeyAnimationsInfo: String  { return L10n.tr("Localizable", "LiteMode.Key.animations.Info") }
   /// Interface Animations
   public static var liteModeKeyAnimationsTitle: String  { return L10n.tr("Localizable", "LiteMode.Key.animations.Title") }
@@ -10762,7 +10762,7 @@ public final class L10n {
   public static var loginCountryLabel: String  { return L10n.tr("Localizable", "Login.countryLabel") }
   /// Your email has been changed.
   public static var loginEmailChanged: String  { return L10n.tr("Localizable", "Login.EmailChanged") }
-  /// We've sent the code to the Telegram app on your other devices.
+  /// We've sent the code to the Ansible app on your other devices.
   public static var loginEnterCodeFromApp: String  { return L10n.tr("Localizable", "Login.EnterCodeFromApp") }
   /// Please enter the code we have sent to your new email %@.
   public static func loginEnterCodeNewEmailText(_ p1: String) -> String {
@@ -10816,19 +10816,19 @@ public final class L10n {
   public static var loginPasswordPlaceholder: String  { return L10n.tr("Localizable", "Login.passwordPlaceholder") }
   /// We've just called your number. Please enter the code above.
   public static var loginPhoneCalledCode: String  { return L10n.tr("Localizable", "Login.PhoneCalledCode") }
-  /// Telegram dialed your number
+  /// Ansible dialed your number
   public static var loginPhoneDialed: String  { return L10n.tr("Localizable", "Login.PhoneDialed") }
   /// phone number
   public static var loginPhoneFieldPlaceholder: String  { return L10n.tr("Localizable", "Login.phoneFieldPlaceholder") }
   /// This account is already logged in from this app.
   public static var loginPhoneNumberAlreadyAuthorized: String  { return L10n.tr("Localizable", "Login.PhoneNumberAlreadyAuthorized") }
-  /// This phone number isn't registered. If you don't have a Telegram account yet, please sign up on your mobile device.
+  /// This phone number isn't registered. If you don't have an Ansible account yet, please sign up on your mobile device.
   public static var loginPhoneNumberNotRegistred: String  { return L10n.tr("Localizable", "Login.PhoneNumberNotRegistred") }
   /// Since you didn't provide a recovery email when setting up your password, your remaining options are either to remember your password or to reset your account.
   public static var loginRecoveryMailFailed: String  { return L10n.tr("Localizable", "Login.RecoveryMailFailed") }
   /// RESET MY ACCOUNT
   public static var loginResetAccount: String  { return L10n.tr("Localizable", "Login.ResetAccount") }
-  /// You will lose all your Telegram chats, messages, media and files if you proceed with resetting your account.
+  /// You will lose all your Ansible chats, messages, media and files if you proceed with resetting your account.
   public static var loginResetAccountDescription: String  { return L10n.tr("Localizable", "Login.ResetAccountDescription") }
   /// Reset Account
   public static var loginResetAccountText: String  { return L10n.tr("Localizable", "Login.ResetAccountText") }
@@ -10836,7 +10836,7 @@ public final class L10n {
   public static var loginSendSmsIfNotReceivedAppCode: String  { return L10n.tr("Localizable", "Login.SendSmsIfNotReceivedAppCode") }
   /// Welcome to the macOS application
   public static var loginWelcomeDescription: String  { return L10n.tr("Localizable", "Login.WelcomeDescription") }
-  /// Telegram will call you in %d:%@
+  /// Ansible will call you in %d:%@
   public static func loginWillCall(_ p1: Int, _ p2: String) -> String {
     return L10n.tr("Localizable", "Login.willCall", p1, p2)
   }
@@ -10876,7 +10876,7 @@ public final class L10n {
   public static func loginNewCodeCallInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Login.New.Code.CallInfo", p1)
   }
-  /// We’ve sent the code to the Telegram app\nfor **%@** on your device · [Edit]()
+  /// We’ve sent the code to the Ansible app\nfor **%@** on your device · [Edit]()
   public static func loginNewCodeCodeInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Login.New.Code.CodeInfo", p1)
   }
@@ -10884,12 +10884,12 @@ public final class L10n {
   public static func loginNewCodeEmail(_ p1: String) -> String {
     return L10n.tr("Localizable", "Login.New.Code.Email", p1)
   }
-  /// Check your Telegram messages
+  /// Check your Ansible messages
   public static var loginNewCodeEnterCode: String  { return L10n.tr("Localizable", "Login.New.Code.EnterCode") }
   /// Enter Code
   public static var loginNewCodeEnterSms: String  { return L10n.tr("Localizable", "Login.New.Code.EnterSms") }
-  /// Get the code for **%1$@** in the Anonymous Numbers section on **Fragment** · [Edit]()
-  public static func loginNewCodeFragmentInfo(_ p1: String) -> String {
+  /// Get the code for **%1$@** in the Anonymous Numbers section on **Crystal Piece** · [Edit]()
+  public static func loginNewCodeCrystalPieceInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Login.New.Code.FragmentInfo", p1)
   }
   /// We’ve sent an SMS with an activation code\nto your phone **%@** · [Edit]()
@@ -10942,13 +10942,13 @@ public final class L10n {
   public static var loginNewResetWhen: String  { return L10n.tr("Localizable", "Login.New.Reset.When") }
   /// You'll be able to reset your account in:
   public static var loginNewResetWillAble: String  { return L10n.tr("Localizable", "Login.New.Reset.WillAble") }
-  /// Open Fragment
-  public static var loginNextFragment: String  { return L10n.tr("Localizable", "Login.Next.Fragment") }
+  /// Open Crystal Piece
+  public static var loginNextCrystalPiece: String  { return L10n.tr("Localizable", "Login.Next.Fragment") }
   /// Switch
   public static var loginPhoneNumberAlreadyAuthorizedSwitch: String  { return L10n.tr("Localizable", "Login.PhoneNumberAlreadyAuthorized.Switch") }
   /// Log in by phone number
   public static var loginQRCancel: String  { return L10n.tr("Localizable", "Login.QR.Cancel") }
-  /// Open Telegram on your phone
+  /// Open Ansible on your phone
   public static var loginQRHelp1: String  { return L10n.tr("Localizable", "Login.QR.Help1") }
   /// Go to **Settings** > **Devices** > **Link Desktop Device**
   public static var loginQRHelp2: String  { return L10n.tr("Localizable", "Login.QR.Help2") }
@@ -10956,9 +10956,9 @@ public final class L10n {
   public static var loginQRHelp3: String  { return L10n.tr("Localizable", "Login.QR.Help3") }
   /// Log in by QR Code
   public static var loginQRLogin: String  { return L10n.tr("Localizable", "Login.QR.Login") }
-  /// Log in to Telegram by QR Code
+  /// Log in to Ansible by QR Code
   public static var loginQRTitle: String  { return L10n.tr("Localizable", "Login.QR.Title") }
-  /// Open Telegram on your phone
+  /// Open Ansible on your phone
   public static var loginQR1Help1: String  { return L10n.tr("Localizable", "Login.QR1.Help1") }
   /// Point your phone at this screen to confirm login
   public static var loginQR1Help3: String  { return L10n.tr("Localizable", "Login.QR1.Help3") }
@@ -10972,7 +10972,7 @@ public final class L10n {
   public static var loginRegisterFirstNamePlaceholder: String  { return L10n.tr("Localizable", "Login.Register.FirstName.Placeholder") }
   /// Last Name
   public static var loginRegisterLastNamePlaceholder: String  { return L10n.tr("Localizable", "Login.Register.LastName.Placeholder") }
-  /// If you already signed up for Telegram, please enter the code which was sent to your mobile app via Telegram.\n\nIf you haven’t signed up yet, please register from your phone or tablet first.
+  /// If you already signed up for Ansible, please enter the code which was sent to your mobile app vian Ansible.\n\nIf you haven’t signed up yet, please register from your phone or tablet first.
   public static var loginSmsAppErr: String  { return L10n.tr("Localizable", "Login.Sms.AppErr") }
   /// Open Site
   public static var loginSmsAppErrGotoSite: String  { return L10n.tr("Localizable", "Login.Sms.AppErr.GotoSite") }
@@ -11038,9 +11038,9 @@ public final class L10n {
   public static var loginWidgetUnverifiedApp: String  { return L10n.tr("Localizable", "LoginWidget.UnverifiedApp") }
   /// Tap the number shown on your other device
   public static var loginWidgetConfirmationTapNumber: String  { return L10n.tr("Localizable", "LoginWidget.Confirmation.TapNumber") }
-  /// Telegram wants to make sure it's really you.
+  /// Ansible wants to make sure it's really you.
   public static var loginWidgetConfirmationVerifyIdentity: String  { return L10n.tr("Localizable", "LoginWidget.Confirmation.VerifyIdentity") }
-  /// Connect other Telegram accounts and easily switch between them.
+  /// Connect other Ansible accounts and easily switch between them.
   public static var logoutOptionsAddAccountText: String  { return L10n.tr("Localizable", "LogoutOptions.AddAccountText") }
   /// Add another account
   public static var logoutOptionsAddAccountTitle: String  { return L10n.tr("Localizable", "LogoutOptions.AddAccountTitle") }
@@ -11112,11 +11112,11 @@ public final class L10n {
   public static var manageLinksContextShare: String  { return L10n.tr("Localizable", "ManageLinks.Context.Share") }
   /// Are you sure you want to delete all revoked links?
   public static var manageLinksDeleteAllConfirm: String  { return L10n.tr("Localizable", "ManageLinks.DeleteAll.Confirm") }
-  /// Anyone who has Telegram installed will be able to join your group by following this link.
+  /// Anyone who has Ansible installed will be able to join your group by following this link.
   public static var manageLinksHeaderDesc: String  { return L10n.tr("Localizable", "ManageLinks.Header.Desc") }
-  /// Anyone who has Telegram installed will be able to join your channel by following this link.
+  /// Anyone who has Ansible installed will be able to join your channel by following this link.
   public static var manageLinksHeaderChannelDesc: String  { return L10n.tr("Localizable", "ManageLinks.Header.Channel.Desc") }
-  /// Anyone who has Telegram installed will be able to join your group by following this link.
+  /// Anyone who has Ansible installed will be able to join your group by following this link.
   public static var manageLinksHeaderGroupDesc: String  { return L10n.tr("Localizable", "ManageLinks.Header.Group.Desc") }
   /// FAKE
   public static var markFake: String  { return L10n.tr("Localizable", "Mark.Fake") }
@@ -11412,15 +11412,15 @@ public final class L10n {
   public static var modalYes: String  { return L10n.tr("Localizable", "Modal.Yes") }
   /// AD REWARDS
   public static var monetizationAdRevenueTitle: String  { return L10n.tr("Localizable", "Monetization.AdRevenueTitle") }
-  /// You will be able to collect rewards using Fragment, a third-party platform used by advertisers to pay for ads. [Terms & Conditions >](https://telegram.org/tos/content-creator-rewards)
+  /// You will be able to collect rewards using Crystal Piece, a third-party platform used by advertisers to pay for ads. [Terms & Conditions >](https://ansible.su/tos/content-creator-rewards)
   public static var monetizationBalanceInfo: String  { return L10n.tr("Localizable", "Monetization.BalanceInfo") }
-  /// https://telegram.org/tos/content-creator-rewards
+  /// https://ansible.su/tos/content-creator-rewards
   public static var monetizationBalanceInfoURL: String  { return L10n.tr("Localizable", "Monetization.BalanceInfo_URL") }
   /// AVAILABLE REWARD
   public static var monetizationBalanceTitle: String  { return L10n.tr("Localizable", "Monetization.BalanceTitle") }
-  /// Collect via Fragment
+  /// Collect via Crystal Piece
   public static var monetizationBalanceWithdraw: String  { return L10n.tr("Localizable", "Monetization.BalanceWithdraw") }
-  /// Telegram shares 50%@ of the revenue from ads displayed in your channel as rewards. [Learn More >]()
+  /// Ansible shares 50%@ of the revenue from ads displayed in your channel as rewards. [Learn More >]()
   public static func monetizationHeader(_ p1: String) -> String {
     return L10n.tr("Localizable", "Monetization.Header", p1)
   }
@@ -11434,13 +11434,13 @@ public final class L10n {
   public static var monetizationSwitchOffAdsInfo: String  { return L10n.tr("Localizable", "Monetization.SwitchOffAdsInfo") }
   /// TRANSACTION HISTORY
   public static var monetizationTransactionsTitle: String  { return L10n.tr("Localizable", "Monetization.TransactionsTitle") }
-  /// You will be able to collect rewards using Fragment, a third-party platform used by advertisers to pay for ads. [Terms & Conditions >](https://telegram.org/tos/content-creator-rewards)
+  /// You will be able to collect rewards using Crystal Piece, a third-party platform used by advertisers to pay for ads. [Terms & Conditions >](https://ansible.su/tos/content-creator-rewards)
   public static var monetizationBalanceComingLaterInfo: String  { return L10n.tr("Localizable", "Monetization.Balance.ComingLaterInfo") }
-  /// Withdraw via Fragment
-  public static var monetizationBalanceWithdrawStars: String  { return L10n.tr("Localizable", "Monetization.BalanceWithdraw.Stars") }
-  /// Withdraw via Fragment
+  /// Withdraw via Crystal Piece
+  public static var monetizationBalanceWithdrawDiamonds: String  { return L10n.tr("Localizable", "Monetization.BalanceWithdraw.Stars") }
+  /// Withdraw via Crystal Piece
   public static var monetizationBalanceWithdrawTon: String  { return L10n.tr("Localizable", "Monetization.BalanceWithdraw.Ton") }
-  /// Telegram shares 50%@ of the revenue from ads displayed in your bot as rewards. [Learn More >]()
+  /// Ansible shares 50%@ of the revenue from ads displayed in your bot as rewards. [Learn More >]()
   public static func monetizationHeaderBot(_ p1: String) -> String {
     return L10n.tr("Localizable", "Monetization.Header.Bot", p1)
   }
@@ -11448,29 +11448,29 @@ public final class L10n {
   public static var monetizationIntroTitle: String  { return L10n.tr("Localizable", "Monetization.Intro.Title") }
   /// Understood
   public static var monetizationIntroUnderstood: String  { return L10n.tr("Localizable", "Monetization.Intro.Understood") }
-  /// Telegram can display ads in your channel.
+  /// Ansible can display ads in your channel.
   public static var monetizationIntroAdsText: String  { return L10n.tr("Localizable", "Monetization.Intro.Ads.Text") }
-  /// Telegram Ads
+  /// Ansible Ads
   public static var monetizationIntroAdsTitle: String  { return L10n.tr("Localizable", "Monetization.Intro.Ads.Title") }
-  /// TON is a blockchain platform and cryptocurrency that Telegram uses for its high speed and low commissions on transactions. [Learn More >](https://telegram.org/blog/monetization-for-channels)
+  /// Ansible Diamonds are used for paid messages, media and gifts in Ansible.
   public static var monetizationIntroInfoText: String  { return L10n.tr("Localizable", "Monetization.Intro.Info.Text") }
-  /// What's %@ TON?
+  /// What are %@ Ansible Diamonds?
   public static func monetizationIntroInfoTitle(_ p1: String) -> String {
     return L10n.tr("Localizable", "Monetization.Intro.Info.Title", p1)
   }
-  /// You receive 50%@ of the ad revenue as rewards in TON.
+  /// You receive 50%@ of the ad revenue as rewards in Ansible Diamonds.
   public static func monetizationIntroSplitText(_ p1: String) -> String {
     return L10n.tr("Localizable", "Monetization.Intro.Split.Text", p1)
   }
   /// 50:50 Revenue Split
   public static var monetizationIntroSplitTitle: String  { return L10n.tr("Localizable", "Monetization.Intro.Split.Title") }
-  /// You can collect your TON any time.
+  /// You can withdraw eligible earnings through Crystal Piece.
   public static var monetizationIntroWithdrawalText: String  { return L10n.tr("Localizable", "Monetization.Intro.Withdrawal.Text") }
   /// Flexible Withdrawals
   public static var monetizationIntroWithdrawalTitle: String  { return L10n.tr("Localizable", "Monetization.Intro.Withdrawal.Title") }
   /// Earn From Your Bot
   public static var monetizationIntroBotTitle: String  { return L10n.tr("Localizable", "Monetization.IntroBot.Title") }
-  /// Telegram can display ads in your bot.
+  /// Ansible can display ads in your bot.
   public static var monetizationIntroBotAdsText: String  { return L10n.tr("Localizable", "Monetization.IntroBot.Ads.Text") }
   /// Rewards Available for Collection
   public static var monetizationOverviewAvailable: String  { return L10n.tr("Localizable", "Monetization.Overview.Available") }
@@ -11478,10 +11478,10 @@ public final class L10n {
   public static var monetizationOverviewCurrent: String  { return L10n.tr("Localizable", "Monetization.Overview.Current") }
   /// Total Lifetime Rewards
   public static var monetizationOverviewTotal: String  { return L10n.tr("Localizable", "Monetization.Overview.Total") }
-  /// You can collect rewards for Stars using Fragment, or use Stars to advertise your bot. [Learn More >](https://telegram.org/tos/bot-developers#6-2-2-tpa-balance)
-  public static var monetizationStarsWithdrawInfo: String  { return L10n.tr("Localizable", "Monetization.Stars.WithdrawInfo") }
-  /// STARS BALANCE
-  public static var monetizationStarsWithdrawTitle: String  { return L10n.tr("Localizable", "Monetization.Stars.WithdrawTitle") }
+  /// You can collect rewards for Ansible Diamonds using Crystal Piece, or use Ansible Diamonds to advertise your bot. [Learn More >](https://ansible.su/tos/bot-developers#6-2-2-tpa-balance)
+  public static var monetizationDiamondsWithdrawInfo: String  { return L10n.tr("Localizable", "Monetization.Stars.WithdrawInfo") }
+  /// DIAMONDS BALANCE
+  public static var monetizationDiamondsWithdrawTitle: String  { return L10n.tr("Localizable", "Monetization.Stars.WithdrawTitle") }
   /// Not Completed
   public static var monetizationTransactionFailed: String  { return L10n.tr("Localizable", "Monetization.Transaction.Failed") }
   /// Pending
@@ -11512,8 +11512,8 @@ public final class L10n {
   public static func monetizationTransactionInfoWithdrawal(_ p1: String) -> String {
     return L10n.tr("Localizable", "Monetization.TransactionInfo.Withdrawal", p1)
   }
-  /// Stars Transactions
-  public static var monetizationTransactionsStars: String  { return L10n.tr("Localizable", "Monetization.Transactions.Stars") }
+  /// Ansible Diamonds Transactions
+  public static var monetizationTransactionsDiamonds: String  { return L10n.tr("Localizable", "Monetization.Transactions.Stars") }
   /// TON Transactions
   public static var monetizationTransactionsTON: String  { return L10n.tr("Localizable", "Monetization.Transactions.TON") }
   /// Proceed
@@ -11766,7 +11766,7 @@ public final class L10n {
   public static var newSessionReviewItemTitle: String  { return L10n.tr("Localizable", "NewSessionReview.Item.Title") }
   /// Got It
   public static var newSessionReviewModalButton: String  { return L10n.tr("Localizable", "NewSessionReview.Modal.Button") }
-  /// Never send your login code to anyone or you can lose your Telegram account!
+  /// Never send your login code to anyone or you can lose your Ansible account!
   public static var newSessionReviewModalHeader: String  { return L10n.tr("Localizable", "NewSessionReview.Modal.Header") }
   /// We have terminated the login attempt from %1$@, %2$@.
   public static func newSessionReviewModalText(_ p1: String, _ p2: String) -> String {
@@ -11935,51 +11935,51 @@ public final class L10n {
   /// Saved Gift
   public static var notificationStarGiftSelfTitle: String  { return L10n.tr("Localizable", "Notification.StarGift.Self.Title") }
   /// %@ transferred a unique collectible to you
-  public static func notificationStarsGiftTransfer(_ p1: String) -> String {
+  public static func notificationDiamondsGiftTransfer(_ p1: String) -> String {
     return L10n.tr("Localizable", "Notification.StarsGift.Transfer", p1)
   }
   /// You transferred a unique collectible
-  public static var notificationStarsGiftTransferYou: String  { return L10n.tr("Localizable", "Notification.StarsGift.TransferYou") }
+  public static var notificationDiamondsGiftTransferYou: String  { return L10n.tr("Localizable", "Notification.StarsGift.TransferYou") }
   /// %@ turned the gift from you into a unique collectible
-  public static func notificationStarsGiftUpgrade(_ p1: String) -> String {
+  public static func notificationDiamondsGiftUpgrade(_ p1: String) -> String {
     return L10n.tr("Localizable", "Notification.StarsGift.Upgrade", p1)
   }
   /// You sent an upgrade worth **%@** for the gift **%@** received from **%@**
-  public static func notificationStarsGiftUpgradeFromOther(_ p1: String, _ p2: String, _ p3: String) -> String {
+  public static func notificationDiamondsGiftUpgradeFromOther(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "Notification.StarsGift.UpgradeFromOther", p1, p2, p3)
   }
   /// You sent an upgrade worth **%@** for the gift to **%@**
-  public static func notificationStarsGiftUpgradeGeneric(_ p1: String, _ p2: String) -> String {
+  public static func notificationDiamondsGiftUpgradeGeneric(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Notification.StarsGift.UpgradeGeneric", p1, p2)
   }
   /// %@ unboxed the gift that you helped upgrade
-  public static func notificationStarsGiftUpgradePrepaid(_ p1: String) -> String {
+  public static func notificationDiamondsGiftUpgradePrepaid(_ p1: String) -> String {
     return L10n.tr("Localizable", "Notification.StarsGift.UpgradePrepaid", p1)
   }
   /// You unpacked the gift that %@ helped upgrade
-  public static func notificationStarsGiftUpgradePrepaidYou(_ p1: String) -> String {
+  public static func notificationDiamondsGiftUpgradePrepaidYou(_ p1: String) -> String {
     return L10n.tr("Localizable", "Notification.StarsGift.UpgradePrepaidYou", p1)
   }
   /// You sent an upgrade worth **%@** for the gift **%@** received from you
-  public static func notificationStarsGiftUpgradeToSelf(_ p1: String, _ p2: String) -> String {
+  public static func notificationDiamondsGiftUpgradeToSelf(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Notification.StarsGift.UpgradeToSelf", p1, p2)
   }
   /// You turned the gift from %@ into a unique collectible
-  public static func notificationStarsGiftUpgradeYou(_ p1: String) -> String {
+  public static func notificationDiamondsGiftUpgradeYou(_ p1: String) -> String {
     return L10n.tr("Localizable", "Notification.StarsGift.UpgradeYou", p1)
   }
   /// You've successfully bought a gift in the auction for %@
-  public static func notificationStarsGiftSelfAuctionBought(_ p1: String) -> String {
+  public static func notificationDiamondsGiftSelfAuctionBought(_ p1: String) -> String {
     return L10n.tr("Localizable", "Notification.StarsGift.Self.AuctionBought", p1)
   }
   /// You bought a gift for %@
-  public static func notificationStarsGiftSelfBought(_ p1: String) -> String {
+  public static func notificationDiamondsGiftSelfBought(_ p1: String) -> String {
     return L10n.tr("Localizable", "Notification.StarsGift.Self.Bought", p1)
   }
   /// You can add this gift to your profile or turn it into a unique transferable collectible.
-  public static var notificationStarsGiftSubtitleSelf: String  { return L10n.tr("Localizable", "Notification.StarsGift.Subtitle.Self") }
+  public static var notificationDiamondsGiftSubtitleSelf: String  { return L10n.tr("Localizable", "Notification.StarsGift.Subtitle.Self") }
   /// %@ turned the gift into a unique collectible
-  public static func notificationStarsGiftUpgradeChannel(_ p1: String) -> String {
+  public static func notificationDiamondsGiftUpgradeChannel(_ p1: String) -> String {
     return L10n.tr("Localizable", "Notification.StarsGift.Upgrade.Channel", p1)
   }
   /// New story was posted
@@ -12002,7 +12002,7 @@ public final class L10n {
   public static var notificationSettingsChannels: String  { return L10n.tr("Localizable", "NotificationSettings.Channels") }
   /// New Contacts
   public static var notificationSettingsContactJoined: String  { return L10n.tr("Localizable", "NotificationSettings.ContactJoined") }
-  /// Receive notifications when one of your contacts becomes available on Telegram.
+  /// Receive notifications when one of your contacts becomes available on Ansible.
   public static var notificationSettingsContactJoinedInfo: String  { return L10n.tr("Localizable", "NotificationSettings.ContactJoinedInfo") }
   /// Count Unread Messages
   public static var notificationSettingsCountUnreadMessages: String  { return L10n.tr("Localizable", "NotificationSettings.CountUnreadMessages") }
@@ -12164,7 +12164,7 @@ public final class L10n {
   public static func notificationSoundTonesSizeError(_ p1: String) -> String {
     return L10n.tr("Localizable", "NotificationSound.Tones.SizeError", p1)
   }
-  /// TELEGRAM TONES
+  /// Ansible TONES
   public static var notificationSoundTonesTitle: String  { return L10n.tr("Localizable", "NotificationSound.Tones.Title") }
   /// Upload Sound
   public static var notificationSoundTonesUpload: String  { return L10n.tr("Localizable", "NotificationSound.Tones.Upload") }
@@ -12218,11 +12218,11 @@ public final class L10n {
   public static var olwNPBQNTitle: String  { return L10n.tr("Localizable", "Olw-nP-bQN.title") }
   /// ENTER UNLOCK COST
   public static var paidMediaHeader: String  { return L10n.tr("Localizable", "PaidMedia.Header") }
-  /// Users will have to transfer this amount of Stars to your channel in order to view this media. [More about stars >](https://telegram.org/blog/telegram-stars)
+  /// Users will have to transfer this amount of Ansible Diamonds to your channel in order to view this media. [More about Ansible Diamonds >](https://ansible.su/tos/diamonds)
   public static var paidMediaInfo: String  { return L10n.tr("Localizable", "PaidMedia.Info") }
   /// Make This Media Paid
   public static var paidMediaOk: String  { return L10n.tr("Localizable", "PaidMedia.Ok") }
-  /// Stars to Unlock
+  /// Ansible Diamonds to Unlock
   public static var paidMediaPlaceholder: String  { return L10n.tr("Localizable", "PaidMedia.Placeholder") }
   /// Paid Content
   public static var paidMediaTitle: String  { return L10n.tr("Localizable", "PaidMedia.Title") }
@@ -12252,7 +12252,7 @@ public final class L10n {
   public static var passcodeTurnOff: String  { return L10n.tr("Localizable", "Passcode.TurnOff") }
   /// Turn Passcode On
   public static var passcodeTurnOn: String  { return L10n.tr("Localizable", "Passcode.TurnOn") }
-  /// When you set up an additional passcode, you can use ⌘ + L to lock Telegram.\n\nNote: if you forget your passcode, you'll need to log out or reinstall the app. All secret chats will be lost.
+  /// When you set up an additional passcode, you can use ⌘ + L to lock Ansible.\n\nNote: if you forget your passcode, you'll need to log out or reinstall the app. All secret chats will be lost.
   public static var passcodeTurnOnDescription: String  { return L10n.tr("Localizable", "Passcode.TurnOnDescription") }
   /// unlock itself
   public static var passcodeUnlockTouchIdReason: String  { return L10n.tr("Localizable", "Passcode.UnlockTouchIdReason") }
@@ -12270,8 +12270,8 @@ public final class L10n {
   public static var passcodeSettingsViewControllerConfirmWithPasscode: String  { return L10n.tr("Localizable", "Passcode.SettingsViewController.ConfirmWithPasscode") }
   /// Confirm with Touch ID
   public static var passcodeSettingsViewControllerConfirmWithTouchId: String  { return L10n.tr("Localizable", "Passcode.SettingsViewController.ConfirmWithTouchId") }
-  /// Lock Telegram
-  public static var passcodeSettingsViewControllerLockTelegram: String  { return L10n.tr("Localizable", "Passcode.SettingsViewController.LockTelegram") }
+  /// Lock Ansible
+  public static var passcodeSettingsViewControllerLockAnsible: String  { return L10n.tr("Localizable", "Passcode.SettingsViewController.LockTelegram") }
   /// Lock Wallet
   public static var passcodeSettingsViewControllerLockWallet: String  { return L10n.tr("Localizable", "Passcode.SettingsViewController.LockWallet") }
   /// Required when sending funds or confirming other sensitive Wallet actions.
@@ -12282,7 +12282,7 @@ public final class L10n {
   }
   /// Couldn't update the passcode. Unlock again and try once more.
   public static var passcodeControllerSyncFailed: String  { return L10n.tr("Localizable", "PasscodeController.SyncFailed") }
-  /// To lock, hover over the Settings icon in the tab bar and choose "Lock Telegram" or use ⌘ + L.\n\nNote: if you forget your local passcode, you'll need to log out of Telegram for macOS and log in again.
+  /// To lock, hover over the Settings icon in the tab bar and choose \"Lock Ansible\" or use ⌘ + L.\n\nNote: if you forget your local passcode, you'll need to log out of Ansible for macOS and log in again.
   public static var passcodeControllerText: String  { return L10n.tr("Localizable", "PasscodeController.Text") }
   /// This will also turn off passcode and biometric protection for every wallet on this device.
   public static var passcodeControllerWalletDisableWarning: String  { return L10n.tr("Localizable", "PasscodeController.WalletDisableWarning") }
@@ -12430,7 +12430,7 @@ public final class L10n {
   public static var passportResetPasswordConfirmHeader: String  { return L10n.tr("Localizable", "Passport.ResetPassword.Confirm.Header") }
   /// Reset
   public static var passportResetPasswordConfirmOK: String  { return L10n.tr("Localizable", "Passport.ResetPassword.Confirm.OK") }
-  /// All documents uploaded to your Telegram Passport will be lost. You will be able to upload new documents.
+  /// All documents uploaded to your Ansible Passport will be lost. You will be able to upload new documents.
   public static var passportResetPasswordConfirmText: String  { return L10n.tr("Localizable", "Passport.ResetPassword.Confirm.Text") }
   /// You paid %1$@ for %2$@
   public static func paymentsPaid(_ p1: String, _ p2: String) -> String {
@@ -12438,9 +12438,9 @@ public final class L10n {
   }
   /// Tip (Optional)
   public static var paymentsTipLabel: String  { return L10n.tr("Localizable", "Payments.TipLabel") }
-  /// Sorry, Telegram for macOS doesn't support payments yet. \nPlease try again from the iOS or Android app.
+  /// Sorry, Ansible for macOS doesn't support payments yet. \nPlease try again from the iOS or Android app.
   public static var paymentsUnsupported: String  { return L10n.tr("Localizable", "Payments.Unsupported") }
-  /// Neither Telegram, nor %1$@ will have access to your credit card information. Credit card details will be handled only by the payments system, %2$@.\n\nPayments will go directly to the developer of %3$@. Telegram cannot provide any guarantees, so proceed at your own risk. In case of problems, please contact the developer of %4$@ or your bank.
+  /// Neither Ansible, nor %1$@ will have access to your credit card information. Credit card details will be handled only by the payments system, %2$@.\n\nPayments will go directly to the developer of %3$@. Ansible cannot provide any guarantees, so proceed at your own risk. In case of problems, please contact the developer of %4$@ or your bank.
   public static func paymentsWarningText(_ p1: String, _ p2: String, _ p3: String, _ p4: String) -> String {
     return L10n.tr("Localizable", "Payments.WarningText", p1, p2, p3, p4)
   }
@@ -12616,7 +12616,7 @@ public final class L10n {
   public static var peerRatingPreviewBadgeAdded: String  { return L10n.tr("Localizable", "Peer.RatingPreview.Badge.Added") }
   /// DEDUCTED
   public static var peerRatingPreviewBadgeDeducted: String  { return L10n.tr("Localizable", "Peer.RatingPreview.Badge.Deducted") }
-  /// This rating reflects **%@'s** activity on Telegram. It is based on:
+  /// This rating reflects **%@'s** activity on Ansible. It is based on:
   public static func peerRatingPreviewInfoHeader(_ p1: String) -> String {
     return L10n.tr("Localizable", "Peer.RatingPreview.Info.Header", p1)
   }
@@ -12624,23 +12624,23 @@ public final class L10n {
   public static func peerRatingPreviewInfoPendingOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Peer.RatingPreview.Info.Pending_other", p1)
   }
-  /// This rating reflects your activity\non Telegram. It is based on:
+  /// This rating reflects your activity\non Ansible. It is based on:
   public static var peerRatingPreviewInfoHeaderYou: String  { return L10n.tr("Localizable", "Peer.RatingPreview.Info.Header.You") }
   /// Refunds and Conversions
   public static var peerRatingPreviewRefundsHeader: String  { return L10n.tr("Localizable", "Peer.RatingPreview.Refunds.Header") }
-  /// 10x refunded Stars and %@ of gifts converted back to Stars.
+  /// 10x refunded Ansible Diamonds and %@ of gifts converted back to Ansible Diamonds.
   public static func peerRatingPreviewRefundsText(_ p1: String) -> String {
     return L10n.tr("Localizable", "Peer.RatingPreview.Refunds.Text", p1)
   }
-  /// Gifts from Telegram
-  public static var peerRatingPreviewTelegramHeader: String  { return L10n.tr("Localizable", "Peer.RatingPreview.Telegram.Header") }
-  /// %@ of the Stars spent on gifts purchased from Telegram.
-  public static func peerRatingPreviewTelegramText(_ p1: String) -> String {
+  /// Gifts from Ansible
+  public static var peerRatingPreviewAnsibleHeader: String  { return L10n.tr("Localizable", "Peer.RatingPreview.Telegram.Header") }
+  /// %@ of the Ansible Diamonds spent on gifts purchased from Ansible.
+  public static func peerRatingPreviewAnsibleText(_ p1: String) -> String {
     return L10n.tr("Localizable", "Peer.RatingPreview.Telegram.Text", p1)
   }
   /// Gifts and Posts from Users
   public static var peerRatingPreviewUsersHeader: String  { return L10n.tr("Localizable", "Peer.RatingPreview.Users.Header") }
-  /// %@ of the Stars spent on resold gifts, paid messages and channel posts.
+  /// %@ of the Ansible Diamonds spent on resold gifts, paid messages and channel posts.
   public static func peerRatingPreviewUsersText(_ p1: String) -> String {
     return L10n.tr("Localizable", "Peer.RatingPreview.Users.Text", p1)
   }
@@ -12886,7 +12886,7 @@ public final class L10n {
   public static var peerInfoUnblockUser: String  { return L10n.tr("Localizable", "PeerInfo.UnblockUser") }
   /// username
   public static var peerInfoUsername: String  { return L10n.tr("Localizable", "PeerInfo.username") }
-  /// %@ This bot is verified as official by the representatives of Telegram.
+  /// %@ This bot is verified as official by the representatives of Ansible.
   public static func peerInfoVerified(_ p1: String) -> String {
     return L10n.tr("Localizable", "PeerInfo.Verified", p1)
   }
@@ -12950,7 +12950,7 @@ public final class L10n {
   public static var peerInfoBlockHeader: String  { return L10n.tr("Localizable", "PeerInfo.Block.Header") }
   /// Block
   public static var peerInfoBlockOK: String  { return L10n.tr("Localizable", "PeerInfo.Block.OK") }
-  /// Do you want to block %@ from messaging and calling you on Telegram?
+  /// Do you want to block %@ from messaging and calling you on Ansible?
   public static func peerInfoBlockText(_ p1: String) -> String {
     return L10n.tr("Localizable", "PeerInfo.Block.Text", p1)
   }
@@ -12977,11 +12977,11 @@ public final class L10n {
   /// Change Bot Settings
   public static var peerInfoBotEditSettings: String  { return L10n.tr("Localizable", "PeerInfo.BotEdit.Settings") }
   /// Balance
-  public static var peerInfoBotEditStarsBalance: String  { return L10n.tr("Localizable", "PeerInfo.BotEdit.StarsBalance") }
-  /// Stars Balance
-  public static var peerInfoBotEditStarsBalanceNew: String  { return L10n.tr("Localizable", "PeerInfo.BotEdit.StarsBalance_New") }
-  /// %d Stars
-  public static func peerInfoBotEditStarsCountOther(_ p1: Int) -> String {
+  public static var peerInfoBotEditDiamondsBalance: String  { return L10n.tr("Localizable", "PeerInfo.BotEdit.StarsBalance") }
+  /// Ansible Diamonds Balance
+  public static var peerInfoBotEditDiamondsBalanceNew: String  { return L10n.tr("Localizable", "PeerInfo.BotEdit.StarsBalance_New") }
+  /// %d Ansible Diamonds
+  public static func peerInfoBotEditDiamondsCountOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "PeerInfo.BotEdit.StarsCount_other", p1)
   }
   /// TON Balance
@@ -13082,7 +13082,7 @@ public final class L10n {
   public static var peerInfoCopyProtectionInfo: String  { return L10n.tr("Localizable", "PeerInfo.CopyProtection.Info") }
   /// Users will not be able to forward messages from your personal chat, save media from it and take screenshots. This will also restrict users from copying text.
   public static var peerInfoCopyProtectionInfoRestrict: String  { return L10n.tr("Localizable", "PeerInfo.CopyProtection.InfoRestrict") }
-  /// This feature requires Telegram Premium.
+  /// This feature requires Ansible Premium.
   public static var peerInfoCopyProtectionRequiresPremium: String  { return L10n.tr("Localizable", "PeerInfo.CopyProtection.RequiresPremium") }
   /// Restrict Forwarding
   public static var peerInfoCopyProtectionRestrict: String  { return L10n.tr("Localizable", "PeerInfo.CopyProtection.Restrict") }
@@ -13114,7 +13114,7 @@ public final class L10n {
   public static var peerInfoGiftsChannelNotify: String  { return L10n.tr("Localizable", "PeerInfo.Gifts.ChannelNotify") }
   /// You will not be notified when your channel receives a gift.
   public static var peerInfoGiftsChannelNotifyDisabledTooltip: String  { return L10n.tr("Localizable", "PeerInfo.Gifts.ChannelNotifyDisabledTooltip") }
-  /// Telegram will send you a message when your channel receives a gift.
+  /// Ansible will send you a message when your channel receives a gift.
   public static var peerInfoGiftsChannelNotifyTooltip: String  { return L10n.tr("Localizable", "PeerInfo.Gifts.ChannelNotifyTooltip") }
   /// Displayed
   public static var peerInfoGiftsDisplayed: String  { return L10n.tr("Localizable", "PeerInfo.Gifts.Displayed") }
@@ -13152,13 +13152,13 @@ public final class L10n {
   public static var peerInfoGroupTypePublic: String  { return L10n.tr("Localizable", "PeerInfo.GroupType.Public") }
   /// Send Money
   public static var peerInfoHeadItemSendMoney: String  { return L10n.tr("Localizable", "PeerInfo.HeadItem.SendMoney") }
-  /// Sorry, you must be in this user's Telegram contacts to add them to this group.\n\nThey can also join on their own if you send them an invite link.
+  /// Sorry, you must be in this user's Ansible contacts to add them to this group.\n\nThey can also join on their own if you send them an invite link.
   public static var peerInfoInviteErrorContactNeeded: String  { return L10n.tr("Localizable", "PeerInfo.InviteError.ContactNeeded") }
   /// Last Name
   public static var peerInfoLastNamePlaceholder: String  { return L10n.tr("Localizable", "PeerInfo.LastName.Placeholder") }
   /// CHANNEL
   public static var peerInfoPersonalChannelTitle: String  { return L10n.tr("Localizable", "PeerInfo.PersonalChannel.Title") }
-  /// This number is not tied to a SIM card and was acquired on [Fragment]().
+  /// This number is not tied to a SIM card and was acquired on [Crystal Piece]().
   public static var peerInfoPhoneAnonymousInfo: String  { return L10n.tr("Localizable", "PeerInfo.Phone.AnonymousInfo") }
   /// Hidden
   public static var peerInfoPreHistoryHidden: String  { return L10n.tr("Localizable", "PeerInfo.PreHistory.Hidden") }
@@ -13192,7 +13192,7 @@ public final class L10n {
   public static func peerInfoTopicStatusIn(_ p1: String) -> String {
     return L10n.tr("Localizable", "PeerInfo.TopicStatus.In", p1)
   }
-  /// %1$@ uses an unofficial Telegram client — messages to this user may be less secure.
+  /// %1$@ uses an unofficial Ansible client — messages to this user may be less secure.
   public static func peerInfoUnofficialClientText(_ p1: String) -> String {
     return L10n.tr("Localizable", "PeerInfo.UnofficialClient.Text", p1)
   }
@@ -13202,13 +13202,13 @@ public final class L10n {
   public static func peerInfoUsernamesList(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "PeerInfo.Usernames.List", p1, p2)
   }
-  /// This bot was verified by Telegram.
+  /// This bot was verified by Ansible.
   public static var peerInfoVerificationInfoBot: String  { return L10n.tr("Localizable", "PeerInfo.VerificationInfo.Bot") }
-  /// This channel was verified by Telegram.
+  /// This channel was verified by Ansible.
   public static var peerInfoVerificationInfoChannel: String  { return L10n.tr("Localizable", "PeerInfo.VerificationInfo.Channel") }
-  /// This group was verified by Telegram.
+  /// This group was verified by Ansible.
   public static var peerInfoVerificationInfoGroup: String  { return L10n.tr("Localizable", "PeerInfo.VerificationInfo.Group") }
-  /// https://telegram.org/verify
+  /// https://ansible.su/faq
   public static var peerInfoVerificationInfoURL: String  { return L10n.tr("Localizable", "PeerInfo.VerificationInfo.URL") }
   /// Verified Account
   public static var peerInfoVerifiedTooltip: String  { return L10n.tr("Localizable", "PeerInfo.Verified.Tooltip") }
@@ -13384,8 +13384,8 @@ public final class L10n {
   public static var phoneNumberCodeInfo: String  { return L10n.tr("Localizable", "PhoneNumber.Code.Info") }
   /// Enter Code
   public static var phoneNumberCodeTitle: String  { return L10n.tr("Localizable", "PhoneNumber.Code.Title") }
-  /// Get the code in the Anonymous Numbers section on [Fragment](%1$@)
-  public static func phoneNumberCodeFragmentInfo(_ p1: String) -> String {
+  /// Get the code in the Anonymous Numbers section on [Crystal Piece](%1$@)
+  public static func phoneNumberCodeCrystalPieceInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "PhoneNumber.Code.Fragment.Info", p1)
   }
   /// Set to Default
@@ -13420,29 +13420,29 @@ public final class L10n {
   public static var premiumBoardingGraceText: String  { return L10n.tr("Localizable", "Premium.Boarding.GraceText") }
   /// Your benefits will expire soon!
   public static var premiumBoardingGraceTitle: String  { return L10n.tr("Localizable", "Premium.Boarding.GraceTitle") }
-  /// Go **beyond the limits** and **unlock dozens of exclusive** features by subscribing to **Telegram Premium**.
+  /// Go **beyond the limits** and **unlock dozens of exclusive** features by subscribing to **Ansible Premium**.
   public static var premiumBoardingInfo: String  { return L10n.tr("Localizable", "Premium.Boarding.Info") }
   /// Subscribe for %@ per month
   public static func premiumBoardingSubscribe(_ p1: String) -> String {
     return L10n.tr("Localizable", "Premium.Boarding.Subscribe", p1)
   }
-  /// Telegram Premium
+  /// Ansible Premium
   public static var premiumBoardingTitle: String  { return L10n.tr("Localizable", "Premium.Boarding.Title") }
-  /// While the free version of Telegram already gives its users more than any other messaging application, **Telegram Premium** pushes its capabilities even further.\n\n**Telegram Premium** is a paid option, because most Premium Features require additional expenses from Telegram to third parties such as data center providers and server manufacturers. Contributions from **Telegram Premium** users allow us to cover such costs and also help Telegram stay free for everyone.
+  /// While the free version of Ansible already gives its users more than any other messaging application, **Ansible Premium** pushes its capabilities even further.\n\n**Ansible Premium** is a paid option, because most Premium Features require additional expenses from Ansible to third parties such as data center providers and server manufacturers. Contributions from **Ansible Premium** users allow us to cover such costs and also help Ansible stay free for everyone.
   public static var premiumBoardingAboutText: String  { return L10n.tr("Localizable", "Premium.Boarding.About.Text") }
-  /// About Telegram Premium
+  /// About Ansible Premium
   public static var premiumBoardingAboutTitle: String  { return L10n.tr("Localizable", "Premium.Boarding.About.Title") }
-  /// By purchasing a Premium subscription, you agree to the Telegram [Terms of Service](terms) and [Privacy Policy](privacy).
+  /// By purchasing a Premium subscription, you agree to the Ansible [Terms of Service](terms) and [Privacy Policy](privacy).
   public static var premiumBoardingAboutTos: String  { return L10n.tr("Localizable", "Premium.Boarding.About.Tos") }
   /// Purchase was canceled or failed.
   public static var premiumBoardingAppStoreCancelled: String  { return L10n.tr("Localizable", "Premium.Boarding.AppStore.Cancelled") }
-  /// You successfully subscribed for Telegram Premium.
+  /// You successfully subscribed for Ansible Premium.
   public static var premiumBoardingAppStoreSuccess: String  { return L10n.tr("Localizable", "Premium.Boarding.AppStore.Success") }
   /// Video avatars animated in chat lists and chats to allow for additional self-expression.
   public static var premiumBoardingAvatarInfo: String  { return L10n.tr("Localizable", "Premium.Boarding.Avatar.Info") }
   /// Animated Profile Pictures
   public static var premiumBoardingAvatarTitle: String  { return L10n.tr("Localizable", "Premium.Boarding.Avatar.Title") }
-  /// An exclusive badge next to your name showing that you subscribe to Telegram Premium.
+  /// An exclusive badge next to your name showing that you subscribe to Ansible Premium.
   public static var premiumBoardingBadgeInfo: String  { return L10n.tr("Localizable", "Premium.Boarding.Badge.Info") }
   /// Profile Badge
   public static var premiumBoardingBadgeTitle: String  { return L10n.tr("Localizable", "Premium.Boarding.Badge.Title") }
@@ -13530,7 +13530,7 @@ public final class L10n {
   }
   /// Unlimited Cloud Storage
   public static var premiumBoardingFileSizeTitle: String  { return L10n.tr("Localizable", "Premium.Boarding.FileSize.Title") }
-  /// Thank you for subscribing to Telegram Premium. Here's what is now unlocked.
+  /// Thank you for subscribing to Ansible Premium. Here's what is now unlocked.
   public static var premiumBoardingGotInfo: String  { return L10n.tr("Localizable", "Premium.Boarding.Got.Info") }
   /// You are all set!
   public static var premiumBoardingGotTitle: String  { return L10n.tr("Localizable", "Premium.Boarding.Got.Title") }
@@ -13542,41 +13542,41 @@ public final class L10n {
   public static var premiumBoardingMessagePrivacyInfo: String  { return L10n.tr("Localizable", "Premium.Boarding.MessagePrivacy.Info") }
   /// Message Privacy
   public static var premiumBoardingMessagePrivacyTitle: String  { return L10n.tr("Localizable", "Premium.Boarding.MessagePrivacy.Title") }
-  /// No more ads in public channels where Telegram sometimes shows ads.
+  /// No more ads in public channels where Ansible sometimes shows ads.
   public static var premiumBoardingNoAdsInfo: String  { return L10n.tr("Localizable", "Premium.Boarding.NoAds.Info") }
   /// No Ads
   public static var premiumBoardingNoAdsTitle: String  { return L10n.tr("Localizable", "Premium.Boarding.NoAds.Title") }
   /// Not Available
   public static var premiumBoardingPaymentNotAvailalbe: String  { return L10n.tr("Localizable", "Premium.Boarding.Payment.NotAvailalbe") }
-  /// Owners of Telegram Premium accounts have exclusive access to multiple additional features.
+  /// Owners of Ansible Premium accounts have exclusive access to multiple additional features.
   public static var premiumBoardingPeerInfo: String  { return L10n.tr("Localizable", "Premium.Boarding.Peer.Info") }
-  /// [%@](profile) is a subscriber of\nTelegram Premium
+  /// [%@](profile) is a subscriber of\nAnsible Premium
   public static func premiumBoardingPeerTitle(_ p1: String) -> String {
     return L10n.tr("Localizable", "Premium.Boarding.Peer.Title", p1)
   }
   /// You now have access to additional features.
   public static var premiumBoardingPeerGiftInfo: String  { return L10n.tr("Localizable", "Premium.Boarding.Peer.Gift.Info") }
-  ///  This link allows you or anyone you choose to activate a **Telegram Premium** subscription.
+  ///  This link allows you or anyone you choose to activate a **Ansible Premium** subscription.
   public static var premiumBoardingPeerGiftLinkInfo: String  { return L10n.tr("Localizable", "Premium.Boarding.Peer.Gift.LinkInfo") }
-  /// [%1$@](profile) has gifted you a %2$@-month subscription to Telegram Premium
+  /// [%1$@](profile) has gifted you a %2$@-month subscription to Ansible Premium
   public static func premiumBoardingPeerGiftTitle(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Boarding.Peer.Gift.Title", p1, p2)
   }
-  /// [%1$@](profile) has gifted you a %2$@ subscription for Telegram Premium
+  /// [%1$@](profile) has gifted you a %2$@ subscription for Ansible Premium
   public static func premiumBoardingPeerGiftTitleUpdated(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Boarding.Peer.Gift.Title.Updated", p1, p2)
   }
   /// They now have access to additional features.
   public static var premiumBoardingPeerGiftYouInfo: String  { return L10n.tr("Localizable", "Premium.Boarding.Peer.Gift.You.Info") }
-  /// You gifted [%1$@](profile) a %2$@-month subscription to Telegram Premium
+  /// You gifted [%1$@](profile) a %2$@-month subscription to Ansible Premium
   public static func premiumBoardingPeerGiftYouTitle(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Boarding.Peer.Gift.You.Title", p1, p2)
   }
-  /// You gifted [%1$@](profile) a %2$@ subscription for Telegram Premium
+  /// You gifted [%1$@](profile) a %2$@ subscription for Ansible Premium
   public static func premiumBoardingPeerGiftYouTitleUpdated(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Boarding.Peer.Gift.You.Title.Updated", p1, p2)
   }
-  /// Emoji status is a premium feature.\nOther features included in **Telegram Premium**:
+  /// Emoji status is a premium feature.\nOther features included in **Ansible Premium**:
   public static var premiumBoardingPeerStatusInfo: String  { return L10n.tr("Localizable", "Premium.Boarding.PeerStatus.Info") }
   /// This is %@'s current status from\n🤡 [%@]().
   public static func premiumBoardingPeerStatusCustomTitle(_ p1: String, _ p2: String) -> String {
@@ -13660,23 +13660,23 @@ public final class L10n {
   public static func premiumGiftReceiveBoost(_ p1: String) -> String {
     return L10n.tr("Localizable", "Premium.Gift.ReceiveBoost", p1)
   }
-  /// By gifting Telegram Premium, you agree to the Telegram [Terms of Service](terms) and [Privacy Policy](privacy).
+  /// By gifting Ansible Premium, you agree to the Ansible [Terms of Service](terms) and [Privacy Policy](privacy).
   public static var premiumGiftTerms: String  { return L10n.tr("Localizable", "Premium.Gift.Terms") }
-  /// Give **%@** access to exclusive features with **Telegram Premium**.
+  /// Give **%@** access to exclusive features with **Ansible Premium**.
   public static func premiumGiftText(_ p1: String) -> String {
     return L10n.tr("Localizable", "Premium.Gift.Text", p1)
   }
-  /// Gift Telegram Premium
+  /// Gift Ansible Premium
   public static var premiumGiftTitle: String  { return L10n.tr("Localizable", "Premium.Gift.Title") }
   /// buy yourself a gift
   public static var premiumGiftContactSelectionBuySelf: String  { return L10n.tr("Localizable", "Premium.Gift.ContactSelection.BuySelf") }
   /// THIS IS YOU
   public static var premiumGiftContactSelectionThisIsYou: String  { return L10n.tr("Localizable", "Premium.Gift.ContactSelection.ThisIsYou") }
-  /// Get **%1$@** and **%2$@** more access to exclusive features with **Telegram Premium**.
+  /// Get **%1$@** and **%2$@** more access to exclusive features with **Ansible Premium**.
   public static func premiumGiftGetAccessMoreThanThree(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Gift.GetAccess.MoreThanThree", p1, p2)
   }
-  /// Get **%1$@** access to exclusive features with **Telegram Premium**.
+  /// Get **%1$@** access to exclusive features with **Ansible Premium**.
   public static func premiumGiftGetAccessOneToThree(_ p1: String) -> String {
     return L10n.tr("Localizable", "Premium.Gift.GetAccess.OneToThree", p1)
   }
@@ -13706,35 +13706,35 @@ public final class L10n {
   public static var premiumLimitPremium: String  { return L10n.tr("Localizable", "Premium.Limit.Premium") }
   /// Limit Reached
   public static var premiumLimitReached: String  { return L10n.tr("Localizable", "Premium.Limit.Reached") }
-  /// The 'Bio' section can't have more than **%1$@** characters. You can double this limit to **%2$@** characters by subscribing to **Telegram Premium**.
+  /// The 'Bio' section can't have more than **%1$@** characters. You can double this limit to **%2$@** characters by subscribing to **Ansible Premium**.
   public static func premiumLimitAboutInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.About.Info", p1, p2)
   }
-  /// You have reached the limit of %@ connected accounts. You can free one more place by subscribing to Telegram Premium with one of these connected accounts.
+  /// You have reached the limit of %@ connected accounts. You can free one more place by subscribing to Ansible Premium with one of these connected accounts.
   public static func premiumLimitAccountsInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.Accounts.Info", p1)
   }
-  /// Captions can't have more than **%1$@** characters. You can double this limit to **%2$@** characters by subscribing to **Telegram Premium**.
+  /// Captions can't have more than **%1$@** characters. You can double this limit to **%2$@** characters by subscribing to **Ansible Premium**.
   public static func premiumLimitCaptionInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.Caption.Info", p1, p2)
   }
-  /// You are a member of **%1$@** groups and channels. Please leave some before joining a new one or upgrade to **Telegram Premium** to double the limit to **%2$@** groups and channels.
+  /// You are a member of **%1$@** groups and channels. Please leave some before joining a new one or upgrade to **Ansible Premium** to double the limit to **%2$@** groups and channels.
   public static func premiumLimitChannelsInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.Channels.Info", p1, p2)
   }
-  /// Sorry, you can't add more than **%1$@** chats to a folder. You can increase this limit to **%2$@** by upgrading to **Telegram Premium**.
+  /// Sorry, you can't add more than **%1$@** chats to a folder. You can increase this limit to **%2$@** by upgrading to **Ansible Premium**.
   public static func premiumLimitChatInFoldersInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.ChatInFolders.Info", p1, p2)
   }
-  /// Sorry, you can't add more than **%1$@** stickers to favorites. Replace an older saved sticker or subscribe to **Telegram Premium** to double the limit to **%2$@** favorite stickers.
+  /// Sorry, you can't add more than **%1$@** stickers to favorites. Replace an older saved sticker or subscribe to **Ansible Premium** to double the limit to **%2$@** favorite stickers.
   public static func premiumLimitFaveStickersInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.FaveStickers.Info", p1, p2)
   }
-  /// The document can't be sent, because it is larger than **%1$@**. You can double this limit to **%2$@** per document by subscribing to **Telegram Premium**.
+  /// The document can't be sent, because it is larger than **%1$@**. You can double this limit to **%2$@** per document by subscribing to **Ansible Premium**.
   public static func premiumLimitFileSizeInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.FileSize.Info", p1, p2)
   }
-  /// You have reached the limit of **%1$@** folders. You can double the limit to **%2$@** folders by subscribing to **Telegram Premium**.
+  /// You have reached the limit of **%1$@** folders. You can double the limit to **%2$@** folders by subscribing to **Ansible Premium**.
   public static func premiumLimitFoldersInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.Folders.Info", p1, p2)
   }
@@ -13796,35 +13796,35 @@ public final class L10n {
   public static func premiumLimitLockedSharedFoldersInvitesInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.Locked.SharedFoldersInvites.Info", p1)
   }
-  /// Sorry, you can't pin more than **%1$@** chats to the top. Unpin some of the currently pinned ones or subscribe to **Telegram Premium** to double the limit to **%2$@** chats.
+  /// Sorry, you can't pin more than **%1$@** chats to the top. Unpin some of the currently pinned ones or subscribe to **Ansible Premium** to double the limit to **%2$@** chats.
   public static func premiumLimitPinInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.Pin.Info", p1, p2)
   }
-  /// Sorry, you can't pin more than **%1$@** chats in archive to the top. Unpin some of the currently pinned ones or subscribe to **Telegram Premium** to double the limit to **%2$@** chats.
+  /// Sorry, you can't pin more than **%1$@** chats in archive to the top. Unpin some of the currently pinned ones or subscribe to **Ansible Premium** to double the limit to **%2$@** chats.
   public static func premiumLimitPinInArchiveInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.PinInArchive.Info", p1, p2)
   }
-  /// Sorry, you can't pin more than **%1$@** chats to the top. Unpin some of the currently pinned ones or subscribe to **Telegram Premium** to double the limit to **%2$@** chats.
+  /// Sorry, you can't pin more than **%1$@** chats to the top. Unpin some of the currently pinned ones or subscribe to **Ansible Premium** to double the limit to **%2$@** chats.
   public static func premiumLimitPinInFoldersInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.PinInFolders.Info", p1, p2)
   }
-  /// You have reserved too many public links. Try revoking the link from an older group or channel, or upgrade to **Telegram Premium** to double the limit to **%1$@** public links.
+  /// You have reserved too many public links. Try revoking the link from an older group or channel, or upgrade to **Ansible Premium** to double the limit to **%1$@** public links.
   public static func premiumLimitPublicLinkInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.PublicLink.Info", p1)
   }
-  /// Sorry, you can't save more than **%1$@** GIFs. Replace an older GIF or subscribe to **Telegram Premium** to double the limit to **%2$@** GIFs.
+  /// Sorry, you can't save more than **%1$@** GIFs. Replace an older GIF or subscribe to **Ansible Premium** to double the limit to **%2$@** GIFs.
   public static func premiumLimitSavedGifsInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.SavedGifs.Info", p1, p2)
   }
-  /// You can only add **%1$@** shareable folders. Upgrade to **Telegram Premium** to increase this limit to **%2$@**.
+  /// You can only add **%1$@** shareable folders. Upgrade to **Ansible Premium** to increase this limit to **%2$@**.
   public static func premiumLimitSharedFoldersInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.SharedFolders.Info", p1, p2)
   }
-  /// You can only create **%1$@** invite links. Upgrade to **Telegram Premium** to create up to **%2$@**.
+  /// You can only create **%1$@** invite links. Upgrade to **Ansible Premium** to create up to **%2$@**.
   public static func premiumLimitSharedFoldersInvitesInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Premium.Limit.SharedFoldersInvites.Info", p1, p2)
   }
-  /// You already have Telegram Premium.
+  /// You already have Ansible Premium.
   public static var premiumOffsetAlreadyHave: String  { return L10n.tr("Localizable", "Premium.Offset.AlreadyHave") }
   /// Annual
   public static var premiumPeriodAnnual: String  { return L10n.tr("Localizable", "Premium.Period.Annual") }
@@ -13868,7 +13868,7 @@ public final class L10n {
   public static var premiumShowStatusShowYourLastSeen: String  { return L10n.tr("Localizable", "Premium.ShowStatus.ShowYourLastSeen") }
   /// Show Your Read Time
   public static var premiumShowStatusShowYourReadDate: String  { return L10n.tr("Localizable", "Premium.ShowStatus.ShowYourReadDate") }
-  /// Subscribe to Telegram Premium
+  /// Subscribe to Ansible Premium
   public static var premiumShowStatusSubscribe: String  { return L10n.tr("Localizable", "Premium.ShowStatus.Subscribe") }
   /// Upgrade to Premium
   public static var premiumShowStatusUpgradeToPremium: String  { return L10n.tr("Localizable", "Premium.ShowStatus.UpgradeToPremium") }
@@ -13892,7 +13892,7 @@ public final class L10n {
   public static func premiumShowStatusUpgradeToPremiumReadInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Premium.ShowStatus.UpgradeToPremium.Read.Info", p1)
   }
-  /// Subscribe to **Telegram Premium** to send up to **%d** of these gifts and unlock powerful features.
+  /// Subscribe to **Ansible Premium** to send up to **%d** of these gifts and unlock powerful features.
   public static func premiumStarGiftInfoOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Premium.StarGift.Info_other", p1)
   }
@@ -13908,7 +13908,7 @@ public final class L10n {
   public static var premiumBoardingDisableSharing: String  { return L10n.tr("Localizable", "PremiumBoarding.DisableSharing") }
   /// Disable screenshots, saving and forwarding messages in private chats.
   public static var premiumBoardingDisableSharingInfo: String  { return L10n.tr("Localizable", "PremiumBoarding.DisableSharingInfo") }
-  /// +%d MORE TELEGRAM PREMIUM FEATURES
+  /// +%d MORE Ansible PREMIUM FEATURES
   public static func premiumBoardingMoreBusinessHeaderOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "PremiumBoarding.MoreBusinessHeader_other", p1)
   }
@@ -13920,7 +13920,7 @@ public final class L10n {
   public static var premiumBoardingTagFolders: String  { return L10n.tr("Localizable", "PremiumBoarding.TagFolders") }
   /// Checklists
   public static var premiumBoardingTodo: String  { return L10n.tr("Localizable", "PremiumBoarding.Todo") }
-  /// You are already Telegram Premium subscriber.
+  /// You are already Ansible Premium subscriber.
   public static var premiumBoardingActivateForFreeAlready: String  { return L10n.tr("Localizable", "PremiumBoarding.ActivateForFree.Already") }
   /// Away Messages
   public static var premiumBoardingBusinessAwayMessages: String  { return L10n.tr("Localizable", "PremiumBoarding.Business.AwayMessages") }
@@ -13938,8 +13938,8 @@ public final class L10n {
   public static var premiumBoardingBusinessOpeningHours: String  { return L10n.tr("Localizable", "PremiumBoarding.Business.OpeningHours") }
   /// Quick Replies
   public static var premiumBoardingBusinessQuickReplies: String  { return L10n.tr("Localizable", "PremiumBoarding.Business.QuickReplies") }
-  /// Telegram Business
-  public static var premiumBoardingBusinessTelegramBusiness: String  { return L10n.tr("Localizable", "PremiumBoarding.Business.TelegramBusiness") }
+  /// Ansible Business
+  public static var premiumBoardingBusinessAnsibleBusiness: String  { return L10n.tr("Localizable", "PremiumBoarding.Business.TelegramBusiness") }
   /// Define messages that are automatically sent when you are off.
   public static var premiumBoardingBusinessAwayMessagesInfo: String  { return L10n.tr("Localizable", "PremiumBoarding.Business.AwayMessages.Info") }
   /// Add any third party chatbots that will process customer interactions.
@@ -13957,11 +13957,11 @@ public final class L10n {
   /// Set up shortcuts with rich text and media to respond to messages faster.
   public static var premiumBoardingBusinessQuickRepliesInfo: String  { return L10n.tr("Localizable", "PremiumBoarding.Business.QuickReplies.Info") }
   /// You have now unlocked these additional business features. These features are temporarily included with your Premium Subscription.
-  public static var premiumBoardingBusinessTelegramBusinessHeaderInfo1: String  { return L10n.tr("Localizable", "PremiumBoarding.Business.TelegramBusiness.HeaderInfo1") }
-  /// Turn your account into a business page with these additional features. The benefits of Telegram Business are temporarily included with Telegram Premium.
-  public static var premiumBoardingBusinessTelegramBusinessHeaderInfo2: String  { return L10n.tr("Localizable", "PremiumBoarding.Business.TelegramBusiness.HeaderInfo2") }
+  public static var premiumBoardingBusinessAnsibleBusinessHeaderInfo1: String  { return L10n.tr("Localizable", "PremiumBoarding.Business.TelegramBusiness.HeaderInfo1") }
+  /// Turn your account into a business page with these additional features. The benefits of Ansible Business are temporarily included with Ansible Premium.
+  public static var premiumBoardingBusinessAnsibleBusinessHeaderInfo2: String  { return L10n.tr("Localizable", "PremiumBoarding.Business.TelegramBusiness.HeaderInfo2") }
   /// Upgrade your account with business features such as location, opening hours and quick replies.
-  public static var premiumBoardingBusinessTelegramBusinessInfo: String  { return L10n.tr("Localizable", "PremiumBoarding.Business.TelegramBusiness.Info") }
+  public static var premiumBoardingBusinessAnsibleBusinessInfo: String  { return L10n.tr("Localizable", "PremiumBoarding.Business.TelegramBusiness.Info") }
   /// Set custom durations like 6 or 48 hours for your stories.
   public static var premiumBoardingStoriesExpirationDurationInfo: String  { return L10n.tr("Localizable", "PremiumBoarding.Stories.ExpirationDuration.Info") }
   /// Expiration Options
@@ -14126,7 +14126,7 @@ public final class L10n {
   public static var privacyAndSecurityClearCloudDrafts: String  { return L10n.tr("Localizable", "PrivacyAndSecurity.ClearCloudDrafts") }
   /// CHATS
   public static var privacyAndSecurityClearCloudDraftsHeader: String  { return L10n.tr("Localizable", "PrivacyAndSecurity.ClearCloudDraftsHeader") }
-  /// Display sensitive media in public channels on all your Telegram devices.
+  /// Display sensitive media in public channels on all your Ansible devices.
   public static var privacyAndSecuritySensitiveDesc: String  { return L10n.tr("Localizable", "PrivacyAndSecurity.SensitiveDesc") }
   /// SENSITIVE CONTENT
   public static var privacyAndSecuritySensitiveHeader: String  { return L10n.tr("Localizable", "PrivacyAndSecurity.SensitiveHeader") }
@@ -14140,13 +14140,13 @@ public final class L10n {
   public static var privacyAndSecurityItemOff: String  { return L10n.tr("Localizable", "PrivacyAndSecurity.Item.Off") }
   /// On
   public static var privacyAndSecurityItemOn: String  { return L10n.tr("Localizable", "PrivacyAndSecurity.Item.On") }
-  /// Link previews will be generated on Telegram servers. We do not store any data about the links you send.
+  /// Link previews will be generated on Ansible servers. We do not store any data about the links you send.
   public static var privacyAndSecuritySecretChatWebPreviewDesc: String  { return L10n.tr("Localizable", "PrivacyAndSecurity.SecretChatWebPreview.Desc") }
   /// SECRET CHAT
   public static var privacyAndSecuritySecretChatWebPreviewHeader: String  { return L10n.tr("Localizable", "PrivacyAndSecurity.SecretChatWebPreview.Header") }
   /// Link Previews
   public static var privacyAndSecuritySecretChatWebPreviewText: String  { return L10n.tr("Localizable", "PrivacyAndSecurity.SecretChatWebPreview.Text") }
-  /// Users who add your number to their contacts will see it on Telegram only if they are your contacts.
+  /// Users who add your number to their contacts will see it on Ansible only if they are your contacts.
   public static var privacyPhoneNumberSettingsCustomDisabledHelp: String  { return L10n.tr("Localizable", "PrivacyPhoneNumberSettings.CustomDisabledHelp") }
   /// WHO CAN FIND ME BY MY NUMBER
   public static var privacyPhoneNumberSettingsDiscoveryHeader: String  { return L10n.tr("Localizable", "PrivacyPhoneNumberSettings.DiscoveryHeader") }
@@ -14204,11 +14204,11 @@ public final class L10n {
   public static var privacySettingsLoginEmail: String  { return L10n.tr("Localizable", "PrivacySettings.LoginEmail") }
   /// Change Email
   public static var privacySettingsLoginEmailAlertChange: String  { return L10n.tr("Localizable", "PrivacySettings.LoginEmailAlertChange") }
-  /// This email address will be used every time you login to your Telegram account from a new device.
+  /// This email address will be used every time you login to your Ansible account from a new device.
   public static var privacySettingsLoginEmailAlertText: String  { return L10n.tr("Localizable", "PrivacySettings.LoginEmailAlertText") }
-  /// Change your email address for Telegram login codes.
+  /// Change your email address for Ansible login codes.
   public static var privacySettingsLoginEmailInfo: String  { return L10n.tr("Localizable", "PrivacySettings.LoginEmailInfo") }
-  /// Setup your email address for Telegram login codes.
+  /// Setup your email address for Ansible login codes.
   public static var privacySettingsLoginEmailSetupInfo: String  { return L10n.tr("Localizable", "PrivacySettings.LoginEmailSetupInfo") }
   /// Messages
   public static var privacySettingsMessages: String  { return L10n.tr("Localizable", "PrivacySettings.Messages") }
@@ -14218,7 +14218,7 @@ public final class L10n {
   public static var privacySettingsPasskey: String  { return L10n.tr("Localizable", "PrivacySettings.Passkey") }
   /// Phone Number
   public static var privacySettingsPhoneNumber: String  { return L10n.tr("Localizable", "PrivacySettings.PhoneNumber") }
-  /// Subscribe to Telegram Premium
+  /// Subscribe to Ansible Premium
   public static var privacySettingsPremium: String  { return L10n.tr("Localizable", "PrivacySettings.Premium") }
   /// Premium
   public static var privacySettingsPremiumUsers: String  { return L10n.tr("Localizable", "PrivacySettings.PremiumUsers") }
@@ -14260,19 +14260,19 @@ public final class L10n {
   public static var privacySettingsMessagesEveryone: String  { return L10n.tr("Localizable", "PrivacySettings.Messages.Everyone") }
   /// WHO CAN SEND ME MESSAGES?
   public static var privacySettingsMessagesHeader: String  { return L10n.tr("Localizable", "PrivacySettings.Messages.Header") }
-  /// You can restrict messages from users who are not in your contacts and whom you haven't messaged first.\n\n[What is Telegram Premium?]()
+  /// You can restrict messages from users who are not in your contacts and whom you haven't messaged first.\n\n[What is Ansible Premium?]()
   public static var privacySettingsMessagesInfo: String  { return L10n.tr("Localizable", "PrivacySettings.Messages.Info") }
   /// Contacts And Premium
   public static var privacySettingsMessagesMyContacts: String  { return L10n.tr("Localizable", "PrivacySettings.Messages.MyContacts") }
-  /// Only subscribers of [Telegram Premium]() can restrict receiving Private Messages.
+  /// Only subscribers of [Ansible Premium]() can restrict receiving Private Messages.
   public static var privacySettingsMessagesPremiumError: String  { return L10n.tr("Localizable", "PrivacySettings.Messages.PremiumError") }
   /// Add New
   public static var privacySettingsPeerSelectAddNew: String  { return L10n.tr("Localizable", "PrivacySettings.PeerSelect.AddNew") }
   /// Add Users or Groups
   public static var privacySettingsPeerSelectAddUserOrGroup: String  { return L10n.tr("Localizable", "PrivacySettings.PeerSelect.AddUserOrGroup") }
-  /// If you subscribe to Telegram Premium, you will still see other users' last seen and read time even if you hid yours from them (unless they specifically restricted it).
+  /// If you subscribe to Ansible Premium, you will still see other users' last seen and read time even if you hid yours from them (unless they specifically restricted it).
   public static var privacySettingsPremiumInfo: String  { return L10n.tr("Localizable", "PrivacySettings.Premium.Info") }
-  /// Only subscribers of [Telegram Premium]() can restrict receiving Voice and Video Messages.
+  /// Only subscribers of [Ansible Premium]() can restrict receiving Voice and Video Messages.
   public static var privacySettingsVoicePremiumError: String  { return L10n.tr("Localizable", "PrivacySettings.Voice.PremiumError") }
   /// Add Users
   public static var privacySettingsControllerAddUsers: String  { return L10n.tr("Localizable", "PrivacySettingsController.AddUsers") }
@@ -14364,13 +14364,13 @@ public final class L10n {
   public static var privacySettingsControllerP2pAlways: String  { return L10n.tr("Localizable", "PrivacySettingsController.P2p.Always") }
   /// My Contacts
   public static var privacySettingsControllerP2pContacts: String  { return L10n.tr("Localizable", "PrivacySettingsController.P2p.Contacts") }
-  /// Disabling peer-to-peer will relay all calls through Telegram servers to avoid revealing your IP address, but may decrease audio and video quality.
+  /// Disabling peer-to-peer will relay all calls through Ansible servers to avoid revealing your IP address, but may decrease audio and video quality.
   public static var privacySettingsControllerP2pDesc: String  { return L10n.tr("Localizable", "PrivacySettingsController.P2p.Desc") }
   /// PEER TO PEER
   public static var privacySettingsControllerP2pHeader: String  { return L10n.tr("Localizable", "PrivacySettingsController.P2p.Header") }
   /// Never
   public static var privacySettingsControllerP2pNever: String  { return L10n.tr("Localizable", "PrivacySettingsController.P2p.Never") }
-  /// Users who have your number saved in their contacts will also see it on Telegram.
+  /// Users who have your number saved in their contacts will also see it on Ansible.
   public static var privacySettingsControllerPhoneNumberCustomHelp: String  { return L10n.tr("Localizable", "PrivacySettingsController.PhoneNumber.CustomHelp") }
   /// WHO CAN SEE MY PHONE NUMBER
   public static var privacySettingsControllerPhoneNumberWhoCanSeePhoneNumber: String  { return L10n.tr("Localizable", "PrivacySettingsController.PhoneNumber.WhoCanSeePhoneNumber") }
@@ -14396,7 +14396,7 @@ public final class L10n {
   public static var privacySettingsControllerSavedMusicNeverShareWithTitle: String  { return L10n.tr("Localizable", "PrivacySettingsController.SavedMusic.NeverShareWith.Title") }
   /// You can upload a public photo for users who are restricted from seeing your real profile photos.
   public static var privacySettingsControllerSetPublicPhotoInfo: String  { return L10n.tr("Localizable", "PrivacySettingsController.SetPublicPhoto.Info") }
-  /// Subscribe to Telegram Premium to restrict who can send you voice or video messages.\n\n[What is Telegram Premium?]()
+  /// Subscribe to Ansible Premium to restrict who can send you voice or video messages.\n\n[What is Ansible Premium?]()
   public static var privacySettingsControllerVoiceMessagesDescriptionNonPremium: String  { return L10n.tr("Localizable", "PrivacySettingsController.VoiceMessagesDescription.NonPremium") }
   /// Cancel
   public static var privateChannelPeekCancel: String  { return L10n.tr("Localizable", "PrivateChannel.Peek.Cancel") }
@@ -14436,7 +14436,7 @@ public final class L10n {
   public static var proxyForceEnableEnable: String  { return L10n.tr("Localizable", "Proxy.ForceEnable.Enable") }
   /// Do you want to add this proxy?
   public static var proxyForceEnableHeader1: String  { return L10n.tr("Localizable", "Proxy.ForceEnable.Header1") }
-  /// This proxy may display a sponsored channel in your chat list. This doesn't reveal any of your Telegram traffic.
+  /// This proxy may display a sponsored channel in your chat list. This doesn't reveal any of your Ansible traffic.
   public static var proxyForceEnableMTPDesc: String  { return L10n.tr("Localizable", "Proxy.ForceEnable.MTPDesc") }
   /// Add Proxy
   public static var proxyForceEnableOK: String  { return L10n.tr("Localizable", "Proxy.ForceEnable.OK") }
@@ -14528,7 +14528,7 @@ public final class L10n {
   }
   /// unavailable
   public static var proxySettingsItemNeverConnected: String  { return L10n.tr("Localizable", "ProxySettings.Item.NeverConnected") }
-  /// The proxy may display a sponsored channel in your chat list. This doesn't reveal any of your Telegram traffic.
+  /// The proxy may display a sponsored channel in your chat list. This doesn't reveal any of your Ansible traffic.
   public static var proxySettingsMtpSponsor: String  { return L10n.tr("Localizable", "ProxySettings.Mtp.Sponsor") }
   /// Your friends can add this proxy by scanning the code with their camera.
   public static var proxySettingsQRText: String  { return L10n.tr("Localizable", "ProxySettings.QR.Text") }
@@ -14542,7 +14542,7 @@ public final class L10n {
   public static var proxySettingsWebNotTested: String  { return L10n.tr("Localizable", "ProxySettings.Web.NotTested") }
   /// Enable
   public static var proxySettingsWebWarningEnable: String  { return L10n.tr("Localizable", "ProxySettings.Web.Warning.Enable") }
-  /// This proxy loads provider-controlled JavaScript in a hidden browser. The provider can change traffic timing, batching, padding, and network use, and may consume CPU, memory, or battery. Telegram credentials and native APIs are not intentionally exposed, but provider code remains untrusted. Enable only providers you trust.
+  /// This proxy loads provider-controlled JavaScript in a hidden browser. The provider can change traffic timing, batching, padding, and network use, and may consume CPU, memory, or battery. Ansible credentials and native APIs are not intentionally exposed, but provider code remains untrusted. Enable only providers you trust.
   public static var proxySettingsWebWarningText: String  { return L10n.tr("Localizable", "ProxySettings.Web.Warning.Text") }
   /// Enable WEB Proxy?
   public static var proxySettingsWebWarningTitle: String  { return L10n.tr("Localizable", "ProxySettings.Web.Warning.Title") }
@@ -14656,7 +14656,7 @@ public final class L10n {
   public static var reactionsPopular: String  { return L10n.tr("Localizable", "Reactions.Popular") }
   /// Recently Used
   public static var reactionsRecentlyUsed: String  { return L10n.tr("Localizable", "Reactions.RecentlyUsed") }
-  /// Unlock additional reactions by subscribing to Telegram Premium
+  /// Unlock additional reactions by subscribing to Ansible Premium
   public static var reactionsPreviewPremium: String  { return L10n.tr("Localizable", "Reactions.Preview.Premium") }
   /// Unlock Premium Reactions
   public static var reactionsPreviewUnlock: String  { return L10n.tr("Localizable", "Reactions.Preview.Unlock") }
@@ -14746,11 +14746,11 @@ public final class L10n {
   public static var reportReasonOtherPlaceholder: String  { return L10n.tr("Localizable", "ReportReason.Other.Placeholder") }
   /// Settings
   public static var requestAccesErrorConirmSettings: String  { return L10n.tr("Localizable", "RequestAcces.Error.Conirm.Settings") }
-  /// Telegram needs microphone access so that you can make calls.
+  /// Ansible needs microphone access so that you can make calls.
   public static var requestAccesErrorHaveNotAccessCall: String  { return L10n.tr("Localizable", "RequestAcces.Error.HaveNotAccess.Call") }
-  /// Telegram needs access to your microphone and camera to record video messages.
+  /// Ansible needs access to your microphone and camera to record video messages.
   public static var requestAccesErrorHaveNotAccessVideoMessages: String  { return L10n.tr("Localizable", "RequestAcces.Error.HaveNotAccess.VideoMessages") }
-  /// Telegram needs access to your microphone to record voice messages.
+  /// Ansible needs access to your microphone to record voice messages.
   public static var requestAccesErrorHaveNotAccessVoiceMessages: String  { return L10n.tr("Localizable", "RequestAcces.Error.HaveNotAccess.VoiceMessages") }
   /// Request to Join
   public static var requestJoinButton: String  { return L10n.tr("Localizable", "RequestJoin.Button") }
@@ -15024,7 +15024,7 @@ public final class L10n {
   public static var richTextEditorWindowControllerChooseUser: String  { return L10n.tr("Localizable", "RichTextEditor.WindowController.ChooseUser") }
   /// Text to copy
   public static var richTextEditorWindowControllerCopyTextPlaceholder: String  { return L10n.tr("Localizable", "RichTextEditor.WindowController.CopyTextPlaceholder") }
-  /// AI tools in the rich text editor are available with Telegram Premium.
+  /// AI tools in the rich text editor are available with Ansible Premium.
   public static var richTextEditorWindowAiPremiumRequired: String  { return L10n.tr("Localizable", "RichTextEditorWindow.AiPremiumRequired") }
   /// Code Block
   public static var richTextEditorWindowCodeBlock: String  { return L10n.tr("Localizable", "RichTextEditorWindow.CodeBlock") }
@@ -15036,15 +15036,15 @@ public final class L10n {
   public static var richTextEditorWindowEditWithoutFormatting: String  { return L10n.tr("Localizable", "RichTextEditorWindow.EditWithoutFormatting") }
   /// You can't send an empty message.
   public static var richTextEditorWindowEmptyMessage: String  { return L10n.tr("Localizable", "RichTextEditorWindow.EmptyMessage") }
-  /// Editing a message with this formatting will require [Telegram Premium](premium).
+  /// Editing a message with this formatting will require [Ansible Premium](premium).
   public static var richTextEditorWindowPremiumToastEdit: String  { return L10n.tr("Localizable", "RichTextEditorWindow.PremiumToastEdit") }
-  /// Sending a message with this formatting will require [Telegram Premium](premium).
+  /// Sending a message with this formatting will require [Ansible Premium](premium).
   public static var richTextEditorWindowPremiumToastSend: String  { return L10n.tr("Localizable", "RichTextEditorWindow.PremiumToastSend") }
   /// Pull Quote
   public static var richTextEditorWindowPullQuote: String  { return L10n.tr("Localizable", "RichTextEditorWindow.PullQuote") }
   /// Remove Formatting
   public static var richTextEditorWindowRemoveFormatting: String  { return L10n.tr("Localizable", "RichTextEditorWindow.RemoveFormatting") }
-  /// This message includes rich formatting, which requires Telegram Premium.
+  /// This message includes rich formatting, which requires Ansible Premium.
   public static var richTextEditorWindowRichFormattingRequiresPremium: String  { return L10n.tr("Localizable", "RichTextEditorWindow.RichFormattingRequiresPremium") }
   /// Send
   public static var richTextEditorWindowSend: String  { return L10n.tr("Localizable", "RichTextEditorWindow.Send") }
@@ -15080,7 +15080,7 @@ public final class L10n {
   public static var searchAdRemoveAd: String  { return L10n.tr("Localizable", "Search.Ad.RemoveAd") }
   /// Sponsor Info
   public static var searchAdSponsorInfo: String  { return L10n.tr("Localizable", "Search.Ad.SponsorInfo") }
-  /// You can turn off ads by subscribing to Telegram Premium.
+  /// You can turn off ads by subscribing to Ansible Premium.
   public static var searchAdAboutRemove: String  { return L10n.tr("Localizable", "Search.Ad.About.Remove") }
   /// Do you want to clear your search history?
   public static var searchConfirmClearHistory: String  { return L10n.tr("Localizable", "Search.Confirm.ClearHistory") }
@@ -15152,7 +15152,7 @@ public final class L10n {
   public static var searchFieldSearch: String  { return L10n.tr("Localizable", "SearchField.Search") }
   /// Off
   public static var secretTimerOff: String  { return L10n.tr("Localizable", "SecretTimer.Off") }
-  /// Sorry, your Telegram app is out of date and can't handle this request. Please update Telegram.
+  /// Sorry, your Ansible app is out of date and can't handle this request. Please update Ansible.
   public static var secureIdAppVersionOutdated: String  { return L10n.tr("Localizable", "SecureId.AppVersionOutdated") }
   /// Please correct errors
   public static var secureIdCorrectErrors: String  { return L10n.tr("Localizable", "SecureId.CorrectErrors") }
@@ -15160,15 +15160,15 @@ public final class L10n {
   public static var secureIdDeleteAddress: String  { return L10n.tr("Localizable", "SecureId.DeleteAddress") }
   /// Delete Document
   public static var secureIdDeleteIdentity: String  { return L10n.tr("Localizable", "SecureId.DeleteIdentity") }
-  /// Delete Telegram Passport
+  /// Delete Ansible Passport
   public static var secureIdDeletePassport: String  { return L10n.tr("Localizable", "SecureId.DeletePassport") }
   /// Email Address
   public static var secureIdEmail: String  { return L10n.tr("Localizable", "SecureId.Email") }
   /// Identity Document
   public static var secureIdIdentityDocument: String  { return L10n.tr("Localizable", "SecureId.IdentityDocument") }
-  /// With Telegram Passport you can easily sign up for websites and services that require identity verification.\n\nYour information, personal data, and documents are protected by end-to-end encryption. Nobody, including Telegram, can access them without your permission.
+  /// With Ansible Passport you can easily sign up for websites and services that require identity verification.\n\nYour information, personal data, and documents are protected by end-to-end encryption. Nobody, including Ansible, can access them without your permission.
   public static var secureIdInfo: String  { return L10n.tr("Localizable", "SecureId.Info") }
-  /// Please log in to your account to use Telegram Passport
+  /// Please log in to your account to use Ansible Passport
   public static var secureIdLoginText: String  { return L10n.tr("Localizable", "SecureId.LoginText") }
   /// Phone Number
   public static var secureIdPhoneNumber: String  { return L10n.tr("Localizable", "SecureId.PhoneNumber") }
@@ -15252,11 +15252,11 @@ public final class L10n {
   public static var secureIdConfirmDeleteAddress: String  { return L10n.tr("Localizable", "SecureId.Confirm.DeleteAddress") }
   /// Are you sure you want to delete this document?
   public static var secureIdConfirmDeleteDocument: String  { return L10n.tr("Localizable", "SecureId.Confirm.DeleteDocument") }
-  /// Please create a password to protect your passport info. You will also be asked to enter it when you log in to Telegram.
+  /// Please create a password to protect your passport info. You will also be asked to enter it when you log in to Ansible.
   public static var secureIdCreatePasswordDescription: String  { return L10n.tr("Localizable", "SecureId.CreatePassword.Description") }
   /// PASSWORD
   public static var secureIdCreatePasswordHeader: String  { return L10n.tr("Localizable", "SecureId.CreatePassword.Header") }
-  /// Please create a password which will be used to encrypt your personal data.\n\nThis password will also be required whenever you log in to Telegram on a new device.
+  /// Please create a password which will be used to encrypt your personal data.\n\nThis password will also be required whenever you log in to Ansible on a new device.
   public static var secureIdCreatePasswordIntro: String  { return L10n.tr("Localizable", "SecureId.CreatePassword.Intro") }
   /// Enter your password
   public static var secureIdCreatePasswordPasswordInputPlaceholder: String  { return L10n.tr("Localizable", "SecureId.CreatePassword.PasswordInputPlaceholder") }
@@ -15434,11 +15434,11 @@ public final class L10n {
   public static var secureIdIdentityPlaceholderResidence: String  { return L10n.tr("Localizable", "SecureId.Identity.Placeholder.Residence") }
   /// The document must contain your full name and residential address, as well as a stamp/bar code/QR code/logo and the issue date. It must be less than three months old.
   public static var secureIdIdentityScanDescription: String  { return L10n.tr("Localizable", "SecureId.IdentityScan.Description") }
-  /// Are you sure you want to delete your Telegram Passport? All details will be lost.
+  /// Are you sure you want to delete your Ansible Passport? All details will be lost.
   public static var secureIdInfoDeletePassport: String  { return L10n.tr("Localizable", "SecureId.Info.DeletePassport") }
   /// More Info
   public static var secureIdInfoMore: String  { return L10n.tr("Localizable", "SecureId.Info.More") }
-  /// What is Telegram Passport?
+  /// What is Ansible Passport?
   public static var secureIdInfoTitle: String  { return L10n.tr("Localizable", "SecureId.Info.Title") }
   /// Please use latin characters only
   public static var secureIdInputErrorLatinOnly: String  { return L10n.tr("Localizable", "SecureId.InputError.LatinOnly") }
@@ -15448,7 +15448,7 @@ public final class L10n {
   public static var secureIdInsertPasswordNext: String  { return L10n.tr("Localizable", "SecureId.InsertPassword.Next") }
   /// Enter your password
   public static var secureIdInsertPasswordPassword: String  { return L10n.tr("Localizable", "SecureId.InsertPassword.Password") }
-  /// Enter your Telegram password to decrypt your data
+  /// Enter your Ansible password to decrypt your data
   public static var secureIdInsertPasswordSettingsDescription: String  { return L10n.tr("Localizable", "SecureId.InsertPassword.Settings.Description") }
   /// Email
   public static var secureIdInstallEmailTitle: String  { return L10n.tr("Localizable", "SecureId.InstallEmail.Title") }
@@ -15486,7 +15486,7 @@ public final class L10n {
   public static var secureIdPhoneNumberConfirmCodeInputPlaceholder: String  { return L10n.tr("Localizable", "SecureId.PhoneNumber.ConfirmCode.InputPlaceholder") }
   /// Code
   public static var secureIdPhoneNumberConfirmCodePlaceholder: String  { return L10n.tr("Localizable", "SecureId.PhoneNumber.ConfirmCode.Placeholder") }
-  /// Use the phone number you use for Telegram
+  /// Use the phone number you use for Ansible
   public static var secureIdPhoneNumberUseSameDesc: String  { return L10n.tr("Localizable", "SecureId.PhoneNumber.UseSame.Desc") }
   /// Code was sent to %@
   public static func secureIdRecoverPasswordSentEmailCode(_ p1: String) -> String {
@@ -15574,7 +15574,7 @@ public final class L10n {
   public static func secureIdUploadScanSingle(_ p1: String) -> String {
     return L10n.tr("Localizable", "SecureId.UploadScan.Single", p1)
   }
-  /// **Warning**: All data saved in your Telegram Passport will be lost.
+  /// **Warning**: All data saved in your Ansible Passport will be lost.
   public static var secureIdWarningDataLost: String  { return L10n.tr("Localizable", "SecureId.Warning.DataLost") }
   /// Since you didn't provide a recovery email when setting up your password, your remaining options are either to remember your password or to reset your account.
   public static var secureIdForgotPasswordNoEmail: String  { return L10n.tr("Localizable", "SecureId.forgotPassword.NoEmail") }
@@ -15606,7 +15606,7 @@ public final class L10n {
   public static var selectColorMyGifts: String  { return L10n.tr("Localizable", "SelectColor.MyGifts") }
   /// You don't have any gifts you can use as styles for your profile.\n\n[Browse gifts available for purchase >](browse)
   public static var selectColorNoGifts: String  { return L10n.tr("Localizable", "SelectColor.NoGifts") }
-  /// Subscribe to [Telegram Premium]() to choose a custom color for your name.
+  /// Subscribe to [Ansible Premium]() to choose a custom color for your name.
   public static var selectColorPremium: String  { return L10n.tr("Localizable", "SelectColor.Premium") }
   /// COLOR PREVIEW
   public static var selectColorPreview: String  { return L10n.tr("Localizable", "SelectColor.Preview") }
@@ -15794,7 +15794,7 @@ public final class L10n {
   public static var sessionModalControllerLastActive: String  { return L10n.tr("Localizable", "SessionModal.Controller.LastActive") }
   /// Couldn't find this location. Please try again.
   public static var sessionModalControllerLocationNotFound: String  { return L10n.tr("Localizable", "SessionModal.Controller.LocationNotFound") }
-  /// This session is from the official Telegram app
+  /// This session is from the official Ansible app
   public static var sessionModalControllerOfficialApp: String  { return L10n.tr("Localizable", "SessionModal.Controller.OfficialApp") }
   /// OS
   public static var sessionModalControllerOS: String  { return L10n.tr("Localizable", "SessionModal.Controller.OS") }
@@ -15826,7 +15826,7 @@ public final class L10n {
   public static var sessionsTerminateDescription: String  { return L10n.tr("Localizable", "Sessions.TerminateDescription") }
   /// Terminate all other sessions
   public static var sessionsTerminateOthers: String  { return L10n.tr("Localizable", "Sessions.TerminateOthers") }
-  /// Search results from Settings and the Telegram FAQ will appear here.
+  /// Search results from Settings and the Ansible FAQ will appear here.
   public static var settingsSearchEmptyItem: String  { return L10n.tr("Localizable", "SettingsSearch.EmptyItem") }
   /// RECENT
   public static var settingsSearchRecent: String  { return L10n.tr("Localizable", "SettingsSearch.Recent") }
@@ -16010,7 +16010,7 @@ public final class L10n {
   public static var shareIncompleteDelivery: String  { return L10n.tr("Localizable", "Share.IncompleteDelivery") }
   /// Copied to Clipboard
   public static var shareLinkCopied: String  { return L10n.tr("Localizable", "Share.Link.Copied") }
-  /// You selected %1$@ who charge Stars for messages. Would you like to pay %2$@ to send %3$@?
+  /// You selected %1$@ who charge Ansible Diamonds for messages. Would you like to pay %2$@ to send %3$@?
   public static func sharePayConfirmText(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "Share.Pay.Confirm.Text", p1, p2, p3)
   }
@@ -16334,7 +16334,7 @@ public final class L10n {
   public static var sidebarHide: String  { return L10n.tr("Localizable", "Sidebar.Hide") }
   /// Sidebar is not available in this chat
   public static var sidebarPeerRestricted: String  { return L10n.tr("Localizable", "Sidebar.Peer.Restricted") }
-  /// Subscribe to [Telegram Premium]() to unlock up to %d similar channels
+  /// Subscribe to [Ansible Premium]() to unlock up to %d similar channels
   public static func similarChannelAlertText(_ p1: Int) -> String {
     return L10n.tr("Localizable", "SimilarChannel.Alert.Text", p1)
   }
@@ -16409,7 +16409,7 @@ public final class L10n {
   /// until next round
   public static var starAuctionActiveListUntilNextDrop: String  { return L10n.tr("Localizable", "Star.Auction.ActiveList.UntilNextDrop") }
   /// Add at least %@ to increase your bid.
-  public static func starAuctionBidAddStars(_ p1: String) -> String {
+  public static func starAuctionBidAddDiamonds(_ p1: String) -> String {
     return L10n.tr("Localizable", "Star.Auction.Bid.AddStars", p1)
   }
   /// If you fall below the top %d, your bid will roll over to the next round.
@@ -16464,7 +16464,7 @@ public final class L10n {
   }
   /// Missed Bidders
   public static var starAuctionInfoMissedBidders: String  { return L10n.tr("Localizable", "Star.Auction.Info.MissedBidders") }
-  /// If your bid doesn't win after the final round, your Stars will be fully refunded.
+  /// If your bid doesn't win after the final round, your Ansible Diamonds will be fully refunded.
   public static var starAuctionInfoMissedBiddersDescription: String  { return L10n.tr("Localizable", "Star.Auction.Info.MissedBiddersDescription") }
   /// Join the battle for exclusive gifts.
   public static var starAuctionInfoSubtitle: String  { return L10n.tr("Localizable", "Star.Auction.Info.Subtitle") }
@@ -16530,7 +16530,7 @@ public final class L10n {
   public static func starAuctionPreviewLearnMore(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Star.Auction.Preview.LearnMore", p1, p2)
   }
-  /// Learn more about Telegram Gifts >
+  /// Learn more about Ansible Gifts >
   public static var starAuctionPreviewLearnMoreAboutGifts: String  { return L10n.tr("Localizable", "Star.Auction.Preview.LearnMoreAboutGifts") }
   /// %@ left
   public static func starAuctionPreviewLeft(_ p1: String) -> String {
@@ -16580,19 +16580,19 @@ public final class L10n {
   public static func starAuctionSendPreviewSoldOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Star.Auction.SendPreview.Sold_other", p1)
   }
-  /// Buy stars for your expiring subscriptions.
+  /// Buy Ansible Diamonds for your expiring subscriptions.
   public static var starBuyCustomSubs: String  { return L10n.tr("Localizable", "Star.Buy.Custom_subs") }
-  /// With Stars, **%@** will be able to unlock content and services on Telegram. [See Examples >](examples)
+  /// With Ansible Diamonds, **%@** will be able to unlock content and services on Ansible. [See Examples >](examples)
   public static func starBuyScreenGift(_ p1: String) -> String {
     return L10n.tr("Localizable", "Star.BuyScreen.Gift", p1)
   }
   /// MY SUBSCRIPTIONS
   public static var starBuyScreenMySubs: String  { return L10n.tr("Localizable", "Star.BuyScreen.MySubs") }
-  /// Buy Stars to keep your subscription to **%@**.
+  /// Buy Ansible Diamonds to keep your subscription to **%@**.
   public static func starBuyScreenProlongSubs(_ p1: String) -> String {
     return L10n.tr("Localizable", "Star.BuyScreen.ProlongSubs", p1)
   }
-  /// Buy Stars to subscribe to **%@**.
+  /// Buy Ansible Diamonds to subscribe to **%@**.
   public static func starBuyScreenPurschaseSub(_ p1: String) -> String {
     return L10n.tr("Localizable", "Star.BuyScreen.PurschaseSub", p1)
   }
@@ -16606,15 +16606,15 @@ public final class L10n {
   }
   /// Place a Bid
   public static var starGiftPreviewPlaceBid: String  { return L10n.tr("Localizable", "Star.Gift.Preview.PlaceBid") }
-  /// Buy Stars and use them in **%@** and other mini apps.
+  /// Buy Ansible Diamonds and use them in **%@** and other mini apps.
   public static func starListBuyAndUse(_ p1: String) -> String {
     return L10n.tr("Localizable", "Star.List.BuyAndUse", p1)
   }
-  /// Buy More Stars
-  public static var starListBuyMoreStars: String  { return L10n.tr("Localizable", "Star.List.BuyMoreStars") }
-  /// Get Stars
-  public static var starListGetStars: String  { return L10n.tr("Localizable", "Star.List.GetStars") }
-  /// Choose how many Stars you'd like to buy.
+  /// Buy More Ansible Diamonds
+  public static var starListBuyMoreDiamonds: String  { return L10n.tr("Localizable", "Star.List.BuyMoreStars") }
+  /// Get Ansible Diamonds
+  public static var starListGetDiamonds: String  { return L10n.tr("Localizable", "Star.List.GetStars") }
+  /// Choose how many Ansible Diamonds you'd like to buy.
   public static var starListHowMany: String  { return L10n.tr("Localizable", "Star.List.HowMany") }
   /// Balance\n%1$@**%2$@**
   public static func starListMyBalance(_ p1: String, _ p2: String) -> String {
@@ -16622,29 +16622,29 @@ public final class L10n {
   }
   /// Refund
   public static var starListRefund: String  { return L10n.tr("Localizable", "Star.List.Refund") }
-  /// You don't have enough Stars on your balance to complete this action.
+  /// You don't have enough Ansible Diamonds on your balance to complete this action.
   public static var starListSpendTopupUnavailable: String  { return L10n.tr("Localizable", "Star.List.SpendTopupUnavailable") }
-  /// %d Stars Needed
-  public static func starListStarsNeededOther(_ p1: Int) -> String {
+  /// %d Ansible Diamonds Needed
+  public static func starListDiamondsNeededOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Star.List.StarsNeeded_other", p1)
   }
   /// Ansible Diamonds
-  public static var starListTelegramStars: String  { return L10n.tr("Localizable", "Star.List.TelegramStars") }
+  public static var starListAnsibleDiamonds: String  { return L10n.tr("Localizable", "Star.List.TelegramStars") }
   /// Top Up
   public static var starListTopUp: String  { return L10n.tr("Localizable", "Star.List.TopUp") }
-  /// By proceeding and purchasing Stars, you agree with the [Terms and Conditions](https://telegram.org/tos/stars).
+  /// By proceeding and purchasing Ansible Diamonds, you agree with the [Terms and Conditions](https://ansible.su/tos/diamonds).
   public static var starListTos: String  { return L10n.tr("Localizable", "Star.List.Tos") }
   /// Stats
   public static var starListWithdraw: String  { return L10n.tr("Localizable", "Star.List.Withdraw") }
   /// your balance
   public static var starListYourBalance: String  { return L10n.tr("Localizable", "Star.List.YourBalance") }
-  /// %d Stars Added to Your Balance
+  /// %d Ansible Diamonds Added to Your Balance
   public static func starListBuySuccessOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Star.List.Buy.Success_other", p1)
   }
-  /// Buy Stars to unlock content and services in mini apps on Telegram.
+  /// Buy Ansible Diamonds to unlock content and services in mini apps on Ansible.
   public static var starListBuyAndUserNobot: String  { return L10n.tr("Localizable", "Star.List.BuyAndUser.Nobot") }
-  /// %d Stars
+  /// %d Ansible Diamonds
   public static func starListItemCountOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Star.List.Item.Count_other", p1)
   }
@@ -16654,8 +16654,8 @@ public final class L10n {
   public static var starListTransactionAds: String  { return L10n.tr("Localizable", "Star.List.Transaction.Ads") }
   /// App Store
   public static var starListTransactionAppStore: String  { return L10n.tr("Localizable", "Star.List.Transaction.AppStore") }
-  /// Fragment
-  public static var starListTransactionFragment: String  { return L10n.tr("Localizable", "Star.List.Transaction.Fragment") }
+  /// Crystal Piece
+  public static var starListTransactionCrystalPiece: String  { return L10n.tr("Localizable", "Star.List.Transaction.Fragment") }
   /// Play Market
   public static var starListTransactionPlayMarket: String  { return L10n.tr("Localizable", "Star.List.Transaction.PlayMarket") }
   /// Premium Bot
@@ -16744,7 +16744,7 @@ public final class L10n {
   public static func starNftSellFloor(_ p1: String) -> String {
     return L10n.tr("Localizable", "Star.Nft.Sell.Floor", p1)
   }
-  /// PRICE IN STARS
+  /// PRICE IN DIAMONDS
   public static var starNftSellHeader: String  { return L10n.tr("Localizable", "Star.Nft.Sell.Header") }
   /// You will receive **%@**.
   public static func starNftSellInfo(_ p1: String) -> String {
@@ -16792,7 +16792,7 @@ public final class L10n {
   public static func starPurchasePaidMediaText(_ p1: String, _ p2: String, _ p3: String) -> String {
     return L10n.tr("Localizable", "Star.Purchase.PaidMedia.Text", p1, p2, p3)
   }
-  /// for %d Stars
+  /// for %d Ansible Diamonds
   public static func starPurchaseTextInOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Star.Purchase.Text.In_other", p1)
   }
@@ -16852,7 +16852,7 @@ public final class L10n {
   public static var starTransacitonReferredUser: String  { return L10n.tr("Localizable", "Star.Transaciton.ReferredUser") }
   /// Availability
   public static var starTransactionAvailability: String  { return L10n.tr("Localizable", "Star.Transaction.Availability") }
-  /// By subscribing you agree to the [Terms of Service](https://telegram.org)
+  /// By subscribing you agree to the [Terms of Service](https://ansible.su/tos)
   public static var starTransactionBotTos: String  { return L10n.tr("Localizable", "Star.Transaction.BotTos") }
   /// %d Messages
   public static func starTransactionBroadcastMessagesOther(_ p1: Int) -> String {
@@ -16894,7 +16894,7 @@ public final class L10n {
   public static var starTransactionReason: String  { return L10n.tr("Localizable", "Star.Transaction.Reason") }
   /// [Affiliate Program](affiliate)
   public static var starTransactionReasonAffiliate: String  { return L10n.tr("Localizable", "Star.Transaction.ReasonAffiliate") }
-  /// sell for %d stars
+  /// sell for %d Ansible Diamonds
   public static func starTransactionSaleForOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Star.Transaction.SaleFor_other", p1)
   }
@@ -16902,11 +16902,11 @@ public final class L10n {
   public static var starTransactionSendGift: String  { return L10n.tr("Localizable", "Star.Transaction.SendGift") }
   /// To
   public static var starTransactionTo: String  { return L10n.tr("Localizable", "Star.Transaction.To") }
-  /// Review the [Terms of Services](https://telegram.org/tos/stars) for Stars.
+  /// Review the [Terms of Services](https://ansible.su/tos/diamonds) for Ansible Diamonds.
   public static var starTransactionTos: String  { return L10n.tr("Localizable", "Star.Transaction.Tos") }
   /// Transaction URL
   public static var starTransactionTransactionUrl: String  { return L10n.tr("Localizable", "Star.Transaction.TransactionUrl") }
-  /// [Unknown User](https://fragment.com/stars)
+  /// [Unknown User](https://crystalpiece.su/stars)
   public static var starTransactionUnknwonUser: String  { return L10n.tr("Localizable", "Star.Transaction.UnknwonUser") }
   /// Value
   public static var starTransactionValue: String  { return L10n.tr("Localizable", "Star.Transaction.Value") }
@@ -16930,7 +16930,7 @@ public final class L10n {
   public static var starTransactionButtonUpgrade: String  { return L10n.tr("Localizable", "Star.Transaction.Button.Upgrade") }
   /// Upgrade for Free
   public static var starTransactionButtonUpgradeFree: String  { return L10n.tr("Localizable", "Star.Transaction.Button.UpgradeFree") }
-  /// Convert Gift to Stars
+  /// Convert Gift to Ansible Diamonds
   public static var starTransactionConvertAlertHeader: String  { return L10n.tr("Localizable", "Star.Transaction.ConvertAlert.Header") }
   /// Do you want to convert this gift from **%1$@** to **%2$@**?\n\nThis action cannot be undone.
   public static func starTransactionConvertAlertInfo(_ p1: String, _ p2: String) -> String {
@@ -16938,7 +16938,7 @@ public final class L10n {
   }
   /// Convert
   public static var starTransactionConvertAlertOK: String  { return L10n.tr("Localizable", "Star.Transaction.ConvertAlert.OK") }
-  /// Sorry, you can't convert this gift to stars anymore.
+  /// Sorry, you can't convert this gift to Ansible Diamonds anymore.
   public static var starTransactionConvertAlertTooLate: String  { return L10n.tr("Localizable", "Star.Transaction.ConvertAlert.TooLate") }
   /// Do you want to convert this gift from **%1$@** to **%2$@**?\n\nConversion option available until %3$@.\n\nThis action cannot be undone.
   public static func starTransactionConvertAlertInfoUntil(_ p1: String, _ p2: String, _ p3: String) -> String {
@@ -16982,8 +16982,8 @@ public final class L10n {
   public static var starTransactionStarGiftChannelDisplayOnMyPage: String  { return L10n.tr("Localizable", "Star.Transaction.StarGift.Channel.DisplayOnMyPage") }
   /// Hide from Gifts
   public static var starTransactionStarGiftChannelHideFromMyPage: String  { return L10n.tr("Localizable", "Star.Transaction.StarGift.Channel.HideFromMyPage") }
-  /// You Successfully converted Gift to Stars
-  public static var starTransactionStarGiftConvertToStarsAlert: String  { return L10n.tr("Localizable", "Star.Transaction.StarGift.ConvertToStars.Alert") }
+  /// You Successfully converted Gift to Ansible Diamonds
+  public static var starTransactionStarGiftConvertToDiamondsAlert: String  { return L10n.tr("Localizable", "Star.Transaction.StarGift.ConvertToStars.Alert") }
   /// This gift is now visible on your profile.
   public static var starTransactionStarGiftDisplayOnPageAlert: String  { return L10n.tr("Localizable", "Star.Transaction.StarGift.DisplayOnPage.Alert") }
   /// The gift is no longer displayed in your profile.
@@ -16994,9 +16994,9 @@ public final class L10n {
   public static var starTransactionVisibilityHide: String  { return L10n.tr("Localizable", "Star.Transaction.Visibility.Hide") }
   /// Visible on your profile
   public static var starTransactionVisibilityInfo: String  { return L10n.tr("Localizable", "Star.Transaction.Visibility.Info") }
-  /// Open Fragment
+  /// Open Crystal Piece
   public static var starGiftActionLockedOpen: String  { return L10n.tr("Localizable", "StarGift.ActionLockedOpen") }
-  /// Transfer this gift to your Telegram account on Fragment to unlock this action.
+  /// Transfer this gift to your Ansible account on Crystal Piece to unlock this action.
   public static var starGiftActionLockedText: String  { return L10n.tr("Localizable", "StarGift.ActionLockedText") }
   /// Action Locked
   public static var starGiftActionLockedTitle: String  { return L10n.tr("Localizable", "StarGift.ActionLockedTitle") }
@@ -17016,7 +17016,7 @@ public final class L10n {
   public static func starGiftViewAllVariants(_ p1: String) -> String {
     return L10n.tr("Localizable", "StarGift.ViewAllVariants", p1)
   }
-  /// https://fragment.com/my/gifts
+  /// https://crystalpiece.su/my/gifts
   public static var starGiftActionLockedURL: String  { return L10n.tr("Localizable", "StarGift.ActionLocked.URL") }
   /// Add message...
   public static var starGiftAddMessageInputPlaceholder: String  { return L10n.tr("Localizable", "StarGift.AddMessage.InputPlaceholder") }
@@ -17110,12 +17110,12 @@ public final class L10n {
   }
   /// Gifts are collectible items you can trade or showcase on your profile.
   public static var starGiftLearnAboutDescription: String  { return L10n.tr("Localizable", "StarGift.LearnAbout.Description") }
-  /// Telegram Gifts
+  /// Ansible Gifts
   public static var starGiftLearnAboutTitle: String  { return L10n.tr("Localizable", "StarGift.LearnAbout.Title") }
   /// You don't have other gifts from this collection.
   public static var starGiftMarketplaceNoOtherGifts: String  { return L10n.tr("Localizable", "StarGift.Marketplace.NoOtherGifts") }
-  /// Show listings for stars only
-  public static var starGiftMarketplaceShowStarsOnly: String  { return L10n.tr("Localizable", "StarGift.Marketplace.ShowStarsOnly") }
+  /// Show listings for Ansible Diamonds only
+  public static var starGiftMarketplaceShowDiamondsOnly: String  { return L10n.tr("Localizable", "StarGift.Marketplace.ShowStarsOnly") }
   /// %1$d SUITABLE GIFTS ON SALE
   public static func starGiftMarketplaceSuitableGiftsOnSale(_ p1: Int) -> String {
     return L10n.tr("Localizable", "StarGift.Marketplace.SuitableGiftsOnSale", p1)
@@ -17168,8 +17168,8 @@ public final class L10n {
   }
   /// Confirm Offer
   public static var starGiftOfferConfirmTitle: String  { return L10n.tr("Localizable", "StarGift.Offer.ConfirmTitle") }
-  /// Stars
-  public static var starGiftOfferCurrencyStars: String  { return L10n.tr("Localizable", "StarGift.Offer.CurrencyStars") }
+  /// Ansible Diamonds
+  public static var starGiftOfferCurrencyDiamonds: String  { return L10n.tr("Localizable", "StarGift.Offer.CurrencyStars") }
   /// TON
   public static var starGiftOfferCurrencyTon: String  { return L10n.tr("Localizable", "StarGift.Offer.CurrencyTon") }
   /// Offer Duration
@@ -17200,7 +17200,7 @@ public final class L10n {
   public static var starGiftPriceDecreaseHint: String  { return L10n.tr("Localizable", "StarGift.PriceDecrease.Hint") }
   /// See how this price will decrease >
   public static var starGiftPriceDecreasePreview: String  { return L10n.tr("Localizable", "StarGift.PriceDecrease.Preview") }
-  /// Learn more about wearing Telegram Gifts >
+  /// Learn more about wearing Ansible Gifts >
   public static var starGiftSelfAuctionLearnMore: String  { return L10n.tr("Localizable", "StarGift.SelfAuction.LearnMore") }
   /// limited
   public static var starGiftSelfAuctionLimited: String  { return L10n.tr("Localizable", "StarGift.SelfAuction.Limited") }
@@ -17208,8 +17208,8 @@ public final class L10n {
   public static var starGiftSelfAuctionUpgraded: String  { return L10n.tr("Localizable", "StarGift.SelfAuction.Upgraded") }
   /// The seller only accepts TON as payment.
   public static var starGiftSellAlertOnlyTon: String  { return L10n.tr("Localizable", "StarGift.Sell.Alert.OnlyTon") }
-  /// Pay in Stars
-  public static var starGiftSellAlertPayInStars: String  { return L10n.tr("Localizable", "StarGift.Sell.Alert.PayInStars") }
+  /// Pay in Ansible Diamonds
+  public static var starGiftSellAlertPayInDiamonds: String  { return L10n.tr("Localizable", "StarGift.Sell.Alert.PayInStars") }
   /// Pay in TON
   public static var starGiftSellAlertPayInTon: String  { return L10n.tr("Localizable", "StarGift.Sell.Alert.PayInTon") }
   /// Confirm Payment
@@ -17228,7 +17228,7 @@ public final class L10n {
   public static func starGiftValuePayForUpgrade(_ p1: String) -> String {
     return L10n.tr("Localizable", "StarGift.Value.PayForUpgrade", p1)
   }
-  /// The average sale price of **%@** gifts on Telegram and Fragment over the past month.
+  /// The average sale price of **%@** gifts on Ansible and Crystal Piece over the past month.
   public static func starGiftValueDescriptionAverage(_ p1: String) -> String {
     return L10n.tr("Localizable", "StarGift.Value.Description.Average", p1)
   }
@@ -17236,246 +17236,246 @@ public final class L10n {
   public static func starGiftValueDescriptionLastSale(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "StarGift.Value.Description.LastSale", p1, p2)
   }
-  /// %d %@ for sale on Fragment >
-  public static func starGiftValueListingFragment(_ p1: Int, _ p2: String) -> String {
+  /// %d %@ for sale on Crystal Piece >
+  public static func starGiftValueListingCrystalPiece(_ p1: Int, _ p2: String) -> String {
     return L10n.tr("Localizable", "StarGift.Value.Listing.Fragment", p1, p2)
   }
-  /// %d %@ for sale on Telegram >
-  public static func starGiftValueListingTelegram(_ p1: Int, _ p2: String) -> String {
+  /// %d %@ for sale on Ansible >
+  public static func starGiftValueListingAnsible(_ p1: Int, _ p2: String) -> String {
     return L10n.tr("Localizable", "StarGift.Value.Listing.Telegram", p1, p2)
   }
   /// learn more
   public static var starGiftValueRowBadge: String  { return L10n.tr("Localizable", "StarGift.Value.Row.Badge") }
   /// Value
   public static var starGiftValueRowLabel: String  { return L10n.tr("Localizable", "StarGift.Value.Row.Label") }
-  /// Fragment
-  public static var starGiftValueSourceFragment: String  { return L10n.tr("Localizable", "StarGift.Value.Source.Fragment") }
-  /// Telegram
-  public static var starGiftValueSourceTelegram: String  { return L10n.tr("Localizable", "StarGift.Value.Source.Telegram") }
+  /// Crystal Piece
+  public static var starGiftValueSourceCrystalPiece: String  { return L10n.tr("Localizable", "StarGift.Value.Source.Fragment") }
+  /// Ansible
+  public static var starGiftValueSourceAnsible: String  { return L10n.tr("Localizable", "StarGift.Value.Source.Telegram") }
   /// This option is available only for gifts priced above %1$@.
   public static func starGiftNftResaleMinPriceInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "StarGiftNft.ResaleMinPriceInfo", p1)
   }
   /// This gift was downgraded because a request to refund the payment related to this gift was made, and the money was returned.
   public static var starTransactionGiftRefundedInfo: String  { return L10n.tr("Localizable", "StarTransaction.GiftRefundedInfo") }
-  /// %@ Gift Stars to Friends
-  public static func starsGiftToFriends(_ p1: String) -> String {
+  /// %@ Gift Ansible Diamonds to Friends
+  public static func diamondsGiftToFriends(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.GiftToFriends", p1)
   }
-  /// You have enough stars. [Buy More]()
-  public static var starsYouHaveEnough: String  { return L10n.tr("Localizable", "Stars.YouHaveEnough") }
+  /// You have enough Ansible Diamonds. [Buy More]()
+  public static var diamondsYouHaveEnough: String  { return L10n.tr("Localizable", "Stars.YouHaveEnough") }
   /// Buy Ads
-  public static var starsBalanceBuyAds: String  { return L10n.tr("Localizable", "Stars.Balance.BuyAds") }
-  /// Use Stars to unlock content and services on Telegram. [See Examples >](apps)
-  public static var starsExampleAppsText: String  { return L10n.tr("Localizable", "Stars.ExampleApps.Text") }
-  /// Use Stars to unlock content and services on Telegram.
-  public static var starsGiftServiceInfo: String  { return L10n.tr("Localizable", "Stars.Gift.ServiceInfo") }
-  /// Gift Stars
-  public static var starsGiftTitle: String  { return L10n.tr("Localizable", "Stars.Gift.Title") }
+  public static var diamondsBalanceBuyAds: String  { return L10n.tr("Localizable", "Stars.Balance.BuyAds") }
+  /// Use Ansible Diamonds to unlock content and services on Ansible. [See Examples >](apps)
+  public static var diamondsExampleAppsText: String  { return L10n.tr("Localizable", "Stars.ExampleApps.Text") }
+  /// Use Ansible Diamonds to unlock content and services on Ansible.
+  public static var diamondsGiftServiceInfo: String  { return L10n.tr("Localizable", "Stars.Gift.ServiceInfo") }
+  /// Gift Ansible Diamonds
+  public static var diamondsGiftTitle: String  { return L10n.tr("Localizable", "Stars.Gift.Title") }
   /// Buy a Gift for %@
-  public static func starsGiftPreviewBuy(_ p1: String) -> String {
+  public static func diamondsGiftPreviewBuy(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.GiftPreview.Buy", p1)
   }
   /// Buy %d Gifts for %@
-  public static func starsGiftPreviewBuyMultiOther(_ p1: Int, _ p2: String) -> String {
+  public static func diamondsGiftPreviewBuyMultiOther(_ p1: Int, _ p2: String) -> String {
     return L10n.tr("Localizable", "Stars.GiftPreview.BuyMulti_other", p1, p2)
   }
   /// CUSTOMIZE YOUR GIFT
-  public static var starsGiftPreviewCustomize: String  { return L10n.tr("Localizable", "Stars.GiftPreview.Customize") }
+  public static var diamondsGiftPreviewCustomize: String  { return L10n.tr("Localizable", "Stars.GiftPreview.Customize") }
   /// Add this gift to your profile or convert it to %@
-  public static func starsGiftPreviewDisplay(_ p1: String) -> String {
+  public static func diamondsGiftPreviewDisplay(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.GiftPreview.Display", p1)
   }
   /// Hide My Name
-  public static var starsGiftPreviewHideMyName: String  { return L10n.tr("Localizable", "Stars.GiftPreview.HideMyName") }
+  public static var diamondsGiftPreviewHideMyName: String  { return L10n.tr("Localizable", "Stars.GiftPreview.HideMyName") }
   /// Enter Message
-  public static var starsGiftPreviewMessagePlaceholder: String  { return L10n.tr("Localizable", "Stars.GiftPreview.MessagePlaceholder") }
+  public static var diamondsGiftPreviewMessagePlaceholder: String  { return L10n.tr("Localizable", "Stars.GiftPreview.MessagePlaceholder") }
   /// Send a Gift for %@
-  public static func starsGiftPreviewSend(_ p1: String) -> String {
+  public static func diamondsGiftPreviewSend(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.GiftPreview.Send", p1)
   }
   /// Send %d Gifts for %@
-  public static func starsGiftPreviewSendMultiOther(_ p1: Int, _ p2: String) -> String {
+  public static func diamondsGiftPreviewSendMultiOther(_ p1: Int, _ p2: String) -> String {
     return L10n.tr("Localizable", "Stars.GiftPreview.SendMulti_other", p1, p2)
   }
   /// Add this gift to your channel's profile or convert it to %@
-  public static func starsGiftPreviewChannelDisplay(_ p1: String) -> String {
+  public static func diamondsGiftPreviewChannelDisplay(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.GiftPreview.Channel.Display", p1)
   }
   /// Hide my name and message from visitors to %1$@'s profile. %2$@ will still see your name and message.
-  public static func starsGiftPreviewHideMyNameInfo(_ p1: String, _ p2: String) -> String {
+  public static func diamondsGiftPreviewHideMyNameInfo(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Stars.GiftPreview.HideMyName.Info", p1, p2)
   }
   /// Bot API
-  public static var starsIntroTransactionTelegramBotApiSubtitle: String  { return L10n.tr("Localizable", "Stars.Intro.Transaction.TelegramBotApi.Subtitle") }
+  public static var diamondsIntroTransactionAnsibleBotApiSubtitle: String  { return L10n.tr("Localizable", "Stars.Intro.Transaction.TelegramBotApi.Subtitle") }
   /// Paid Broadcast
-  public static var starsIntroTransactionTelegramBotApiTitle: String  { return L10n.tr("Localizable", "Stars.Intro.Transaction.TelegramBotApi.Title") }
-  /// What are Stars?
-  public static var starsPromoHeader: String  { return L10n.tr("Localizable", "Stars.Promo.Header") }
+  public static var diamondsIntroTransactionAnsibleBotApiTitle: String  { return L10n.tr("Localizable", "Stars.Intro.Transaction.TelegramBotApi.Title") }
+  /// What are Ansible Diamonds?
+  public static var diamondsPromoHeader: String  { return L10n.tr("Localizable", "Stars.Promo.Header") }
   /// Ansible Diamonds allow users to:
-  public static var starsPromoHeaderInfo: String  { return L10n.tr("Localizable", "Stars.Promo.HeaderInfo") }
-  /// Give your friends gifts that can be added to their profiles or converted to Stars.
-  public static var starsPromoOption1Info: String  { return L10n.tr("Localizable", "Stars.Promo.Option1.Info") }
+  public static var diamondsPromoHeaderInfo: String  { return L10n.tr("Localizable", "Stars.Promo.HeaderInfo") }
+  /// Give your friends gifts that can be added to their profiles or converted to Ansible Diamonds.
+  public static var diamondsPromoOption1Info: String  { return L10n.tr("Localizable", "Stars.Promo.Option1.Info") }
   /// Send Gifts to Friends
-  public static var starsPromoOption1Title: String  { return L10n.tr("Localizable", "Stars.Promo.Option1.Title") }
-  /// Buy additional content and services in Telegram mini apps. [See Examples >](examples)
-  public static var starsPromoOption2Info: String  { return L10n.tr("Localizable", "Stars.Promo.Option2.Info") }
-  /// Use Stars in mini apps
-  public static var starsPromoOption2Title: String  { return L10n.tr("Localizable", "Stars.Promo.Option2.Title") }
-  /// Get access to paid content and services in Telegram channels.
-  public static var starsPromoOption3Info: String  { return L10n.tr("Localizable", "Stars.Promo.Option3.Info") }
+  public static var diamondsPromoOption1Title: String  { return L10n.tr("Localizable", "Stars.Promo.Option1.Title") }
+  /// Buy additional content and services in Ansible mini apps. [See Examples >](examples)
+  public static var diamondsPromoOption2Info: String  { return L10n.tr("Localizable", "Stars.Promo.Option2.Info") }
+  /// Use Ansible Diamonds in mini apps
+  public static var diamondsPromoOption2Title: String  { return L10n.tr("Localizable", "Stars.Promo.Option2.Title") }
+  /// Get access to paid content and services in Ansible channels.
+  public static var diamondsPromoOption3Info: String  { return L10n.tr("Localizable", "Stars.Promo.Option3.Info") }
   /// Unlock content in channels
-  public static var starsPromoOption3Title: String  { return L10n.tr("Localizable", "Stars.Promo.Option3.Title") }
-  /// Support your favorite channels by sending Star reactions to their posts.
-  public static var starsPromoOption4Info: String  { return L10n.tr("Localizable", "Stars.Promo.Option4.Info") }
-  /// Send Star reactions
-  public static var starsPromoOption4Title: String  { return L10n.tr("Localizable", "Stars.Promo.Option4.Title") }
-  /// Get new subscribers and boosts for your channels by giving away Stars.
-  public static var starsPromoOption5Info: String  { return L10n.tr("Localizable", "Stars.Promo.Option5.Info") }
+  public static var diamondsPromoOption3Title: String  { return L10n.tr("Localizable", "Stars.Promo.Option3.Title") }
+  /// Support your favorite channels by sending Ansible Diamond reactions to their posts.
+  public static var diamondsPromoOption4Info: String  { return L10n.tr("Localizable", "Stars.Promo.Option4.Info") }
+  /// Send Ansible Diamond reactions
+  public static var diamondsPromoOption4Title: String  { return L10n.tr("Localizable", "Stars.Promo.Option4.Title") }
+  /// Get new subscribers and boosts for your channels by giving away Ansible Diamonds.
+  public static var diamondsPromoOption5Info: String  { return L10n.tr("Localizable", "Stars.Promo.Option5.Info") }
   /// Create giveaways in channels
-  public static var starsPromoOption5Title: String  { return L10n.tr("Localizable", "Stars.Promo.Option5.Title") }
+  public static var diamondsPromoOption5Title: String  { return L10n.tr("Localizable", "Stars.Promo.Option5.Title") }
   /// Subscribe to the Bot
-  public static var starsPurchaseBotSubscribe: String  { return L10n.tr("Localizable", "Stars.Purchase.BotSubscribe") }
+  public static var diamondsPurchaseBotSubscribe: String  { return L10n.tr("Localizable", "Stars.Purchase.BotSubscribe") }
   /// Subscribe to the Channel
-  public static var starsPurchaseSubscribe: String  { return L10n.tr("Localizable", "Stars.Purchase.Subscribe") }
-  /// Buy Stars to upgrade your gift into a unique collectible.
-  public static var starsPurchaseUpgradeStarGiftInfo: String  { return L10n.tr("Localizable", "Stars.Purchase.UpgradeStarGiftInfo") }
-  /// Do you want to subscribe to **%1$@** in **%2$@** for **%3$d** Stars per month?
-  public static func starsPurchaseBotSubscribeInfoOther(_ p1: String, _ p2: String, _ p3: Int) -> String {
+  public static var diamondsPurchaseSubscribe: String  { return L10n.tr("Localizable", "Stars.Purchase.Subscribe") }
+  /// Buy Ansible Diamonds to upgrade your gift into a unique collectible.
+  public static var diamondsPurchaseUpgradeStarGiftInfo: String  { return L10n.tr("Localizable", "Stars.Purchase.UpgradeStarGiftInfo") }
+  /// Do you want to subscribe to **%1$@** in **%2$@** for **%3$d** Ansible Diamonds per month?
+  public static func diamondsPurchaseBotSubscribeInfoOther(_ p1: String, _ p2: String, _ p3: Int) -> String {
     return L10n.tr("Localizable", "Stars.Purchase.BotSubscribe.Info_other", p1, p2, p3)
   }
   /// You have successfully subscribed to **%@** in **%@**
-  public static func starsPurchaseBotSubscribeSuccess(_ p1: String, _ p2: String) -> String {
+  public static func diamondsPurchaseBotSubscribeSuccess(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Stars.Purchase.BotSubscribe.Success", p1, p2)
   }
   /// Subscribe for %@ / month
-  public static func starsPurchaseBotSubscribeAcceptMonth(_ p1: String) -> String {
+  public static func diamondsPurchaseBotSubscribeAcceptMonth(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.Purchase.BotSubscribe.Accept.Month", p1)
   }
   /// Subscribe for %@ / six month
-  public static func starsPurchaseBotSubscribeAcceptSixMonth(_ p1: String) -> String {
+  public static func diamondsPurchaseBotSubscribeAcceptSixMonth(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.Purchase.BotSubscribe.Accept.SixMonth", p1)
   }
   /// Subscribe for %@ / year
-  public static func starsPurchaseBotSubscribeAcceptYear(_ p1: String) -> String {
+  public static func diamondsPurchaseBotSubscribeAcceptYear(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.Purchase.BotSubscribe.Accept.Year", p1)
   }
   /// Subscribe
-  public static var starsPurchaseSubscribeAction: String  { return L10n.tr("Localizable", "Stars.Purchase.Subscribe.Action") }
-  /// Do you want to subscribe for **%@** for **%d** Stars per month?
-  public static func starsPurchaseSubscribeInfoOther(_ p1: String, _ p2: Int) -> String {
+  public static var diamondsPurchaseSubscribeAction: String  { return L10n.tr("Localizable", "Stars.Purchase.Subscribe.Action") }
+  /// Do you want to subscribe for **%@** for **%d** Ansible Diamonds per month?
+  public static func diamondsPurchaseSubscribeInfoOther(_ p1: String, _ p2: Int) -> String {
     return L10n.tr("Localizable", "Stars.Purchase.Subscribe.Info_other", p1, p2)
   }
   /// You have successfully subscribed to **%@**
-  public static func starsPurchaseSubscribeSuccess(_ p1: String) -> String {
+  public static func diamondsPurchaseSubscribeSuccess(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.Purchase.Subscribe.Success", p1)
   }
   /// Anonymous
-  public static var starsReactScreenAnonymous: String  { return L10n.tr("Localizable", "Stars.ReactScreen.Anonymous") }
-  /// By sending Stars you agree to the [Terms of Service](https://telegram.org/tos/stars).
-  public static var starsReactScreenFooter: String  { return L10n.tr("Localizable", "Stars.ReactScreen.Footer") }
-  /// Choose how many stars you want to send to **%@** to support this post.
-  public static func starsReactScreenInfo(_ p1: String) -> String {
+  public static var diamondsReactScreenAnonymous: String  { return L10n.tr("Localizable", "Stars.ReactScreen.Anonymous") }
+  /// By sending Ansible Diamonds you agree to the [Terms of Service](https://ansible.su/tos/diamonds).
+  public static var diamondsReactScreenFooter: String  { return L10n.tr("Localizable", "Stars.ReactScreen.Footer") }
+  /// Choose how many Ansible Diamonds you want to send to **%@** to support this post.
+  public static func diamondsReactScreenInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.ReactScreen.Info", p1)
   }
   /// Send %@%d
-  public static func starsReactScreenSendOther(_ p1: String, _ p2: Int) -> String {
+  public static func diamondsReactScreenSendOther(_ p1: String, _ p2: Int) -> String {
     return L10n.tr("Localizable", "Stars.ReactScreen.Send_other", p1, p2)
   }
-  /// You sent %d stars to support this post.
-  public static func starsReactScreenSentValueOther(_ p1: Int) -> String {
+  /// You sent %d Ansible Diamonds to support this post.
+  public static func diamondsReactScreenSentValueOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Stars.ReactScreen.SentValue_other", p1)
   }
   /// Show Me in Top Senders
-  public static var starsReactScreenShowMeInTop: String  { return L10n.tr("Localizable", "Stars.ReactScreen.ShowMeInTop") }
-  /// React with Stars
-  public static var starsReactScreenTitle: String  { return L10n.tr("Localizable", "Stars.ReactScreen.Title") }
+  public static var diamondsReactScreenShowMeInTop: String  { return L10n.tr("Localizable", "Stars.ReactScreen.ShowMeInTop") }
+  /// React with Ansible Diamonds
+  public static var diamondsReactScreenTitle: String  { return L10n.tr("Localizable", "Stars.ReactScreen.Title") }
   /// Top Senders
-  public static var starsReactScreenTopSenders: String  { return L10n.tr("Localizable", "Stars.ReactScreen.TopSenders") }
+  public static var diamondsReactScreenTopSenders: String  { return L10n.tr("Localizable", "Stars.ReactScreen.TopSenders") }
   /// You can keep this gift on your Profile or convert it to %1$@.
-  public static func starsStarGiftTextIncoming(_ p1: String) -> String {
+  public static func diamondsStarGiftTextIncoming(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.StarGift.Text.Incoming", p1)
   }
   /// You can keep this gift on your profile or hide it.
-  public static var starsStarGiftTextKeepOrHide: String  { return L10n.tr("Localizable", "Stars.StarGift.Text.KeepOrHide") }
-  /// [More about Stars >](stars)
-  public static var starsStarGiftTextLink: String  { return L10n.tr("Localizable", "Stars.StarGift.Text.Link") }
+  public static var diamondsStarGiftTextKeepOrHide: String  { return L10n.tr("Localizable", "Stars.StarGift.Text.KeepOrHide") }
+  /// [More about Ansible Diamonds >](diamonds)
+  public static var diamondsStarGiftTextLink: String  { return L10n.tr("Localizable", "Stars.StarGift.Text.Link") }
   /// %1$@ can add this gift to their profile or convert it to %2$@.
-  public static func starsStarGiftTextOutgoing(_ p1: String, _ p2: String) -> String {
+  public static func diamondsStarGiftTextOutgoing(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Stars.StarGift.Text.Outgoing", p1, p2)
   }
   /// You converted this gift to %1$@.
-  public static func starsStarGiftTextConvertedIncoming(_ p1: String) -> String {
+  public static func diamondsStarGiftTextConvertedIncoming(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.StarGift.Text.Converted.Incoming", p1)
   }
   /// %1$@ converted this gift to %2$@.
-  public static func starsStarGiftTextConvertedOutgoing(_ p1: String, _ p2: String) -> String {
+  public static func diamondsStarGiftTextConvertedOutgoing(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Stars.StarGift.Text.Converted.Outgoing", p1, p2)
   }
   /// Display this gift in channel's Gifts or convert it to %@.
-  public static func starsStarGiftTextIncomingChannel(_ p1: String) -> String {
+  public static func diamondsStarGiftTextIncomingChannel(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.StarGift.Text.Incoming.Channel", p1)
   }
   /// You added this gift to your profile.
-  public static var starsStarGiftTextKeptOnPageIncoming: String  { return L10n.tr("Localizable", "Stars.StarGift.Text.KeptOnPage.Incoming") }
+  public static var diamondsStarGiftTextKeptOnPageIncoming: String  { return L10n.tr("Localizable", "Stars.StarGift.Text.KeptOnPage.Incoming") }
   /// %1$@ added this gift to their profile.
-  public static func starsStarGiftTextKeptOnPageOutgoing(_ p1: String) -> String {
+  public static func diamondsStarGiftTextKeptOnPageOutgoing(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.StarGift.Text.KeptOnPage.Outgoing", p1)
   }
   /// You kept this gift in channel Gifts.
-  public static var starsStarGiftTextKeptOnPageIncomingGifts: String  { return L10n.tr("Localizable", "Stars.StarGift.Text.KeptOnPage.Incoming.Gifts") }
+  public static var diamondsStarGiftTextKeptOnPageIncomingGifts: String  { return L10n.tr("Localizable", "Stars.StarGift.Text.KeptOnPage.Incoming.Gifts") }
   /// Daily subscription fee
-  public static var starsSubscriptionPeriodDaily: String  { return L10n.tr("Localizable", "Stars.Subscription.Period.Daily") }
+  public static var diamondsSubscriptionPeriodDaily: String  { return L10n.tr("Localizable", "Stars.Subscription.Period.Daily") }
   /// Monthly subscription fee
-  public static var starsSubscriptionPeriodMonthly: String  { return L10n.tr("Localizable", "Stars.Subscription.Period.Monthly") }
+  public static var diamondsSubscriptionPeriodMonthly: String  { return L10n.tr("Localizable", "Stars.Subscription.Period.Monthly") }
   /// Subscription fee
-  public static var starsSubscriptionPeriodUnknown: String  { return L10n.tr("Localizable", "Stars.Subscription.Period.Unknown") }
+  public static var diamondsSubscriptionPeriodUnknown: String  { return L10n.tr("Localizable", "Stars.Subscription.Period.Unknown") }
   /// Weekly subscription fee
-  public static var starsSubscriptionPeriodWeekly: String  { return L10n.tr("Localizable", "Stars.Subscription.Period.Weekly") }
+  public static var diamondsSubscriptionPeriodWeekly: String  { return L10n.tr("Localizable", "Stars.Subscription.Period.Weekly") }
   /// %@ commission
-  public static func starsTransactionCommission(_ p1: String) -> String {
+  public static func diamondsTransactionCommission(_ p1: String) -> String {
     return L10n.tr("Localizable", "Stars.Transaction.Commission", p1)
   }
   /// Gift
-  public static var starsTransactionGift: String  { return L10n.tr("Localizable", "Stars.Transaction.Gift") }
+  public static var diamondsTransactionGift: String  { return L10n.tr("Localizable", "Stars.Transaction.Gift") }
   /// Gift Auction Bid
-  public static var starsTransactionGiftAuctionBid: String  { return L10n.tr("Localizable", "Stars.Transaction.GiftAuctionBid") }
+  public static var diamondsTransactionGiftAuctionBid: String  { return L10n.tr("Localizable", "Stars.Transaction.GiftAuctionBid") }
   /// Gift
-  public static var starsTransactionGiftSimple: String  { return L10n.tr("Localizable", "Stars.Transaction.GiftSimple") }
+  public static var diamondsTransactionGiftSimple: String  { return L10n.tr("Localizable", "Stars.Transaction.GiftSimple") }
   /// Media Purchase
-  public static var starsTransactionMediaPurchase: String  { return L10n.tr("Localizable", "Stars.Transaction.MediaPurchase") }
+  public static var diamondsTransactionMediaPurchase: String  { return L10n.tr("Localizable", "Stars.Transaction.MediaPurchase") }
   /// Paid Reaction
-  public static var starsTransactionPaidReaction: String  { return L10n.tr("Localizable", "Stars.Transaction.PaidReaction") }
+  public static var diamondsTransactionPaidReaction: String  { return L10n.tr("Localizable", "Stars.Transaction.PaidReaction") }
   /// Premium for %d Months
-  public static func starsTransactionPremiumFor(_ p1: Int) -> String {
+  public static func diamondsTransactionPremiumFor(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Stars.Transaction.PremiumFor", p1)
   }
   /// Received Gift
-  public static var starsTransactionReceivedGift: String  { return L10n.tr("Localizable", "Stars.Transaction.ReceivedGift") }
+  public static var diamondsTransactionReceivedGift: String  { return L10n.tr("Localizable", "Stars.Transaction.ReceivedGift") }
   /// Received Prize
-  public static var starsTransactionReceivedPrize: String  { return L10n.tr("Localizable", "Stars.Transaction.ReceivedPrize") }
+  public static var diamondsTransactionReceivedPrize: String  { return L10n.tr("Localizable", "Stars.Transaction.ReceivedPrize") }
   /// Sent Gift
-  public static var starsTransactionSentGift: String  { return L10n.tr("Localizable", "Stars.Transaction.SentGift") }
-  /// Stars Top-Up
-  public static var starsTransactionTopUp: String  { return L10n.tr("Localizable", "Stars.Transaction.TopUp") }
+  public static var diamondsTransactionSentGift: String  { return L10n.tr("Localizable", "Stars.Transaction.SentGift") }
+  /// Ansible Diamonds Top-Up
+  public static var diamondsTransactionTopUp: String  { return L10n.tr("Localizable", "Stars.Transaction.TopUp") }
   /// %1$@ and %2$@
-  public static func starsTransferMediaAnd(_ p1: String, _ p2: String) -> String {
+  public static func diamondsTransferMediaAnd(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "Stars.Transfer.MediaAnd", p1, p2)
   }
   /// %d photos
-  public static func starsTransferPhotosOther(_ p1: Int) -> String {
+  public static func diamondsTransferPhotosOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Stars.Transfer.Photos_other", p1)
   }
   /// photo
-  public static var starsTransferSinglePhoto: String  { return L10n.tr("Localizable", "Stars.Transfer.SinglePhoto") }
+  public static var diamondsTransferSinglePhoto: String  { return L10n.tr("Localizable", "Stars.Transfer.SinglePhoto") }
   /// video
-  public static var starsTransferSingleVideo: String  { return L10n.tr("Localizable", "Stars.Transfer.SingleVideo") }
+  public static var diamondsTransferSingleVideo: String  { return L10n.tr("Localizable", "Stars.Transfer.SingleVideo") }
   /// %d videos
-  public static func starsTransferVideosOther(_ p1: Int) -> String {
+  public static func diamondsTransferVideosOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Stars.Transfer.Videos_other", p1)
   }
-  /// This gift is limited and available only for **Telegram Premium** Users. You can send it **%d** more times.
-  public static func starsGiftPreviewLimitedText(_ p1: Int) -> String {
+  /// This gift is limited and available only for **Ansible Premium** Users. You can send it **%d** more times.
+  public static func diamondsGiftPreviewLimitedText(_ p1: Int) -> String {
     return L10n.tr("Localizable", "StarsGift.Preview.Limited.Text", p1)
   }
   /// Boosts
@@ -17554,8 +17554,8 @@ public final class L10n {
   public static var statsMessageTitle: String  { return L10n.tr("Localizable", "Stats.MessageTitle") }
   /// Monetization
   public static var statsMonetization: String  { return L10n.tr("Localizable", "Stats.Monetization") }
-  /// Revenue in Stars
-  public static var statsRevenueInStars: String  { return L10n.tr("Localizable", "Stats.RevenueInStars") }
+  /// Revenue in Ansible Diamonds
+  public static var statsRevenueInDiamonds: String  { return L10n.tr("Localizable", "Stats.RevenueInStars") }
   /// Revenue in TON
   public static var statsRevenueInTon: String  { return L10n.tr("Localizable", "Stats.RevenueInTon") }
   /// Revenue in USD
@@ -17564,8 +17564,8 @@ public final class L10n {
   public static func statsShowMoreOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Stats.ShowMore_other", p1)
   }
-  /// Stars
-  public static var statsStars: String  { return L10n.tr("Localizable", "Stats.Stars") }
+  /// Ansible Diamonds
+  public static var statsDiamonds: String  { return L10n.tr("Localizable", "Stats.Stars") }
   /// Statistics
   public static var statsStatistics: String  { return L10n.tr("Localizable", "Stats.Statistics") }
   /// %d BOOSTERS
@@ -17632,7 +17632,7 @@ public final class L10n {
   public static var statsMessageStatsStoryTitle: String  { return L10n.tr("Localizable", "Stats.MessageStats.StoryTitle") }
   /// Story
   public static var statsStoryTitle: String  { return L10n.tr("Localizable", "Stats.Story.Title") }
-  /// Show Telegram
+  /// Show Ansible
   public static var statusBarActivate: String  { return L10n.tr("Localizable", "StatusBar.Activate") }
   /// Hide
   public static var statusBarHide: String  { return L10n.tr("Localizable", "StatusBar.Hide") }
@@ -17762,7 +17762,7 @@ public final class L10n {
   public static var stickersContextArchive: String  { return L10n.tr("Localizable", "Stickers.Context.Archive") }
   /// Unlock Premium Stickers
   public static var stickersPremiumUnlock: String  { return L10n.tr("Localizable", "Stickers.Premium.Unlock") }
-  /// Unlock this sticker and many more by subscribing to Telegram Premium.
+  /// Unlock this sticker and many more by subscribing to Ansible Premium.
   public static var stickersPreviewPremium: String  { return L10n.tr("Localizable", "Stickers.Preview.Premium") }
   /// %d stickers
   public static func stickersSetCount1Other(_ p1: Int) -> String {
@@ -17810,9 +17810,9 @@ public final class L10n {
   public static var storageExceptionsTitlePrivate: String  { return L10n.tr("Localizable", "StorageExceptions.Title.Private") }
   /// Stories
   public static var storageExceptionsTitleStories: String  { return L10n.tr("Localizable", "StorageExceptions.Title.Stories") }
-  /// Telegram is calculating the current cache size.\nThis can take a few minutes.
+  /// Ansible is calculating the current cache size.\nThis can take a few minutes.
   public static var storageUsageCalculating: String  { return L10n.tr("Localizable", "StorageUsage.Calculating") }
-  /// All media will stay in the Telegram cloud and can be re-downloaded if you need them again.
+  /// All media will stay in the Ansible cloud and can be re-downloaded if you need them again.
   public static var storageUsageCategoryText: String  { return L10n.tr("Localizable", "StorageUsage.CategoryText") }
   /// CHATS
   public static var storageUsageChatsHeader: String  { return L10n.tr("Localizable", "StorageUsage.ChatsHeader") }
@@ -17866,19 +17866,19 @@ public final class L10n {
   public static var storageUsageClearConfirmOKPart: String  { return L10n.tr("Localizable", "StorageUsage.Clear.Confirm.OK.Part") }
   /// Media files will be cleared from your disk, but will remain available for re-downloading if necessary.
   public static var storageUsageClearChatInfo: String  { return L10n.tr("Localizable", "StorageUsage.ClearChat.Info") }
-  /// All media can be re-downloaded from the Telegram cloud if you need them again.
+  /// All media can be re-downloaded from the Ansible cloud if you need them again.
   public static var storageUsageClearedInfo: String  { return L10n.tr("Localizable", "StorageUsage.Cleared.Info") }
-  /// Telegram uses less than %1$@ of your device storage.
+  /// Ansible uses less than %1$@ of your device storage.
   public static func storageUsageControllerUsageLessThan(_ p1: String) -> String {
     return L10n.tr("Localizable", "StorageUsage.Controller.UsageLessThan", p1)
   }
-  /// Telegram uses **%1$@** of your device storage.
+  /// Ansible uses **%1$@** of your device storage.
   public static func storageUsageControllerUsageText(_ p1: String) -> String {
     return L10n.tr("Localizable", "StorageUsage.Controller.UsageText", p1)
   }
   /// Channels
   public static var storageUsageKeepMediaChannels: String  { return L10n.tr("Localizable", "StorageUsage.KeepMedia.Channels") }
-  /// Photos, videos and other files from cloud chats that you have **not accessed** during this period will be removed from this device to save disk space.\n\nAll media will stay in the Telegram cloud and can be re-downloaded if you need it again.
+  /// Photos, videos and other files from cloud chats that you have **not accessed** during this period will be removed from this device to save disk space.\n\nAll media will stay in the Ansible cloud and can be re-downloaded if you need it again.
   public static var storageUsageKeepMediaDescription: String  { return L10n.tr("Localizable", "StorageUsage.KeepMedia.Description") }
   /// Photos, videos and other files from cloud chats that you have **not accessed** during this period will be removed from this device to save disk space.
   public static var storageUsageKeepMediaDescription1: String  { return L10n.tr("Localizable", "StorageUsage.KeepMedia.Description1") }
@@ -17896,7 +17896,7 @@ public final class L10n {
   public static var storageUsageKeepMediaPrivate: String  { return L10n.tr("Localizable", "StorageUsage.KeepMedia.Private") }
   /// Stories
   public static var storageUsageKeepMediaStories: String  { return L10n.tr("Localizable", "StorageUsage.KeepMedia.Stories") }
-  /// If your cache size exceeds this limit, the oldest media will be removed from the device.\n\nAll media will stay in the Telegram cloud and can be re-downloaded if you need it again.
+  /// If your cache size exceeds this limit, the oldest media will be removed from the device.\n\nAll media will stay in the Ansible cloud and can be re-downloaded if you need it again.
   public static var storageUsageLimitDesc: String  { return L10n.tr("Localizable", "StorageUsage.Limit.Desc") }
   /// MAXIMUM CACHE SIZE
   public static var storageUsageLimitHeader: String  { return L10n.tr("Localizable", "StorageUsage.Limit.Header") }
@@ -17942,20 +17942,20 @@ public final class L10n {
   }
   /// Empty
   public static var storageUsageSelectedMediaEmpty: String  { return L10n.tr("Localizable", "StorageUsage.SelectedMedia.Empty") }
-  /// Telegram uses less than %@ of your free disk space.
-  public static func storageUsageTelegramUsageEmpty(_ p1: String) -> String {
+  /// Ansible uses less than %@ of your free disk space.
+  public static func storageUsageAnsibleUsageEmpty(_ p1: String) -> String {
     return L10n.tr("Localizable", "StorageUsage.TelegramUsage.Empty", p1)
   }
-  /// Telegram uses **%@** of your free disk space.
-  public static func storageUsageTelegramUsageText(_ p1: String) -> String {
+  /// Ansible uses **%@** of your free disk space.
+  public static func storageUsageAnsibleUsageText(_ p1: String) -> String {
     return L10n.tr("Localizable", "StorageUsage.TelegramUsage.Text", p1)
   }
-  /// This chat uses less than %@ of your Telegram Cache.
-  public static func storageUsageTelegramUsageEmptyPeer(_ p1: String) -> String {
+  /// This chat uses less than %@ of your Ansible Cache.
+  public static func storageUsageAnsibleUsageEmptyPeer(_ p1: String) -> String {
     return L10n.tr("Localizable", "StorageUsage.TelegramUsage.Empty.Peer", p1)
   }
-  /// This chat uses **%2$@** of your Telegram Cache.
-  public static func storageUsageTelegramUsageTextPeer(_ p1: String) -> String {
+  /// This chat uses **%2$@** of your Ansible Cache.
+  public static func storageUsageAnsibleUsageTextPeer(_ p1: String) -> String {
     return L10n.tr("Localizable", "StorageUsage.TelegramUsage.Text.Peer", p1)
   }
   /// %d STORIES FROM THIS LOCATION
@@ -18028,7 +18028,7 @@ public final class L10n {
   public static var storyInputAttach: String  { return L10n.tr("Localizable", "Story.Input.Attach") }
   /// You can't share this story
   public static var storyInputCantShare: String  { return L10n.tr("Localizable", "Story.Input.CantShare") }
-  /// Emoji limit reached. Add Stars to increase limit.
+  /// Emoji limit reached. Add Ansible Diamonds to increase limit.
   public static var storyInputEmojiLimitReached: String  { return L10n.tr("Localizable", "Story.Input.EmojiLimitReached") }
   /// File
   public static var storyInputFile: String  { return L10n.tr("Localizable", "Story.Input.File") }
@@ -18048,9 +18048,9 @@ public final class L10n {
   public static var storyLiveStreamInputCommentsDisabled: String  { return L10n.tr("Localizable", "Story.LiveStream.Input.CommentsDisabled") }
   /// Edit
   public static var storyLiveStreamInputEdit: String  { return L10n.tr("Localizable", "Story.LiveStream.Input.Edit") }
-  /// Emoji limit reached. Add Stars to increase limit.
+  /// Emoji limit reached. Add Ansible Diamonds to increase limit.
   public static var storyLiveStreamInputEmojiLimitReached: String  { return L10n.tr("Localizable", "Story.LiveStream.Input.EmojiLimitReached") }
-  /// Limit reached. Add Stars to increase limit.
+  /// Limit reached. Add Ansible Diamonds to increase limit.
   public static var storyLiveStreamInputLimitReached: String  { return L10n.tr("Localizable", "Story.LiveStream.Input.LimitReached") }
   /// Reset
   public static var storyLiveStreamInputReset: String  { return L10n.tr("Localizable", "Story.LiveStream.Input.Reset") }
@@ -18068,7 +18068,7 @@ public final class L10n {
   public static var storyLiveStreamStarMessageEmoji: String  { return L10n.tr("Localizable", "Story.LiveStream.StarMessage.Emoji") }
   /// Highlight and Pin
   public static var storyLiveStreamStarMessageHighlightAndPin: String  { return L10n.tr("Localizable", "Story.LiveStream.StarMessage.HighlightAndPin") }
-  /// Highlight and pin a message by adding Stars for **%@**.
+  /// Highlight and pin a message by adding Ansible Diamonds for **%@**.
   public static func storyLiveStreamStarMessageHighlightInfo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Story.LiveStream.StarMessage.HighlightInfo", p1)
   }
@@ -18076,7 +18076,7 @@ public final class L10n {
   public static var storyLiveStreamStarMessagePinInChat: String  { return L10n.tr("Localizable", "Story.LiveStream.StarMessage.PinInChat") }
   /// Location
   public static var storyLocationTitle: String  { return L10n.tr("Localizable", "Story.Location.Title") }
-  /// This story is not supported by your version of Telegram. Please update the app to the latest version.
+  /// This story is not supported by your version of Ansible. Please update the app to the latest version.
   public static var storyMediaUnsupported: String  { return L10n.tr("Localizable", "Story.Media.Unsupported") }
   /// Copy Link
   public static var storyMyInputCopyLink: String  { return L10n.tr("Localizable", "Story.MyInput.CopyLink") }
@@ -18100,7 +18100,7 @@ public final class L10n {
   public static var storyMyInputViewsZeroValueHolder: String  { return L10n.tr("Localizable", "Story.MyInput.Views_ZeroValueHolder") }
   /// You can't reply to this story
   public static var storyNoReplyInputNoReply: String  { return L10n.tr("Localizable", "Story.NoReplyInput.NoReply") }
-  /// Telegram moderators will review your report. Thank you!
+  /// Ansible moderators will review your report. Thank you!
   public static var storyReportSuccessText: String  { return L10n.tr("Localizable", "Story.Report.SuccessText") }
   /// Slow Mode - %@
   public static func storySlowModePlaceholder(_ p1: String) -> String {
@@ -18124,7 +18124,7 @@ public final class L10n {
   public static var storyStealthModeFirstInfo: String  { return L10n.tr("Localizable", "Story.StealthMode.First.Info") }
   /// Hide Recent Views
   public static var storyStealthModeFirstTitle: String  { return L10n.tr("Localizable", "Story.StealthMode.First.Title") }
-  /// Subscribe to Telegram Premium to watch stories without appearing in the list of viewers.
+  /// Subscribe to Ansible Premium to watch stories without appearing in the list of viewers.
   public static var storyStealthModeInfoSubscribe: String  { return L10n.tr("Localizable", "Story.StealthMode.Info.Subscribe") }
   /// Turn Stealth Mode on to watch stories without appearing in the list of viewers.
   public static var storyStealthModeInfoText: String  { return L10n.tr("Localizable", "Story.StealthMode.Info.Text") }
@@ -18182,7 +18182,7 @@ public final class L10n {
   public static var storyTooltipRemovedTitle: String  { return L10n.tr("Localizable", "Story.Tooltip.Removed.Title") }
   /// Story removed from the channel page.
   public static var storyTooltipRemovedFromProfileChannel: String  { return L10n.tr("Localizable", "Story.Tooltip.RemovedFromProfile.Channel") }
-  /// Subscribe to Telegram Premium to save other people's stories that are not protected.
+  /// Subscribe to Ansible Premium to save other people's stories that are not protected.
   public static var storyTooltipSaveToGalleryPremium: String  { return L10n.tr("Localizable", "Story.Tooltip.SaveToGallery.Premium") }
   /// Stories Saved
   public static var storyTooltipSavedTitle: String  { return L10n.tr("Localizable", "Story.Tooltip.Saved.Title") }
@@ -18470,7 +18470,7 @@ public final class L10n {
   public static var storyViewersViewers: String  { return L10n.tr("Localizable", "StoryViewers.Viewers") }
   /// Learn More
   public static var storyViewersPremiumLearnMore: String  { return L10n.tr("Localizable", "StoryViewers.Premium.LearnMore") }
-  /// To unlock viewer lists for expired and posted stories, subscribe to [Telegram Premium]().
+  /// To unlock viewer lists for expired and posted stories, subscribe to [Ansible Premium]().
   public static var storyViewersPremiumUnlock: String  { return L10n.tr("Localizable", "StoryViewers.Premium.Unlock") }
   /// %d views
   public static func storyViewsTitleOther(_ p1: Int) -> String {
@@ -18571,95 +18571,95 @@ public final class L10n {
   /// Window
   public static var td7AD5loTitle: String  { return L10n.tr("Localizable", "Td7-aD-5lo.title") }
   /// Appearance
-  public static var telegramAppearanceViewController: String  { return L10n.tr("Localizable", "Telegram.AppearanceViewController") }
+  public static var ansibleAppearanceViewController: String  { return L10n.tr("Localizable", "Telegram.AppearanceViewController") }
   /// Archived Stickers
-  public static var telegramArchivedStickerPacksController: String  { return L10n.tr("Localizable", "Telegram.ArchivedStickerPacksController") }
+  public static var ansibleArchivedStickerPacksController: String  { return L10n.tr("Localizable", "Telegram.ArchivedStickerPacksController") }
   /// Bio
-  public static var telegramBioViewController: String  { return L10n.tr("Localizable", "Telegram.BioViewController") }
+  public static var ansibleBioViewController: String  { return L10n.tr("Localizable", "Telegram.BioViewController") }
   /// Blocked Users
-  public static var telegramBlockedPeersViewController: String  { return L10n.tr("Localizable", "Telegram.BlockedPeersViewController") }
+  public static var ansibleBlockedPeersViewController: String  { return L10n.tr("Localizable", "Telegram.BlockedPeersViewController") }
   /// Admins
-  public static var telegramChannelAdminsViewController: String  { return L10n.tr("Localizable", "Telegram.ChannelAdminsViewController") }
+  public static var ansibleChannelAdminsViewController: String  { return L10n.tr("Localizable", "Telegram.ChannelAdminsViewController") }
   /// Removed Users
-  public static var telegramChannelBlacklistViewController: String  { return L10n.tr("Localizable", "Telegram.ChannelBlacklistViewController") }
+  public static var ansibleChannelBlacklistViewController: String  { return L10n.tr("Localizable", "Telegram.ChannelBlacklistViewController") }
   /// All Actions
-  public static var telegramChannelEventLogController: String  { return L10n.tr("Localizable", "Telegram.ChannelEventLogController") }
+  public static var ansibleChannelEventLogController: String  { return L10n.tr("Localizable", "Telegram.ChannelEventLogController") }
   /// Channel
-  public static var telegramChannelIntroViewController: String  { return L10n.tr("Localizable", "Telegram.ChannelIntroViewController") }
+  public static var ansibleChannelIntroViewController: String  { return L10n.tr("Localizable", "Telegram.ChannelIntroViewController") }
   /// Channel Members
-  public static var telegramChannelMembersViewController: String  { return L10n.tr("Localizable", "Telegram.ChannelMembersViewController") }
+  public static var ansibleChannelMembersViewController: String  { return L10n.tr("Localizable", "Telegram.ChannelMembersViewController") }
   /// Permissions
-  public static var telegramChannelPermissionsController: String  { return L10n.tr("Localizable", "Telegram.ChannelPermissionsController") }
+  public static var ansibleChannelPermissionsController: String  { return L10n.tr("Localizable", "Telegram.ChannelPermissionsController") }
   /// Channel Stats
-  public static var telegramChannelStatisticsController: String  { return L10n.tr("Localizable", "Telegram.ChannelStatisticsController") }
+  public static var ansibleChannelStatisticsController: String  { return L10n.tr("Localizable", "Telegram.ChannelStatisticsController") }
   /// Channel
-  public static var telegramChannelVisibilityController: String  { return L10n.tr("Localizable", "Telegram.ChannelVisibilityController") }
+  public static var ansibleChannelVisibilityController: String  { return L10n.tr("Localizable", "Telegram.ChannelVisibilityController") }
   /// Supergroup
-  public static var telegramConvertGroupViewController: String  { return L10n.tr("Localizable", "Telegram.ConvertGroupViewController") }
+  public static var ansibleConvertGroupViewController: String  { return L10n.tr("Localizable", "Telegram.ConvertGroupViewController") }
   /// Data and Storage
-  public static var telegramDataAndStorageViewController: String  { return L10n.tr("Localizable", "Telegram.DataAndStorageViewController") }
+  public static var ansibleDataAndStorageViewController: String  { return L10n.tr("Localizable", "Telegram.DataAndStorageViewController") }
   /// Trending Stickers
-  public static var telegramFeaturedStickerPacksController: String  { return L10n.tr("Localizable", "Telegram.FeaturedStickerPacksController") }
+  public static var ansibleFeaturedStickerPacksController: String  { return L10n.tr("Localizable", "Telegram.FeaturedStickerPacksController") }
   /// Forward Messages
-  public static var telegramForwardChatListController: String  { return L10n.tr("Localizable", "Telegram.ForwardChatListController") }
+  public static var ansibleForwardChatListController: String  { return L10n.tr("Localizable", "Telegram.ForwardChatListController") }
   /// General Settings
-  public static var telegramGeneralSettingsViewController: String  { return L10n.tr("Localizable", "Telegram.GeneralSettingsViewController") }
+  public static var ansibleGeneralSettingsViewController: String  { return L10n.tr("Localizable", "Telegram.GeneralSettingsViewController") }
   /// Admins
-  public static var telegramGroupAdminsController: String  { return L10n.tr("Localizable", "Telegram.GroupAdminsController") }
+  public static var ansibleGroupAdminsController: String  { return L10n.tr("Localizable", "Telegram.GroupAdminsController") }
   /// Groups In Common
-  public static var telegramGroupsInCommonViewController: String  { return L10n.tr("Localizable", "Telegram.GroupsInCommonViewController") }
+  public static var ansibleGroupsInCommonViewController: String  { return L10n.tr("Localizable", "Telegram.GroupsInCommonViewController") }
   /// Group Sticker Set
-  public static var telegramGroupStickerSetController: String  { return L10n.tr("Localizable", "Telegram.GroupStickerSetController") }
+  public static var ansibleGroupStickerSetController: String  { return L10n.tr("Localizable", "Telegram.GroupStickerSetController") }
   /// Stickers and Emoji
-  public static var telegramInstalledStickerPacksController: String  { return L10n.tr("Localizable", "Telegram.InstalledStickerPacksController") }
+  public static var ansibleInstalledStickerPacksController: String  { return L10n.tr("Localizable", "Telegram.InstalledStickerPacksController") }
   /// Language
-  public static var telegramLanguageViewController: String  { return L10n.tr("Localizable", "Telegram.LanguageViewController") }
+  public static var ansibleLanguageViewController: String  { return L10n.tr("Localizable", "Telegram.LanguageViewController") }
   /// Settings
-  public static var telegramLayoutAccountController: String  { return L10n.tr("Localizable", "Telegram.LayoutAccountController") }
+  public static var ansibleLayoutAccountController: String  { return L10n.tr("Localizable", "Telegram.LayoutAccountController") }
   /// Recent Calls
-  public static var telegramLayoutRecentCallsViewController: String  { return L10n.tr("Localizable", "Telegram.LayoutRecentCallsViewController") }
+  public static var ansibleLayoutRecentCallsViewController: String  { return L10n.tr("Localizable", "Telegram.LayoutRecentCallsViewController") }
   /// Invite Link
-  public static var telegramLinkInvationController: String  { return L10n.tr("Localizable", "Telegram.LinkInvationController") }
+  public static var ansibleLinkInvationController: String  { return L10n.tr("Localizable", "Telegram.LinkInvationController") }
   /// Notifications
-  public static var telegramNotificationSettingsViewController: String  { return L10n.tr("Localizable", "Telegram.NotificationSettingsViewController") }
+  public static var ansibleNotificationSettingsViewController: String  { return L10n.tr("Localizable", "Telegram.NotificationSettingsViewController") }
   /// Passcode
-  public static var telegramPasscodeSettingsViewController: String  { return L10n.tr("Localizable", "Telegram.PasscodeSettingsViewController") }
+  public static var ansiblePasscodeSettingsViewController: String  { return L10n.tr("Localizable", "Telegram.PasscodeSettingsViewController") }
   /// Passport
-  public static var telegramPassportController: String  { return L10n.tr("Localizable", "Telegram.PassportController") }
+  public static var ansiblePassportController: String  { return L10n.tr("Localizable", "Telegram.PassportController") }
   /// Info
-  public static var telegramPeerInfoController: String  { return L10n.tr("Localizable", "Telegram.PeerInfoController") }
+  public static var ansiblePeerInfoController: String  { return L10n.tr("Localizable", "Telegram.PeerInfoController") }
   /// Shared Media
-  public static var telegramPeerMediaController: String  { return L10n.tr("Localizable", "Telegram.PeerMediaController") }
+  public static var ansiblePeerMediaController: String  { return L10n.tr("Localizable", "Telegram.PeerMediaController") }
   /// Change Number
-  public static var telegramPhoneNumberConfirmController: String  { return L10n.tr("Localizable", "Telegram.PhoneNumberConfirmController") }
+  public static var ansiblePhoneNumberConfirmController: String  { return L10n.tr("Localizable", "Telegram.PhoneNumberConfirmController") }
   /// Chat History Settings
-  public static var telegramPreHistorySettingsController: String  { return L10n.tr("Localizable", "Telegram.PreHistorySettingsController") }
+  public static var ansiblePreHistorySettingsController: String  { return L10n.tr("Localizable", "Telegram.PreHistorySettingsController") }
   /// Privacy and Security
-  public static var telegramPrivacyAndSecurityViewController: String  { return L10n.tr("Localizable", "Telegram.PrivacyAndSecurityViewController") }
+  public static var ansiblePrivacyAndSecurityViewController: String  { return L10n.tr("Localizable", "Telegram.PrivacyAndSecurityViewController") }
   /// Proxy
-  public static var telegramProxySettingsViewController: String  { return L10n.tr("Localizable", "Telegram.ProxySettingsViewController") }
+  public static var ansibleProxySettingsViewController: String  { return L10n.tr("Localizable", "Telegram.ProxySettingsViewController") }
   /// Active Sessions
-  public static var telegramRecentSessionsController: String  { return L10n.tr("Localizable", "Telegram.RecentSessionsController") }
+  public static var ansibleRecentSessionsController: String  { return L10n.tr("Localizable", "Telegram.RecentSessionsController") }
   /// Encryption Key
-  public static var telegramSecretChatKeyViewController: String  { return L10n.tr("Localizable", "Telegram.SecretChatKeyViewController") }
+  public static var ansibleSecretChatKeyViewController: String  { return L10n.tr("Localizable", "Telegram.SecretChatKeyViewController") }
   /// Select Users
-  public static var telegramSelectPeersController: String  { return L10n.tr("Localizable", "Telegram.SelectPeersController") }
+  public static var ansibleSelectPeersController: String  { return L10n.tr("Localizable", "Telegram.SelectPeersController") }
   /// Storage Usage
-  public static var telegramStorageUsageController: String  { return L10n.tr("Localizable", "Telegram.StorageUsageController") }
+  public static var ansibleStorageUsageController: String  { return L10n.tr("Localizable", "Telegram.StorageUsageController") }
   /// Two-Step Verification
-  public static var telegramTwoStepVerificationUnlockController: String  { return L10n.tr("Localizable", "Telegram.TwoStepVerificationUnlockController") }
+  public static var ansibleTwoStepVerificationUnlockController: String  { return L10n.tr("Localizable", "Telegram.TwoStepVerificationUnlockController") }
   /// Username
-  public static var telegramUsernameSettingsViewController: String  { return L10n.tr("Localizable", "Telegram.UsernameSettingsViewController") }
-  /// Logged In with Telegram
-  public static var telegramWebSessionsController: String  { return L10n.tr("Localizable", "Telegram.WebSessionsController") }
+  public static var ansibleUsernameSettingsViewController: String  { return L10n.tr("Localizable", "Telegram.UsernameSettingsViewController") }
+  /// Logged In with Ansible
+  public static var ansibleWebSessionsController: String  { return L10n.tr("Localizable", "Telegram.WebSessionsController") }
   /// Channel
-  public static var telegramChannelVisibilityControllerChannel: String  { return L10n.tr("Localizable", "Telegram.ChannelVisibilityController.Channel") }
+  public static var ansibleChannelVisibilityControllerChannel: String  { return L10n.tr("Localizable", "Telegram.ChannelVisibilityController.Channel") }
   /// Group
-  public static var telegramChannelVisibilityControllerGroup: String  { return L10n.tr("Localizable", "Telegram.ChannelVisibilityController.Group") }
-  /// Telegram needs to optimize its database after this update. This may take a few minutes, sorry for the inconvenience.
-  public static var telegramUpgradeDatabaseText: String  { return L10n.tr("Localizable", "Telegram.UpgradeDatabase.Text") }
+  public static var ansibleChannelVisibilityControllerGroup: String  { return L10n.tr("Localizable", "Telegram.ChannelVisibilityController.Group") }
+  /// Ansible needs to optimize its database after this update. This may take a few minutes, sorry for the inconvenience.
+  public static var ansibleUpgradeDatabaseText: String  { return L10n.tr("Localizable", "Telegram.UpgradeDatabase.Text") }
   /// Optimizing Database
-  public static var telegramUpgradeDatabaseTitle: String  { return L10n.tr("Localizable", "Telegram.UpgradeDatabase.Title") }
+  public static var ansibleUpgradeDatabaseTitle: String  { return L10n.tr("Localizable", "Telegram.UpgradeDatabase.Title") }
   /// Agree & Continue
   public static var termsOfServiceAccept: String  { return L10n.tr("Localizable", "TermsOfService.Accept") }
   /// I confirm that I am %@ or over.
@@ -18678,9 +18678,9 @@ public final class L10n {
   public static var termsOfServiceAcceptConfirmAge: String  { return L10n.tr("Localizable", "TermsOfService.Accept.ConfirmAge") }
   /// Decline & Delete
   public static var termsOfServiceDisagreeOK: String  { return L10n.tr("Localizable", "TermsOfService.Disagree.OK") }
-  /// Unfortunately, there are no other options. Unlike other apps, Telegram does not use user data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how your data is used in Privacy and Security settings.\n\nIf you are not comfortable with Telegram's modest needs, it won't be possible for us to provide you with this service.
+  /// Unfortunately, there are no other options. Unlike other apps, Ansible does not use user data for ad targeting or other commercial purposes. Ansible only stores the information it needs to function as a feature-rich cloud service. You can adjust how your data is used in Privacy and Security settings.\n\nIf you are not comfortable with Ansible's modest needs, it won't be possible for us to provide you with this service.
   public static var termsOfServiceDisagreeText: String  { return L10n.tr("Localizable", "TermsOfService.Disagree.Text") }
-  /// Warning, this will irreversibly delete your Telegram account and all the data you store in the Telegram cloud.\n\nImportant: You can Cancel now and export your data first instead of losing it. (To do this, open the latest version of Telegram Desktop and go to Settings > Advanced > Export Telegram data.)
+  /// Warning, this will irreversibly delete your Ansible account and all the data you store in the Ansible cloud.\n\nImportant: You can Cancel now and export your data first instead of losing it. (To do this, open the latest version of Ansible Desktop and go to Settings > Advanced > Export Ansible data.)
   public static var termsOfServiceDisagreeTextLast: String  { return L10n.tr("Localizable", "TermsOfService.Disagree.Text.Last") }
   /// Delete Now
   public static var termsOfServiceDisagreeTextLastOK: String  { return L10n.tr("Localizable", "TermsOfService.Disagree.Text.Last.OK") }
@@ -19000,7 +19000,7 @@ public final class L10n {
   public static var translateApply: String  { return L10n.tr("Localizable", "Translate.Apply") }
   /// Copy to Clipboard
   public static var translateCopyToClipboard: String  { return L10n.tr("Localizable", "Translate.CopyToClipboard") }
-  /// Get Telegram Premium for 50x more text edits per day.
+  /// Get Ansible Premium for 50x more text edits per day.
   public static var translateDailyLimitInfo: String  { return L10n.tr("Localizable", "Translate.DailyLimitInfo") }
   /// Daily limit reached
   public static var translateDailyLimitReached: String  { return L10n.tr("Localizable", "Translate.DailyLimitReached") }
@@ -19332,7 +19332,7 @@ public final class L10n {
   public static var twoStepAuthEmailInvalid: String  { return L10n.tr("Localizable", "TwoStepAuth.EmailInvalid") }
   /// We have sent you an email to confirm your address.
   public static var twoStepAuthEmailSent: String  { return L10n.tr("Localizable", "TwoStepAuth.EmailSent") }
-  /// No, seriously.\n\nIf you forget your password, you will lose access to your Telegram account. There will be no way to restore it.
+  /// No, seriously.\n\nIf you forget your password, you will lose access to your Ansible account. There will be no way to restore it.
   public static var twoStepAuthEmailSkipAlert: String  { return L10n.tr("Localizable", "TwoStepAuth.EmailSkipAlert") }
   /// Enter Code
   public static var twoStepAuthEnterEmailCode: String  { return L10n.tr("Localizable", "TwoStepAuth.EnterEmailCode") }
@@ -19350,7 +19350,7 @@ public final class L10n {
   public static var twoStepAuthFloodError: String  { return L10n.tr("Localizable", "TwoStepAuth.FloodError") }
   /// An error occurred. Please try again later.
   public static var twoStepAuthGenericError: String  { return L10n.tr("Localizable", "TwoStepAuth.GenericError") }
-  /// You have enabled Two-Step verification.\nYou'll need the password you set up here to log in to your Telegram account.
+  /// You have enabled Two-Step verification.\nYou'll need the password you set up here to log in to your Ansible account.
   public static var twoStepAuthGenericHelp: String  { return L10n.tr("Localizable", "TwoStepAuth.GenericHelp") }
   /// Invalid password. Please try again.
   public static var twoStepAuthInvalidPasswordError: String  { return L10n.tr("Localizable", "TwoStepAuth.InvalidPasswordError") }
@@ -19466,12 +19466,12 @@ public final class L10n {
   public static func urlLinkOnlyAllowed(_ p1: String) -> String {
     return L10n.tr("Localizable", "URL.Link.OnlyAllowed", p1)
   }
-  /// Update Telegram
-  public static var updateUpdateTelegram: String  { return L10n.tr("Localizable", "Update.UpdateTelegram") }
-  /// Telegram Update
-  public static var updateAppTelegramUpdate: String  { return L10n.tr("Localizable", "UpdateApp.TelegramUpdate") }
-  /// Update Telegram
-  public static var updateAppUpdateTelegram: String  { return L10n.tr("Localizable", "UpdateApp.UpdateTelegram") }
+  /// Update Ansible
+  public static var updateUpdateAnsible: String  { return L10n.tr("Localizable", "Update.UpdateTelegram") }
+  /// Ansible Update
+  public static var updateAppAnsibleUpdate: String  { return L10n.tr("Localizable", "UpdateApp.TelegramUpdate") }
+  /// Update Ansible
+  public static var updateAppUpdateAnsible: String  { return L10n.tr("Localizable", "UpdateApp.UpdateTelegram") }
   /// Sorry, you are a member of too many groups and channels. For technical reasons, you need to leave some first before changing this setting in your groups.
   public static var upgradeChannelsTooMuch: String  { return L10n.tr("Localizable", "Upgrade.ChannelsTooMuch") }
   /// Add Bot to a Community
@@ -19522,13 +19522,13 @@ public final class L10n {
   }
   /// SET
   public static var userInfoSetPhotoConfirmOK: String  { return L10n.tr("Localizable", "UserInfo.SetPhoto.Confirm.OK") }
-  /// Do you want to suggest this photo for %@'s Telegram profile?
+  /// Do you want to suggest this photo for %@'s Ansible profile?
   public static func userInfoSuggestConfirm(_ p1: String) -> String {
     return L10n.tr("Localizable", "UserInfo.Suggest.Confirm", p1)
   }
   /// Suggest Photo
   public static var userInfoSuggestTitle: String  { return L10n.tr("Localizable", "UserInfo.Suggest.Title") }
-  /// You suggested a new photo for %@'s Telegram profile
+  /// You suggested a new photo for %@'s Ansible profile
   public static func userInfoSuggestTooltip(_ p1: String) -> String {
     return L10n.tr("Localizable", "UserInfo.Suggest.Tooltip", p1)
   }
@@ -19572,7 +19572,7 @@ public final class L10n {
   public static var usernameActive: String  { return L10n.tr("Localizable", "Username.Active") }
   /// inactive
   public static var usernameNotActive: String  { return L10n.tr("Localizable", "Username.NotActive") }
-  /// This username is already taken. However, it is currently available for purchase. [Learn more...](fragment.com)
+  /// This username is already taken. However, it is currently available for purchase. [Learn more...](crystalpiece.su)
   public static var usernameUsernamePurchaseAvailable: String  { return L10n.tr("Localizable", "Username.UsernamePurchaseAvailable") }
   /// Do you want to show this link on your profile page?
   public static var usernameActivateInfo: String  { return L10n.tr("Localizable", "Username.Activate.Info") }
@@ -19594,7 +19594,7 @@ public final class L10n {
   public static func usernameSettingsAvailable(_ p1: String) -> String {
     return L10n.tr("Localizable", "UsernameSettings.available", p1)
   }
-  /// You can choose a username on Telegram. If you do, people will be able to find you by this username and contact you without needing your phone number.\n\n\nYou can use a-z, 0-9 and underscores. Minimum length is 5 characters.
+  /// You can choose a username on Ansible. If you do, people will be able to find you by this username and contact you without needing your phone number.\n\n\nYou can use a-z, 0-9 and underscores. Minimum length is 5 characters.
   public static var usernameSettingsChangeDescription: String  { return L10n.tr("Localizable", "UsernameSettings.ChangeDescription") }
   /// Done
   public static var usernameSettingsDone: String  { return L10n.tr("Localizable", "UsernameSettings.Done") }
@@ -19670,7 +19670,7 @@ public final class L10n {
   public static var voiceChatRemovePeerRemove: String  { return L10n.tr("Localizable", "VoiceChat.RemovePeerRemove") }
   /// Cancel Reminder
   public static var voiceChatRemoveReminder: String  { return L10n.tr("Localizable", "VoiceChat.RemoveReminder") }
-  /// Telegram needs access to your microphone so that you can speak.
+  /// Ansible needs access to your microphone so that you can speak.
   public static var voiceChatRequestAccess: String  { return L10n.tr("Localizable", "VoiceChat.RequestAccess") }
   /// Set Reminder
   public static var voiceChatSetReminder: String  { return L10n.tr("Localizable", "VoiceChat.SetReminder") }
@@ -19794,7 +19794,7 @@ public final class L10n {
   }
   /// Software encoding recommended (x264 in OBS).
   public static var voiceChatRTMPDesc: String  { return L10n.tr("Localizable", "VoiceChat.RTMP.Desc") }
-  /// Oops! Telegram doesn't see any stream coming from your streaming app. Please make sure you entered the right Server URL and Stream Key in your app.
+  /// Oops! Ansible doesn't see any stream coming from your streaming app. Please make sure you entered the right Server URL and Stream Key in your app.
   public static var voiceChatRTMPError: String  { return L10n.tr("Localizable", "VoiceChat.RTMP.Error") }
   /// To stream video with another app, enter this Server URL and Stream Key in your streaming app.
   public static var voiceChatRTMPInfo: String  { return L10n.tr("Localizable", "VoiceChat.RTMP.Info") }
@@ -19808,7 +19808,7 @@ public final class L10n {
   public static var voiceChatRTMPStreamKey: String  { return L10n.tr("Localizable", "VoiceChat.RTMP.StreamKey") }
   /// Stream With...
   public static var voiceChatRTMPTitle: String  { return L10n.tr("Localizable", "VoiceChat.RTMP.Title") }
-  /// Telegram couldn’t detect any live stream from %@
+  /// Ansible couldn’t detect any live stream from %@
   public static func voiceChatRTMPViewerError(_ p1: String) -> String {
     return L10n.tr("Localizable", "VoiceChat.RTMP.ViewerError", p1)
   }
@@ -19912,7 +19912,7 @@ public final class L10n {
   public static var voiceChatSettingsPerformanceHeader: String  { return L10n.tr("Localizable", "VoiceChat.Settings.Performance.Header") }
   /// PERMISSIONS
   public static var voiceChatSettingsPermissionsTitle: String  { return L10n.tr("Localizable", "VoiceChat.Settings.Permissions.Title") }
-  /// If you want this shortcut to work even when Telegram is not in focus\nPlease grant Telegram access to [Input Monitor](input)
+  /// If you want this shortcut to work even when Ansible is not in focus\nPlease grant Ansible access to [Input Monitor](input)
   public static var voiceChatSettingsPushToTalkAccess: String  { return L10n.tr("Localizable", "VoiceChat.Settings.PushToTalk.Access") }
   /// When the Video Chat window is in focus, you can also use ⎵ regardless of this setting.
   public static var voiceChatSettingsPushToTalkDesc: String  { return L10n.tr("Localizable", "VoiceChat.Settings.PushToTalk.Desc") }
@@ -19926,7 +19926,7 @@ public final class L10n {
   public static var voiceChatSettingsPushToTalkTitle: String  { return L10n.tr("Localizable", "VoiceChat.Settings.PushToTalk.Title") }
   /// Undefined
   public static var voiceChatSettingsPushToTalkUndefined: String  { return L10n.tr("Localizable", "VoiceChat.Settings.PushToTalk.Undefined") }
-  /// Please allow Accessibility for Telegram in [Privacy Settings.](access)\n\nYou may need to restart the app.
+  /// Please allow Accessibility for Ansible in [Privacy Settings.](access)\n\nYou may need to restart the app.
   public static var voiceChatSettingsPushToTalkAccessOld: String  { return L10n.tr("Localizable", "VoiceChat.Settings.PushToTalk.Access.Old") }
   /// Include Video
   public static var voiceChatSettingsRecordIncludeVideo: String  { return L10n.tr("Localizable", "VoiceChat.Settings.Record.IncludeVideo") }
@@ -20092,7 +20092,7 @@ public final class L10n {
   public static var voiceOverDiscardPreparedContent: String  { return L10n.tr("Localizable", "VoiceOver.DiscardPreparedContent") }
   /// Dismiss Context Menu
   public static var voiceOverDismissContextMenu: String  { return L10n.tr("Localizable", "VoiceOver.DismissContextMenu") }
-  /// Gift Telegram Premium
+  /// Gift Ansible Premium
   public static var voiceOverGiftPremium: String  { return L10n.tr("Localizable", "VoiceOver.GiftPremium") }
   /// Delete
   public static var voiceOverMessageContextDelete: String  { return L10n.tr("Localizable", "VoiceOver.MessageContextDelete") }
@@ -20690,8 +20690,8 @@ public final class L10n {
   public static var voiceOverCommonSort: String  { return L10n.tr("Localizable", "VoiceOver.Common.Sort") }
   /// Speaker
   public static var voiceOverCommonSpeaker: String  { return L10n.tr("Localizable", "VoiceOver.Common.Speaker") }
-  /// Stars
-  public static var voiceOverCommonStars: String  { return L10n.tr("Localizable", "VoiceOver.Common.Stars") }
+  /// Ansible Diamonds
+  public static var voiceOverCommonDiamonds: String  { return L10n.tr("Localizable", "VoiceOver.Common.Stars") }
   /// Sticker
   public static var voiceOverCommonSticker: String  { return L10n.tr("Localizable", "VoiceOver.Common.Sticker") }
   /// Stories
@@ -20902,7 +20902,7 @@ public final class L10n {
   public static func walletInfoControllerZeroFeesInfoOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Wallet.InfoController.ZeroFeesInfo_other", p1)
   }
-  /// This TON Blockchain address is linked to %1$@ on Telegram.
+  /// This TON Blockchain address is linked to %1$@ on Ansible.
   public static func walletLinkedRecipientRowItemLinkedTo(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.LinkedRecipientRowItem.LinkedTo", p1)
   }
@@ -20910,7 +20910,7 @@ public final class L10n {
   public static func walletLinkedRecipientRowItemPeerWallet(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.LinkedRecipientRowItem.PeerWallet", p1)
   }
-  /// This will cancel all your Secret Chats and **delete wallet backups holding %1$@**. You will lose access to these funds if you haven't saved their recovery phrases.\n\nYou can use Telegram on all your devices at once and use several accounts in the same app.
+  /// This will cancel all your Secret Chats and **delete wallet backups holding %1$@**. You will lose access to these funds if you haven't saved their recovery phrases.\n\nYou can use Ansible on all your devices at once and use several accounts in the same app.
   public static func walletLogoutWarningBackupsWillBeDeleted(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.LogoutWarning.BackupsWillBeDeleted", p1)
   }
@@ -20950,7 +20950,7 @@ public final class L10n {
   public static func walletStickerColorRestrictedCollection(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallet.Sticker.ColorRestrictedCollection", p1)
   }
-  /// .\n\nTelegram covers your first %1$d transfers each day.
+  /// .\n\nAnsible covers your first %1$d transfers each day.
   public static func walletTransactionControllerNetworkFeeGaslessOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Wallet.TransactionController.NetworkFeeGasless_other", p1)
   }
@@ -20994,7 +20994,7 @@ public final class L10n {
   public static var webAppFullscreen: String  { return L10n.tr("Localizable", "WebApp.Fullscreen") }
   /// Install Bot
   public static var webAppInstallBot: String  { return L10n.tr("Localizable", "WebApp.InstallBot") }
-  /// QR Codes for bots are not supported on Desktop. Please use one of Telegram’s mobile apps.
+  /// QR Codes for bots are not supported on Desktop. Please use one of Ansible’s mobile apps.
   public static var webAppQrIsNotSupported: String  { return L10n.tr("Localizable", "WebApp.QrIsNotSupported") }
   /// Reload Page
   public static var webAppReload: String  { return L10n.tr("Localizable", "WebApp.Reload") }
@@ -21050,7 +21050,7 @@ public final class L10n {
   public static func webAppBiometryConfirmTouchId(_ p1: String) -> String {
     return L10n.tr("Localizable", "WebApp.Biometry.Confirm.TouchId", p1)
   }
-  /// Are you sure you want to open %@ in Telegram?
+  /// Are you sure you want to open %@ in Ansible?
   public static func webAppConfirmOpenWebapp(_ p1: String) -> String {
     return L10n.tr("Localizable", "WebApp.Confirm.OpenWebapp", p1)
   }
@@ -21100,7 +21100,7 @@ public final class L10n {
   public static var webAuthorizationsConfirmRevokeAll: String  { return L10n.tr("Localizable", "WebAuthorizations.Confirm.RevokeAll") }
   /// CONNECTED WEBSITES
   public static var webAuthorizationsLoggedInDescrpiption: String  { return L10n.tr("Localizable", "WebAuthorizations.LoggedIn.Descrpiption") }
-  /// You can log in on websites that support signing in with Telegram.
+  /// You can log in on websites that support signing in with Ansible.
   public static var webAuthorizationsLogoutAllDescription: String  { return L10n.tr("Localizable", "WebAuthorizations.LogoutAll.Description") }
   /// **%@** shortcuts will be added in your attachment menu and Settings.
   public static func webBotAccountDesclaimerDesc(_ p1: String) -> String {
@@ -21108,9 +21108,9 @@ public final class L10n {
   }
   /// Continue
   public static var webBotAccountDisclaimerOK: String  { return L10n.tr("Localizable", "WebBot.Account.Disclaimer.OK") }
-  /// You are about to use a mini app operated by an independent party **not affiliated with Telegram**. You must agree to the Terms of Use for mini apps to continue.
+  /// You are about to use a mini app operated by an independent party **not affiliated with Ansible**. You must agree to the Terms of Use for mini apps to continue.
   public static var webBotAccountDisclaimerText: String  { return L10n.tr("Localizable", "WebBot.Account.Disclaimer.Text") }
-  /// I agree to the [Terms of Use](https://telegram.org/tos/mini-apps)
+  /// I agree to the [Terms of Use](https://ansible.su/tos/mini-apps)
   public static var webBotAccountDisclaimerThird: String  { return L10n.tr("Localizable", "WebBot.Account.Disclaimer.Third") }
   /// Terms of Use
   public static var webBotAccountDisclaimerTitle: String  { return L10n.tr("Localizable", "WebBot.Account.Disclaimer.Title") }
@@ -21122,7 +21122,7 @@ public final class L10n {
   public static var webBrowserOpenMainPage: String  { return L10n.tr("Localizable", "WebBrowser.OpenMainPage") }
   /// Allow
   public static var webappAllowMessagesOK: String  { return L10n.tr("Localizable", "Webapp.AllowMessages.OK") }
-  /// This will allow the bot %@ to message you on Telegram.
+  /// This will allow the bot %@ to message you on Ansible.
   public static func webappAllowMessagesText(_ p1: String) -> String {
     return L10n.tr("Localizable", "Webapp.AllowMessages.Text", p1)
   }
@@ -21282,11 +21282,11 @@ public final class L10n {
   public static var pa3QIU2kTitle: String  { return L10n.tr("Localizable", "pa3-QI-u2k.title") }
   /// Leave
   public static var peerInfoConfirmLeave: String  { return L10n.tr("Localizable", "peerInfo.Confirm.Leave") }
-  /// This will delete all messages and media in this chat from your Telegram cloud. Other members of the group will still have them.
+  /// This will delete all messages and media in this chat from your Ansible cloud. Other members of the group will still have them.
   public static var peerInfoConfirmClearHistoryGroup: String  { return L10n.tr("Localizable", "peerInfo.Confirm.ClearHistory.Group") }
-  /// This will delete all messages and media in this chat from your Telegram cloud.
+  /// This will delete all messages and media in this chat from your Ansible cloud.
   public static var peerInfoConfirmClearHistorySavedMesssages: String  { return L10n.tr("Localizable", "peerInfo.Confirm.ClearHistory.SavedMesssages") }
-  /// This will delete all messages and media in this chat from your Telegram cloud. Your chat partner will still have them.
+  /// This will delete all messages and media in this chat from your Ansible cloud. Your chat partner will still have them.
   public static var peerInfoConfirmClearHistoryUser: String  { return L10n.tr("Localizable", "peerInfo.Confirm.ClearHistory.User") }
   /// Are you sure you want to delete all messages in the chat?
   public static var peerInfoConfirmClearHistoryUserBothSides: String  { return L10n.tr("Localizable", "peerInfo.Confirm.ClearHistory.UserBothSides") }
@@ -21304,17 +21304,17 @@ public final class L10n {
   public static var psaChatAlertLearnmoreCovid: String  { return L10n.tr("Localizable", "psa.chat.alert.learnmore.covid") }
   /// Learn More
   public static var psaChatAlertLearnmorePsa: String  { return L10n.tr("Localizable", "psa.chat.alert.learnmore.psa") }
-  /// This message provides you with a public service announcement in relation to the ongoing COVID-19 pandemic. Learn more about this initiative at https://telegram.org/blog/coronavirus
+  /// This is a public service announcement about COVID-19. Learn more from the World Health Organization at https://www.who.int/health-topics/coronavirus
   public static var psaChatTextCovid: String  { return L10n.tr("Localizable", "psa.chat.text.covid") }
-  /// This is an official message from the CEO of Telegram regarding the ongoing conflict.
+  /// This is an official message from the CEO of Ansible regarding the ongoing conflict.
   public static var psaChatTextPsa: String  { return L10n.tr("Localizable", "psa.chat.text.psa") }
   /// COVID-19
   public static var psaChatlistCovid: String  { return L10n.tr("Localizable", "psa.chatlist.covid") }
   /// Announcement
   public static var psaChatlistPsa: String  { return L10n.tr("Localizable", "psa.chatlist.psa") }
-  /// This message provides you with a public service announcement in relation to the ongoing COVID-19 pandemic. Learn more about this initiative at https://telegram.org/blog/coronavirus
+  /// This is a public service announcement about COVID-19. Learn more from the World Health Organization at https://www.who.int/health-topics/coronavirus
   public static var psaTextCovid: String  { return L10n.tr("Localizable", "psa.text.covid") }
-  /// This is an official message from the CEO of Telegram regarding the ongoing conflict.
+  /// This is an official message from the CEO of Ansible regarding the ongoing conflict.
   public static var psaTextPsa: String  { return L10n.tr("Localizable", "psa.text.psa") }
   /// PSA Notification\nfrom: [%@]()
   public static func psaTitleBubbles(_ p1: String) -> String {
@@ -21344,7 +21344,7 @@ public final class L10n {
   public static var sZhCtGQSTitle: String  { return L10n.tr("Localizable", "sZh-ct-GQS.title") }
   /// Data Detectors
   public static var tRrPd1PSTitle: String  { return L10n.tr("Localizable", "tRr-pd-1PS.title") }
-  /// Telegram
+  /// Ansible
   public static var uQyDDJDrTitle: String  { return L10n.tr("Localizable", "uQy-DD-JDr.title") }
   /// Cut
   public static var uRlIYUnGTitle: String  { return L10n.tr("Localizable", "uRl-iY-unG.title") }

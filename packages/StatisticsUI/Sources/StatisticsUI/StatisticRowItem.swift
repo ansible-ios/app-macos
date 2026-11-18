@@ -327,7 +327,7 @@ public class StatisticRowView: TableRowView {
         
         chartView.setup(controller: item.controller, title: "Test")
         
-        chartView.apply(theme: chartTheme, strings: ChartStrings(zoomOut: strings().graphZoomOut, total: strings().graphTotal, revenueInTon: strings().statsRevenueInTon, revenueInStars: strings().statsRevenueInStars, revenueInUsd: strings().statsRevenueInUsd), animated: false)
+        chartView.apply(theme: chartTheme, strings: ChartStrings(zoomOut: strings().graphZoomOut, total: strings().graphTotal, revenueInTon: strings().statsRevenueInTon, revenueInStars: strings().statsRevenueInDiamonds, revenueInUsd: strings().statsRevenueInUsd), animated: false)
         
         if !item.revealed {
             item.revealed = true

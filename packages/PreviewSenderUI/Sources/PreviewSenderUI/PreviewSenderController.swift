@@ -2504,10 +2504,10 @@ public class PreviewSenderController: ModalViewController, Notifable {
                     
                     if !presentation.alwaysPaidMessage {
                         
-                        let messageCountText = strings().chatPayStarsConfirmMediasOther(messagesCount)
+                        let messageCountText = strings().chatPayDiamondsConfirmMediasOther(messagesCount)
                         
                         self.analyticsMediaJourney?.step(.openConfirmation)
-                        verifyChatSendPayment(for: chatInteraction.interactionContext.window, header: strings().chatPayStarsConfirmTitle, information: strings().chatPayStarsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayStarsConfirmPayMediaOther(messagesCount), option: strings().chatPayStarsConfirmCheckbox, analyticsContext: submissionContext, successHandler: { [weak self] result in
+                        verifyChatSendPayment(for: chatInteraction.interactionContext.window, header: strings().chatPayDiamondsConfirmTitle, information: strings().chatPayDiamondsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayDiamondsConfirmPayMediaOther(messagesCount), option: strings().chatPayDiamondsConfirmCheckbox, analyticsContext: submissionContext, successHandler: { [weak self] result in
                             guard let self, !self.pendingActions.isClosed, !self.sent else { return }
                             guard chatPaidMessagePriceIsCurrent(self.chatInteraction, payStars) else { return }
                             if starsState.balance.value > starsPrice {

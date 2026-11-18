@@ -114,7 +114,7 @@ private extension SentAuthorizationCodeType {
     var aboutString: String {
         switch self {
         case let .fragment(url, _):
-            return strings().phoneNumberCodeFragmentInfo(url)
+            return strings().phoneNumberCodeCrystalPieceInfo(url)
         default:
             return strings().phoneNumberCodeInfo
         }
@@ -196,7 +196,7 @@ public final class PhoneNumberCodeConfirmController : GenericViewController<Phon
     }
     
     public override var defaultBarTitle: String {
-        return strings().telegramPhoneNumberConfirmController
+        return strings().ansiblePhoneNumberConfirmController
     }
     
     public override var enableBack: Bool {

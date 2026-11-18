@@ -95,7 +95,7 @@ public func multigift(context: any AccountContextProtocol, type: MultigiftType =
         case .premium:
             title = strings().premiumGiftTitle
         case .stars:
-            title = strings().starsGiftTitle
+            title = strings().diamondsGiftTitle
         case .both:
             title = strings().giftingTitle
         }

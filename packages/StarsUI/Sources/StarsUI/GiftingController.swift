@@ -1001,7 +1001,7 @@ public func GiftingController(context: (any AccountContextProtocol), peerId: Pee
     }, close: {
         close?()
     }, openPromo: { value in
-        if value == "stars" {
+        if value == "diamonds" || value == "stars" {
             showModal(with: StarUsePromoController(context: context), for: window)
         } else {
             prem(with: PremiumBoardingController(context: context), for: window)

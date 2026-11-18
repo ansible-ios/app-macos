@@ -439,13 +439,13 @@ private enum AccountInfoEntry<Context: AccountContextProtocol> : TableItemListNo
                 arguments.openPremium(false)
             }, inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear))
         case let .business(_, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountSettingsTelegramBusiness, icon: theme.icons.settingsBusiness, activeIcon: theme.icons.settingsBusinessActive, type: .next, viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountSettingsAnsibleBusiness, icon: theme.icons.settingsBusiness, activeIcon: theme.icons.settingsBusinessActive, type: .next, viewType: viewType, action: {
                 arguments.openPremium(true)
             }, inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear))
         case let .giftPremium(_, viewType):
             return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountSettingsSendGift, icon: theme.icons.settingsGiftPremium, activeIcon: theme.icons.settingsGiftPremium, type: .next, viewType: viewType, action: arguments.giftPremium, inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear))
         case let .stars(_, stars, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountSettingsStars, icon: theme.icons.settingsStars, activeIcon: theme.icons.settingsStars, type: .nextContext(stars.value > 0 ? "\(stars.stringValue)" : ""), viewType: viewType, action: arguments.stars, inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear))
+            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountSettingsDiamonds, icon: theme.icons.settingsStars, activeIcon: theme.icons.settingsStars, type: .nextContext(stars.value > 0 ? "\(stars.stringValue)" : ""), viewType: viewType, action: arguments.stars, inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear))
         case let .faq(_, viewType):
             return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().accountSettingsFAQ, icon: theme.icons.settingsFaq, activeIcon: theme.icons.settingsFaqActive, type: .next, viewType: viewType, action: arguments.openFaq, inset:NSEdgeInsets(left: 12, right: 12), customTheme: .initialize(theme, background: .clear))
         case let .ask(_, viewType):

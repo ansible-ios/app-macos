@@ -1151,7 +1151,7 @@ private final class ReactionPeerMenuItem : AppMenuRowItem {
             case let .custom(_, file):
                 parts.append(file?.customEmojiText ?? file?.stickerText ?? strings().voiceOverCommonReactions)
             case .stars:
-                parts.append(strings().voiceOverCommonStars)
+                parts.append(strings().voiceOverCommonDiamonds)
             }
         }
         if let readTimestamp {

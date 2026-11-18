@@ -321,7 +321,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         rows.append(.init(left: .init(.initialize(string: strings().affiliateProgramMonthlyText, color: theme.colors.text, font: .normal(.text))), right: .init(name: .init(.initialize(string: count.formattedWithSeparator, color: theme.colors.text, font: .normal(.text)), maximumNumberOfLines: 1))))
     }
     
-    let amount = "\(state.program.revenue.stringValue) \(strings().starListTelegramStars)"
+    let amount = "\(state.program.revenue.stringValue) \(strings().starListAnsibleDiamonds)"
     let revenueText = strings().affiliateProgramDailyRevenueText(amount).replacingOccurrences(of: "#", with: "")
     let revenueAttr = NSMutableAttributedString()
     revenueAttr.append(string: revenueText, color: theme.colors.text, font: .normal(.text))

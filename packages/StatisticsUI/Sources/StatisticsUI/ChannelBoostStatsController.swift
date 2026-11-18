@@ -145,7 +145,7 @@ private final class BoosterRowItem : GeneralRowItem {
             nameString = peer._asPeer().displayTitle
         } else {
             if let stars = boost.stars {
-                nameString = strings().channelBoostBoosterStarsOther(Int(stars))
+                nameString = strings().channelBoostBoosterDiamondsOther(Int(stars))
             } else if boost.flags.contains(.isUnclaimed) {
                 nameString = strings().channelBoostBoosterUnclaimed
             } else if boost.flags.contains(.isGiveaway) {
@@ -727,8 +727,8 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                 case let .stars(stars, boosts):
                     countIcon = generalPrepaidGiveawayIcon(theme.colors.accent, count: .initialize(string: "\(boosts)", color: theme.colors.accent, font: .avatar(.text)))
                     icon = AnsibleThemeHooks.shared.image(.iconGiveawayStars).precomposed(flipVertical: true)
-                    title = strings().giveawayStarsPrepaidTitle(Int(stars))
-                    info = strings().giveawayStarsPrepaidDescOther(Int(prepaid.quantity))
+                    title = strings().giveawayDiamondsPrepaidTitle(Int(stars))
+                    info = strings().giveawayDiamondsPrepaidDescOther(Int(prepaid.quantity))
                 }
                 
                 entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_prepaid(prepaid), data: .init(name: title, color: theme.colors.text, icon: icon, type: .imageContext(countIcon, ""), viewType: viewType, description: info, descTextColor: theme.colors.grayText, action: {

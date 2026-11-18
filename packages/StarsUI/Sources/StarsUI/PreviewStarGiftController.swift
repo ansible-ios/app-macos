@@ -549,12 +549,12 @@ private final class PreviewRowItem : GeneralRowItem {
             switch source {
             case .starGift(let option):
                 if peer.id == myPeer.id {
-                    infoText.append(string: strings().notificationStarsGiftSubtitleSelf, color: presentation.chatServiceItemTextColor, font: .normal(.text))
+                    infoText.append(string: strings().notificationDiamondsGiftSubtitleSelf, color: presentation.chatServiceItemTextColor, font: .normal(.text))
                 } else {
                     if peer._asPeer().isChannel {
-                        infoText.append(string: strings().starsGiftPreviewChannelDisplay(strings().starListItemCountOther(Int(option.native.generic!.convertStars))) , color: presentation.chatServiceItemTextColor, font: .normal(.text))
+                        infoText.append(string: strings().diamondsGiftPreviewChannelDisplay(strings().starListItemCountOther(Int(option.native.generic!.convertStars))) , color: presentation.chatServiceItemTextColor, font: .normal(.text))
                     } else {
-                        infoText.append(string: strings().starsGiftPreviewDisplay(strings().starListItemCountOther(Int(option.native.generic!.convertStars))) , color: presentation.chatServiceItemTextColor, font: .normal(.text))
+                        infoText.append(string: strings().diamondsGiftPreviewDisplay(strings().starListItemCountOther(Int(option.native.generic!.convertStars))) , color: presentation.chatServiceItemTextColor, font: .normal(.text))
                     }
                 }
             case .premium:
@@ -567,7 +567,7 @@ private final class PreviewRowItem : GeneralRowItem {
         switch source {
         case .starGift(let option):
             if peer.id == myPeer.id {
-                headerLayout = .init(.initialize(string: strings().notificationStarsGiftSelfBought(strings().starListItemCountOther(Int(option.stars))), color: presentation.chatServiceItemTextColor, font: .normal(.text)), alignment: .center)
+                headerLayout = .init(.initialize(string: strings().notificationDiamondsGiftSelfBought(strings().starListItemCountOther(Int(option.stars))), color: presentation.chatServiceItemTextColor, font: .normal(.text)), alignment: .center)
             } else {
                 let text: String
                 if peer._asPeer().isChannel {
@@ -1096,7 +1096,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
     }
 
     
-    entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().starsGiftPreviewCustomize), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))
+    entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().diamondsGiftPreviewCustomize), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))
     index += 1
     
     entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_preview, equatable: .init(state), comparable: nil, item: { initialSize, stableId in
@@ -1112,7 +1112,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         messagePlaceholder = wishMessagePlaceholder
     case .premium:
         maxTextLength = arguments.context.appConfiguration.getGeneralValue("stargifts_message_length_max", orElse: 256)
-        messagePlaceholder = strings().starsGiftPreviewMessagePlaceholder
+        messagePlaceholder = strings().diamondsGiftPreviewMessagePlaceholder
     }
     
     if canComment {
@@ -1136,7 +1136,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         switch state.option {
         case .starGift:
             if let sendMessaagePaid = state.sendMessaagePaid {
-                entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().giftingUserChargeStars(state.peer._asPeer().displayTitle, strings().starListItemCountOther(Int(sendMessaagePaid.value)))), data: .init(color: theme.colors.listGrayText, detectBold: true, viewType: .textBottomItem)))
+                entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().giftingUserChargeDiamonds(state.peer._asPeer().displayTitle, strings().starListItemCountOther(Int(sendMessaagePaid.value)))), data: .init(color: theme.colors.listGrayText, detectBold: true, viewType: .textBottomItem)))
             }
         default:
             break
@@ -1150,7 +1150,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             entries.append(.desc(
                 sectionId: sectionId,
                 index: index,
-                text: .plain(strings().starsGiftPreviewLimitedText(Int(limit.remains))),
+                text: .plain(strings().diamondsGiftPreviewLimitedText(Int(limit.remains))),
                 data: .init(
                     color: theme.colors.listGrayText,
                     detectBold: true,
@@ -1184,11 +1184,11 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         entries.append(.sectionId(sectionId, type: .normal))
         sectionId += 1
         
-        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_anonymous, data: .init(name: strings().starsGiftPreviewHideMyName, color: theme.colors.text, type: .switchable(state.isAnonymous), viewType: .singleItem, action: arguments.toggleAnonymous)))
+        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_anonymous, data: .init(name: strings().diamondsGiftPreviewHideMyName, color: theme.colors.text, type: .switchable(state.isAnonymous), viewType: .singleItem, action: arguments.toggleAnonymous)))
         
         let name = state.peer._asPeer().compactDisplayTitle
         
-        entries.append(.desc(sectionId: sectionId, index: index, text: .plain(state.peer.id == arguments.context.peerId ? strings().giftSendSelfHideMyNameInfo : strings().starsGiftPreviewHideMyNameInfo(name, name)), data: .init(color: theme.colors.listGrayText, viewType: .textBottomItem)))
+        entries.append(.desc(sectionId: sectionId, index: index, text: .plain(state.peer.id == arguments.context.peerId ? strings().giftSendSelfHideMyNameInfo : strings().diamondsGiftPreviewHideMyNameInfo(name, name)), data: .init(color: theme.colors.listGrayText, viewType: .textBottomItem)))
         index += 1
         
         if let gift = gift.native.generic, let auctionState = state.auctionState, let dropSize = gift.auctionGiftsPerRound {
@@ -1621,7 +1621,7 @@ public func PreviewStarGiftController(context: (any AccountContextProtocol), opt
                     showModal(with: Star_ListScreen(context: context, source: .buy(suffix: nil, amount: amount)), for: window)
                     return .none
                 }
-                verifyAlert(for: window, header: strings().giftingPremWithStarsConfirmTitle, information: strings().giftingPremWithStarsConfirmInfo(state.peer._asPeer().displayTitle, strings().starListItemCountOther(Int(amount))), successHandler: { _ in
+                verifyAlert(for: window, header: strings().giftingPremWithDiamondsConfirmTitle, information: strings().giftingPremWithDiamondsConfirmInfo(state.peer._asPeer().displayTitle, strings().starListItemCountOther(Int(amount))), successHandler: { _ in
                     buyWithStars(starGift)
                 })
                 return .none
@@ -1727,14 +1727,14 @@ public func PreviewStarGiftController(context: (any AccountContextProtocol), opt
                 okText = strings().starGiftPreviewPlaceBid
             } else if state.peer.id == context.peerId {
                 if state.count > 1 {
-                    okText = strings().starsGiftPreviewBuyMultiOther(
+                    okText = strings().diamondsGiftPreviewBuyMultiOther(
                         Int(state.count),
                         strings().starListItemCountOther(
                             Int(option.totalStars(state.includeUpgrade, count: state.count))
                         )
                     )
                 } else {
-                    okText = strings().starsGiftPreviewBuy(
+                    okText = strings().diamondsGiftPreviewBuy(
                         strings().starListItemCountOther(
                             Int(option.totalStars(state.includeUpgrade, count: state.count))
                         )
@@ -1742,14 +1742,14 @@ public func PreviewStarGiftController(context: (any AccountContextProtocol), opt
                 }
             } else {
                 if state.count > 1 {
-                    okText = strings().starsGiftPreviewSendMultiOther(
+                    okText = strings().diamondsGiftPreviewSendMultiOther(
                         Int(state.count),
                         strings().starListItemCountOther(
                             Int(option.totalStars(state.includeUpgrade, count: state.count))
                         )
                     )
                 } else {
-                    okText = strings().starsGiftPreviewSend(
+                    okText = strings().diamondsGiftPreviewSend(
                         strings().starListItemCountOther(
                             Int(option.totalStars(state.includeUpgrade, count: state.count))
                         )
@@ -1759,9 +1759,9 @@ public func PreviewStarGiftController(context: (any AccountContextProtocol), opt
 
         case let .premium(option, starGift):
             if state.payWithStars, let starGift = starGift {
-                okText = strings().starsGiftPreviewSend(strings().starListItemCountOther(Int(starGift.priceCurrencyAndAmount.amount)))
+                okText = strings().diamondsGiftPreviewSend(strings().starListItemCountOther(Int(starGift.priceCurrencyAndAmount.amount)))
             } else {
-                okText = strings().starsGiftPreviewSend(option.price)
+                okText = strings().diamondsGiftPreviewSend(option.price)
             }
         }
         

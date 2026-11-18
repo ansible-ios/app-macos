@@ -113,9 +113,9 @@ public final class ChatGiveawayRowItem : ChatRowItem {
             _ = prizes_info.append(string: "\n", color: givePresentation.text, font: .normal(.text))
             _ = prizes_info.append(string: strings().chatGiveawayMessageMonthsOther(Int(months)), color: givePresentation.text, font: .normal(.text))
         case let .stars(amount):
-            let starsString = strings().chatGiveawayMessageStarsOther(Int(amount))
+            let starsString = strings().chatGiveawayMessageDiamondsOther(Int(amount))
             let winners = strings().chatGiveawayMessageStarWinnersOther(Int(media.quantity))
-            let prizeTextString = strings().chatGiveawayMessageStarsPrizeText(starsString, winners)
+            let prizeTextString = strings().chatGiveawayMessageDiamondsPrizeText(starsString, winners)
             _ = prizes_info.append(string: prizeTextString, color: givePresentation.text, font: .normal(.text))
         }
         prizes_info.detectBoldColorInString(with: .medium(.text))
@@ -294,7 +294,7 @@ public final class ChatGiveawayRowItem : ChatRowItem {
                     intro1 = strings().chatGiveawayInfoSubscriptionsOther(Int(giveaway.quantity))
                     intro2 = strings().chatGiveawayInfoMonthsOther(Int(months))
                 case let .stars(amount):
-                    intro1 = strings().chatGiveawayMessageStarsOther(Int(amount))
+                    intro1 = strings().chatGiveawayMessageDiamondsOther(Int(amount))
                     intro2 = ""
                 }
                 
@@ -303,14 +303,14 @@ public final class ChatGiveawayRowItem : ChatRowItem {
                     case .premium:
                         intro = strings().chatGiveawayInfoEndedIntro(peerName, intro1, intro2)
                     case .stars(_):
-                        intro = strings().chatGiveawayInfoEndedIntroStars(peerName, intro1)
+                        intro = strings().chatGiveawayInfoEndedIntroDiamonds(peerName, intro1)
                     }
                 } else {
                     switch giveaway.prize {
                     case .premium:
                         intro = strings().chatGiveawayInfoOngoingIntro(peerName, intro1, intro2)
                     case .stars(_):
-                        intro = strings().chatGiveawayInfoOngoingIntroStars(peerName, intro1)
+                        intro = strings().chatGiveawayInfoOngoingIntroDiamonds(peerName, intro1)
                     }
                 }
                 
@@ -377,7 +377,7 @@ public final class ChatGiveawayRowItem : ChatRowItem {
                 case .premium:
                     intro = strings().chatGiveawayInfoEndedIntro(peerName, strings().chatGiveawayInfoSubscriptionsOther(Int(giveaway.quantity)), strings().chatGiveawayInfoMonthsOther(Int(months)))
                 case let .stars(amount):
-                    intro = strings().chatGiveawayInfoEndedIntroStars(peerName, "\(amount)")
+                    intro = strings().chatGiveawayInfoEndedIntroDiamonds(peerName, "\(amount)")
                 }
                                 
                 var ending: String

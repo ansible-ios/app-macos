@@ -509,7 +509,7 @@ private final class AuctionPeerRowItem : GeneralRowItem {
     }
     
     override var accessibilityValue: String? {
-        return "#\(peer.place), \(peer.amount.formattedWithSeparator) \(strings().voiceOverCommonStars)"
+        return "#\(peer.place), \(peer.amount.formattedWithSeparator) \(strings().voiceOverCommonDiamonds)"
     }
     
     override var accessibilityIncludesChildren: Bool {
@@ -931,7 +931,7 @@ public func Star_AuctionBidController(context: (any AccountContextProtocol), pee
         
   
         if let myMinBidAmount = state.auctionState?.myState.minBidAmount, value < myMinBidAmount {
-            return .fail(.serverProvided(strings().starAuctionBidAddStars(strings().starListItemCountOther(Int(myMinBidAmount - value)))))
+            return .fail(.serverProvided(strings().starAuctionBidAddDiamonds(strings().starListItemCountOther(Int(myMinBidAmount - value)))))
         }
         
         let myBid = state.auctionState?.myState.bidAmount ?? 0

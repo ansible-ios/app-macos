@@ -86,7 +86,7 @@ public extension CurrencyAmount {
         switch currency {
         case .stars:
             let number = amount.nanos == 0 ? amount.value.formattedWithSeparator : NSDecimalNumber(decimal: Decimal(amount.value) + Decimal(Int(amount.nanos)) / 1_000_000_000).stringValue
-            return "\(number) \(strings().starListTelegramStars)"
+            return "\(number) \(strings().starListAnsibleDiamonds)"
         case .ton:
             return strings().chatUnsupportedMessageTitle
         }

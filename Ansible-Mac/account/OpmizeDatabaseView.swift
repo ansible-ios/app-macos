@@ -12,9 +12,9 @@ class OpmizeDatabaseView: Control {
         addSubview(progressView)
         self.backgroundColor = theme.colors.background
         let attributedString = NSMutableAttributedString()
-        _ = attributedString.append(string: strings().telegramUpgradeDatabaseTitle, color: theme.colors.text, font: .medium(20))
+        _ = attributedString.append(string: strings().ansibleUpgradeDatabaseTitle, color: theme.colors.text, font: .medium(20))
         _ = attributedString.append(string: "\n\n", color: theme.colors.text, font: .medium(13))
-        _ = attributedString.append(string: strings().telegramUpgradeDatabaseText, color: theme.colors.text, font: .normal(14))
+        _ = attributedString.append(string: strings().ansibleUpgradeDatabaseText, color: theme.colors.text, font: .normal(14))
         
         let layout = TextViewLayout(attributedString, alignment: .center, alwaysStaticItems: true)
         layout.measure(width: 300)

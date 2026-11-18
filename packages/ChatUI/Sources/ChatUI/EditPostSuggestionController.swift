@@ -32,7 +32,7 @@ private final class HeaderItem : GeneralRowItem {
         
         let formatted = balance.formattedWithSeparator
         
-        self.spokenBalance = strings().starPurchaseBalance("\(formatted) \(strings().starListTelegramStars)")
+        self.spokenBalance = strings().starPurchaseBalance("\(formatted) \(strings().starListAnsibleDiamonds)")
         attr.append(string: strings().starPurchaseBalance("\(clown + TINY_SPACE)\(formatted)"), color: theme.colors.text, font: .normal(.text))
         attr.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
         
@@ -153,7 +153,7 @@ private final class InputItem : GeneralRowItem {
     }
 
     override var accessibilityLabel: String? {
-        return strings().fragmentStarAmountPlaceholder
+        return strings().crystalPieceDiamondAmountPlaceholder
     }
 
     override var accessibilityValue: String? {

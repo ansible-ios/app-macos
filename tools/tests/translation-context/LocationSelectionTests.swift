@@ -245,11 +245,11 @@ enum FastSettings {
 }
 extension Strings {
     func starListItemCountOther(_ count: Int) -> String { "\(count)" }
-    func chatPayStarsConfirmMessagesOther(_ count: Int) -> String { "\(count)" }
-    var chatPayStarsConfirmTitle: String { "confirm" }
-    func chatPayStarsConfirmText(_ peer: String, _ a: String, _ b: String, _ c: String) -> String { peer }
-    func chatPayStarsConfirmPayOther(_ count: Int) -> String { "pay" }
-    var chatPayStarsConfirmCheckbox: String { "remember" }
+    func chatPayDiamondsConfirmMessagesOther(_ count: Int) -> String { "\(count)" }
+    var chatPayDiamondsConfirmTitle: String { "confirm" }
+    func chatPayDiamondsConfirmText(_ peer: String, _ a: String, _ b: String, _ c: String) -> String { peer }
+    func chatPayDiamondsConfirmPayOther(_ count: Int) -> String { "pay" }
+    var chatPayDiamondsConfirmCheckbox: String { "remember" }
 }
 enum LocationPurchaseSource { case buy(suffix: String?, amount: Int64) }
 struct LocationPurchase {}

@@ -487,7 +487,7 @@ final class StoryReplyActionButton : View {
                 case .emoji:
                     current.setAccessibilityLabel(strings().voiceOverCommonEmoji)
                 case .starPrice, .starReactions:
-                    current.setAccessibilityLabel(strings().voiceOverCommonStars)
+                    current.setAccessibilityLabel(strings().voiceOverCommonDiamonds)
                 }
                 
                 self.current = current

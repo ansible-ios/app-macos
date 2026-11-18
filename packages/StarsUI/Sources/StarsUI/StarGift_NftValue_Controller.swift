@@ -182,9 +182,9 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
  
     let suffixText: String
     if state.valueInfo.isLastSaleOnFragment {
-        suffixText = strings().starGiftValueSourceFragment
+        suffixText = strings().starGiftValueSourceCrystalPiece
     } else {
-        suffixText = strings().starGiftValueSourceTelegram
+        suffixText = strings().starGiftValueSourceAnsible
     }
 
     let text: String
@@ -216,7 +216,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             control = ImageView(frame: NSMakeRect(0, 0, 20, 20))
         }
         control.image = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
-        control.setAccessibilityLabel(strings().voiceOverCommonStars)
+        control.setAccessibilityLabel(strings().voiceOverCommonDiamonds)
         return control
     })))
 
@@ -281,7 +281,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
     if let listedCount = state.valueInfo.listedCount {
         let listingText = NSMutableAttributedString()
         listingText.append(
-            string: strings().starGiftValueListingTelegram(
+            string: strings().starGiftValueListingAnsible(
                 Int(listedCount),
                 clown
             ),
@@ -317,7 +317,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         
         let fragment = NSMutableAttributedString()
         fragment.append(
-            string: strings().starGiftValueListingFragment(
+            string: strings().starGiftValueListingCrystalPiece(
                 Int(listedCount),
                 clown
             ),

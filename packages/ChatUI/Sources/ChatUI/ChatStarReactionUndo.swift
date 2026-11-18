@@ -95,7 +95,7 @@ final class ChatStarReactionUndoView : Control {
             self?.timer?.invalidate()
         }, for: .Click)
         
-        let title: TextViewLayout = .init(.initialize(string: strings().chatReactionUndoStarsSent, color: .white, font: .medium(.text)), maximumNumberOfLines: 1)
+        let title: TextViewLayout = .init(.initialize(string: strings().chatReactionUndoDiamondsSent, color: .white, font: .medium(.text)), maximumNumberOfLines: 1)
         let info: TextViewLayout = .init(.initialize(string: strings().chatReactionUndoReactedOther(Int(self.count)), color: NSColor.white.withAlphaComponent(0.7), font: .normal(.text)), maximumNumberOfLines: 1)
         
         title.measure(width: .greatestFiniteMagnitude)

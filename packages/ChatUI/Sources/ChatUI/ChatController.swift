@@ -4654,11 +4654,11 @@ open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewCo
                         
                         if !presentation.alwaysPaidMessage {
                             
-                            let messageCountText = strings().chatPayStarsConfirmMessagesOther(messagesCount)
+                            let messageCountText = strings().chatPayDiamondsConfirmMessagesOther(messagesCount)
                             let analyticsPresentation = analyticsContext.beginPresentation()
                             journey?.step(.openConfirmation)
                             
-                            verifyAlert(for: chatInteraction.interactionContext.window, header: strings().chatPayStarsConfirmTitle, information: strings().chatPayStarsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayStarsConfirmPayOther(messagesCount), option: strings().chatPayStarsConfirmCheckbox, optionIsSelected: false, successHandler: { [weak chatInteraction] result in
+                            verifyAlert(for: chatInteraction.interactionContext.window, header: strings().chatPayDiamondsConfirmTitle, information: strings().chatPayDiamondsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayDiamondsConfirmPayOther(messagesCount), option: strings().chatPayDiamondsConfirmCheckbox, optionIsSelected: false, successHandler: { [weak chatInteraction] result in
                                 guard let chatInteraction = chatInteraction else { return }
                                 guard chatPaidMessagePriceIsCurrent(chatInteraction, payStars) else { return }
                                 if starsState.balance.value > starsPrice {
@@ -5269,9 +5269,9 @@ open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewCo
                                 
                                 if !presentation.alwaysPaidMessage {
                                     
-                                    let messageCountText = strings().chatPayStarsConfirmMessagesOther(messagesCount)
+                                    let messageCountText = strings().chatPayDiamondsConfirmMessagesOther(messagesCount)
                                     
-                                    verifyChatSendPayment(for: chatInteraction.interactionContext.window, header: strings().chatPayStarsConfirmTitle, information: strings().chatPayStarsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayStarsConfirmPayOther(messagesCount), option: strings().chatPayStarsConfirmCheckbox, analyticsContext: schedulingAnalyticsContext, successHandler: { result in
+                                    verifyChatSendPayment(for: chatInteraction.interactionContext.window, header: strings().chatPayDiamondsConfirmTitle, information: strings().chatPayDiamondsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayDiamondsConfirmPayOther(messagesCount), option: strings().chatPayDiamondsConfirmCheckbox, analyticsContext: schedulingAnalyticsContext, successHandler: { result in
                                         guard chatPaidMessagePriceIsCurrent(chatInteraction, payStars) else { return }
                                         if starsState.balance.value > starsPrice {
                                             chatInteraction.update({ current in
@@ -6050,8 +6050,8 @@ open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewCo
                                         let header: String
                                         let info: String
 
-                                        header = strings().chatDeleteMessageSuggestedPostHeaderStars
-                                        info = strings().chatDeleteMessageSuggestedPostInfoStars
+                                        header = strings().chatDeleteMessageSuggestedPostHeaderDiamonds
+                                        info = strings().chatDeleteMessageSuggestedPostInfoDiamonds
 
                                         verifyAlert(for: context.window, header: header, information: info, ok: strings().chatDeleteMessageSuggestedPostActionDeleteAnyway, successHandler: successHandler)
                                     } else {
@@ -6323,9 +6323,9 @@ open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewCo
                     
                     if !presentation.alwaysPaidMessage {
                         
-                        let messageCountText = strings().chatPayStarsConfirmMessagesOther(messagesCount)
+                        let messageCountText = strings().chatPayDiamondsConfirmMessagesOther(messagesCount)
                         
-                        verifyChatSendPayment(for: chatInteraction.interactionContext.window, header: strings().chatPayStarsConfirmTitle, information: strings().chatPayStarsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayStarsConfirmPayOther(messagesCount), option: strings().chatPayStarsConfirmCheckbox, analyticsContext: schedulingAnalyticsContext, successHandler: { result in
+                        verifyChatSendPayment(for: chatInteraction.interactionContext.window, header: strings().chatPayDiamondsConfirmTitle, information: strings().chatPayDiamondsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayDiamondsConfirmPayOther(messagesCount), option: strings().chatPayDiamondsConfirmCheckbox, analyticsContext: schedulingAnalyticsContext, successHandler: { result in
                             guard chatPaidMessagePriceIsCurrent(chatInteraction, payStars) else { return }
                             if starsState.balance.value > starsPrice {
                                 chatInteraction.update({ current in
@@ -7553,12 +7553,12 @@ open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewCo
                     
                     if !presentation.alwaysPaidMessage {
                         
-                        let messageCountText = strings().chatPayStarsConfirmMessagesOther(messagesCount)
+                        let messageCountText = strings().chatPayDiamondsConfirmMessagesOther(messagesCount)
                         
                         stickerRequest?.step(.openConfirmation)
                         let confirmationPresentation = analyticsContext.beginPresentation()
                         var confirmationResolved = false
-                        verifyAlert(for: chatInteraction.interactionContext.window, header: strings().chatPayStarsConfirmTitle, information: strings().chatPayStarsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayStarsConfirmPayOther(messagesCount), option: strings().chatPayStarsConfirmCheckbox, optionIsSelected: false, successHandler: { result in
+                        verifyAlert(for: chatInteraction.interactionContext.window, header: strings().chatPayDiamondsConfirmTitle, information: strings().chatPayDiamondsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayDiamondsConfirmPayOther(messagesCount), option: strings().chatPayDiamondsConfirmCheckbox, optionIsSelected: false, successHandler: { result in
                             let origin = chatInteraction.captureAnalyticsContext(inherited: analyticsContext)
                             let presentation = origin.beginPresentation()
                             defer { presentation.end() }
@@ -8238,7 +8238,7 @@ open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewCo
                                 self?.chatInteraction.openInfo(peer.id, true, nil, nil)
                             }, peer: peer._asPeer(), context: context, reaction: nil, message: nil)
                         } else {
-                            item = ContextMenuItem(strings().chatContextPhoneNotTelegram)
+                            item = ContextMenuItem(strings().chatContextPhoneNotAnsible)
                             item.isEnabled = false
                         }
                         menu.addItem(item)

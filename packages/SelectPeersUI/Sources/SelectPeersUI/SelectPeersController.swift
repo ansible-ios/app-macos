@@ -1565,7 +1565,7 @@ open class SelectPeersMainController<T,I,R>: GenericViewController<R> where R:NS
 public class SelectPeersController: SelectPeersMainController<[PeerId], Void, SelectPeersControllerView>, Notifable {
 
     public override var defaultBarTitle: String {
-        return strings().telegramSelectPeersController
+        return strings().ansibleSelectPeersController
     }
 
     
@@ -1618,7 +1618,7 @@ public class SelectPeersController: SelectPeersMainController<[PeerId], Void, Se
             
             if let limits = limitsConfiguration {
                 let attributed = NSMutableAttributedString()
-                _ = attributed.append(string: strings().telegramSelectPeersController, color: theme.colors.text, font: .medium(.title))
+                _ = attributed.append(string: strings().ansibleSelectPeersController, color: theme.colors.text, font: .medium(.title))
                 _ = attributed.append(string: "   ")
                 _ = attributed.append(string: "\(interactions.presentation.selected.count.formattedWithSeparator)/\(limits.maxSupergroupMemberCount.formattedWithSeparator)", color: theme.colors.grayText, font: .normal(.title))
                 self.centerBarView.text = attributed

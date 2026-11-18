@@ -263,14 +263,14 @@ struct Strings {
     let peerSavedMessages = "saved"
     let webappShareMessageShare = "preview"
     let shareIncompleteDelivery = "incomplete"
-    let pollForwardError = "poll", alertLearnMore = "learn", slowModeForwardCommentError = "comment", slowModeMultipleError = "unsent", chatPayStarsConfirmTitle = "pay"
+    let pollForwardError = "poll", alertLearnMore = "learn", slowModeForwardCommentError = "comment", slowModeMultipleError = "unsent", chatPayDiamondsConfirmTitle = "pay"
     func peerInfoConfirmShareInfo(_ title: String) -> String { title }
     func peerForwardPremiumRequired(_ title: String) -> String { title }
     func starListItemCountOther(_ value: Int) -> String { "amount \(value)" }
-    func chatPayStarsConfirmMessagesOther(_ value: Int) -> String { "messages \(value)" }
+    func chatPayDiamondsConfirmMessagesOther(_ value: Int) -> String { "messages \(value)" }
     func sharePayConfirmUserCountOther(_ value: Int) -> String { "users \(value)" }
     func sharePayConfirmText(_ users: String, _ amount: String, _ messages: String) -> String { "\(users) \(amount) \(messages)" }
-    func chatPayStarsConfirmPayOther(_ value: Int) -> String { "pay \(value)" }
+    func chatPayDiamondsConfirmPayOther(_ value: Int) -> String { "pay \(value)" }
 }
 func slowModeTooltipText(_ value: Int32) -> String { "slow" }
 func tooltip(for view: PickerView, text: String) { UI.blockers.append(text) }

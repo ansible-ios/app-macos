@@ -47,7 +47,7 @@ private final class CenterView : TitledBarView {
         
         if stars {
             let index = self.segment.count
-            segment.add(segment: .init(title: strings().statsStars, handler: { [weak self] in
+            segment.add(segment: .init(title: strings().statsDiamonds, handler: { [weak self] in
                 self?.select?(index)
             }))
         }

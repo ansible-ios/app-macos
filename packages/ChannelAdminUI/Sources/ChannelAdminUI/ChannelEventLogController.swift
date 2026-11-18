@@ -415,7 +415,7 @@ open class ChannelEventLogController<Context: AccountContextProtocol>: AnsibleGe
         let state = self.filterState.with { $0 }
         
         if state.isFull {
-            return strings().telegramChannelEventLogController
+            return strings().ansibleChannelEventLogController
         } else {
             return strings().channelEventLogsTitleSelected
         }

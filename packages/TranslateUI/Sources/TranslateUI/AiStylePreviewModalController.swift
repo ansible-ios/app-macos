@@ -495,7 +495,7 @@ public func AiStylePreviewModalController(context: any AccountContextProtocol, s
         if stateValue.with({ $0.isInstalled }) {
             close?()
         } else {
-            showModalText(for: context.window, text: strings().aiStylePreviewOpenLinkOnTelegram)
+            showModalText(for: context.window, text: strings().aiStylePreviewOpenLinkOnAnsible)
             close?()
         }
     }, singleButton: true)

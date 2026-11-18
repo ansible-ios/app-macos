@@ -466,7 +466,7 @@ private enum PrivacyAndSecurityEntry: Comparable, Identifiable {
         case .webAuthorizationsHeader:
             return GeneralTextRowItem(initialSize, stableId: stableId, text: strings().privacyAndSecurityWebAuthorizationHeader, viewType: .textTopItem)
         case let .webAuthorizations(_, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().telegramWebSessionsController, viewType: viewType, action: {
+            return GeneralInteractedRowItem(initialSize, stableId: stableId, name: strings().ansibleWebSessionsController, viewType: viewType, action: {
                 arguments.openWebAuthorizations()
             })
         case .accountHeader:
@@ -811,7 +811,7 @@ private func entries(state: PrivacyAndSecurityControllerState, contentConfigurat
 open class PrivacyAndSecurityViewController<Context: AccountContextProtocol>: TableViewController<Context> {
 
     open override var defaultBarTitle: String {
-        return strings().telegramPrivacyAndSecurityViewController
+        return strings().ansiblePrivacyAndSecurityViewController
     }
     private let privacySettingsPromise = Promise<AccountPrivacySettings?>()
     private let currentInfoDisposable = MetaDisposable()

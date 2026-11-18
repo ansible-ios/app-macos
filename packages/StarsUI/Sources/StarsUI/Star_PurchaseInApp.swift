@@ -66,7 +66,7 @@ private final class HeaderItem : GeneralRowItem {
         case .bot, .paidMedia:
             headerText = strings().starPurchaseConfirm
         case .subscription:
-            headerText = strings().starsPurchaseSubscribe
+            headerText = strings().diamondsPurchaseSubscribe
         case let .botSubscription(invoice):
             headerText = invoice.title
         }
@@ -78,9 +78,9 @@ private final class HeaderItem : GeneralRowItem {
         case .bot:
             infoAttr.append(string: strings().starPurchaseText(request.info, peer._asPeer().displayTitle, strings().starPurchaseTextInOther(Int(request.count))), color: theme.colors.text, font: .normal(.text))
         case .subscription:
-            infoAttr.append(string: strings().starsPurchaseSubscribeInfoOther(peer._asPeer().displayTitle, Int(request.count)), color: theme.colors.text, font: .normal(.text))
+            infoAttr.append(string: strings().diamondsPurchaseSubscribeInfoOther(peer._asPeer().displayTitle, Int(request.count)), color: theme.colors.text, font: .normal(.text))
         case let .botSubscription(invoice):
-            infoAttr.append(string: strings().starsPurchaseBotSubscribeInfoOther(invoice.title, peer._asPeer().displayTitle, Int(request.count)), color: theme.colors.text, font: .normal(.text))
+            infoAttr.append(string: strings().diamondsPurchaseBotSubscribeInfoOther(invoice.title, peer._asPeer().displayTitle, Int(request.count)), color: theme.colors.text, font: .normal(.text))
         case let .paidMedia(_, count):
             
             var description: String = ""
@@ -89,18 +89,18 @@ private final class HeaderItem : GeneralRowItem {
             let videoCount = Int(count.videoCount)
             
             if photoCount > 0 && videoCount > 0 {
-                description = strings().starsTransferMediaAnd("**\(strings().starsTransferPhotosOther(photoCount))**", "**\(strings().starsTransferVideosOther(videoCount))**")
+                description = strings().diamondsTransferMediaAnd("**\(strings().diamondsTransferPhotosOther(photoCount))**", "**\(strings().diamondsTransferVideosOther(videoCount))**")
             } else if photoCount > 0 {
                 if photoCount > 1 {
-                    description += "**\(strings().starsTransferPhotosOther(photoCount))**"
+                    description += "**\(strings().diamondsTransferPhotosOther(photoCount))**"
                 } else {
-                    description += "**\(strings().starsTransferSinglePhoto)**"
+                    description += "**\(strings().diamondsTransferSinglePhoto)**"
                 }
             } else if videoCount > 0 {
                 if videoCount > 1 {
-                    description += "**\(strings().starsTransferVideosOther(videoCount))**"
+                    description += "**\(strings().diamondsTransferVideosOther(videoCount))**"
                 } else {
-                    description += "**\(strings().starsTransferSingleVideo)**"
+                    description += "**\(strings().diamondsTransferSingleVideo)**"
                 }
             }
             
@@ -152,7 +152,7 @@ private final class HeaderItem : GeneralRowItem {
     }
     
     override var accessibilityValue: String? {
-        let balance = strings().starPurchaseBalance("\(myBalance.stringValue) \(strings().starListTelegramStars)")
+        let balance = strings().starPurchaseBalance("\(myBalance.stringValue) \(strings().starListAnsibleDiamonds)")
         return [infoLayout.attributedString.string, balance].joined(separator: ", ")
     }
     
@@ -180,15 +180,15 @@ private final class AcceptView : Control {
         switch item.request.type {
         case .bot, .paidMedia:
             let amount = item.request.count.formattedWithSeparator
-            spokenLabel = strings().starPurchasePay("\(amount) \(strings().starListTelegramStars)")
+            spokenLabel = strings().starPurchasePay("\(amount) \(strings().starListAnsibleDiamonds)")
             attr.append(string: strings().starPurchasePay("\(XTRSTAR)\(TINY_SPACE)\(amount)"), color: theme.colors.underSelectedColor, font: .medium(.text))
             attr.insertEmbedded(.embedded(name: XTR_ICON, color: theme.colors.underSelectedColor, resize: false), for: XTRSTAR)
         case .subscription:
-            spokenLabel = strings().starsPurchaseSubscribeAction
-            attr.append(string: strings().starsPurchaseSubscribeAction, color: theme.colors.underSelectedColor, font: .medium(.text))
+            spokenLabel = strings().diamondsPurchaseSubscribeAction
+            attr.append(string: strings().diamondsPurchaseSubscribeAction, color: theme.colors.underSelectedColor, font: .medium(.text))
         case let .botSubscription(invoice):
-            spokenLabel = strings().starsPurchaseBotSubscribeAcceptMonth("\(invoice.totalAmount.formattedWithSeparator) \(strings().starListTelegramStars)")
-            attr.append(string: strings().starsPurchaseBotSubscribeAcceptMonth("\(XTRSTAR)\(TINY_SPACE)\(invoice.totalAmount.formattedWithSeparator)"), color: theme.colors.underSelectedColor, font: .medium(.text))
+            spokenLabel = strings().diamondsPurchaseBotSubscribeAcceptMonth("\(invoice.totalAmount.formattedWithSeparator) \(strings().starListAnsibleDiamonds)")
+            attr.append(string: strings().diamondsPurchaseBotSubscribeAcceptMonth("\(XTRSTAR)\(TINY_SPACE)\(invoice.totalAmount.formattedWithSeparator)"), color: theme.colors.underSelectedColor, font: .medium(.text))
             attr.insertEmbedded(.embedded(name: XTR_ICON, color: theme.colors.underSelectedColor, resize: false), for: XTRSTAR)
         }
         
@@ -871,9 +871,9 @@ public func Star_PurschaseInApp(context: (any AccountContextProtocol), invoice: 
                         case .paidMedia:
                             text = strings().starPurchasePaidMediaSuccess(strings().starPurchaseTextInOther(Int(state.request.count)))
                         case let .subscription(invite):
-                            text = strings().starsPurchaseSubscribeSuccess(invite.title)
+                            text = strings().diamondsPurchaseSubscribeSuccess(invite.title)
                         case let .botSubscription(invoice):
-                            text = strings().starsPurchaseBotSubscribeSuccess(invoice.title, peer._asPeer().displayTitle)
+                            text = strings().diamondsPurchaseBotSubscribeSuccess(invoice.title, peer._asPeer().displayTitle)
                         }
                         showModalText(for: window, text: text)
 

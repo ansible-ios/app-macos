@@ -430,12 +430,12 @@ private final class RowItem : GeneralRowItem {
         options.append(.init(
             image: AnsibleThemeHooks.shared.image(.iconChannelGift).precomposed(theme.colors.accent),
             header: .init(.initialize(
-                string: strings().peerRatingPreviewTelegramHeader,
+                string: strings().peerRatingPreviewAnsibleHeader,
                 color: theme.colors.text,
                 font: .medium(.text)
             )),
             text: .init(.initialize(
-                string: strings().peerRatingPreviewTelegramText("100%"),
+                string: strings().peerRatingPreviewAnsibleText("100%"),
                 color: theme.colors.grayText,
                 font: .normal(.text)
             ), cutout: .init(topLeft: NSMakeSize(infoImage_1.backingSize.width + 5, 20))),

@@ -616,7 +616,7 @@ public func servicePaymentAmount(_ amount: Int64, currency: String, embedDiamond
     if embedDiamond {
         return "\u{fffc}\(TINY_SPACE)\(number)"
     }
-    return "\(number) \(strings().starListTelegramStars)"
+    return "\(number) \(strings().starListAnsibleDiamonds)"
 }
 
 public func serviceMessageText(_ message:Message, account:Account, isReplied: Bool = false, embedDiamond: Bool = false) -> (String, [MessageTextEntity], [MediaId : Media]) {
@@ -799,7 +799,7 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
             let permissions = types.map({$0.rawValue}).joined(separator: ", ")
             text = strings().chatServiceSecureIdAccessGranted(peer.displayTitle, permissions)
         case .peerJoined:
-            text = strings().chatServicePeerJoinedTelegram(authorName)
+            text = strings().chatServicePeerJoinedAnsible(authorName)
         case let .geoProximityReached(fromId, toId, distance):
             let distanceString = stringForDistance(distance: Double(distance))
             if toId == account.peerId {
@@ -1067,14 +1067,14 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
             text = strings().chatServiceJoinedChannel
         case let .giveawayResults(winners, unclaimed, stars):
             if winners == 0 {
-                text = stars ? strings().chatServiceGiveawayResultsNoWinnersStarsOther(Int(unclaimed)) : strings().chatServiceGiveawayResultsNoWinnersOther(Int(unclaimed))
+                text = stars ? strings().chatServiceGiveawayResultsNoWinnersDiamondsOther(Int(unclaimed)) : strings().chatServiceGiveawayResultsNoWinnersOther(Int(unclaimed))
             } else if unclaimed > 0 {
-                text = stars ? strings().chatServiceGiveawayResultsStarsOther(Int(winners)) : strings().chatServiceGiveawayResultsOther(Int(winners))
-                let winnersString = stars ? strings().chatServiceGiveawayResultsMixedWinnersStarsOther(Int(winners)) : strings().chatServiceGiveawayResultsMixedWinnersOther(Int(winners))
-                let unclaimedString = stars ? strings().chatServiceGiveawayResultsMixedUnclaimedStarsOther(Int(unclaimed)) : strings().chatServiceGiveawayResultsMixedUnclaimedOther(Int(unclaimed))
+                text = stars ? strings().chatServiceGiveawayResultsDiamondsOther(Int(winners)) : strings().chatServiceGiveawayResultsOther(Int(winners))
+                let winnersString = stars ? strings().chatServiceGiveawayResultsMixedWinnersDiamondsOther(Int(winners)) : strings().chatServiceGiveawayResultsMixedWinnersOther(Int(winners))
+                let unclaimedString = stars ? strings().chatServiceGiveawayResultsMixedUnclaimedDiamondsOther(Int(unclaimed)) : strings().chatServiceGiveawayResultsMixedUnclaimedOther(Int(unclaimed))
                 text = winnersString + "\n" + unclaimedString
             } else {
-                text = stars ? strings().chatServiceGiveawayResultsStarsOther(Int(winners)) : strings().chatServiceGiveawayResultsOther(Int(winners))
+                text = stars ? strings().chatServiceGiveawayResultsDiamondsOther(Int(winners)) : strings().chatServiceGiveawayResultsOther(Int(winners))
             }
         case let .boostsApplied(boosts):
             if message.author?.id == account.peerId {
@@ -1105,7 +1105,7 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
             let peerName = message.author?.compactDisplayTitle ?? ""
             text = strings().chatServiceRefund(peerName, servicePaymentAmount(totalAmount, currency: currency, embedDiamond: embedDiamond))
         case let .prizeStars(amount, _, _, _, _):
-            text = strings().chatServiceStarsPrize(authorName, strings().channelBoostBoosterStarsOther(Int(amount)))
+            text = strings().chatServiceDiamondsPrize(authorName, strings().channelBoostBoosterDiamondsOther(Int(amount)))
         case let .starGift(gift, _, _, _, _, _, _, _, _, upgradeStars, _, isPrepaidUpgrade, _, peerId, senderId, _, _, _, upgradeSeparate, auctionAcquired, _, _):
 
             if let gift = gift.generic {
@@ -1115,16 +1115,16 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
                 }
                 if authorId == account.peerId {
                     if message.id.peerId == account.peerId {
-                        text = strings().notificationStarsGiftSelfBought(
+                        text = strings().notificationDiamondsGiftSelfBought(
                             strings().starListItemCountOther(Int(finalPrice))
                         )
                     } else {
                         if isPrepaidUpgrade, let upgradeStars {
-                            text = strings().chatStarsGiftUpgradeSent(
+                            text = strings().chatDiamondsGiftUpgradeSent(
                                 strings().starListItemCountOther(Int(upgradeStars))
                             )
                         } else {
-                            text = strings().chatStarsGiftSentYou(
+                            text = strings().chatDiamondsGiftSentYou(
                                 strings().starListItemCountOther(Int(finalPrice))
                             )
                         }
@@ -1132,10 +1132,10 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
 
                 } else {
                     if auctionAcquired {
-                        text = strings().notificationStarsGiftSelfAuctionBought(
+                        text = strings().notificationDiamondsGiftSelfAuctionBought(
                             strings().starListItemCountOther(Int(gift.price)))
                     } else if isPrepaidUpgrade, let upgradeStars {
-                        text = strings().chatStarsGiftUpgradeSentBy(
+                        text = strings().chatDiamondsGiftUpgradeSentBy(
                             authorName,
                             strings().starListItemCountOther(Int(upgradeStars))
                         )
@@ -1166,24 +1166,24 @@ public func serviceMessageText(_ message:Message, account:Account, isReplied: Bo
                     text = strings().chatServiceCraftedUniqueCollectible
                 } else if isTransferred {
                     if authorId == account.peerId {
-                        text = strings().notificationStarsGiftTransferYou
+                        text = strings().notificationDiamondsGiftTransferYou
                     } else {
-                        text = strings().notificationStarsGiftTransfer(authorName)
+                        text = strings().notificationDiamondsGiftTransfer(authorName)
                     }
                 } else if isUpgrade {
                     if authorId == account.peerId {
                         if isPrepaidUpgrade {
-                            text = strings().notificationStarsGiftUpgradePrepaidYou(authorName)
+                            text = strings().notificationDiamondsGiftUpgradePrepaidYou(authorName)
                         } else {
-                            text = strings().notificationStarsGiftUpgradeYou(authorName)
+                            text = strings().notificationDiamondsGiftUpgradeYou(authorName)
                         }
                     } else {
                         if isPrepaidUpgrade {
-                            text = strings().notificationStarsGiftUpgradePrepaid(authorName)
+                            text = strings().notificationDiamondsGiftUpgradePrepaid(authorName)
                         } else if let _ = senderId {
-                            text = strings().notificationStarsGiftUpgradeChannel(authorName)
+                            text = strings().notificationDiamondsGiftUpgradeChannel(authorName)
                         } else {
-                            text = strings().notificationStarsGiftUpgrade(authorName)
+                            text = strings().notificationDiamondsGiftUpgrade(authorName)
                         }
                     }
                 } else {

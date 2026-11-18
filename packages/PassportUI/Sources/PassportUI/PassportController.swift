@@ -2549,7 +2549,7 @@ private func passportInfoBarImage() -> CGImage {
 public class PassportController: GenericViewController<PassportControllerView> {
 
     public override var defaultBarTitle: String {
-        return strings().telegramPassportController
+        return strings().ansiblePassportController
     }
 
     public let context: (any AccountContextProtocol)
@@ -2893,7 +2893,7 @@ public class PassportController: GenericViewController<PassportControllerView> {
                     }, error: { error in
                         switch error {
                         case .secretPasswordMismatch:
-                            verifyAlert_button(for: context.window, header: strings().telegramPassportController, information: "Something going wrong", option: "Delete All Values", successHandler: { result in
+                            verifyAlert_button(for: context.window, header: strings().ansiblePassportController, information: "Something going wrong", option: "Delete All Values", successHandler: { result in
                                 switch result {
                                 case .basic:
                                     break
@@ -2952,7 +2952,7 @@ public class PassportController: GenericViewController<PassportControllerView> {
                 }, error: { error in
                     switch error {
                     case .secretPasswordMismatch:
-                        verifyAlert_button(for: context.window, header: strings().telegramPassportController, information: "Something going wrong", option: "Delete All Values", successHandler: { result in
+                        verifyAlert_button(for: context.window, header: strings().ansiblePassportController, information: "Something going wrong", option: "Delete All Values", successHandler: { result in
                             switch result {
                             case .basic:
                                 break
@@ -3034,7 +3034,7 @@ public class PassportController: GenericViewController<PassportControllerView> {
 
                         if let _ = data[_id_delete] {
                             return .fail(.doSomething { next in
-                                verifyAlert(for: context.window, header: strings().telegramPassportController, information: relative == nil ? strings().secureIdConfirmDeleteAddress : strings().secureIdConfirmDeleteDocument, option: hasMainField ? strings().secureIdConfirmDeleteAddress : nil, successHandler: { result in
+                                verifyAlert(for: context.window, header: strings().ansiblePassportController, information: relative == nil ? strings().secureIdConfirmDeleteAddress : strings().secureIdConfirmDeleteDocument, option: hasMainField ? strings().secureIdConfirmDeleteAddress : nil, successHandler: { result in
                                     var keys: [SecureIdValueKey] = []
                                     if let relative = relative {
                                         keys.append(relative.valueKey)
@@ -3264,7 +3264,7 @@ public class PassportController: GenericViewController<PassportControllerView> {
 
                         if let _ = data[_id_delete] {
                             return .fail(.doSomething { next in
-                                verifyAlert(for: context.window, header: strings().telegramPassportController, information: primary != nil && relative != nil ? strings().secureIdConfirmDeleteDocument : primary != nil ? strings().secureIdDeleteConfirmPersonalDetails : strings().secureIdConfirmDeleteDocument, option: primary != nil && relative != nil ? strings().secureIdDeletePersonalDetails : nil, successHandler: { result in
+                                verifyAlert(for: context.window, header: strings().ansiblePassportController, information: primary != nil && relative != nil ? strings().secureIdConfirmDeleteDocument : primary != nil ? strings().secureIdDeleteConfirmPersonalDetails : strings().secureIdConfirmDeleteDocument, option: primary != nil && relative != nil ? strings().secureIdDeletePersonalDetails : nil, successHandler: { result in
                                     var keys: [SecureIdValueKey] = []
                                     if let relative = relative {
                                         keys.append(relative.valueKey)

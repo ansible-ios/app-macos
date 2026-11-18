@@ -149,7 +149,7 @@ private struct State : Equatable {
         var text: String {
             switch self {
             case .xtr:
-                return strings().monetizationTransactionsStars
+                return strings().monetizationTransactionsDiamonds
             case .ton:
                 return strings().monetizationTransactionsTON
             }
@@ -288,7 +288,7 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
             
             var graphs: [Graph] = []
             if let graph = state.revenueGraph, !graph.isEmpty {
-                graphs.append(Graph(graph: graph, title: strings().fragmentStarsRevenueTitle, identifier: _id_diamond_revenue_graph, type: .currency(XTR), rate: state.balance.usdRate, load: { identifier in
+                graphs.append(Graph(graph: graph, title: strings().crystalPieceDiamondsRevenueTitle, identifier: _id_diamond_revenue_graph, type: .currency(XTR), rate: state.balance.usdRate, load: { identifier in
                     
                 }))
             }
@@ -366,7 +366,7 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
         entries.append(.sectionId(sectionId, type: .normal))
         sectionId += 1
       
-        entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().fragmentStarsBalanceTitle), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))
+        entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().crystalPieceDiamondsBalanceTitle), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))
         index += 1
         entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_balance_stars, equatable: .init(state), comparable: nil, item: { initialSize, stableId in
             return Fragment_BalanceRowItem(initialSize, stableId: stableId, context: arguments.context, balance: .init(amount: state.balance.stars.totalValue, usd: state.balance.usd, currency: .xtr), canWithdraw: state.canWithdraw, buyAds: {
@@ -377,7 +377,7 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
         }))
         
         let text: String
-        text = strings().fragmentStarsWithdrawInfo
+        text = strings().crystalPieceDiamondsWithdrawInfo
         entries.append(.desc(sectionId: sectionId, index: index, text: .markdown(text, linkHandler: { link in
             arguments.executeLink(link)
         }), data: .init(color: theme.colors.listGrayText, viewType: .textBottomItem)))
@@ -429,7 +429,7 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
                     return LoadingTableItem(initialSize, height: 40, stableId: stableId, viewType: .lastItem)
                 }))
             } else if starsTransactionsState.canLoadMore {
-                entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_load_more, data: .init(name: strings().fragmentStarsShowMore, color: theme.colors.accent, type: .none, viewType: .lastItem, action: {
+                entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_load_more, data: .init(name: strings().crystalPieceDiamondsShowMore, color: theme.colors.accent, type: .none, viewType: .lastItem, action: {
                     arguments.loadMore(.xtr)
                 })))
             }
@@ -637,7 +637,7 @@ public func FragmentMonetizationController(context: any AccountContextProtocol, 
                         case .limitExceeded:
                             return .custom(strings().loginFloodWait)
                         case .amountTooSmall:
-                            return .custom(strings().fragmentMonetizationControllerWithdrawMinimum)
+                            return .custom(strings().crystalPieceMonetizationControllerWithdrawMinimum)
                         case .generic:
                             return .generic
                         default:
@@ -765,7 +765,7 @@ private final class WithdrawInputItem : GeneralRowItem {
     }
 
     override var accessibilityLabel: String? {
-        return strings().fragmentStarAmountPlaceholder
+        return strings().crystalPieceDiamondAmountPlaceholder
     }
 
     override var accessibilityValue: String? {
@@ -792,7 +792,7 @@ private final class WithdrawInputView : GeneralRowView {
         func update(_ item: WithdrawInputItem, animated: Bool) {
             let attr = NSMutableAttributedString()
             
-            attr.append(string: strings().fragmentStarWithdrawInput("\(clown)\(item.inputState.inputText.string)") , color: theme.colors.underSelectedColor, font: .medium(.text))
+            attr.append(string: strings().crystalPieceDiamondWithdrawInput("\(clown)\(item.inputState.inputText.string)") , color: theme.colors.underSelectedColor, font: .medium(.text))
             attr.insertEmbedded(.embedded(name: XTR_ICON, color: theme.colors.underSelectedColor, resize: false), for: clown)
             
             let layout = TextViewLayout(attr)
@@ -834,7 +834,7 @@ private final class WithdrawInputView : GeneralRowView {
                         
             let min_withdraw = item.arguments.context.appConfiguration.getGeneralValue("stars_revenue_withdrawal_min", orElse: 1000)
             
-            attr.append(string: replacingLegacyCurrencyStar(in: strings().fragmentStarsMinWithdraw(Int(min_withdraw)), with: strings().starListTelegramStars), color: theme.colors.text, font: .medium(.text))
+            attr.append(string: replacingLegacyCurrencyStar(in: strings().crystalPieceDiamondsMinWithdraw(Int(min_withdraw)), with: strings().starListAnsibleDiamonds), color: theme.colors.text, font: .medium(.text))
             attr.detectBoldColorInString(with: .medium(.text))
             let layout = TextViewLayout(attr)
             layout.measure(width: frame.width - 70)
@@ -898,7 +898,7 @@ private final class WithdrawInputView : GeneralRowView {
             self.starView.set(text: layout, context: item.arguments.context)
 
             
-            inputView.placeholder = strings().fragmentStarAmountPlaceholder
+            inputView.placeholder = strings().crystalPieceDiamondAmountPlaceholder
             
             inputView.context = item.arguments.context
             inputView.interactions.max_height = 500
@@ -1086,7 +1086,7 @@ private func withdrawEntries(_ state: StarsState, arguments: WithdrawArguments) 
         return WithdrawHeaderItem(initialSize, stableId: stableId, balance: withdrawBalanceText(state.balance.stars), currency: .stars, arguments: arguments)
     }))
     
-    entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().fragmentStarWithdrawPlaceholder), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))
+    entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().crystalPieceDiamondWithdrawPlaceholder), data: .init(color: theme.colors.listGrayText, viewType: .textTopItem)))
     index += 1
     
     entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_input, equatable: .init(state), comparable: nil, item: { initialSize, stableId in

@@ -1114,7 +1114,7 @@ private final class StarsOnlyToggleView: Control {
         textView.isSelectable = false
         checkView.userInteractionEnabled = false
 
-        let layout = TextViewLayout(.initialize(string: strings().starGiftMarketplaceShowStarsOnly, color: theme.colors.text, font: .medium(.text)))
+        let layout = TextViewLayout(.initialize(string: strings().starGiftMarketplaceShowDiamondsOnly, color: theme.colors.text, font: .medium(.text)))
         layout.measure(width: .greatestFiniteMagnitude)
         textView.update(layout)
 

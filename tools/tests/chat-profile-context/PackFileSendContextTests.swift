@@ -103,12 +103,12 @@ func verifyAlert(for window: Int, header: String, information: String, ok: Strin
 }
 enum FastSettings { static func toggleCofirmPaid(_ peerId: PeerId, price: Int) { FileProbe.check?(); FileProbe.preferences += 1 } }
 extension CommonStrings {
-    var chatPayStarsConfirmTitle: String { "Confirm" }
-    var chatPayStarsConfirmCheckbox: String { "Remember" }
+    var chatPayDiamondsConfirmTitle: String { "Confirm" }
+    var chatPayDiamondsConfirmCheckbox: String { "Remember" }
     func starListItemCountOther(_ value: Int) -> String { String(value) }
-    func chatPayStarsConfirmMessagesOther(_ value: Int) -> String { String(value) }
-    func chatPayStarsConfirmPayOther(_ value: Int) -> String { String(value) }
-    func chatPayStarsConfirmText(_ peer: String, _ amount: String, _ amount2: String, _ count: String) -> String { "Pay" }
+    func chatPayDiamondsConfirmMessagesOther(_ value: Int) -> String { String(value) }
+    func chatPayDiamondsConfirmPayOther(_ value: Int) -> String { String(value) }
+    func chatPayDiamondsConfirmText(_ peer: String, _ amount: String, _ amount2: String, _ count: String) -> String { "Pay" }
 }
 struct FileNavigationHooks {
     static let shared = FileNavigationHooks()

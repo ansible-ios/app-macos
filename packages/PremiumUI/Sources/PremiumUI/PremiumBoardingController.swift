@@ -511,7 +511,7 @@ extension PremiumValue {
         case .pm_noforwards:
             return strings().premiumBoardingDisableSharing
         case .business:
-            return strings().premiumBoardingBusinessTelegramBusiness
+            return strings().premiumBoardingBusinessAnsibleBusiness
         case .business_location:
             return strings().premiumBoardingBusinessLocation
         case .business_hours:
@@ -581,7 +581,7 @@ extension PremiumValue {
         case .pm_noforwards:
             return strings().premiumBoardingDisableSharingInfo
         case .business:
-            return strings().premiumBoardingBusinessTelegramBusinessInfo
+            return strings().premiumBoardingBusinessAnsibleBusinessInfo
         case .business_location:
             return strings().premiumBoardingBusinessLocationInfo
         case .business_hours:
@@ -1329,7 +1329,7 @@ public final class PremiumBoardingController : ModalViewController {
     
     public override var defaultBarTitle: String {
         if source == .business_standalone {
-            return strings().premiumBoardingBusinessTelegramBusiness
+            return strings().premiumBoardingBusinessAnsibleBusiness
         }
         return super.defaultBarTitle
     }

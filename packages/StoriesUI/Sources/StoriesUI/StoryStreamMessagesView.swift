@@ -256,7 +256,7 @@ public final class StoryMessageItemRow : TableRowItem {
             parts.append(message.text)
         }
         if let paidStars = message.paidStars {
-            parts.append("\(paidStars) " + strings().voiceOverCommonStars)
+            parts.append("\(paidStars) " + strings().voiceOverCommonDiamonds)
         }
         return parts.isEmpty ? nil : parts.joined(separator: "\n")
     }
@@ -696,7 +696,7 @@ final class StoryMessageFixedItemRow : TableRowItem {
     }
 
     override var accessibilityValue: String? {
-        return "\(paidStars) " + strings().voiceOverCommonStars
+        return "\(paidStars) " + strings().voiceOverCommonDiamonds
     }
 
     override var accessibilityRole: NSAccessibility.Role? {

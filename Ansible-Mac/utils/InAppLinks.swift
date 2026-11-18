@@ -2176,7 +2176,7 @@ func execute(inapp:inAppLink, window: Window? = nil, isExternal: Bool = false, a
         _ = balance.startStandalone(next: { balance in
             if let balance = balance {
                 if balance.value > amount {
-                    showModalText(for: getWindow(context), text: strings().starsYouHaveEnough, callback: { value in
+                    showModalText(for: getWindow(context), text: strings().diamondsYouHaveEnough, callback: { value in
                         showModal(with: Star_ListScreen(context: context, source: .buy(suffix: purpose, amount: nil)), for: getWindow(context))
                     })
                 } else {

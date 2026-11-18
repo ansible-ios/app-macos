@@ -152,11 +152,11 @@ extension GiftOptionsRowItem.Option {
             break
         }
         if let starProduct = nativePayment?.starProduct {
-            parts.append(strings().giftPremiumPayOrStars(strings().starListItemCountOther(Int(starProduct.giftOption.amount))))
+            parts.append(strings().giftPremiumPayOrDiamonds(strings().starListItemCountOther(Int(starProduct.giftOption.amount))))
         }
         if let priceBadge {
             let amount = priceBadge.attributedString.string.replacingOccurrences(of: clown, with: "").trimmingCharacters(in: .whitespacesAndNewlines)
-            parts.append("\(amount) \(strings().voiceOverCommonStars)")
+            parts.append("\(amount) \(strings().voiceOverCommonDiamonds)")
         }
         if let badge {
             parts.append(badge.text)
@@ -263,7 +263,7 @@ public final class GiftOptionsRowItem : GeneralRowItem {
             if let starOption = option.starProduct {
                 let price = NSMutableAttributedString()
                 
-                price.append(string: strings().giftPremiumPayOrStars(clown + " " + "\(starOption.giftOption.amount)"), color: DiamondAppearance.foreground, font: .normal(.small))
+                price.append(string: strings().giftPremiumPayOrDiamonds(clown + " " + "\(starOption.giftOption.amount)"), color: DiamondAppearance.foreground, font: .normal(.small))
                 price.insertEmbedded(.embeddedAnimated(LocalAnimatedSticker.star_currency_new.file), for: clown)
                 
                 starsPrice = .init(price)

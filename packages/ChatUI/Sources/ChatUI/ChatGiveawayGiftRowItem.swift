@@ -99,7 +99,7 @@ public final class ChatGiveawayGiftRowItem : ChatRowItem {
         let infoText: String
         if data.fromGiveaway {
             if let amount = data.starsAmount {
-                infoText = strings().chatGiftInfoGiveawayStarsOther(amount, channelName, amount.prettyNumber)
+                infoText = strings().chatGiftInfoGiveawayDiamondsOther(amount, channelName, amount.prettyNumber)
             } else {
                 if data.unclaimed {
                     infoText = strings().chatGiftInfoUnclaimed(channelName, "\(monthsValue)")
@@ -322,7 +322,7 @@ private final class ChatGiveawayGiftRowItemView: TableRowView {
             if item.data.slug != nil {
                 action.set(text: strings().chatMessageOpenGiftLink, for: .Normal)
             } else {
-                action.set(text: strings().chatMessageOpenGiftStars, for: .Normal)
+                action.set(text: strings().chatMessageOpenGiftDiamonds, for: .Normal)
             }
         } else {
             action.set(text: strings().chatMessageViewGiftLink, for: .Normal)

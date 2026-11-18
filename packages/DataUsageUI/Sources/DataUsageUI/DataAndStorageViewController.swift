@@ -520,7 +520,7 @@ private func prepareTransition(left:[AppearanceWrapperEntry<DataAndStorageEntry>
 open class DataAndStorageViewController<Context: AccountContextProtocol>: TableViewController<Context> {
 
     open override var defaultBarTitle: String {
-        return strings().telegramDataAndStorageViewController
+        return strings().ansibleDataAndStorageViewController
     }
 
     private let disposable = MetaDisposable()

@@ -52,15 +52,15 @@ private final class RowItem : GeneralRowItem {
         self.parent = parent
         self.mode = mode
         
-        let headerText = NSAttributedString.initialize(string: strings().fragmentAdsInfoTitle, color: theme.colors.text, font: .medium(.title)).mutableCopy() as! NSMutableAttributedString
+        let headerText = NSAttributedString.initialize(string: strings().crystalPieceAdsInfoTitle, color: theme.colors.text, font: .medium(.title)).mutableCopy() as! NSMutableAttributedString
         
         headerText.append(string: "\n")
-        headerText.append(string: strings().fragmentAdsInfoText, color: theme.colors.grayText, font: .normal(.text))
+        headerText.append(string: strings().crystalPieceAdsInfoText, color: theme.colors.grayText, font: .normal(.text))
         
-        let infoHeaderAttr = NSAttributedString.initialize(string: strings().fragmentAdsInfoBlockTitle, color: theme.colors.text, font: .medium(.title)).mutableCopy() as! NSMutableAttributedString
+        let infoHeaderAttr = NSAttributedString.initialize(string: strings().crystalPieceAdsInfoBlockTitle, color: theme.colors.text, font: .medium(.title)).mutableCopy() as! NSMutableAttributedString
         
         
-        let infoText = strings().fragmentAdsInfoBlockText
+        let infoText = strings().crystalPieceAdsInfoBlockText
         
         let infoAttr = parseMarkdownIntoAttributedString(infoText, attributes: MarkdownAttributes(body: MarkdownAttributeSet(font: .normal(.text), textColor: theme.colors.text), bold: MarkdownAttributeSet(font: .normal(.text), textColor: theme.colors.text), link: MarkdownAttributeSet(font: .medium(.title), textColor: theme.colors.link), linkAttribute: { contents in
             return (NSAttributedString.Key.link.rawValue, LinkHooks.shared.externalLink(contents, false))
@@ -80,14 +80,14 @@ private final class RowItem : GeneralRowItem {
         
         var options:[OptionsListView.Option] = []
         
-        options.append(.init(image: MonetizationHooks.shared.iconFragmentLock().precomposed(theme.colors.accent), header: .init(.initialize(string: strings().fragmentAdsInfoOption1Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().fragmentAdsInfoOption1Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
+        options.append(.init(image: MonetizationHooks.shared.iconFragmentLock().precomposed(theme.colors.accent), header: .init(.initialize(string: strings().crystalPieceAdsInfoOption1Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().crystalPieceAdsInfoOption1Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
         
         if mode == .fragment {
-            options.append(.init(image: MonetizationHooks.shared.iconFragmentSplitRevenue().precomposed(theme.colors.accent), header: .init(.initialize(string: strings().fragmentAdsInfoOption2Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().fragmentAdsInfoOption2Info("%"), color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
+            options.append(.init(image: MonetizationHooks.shared.iconFragmentSplitRevenue().precomposed(theme.colors.accent), header: .init(.initialize(string: strings().crystalPieceAdsInfoOption2Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().crystalPieceAdsInfoOption2Info("%"), color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
         }
 
-        let removeText = mode == .fragment ? strings().fragmentAdsInfoOption3Info : strings().searchAdAboutRemove
-        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconFragmentNoAds).precomposed(theme.colors.accent), header: .init(.initialize(string:  strings().fragmentAdsInfoOption3Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: removeText, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
+        let removeText = mode == .fragment ? strings().crystalPieceAdsInfoOption3Info : strings().searchAdAboutRemove
+        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconFragmentNoAds).precomposed(theme.colors.accent), header: .init(.initialize(string:  strings().crystalPieceAdsInfoOption3Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: removeText, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
 
         
         self.options = options
@@ -115,7 +115,7 @@ private final class RowItem : GeneralRowItem {
     }
 
     override var accessibilityLabel: String? {
-        return strings().fragmentAdsInfoTitle
+        return strings().crystalPieceAdsInfoTitle
     }
 }
 
@@ -308,7 +308,7 @@ private func adsInfoController(context: any AccountContextProtocol, message: Mes
         actionsDisposable.dispose()
     }
 
-    let modalInteractions = ModalInteractions(acceptTitle: strings().fragmentAdsInfoOK, accept: { 
+    let modalInteractions = ModalInteractions(acceptTitle: strings().crystalPieceAdsInfoOK, accept: {
         close?()
     }, singleButton: true, customTheme: {
         .init(background: theme.colors.background, grayForeground: theme.colors.background, activeBackground: theme.colors.background, listBackground: theme.colors.background)

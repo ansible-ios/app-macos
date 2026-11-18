@@ -2084,7 +2084,7 @@ public class SearchController<Context: AccountContextProtocol>: GenericViewContr
                 }
                 
                 if let stars {
-                    showModalText(for: window, text: strings().globalSearchPayAlertStarsSpent(strings().starListItemCountOther(Int(stars.value))))
+                    showModalText(for: window, text: strings().globalSearchPayAlertDiamondsSpent(strings().starListItemCountOther(Int(stars.value))))
                 }
             }
             

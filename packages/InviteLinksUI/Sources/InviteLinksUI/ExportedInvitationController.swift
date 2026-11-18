@@ -32,7 +32,7 @@ private final class SubscriptionFeeRowItem: GeneralRowItem {
     fileprivate let infoLayout: TextViewLayout
     
     init(_ initialSize: NSSize, stableId: AnyHashable, context: any AccountContextProtocol, invitation: PeerInvitationImportersState, pricing: StarsSubscriptionPricing, viewType: GeneralViewType) {
-        self.spokenPrice = strings().starSubScreenPrice("\(pricing.amount.stringValue) \(strings().starListTelegramStars)") + " × \(invitation.count)"
+        self.spokenPrice = strings().starSubScreenPrice("\(pricing.amount.stringValue) \(strings().starListAnsibleDiamonds)") + " × \(invitation.count)"
         self.context = context
         
         let attr = NSMutableAttributedString()

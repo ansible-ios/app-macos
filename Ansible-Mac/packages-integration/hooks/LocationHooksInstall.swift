@@ -38,9 +38,9 @@ func installLocationUIHooks() {
         }
 
         if !presentation.alwaysPaidMessage {
-            let messageCountText = strings().chatPayStarsConfirmMessagesOther(messagesCount)
+            let messageCountText = strings().chatPayDiamondsConfirmMessagesOther(messagesCount)
             let confirmationPresentation = getAnalyticsContext().beginPresentation()
-            verifyAlert(for: context.window, header: strings().chatPayStarsConfirmTitle, information: strings().chatPayStarsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayStarsConfirmPayOther(messagesCount), option: strings().chatPayStarsConfirmCheckbox, optionIsSelected: false, successHandler: { result in
+            verifyAlert(for: context.window, header: strings().chatPayDiamondsConfirmTitle, information: strings().chatPayDiamondsConfirmText(peer.displayTitle, amount, amount, messageCountText), ok: strings().chatPayDiamondsConfirmPayOther(messagesCount), option: strings().chatPayDiamondsConfirmCheckbox, optionIsSelected: false, successHandler: { result in
                 let presentation = getAnalyticsContext().beginPresentation()
                 defer { presentation.end() }
                 if starsState.balance.value > starsPrice {

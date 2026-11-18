@@ -51,7 +51,7 @@ public final class StarsSendActionView : Control {
         layout.measure(width: .greatestFiniteMagnitude)
 
         text.update(layout)
-        setAccessibilityValue("\(price.formattedWithSeparator) \(strings().starListTelegramStars)")
+        setAccessibilityValue("\(price.formattedWithSeparator) \(strings().starListAnsibleDiamonds)")
 
         image.image = theme.icons.chat_input_star
         image.sizeToFit()

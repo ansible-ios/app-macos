@@ -3127,10 +3127,10 @@ public class ShareModalController: ModalViewController, Notifable, TableViewDele
                     let messagesCount = (share as? ShareDeliveryProviding)?.outgoingMessageCount(comment: input) ?? (share.messagesCount + (input.inputText.isEmpty ? 0 : 1))
                     let starsPrice = payStars * Int64(messagesCount)
                     let amount = strings().starListItemCountOther(Int(starsPrice))
-                    let messageCountText = strings().chatPayStarsConfirmMessagesOther(messagesCount)
+                    let messageCountText = strings().chatPayDiamondsConfirmMessagesOther(messagesCount)
                     let info = strings().sharePayConfirmText(strings().sharePayConfirmUserCountOther(sendPaidMessageStars.count), amount, messageCountText)
                     self.analyticsShareJourney?.paymentConfirmationOpened()
-                    return origin.preservingPresentation(sharePickerConfirmation(context: origin, window: context.window, header: strings().chatPayStarsConfirmTitle, information: info, ok: strings().chatPayStarsConfirmPayOther(messagesCount)))
+                    return origin.preservingPresentation(sharePickerConfirmation(context: origin, window: context.window, header: strings().chatPayDiamondsConfirmTitle, information: info, ok: strings().chatPayDiamondsConfirmPayOther(messagesCount)))
                     |> afterDisposed { [journey = self.analyticsShareJourney] in journey?.paymentConfirmationEnded() }
                     |> castError(String.self)
                     |> mapToSignal { [weak self] confirmed -> Signal<Bool, String> in

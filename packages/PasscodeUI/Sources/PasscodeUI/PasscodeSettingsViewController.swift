@@ -153,7 +153,7 @@ fileprivate func prepareTransition(left:[AppearanceWrapperEntry<PasscodeEntry>],
         case let .turnOnDescription(_, viewType), let .turnOffDescription(_, viewType):
             return GeneralTextRowItem(initialSize, stableId: entry.stableId, text: strings().passcodeControllerText, viewType: viewType)
         case let .lockAnsibleHeader(_, viewType):
-            return GeneralTextRowItem(initialSize, stableId: entry.stableId, text: strings().passcodeSettingsViewControllerLockTelegram, viewType: viewType)
+            return GeneralTextRowItem(initialSize, stableId: entry.stableId, text: strings().passcodeSettingsViewControllerLockAnsible, viewType: viewType)
         case let .lockWalletHeader(_, viewType):
             return GeneralTextRowItem(initialSize, stableId: entry.stableId, text: strings().passcodeSettingsViewControllerLockWallet, viewType: viewType)
         case let .walletInfo(_, viewType):
@@ -221,7 +221,7 @@ private final class PasscodeSettingsArguments {
 open class PasscodeSettingsViewController<Context: AccountContextProtocol>: TableViewController<Context> {
 
     open override var defaultBarTitle: String {
-        return strings().telegramPasscodeSettingsViewController
+        return strings().ansiblePasscodeSettingsViewController
     }
     
     public var installsForWallet = false

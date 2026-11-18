@@ -58,7 +58,7 @@ final class InviteLinkMonthlyFeeRowItem : GeneralRowItem {
     }
 
     override var accessibilityLabel: String? {
-        return strings().starsSubscriptionPeriodMonthly
+        return strings().diamondsSubscriptionPeriodMonthly
     }
 
     override var accessibilityValue: String? {

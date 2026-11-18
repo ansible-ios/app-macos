@@ -75,7 +75,7 @@ private final class HeaderItem : GeneralRowItem {
     }
     
     override var accessibilityValue: String? {
-        let price = strings().starSubScreenPrice("\(subscription.amount.stringValue) \(strings().starListTelegramStars)")
+        let price = strings().starSubScreenPrice("\(subscription.amount.stringValue) \(strings().starListAnsibleDiamonds)")
         return [subscription.peer._asPeer().displayTitle, price].joined(separator: ", ")
     }
     

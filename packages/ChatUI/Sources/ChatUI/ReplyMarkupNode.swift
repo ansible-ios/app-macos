@@ -18,7 +18,7 @@ final class ReplyMarkupContainerView: View {
 func diamondPaymentButtonTitle(_ title: String) -> String {
     return replacingLegacyCurrencyStar(in: title, with: XTRSTAR)
         .replacingOccurrences(of: #"(?<![\p{L}_])XTR(?![\p{L}_])"#, with: XTRSTAR, options: .regularExpression)
-        .replacingOccurrences(of: "Telegram Stars", with: strings().starListTelegramStars)
+        .replacingOccurrences(of: "Telegram Stars", with: strings().starListAnsibleDiamonds)
 }
 
 public class ReplyMarkupButtonLayout {
@@ -62,7 +62,7 @@ public class ReplyMarkupButtonLayout {
             } else if xtrAmount != nil {
                 title = diamondPaymentButtonTitle(title)
             }
-            self.paymentAccessibilityLabel = xtrAmount == nil ? title : title.replacingOccurrences(of: XTRSTAR, with: strings().starListTelegramStars)
+            self.paymentAccessibilityLabel = xtrAmount == nil ? title : title.replacingOccurrences(of: XTRSTAR, with: strings().starListAnsibleDiamonds)
         } else {
             self.paymentAccessibilityLabel = nil
         }

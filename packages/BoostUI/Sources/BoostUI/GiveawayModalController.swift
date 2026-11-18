@@ -402,7 +402,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         })))
         index += 1
                 
-        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_giveaway_specific, data: .init(name: strings().giveawayTypeStarsTitle, color: theme.colors.text, icon: stars_icon, type: .selectableLeft(state.type == .stars), viewType: .lastItem, enabled: true, description: strings().giveawayTypeStarsText, descTextColor: theme.colors.grayText, action: {
+        entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_giveaway_specific, data: .init(name: strings().giveawayTypeDiamondsTitle, color: theme.colors.text, icon: stars_icon, type: .selectableLeft(state.type == .stars), viewType: .lastItem, enabled: true, description: strings().giveawayTypeDiamondsText, descTextColor: theme.colors.grayText, action: {
             arguments.updateType(.stars)
         })))
     } else if case let .prepaid(prepaid) = state.type {
@@ -419,8 +419,8 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         case let .stars(stars, boosts):
             countIcon = BoostHooks.shared.generalPrepaidGiveawayIcon(theme.colors.accent, .initialize(string: "\(boosts)", color: theme.colors.accent, font: .avatar(.text)))
             icon = BoostHooks.shared.iconGiveawayStars().precomposed(flipVertical: true)
-            title = strings().giveawayStarsPrepaidTitle(Int(stars))
-            info = strings().giveawayStarsPrepaidDescOther(Int(prepaid.quantity))
+            title = strings().giveawayDiamondsPrepaidTitle(Int(stars))
+            info = strings().giveawayDiamondsPrepaidDescOther(Int(prepaid.quantity))
         }
         entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_prepaid, data: .init(name: title, color: theme.colors.text, icon: icon, type: .imageContext(countIcon, ""), viewType: .singleItem, description: info, descTextColor: theme.colors.grayText)))
     }
@@ -467,7 +467,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         }
         
         if !state.revealStarOptions, !concealed.isEmpty {
-            entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_show_more, data: .init(name: strings().fragmentStarsShowMore, color: theme.colors.accent,icon: theme.icons.chatSearchUp, type: .none, viewType: .lastItem, action: arguments.revealStarOptions, iconTextInset: 30, iconInset: -5)))
+            entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_show_more, data: .init(name: strings().crystalPieceDiamondsShowMore, color: theme.colors.accent,icon: theme.icons.chatSearchUp, type: .none, viewType: .lastItem, action: arguments.revealStarOptions, iconTextInset: 30, iconInset: -5)))
         }
         entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().giveawayStarOptionsInfo), data: .init(color: theme.colors.listGrayText, detectBold: true, viewType: .textBottomItem)))
         index += 1

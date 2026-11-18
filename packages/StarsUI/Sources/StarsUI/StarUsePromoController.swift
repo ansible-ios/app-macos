@@ -57,10 +57,10 @@ private final class RowItem : GeneralRowItem {
         self.context = context
         self.dismiss = dismiss
         
-        let headerText = NSAttributedString.initialize(string: strings().starsPromoHeader, color: theme.colors.text, font: .medium(.title)).mutableCopy() as! NSMutableAttributedString
+        let headerText = NSAttributedString.initialize(string: strings().diamondsPromoHeader, color: theme.colors.text, font: .medium(.title)).mutableCopy() as! NSMutableAttributedString
         
         headerText.append(string: "\n\n")
-        headerText.append(string: strings().starsPromoHeaderInfo, color: theme.colors.grayText, font: .normal(.text))
+        headerText.append(string: strings().diamondsPromoHeaderInfo, color: theme.colors.grayText, font: .normal(.text))
         
                                                                                     
         self.headerLayout = .init(headerText, alignment: .center)
@@ -68,10 +68,10 @@ private final class RowItem : GeneralRowItem {
         
         var options:[OptionsListView.Option] = []
         
-        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconStarInfoGift).precomposed(theme.colors.text), header: .init(.initialize(string: strings().starsPromoOption1Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().starsPromoOption1Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
+        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconStarInfoGift).precomposed(theme.colors.text), header: .init(.initialize(string: strings().diamondsPromoOption1Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().diamondsPromoOption1Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
         
         
-        let option2Info = parseMarkdownIntoAttributedString(strings().starsPromoOption2Info, attributes: .init(body: .init(font: .medium(.text), textColor: theme.colors.grayText), link: .init(font: .normal(.text), textColor: theme.colors.link), linkAttribute: { contents in
+        let option2Info = parseMarkdownIntoAttributedString(strings().diamondsPromoOption2Info, attributes: .init(body: .init(font: .medium(.text), textColor: theme.colors.grayText), link: .init(font: .normal(.text), textColor: theme.colors.link), linkAttribute: { contents in
             return (NSAttributedString.Key.link.rawValue, contents)
         }))
         
@@ -81,12 +81,12 @@ private final class RowItem : GeneralRowItem {
             showModal(with: Star_AppExamples(context: context), for: context.window)
         }
         
-        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconStarInfoBot).precomposed(theme.colors.text), header: .init(.initialize(string: strings().starsPromoOption2Title, color: theme.colors.text, font: .medium(.text))), text: option2InfoLayout, width: initialSize.width - 40))
+        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconStarInfoBot).precomposed(theme.colors.text), header: .init(.initialize(string: strings().diamondsPromoOption2Title, color: theme.colors.text, font: .medium(.text))), text: option2InfoLayout, width: initialSize.width - 40))
 
         
-        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconStarInfoLock).precomposed(theme.colors.text), header: .init(.initialize(string:  strings().starsPromoOption3Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().starsPromoOption3Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
+        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconStarInfoLock).precomposed(theme.colors.text), header: .init(.initialize(string:  strings().diamondsPromoOption3Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().diamondsPromoOption3Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
 
-        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconStarInfoCash).precomposed(theme.colors.text), header: .init(.initialize(string:  strings().starsPromoOption4Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().starsPromoOption4Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
+        options.append(.init(image: AnsibleThemeHooks.shared.image(.iconStarInfoCash).precomposed(theme.colors.text), header: .init(.initialize(string:  strings().diamondsPromoOption4Title, color: theme.colors.text, font: .medium(.text))), text: .init(.initialize(string: strings().diamondsPromoOption4Info, color: theme.colors.grayText, font: .normal(.text))), width: initialSize.width - 40))
 
         
         self.options = options
@@ -104,7 +104,7 @@ private final class RowItem : GeneralRowItem {
     }
     
     override var accessibilityLabel: String? {
-        return strings().starsPromoHeader
+        return strings().diamondsPromoHeader
     }
     
     public override func viewClass() -> AnyClass {
@@ -220,7 +220,7 @@ public func StarUsePromoController(context: (any AccountContextProtocol)) -> Inp
         actionsDisposable.dispose()
     }
 
-    let modalInteractions = ModalInteractions(acceptTitle: strings().fragmentAdsInfoOK, accept: {
+    let modalInteractions = ModalInteractions(acceptTitle: strings().crystalPieceAdsInfoOK, accept: {
         close?()
     }, singleButton: true, customTheme: {
         .init(background: theme.colors.background, grayForeground: theme.colors.background, activeBackground: theme.colors.background, listBackground: theme.colors.background)

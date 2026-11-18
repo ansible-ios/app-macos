@@ -67,12 +67,12 @@ func verifyAlert(for window: Window, header: String, information: String, ok: St
 }
 __PAYMENT__
 struct StoryStrings {
-    var chatPayStarsConfirmTitle: String { "Pay" }
-    var chatPayStarsConfirmCheckbox: String { "Remember" }
+    var chatPayDiamondsConfirmTitle: String { "Pay" }
+    var chatPayDiamondsConfirmCheckbox: String { "Remember" }
     func starListItemCountOther(_ count: Int) -> String { "amount" }
-    func chatPayStarsConfirmMessagesOther(_ count: Int) -> String { "messages" }
-    func chatPayStarsConfirmText(_ peer: String, _ amount: String, _ total: String, _ count: String) -> String { "confirmation" }
-    func chatPayStarsConfirmPayOther(_ count: Int) -> String { "send" }
+    func chatPayDiamondsConfirmMessagesOther(_ count: Int) -> String { "messages" }
+    func chatPayDiamondsConfirmText(_ peer: String, _ amount: String, _ total: String, _ count: String) -> String { "confirmation" }
+    func chatPayDiamondsConfirmPayOther(_ count: Int) -> String { "send" }
 }
 func strings() -> StoryStrings { StoryStrings() }
 enum FastSettings {

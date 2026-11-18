@@ -80,7 +80,7 @@ private final class HeaderItem : GeneralRowItem {
     }
 
     override var accessibilityLabel: String? {
-        return "\(state.amount.realValue) " + strings().voiceOverCommonStars
+        return "\(state.amount.realValue) " + strings().voiceOverCommonDiamonds
     }
     
     override var height: CGFloat {

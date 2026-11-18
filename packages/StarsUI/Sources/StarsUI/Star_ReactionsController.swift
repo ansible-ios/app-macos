@@ -167,7 +167,7 @@ private final class HeaderItem : GeneralRowItem {
         
         self.balanceLayout = .init(balanceAttr, alignment: .right)
         
-        self.headerLayout = .init(.initialize(string: strings().starsReactScreenTitle, color: presentation.colors.text, font: .medium(.title)), alignment: .center)
+        self.headerLayout = .init(.initialize(string: strings().diamondsReactScreenTitle, color: presentation.colors.text, font: .medium(.title)), alignment: .center)
         
         let title = state.source.mainPeer?.displayTitle ?? ""
         
@@ -177,13 +177,13 @@ private final class HeaderItem : GeneralRowItem {
             currentSentAmount = Int(myPeer.count)
         }
         
-        attr.append(string: currentSentAmount != nil ? strings().starsReactScreenSentValueOther(currentSentAmount!) : strings().starsReactScreenInfo(title), color: presentation.colors.text, font: .normal(.text))
+        attr.append(string: currentSentAmount != nil ? strings().diamondsReactScreenSentValueOther(currentSentAmount!) : strings().diamondsReactScreenInfo(title), color: presentation.colors.text, font: .normal(.text))
         attr.detectBoldColorInString(with: .medium(.text))
         self.info = .init(attr, alignment: .center)
         
         for (i, topPeer) in state.peers.enumerated() {
             let amount = topPeer.count
-            let title = topPeer.isAnonymous || topPeer.peer == nil ? strings().starsReactScreenAnonymous : topPeer.peer?._asPeer().compactDisplayTitle ?? ""
+            let title = topPeer.isAnonymous || topPeer.peer == nil ? strings().diamondsReactScreenAnonymous : topPeer.peer?._asPeer().compactDisplayTitle ?? ""
             senders.append(.init(titleLayout: .init(.initialize(string: title, color: presentation.colors.text, font: .normal(.text)), maximumNumberOfLines: 1), amountLayout: .init(.initialize(string: "\(amount.prettyNumber)", color: .white, font: .medium(.short))), peer: !topPeer.isAnonymous ? topPeer.peer : nil, source: state.source, amount: amount, index: i))
 
         }
@@ -245,7 +245,7 @@ private final class HeaderItem : GeneralRowItem {
     }
     
     override var accessibilityValue: String? {
-        let balance = strings().starPurchaseBalance("\(state.myBalance) \(strings().starListTelegramStars)")
+        let balance = strings().starPurchaseBalance("\(state.myBalance) \(strings().starListAnsibleDiamonds)")
         return [info.attributedString.string, balance].joined(separator: ", ")
     }
     
@@ -271,15 +271,15 @@ private final class AcceptView : Control {
         
         self.set(background: item.presentation.colors.accent, for: .Normal)
         
-        attr.append(string: strings().starsReactScreenSendOther(clown_space, Int(item.state.amount.realValue)), color: item.presentation.colors.underSelectedColor, font: .medium(.text))
+        attr.append(string: strings().diamondsReactScreenSendOther(clown_space, Int(item.state.amount.realValue)), color: item.presentation.colors.underSelectedColor, font: .medium(.text))
         attr.insertEmbedded(.embedded(name: XTR_ICON, color: item.presentation.colors.underSelectedColor, resize: false), for: clown)
         
         let layout = TextViewLayout(attr)
         layout.measure(width: item.width - 60)
         
         textView.set(text: layout, context: item.context)
-        let sendAmount = strings().starsReactScreenSendOther("", Int(item.state.amount.realValue))
-        setAccessibilityLabel("\(sendAmount) \(strings().starListTelegramStars)")
+        let sendAmount = strings().diamondsReactScreenSendOther("", Int(item.state.amount.realValue))
+        setAccessibilityLabel("\(sendAmount) \(strings().starListAnsibleDiamonds)")
         
         self.removeAllHandlers()
         self.set(handler: { [weak item] _ in
@@ -317,7 +317,7 @@ private final class SendersView: View {
             textView.userInteractionEnabled = false
             textView.isSelectable = false
             
-            let layout = TextViewLayout(.initialize(string: strings().starsReactScreenTopSenders, color: NSColor.white, font: .medium(.text)), alignment: .center)
+            let layout = TextViewLayout(.initialize(string: strings().diamondsReactScreenTopSenders, color: NSColor.white, font: .medium(.text)), alignment: .center)
             layout.measure(width: .greatestFiniteMagnitude)
             self.textView.update(layout)
             
@@ -419,7 +419,7 @@ private final class SendersView: View {
             sender.amountLayout.measure(width: .greatestFiniteMagnitude)
             amountView.set(text: sender.amountLayout, context: context)
             setAccessibilityLabel(sender.titleLayout.attributedString.string)
-            setAccessibilityValue("\(sender.amount.formattedWithSeparator) \(strings().voiceOverCommonStars)")
+            setAccessibilityValue("\(sender.amount.formattedWithSeparator) \(strings().voiceOverCommonDiamonds)")
             
             badgeView.layer?.borderColor = item.presentation.colors.background.cgColor
             badgeView.layer?.borderWidth = 2
@@ -565,7 +565,7 @@ private final class ShowMeInTopView: View {
         
         selection.update(unselectedImage: presentation.icons.chatToggleUnselected, selectedImage: presentation.icons.chatToggleSelected, selected: showMe, animated: true)
         
-        let layout = TextViewLayout(.initialize(string: strings().starsReactScreenShowMeInTop, color: presentation.colors.text, font: .normal(.text)))
+        let layout = TextViewLayout(.initialize(string: strings().diamondsReactScreenShowMeInTop, color: presentation.colors.text, font: .normal(.text)))
         layout.measure(width: .greatestFiniteMagnitude)
         self.textView.update(layout)
         container.setAccessibilityLabel(layout.attributedString.string)
@@ -913,7 +913,7 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
     }))
     sectionId += 1
   
-    entries.append(.desc(sectionId: sectionId, index: index, text: .markdown(strings().starsReactScreenFooter, linkHandler: { link in
+    entries.append(.desc(sectionId: sectionId, index: index, text: .markdown(strings().diamondsReactScreenFooter, linkHandler: { link in
     }), data: .init(color: arguments.presentation.colors.grayText, viewType: .textBottomItem, fontSize: 12, centerViewAlignment: true, alignment: .center, linkColor: arguments.presentation.colors.link)))
     index += 1
     

@@ -66,7 +66,7 @@ final class Fragment_BalanceRowItem : GeneralRowItem {
     var withdrawText: String {
         switch balance.currency {
         case .xtr:
-            return strings().monetizationBalanceWithdrawStars
+            return strings().monetizationBalanceWithdrawDiamonds
         case .ton:
             return strings().monetizationBalanceWithdrawTon
         }
@@ -88,7 +88,7 @@ final class Fragment_BalanceRowItem : GeneralRowItem {
     override var accessibilityLabel: String? {
         switch balance.currency {
         case .xtr:
-            return tonBalance.attributedString.string + " " + strings().starListTelegramStars
+            return tonBalance.attributedString.string + " " + strings().starListAnsibleDiamonds
         case .ton:
             return tonBalance.attributedString.string + " TON"
         }
@@ -345,7 +345,7 @@ private final class BalanceRowView : GeneralContainableRowView {
         
         
         if let adsAction {
-            adsAction.set(targetTime: nil, text: strings().starsBalanceBuyAds, width: blockWidth, context: item.context, animated: animated)
+            adsAction.set(targetTime: nil, text: strings().diamondsBalanceBuyAds, width: blockWidth, context: item.context, animated: animated)
         }
 
         currentAction.removeAllHandlers()

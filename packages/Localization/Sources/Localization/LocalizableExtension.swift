@@ -75,7 +75,12 @@ public class Language : Equatable {
     public init (languageCode:String, customPluralizationCode: String?, strings:[String: String]) {
         self.languageCode = languageCode
         self.customPluralizationCode = customPluralizationCode
-        self.strings = strings
+        var branded = strings
+        for (key, value) in strings {
+            let localized = brandedLanguageValue(value, key: key)
+            if localized != value { branded[key] = localized }
+        }
+        self.strings = branded
     }
 }
 

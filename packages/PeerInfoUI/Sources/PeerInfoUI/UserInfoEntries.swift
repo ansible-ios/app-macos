@@ -2400,7 +2400,7 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
             })
         case let .botStarsBalance(_, text, viewType):
             let icon = generateStarBalanceIcon(text)
-            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditStarsBalanceNew, icon: theme.icons.peerInfoStarsBalance, type: .nextImage(icon), viewType: viewType, action: arguments.openStarsBalance)
+            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditDiamondsBalanceNew, icon: theme.icons.peerInfoStarsBalance, type: .nextImage(icon), viewType: viewType, action: arguments.openStarsBalance)
         case let .botTonBalance(_, text, viewType):
             let icon = generateTonBalanceIcon(text)
             return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditTonBalance, icon: theme.icons.peerInfoTonBalance, type: .nextImage(icon), viewType: viewType, action: arguments.openTonBalance)
@@ -3073,7 +3073,7 @@ func userInfoEntries<Context: AccountContextProtocol>(view: PeerView, arguments:
                     
 
                     if hasStars {
-                        entries.append(UserInfoEntry<Context>.botStarsBalance(sectionId: sectionId, text: starBalance == 0 ? "" : strings().peerInfoBotEditStarsCountOther(Int(starBalance)).replacingOccurrences(of: "\(starBalance)", with: starBalance.formattedWithSeparator), viewType: .singleItem))
+                        entries.append(UserInfoEntry<Context>.botStarsBalance(sectionId: sectionId, text: starBalance == 0 ? "" : strings().peerInfoBotEditDiamondsCountOther(Int(starBalance)).replacingOccurrences(of: "\(starBalance)", with: starBalance.formattedWithSeparator), viewType: .singleItem))
                     }
                     
                 }

@@ -431,11 +431,11 @@ private func entries(state: State, arguments: Arguments) -> [InputDataEntry] {
         
         if !channel.flags.contains(.isGigagroup), cachedData.flags.contains(.paidMessagesAvailable) {
                         
-            entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_charge, data: .init(name: strings().channelPermissionPaidMessagesChargeStars, color: theme.colors.text, type: .switchable(state.price != nil), viewType: .singleItem, action: {
+            entries.append(.general(sectionId: sectionId, index: index, value: .none, error: nil, identifier: _id_charge, data: .init(name: strings().channelPermissionPaidMessagesChargeDiamonds, color: theme.colors.text, type: .switchable(state.price != nil), viewType: .singleItem, action: {
                 arguments.updatePrice(state.price != nil ? nil : 500)
             })))
             
-            entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().channelPermissionPaidMessagesChargeStarsInfo), data: .init(color: theme.colors.listGrayText, viewType: .textBottomItem)))
+            entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().channelPermissionPaidMessagesChargeDiamondsInfo), data: .init(color: theme.colors.listGrayText, viewType: .textBottomItem)))
             index += 1
             
             let maximumStars = arguments.context.appConfiguration.getGeneralValue("stars_paid_message_amount_max", orElse: 10000)

@@ -162,41 +162,41 @@ private final class HeaderItem : GeneralRowItem {
             if purpose == .unavailableGift {
                 header = strings().giftUnavailable
             } else if transaction.giveawayMessageId != nil {
-                header = strings().starsTransactionReceivedPrize
+                header = strings().diamondsTransactionReceivedPrize
             } else {
                 if transaction.flags.contains(.isStarGiftAuctionBid) {
-                    header = strings().starsTransactionGiftAuctionBid
+                    header = strings().diamondsTransactionGiftAuctionBid
                 } else if fromProfile {
-                    header = strings().starsTransactionGift
+                    header = strings().diamondsTransactionGift
                 } else {
-                    header = headerTitle ?? strings().starsTransactionGiftSimple
+                    header = headerTitle ?? strings().diamondsTransactionGiftSimple
                 }
 
             }
             amount = transaction.count.amount.totalValue
         } else if transaction.flags.contains(.isReaction) {
-            header = strings().starsTransactionPaidReaction
+            header = strings().diamondsTransactionPaidReaction
             amount = transaction.count.amount.totalValue
         } else if let period = transaction.subscriptionPeriod {
             if period == 30 * 24 * 60 * 60 {
-                header = strings().starsSubscriptionPeriodMonthly
+                header = strings().diamondsSubscriptionPeriodMonthly
             } else if period == 7 * 24 * 60 * 60 {
-                header = strings().starsSubscriptionPeriodWeekly
+                header = strings().diamondsSubscriptionPeriodWeekly
             } else if period == 1 * 24 * 60 * 60 {
-                header = strings().starsSubscriptionPeriodDaily
+                header = strings().diamondsSubscriptionPeriodDaily
             } else {
-                header = strings().starsSubscriptionPeriodUnknown
+                header = strings().diamondsSubscriptionPeriodUnknown
             }
             amount = transaction.count.amount.totalValue
         } else if let commission = transaction.starrefCommissionPermille, transaction.starrefPeerId == nil {
-            header = strings().starsTransactionCommission("\(commission.decemial.string)%")
+            header = strings().diamondsTransactionCommission("\(commission.decemial.string)%")
             amount = transaction.count.amount.totalValue
         } else {
             switch transaction.peer {
             case .appStore:
                 header = strings().starListTransactionAppStore
             case .fragment:
-                header = strings().starListTransactionFragment
+                header = strings().starListTransactionCrystalPiece
             case .playMarket:
                 header = strings().starListTransactionPlayMarket
             case .premiumBot:
@@ -209,12 +209,12 @@ private final class HeaderItem : GeneralRowItem {
                 if let count = transaction.paidMessageCount {
                     header = strings().starTransactionMessageFeeOther(Int(count))
                 } else if !transaction.media.isEmpty {
-                    header = strings().starsTransactionMediaPurchase
+                    header = strings().diamondsTransactionMediaPurchase
                 } else {
                     header = transaction.title ?? peer?._asPeer().displayTitle ?? ""
                 }
             case .apiLimitExtension:
-                header = strings().starsIntroTransactionTelegramBotApiTitle
+                header = strings().diamondsIntroTransactionAnsibleBotApiTitle
             }
             amount = transaction.count.amount.totalValue
         }
@@ -263,7 +263,7 @@ private final class HeaderItem : GeneralRowItem {
             self.descLayout = .init(textAttr, alignment: .center)
             
         } else if let premiumGiftMonths = transaction.premiumGiftMonths {
-            let text = strings().starsTransactionPremiumFor(Int(premiumGiftMonths))
+            let text = strings().diamondsTransactionPremiumFor(Int(premiumGiftMonths))
             self.descLayout = .init(.initialize(string: text, color: theme.colors.text, font: .normal(.text)), alignment: .center)
         } else if upgraded {
             self.descLayout = nil
@@ -281,18 +281,18 @@ private final class HeaderItem : GeneralRowItem {
             let photoCount = Int(transaction.media.count - videoCount)
             
             if photoCount > 0 && videoCount > 0 {
-                description = strings().starsTransferMediaAnd(strings().starsTransferPhotosOther(photoCount), strings().starsTransferVideosOther(videoCount))
+                description = strings().diamondsTransferMediaAnd(strings().diamondsTransferPhotosOther(photoCount), strings().diamondsTransferVideosOther(videoCount))
             } else if photoCount > 0 {
                 if photoCount > 1 {
-                    description += strings().starsTransferPhotosOther(photoCount)
+                    description += strings().diamondsTransferPhotosOther(photoCount)
                 } else {
-                    description += strings().starsTransferSinglePhoto
+                    description += strings().diamondsTransferSinglePhoto
                 }
             } else if videoCount > 0 {
                 if videoCount > 1 {
-                    description += strings().starsTransferVideosOther(videoCount)
+                    description += strings().diamondsTransferVideosOther(videoCount)
                 } else {
-                    description += strings().starsTransferSingleVideo
+                    description += strings().diamondsTransferSingleVideo
                 }
             }
             self.descLayout = .init(.initialize(string: description, color: theme.colors.text, font: .normal(.text)), alignment: .center)
@@ -325,41 +325,41 @@ private final class HeaderItem : GeneralRowItem {
                         if incoming {
                             if savedToProfile {
                                 if let _ = sender {
-                                    text = strings().starsStarGiftTextKeptOnPageIncomingGifts
+                                    text = strings().diamondsStarGiftTextKeptOnPageIncomingGifts
                                 } else {
-                                    text = strings().starsStarGiftTextKeptOnPageIncoming
+                                    text = strings().diamondsStarGiftTextKeptOnPageIncoming
                                 }
                             } else if convertedToStars {
                                 if let _ = sender {
                                     text = strings().giftViewKeepUpgradeOrConvertDescriptionChannel(convertStarsString)
                                 } else {
-                                    text = strings().starsStarGiftTextConvertedIncoming(convertStarsString)
+                                    text = strings().diamondsStarGiftTextConvertedIncoming(convertStarsString)
                                 }
                             } else {
                                 if let _ = sender {
                                     text = strings().giftViewKeepOrConvertDescriptionChannel(convertStarsString)
                                 } else {
-                                    text = strings().starsStarGiftTextIncoming(convertStarsString)
+                                    text = strings().diamondsStarGiftTextIncoming(convertStarsString)
                                 }
                             }
                         } else {
                             if savedToProfile {
-                                text = strings().starsStarGiftTextKeptOnPageOutgoing(displayTitle)
+                                text = strings().diamondsStarGiftTextKeptOnPageOutgoing(displayTitle)
                             } else if convertedToStars {
-                                text = strings().starsStarGiftTextConvertedOutgoing(displayTitle, convertStarsString)
+                                text = strings().diamondsStarGiftTextConvertedOutgoing(displayTitle, convertStarsString)
                             } else {
-                                text = strings().starsStarGiftTextOutgoing(displayTitle, convertStarsString)
+                                text = strings().diamondsStarGiftTextOutgoing(displayTitle, convertStarsString)
                             }
                         }
                     } else {
-                        text = strings().starsStarGiftTextKeepOrHide
+                        text = strings().diamondsStarGiftTextKeepOrHide
                     }
                     
                 default:
-                    text = strings().starsExampleAppsText
+                    text = strings().diamondsExampleAppsText
                 }
                 if !fromProfile {
-                    text += " " + strings().starsStarGiftTextLink
+                    text += " " + strings().diamondsStarGiftTextLink
                     
                     let textAttr = parseMarkdownIntoAttributedString(text, attributes: MarkdownAttributes(body: MarkdownAttributeSet(font: .normal(.text), textColor: theme.colors.text), bold: MarkdownAttributeSet(font: .bold(.text), textColor: theme.colors.text), link: MarkdownAttributeSet(font: .normal(.text), textColor: theme.colors.accentIcon), linkAttribute: { contents in
                         return (NSAttributedString.Key.link.rawValue, contents)
@@ -389,7 +389,7 @@ private final class HeaderItem : GeneralRowItem {
             if let url = url as? String {
                 if url == "apps" {
                     arguments.openApps()
-                } else if url == "stars" {
+                } else if url == "diamonds" || url == "stars" {
                     arguments.openStars()
                 } else if url == "changeFee" {
                     arguments.changeFee()
@@ -428,7 +428,7 @@ private final class HeaderItem : GeneralRowItem {
     }
     
     override var accessibilityValue: String? {
-        let currencyName = strings().starListTelegramStars
+        let currencyName = strings().starListAnsibleDiamonds
         let amountInfo = infoLayout.attributedString.string.replacingOccurrences(of: clown, with: currencyName)
         let parts = [amountInfo, descLayout?.attributedString.string, refund?.attributedString.string].compactMap { $0?.replacingOccurrences(of: clown, with: "").trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
         return parts.isEmpty ? nil : parts.joined(separator: ", ")
@@ -1913,7 +1913,7 @@ public func Star_TransactionScreen(context: (any AccountContextProtocol), fromPe
                                 _ = context.engine.payments.convertStarGift(reference: reference).start()
                             }
                             close?()
-                            showModalText(for: window, text: strings().starTransactionStarGiftConvertToStarsAlert)
+                            showModalText(for: window, text: strings().starTransactionStarGiftConvertToDiamondsAlert)
                             PlayConfetti(for: window, stars: true)
                         })
                     } else {

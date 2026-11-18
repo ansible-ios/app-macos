@@ -688,7 +688,7 @@ public func BusinessChatbotController(context: (any AccountContextProtocol)) -> 
                 State.Permission(id: "sell", title: strings().businessChatBotManageGiftsSell, value: botRights?.contains(.sellGifts) ?? false),
                 State.Permission(id: "settings", title: strings().businessChatBotManageGiftsSettings, value: botRights?.contains(.changeGiftSettings) ?? false),
                 State.Permission(id: "transfer", title: strings().businessChatBotManageGiftsTransfer, value: botRights?.contains(.transferAndUpgradeGifts) ?? false),
-                State.Permission(id: "transferStars", title: strings().businessChatBotManageGiftsTransferStars, value: botRights?.contains(.transferStars) ?? false)
+                State.Permission(id: "transferStars", title: strings().businessChatBotManageGiftsTransferDiamonds, value: botRights?.contains(.transferStars) ?? false)
             ], expanded: previous.first(where: { $0.id == "gifts"})?.expanded ?? false),
 
             State.Permission(id: "stories", title: strings().businessChatBotManageStories, value: botRights?.contains(.manageStories) ?? false)
@@ -810,7 +810,7 @@ public func BusinessChatbotController(context: (any AccountContextProtocol)) -> 
             } else if key == .transferAndUpgradeGifts {
                 text = strings().chatbotSetupGiftWarningGiftsText(botUsername)
             } else if key == .transferStars {
-                text = strings().chatbotSetupGiftWarningStarsText(botUsername)
+                text = strings().chatbotSetupGiftWarningDiamondsText(botUsername)
             } else {
                 text = strings().chatbotSetupGiftWarningCombinedText(botUsername)
             }
