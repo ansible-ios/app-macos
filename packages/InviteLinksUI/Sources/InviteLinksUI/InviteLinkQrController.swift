@@ -110,7 +110,8 @@ private final class InviteLinkQrRowView: TableRowView {
         self.textView.update(item.textLayout)
 
         let size = InviteLinkQrRowView.codeSize
-        self.disposable.set((qrCode(string: item.link, color: dayClassicPalette.text, backgroundColor: dayClassicPalette.background, icon: .custom(theme.icons.login_qr_empty_cap))
+        let cap = LocalAnimatedSticker.login_airplane.data == nil ? inviteLinkQrCap() : theme.icons.login_qr_empty_cap
+        self.disposable.set((qrCode(string: item.link, color: dayClassicPalette.text, backgroundColor: dayClassicPalette.background, icon: .custom(cap))
         |> map { _, generate -> CGImage? in
             return generate(TransformImageArguments(corners: ImageCorners(), imageSize: size, boundingSize: size, intrinsicInsets: NSEdgeInsets(), scale: System.backingScale))?.generateImage()
         }
@@ -126,9 +127,13 @@ private final class InviteLinkQrRowView: TableRowView {
     }
 }
 
+private func inviteLinkQrCap() -> CGImage {
+    return AnsibleThemeHooks.shared.image(.iconLoginQRCap).precomposed(dayClassicPalette.text)
+}
+
 private func inviteLinkQrImage(_ link: String) -> Signal<CGImage?, NoError> {
     let size = NSMakeSize(768, 768)
-    return qrCode(string: link, color: dayClassicPalette.text, backgroundColor: dayClassicPalette.background, icon: .custom(theme.icons.login_qr_cap))
+    return qrCode(string: link, color: dayClassicPalette.text, backgroundColor: dayClassicPalette.background, icon: .custom(inviteLinkQrCap()))
     |> map { _, generate -> CGImage? in
         return generate(TransformImageArguments(corners: ImageCorners(), imageSize: size, boundingSize: size, intrinsicInsets: NSEdgeInsets(), scale: 1.0))?.generateImage()
     }

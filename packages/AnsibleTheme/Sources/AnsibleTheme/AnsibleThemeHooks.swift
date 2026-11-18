@@ -633,6 +633,7 @@ public enum AnsibleThemeImage {
     case iconLeftSidebarEditFolders
     case iconLikeMessageInside
     case iconLikeMessageInsideEmpty
+    case iconAuthBrand
     case iconLoginCap
     case iconLoginQRCap
     case iconLogoutOptionAddAccount

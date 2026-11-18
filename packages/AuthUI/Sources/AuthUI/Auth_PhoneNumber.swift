@@ -18,6 +18,8 @@ public final class Auth_LoginHeader : View {
     private var descAttr: NSAttributedString?
     public required init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
+        logo.layer?.cornerRadius = Auth_Insets.logoSize.width * 0.22
+        logo.layer?.masksToBounds = true
         addSubview(logo)
         addSubview(header)
         addSubview(desc)
@@ -51,7 +53,7 @@ public final class Auth_LoginHeader : View {
     
     private func updateLogo() {
         self.logo.contentGravity = .resizeAspect
-        self.logo.nsImage = NSApplication.shared.applicationIconImage
+        self.logo.nsImage = AnsibleThemeHooks.shared.image(.iconAuthBrand)
     }
     
     public override func viewDidMoveToWindow() {

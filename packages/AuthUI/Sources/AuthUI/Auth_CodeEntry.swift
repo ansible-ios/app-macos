@@ -18,7 +18,7 @@ private final class Auth_CodeEntryHeaderView : View {
     public enum IconType {
         case phone
         case desktop
-        case pirate
+        case anonymousNumber
         
         public var header: String {
             switch self {
@@ -26,7 +26,7 @@ private final class Auth_CodeEntryHeaderView : View {
                 return strings().loginNewCodeEnterSms
             case .desktop:
                 return strings().loginNewCodeEnterCode
-            case .pirate:
+            case .anonymousNumber:
                 return strings().loginNewCodeEnterSms
             }
         }
@@ -70,9 +70,9 @@ private final class Auth_CodeEntryHeaderView : View {
         }
         
         switch self.type {
-        case .pirate:
-            if let data = LocalAnimatedSticker.pirate_flag.data {
-                self.playerView.set(LottieAnimation(compressed: data, key: .init(key: .bundle("pirate_flag"), size: Auth_Insets.logoSize, backingScale: Int(System.backingScale), fitzModifier: nil), playPolicy: .loop, colors: []))
+        case .anonymousNumber:
+            if let data = LocalAnimatedSticker.login_airplane.data {
+                self.playerView.set(LottieAnimation(compressed: data, key: .init(key: .bundle("login_airplane"), size: Auth_Insets.logoSize, backingScale: Int(System.backingScale), fitzModifier: nil), playPolicy: .loop, colors: []))
             }
         default:
             if let data = LocalAnimatedSticker.code_note.data {
@@ -144,7 +144,7 @@ public final class Auth_CodeEntryView: View {
         
 
         nextView.set(handler: { [weak self] _ in
-            if self?.header.type == .pirate {
+            if self?.header.type == .anonymousNumber {
                 self?.openFragment()
             } else {
                 self?.control.invoke()
@@ -205,7 +205,7 @@ public final class Auth_CodeEntryView: View {
             info = strings().loginNewCodeCallInfo(formatPhoneNumber(number))
         case let .fragment(url, _length):
             length = _length
-            iconType = .pirate
+            iconType = .anonymousNumber
             info = strings().loginNewCodeCrystalPieceInfo(formatPhoneNumber(number))
             nextString = strings().loginNextCrystalPiece
             self.fragmentUrl = url

@@ -124,5 +124,32 @@
     "width": 180,
     "height": 180,
     "frames": 30
+  },
+  {
+    "path": "Resources/tgs/qrcode_matrix.tgs",
+    "role": "qr-sign-in-loading",
+    "source": "ios/QrDataRain.ass",
+    "sha256": "fe4c49ba3fa0ed457c3b21dae99570e66ad55655c7796f18d51888cc106db96b",
+    "width": 259,
+    "height": 259,
+    "frames": 180
+  },
+  {
+    "path": "Resources/tgs/login_airplane.tgs",
+    "role": "auth-and-invite-logo",
+    "source": "ios/PlaneLogo.ass",
+    "sha256": "ef34cd5cc70f8b4e5ff09c498f523124fe3a635c950c7549ea39902d8813b51b",
+    "width": 512,
+    "height": 512,
+    "frames": 54
+  },
+  {
+    "path": "Ansible-Mac/Assets.xcassets/PlaneLogoPlain.dataset/PlaneLogoPlain.tgs",
+    "role": "qr-studio-logo",
+    "source": "ios/PlaneLogoPlain.ass",
+    "sha256": "8ecb276e38ce471ab93f02cca2c34f4ce3c7d4d9e1e27087b15fd47d6223527e",
+    "width": 512,
+    "height": 512,
+    "frames": 54
   }
 ]

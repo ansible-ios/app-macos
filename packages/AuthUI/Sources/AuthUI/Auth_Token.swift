@@ -180,7 +180,7 @@ public final class Auth_TokenView : View {
     
     private func updateLogo() {
         self.logoView.contentGravity = .resizeAspect
-        self.logoView.nsImage = NSApplication.shared.applicationIconImage
+        self.logoView.image = AnsibleThemeHooks.shared.image(.iconLoginQRCap).precomposed(dayClassicPalette.text)
         
     }
     public override func viewDidMoveToWindow() {

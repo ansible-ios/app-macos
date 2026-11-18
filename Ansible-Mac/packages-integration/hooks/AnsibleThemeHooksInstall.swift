@@ -634,6 +634,7 @@ private func themeHookImage(_ image: AnsibleThemeImage) -> NSImage {
             case .iconLeftSidebarEditFolders: return NSImage(resource: .iconLeftSidebarEditFolders)
             case .iconLikeMessageInside: return NSImage(resource: .iconLikeMessageInside)
             case .iconLikeMessageInsideEmpty: return NSImage(resource: .iconLikeMessageInsideEmpty)
+            case .iconAuthBrand: return NSImage(resource: .iconAuthBrand)
             case .iconLoginCap: return NSImage(resource: .iconLoginCap)
             case .iconLoginQRCap: return NSImage(resource: .iconLoginQRCap)
             case .iconLogoutOptionAddAccount: return NSImage(resource: .iconLogoutOptionAddAccount)

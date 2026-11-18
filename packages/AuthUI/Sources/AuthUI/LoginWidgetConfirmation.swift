@@ -375,12 +375,12 @@ private final class LoginWidgetHeaderView: GeneralRowView {
             logoAvatarView.isHidden = false
             logoContainer.isHidden = true
         } else {
-            logoAvatarView.isHidden = !item.showLogo
+            logoAvatarView.isHidden = true
             logoContainer.isHidden = !item.showLogo
             logoContainer.layer?.borderColor = theme.colors.border.cgColor
             logoContainer.backgroundColor = theme.colors.grayBackground
-            logoImageView.image = AnsibleThemeHooks.shared.image(.iconFragmentStarTopUp).precomposed()
-            logoImageView.sizeToFit()
+            logoImageView.contentGravity = .resizeAspect
+            logoImageView.image = AnsibleThemeHooks.shared.image(.iconLoginQRCap).precomposed(theme.colors.text)
         }
 
         if let selectedAccount = item.accounts.first(where: { $0.account.id == item.selectedAccountId }) ?? item.accounts.first {
