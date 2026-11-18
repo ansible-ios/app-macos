@@ -39,7 +39,7 @@ jobs:
           const allowedExtensions = new Set([
             '.swift', '.m', '.mm', '.h',
             '.apng', '.avif', '.bmp', '.gif', '.heic', '.heif', '.icns', '.ico', '.jpeg', '.jpg',
-            '.png', '.tgs', '.tif', '.tiff', '.webp',
+            '.png', '.ass', '.tif', '.tiff', '.webp',
             '.plist', '.strings', '.stringsdict', '.xcstrings',
           ]);
 

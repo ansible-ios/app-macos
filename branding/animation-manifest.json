@@ -1,6 +1,6 @@
 [
   {
-    "path": "Resources/tgs/star_currency_new.tgs",
+    "path": "Resources/ass/star_currency_new.ass",
     "role": "currency",
     "source": "web/Diamond.ass",
     "sha256": "b0c1b8de4d84a3840a27e182daa6b7e1045f34c29b62e5000e0f99092b06d533",
@@ -9,7 +9,7 @@
     "frames": 180
   },
   {
-    "path": "Resources/tgs/star_currency_part_new.tgs",
+    "path": "Resources/ass/star_currency_part_new.ass",
     "role": "currency",
     "source": "web/Diamond.ass",
     "sha256": "b0c1b8de4d84a3840a27e182daa6b7e1045f34c29b62e5000e0f99092b06d533",
@@ -18,7 +18,7 @@
     "frames": 180
   },
   {
-    "path": "Resources/tgs/star_currency_mono.tgs",
+    "path": "Resources/ass/star_currency_mono.ass",
     "role": "menu-template",
     "source": "web/Diamond.ass",
     "sha256": "b0c1b8de4d84a3840a27e182daa6b7e1045f34c29b62e5000e0f99092b06d533",
@@ -27,7 +27,7 @@
     "frames": 180
   },
   {
-    "path": "Resources/tgs/premium_reactions/premium_reaction_6.tgs",
+    "path": "Resources/ass/premium_reactions/premium_reaction_6.ass",
     "role": "paid-reaction",
     "source": "web/diamonds/DiamondReaction.ass",
     "sha256": "cbec593e3b57f65d9c0d379963d6f5964f827e92dfe8876de4e9ee8374dfe7df",
@@ -36,7 +36,7 @@
     "frames": 125
   },
   {
-    "path": "Resources/tgs/premium_gift_3.tgs",
+    "path": "Resources/ass/premium_gift_3.ass",
     "role": "premium-gift-3",
     "source": "ios/premiumGifts/Gift3.ass",
     "sha256": "7b1ef663dcbf9f8d3c98f06221d1d368bbe319020386c88ae978aa3c35058de4",
@@ -45,7 +45,7 @@
     "frames": 180
   },
   {
-    "path": "Resources/tgs/premium_gift_6.tgs",
+    "path": "Resources/ass/premium_gift_6.ass",
     "role": "premium-gift-6",
     "source": "ios/premiumGifts/Gift6.ass",
     "sha256": "b21fd78c0a3ff0a3efc712d76d54d9f97a385cccdec8ad371de37e6205ff4daf",
@@ -54,7 +54,7 @@
     "frames": 180
   },
   {
-    "path": "Resources/tgs/premium_gift_12.tgs",
+    "path": "Resources/ass/premium_gift_12.ass",
     "role": "premium-gift-12",
     "source": "ios/premiumGifts/Gift12.ass",
     "sha256": "c9aaee3531bc83beec2505c658f75ae4333e52e4ea4474ef60fa82c98f32f1e5",
@@ -63,7 +63,7 @@
     "frames": 180
   },
   {
-    "path": "Resources/tgs/premium_reactions/premium_reaction_effect_1.tgs",
+    "path": "Resources/ass/premium_reactions/premium_reaction_effect_1.ass",
     "role": "paid-reaction-effect-1",
     "source": "win-desk/media-opus5-5/animations__star_reaction__effect1.ass",
     "sha256": "a0373a6a42d71d0f72731d5c80531a810ae1df91053c04b381f16fb19b5903a1",
@@ -72,7 +72,7 @@
     "frames": 90
   },
   {
-    "path": "Resources/tgs/premium_reactions/premium_reaction_effect_2.tgs",
+    "path": "Resources/ass/premium_reactions/premium_reaction_effect_2.ass",
     "role": "paid-reaction-effect-2",
     "source": "win-desk/media-opus5-5/animations__star_reaction__effect2.ass",
     "sha256": "eceacd14f9d21900c3ee6c976f57496dcc1514cfa011ae7c0f6130cb65636870",
@@ -81,7 +81,7 @@
     "frames": 83
   },
   {
-    "path": "Resources/tgs/premium_reactions/premium_reaction_effect_3.tgs",
+    "path": "Resources/ass/premium_reactions/premium_reaction_effect_3.ass",
     "role": "paid-reaction-effect-3",
     "source": "win-desk/media-opus5-5/animations__star_reaction__effect3.ass",
     "sha256": "3c1d6e779b13a0f1ec77060395ee02c7e37aba13c22ca3760ae3443e1b9afe56",
@@ -90,7 +90,7 @@
     "frames": 85
   },
   {
-    "path": "Resources/tgs/premium_reactions/premium_reaction_effect_4.tgs",
+    "path": "Resources/ass/premium_reactions/premium_reaction_effect_4.ass",
     "role": "paid-reaction-effect-4",
     "source": "andr/media-opus5-5_test/raw__star_reaction_effect4.json",
     "sha256": "29796bc572a59fadf1a89f52374be7b75106c04829eda25e54f6e80323918ca0",
@@ -99,7 +99,7 @@
     "frames": 90
   },
   {
-    "path": "Resources/tgs/premium_reactions/premium_reaction_effect_5.tgs",
+    "path": "Resources/ass/premium_reactions/premium_reaction_effect_5.ass",
     "role": "paid-reaction-effect-5",
     "source": "andr/media-opus5-5_test/raw__star_reaction_effect5.json",
     "sha256": "56a35d9075bf6e986975eaf4531fd225184b3c8d47c961b6e5a7bae0042885ad",
@@ -108,7 +108,7 @@
     "frames": 90
   },
   {
-    "path": "Resources/tgs/gigagroup.tgs",
+    "path": "Resources/ass/gigagroup.ass",
     "role": "broadcast-group",
     "source": "ios-media/media_opus-5-5/BroadcastGroup.ass",
     "sha256": "1fcc49c0cf562bed6a04b20d96c4f0748e90179cce2ee03bb9648de168a8ca43",
@@ -117,7 +117,7 @@
     "frames": 150
   },
   {
-    "path": "Resources/tgs/menu_paid.tgs",
+    "path": "Resources/ass/menu_paid.ass",
     "role": "paid-menu",
     "source": "iOS/PremiumStar.ass (Gem paths), macOS menu pulse",
     "sha256": "3d3c046290c59e228da4565389bdce8b473e8c24a128b192a5b929460364f306",
@@ -126,7 +126,7 @@
     "frames": 30
   },
   {
-    "path": "Resources/tgs/qrcode_matrix.tgs",
+    "path": "Resources/ass/qrcode_matrix.ass",
     "role": "qr-sign-in-loading",
     "source": "ios/QrDataRain.ass",
     "sha256": "fe4c49ba3fa0ed457c3b21dae99570e66ad55655c7796f18d51888cc106db96b",
@@ -135,7 +135,7 @@
     "frames": 180
   },
   {
-    "path": "Resources/tgs/login_airplane.tgs",
+    "path": "Resources/ass/login_airplane.ass",
     "role": "auth-and-invite-logo",
     "source": "ios/PlaneLogo.ass",
     "sha256": "ef34cd5cc70f8b4e5ff09c498f523124fe3a635c950c7549ea39902d8813b51b",
@@ -144,7 +144,7 @@
     "frames": 54
   },
   {
-    "path": "Ansible-Mac/Assets.xcassets/PlaneLogoPlain.dataset/PlaneLogoPlain.tgs",
+    "path": "Ansible-Mac/Assets.xcassets/PlaneLogoPlain.dataset/PlaneLogoPlain.ass",
     "role": "qr-studio-logo",
     "source": "ios/PlaneLogoPlain.ass",
     "sha256": "8ecb276e38ce471ab93f02cca2c34f4ce3c7d4d9e1e27087b15fd47d6223527e",
@@ -153,7 +153,7 @@
     "frames": 54
   },
   {
-    "path": "Resources/tgs/ansible_devices.tgs",
+    "path": "Resources/ass/ansible_devices.ass",
     "role": "current-mac-session",
     "source": "ios/Devices.ass",
     "sha256": "2aa1fd9fec4ca052635189ec3aa70a03fa244460204bc6d625c3f182f8d9da08",
@@ -162,7 +162,7 @@
     "frames": 180
   },
   {
-    "path": "Resources/tgs/new_folder.tgs",
+    "path": "Resources/ass/new_folder.ass",
     "role": "chat-folder-loading-and-creation",
     "source": "ios/ChatListNewFolder.ass",
     "sha256": "f33935a75651f69b8914d93fb3b8fa929f33116b9c8609eabe1a0af957f7017b",
@@ -171,7 +171,7 @@
     "frames": 120
   },
   {
-    "path": "Resources/tgs/searching_duck.tgs",
+    "path": "Resources/ass/searching_duck.ass",
     "role": "empty-channel-and-bot-search",
     "source": "web/assets_ass__SearchingDuck.ass",
     "sha256": "609b5503a8b5b99242234639a43509d02b02c7630cb05b516a7d535f3d03a7a1",
@@ -180,16 +180,16 @@
     "frames": 180
   },
   {
-    "path": "Resources/tgs/menu/menu_send_now.tgs",
+    "path": "Resources/ass/menu/menu_send_now.ass",
     "role": "send-now-menu",
     "source": "web/assets_font-icons__new-send.svg with macOS menu ring and timing",
-    "sha256": "c1262cd0a43c509f204a8950b0dbfeda7f61a85fb00ada9ea7faf99f6872308a",
+    "sha256": "6478043e3d55a65c9df42483badc83d07e1f350bbbf27efc97d517df01d50a02",
     "width": 180,
     "height": 180,
     "frames": 30
   },
   {
-    "path": "Resources/tgs/group_call_stream_empty.tgs",
+    "path": "Resources/ass/group_call_stream_empty.ass",
     "role": "stream-without-video",
     "source": "ios/CreateStream.ass",
     "sha256": "c5b5ea93ab10ca07320032e330fe63a8b255705ad4728b8d1506809b3f0c8f38",
@@ -198,7 +198,7 @@
     "frames": 180
   },
   {
-    "path": "Resources/tgs/gallery_saved_media.tgs",
+    "path": "Resources/ass/gallery_saved_media.ass",
     "role": "gallery-save-confirmation",
     "source": "ios/anim_savemedia.ass",
     "sha256": "c97e0465678466fd6e7a25ef060554266f3f4dfc5ada5df8eabce19ca4c59180",
@@ -207,12 +207,75 @@
     "frames": 65
   },
   {
-    "path": "Resources/tgs/menu/menu_view_sticker_set.tgs",
+    "path": "Resources/ass/menu/menu_view_sticker_set.ass",
     "role": "sticker-and-emoji-set-menu",
     "source": "ios/input_anim_stickerToSmile.json + input_anim_smileToSticker.json",
     "sha256": "9cc08be203ef5c0424178e6010b8ec533ce1042e2fdbd35f521072d10be8ce78",
     "width": 32,
     "height": 32,
     "frames": 48
+  },
+  {
+    "path": "Resources/ass/mic_to_video.ass",
+    "role": "record-voice-to-video",
+    "source": "ios/anim_micToVideo.json",
+    "sha256": "04e3ff463172403953d933dea95d3c0ee229822060d437a9ea53e61b43a0eb00",
+    "width": 30,
+    "height": 30,
+    "frames": 15
+  },
+  {
+    "path": "Resources/ass/video_to_mic.ass",
+    "role": "record-video-to-voice",
+    "source": "ios/anim_videoToMic.json",
+    "sha256": "7c8aa27fad4f18c5fc50134470cafc0f262f53a273f5ba002dde833186a1b488",
+    "width": 30,
+    "height": 30,
+    "frames": 15
+  },
+  {
+    "path": "Resources/ass/voice_to_text.ass",
+    "role": "transcription-expand",
+    "source": "ios/voiceToText.json",
+    "sha256": "5b5d7404fa1e6862940213cc1c36279e4ca151e14bce9b27df655e6915dd60de",
+    "width": 300,
+    "height": 300,
+    "frames": 20
+  },
+  {
+    "path": "Resources/ass/text_to_voice.ass",
+    "role": "transcription-collapse",
+    "source": "ios/textToVoice.json",
+    "sha256": "596c327975b58d0893a860040d8e5712cd7d6f46a0c6220178582b3569863d2a",
+    "width": 300,
+    "height": 300,
+    "frames": 20
+  },
+  {
+    "path": "Resources/ass/playlist_play_pause.ass",
+    "role": "player-play-to-pause",
+    "source": "ios/anim_playpause.ass (frames 0-39)",
+    "sha256": "8530a03420d6311aee11de77eab796f6e636af9411a265fb04e9d3a0e8fb4af1",
+    "width": 320,
+    "height": 320,
+    "frames": 40
+  },
+  {
+    "path": "Resources/ass/playlist_pause_play.ass",
+    "role": "player-pause-to-play",
+    "source": "ios/anim_playpause.ass (frames 40-79)",
+    "sha256": "8b5d83a19c8032c926eb293f473ea3ef141c1e4f4e86e366b26524aeaa012d55",
+    "width": 320,
+    "height": 320,
+    "frames": 40
+  },
+  {
+    "path": "Resources/ass/voice_chat_hand_on_unmuted.ass",
+    "role": "unmuted-to-raised-hand",
+    "source": "ios/VoiceUnmuteToRaiseHand.ass",
+    "sha256": "246d3032e749e58bd21b50fb37d192c0710d055084335f9fe305558c473e529f",
+    "width": 100,
+    "height": 100,
+    "frames": 36
   }
 ]

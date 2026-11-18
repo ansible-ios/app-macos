@@ -371,7 +371,8 @@ public class LocalBundleResource: TelegramMediaResource {
     
     public required init(decoder: PostboxDecoder) {
         self.name = decoder.decodeStringForKey("n", orElse: "")
-        self.ext = decoder.decodeStringForKey("e", orElse: "")
+        let storedExtension = decoder.decodeStringForKey("e", orElse: "")
+        self.ext = storedExtension == "tgs" ? "ass" : storedExtension
         if let hexColor = decoder.decodeOptionalStringForKey("c") {
             self.color = NSColor(hexString: hexColor)
         } else {

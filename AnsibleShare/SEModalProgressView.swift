@@ -21,7 +21,7 @@ class SEModalProgressView: View {
         
         
 
-        let path = Bundle.main.path(forResource: "duck_uploads", ofType: "tgs")
+        let path = Bundle.main.path(forResource: "duck_uploads", ofType: "ass")
         if let path = path {
             let data = try? Data(contentsOf: URL(fileURLWithPath: path))
             if let data = data {
@@ -64,7 +64,7 @@ class SEModalProgressView: View {
     }
     
     func markComplete() {
-        let path = Bundle.main.path(forResource: "duck_upload_complete", ofType: "tgs")
+        let path = Bundle.main.path(forResource: "duck_upload_complete", ofType: "ass")
         if let path = path {
             let data = try? Data(contentsOf: URL(fileURLWithPath: path))
             if let data = data {

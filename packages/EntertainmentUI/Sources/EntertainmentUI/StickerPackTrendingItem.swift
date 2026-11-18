@@ -149,7 +149,7 @@ private final class FeaturedAnimatedHorizontalView : HorizontalRowView {
             
             var file: TelegramMediaFile?
             if let thumbnail = item.item.info._parse().thumbnail {
-                file = TelegramMediaFile(fileId: MediaId(namespace: 0, id: item.item.info.id.id), partialReference: nil, resource: thumbnail.resource, previewRepresentations: [thumbnail], videoThumbnails: [], immediateThumbnailData: nil, mimeType: "application/x-ansible-sticker", size: nil, attributes: [.FileName(fileName: "sticker.tgs"), .Sticker(displayText: "", packReference: .id(id: item.item.info.id.id, accessHash: item.item.info.accessHash), maskData: nil)], alternativeRepresentations: [])
+                file = TelegramMediaFile(fileId: MediaId(namespace: 0, id: item.item.info.id.id), partialReference: nil, resource: thumbnail.resource, previewRepresentations: [thumbnail], videoThumbnails: [], immediateThumbnailData: nil, mimeType: "application/x-ansible-sticker", size: nil, attributes: [.FileName(fileName: "sticker.ass"), .Sticker(displayText: "", packReference: .id(id: item.item.info.id.id, accessHash: item.item.info.accessHash), maskData: nil)], alternativeRepresentations: [])
             } else if let item = item.item.topItems.first {
                 file = item.file._parse()
             }

@@ -424,12 +424,12 @@ public enum LocalAnimatedSticker : String {
     case birthday_cake
     
     public var file: TelegramMediaFile {
-        let resource:LocalBundleResource = LocalBundleResource(name: self.rawValue, ext: "tgs")
+        let resource:LocalBundleResource = LocalBundleResource(name: self.rawValue, ext: "ass")
         return TelegramMediaFile(fileId: MediaId(namespace: 0, id: MediaId.Id(resource.name.hashValue)), partialReference: nil, resource: resource, previewRepresentations: [], videoThumbnails: [], immediateThumbnailData: nil, mimeType: "application/x-ansible-sticker", size: nil, attributes: [.Sticker(displayText: "", packReference: nil, maskData: nil), .Animated, .FileName(fileName: "ansible-animoji.ass")], alternativeRepresentations: [])
     }
     
     public var monochromeFile: TelegramMediaFile {
-        let resource:LocalBundleResource = LocalBundleResource(name: self.rawValue, ext: "tgs")
+        let resource:LocalBundleResource = LocalBundleResource(name: self.rawValue, ext: "ass")
         return TelegramMediaFile(fileId: MediaId(namespace: 0, id: MediaId.Id(resource.name.hashValue)), partialReference: nil, resource: resource, previewRepresentations: [], videoThumbnails: [], immediateThumbnailData: nil, mimeType: "application/x-ansible-sticker", size: nil, attributes: [.Sticker(displayText: "", packReference: nil, maskData: nil), .Animated, .FileName(fileName: "ansible-animoji.ass"), .CustomEmoji(isPremium: false, isSingleColor: true, alt: "", packReference: nil)], alternativeRepresentations: [])
     }
     
@@ -443,7 +443,7 @@ public enum LocalAnimatedSticker : String {
         if let data = LocalAnimatedSticker.cachedData[self.rawValue] {
             return data
         }
-        let path = Bundle.main.path(forResource: self.rawValue, ofType: "tgs")
+        let path = Bundle.main.path(forResource: self.rawValue, ofType: "ass")
         if let path = path {
             let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
             if let data = data {

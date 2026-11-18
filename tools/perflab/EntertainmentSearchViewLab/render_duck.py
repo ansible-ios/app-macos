@@ -11,7 +11,7 @@ lib.tlottie_render.argtypes = [ctypes.c_void_p, ctypes.c_float, ctypes.c_uint32,
 lib.tlottie_render.restype = ctypes.c_int32
 lib.tlottie_drop.argtypes = [ctypes.c_void_p]
 lib.tlottie_drop.restype = None
-source = gzip.decompress((root / "Resources/tgs/duck_empty.tgs").read_bytes())
+source = gzip.decompress((root / "Resources/ass/duck_empty.ass").read_bytes())
 animation = lib.tlottie_new_with_options(source, len(source), 0, None, 0, None, 0, 1)
 assert animation
 pixels = (ctypes.c_uint32 * (240 * 240))()

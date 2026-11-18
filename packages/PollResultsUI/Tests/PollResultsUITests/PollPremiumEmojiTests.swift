@@ -17,7 +17,7 @@ final class PollPremiumEmojiTests: XCTestCase {
             previewRepresentations: [],
             videoThumbnails: [],
             immediateThumbnailData: nil,
-            mimeType: "application/x-tgsticker",
+            mimeType: "application/x-ansible-sticker",
             size: nil,
             attributes: custom ? [.CustomEmoji(isPremium: premium, isSingleColor: false, alt: "😀", packReference: nil)] : [],
             alternativeRepresentations: []

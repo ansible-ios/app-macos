@@ -39,7 +39,7 @@ let package = Package(
                 .product(name: "Postbox", package: "Postbox", condition: nil),
             ] + deps.map { .product(name: $0.0, package: $0.0, condition: nil) },
             path: "Sources/QrStudioUI",
-            resources: [.copy("Resources/anim_sun.json"), .copy("Resources/anim_sun_reverse.json"), .copy("Resources/QrStudioNoGifts.tgs")]),
+            resources: [.copy("Resources/anim_sun.json"), .copy("Resources/anim_sun_reverse.json"), .copy("Resources/QrStudioNoGifts.ass")]),
         .testTarget(name: "QrStudioUITests", dependencies: [
             "QrStudioUI",
             .product(name: "rnoise", package: "rnoise"),

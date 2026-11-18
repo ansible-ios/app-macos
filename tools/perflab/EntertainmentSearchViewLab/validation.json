@@ -43,7 +43,7 @@
     "packages/EntertainmentUI/Sources/EntertainmentUI/EmojiesController.swift": "77ac7a1d0828caafc5bfc9e9aa10f77347b21e299fcbf0f93ca1869ea43ddd25",
     "packages/EntertainmentUI/Sources/EntertainmentUI/GifKeyboardController.swift": "abc658adeaccc74f6b3a1fbe87f77f64759501bada5702c27fab1893504fa3b5",
     "packages/EntertainmentUI/Sources/EntertainmentUI/StickersViewController.swift": "59aba8c2af8de16c3da3a8b9b924cd8544c00f99607950534223dc0c6d8babd7",
-    "Resources/tgs/duck_empty.tgs": "2e73e73572c701ecfd0db98dc056357ed2feff224b8cc7a6fd7a1f386a0594e7"
+    "Resources/ass/duck_empty.ass": "2e73e73572c701ecfd0db98dc056357ed2feff224b8cc7a6fd7a1f386a0594e7"
   },
   "previews": {
     "dark-empty.png": "6aae12faf43db3abdc36793357204132427a8b9ef36c57dc4c750d90907791d1",

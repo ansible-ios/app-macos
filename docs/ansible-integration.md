@@ -12,7 +12,7 @@ The integration was checked against the local `app-ios` and `app-desktop` implem
 | Server identity | iOS/Desktop RSA public key | Same public key; fingerprint `ddcf36f8466e4286` matched the endpoint's resPQ response |
 | API credentials | Existing Ansible client configuration | Local ignored xcconfig; no upstream fallback |
 | Links | Desktop `as://`; iOS handles `as://` and registers an extra application scheme | Canonical `as://`, `asme.su` and `www.asme.su`; generated QR-login/proxy/profile links use Ansible |
-| Animated stickers | iOS media model and backend use `application/x-ansible-sticker` | Same MIME and `.ass` file attributes/imports; internal bundled animation filenames may retain `.tgs` |
+| Animated stickers | iOS media model and backend use `application/x-ansible-sticker` | Same MIME and `.ass` extension for file attributes, imports and bundled animations |
 | Anonymous numbers | Backend `rpc_help.erl`, prefix 777, unmasked 1–8 digit tail | Country FT, longest-prefix parsing, variable-length formatting |
 | Translations | Backend supports a separate `macos` platform | Retains `macos`; existing localization identifiers are preserved |
 | Currency | iOS Diamonds artwork and strings | Diamonds text, static icons, inline animation artwork and a diamond currency scene |

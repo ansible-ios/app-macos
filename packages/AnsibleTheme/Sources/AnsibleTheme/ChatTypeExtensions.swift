@@ -35,7 +35,9 @@ public extension TelegramMediaFile {
     }
     var isEmojiAnimatedSticker: Bool {
         if let fileName = fileName {
-            return fileName.hasPrefix("telegram-animoji") && fileName.hasSuffix("tgs") && isSticker
+            let current = fileName.hasPrefix("ansible-animoji") && fileName.hasSuffix(".ass")
+            let legacy = fileName.hasPrefix("telegram-animoji") && fileName.hasSuffix(".tgs")
+            return isSticker && (current || legacy)
         }
         return false
     }

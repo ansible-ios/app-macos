@@ -40,7 +40,7 @@ private class PasscodeLockView : Control, NSTextFieldDelegate {
         input.alignment = .left
         input.delegate = self
         
-        let path = Bundle.main.path(forResource: "duck_passcode", ofType: "tgs")
+        let path = Bundle.main.path(forResource: "duck_passcode", ofType: "ass")
         if let path = path {
             let data = try? Data(contentsOf: URL(fileURLWithPath: path))
             if let data = data {

@@ -16,7 +16,7 @@ private func qrStudioNoGiftsAnimation() -> Data? {
     if let data = qrStudioNoGiftsAnimationData {
         return data
     }
-    guard let url = Bundle.module.url(forResource: "QrStudioNoGifts", withExtension: "tgs"), let data = try? Data(contentsOf: url) else {
+    guard let url = Bundle.module.url(forResource: "QrStudioNoGifts", withExtension: "ass"), let data = try? Data(contentsOf: url) else {
         return nil
     }
     qrStudioNoGiftsAnimationData = data

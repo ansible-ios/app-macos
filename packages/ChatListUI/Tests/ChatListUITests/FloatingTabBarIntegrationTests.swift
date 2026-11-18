@@ -100,7 +100,7 @@ final class FloatingTabBarIntegrationTests: XCTestCase {
     }
 
     func testSelectedTabPreviewStartsPlayingWithoutChangingColors() throws {
-        let resource = TestImages.catalog.deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Resources/tgs/tab_chats.tgs")
+        let resource = TestImages.catalog.deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Resources/ass/tab_chats.ass")
         let data = try Data(contentsOf: resource)
         let previousRenderer = makeLottieRenderer
         makeLottieRenderer = { json in TabAnimationTestRenderer(json: json) }
@@ -139,7 +139,7 @@ final class FloatingTabBarIntegrationTests: XCTestCase {
     }
 
     private func assertLottieKeepsPlayingThroughTintedPortals(outsideColor: NSColor, accentColor: NSColor) throws {
-        let resource = TestImages.catalog.deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Resources/tgs/tab_chats.tgs")
+        let resource = TestImages.catalog.deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Resources/ass/tab_chats.ass")
         let data = try Data(contentsOf: resource)
         let previousRenderer = makeLottieRenderer
         makeLottieRenderer = { json in TabAnimationTestRenderer(json: json) }
