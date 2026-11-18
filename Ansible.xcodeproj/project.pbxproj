@@ -351,7 +351,7 @@
 		2786367C27C7C5D600690B10 /* group_call_share.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 2786367B27C7C5D600690B10 /* group_call_share.tgs */; };
 		2786367E27C7C5F800690B10 /* group_call_minmax.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 2786367D27C7C5F800690B10 /* group_call_minmax.tgs */; };
 		2786368027C7CF1200690B10 /* group_call_maxmin.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 2786367F27C7CF1200690B10 /* group_call_maxmin.tgs */; };
-		2786368227C8B55D00690B10 /* group_call_stream_empty in Resources */ = {isa = PBXBuildFile; fileRef = 2786368127C8B55D00690B10 /* group_call_stream_empty */; };
+		2786368227C8B55D00690B10 /* group_call_stream_empty.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 2786368127C8B55D00690B10 /* group_call_stream_empty.tgs */; };
 		27867A272AE0364200E25BB8 /* bot_menu_web_app.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27867A262AE0364100E25BB8 /* bot_menu_web_app.tgs */; };
 		2787AD692BED0DCE0046578E /* menu_adult.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 2787AD672BED0DCD0046578E /* menu_adult.tgs */; };
 		2787AD6A2BED0DCE0046578E /* menu_adult_slash.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 2787AD682BED0DCE0046578E /* menu_adult_slash.tgs */; };
@@ -1388,7 +1388,7 @@
 		2786367B27C7C5D600690B10 /* group_call_share.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_call_share.tgs; sourceTree = "<group>"; };
 		2786367D27C7C5F800690B10 /* group_call_minmax.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_call_minmax.tgs; sourceTree = "<group>"; };
 		2786367F27C7CF1200690B10 /* group_call_maxmin.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_call_maxmin.tgs; sourceTree = "<group>"; };
-		2786368127C8B55D00690B10 /* group_call_stream_empty */ = {isa = PBXFileReference; lastKnownFileType = file; path = group_call_stream_empty; sourceTree = "<group>"; };
+		2786368127C8B55D00690B10 /* group_call_stream_empty.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = group_call_stream_empty.tgs; sourceTree = "<group>"; };
 		27867A262AE0364100E25BB8 /* bot_menu_web_app.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = bot_menu_web_app.tgs; sourceTree = "<group>"; };
 		278751582D91A8A50005D9F9 /* libtde2e.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtde2e.a; path = "core-xprojects/tde2e/build/tde2e/lib/libtde2e.a"; sourceTree = "<group>"; };
 		2787AD672BED0DCD0046578E /* menu_adult.tgs */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_adult.tgs; sourceTree = "<group>"; };
@@ -3285,7 +3285,7 @@
 				2786367B27C7C5D600690B10 /* group_call_share.tgs */,
 				2786367D27C7C5F800690B10 /* group_call_minmax.tgs */,
 				2786367F27C7CF1200690B10 /* group_call_maxmin.tgs */,
-				2786368127C8B55D00690B10 /* group_call_stream_empty */,
+				2786368127C8B55D00690B10 /* group_call_stream_empty.tgs */,
 				2780DE3F271F0BB20092323F /* zoom.tgs */,
 				27F2BBC827BE79ED00A37463 /* email_recovery.tgs */,
 				27F2BBC427BE4E7A00A37463 /* code_note.tgs */,
@@ -4368,7 +4368,7 @@
 				CC7ADB6054274B099B45F716 /* ansible_devices.tgs in Resources */,
 				275549122747C24F0098A3CD /* device_mac.tgs in Resources */,
 				27803C0427A3E944007B0FA9 /* menu_folder_love.tgs in Resources */,
-				2786368227C8B55D00690B10 /* group_call_stream_empty in Resources */,
+				2786368227C8B55D00690B10 /* group_call_stream_empty.tgs in Resources */,
 				27CE376C2760960A007E6F1B /* menu_add_to_folder.tgs in Resources */,
 				27D8B5D42E0DA8910033136D /* right.png in Resources */,
 				277DFE6A2784844700F78396 /* menu_lock.tgs in Resources */,

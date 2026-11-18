@@ -5,6 +5,8 @@ import SwiftSignalKit
 import TelegramCore
 import Postbox
 import Localization
+import AnsibleMedia
+import LocalAnimations
 import AnsibleCallsCore
 import AnsibleTheme
 import AnsibleUtils
@@ -12,6 +14,7 @@ import AnsibleUtils
 
 private final class NoStreamView : View {
     private let progressView = InfiniteProgressView(color: GroupCallTheme.customTheme.textColor, lineWidth: 2)
+    private var illustration: LottiePlayerView?
     private var textView: TextView?
     required init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -33,6 +36,16 @@ private final class NoStreamView : View {
                 current = TextView()
                 current.isSelectable = false
                 current.userInteractionEnabled = false
+                if let data = LocalAnimatedSticker.group_call_stream_empty.data {
+                    let size = NSMakeSize(80, 80)
+                    let view = LottiePlayerView(frame: size.bounds)
+                    view.isAccessibilityDecorative = true
+                    addSubview(view)
+                    let reduceMotion = NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
+                    view.set(LottieAnimation(compressed: data, key: .init(key: .bundle("group_call_stream_empty"), size: size), cachePurpose: .none, playPolicy: reduceMotion ? .framesCount(1) : .onceEnd))
+                    illustration = view
+                    progressView.isHidden = true
+                }
                 self.textView = current
                 addSubview(current)
                 if transition.isAnimated {
@@ -51,6 +64,9 @@ private final class NoStreamView : View {
         } else if let view = textView {
             performSubviewRemoval(view, animated: transition.isAnimated)
             self.textView = nil
+            illustration?.removeFromSuperview()
+            illustration = nil
+            progressView.isHidden = false
         } else {
             delay(1, closure: { [weak self] in
                 self?.update(initialTimestamp: initialTimestamp, title: title, transition: .animated(duration: 0.2, curve: .easeOut))
@@ -61,7 +77,8 @@ private final class NoStreamView : View {
     func updateLayout(size: CGSize, transition: ContainedViewLayoutTransition) {
         if let textView = textView {
             transition.updateFrame(view: textView, frame: textView.centerFrameX(y: frame.height / 2 + 4))
-            transition.updateFrame(view: progressView, frame: progressView.centerFrameX(y: frame.height / 2 - progressView.frame.height - 4))
+            let statusView: NSView = illustration ?? progressView
+            transition.updateFrame(view: statusView, frame: statusView.centerFrameX(y: frame.height / 2 - statusView.frame.height - 4))
         } else {
             transition.updateFrame(view: progressView, frame: focus(progressView.frame.size))
         }
