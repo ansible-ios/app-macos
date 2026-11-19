@@ -2106,7 +2106,7 @@ public func generateIcons(from palette: ColorPalette, bubbled: Bool) -> AnsibleI
 }
 
 
-public func generateTheme(palette: ColorPalette, cloudTheme: AnsibleTheme?, bubbled: Bool, fontSize: CGFloat, wallpaper: ThemeWallpaper, backgroundSize: NSSize = NSMakeSize(1040, 1580), liquidGlass: Bool = System.liquidGlass, scaleFactor: CGFloat = System.backingScale) -> AnsiblePresentationTheme {
+public func generateTheme(palette: ColorPalette, cloudTheme: TelegramTheme?, bubbled: Bool, fontSize: CGFloat, wallpaper: ThemeWallpaper, backgroundSize: NSSize = NSMakeSize(1040, 1580), liquidGlass: Bool = System.liquidGlass, scaleFactor: CGFloat = System.backingScale) -> AnsiblePresentationTheme {
     
     let chatList = AnsibleChatListTheme(selectedBackgroundColor: palette.accentSelect,
                                          singleLayoutSelectedBackgroundColor: palette.grayBackground,

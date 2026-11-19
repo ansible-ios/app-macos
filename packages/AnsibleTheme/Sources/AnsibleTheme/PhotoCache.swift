@@ -9,8 +9,8 @@ import ThemeSettings
 import FoundationUtils
 
 public enum ThemeSource : Equatable {
-    case local(ColorPalette, AnsibleTheme?)
-    case cloud(AnsibleTheme)
+    case local(ColorPalette, TelegramTheme?)
+    case cloud(TelegramTheme)
 }
 
 private final class WallpaperCachedRecord {

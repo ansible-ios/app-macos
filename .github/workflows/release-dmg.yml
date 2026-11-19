@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing release tag to build
+        description: Release tag, optionally followed by -build.N for a corrected build
         required: true
         default: v0.4.3
 
@@ -28,12 +28,22 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
-          gh release view "$TAG" -R "$GITHUB_REPOSITORY" --json tagName --jq .tagName
+          [[ "$TAG" =~ ^(v[0-9]+\.[0-9]+\.[0-9]+)(-build\.[1-9][0-9]*)?$ ]]
+          release="${BASH_REMATCH[1]}"
+          gh release view "$release" -R "$GITHUB_REPOSITORY" --json tagName --jq .tagName
+          ref="refs/tags/$TAG"
+          if git ls-remote --exit-code "https://github.com/$GITHUB_REPOSITORY.git" "$ref"; then
+            true
+          else
+            [[ $? == 2 && "$TAG" != "$release" ]]
+            ref="$GITHUB_SHA"
+          fi
+          echo "SOURCE_REF=$ref" >> "$GITHUB_ENV"
+          echo "RELEASE_TAG=$release" >> "$GITHUB_ENV"
 
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: refs/tags/${{ inputs.tag }}
+          ref: ${{ env.SOURCE_REF }}
           persist-credentials: false
 
       - name: Prepare build tools and pinned dependencies
@@ -48,6 +58,8 @@ jobs:
           export DEVELOPER_DIR="$(ls -d /Applications/Xcode_26*.app | sort -V | tail -1)/Contents/Developer"
           echo "DEVELOPER_DIR=$DEVELOPER_DIR" >> "$GITHUB_ENV"
           xcodebuild -version
+          native_key="$( { xcodebuild -version; git ls-tree HEAD core-xprojects submodules scripts; } | shasum -a 256 | cut -d' ' -f1)"
+          echo "NATIVE_CACHE=macos-native-arm64-$native_key" >> "$GITHUB_ENV"
           if ! xcrun metal --version; then xcodebuild -downloadComponent MetalToolchain; fi
           sed -i '' -E '/^#define ABSL_ATTRIBUTE_LIFETIME_BOUND (\[\[clang::lifetimebound\]\]|__attribute__\(\(lifetimebound\)\))/s/.*/#define ABSL_ATTRIBUTE_LIFETIME_BOUND/' \
             submodules/tg_owt/src/third_party/abseil-cpp/absl/base/attributes.h
@@ -64,7 +76,29 @@ jobs:
           umask 077
           printf 'ANSIBLE_API_ID = %s\nANSIBLE_API_HASH = %s\n' "$ANSIBLE_API_ID" "$ANSIBLE_API_HASH" > configurations/Ansible.local.xcconfig
 
-      - name: Build universal Release application
+      - name: Restore native framework outputs
+        id: native
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          key: ${{ env.NATIVE_CACHE }}
+          path: &native-outputs |
+            core-xprojects/*/build/.framework-stamp
+            core-xprojects/OpenH264/build/output
+            core-xprojects/openssl/build/openssl
+            core-xprojects/libopus/build/libopus
+            core-xprojects/libvpx/build/libvpx
+            core-xprojects/Mozjpeg/build/*.h
+            core-xprojects/Mozjpeg/build/*.a
+            core-xprojects/libwebp/build/libwebp
+            core-xprojects/dav1d/build/dav1d
+            core-xprojects/ffmpeg/build/ffmpeg
+            core-xprojects/webrtc/build/webrtc
+            core-xprojects/webrtc/build/src/**/*.h
+            core-xprojects/tde2e/build/tde2e
+            core-xprojects/mtproto-engine/build/libmtproto_engine_ffi.a
+            submodules/ansible-ios/submodules/MTProtoRustEngine/MTProtoEngineFFI.xcframework
+
+      - name: Prepare native frameworks
         run: |
           bash scripts/prepare-ansible-ios.sh
           if [[ "$(xcodebuild -version)" == "Xcode 27"* ]]; then bash scripts/xcode27.sh apply; fi
@@ -73,6 +107,15 @@ jobs:
             tail -100 "$RUNNER_TEMP/frameworks.log"
             exit 1
           }
+      - name: Save verified native frameworks before compiling Swift
+        if: steps.native.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          key: ${{ env.NATIVE_CACHE }}
+          path: *native-outputs
+
+      - name: Build universal Release application
+        run: |
           xcodebuild -quiet -workspace Ansible-Mac.xcworkspace -scheme Release -configuration Release \
             -destination 'generic/platform=macOS' -derivedDataPath "$RUNNER_TEMP/derived" \
             'ARCHS=arm64 x86_64' ONLY_ACTIVE_ARCH=NO CODE_SIGNING_ALLOWED=NO COMPILER_INDEX_STORE_ENABLE=NO build
@@ -102,12 +145,15 @@ jobs:
           app="$mount/Ansible.app"
           codesign --verify --deep --strict "$app"
           lipo -verify_arch arm64 x86_64 "$app/Contents/MacOS/Ansible"
-          test "$(plutil -extract CFBundleShortVersionString raw "$app/Contents/Info.plist")" = "${TAG#v}"
+          test "$(plutil -extract CFBundleShortVersionString raw "$app/Contents/Info.plist")" = "${RELEASE_TAG#v}"
           test "$(plutil -extract CFBundleIdentifier raw "$app/Contents/Info.plist")" = com.ansible.macos
 
       - name: Attach verified DMG to the existing release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          if [[ "$SOURCE_REF" == "$GITHUB_SHA" ]]; then
+            gh api -X POST "repos/$GITHUB_REPOSITORY/git/refs" -f "ref=refs/tags/$TAG" -f "sha=$(git rev-parse HEAD)"
+          fi
           test "$(git ls-remote origin "refs/tags/$TAG" "refs/tags/$TAG^{}" | tail -1 | cut -f1)" = "$(git rev-parse HEAD)"
-          gh release upload "$TAG" "$RUNNER_TEMP/Ansible-macOS-${TAG#v}.dmg" -R "$GITHUB_REPOSITORY"
+          gh release upload "$RELEASE_TAG" "$RUNNER_TEMP/Ansible-macOS-${TAG#v}.dmg" -R "$GITHUB_REPOSITORY"

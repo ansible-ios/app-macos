@@ -290,7 +290,7 @@ open class AnsiblePresentationTheme : PresentationTheme {
     #if !SHARE
     public let chat: AnsibleChatColors
     #endif
-    public let cloudTheme: AnsibleTheme?
+    public let cloudTheme: TelegramTheme?
     public let tabBar:AnsibleTabBarTheme
     public let icons: AnsibleIconsTheme
     public let bubbled: Bool
@@ -626,7 +626,7 @@ open class AnsiblePresentationTheme : PresentationTheme {
         self._backgroundMode = computed
         return computed
     }
-    public init(colors: ColorPalette, cloudTheme: AnsibleTheme?, search: SearchTheme, chatList: AnsibleChatListTheme, tabBar: AnsibleTabBarTheme, icons: AnsibleIconsTheme, bubbled: Bool, fontSize: CGFloat, wallpaper: ThemeWallpaper, generated: Bool = false, emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)] = [], backgroundSize: NSSize = NSMakeSize(1040, 1580), liquidGlass: Bool = System.liquidGlassAvailable, liteMode: LiteMode = AnsiblePresentationTheme.currentLiteMode(), scaleFactor: CGFloat = System.backingScale) {
+    public init(colors: ColorPalette, cloudTheme: TelegramTheme?, search: SearchTheme, chatList: AnsibleChatListTheme, tabBar: AnsibleTabBarTheme, icons: AnsibleIconsTheme, bubbled: Bool, fontSize: CGFloat, wallpaper: ThemeWallpaper, generated: Bool = false, emoticonThemes: [(ChatTheme, AnsiblePresentationTheme)] = [], backgroundSize: NSSize = NSMakeSize(1040, 1580), liquidGlass: Bool = System.liquidGlassAvailable, liteMode: LiteMode = AnsiblePresentationTheme.currentLiteMode(), scaleFactor: CGFloat = System.backingScale) {
         self.chatList = chatList
         #if !SHARE
             self.chat = AnsibleChatColors(colors, bubbled)

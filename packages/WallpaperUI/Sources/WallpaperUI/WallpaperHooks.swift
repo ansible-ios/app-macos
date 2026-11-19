@@ -31,7 +31,7 @@ public struct WallpaperHooks {
     public let makeStickerView: (NSRect) -> WallpaperStickerView
     public let premiumConfiguration: (any AccountContextProtocol) -> any WallpaperPremiumConfiguration
     public let boostLevelBadgeImage: (String) -> CGImage
-    public let generateTheme: (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper, NSSize) -> AnsiblePresentationTheme
+    public let generateTheme: (ColorPalette, TelegramTheme?, Bool, CGFloat, ThemeWallpaper, NSSize) -> AnsiblePresentationTheme
 
     public init(makeChatPreviewContext: @escaping (any AccountContextProtocol, @escaping () -> CGRect) -> WallpaperChatPreviewContext,
                 makeChatPreviewItem: @escaping (NSSize, WallpaperChatPreviewContext, ChatHistoryEntry, AnsiblePresentationTheme) -> TableRowItem,
@@ -40,7 +40,7 @@ public struct WallpaperHooks {
                 makeStickerView: @escaping (NSRect) -> WallpaperStickerView,
                 premiumConfiguration: @escaping (any AccountContextProtocol) -> any WallpaperPremiumConfiguration,
                 boostLevelBadgeImage: @escaping (String) -> CGImage,
-                generateTheme: @escaping (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper, NSSize) -> AnsiblePresentationTheme) {
+                generateTheme: @escaping (ColorPalette, TelegramTheme?, Bool, CGFloat, ThemeWallpaper, NSSize) -> AnsiblePresentationTheme) {
         self.makeChatPreviewContext = makeChatPreviewContext
         self.makeChatPreviewItem = makeChatPreviewItem
         self.updateChatPreviewBackground = updateChatPreviewBackground

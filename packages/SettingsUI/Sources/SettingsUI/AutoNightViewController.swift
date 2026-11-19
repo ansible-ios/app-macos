@@ -60,7 +60,7 @@ private final class AutoNightThemeArguments {
     }
 }
 
-private func autoNightEntries(appearance: Appearance, settings: AutoNightThemePreferences, cloudThemes: [AnsibleTheme], arguments: AutoNightThemeArguments) -> [InputDataEntry] {
+private func autoNightEntries(appearance: Appearance, settings: AutoNightThemePreferences, cloudThemes: [TelegramTheme], arguments: AutoNightThemeArguments) -> [InputDataEntry] {
     var entries: [InputDataEntry] = []
     
     var sectionId:Int32 = 0

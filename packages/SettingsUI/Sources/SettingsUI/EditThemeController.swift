@@ -30,13 +30,13 @@ private let _id_input_title = InputDataIdentifier("_id_input_title")
 private let _id_input_slug = InputDataIdentifier("_id_input_slug")
 
 private struct EditThemeState : Equatable {
-    public let current: AnsibleTheme
+    public let current: TelegramTheme
     public let presentation: AnsiblePresentationTheme
     public let name: String
     public let slug: String?
     public let path: String?
     public let errors:[InputDataIdentifier : InputDataValueError]
-    public init(current:AnsibleTheme, presentation: AnsiblePresentationTheme, name: String, slug: String?, path: String?, errors:[InputDataIdentifier : InputDataValueError]) {
+    public init(current:TelegramTheme, presentation: AnsiblePresentationTheme, name: String, slug: String?, path: String?, errors:[InputDataIdentifier : InputDataValueError]) {
         self.current = current
         self.presentation = presentation
         self.name = name
@@ -159,7 +159,7 @@ private func editThemeEntries(state: EditThemeState, chatInteraction: Appearance
     return entries
 }
 
-public func EditThemeController(context: any AccountContextProtocol, telegramTheme: AnsibleTheme, presentation: AnsiblePresentationTheme) -> InputDataModalController {
+public func EditThemeController(context: any AccountContextProtocol, telegramTheme: TelegramTheme, presentation: AnsiblePresentationTheme) -> InputDataModalController {
     let initialState = EditThemeState(current: telegramTheme, presentation: presentation, name: telegramTheme.title, slug: telegramTheme.slug, path: nil, errors: [:])
     
     let statePromise = ValuePromise(initialState, ignoreRepeated: true)
@@ -463,7 +463,7 @@ public func EditThemeController(context: any AccountContextProtocol, telegramThe
 }
 
 
-public func showEditThemeModalController(context: any AccountContextProtocol, theme telegramTheme: AnsibleTheme) {
+public func showEditThemeModalController(context: any AccountContextProtocol, theme telegramTheme: TelegramTheme) {
     if let file = telegramTheme.file, telegramTheme != theme.cloudTheme {
         let fetchDisposable = fetchedMediaResource(mediaBox: context.account.postbox.mediaBox, userLocation: .other, userContentType: .other, reference: MediaResourceReference.standalone(resource: file.resource)).start()
         

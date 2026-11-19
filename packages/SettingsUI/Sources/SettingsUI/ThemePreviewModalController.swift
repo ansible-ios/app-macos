@@ -26,7 +26,7 @@ import AppAnalytics
 
 public enum ThemePreviewSource {
     case localTheme(AnsiblePresentationTheme, name: String?)
-    case cloudTheme(AnsibleTheme)
+    case cloudTheme(TelegramTheme)
 }
 
 
@@ -282,7 +282,7 @@ public func ThemePreviewModalController(context: any AccountContextProtocol, sou
         let currentTheme = state.previewTheme
         let colors = currentTheme.colors
 
-        let cloudTheme: AnsibleTheme?
+        let cloudTheme: TelegramTheme?
         if case let .cloudTheme(t) = source {
             cloudTheme = t
         } else {

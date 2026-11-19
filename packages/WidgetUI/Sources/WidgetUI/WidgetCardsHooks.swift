@@ -12,12 +12,12 @@ public protocol WidgetCardsStickerView: View {
 
 public struct WidgetCardsHooks {
     public let makeStickerView: (NSRect) -> WidgetCardsStickerView
-    public let downloadAndApplyCloudTheme: (any AccountContextProtocol, AnsibleTheme, ColorPalette?, Bool) -> Signal<Never, Void>
+    public let downloadAndApplyCloudTheme: (any AccountContextProtocol, TelegramTheme, ColorPalette?, Bool) -> Signal<Never, Void>
     public let showStickerPackPreview: (any AccountContextProtocol, String, @escaping () -> Void) -> Void
     public let navigateToChat: (NavigationViewController?, any AccountContextProtocol, ChatLocation) -> Void
 
     public init(makeStickerView: @escaping (NSRect) -> WidgetCardsStickerView,
-                downloadAndApplyCloudTheme: @escaping (any AccountContextProtocol, AnsibleTheme, ColorPalette?, Bool) -> Signal<Never, Void>,
+                downloadAndApplyCloudTheme: @escaping (any AccountContextProtocol, TelegramTheme, ColorPalette?, Bool) -> Signal<Never, Void>,
                 showStickerPackPreview: @escaping (any AccountContextProtocol, String, @escaping () -> Void) -> Void,
                 navigateToChat: @escaping (NavigationViewController?, any AccountContextProtocol, ChatLocation) -> Void) {
         self.makeStickerView = makeStickerView

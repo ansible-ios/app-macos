@@ -22,7 +22,7 @@ import ChatHistoryModel
 import FilePanels
 import WallpaperUI
 
-private func cloudThemeData(context: any AccountContextProtocol, theme: AnsibleTheme, file: TelegramMediaFile) -> Signal<(ColorPalette, Wallpaper, TelegramWallpaper?), NoError> {
+private func cloudThemeData(context: any AccountContextProtocol, theme: TelegramTheme, file: TelegramMediaFile) -> Signal<(ColorPalette, Wallpaper, TelegramWallpaper?), NoError> {
     return Signal { subscriber in
         
         let fetchDisposable = fetchedMediaResource(mediaBox: context.account.postbox.mediaBox, userLocation: .other, userContentType: .other, reference: MediaResourceReference.theme(theme: ThemeReference.slug(theme.slug), resource: file.resource)).start()

@@ -23,7 +23,7 @@ private func parseColorArray(_ decoder: KeyedDecodingContainer<StringCodingKey>,
         return list
     }
 }
-public extension AnsibleTheme {
+public extension TelegramTheme {
     var effectiveSettings: TelegramThemeSettings? {
         return self.settings?.first
     }
@@ -799,11 +799,11 @@ final class ColorPaletteNativeCodable : Codable {
 }
 
 public struct DefaultCloudTheme : Equatable, Codable {
-    public let cloud: AnsibleTheme
+    public let cloud: TelegramTheme
     public let palette: ColorPalette
     public let wallpaper: AssociatedWallpaper
     
-    public init(cloud: AnsibleTheme, palette: ColorPalette, wallpaper: AssociatedWallpaper) {
+    public init(cloud: TelegramTheme, palette: ColorPalette, wallpaper: AssociatedWallpaper) {
         self.cloud = cloud
         self.palette = palette
         self.wallpaper = wallpaper
@@ -863,11 +863,11 @@ public struct DefaultTheme : Equatable, Codable {
 
 public struct LocalWallapper : Equatable, Codable {
     public let name: AnsibleBuiltinTheme
-    public let cloud: AnsibleTheme?
+    public let cloud: TelegramTheme?
     public let wallpaper: AssociatedWallpaper
     public let associated: AssociatedWallpaper?
     public let accentColor: UInt32
-    public init(name: AnsibleBuiltinTheme, accentColor: UInt32, wallpaper: AssociatedWallpaper, associated: AssociatedWallpaper?, cloud: AnsibleTheme?) {
+    public init(name: AnsibleBuiltinTheme, accentColor: UInt32, wallpaper: AssociatedWallpaper, associated: AssociatedWallpaper?, cloud: TelegramTheme?) {
         self.name = name
         self.accentColor = accentColor
         self.wallpaper = wallpaper
@@ -919,8 +919,8 @@ public struct LocalWallapper : Equatable, Codable {
 public struct LocalAccentColor : Equatable, Codable {
     public let name: AnsibleBuiltinTheme
     public let color: PaletteAccentColor
-    public let cloud: AnsibleTheme?
-    public init(name: AnsibleBuiltinTheme, color: PaletteAccentColor, cloud: AnsibleTheme?) {
+    public let cloud: TelegramTheme?
+    public init(name: AnsibleBuiltinTheme, color: PaletteAccentColor, cloud: TelegramTheme?) {
         self.name = name
         self.color = color
         self.cloud = cloud
@@ -965,7 +965,7 @@ public struct ThemePaletteSettings: Codable, Equatable {
     public let wallpapers: [LocalWallapper]
     public let accents:[LocalAccentColor]
     public let wallpaper: ThemeWallpaper
-    public let cloudTheme: AnsibleTheme?
+    public let cloudTheme: TelegramTheme?
     public let legacyMenu: Bool
     public init(palette: ColorPalette,
          bubbled: Bool,
@@ -976,7 +976,7 @@ public struct ThemePaletteSettings: Codable, Equatable {
          defaultIsDark: Bool,
          wallpapers: [LocalWallapper],
          accents: [LocalAccentColor],
-         cloudTheme: AnsibleTheme?,
+         cloudTheme: TelegramTheme?,
          associated: [DefaultTheme],
          legacyMenu: Bool) {
         
@@ -1146,7 +1146,7 @@ public struct ThemePaletteSettings: Codable, Equatable {
     public func withUpdatedDefaultIsDark(_ defaultIsDark: Bool) -> ThemePaletteSettings {
         return ThemePaletteSettings(palette: self.palette, bubbled: self.bubbled, fontSize: self.fontSize, wallpaper: wallpaper, defaultDark: self.defaultDark, defaultDay: self.defaultDay, defaultIsDark: defaultIsDark, wallpapers: self.wallpapers, accents: self.accents, cloudTheme: self.cloudTheme, associated: self.associated, legacyMenu: self.legacyMenu)
     }
-    public func withUpdatedCloudTheme(_ cloudTheme: AnsibleTheme?) -> ThemePaletteSettings {
+    public func withUpdatedCloudTheme(_ cloudTheme: TelegramTheme?) -> ThemePaletteSettings {
         return ThemePaletteSettings(palette: self.palette, bubbled: self.bubbled, fontSize: self.fontSize, wallpaper: self.wallpaper, defaultDark: defaultDark, defaultDay: defaultDay, defaultIsDark: self.defaultIsDark, wallpapers: self.wallpapers, accents: self.accents, cloudTheme: cloudTheme, associated: self.associated, legacyMenu: self.legacyMenu)
     }
     

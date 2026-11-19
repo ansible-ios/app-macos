@@ -178,7 +178,7 @@ public struct PremiumConfiguration {
 
 enum ApplyThemeUpdate {
     case local(ColorPalette)
-    case cloud(AnsibleTheme)
+    case cloud(TelegramTheme)
 }
 
 
@@ -674,7 +674,7 @@ final class AccountContext {
             self?._chatThemes.set(.single(values))
         }))
         
-        let cloudThemes: Signal<[AnsibleTheme], NoError> = self.engine.themes.themes(accountManager: sharedContext.accountManager) |> distinctUntilChanged(isEqual: { lhs, rhs in
+        let cloudThemes: Signal<[TelegramTheme], NoError> = self.engine.themes.themes(accountManager: sharedContext.accountManager) |> distinctUntilChanged(isEqual: { lhs, rhs in
             return lhs.count == rhs.count
         })
         
@@ -1237,7 +1237,7 @@ final class AccountContext {
 }
 
 
-func downloadAndApplyCloudTheme(context: AccountContext, theme cloudTheme: AnsibleTheme, palette: ColorPalette? = nil, install: Bool = false) -> Signal<Never, Void> {
+func downloadAndApplyCloudTheme(context: AccountContext, theme cloudTheme: TelegramTheme, palette: ColorPalette? = nil, install: Bool = false) -> Signal<Never, Void> {
     if let cloudSettings = cloudTheme.effectiveSettings(for: palette ?? theme.colors) {
         return Signal { subscriber in
             #if !SHARE

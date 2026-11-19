@@ -86,7 +86,7 @@ func qrStudioNormalizedEmoji(_ emoji: String, removingSkinTone: Bool = false) ->
 
 private let qrStudioDefaultThemeColors: [UInt32] = [0xdbddbb, 0x6ba587, 0xd5d88d, 0x88b884]
 
-private func qrStudioThemeWallpaper(_ theme: AnsibleTheme) -> TelegramWallpaper? {
+private func qrStudioThemeWallpaper(_ theme: TelegramTheme) -> TelegramWallpaper? {
     guard let settings = theme.settings, !settings.isEmpty else {
         return nil
     }

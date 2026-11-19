@@ -5,13 +5,13 @@ import SwiftSignalKit
 
 private let chatThemePreparationQueue = Queue(name: "ChatThemePreparation", qos: .userInitiated)
 
-public func preparedChatThemes(presentation: Signal<AnsiblePresentationTheme, NoError>, themes: Signal<[AnsibleTheme], NoError>, cacheWallpaper: @escaping (Wallpaper) -> Signal<Wallpaper, NoError>) -> Signal<[(ChatTheme, AnsiblePresentationTheme)], NoError> {
+public func preparedChatThemes(presentation: Signal<AnsiblePresentationTheme, NoError>, themes: Signal<[TelegramTheme], NoError>, cacheWallpaper: @escaping (Wallpaper) -> Signal<Wallpaper, NoError>) -> Signal<[(ChatTheme, AnsiblePresentationTheme)], NoError> {
     return preparedChatThemes(presentation: presentation, themes: themes, cacheWallpaper: cacheWallpaper, queue: chatThemePreparationQueue)
 }
 
-func preparedChatThemes(presentation: Signal<AnsiblePresentationTheme, NoError>, themes: Signal<[AnsibleTheme], NoError>, cacheWallpaper: @escaping (Wallpaper) -> Signal<Wallpaper, NoError>, queue: Queue) -> Signal<[(ChatTheme, AnsiblePresentationTheme)], NoError> {
+func preparedChatThemes(presentation: Signal<AnsiblePresentationTheme, NoError>, themes: Signal<[TelegramTheme], NoError>, cacheWallpaper: @escaping (Wallpaper) -> Signal<Wallpaper, NoError>, queue: Queue) -> Signal<[(ChatTheme, AnsiblePresentationTheme)], NoError> {
     return combineLatest(queue: .mainQueue(), presentation |> distinctUntilChanged, themes |> distinctUntilChanged) |> mapToSignal { presentation, themes in
-        return Signal<(AnsiblePresentationTheme, [AnsibleTheme]), NoError>.single((presentation, themes)) |> deliverOn(queue) |> mapToSignal { presentation, themes in
+        return Signal<(AnsiblePresentationTheme, [TelegramTheme]), NoError>.single((presentation, themes)) |> deliverOn(queue) |> mapToSignal { presentation, themes in
             var signals: [Signal<(ChatTheme, AnsiblePresentationTheme), NoError>] = []
             for theme in themes {
                 if let settings = theme.effectiveSettings(isDark: presentation.dark), let emoji = theme.emoticon {

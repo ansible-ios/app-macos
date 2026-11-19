@@ -49,7 +49,7 @@ public struct StoriesHooks {
     public let makeStoryMonthRowItem: (NSSize, AnyHashable, any AccountContextProtocol, Bool, PeerId, PeerReference, [StoryListContextState.Item], Set<StoryId>?, [Int32], Int, GeneralViewType, @escaping (StoryInitialIndex?) -> Void, @escaping (StoryId) -> Void, @escaping (StoryListContextState.Item) -> [ContextMenuItem], AnsiblePresentationTheme) -> TableRowItem
     public let executeInApp: (StoriesInAppLink) -> Void
     public let showShareLink: (any AccountContextProtocol, String, Window) -> Void
-    public let generateTheme: (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper) -> AnsiblePresentationTheme
+    public let generateTheme: (ColorPalette, TelegramTheme?, Bool, CGFloat, ThemeWallpaper) -> AnsiblePresentationTheme
     public let pushPeerInfoIfNeeded: (any AccountContextProtocol, PeerId) -> Void
     public let showShareStory: (any AccountContextProtocol, TelegramMediaStory, Bool, StoryId, @escaping () -> Void, AnsiblePresentationTheme) -> Void
     public let findShareModal: (ModalViewController?) -> ModalViewController?
@@ -66,7 +66,7 @@ public struct StoriesHooks {
                 makeStoryMonthRowItem: @escaping (NSSize, AnyHashable, any AccountContextProtocol, Bool, PeerId, PeerReference, [StoryListContextState.Item], Set<StoryId>?, [Int32], Int, GeneralViewType, @escaping (StoryInitialIndex?) -> Void, @escaping (StoryId) -> Void, @escaping (StoryListContextState.Item) -> [ContextMenuItem], AnsiblePresentationTheme) -> TableRowItem,
                 executeInApp: @escaping (StoriesInAppLink) -> Void,
                 showShareLink: @escaping (any AccountContextProtocol, String, Window) -> Void,
-                generateTheme: @escaping (ColorPalette, AnsibleTheme?, Bool, CGFloat, ThemeWallpaper) -> AnsiblePresentationTheme,
+                generateTheme: @escaping (ColorPalette, TelegramTheme?, Bool, CGFloat, ThemeWallpaper) -> AnsiblePresentationTheme,
                 pushPeerInfoIfNeeded: @escaping (any AccountContextProtocol, PeerId) -> Void,
                 showShareStory: @escaping (any AccountContextProtocol, TelegramMediaStory, Bool, StoryId, @escaping () -> Void, AnsiblePresentationTheme) -> Void,
                 findShareModal: @escaping (ModalViewController?) -> ModalViewController?,
