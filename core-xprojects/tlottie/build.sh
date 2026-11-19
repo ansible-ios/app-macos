@@ -19,7 +19,7 @@ fi
 
 if [ ! -f "$ENGINE_TOOLCHAIN_FILE" ]; then
     echo "$ENGINE_TOOLCHAIN_FILE is missing."
-    echo "tlottie is linked next to mtproto-engine and wallet-engine and must use the same Rust toolchain."
+    echo "tlottie is linked next to mtproto-engine and must use the same Rust toolchain."
     exit 1
 fi
 

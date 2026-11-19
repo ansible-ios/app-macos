@@ -1,0 +1,1595 @@
+diff --git a/submodules/PasscodeCore/Sources/PasscodeKeychainScope.swift b/submodules/PasscodeCore/Sources/PasscodeKeychainScope.swift
+--- a/submodules/PasscodeCore/Sources/PasscodeKeychainScope.swift
++++ b/submodules/PasscodeCore/Sources/PasscodeKeychainScope.swift
+@@ -5,3 +5,3 @@
+ /// Keeps a channel's keychain items apart from the other channels' on macOS. Release channels share the
+-/// unscoped names; a scoped channel (Debug builds) stores its passcode, biometric and wallet items under
++/// unscoped names; a scoped channel (Debug builds) stores its passcode and biometric items under
+ /// `org.telegram.scoped.<scope>/<name>`, which no unscoped name filter matches, so it neither prompts for nor
+@@ -29,3 +29,2 @@
+         var read: (_ service: String, _ account: String) -> Read
+-        var listGenericPasswords: () -> (status: OSStatus, items: [(service: String, account: String)])
+         var add: (_ data: Data, _ service: String, _ account: String) -> OSStatus
+@@ -39,3 +38,3 @@
+     static var system: Keychain {
+-        return Keychain(isUnlocked: isDefaultKeychainUnlocked, read: readWithoutInteraction, listGenericPasswords: listGenericPasswords, add: addIfMissing)
++        return Keychain(isUnlocked: isDefaultKeychainUnlocked, read: readWithoutInteraction, add: addIfMissing)
+     }
+@@ -49,17 +48,8 @@
+ 
+-    /// Copies the passcode credential, the device secret and the wallet items that this build can read without
+-    /// user interaction from the unscoped names into the scope. The unscoped items are never changed or deleted:
+-    /// other channels may still use them. Wallet items are grouped by the name that follows their service prefix.
+-    /// A group is copied only when all of its items are readable and the scope holds nothing under that name but
+-    /// identical copies, so a wallet is copied whole or not at all and is never mixed with the scope's own items;
+-    /// within a group, items are copied in the order of `walletServicePrefixes`. Wallet items are copied first and
+-    /// the credential last, and only together with the device secret that protects them, so an interrupted copy
+-    /// resumes on the next run; a scope whose credential differs from the unscoped one is left as it is. Existing
+-    /// scoped items are never replaced, and the attempts counter is not copied. Keychain user interaction is
+-    /// disabled for the whole process during each read.
+-    public static func migrateLegacyItems(passcodeService: String = Self.legacyPasscodeService, walletServicePrefixes: [String], environment: PasscodeEnvironment = .shared) -> Migration {
+-        return Self.migrateLegacyItems(passcodeService: passcodeService, walletServicePrefixes: walletServicePrefixes, environment: environment, keychain: Self.system)
++    /// Copies the device secret first, then its credential, without replacing existing items.
++    public static func migrateLegacyItems(passcodeService: String = Self.legacyPasscodeService, environment: PasscodeEnvironment = .shared) -> Migration {
++        return Self.migrateLegacyItems(passcodeService: passcodeService, environment: environment, keychain: Self.system)
+     }
+ 
+-    static func migrateLegacyItems(passcodeService: String, walletServicePrefixes: [String], environment: PasscodeEnvironment, keychain: Keychain) -> Migration {
++    static func migrateLegacyItems(passcodeService: String, environment: PasscodeEnvironment, keychain: Keychain) -> Migration {
+         guard environment.keychainScope != nil else {
+@@ -100,57 +90,4 @@
+         }
+-        let listed = keychain.listGenericPasswords()
+-        guard listed.status == errSecSuccess else {
+-            return .failed(listed.status)
+-        }
+-        let scopePrefix = Self.service("", environment: environment)
+-        let scopedItems = listed.items.compactMap { item -> (service: String, account: String)? in
+-            guard item.service.hasPrefix(scopePrefix) else {
+-                return nil
+-            }
+-            return (String(item.service.dropFirst(scopePrefix.count)), item.account)
+-        }
+-        var scopedGroups: [String: [(service: String, account: String)]] = [:]
+-        for group in Self.itemGroups(scopedItems, servicePrefixes: walletServicePrefixes) {
+-            scopedGroups[group.name] = group.items
+-        }
+-        var items: [(service: String, account: String, data: Data)] = []
+-        groups: for group in Self.itemGroups(listed.items, servicePrefixes: walletServicePrefixes) {
+-            var groupItems: [(service: String, account: String, data: Data)] = []
+-            for (service, account) in group.items {
+-                switch keychain.read(service, account) {
+-                case let .found(data):
+-                    groupItems.append((service, account, data))
+-                case .absent:
+-                    break
+-                case .notReadable:
+-                    continue groups
+-                case .locked:
+-                    return .keychainLocked
+-                case let .failed(status):
+-                    return .failed(status)
+-                }
+-            }
+-            for (service, account) in scopedGroups[group.name] ?? [] {
+-                guard let original = groupItems.first(where: { $0.service == service && $0.account == account }) else {
+-                    continue groups
+-                }
+-                switch keychain.read(Self.service(service, environment: environment), account) {
+-                case let .found(data):
+-                    guard data == original.data else {
+-                        continue groups
+-                    }
+-                case .absent:
+-                    break
+-                case .notReadable:
+-                    continue groups
+-                case .locked:
+-                    return .keychainLocked
+-                case let .failed(status):
+-                    return .failed(status)
+-                }
+-            }
+-            items.append(contentsOf: groupItems)
+-        }
+-        items.append((passcodeService, "device", device))
+-        items.append((passcodeService, "credential", credential))
++        let items = [(service: passcodeService, account: "device", data: device),
++                     (service: passcodeService, account: "credential", data: credential)]
+         var copied = 0
+@@ -167,15 +104,2 @@
+ 
+-    static func itemGroups(_ items: [(service: String, account: String)], servicePrefixes: [String]) -> [(name: String, items: [(service: String, account: String)])] {
+-        var groups: [String: [(order: Int, service: String, account: String)]] = [:]
+-        for item in items where !item.service.hasPrefix(Self.root) {
+-            guard let order = servicePrefixes.firstIndex(where: { item.service.hasPrefix($0) }) else {
+-                continue
+-            }
+-            groups[String(item.service.dropFirst(servicePrefixes[order].count)), default: []].append((order, item.service, item.account))
+-        }
+-        return groups.keys.sorted().map { name -> (name: String, items: [(service: String, account: String)]) in
+-            let sorted = groups[name, default: []].sorted { ($0.order, $0.service, $0.account) < ($1.order, $1.service, $1.account) }
+-            return (name, sorted.map { (service: $0.service, account: $0.account) })
+-        }
+-    }
+ 
+@@ -214,25 +138,2 @@
+ 
+-    private static func listGenericPasswords() -> (status: OSStatus, items: [(service: String, account: String)]) {
+-        let search: [String: Any] = [
+-            kSecClass as String: kSecClassGenericPassword,
+-            kSecReturnAttributes as String: true,
+-            kSecMatchLimit as String: kSecMatchLimitAll,
+-            kSecAttrSynchronizable as String: false,
+-            kSecUseDataProtectionKeychain as String: false
+-        ]
+-        var result: CFTypeRef?
+-        let status = SecItemCopyMatching(search as CFDictionary, &result)
+-        if status == errSecItemNotFound {
+-            return (errSecSuccess, [])
+-        }
+-        guard status == errSecSuccess, let attributes = result as? [[String: Any]] else {
+-            return (status == errSecSuccess ? errSecDecode : status, [])
+-        }
+-        return (errSecSuccess, attributes.compactMap { item in
+-            guard let service = item[kSecAttrService as String] as? String, let account = item[kSecAttrAccount as String] as? String else {
+-                return nil
+-            }
+-            return (service, account)
+-        })
+-    }
+ 
+diff --git a/submodules/PasscodeCore/Tests/PasscodeCoreTests/PasscodeKeychainScopeDecisionTests.swift b/submodules/PasscodeCore/Tests/PasscodeCoreTests/PasscodeKeychainScopeDecisionTests.swift
+--- a/submodules/PasscodeCore/Tests/PasscodeCoreTests/PasscodeKeychainScopeDecisionTests.swift
++++ b/submodules/PasscodeCore/Tests/PasscodeCoreTests/PasscodeKeychainScopeDecisionTests.swift
+@@ -9,3 +9,2 @@
+         var items: [String: PasscodeKeychainScope.Read] = [:]
+-        var listStatus: OSStatus = errSecSuccess
+         var addStatuses: [String: OSStatus] = [:]
+@@ -28,7 +27,2 @@
+                 return self.items[Self.key(service, account)] ?? .absent
+-            }, listGenericPasswords: {
+-                return (self.listStatus, self.items.keys.sorted().map { key in
+-                    let parts = key.components(separatedBy: "|")
+-                    return (parts[0], parts[1])
+-                })
+             }, add: { data, service, account in
+@@ -49,3 +43,2 @@
+     private let passcode = "passcode"
+-    private let prefixes = ["wallet.descriptor.", "wallet.envelope.", "wallet.journal."]
+     private var environment: PasscodeEnvironment!
+@@ -69,3 +62,3 @@
+     private func migrate() -> PasscodeKeychainScope.Migration {
+-        return PasscodeKeychainScope.migrateLegacyItems(passcodeService: self.passcode, walletServicePrefixes: self.prefixes, environment: self.environment, keychain: self.fake.keychain)
++        return PasscodeKeychainScope.migrateLegacyItems(passcodeService: self.passcode, environment: self.environment, keychain: self.fake.keychain)
+     }
+@@ -81,3 +74,3 @@
+         self.addCredentialSet()
+-        XCTAssertEqual(PasscodeKeychainScope.migrateLegacyItems(passcodeService: self.passcode, walletServicePrefixes: self.prefixes, environment: environment, keychain: self.fake.keychain), .nothingToMigrate)
++        XCTAssertEqual(PasscodeKeychainScope.migrateLegacyItems(passcodeService: self.passcode, environment: environment, keychain: self.fake.keychain), .nothingToMigrate)
+         XCTAssertEqual(self.fake.reads, [])
+@@ -112,3 +105,2 @@
+             self.fake.set(device, self.passcode, "device")
+-            self.fake.set(.found(Data("descriptor".utf8)), "wallet.descriptor.ns", "wallet")
+             XCTAssertEqual(self.migrate(), expected, "\(credential), \(device)")
+@@ -129,3 +121,2 @@
+                 self.addCredentialSet()
+-                self.fake.set(.found(Data("descriptor".utf8)), "wallet.descriptor.ns", "wallet")
+                 self.fake.set(scoped, self.scoped(self.passcode), account)
+@@ -140,44 +131,4 @@
+         self.fake.set(.found(Data("credential".utf8)), self.scoped(self.passcode), "credential")
+-        self.fake.set(.found(Data("descriptor".utf8)), "wallet.descriptor.ns", "wallet")
+-        XCTAssertEqual(self.migrate(), .migrated(2))
+-        XCTAssertEqual(self.fake.added, [self.key(self.scoped("wallet.descriptor.ns"), "wallet"), self.key(self.scoped(self.passcode), "device")])
+-    }
+-
+-    func testAWalletIsCopiedWholeOrNotAtAll() {
+-        self.addCredentialSet()
+-        self.fake.set(.found(Data("a".utf8)), "wallet.descriptor.a", "wallet")
+-        self.fake.set(.notReadable, "wallet.envelope.a", "secret")
+-        self.fake.set(.found(Data("a".utf8)), "wallet.journal.a", "journal")
+-        self.fake.set(.found(Data("b".utf8)), "wallet.descriptor.b", "wallet")
+-        self.fake.set(.found(Data("b".utf8)), "wallet.envelope.b", "secret")
+-        XCTAssertEqual(self.migrate(), .migrated(4))
+-        XCTAssertEqual(self.fake.added, [
+-            self.key(self.scoped("wallet.descriptor.b"), "wallet"),
+-            self.key(self.scoped("wallet.envelope.b"), "secret"),
+-            self.key(self.scoped(self.passcode), "device"),
+-            self.key(self.scoped(self.passcode), "credential")
+-        ])
+-        XCTAssertFalse(self.fake.reads.contains(self.key("wallet.journal.a", "journal")))
+-    }
+-
+-    func testALockOrFailureWhileReadingWalletsCopiesNothing() {
+-        let cases: [(PasscodeKeychainScope.Read, PasscodeKeychainScope.Migration)] = [
+-            (.locked, .keychainLocked),
+-            (.failed(-4), .failed(-4))
+-        ]
+-        for (read, expected) in cases {
+-            self.fake = FakeKeychain()
+-            self.addCredentialSet()
+-            self.fake.set(.found(Data("a".utf8)), "wallet.descriptor.a", "wallet")
+-            self.fake.set(read, "wallet.descriptor.b", "wallet")
+-            XCTAssertEqual(self.migrate(), expected, "\(read)")
+-            XCTAssertEqual(self.fake.added, [], "\(read)")
+-        }
+-    }
+-
+-    func testAListingFailureCopiesNothing() {
+-        self.addCredentialSet()
+-        self.fake.listStatus = errSecIO
+-        XCTAssertEqual(self.migrate(), .failed(errSecIO))
+-        XCTAssertEqual(self.fake.added, [])
++        XCTAssertEqual(self.migrate(), .migrated(1))
++        XCTAssertEqual(self.fake.added, [self.key(self.scoped(self.passcode), "device")])
+     }
+@@ -185,6 +136,6 @@
+     func testAFailedCopyLeavesTheCredentialForTheNextRun() {
+-        for failing in [self.key(self.scoped("wallet.descriptor.a"), "wallet"), self.key(self.scoped(self.passcode), "device")] {
++        for account in ["device", "credential"] {
++            let failing = self.key(self.scoped(self.passcode), account)
+             self.fake = FakeKeychain()
+             self.addCredentialSet()
+-            self.fake.set(.found(Data("a".utf8)), "wallet.descriptor.a", "wallet")
+             self.fake.addStatuses[failing] = errSecIO
+@@ -193,95 +144,2 @@
+         }
+-    }
+-
+-    func testOnlyUnscopedItemsUnderTheWalletPrefixesAreCopied() {
+-        self.addCredentialSet()
+-        self.fake.set(.found(Data("a".utf8)), "wallet.descriptor.a", "wallet")
+-        self.fake.set(.found(Data("stale".utf8)), "wallet.metadata.a", "wallet")
+-        self.fake.set(.found(Data("other".utf8)), "other.service", "wallet")
+-        self.fake.set(.found(Data("scoped".utf8)), self.scoped("wallet.descriptor.b"), "wallet")
+-        XCTAssertEqual(self.migrate(), .migrated(3))
+-        XCTAssertEqual(self.fake.added, [
+-            self.key(self.scoped("wallet.descriptor.a"), "wallet"),
+-            self.key(self.scoped(self.passcode), "device"),
+-            self.key(self.scoped(self.passcode), "credential")
+-        ])
+-    }
+-
+-    func testAWalletTheScopeAlreadyHoldsIsNotMixedIn() {
+-        let cases: [(String, PasscodeKeychainScope.Read)] = [
+-            ("wallet.descriptor.a", .found(Data("watch-only".utf8))),
+-            ("wallet.descriptor.a", .notReadable),
+-            ("wallet.journal.a", .found(Data("own".utf8)))
+-        ]
+-        for (service, scoped) in cases {
+-            self.fake = FakeKeychain()
+-            self.addCredentialSet()
+-            self.fake.set(.found(Data("a".utf8)), "wallet.descriptor.a", "wallet")
+-            self.fake.set(.found(Data("a".utf8)), "wallet.envelope.a", "secret")
+-            self.fake.set(.found(Data("b".utf8)), "wallet.descriptor.b", "wallet")
+-            self.fake.set(scoped, self.scoped(service), "wallet")
+-            XCTAssertEqual(self.migrate(), .migrated(3), "\(service): \(scoped)")
+-            XCTAssertEqual(self.fake.added, [
+-                self.key(self.scoped("wallet.descriptor.b"), "wallet"),
+-                self.key(self.scoped(self.passcode), "device"),
+-                self.key(self.scoped(self.passcode), "credential")
+-            ], "\(service): \(scoped)")
+-        }
+-    }
+-
+-    func testALockOrFailureWhileReadingTheScopeCopiesNothing() {
+-        let cases: [(PasscodeKeychainScope.Read, PasscodeKeychainScope.Migration)] = [
+-            (.locked, .keychainLocked),
+-            (.failed(-5), .failed(-5))
+-        ]
+-        for (read, expected) in cases {
+-            self.fake = FakeKeychain()
+-            self.addCredentialSet()
+-            self.fake.set(.found(Data("a".utf8)), "wallet.descriptor.a", "wallet")
+-            self.fake.set(.found(Data("b".utf8)), "wallet.descriptor.b", "wallet")
+-            self.fake.set(read, self.scoped("wallet.descriptor.b"), "wallet")
+-            XCTAssertEqual(self.migrate(), expected, "\(read)")
+-            XCTAssertEqual(self.fake.added, [], "\(read)")
+-        }
+-    }
+-
+-    func testIdenticalScopedCopiesResumeTheWallet() {
+-        self.addCredentialSet()
+-        self.fake.set(.found(Data("a".utf8)), "wallet.descriptor.a", "wallet")
+-        self.fake.set(.found(Data("s".utf8)), "wallet.envelope.a", "secret")
+-        self.fake.set(.found(Data("s".utf8)), self.scoped("wallet.envelope.a"), "secret")
+-        XCTAssertEqual(self.migrate(), .migrated(3))
+-        XCTAssertEqual(self.fake.added, [
+-            self.key(self.scoped("wallet.descriptor.a"), "wallet"),
+-            self.key(self.scoped(self.passcode), "device"),
+-            self.key(self.scoped(self.passcode), "credential")
+-        ])
+-    }
+-
+-    func testWalletItemsAreCopiedInPrefixOrder() {
+-        self.addCredentialSet()
+-        self.fake.set(.found(Data("d".utf8)), "wallet.descriptor.a", "wallet")
+-        self.fake.set(.found(Data("e".utf8)), "wallet.envelope.a", "secret")
+-        self.fake.set(.found(Data("j".utf8)), "wallet.journal.a", "journal")
+-        let migration = PasscodeKeychainScope.migrateLegacyItems(passcodeService: self.passcode, walletServicePrefixes: ["wallet.envelope.", "wallet.journal.", "wallet.descriptor."], environment: self.environment, keychain: self.fake.keychain)
+-        XCTAssertEqual(migration, .migrated(5))
+-        XCTAssertEqual(self.fake.added, [
+-            self.key(self.scoped("wallet.envelope.a"), "secret"),
+-            self.key(self.scoped("wallet.journal.a"), "journal"),
+-            self.key(self.scoped("wallet.descriptor.a"), "wallet"),
+-            self.key(self.scoped(self.passcode), "device"),
+-            self.key(self.scoped(self.passcode), "credential")
+-        ])
+-    }
+-
+-    func testItemGroupsIgnoreScopedNames() {
+-        let groups = PasscodeKeychainScope.itemGroups([
+-            (service: "org.telegram.scoped.debug/org.telegram.x.a", account: "scoped"),
+-            (service: "org.telegram.x.a", account: "wallet"),
+-            (service: "org.telegram.y", account: "other")
+-        ], servicePrefixes: ["org.telegram.x.", "org.telegram."])
+-        XCTAssertEqual(groups.map { group in group.name + ": " + group.items.map { $0.service + "|" + $0.account }.joined(separator: ",") }, [
+-            "a: org.telegram.x.a|wallet",
+-            "y: org.telegram.y|other"
+-        ])
+     }
+diff --git a/submodules/PasscodeCore/Tests/PasscodeCoreTests/PasscodeKeychainScopeTests.swift b/submodules/PasscodeCore/Tests/PasscodeCoreTests/PasscodeKeychainScopeTests.swift
+--- a/submodules/PasscodeCore/Tests/PasscodeCoreTests/PasscodeKeychainScopeTests.swift
++++ b/submodules/PasscodeCore/Tests/PasscodeCoreTests/PasscodeKeychainScopeTests.swift
+@@ -9,3 +9,2 @@
+     private var passcodeService = ""
+-    private var walletPrefix = ""
+     private var biometricService = ""
+@@ -20,3 +19,2 @@
+         self.passcodeService = "org.telegram.tests.\(id).passcode"
+-        self.walletPrefix = "org.telegram.tests.\(id).wallet."
+         self.biometricService = "org.telegram.tests.\(id).biometric"
+@@ -71,18 +69,3 @@
+ 
+-    private func addNeedingConfirmation(_ value: String, service: String, account: String) throws {
+-        var access: SecAccess?
+-        XCTAssertEqual(SecAccessCreate("tests" as CFString, [] as CFArray, &access), errSecSuccess)
+-        var insert = self.query(service: service, account: account)
+-        insert[kSecValueData as String] = Data(value.utf8)
+-        insert[kSecAttrAccess as String] = try XCTUnwrap(access)
+-        XCTAssertEqual(SecItemAdd(insert as CFDictionary, nil), errSecSuccess)
+-        self.created.append((service, account))
+-    }
+-
+-    private func exists(service: String, account: String) -> Bool {
+-        var search = self.query(service: service, account: account)
+-        search[kSecReturnAttributes as String] = true
+-        search[kSecMatchLimit as String] = kSecMatchLimitOne
+-        return SecItemCopyMatching(search as CFDictionary, nil) == errSecSuccess
+-    }
++
+ 
+@@ -104,3 +87,3 @@
+     private func migrate(environment: PasscodeEnvironment? = nil) -> PasscodeKeychainScope.Migration {
+-        return PasscodeKeychainScope.migrateLegacyItems(passcodeService: self.passcodeService, walletServicePrefixes: [self.walletPrefix + "descriptor.", self.walletPrefix + "vault."], environment: environment ?? self.environment)
++        return PasscodeKeychainScope.migrateLegacyItems(passcodeService: self.passcodeService, environment: environment ?? self.environment)
+     }
+@@ -158,3 +141,3 @@
+ 
+-    func testMigrationCopiesTheCredentialSetAndWalletItemsAndKeepsTheOriginals() {
++    func testMigrationCopiesTheCredentialSetAndKeepsTheOriginals() {
+         self.add("credential", service: self.passcodeService, account: "credential")
+@@ -162,12 +145,6 @@
+         self.add("attempts", service: self.passcodeService, account: "attempts")
+-        self.add("descriptor", service: self.walletPrefix + "descriptor.ns", account: "wallet")
+-        self.add("envelope", service: self.walletPrefix + "vault.ns", account: "secret")
+-        self.add("metadata", service: self.walletPrefix + "metadata.ns", account: "wallet")
+-        XCTAssertEqual(self.migrate(), .migrated(4))
++        XCTAssertEqual(self.migrate(), .migrated(2))
+         XCTAssertEqual(self.value(service: self.scoped(self.passcodeService), account: "credential"), "credential")
+         XCTAssertEqual(self.value(service: self.scoped(self.passcodeService), account: "device"), "device")
+-        XCTAssertEqual(self.value(service: self.scoped(self.walletPrefix + "descriptor.ns"), account: "wallet"), "descriptor")
+-        XCTAssertEqual(self.value(service: self.scoped(self.walletPrefix + "vault.ns"), account: "secret"), "envelope")
+         XCTAssertNil(self.value(service: self.scoped(self.passcodeService), account: "attempts"))
+-        XCTAssertNil(self.value(service: self.scoped(self.walletPrefix + "metadata.ns"), account: "wallet"))
+         XCTAssertEqual(self.value(service: self.passcodeService, account: "credential"), "credential")
+@@ -175,4 +152,2 @@
+         XCTAssertEqual(self.value(service: self.passcodeService, account: "attempts"), "attempts")
+-        XCTAssertEqual(self.value(service: self.walletPrefix + "descriptor.ns", account: "wallet"), "descriptor")
+-        XCTAssertEqual(self.value(service: self.walletPrefix + "vault.ns", account: "secret"), "envelope")
+         XCTAssertEqual(self.migrate(), .migrated(0))
+@@ -184,3 +159,2 @@
+         self.add("device", service: self.passcodeService, account: "device")
+-        self.add("envelope", service: self.walletPrefix + "vault.ns", account: "secret")
+         XCTAssertEqual(self.migrate(), .nothingToMigrate)
+@@ -188,4 +162,2 @@
+         XCTAssertNil(self.value(service: self.scoped(self.passcodeService), account: "device"))
+-        XCTAssertNil(self.value(service: self.scoped(self.walletPrefix + "vault.ns"), account: "secret"))
+-        XCTAssertEqual(self.value(service: self.walletPrefix + "vault.ns", account: "secret"), "envelope")
+     }
+@@ -195,23 +167,7 @@
+         self.add("device", service: self.passcodeService, account: "device")
+-        self.add("descriptor", service: self.walletPrefix + "descriptor.ns", account: "wallet")
+-        self.add("envelope", service: self.walletPrefix + "vault.ns", account: "secret")
+-        self.add("descriptor", service: self.scoped(self.walletPrefix + "descriptor.ns"), account: "wallet")
+         self.add("device", service: self.scoped(self.passcodeService), account: "device")
+-        XCTAssertEqual(self.migrate(), .migrated(2))
++        XCTAssertEqual(self.migrate(), .migrated(1))
+         XCTAssertEqual(self.value(service: self.scoped(self.passcodeService), account: "credential"), "credential")
+-        XCTAssertEqual(self.value(service: self.scoped(self.walletPrefix + "vault.ns"), account: "secret"), "envelope")
+-    }
+-
+-    func testMigrationLeavesAWalletTheScopeAlreadyHolds() {
+-        self.add("credential", service: self.passcodeService, account: "credential")
+-        self.add("device", service: self.passcodeService, account: "device")
+-        self.add("descriptor", service: self.walletPrefix + "descriptor.ns", account: "wallet")
+-        self.add("envelope", service: self.walletPrefix + "vault.ns", account: "secret")
+-        self.add("watch-only", service: self.scoped(self.walletPrefix + "descriptor.ns"), account: "wallet")
+-        XCTAssertEqual(self.migrate(), .migrated(2))
+-        XCTAssertEqual(self.value(service: self.scoped(self.walletPrefix + "descriptor.ns"), account: "wallet"), "watch-only")
+-        XCTAssertFalse(self.exists(service: self.scoped(self.walletPrefix + "vault.ns"), account: "secret"))
+-        XCTAssertEqual(self.value(service: self.walletPrefix + "descriptor.ns", account: "wallet"), "descriptor")
+-        XCTAssertEqual(self.value(service: self.walletPrefix + "vault.ns", account: "secret"), "envelope")
+-    }
++    }
++
+ 
+@@ -226,15 +182,2 @@
+ 
+-    func testAWalletWithAnItemThatNeedsConfirmationIsNotCopiedOrTouched() throws {
+-        self.add("credential", service: self.passcodeService, account: "credential")
+-        self.add("device", service: self.passcodeService, account: "device")
+-        self.add("descriptor", service: self.walletPrefix + "descriptor.ns", account: "wallet")
+-        try self.addNeedingConfirmation("envelope", service: self.walletPrefix + "vault.ns", account: "secret")
+-        self.add("other", service: self.walletPrefix + "descriptor.other", account: "wallet")
+-        XCTAssertEqual(self.migrate(), .migrated(3))
+-        XCTAssertFalse(self.exists(service: self.scoped(self.walletPrefix + "descriptor.ns"), account: "wallet"))
+-        XCTAssertFalse(self.exists(service: self.scoped(self.walletPrefix + "vault.ns"), account: "secret"))
+-        XCTAssertEqual(self.value(service: self.scoped(self.walletPrefix + "descriptor.other"), account: "wallet"), "other")
+-        XCTAssertEqual(self.value(service: self.walletPrefix + "descriptor.ns", account: "wallet"), "descriptor")
+-        XCTAssertTrue(self.exists(service: self.walletPrefix + "vault.ns", account: "secret"))
+-    }
+ 
+@@ -242,8 +185,5 @@
+         self.add("credential", service: self.passcodeService, account: "credential")
+-        self.add("envelope", service: self.walletPrefix + "vault.ns", account: "secret")
+         XCTAssertEqual(self.migrate(), .nothingToMigrate)
+         XCTAssertNil(self.value(service: self.scoped(self.passcodeService), account: "credential"))
+-        XCTAssertNil(self.value(service: self.scoped(self.walletPrefix + "vault.ns"), account: "secret"))
+         XCTAssertEqual(self.value(service: self.passcodeService, account: "credential"), "credential")
+-        XCTAssertEqual(self.value(service: self.walletPrefix + "vault.ns", account: "secret"), "envelope")
+     }
+diff --git a/submodules/TelegramApi/swift_scheme.tl b/submodules/TelegramApi/swift_scheme.tl
+--- a/submodules/TelegramApi/swift_scheme.tl
++++ b/submodules/TelegramApi/swift_scheme.tl
+@@ -3074,3 +3074,2 @@
+ payments.getSavedStarGift#b455a106 stargift:Vector<InputSavedStarGift> = payments.SavedStarGifts;
+-payments.getStarGiftWithdrawalUrl#c8ca817b flags:# stargift:InputSavedStarGift tmp_password:bytes = payments.StarGiftWithdrawalUrl;
+ payments.toggleChatStarGiftNotifications#60eaefa1 flags:# enabled:flags.0?true peer:InputPeer = Bool;
+@@ -3102,4 +3101,2 @@
+ payments.createOnrampSession#a2197cf6 flags:# provider:string crypto_currency:string address:string payment_method:flags.0?string base_currency:flags.1?string base_amount:flags.2?string memo:flags.3?string theme:flags.4?string success_return_url:flags.5?string fail_return_url:flags.6?string crypto_amount:flags.7?string = OnrampSession;
+-payments.withdrawStarGift#ec2030ae flags:# keep_on_profile:flags.0?true stargift:InputSavedStarGift tmp_password:bytes = Bool;
+-payments.depositStarGift#c0a2ea9f flags:# hide_sender:flags.0?true peer:InputPeer slug:string = payments.StarGiftDepositPayload;
+ payments.displayStarGift#4aa5f0fe flags:# peer:flags.0?InputPeer slug:string = Bool;
+@@ -3272,27 +3269 @@
+ 
+-wallet.getState#ab83b33a = WalletState;
+-wallet.getUserAddresses#5275dfdd flags:# force:flags.0?true id:Vector<InputUser> addresses:Vector<string> = wallet.UserAddresses;
+-wallet.getTransactions#a8830a83 flags:# inbound:flags.0?true outbound:flags.1?true offset:string limit:int = wallet.Transactions;
+-wallet.getTransactionsByIDs#811ceab6 id:Vector<string> = wallet.Transactions;
+-wallet.getTransactionsByMsgHash#a6bb795d msg_hash:Vector<string> = wallet.Transactions;
+-wallet.exportSecretPhrase#9077c9ac flags:# password:flags.0?InputCheckPasswordSRP = wallet.SecretPhraseParts;
+-wallet.fetchEncryptedSecretPhrasePart#f53925cf token:string public_key:bytes = wallet.EncryptedSecretPhrasePart;
+-wallet.replaceWallet#d8c72eec flags:# wallet:InputWalletReplacement password:flags.0?InputCheckPasswordSRP = WalletState;
+-wallet.disableBackup#b0bf0da flags:# password:flags.0?InputCheckPasswordSRP new_public_key:flags.1?bytes proof:flags.2?WalletOwnershipProof = WalletState;
+-wallet.getBackupHolderDcs#d179d494 = Vector<wallet.HolderDc>;
+-wallet.enableBackup#4500c525 flags:# parts:Vector<bytes> new_public_key:flags.1?bytes proof:flags.2?WalletOwnershipProof = WalletState;
+-wallet.getProofChallenge#2025e697 = wallet.ProofChallenge;
+-wallet.sendTransfer#d9e5d9e2 flags:# data_normal:bytes data_gasless:flags.0?bytes user_id:InputUser random_id:long = Updates;
+-wallet.getGaslessInfo#742df0a1 = Updates;
+-wallet.getExistingWaltBalance#691f4360 = wallet.ExistingBalance;
+-wallet.getNfts#8c12f3a4 offset:string limit:int = wallet.NftItems;
+-wallet.tonConnectCreateSession#cc931046 dapp_client_id:string manifest_url:string = TonConnectSession;
+-wallet.tonConnectRegisterKey#338bcf1c session_id:long client_id:string = wallet.TonConnectChallenge;
+-wallet.tonConnectSubmitConnectResult#c2c00779 flags:# error:flags.0?true session_id:long challenge_answer:bytes body:bytes trace_id:flags.1?string = Bool;
+-wallet.tonConnectGetPending#11aee065 flags:# dapp_client_id:flags.0?string session_id:flags.1?long = wallet.TonConnectPending;
+-wallet.tonConnectClaimRequest#66b57b41 flags:# declined:flags.1?true session_id:long msg_id:int app_request_id:string challenge_answer:flags.0?bytes = Bool;
+-wallet.tonConnectSubmitResponse#fac67d3c flags:# session_id:long msg_id:int body:bytes trace_id:flags.0?string = Bool;
+-wallet.tonConnectNextEventId#775d7244 session_id:long = TonConnectNextEventId;
+-wallet.tonConnectCloseSession#d63f61ce flags:# session_id:long body:flags.0?bytes = Bool;
+-wallet.tonConnectGetSessions#a7ffb56e = wallet.TonConnectSessions;
+-wallet.setCardStickers#68509ac flags:# stickers:Vector<InputWalletCardSticker> bg_nft_address:flags.0?string = wallet.Card;
+diff --git a/submodules/TelegramCore/Package.swift b/submodules/TelegramCore/Package.swift
+--- a/submodules/TelegramCore/Package.swift
++++ b/submodules/TelegramCore/Package.swift
+@@ -52,2 +52,3 @@
+             path: "Sources",
++            exclude: ["TelegramEngine/Wallet", "State/ManagedPendingWalletTransferMessages.swift"],
+             swiftSettings: [.unsafeFlags(["-warnings-as-errors"])]),
+diff --git a/submodules/TelegramCore/Sources/Account/Account.swift b/submodules/TelegramCore/Sources/Account/Account.swift
+--- a/submodules/TelegramCore/Sources/Account/Account.swift
++++ b/submodules/TelegramCore/Sources/Account/Account.swift
+@@ -1507,3 +1507,2 @@
+         self.managedOperationsDisposable.add(managedPeerTimestampAttributeOperations(network: self.network, postbox: self.postbox).start())
+-        self.managedOperationsDisposable.add(managedPendingWalletTransferMessages(postbox: self.postbox).start())
+         self.managedOperationsDisposable.add(managedSynchronizeViewStoriesOperations(postbox: self.postbox, network: self.network, stateManager: self.stateManager).start())
+diff --git a/submodules/TelegramCore/Sources/Account/AccountIntermediateState.swift b/submodules/TelegramCore/Sources/Account/AccountIntermediateState.swift
+--- a/submodules/TelegramCore/Sources/Account/AccountIntermediateState.swift
++++ b/submodules/TelegramCore/Sources/Account/AccountIntermediateState.swift
+@@ -166,6 +166,3 @@
+     case UpdateStarsBalance(peerId: PeerId, currency: CurrencyAmount.Currency, balance: StarsAmount)
+-    case UpdateWalletState(Api.WalletState)
+     case UpdateAgentSettings(EngineAgentSettings)
+-    case UpdateWalletTransfer(Api.Update)
+-    case UpdateWalletTonConnectEvent(WalletTonConnectEvent)
+     case UpdateStarsRevenueStatus(peerId: PeerId, status: StarsRevenueStats.Balances)
+@@ -744,13 +741,3 @@
+ 
+-    mutating func addWalletTransferUpdate(_ update: Api.Update) {
+-        self.addOperation(.UpdateWalletTransfer(update))
+-	}
+-
+-    mutating func addWalletTonConnectEvent(_ event: WalletTonConnectEvent) {
+-        self.addOperation(.UpdateWalletTonConnectEvent(event))
+-    }
+-
+-    mutating func updateWalletState(_ state: Api.WalletState) {
+-        self.addOperation(.UpdateWalletState(state))
+-    }
++
+ 
+@@ -794,3 +781,3 @@
+         switch operation {
+-        case .DeleteMessages, .DeleteMessagesWithGlobalIds, .EditMessage, .UpsertEphemeralReplacement, .DeleteEphemeralMessages, .UpdateMessagePoll, .UpdateMessageReactions, .UpdateMedia, .ReadOutbox, .MergePeerPresences, .UpdateSecretChat, .AddSecretMessages, .ReadSecretOutbox, .AddPeerInputActivity, .AddPeerLiveTypingDraftUpdate, .AddPeerLiveTypingDraftStop, .UpdateCachedPeerData, .UpdatePinnedItemIds, .UpdatePinnedSavedItemIds, .UpdatePinnedTopic, .UpdatePinnedTopicOrder, .EditForumTopic, .ReadMessageContents, .UpdateMessageImpressionCount, .UpdateInstalledStickerPacks, .UpdateRecentGifs, .UpdateChatInputState, .UpdateCall, .AddCallSignalingData, .UpdateLangPack, .UpdateMinAvailableMessage, .UpdatePeerChatUnreadMark, .UpdatePeerChatInclusion, .UpdateTheme, .UpdateWallpaper, .SyncChatListFilters, .UpdateChatListFilterOrder, .UpdateChatListFilter, .UpdateReadThread, .UpdateGroupCallParticipants, .UpdateGroupCall, .UpdateGroupCallChainBlocks, .UpdateGroupCallMessage, .UpdateGroupCallOpaqueMessage, .UpdateMessagesPinned, .UpdateAutoremoveTimeout, .UpdateAttachMenuBots, .UpdateAudioTranscription, .UpdateConfig, .UpdateMessageWidgetData, .UpdateExtendedMedia, .ResetForumTopic, .UpdateStory, .UpdateReadStories, .UpdateStoryStealthMode, .UpdateStorySentReaction, .UpdateNewAuthorization, .UpdateNewBotConnection, .UpdateWebBrowserSettings, .UpdateWebBrowserException, .UpdateStarsBalance, .UpdateStarsRevenueStatus, .UpdateStarsReactionsDefaultPrivacy, .ReportMessageDelivery, .UpdateMonoForumNoPaidException, .UpdateReadFeed, .UpdateStarGiftAuctionState, .UpdateStarGiftAuctionMyState, .UpdateEmojiGameInfo, .UpdateWalletState, .UpdateAgentSettings, .UpdateWalletTransfer, .UpdateWalletTonConnectEvent:
++        case .DeleteMessages, .DeleteMessagesWithGlobalIds, .EditMessage, .UpsertEphemeralReplacement, .DeleteEphemeralMessages, .UpdateMessagePoll, .UpdateMessageReactions, .UpdateMedia, .ReadOutbox, .MergePeerPresences, .UpdateSecretChat, .AddSecretMessages, .ReadSecretOutbox, .AddPeerInputActivity, .AddPeerLiveTypingDraftUpdate, .AddPeerLiveTypingDraftStop, .UpdateCachedPeerData, .UpdatePinnedItemIds, .UpdatePinnedSavedItemIds, .UpdatePinnedTopic, .UpdatePinnedTopicOrder, .EditForumTopic, .ReadMessageContents, .UpdateMessageImpressionCount, .UpdateInstalledStickerPacks, .UpdateRecentGifs, .UpdateChatInputState, .UpdateCall, .AddCallSignalingData, .UpdateLangPack, .UpdateMinAvailableMessage, .UpdatePeerChatUnreadMark, .UpdatePeerChatInclusion, .UpdateTheme, .UpdateWallpaper, .SyncChatListFilters, .UpdateChatListFilterOrder, .UpdateChatListFilter, .UpdateReadThread, .UpdateGroupCallParticipants, .UpdateGroupCall, .UpdateGroupCallChainBlocks, .UpdateGroupCallMessage, .UpdateGroupCallOpaqueMessage, .UpdateMessagesPinned, .UpdateAutoremoveTimeout, .UpdateAttachMenuBots, .UpdateAudioTranscription, .UpdateConfig, .UpdateMessageWidgetData, .UpdateExtendedMedia, .ResetForumTopic, .UpdateStory, .UpdateReadStories, .UpdateStoryStealthMode, .UpdateStorySentReaction, .UpdateNewAuthorization, .UpdateNewBotConnection, .UpdateWebBrowserSettings, .UpdateWebBrowserException, .UpdateStarsBalance, .UpdateStarsRevenueStatus, .UpdateStarsReactionsDefaultPrivacy, .ReportMessageDelivery, .UpdateMonoForumNoPaidException, .UpdateReadFeed, .UpdateStarGiftAuctionState, .UpdateStarGiftAuctionMyState, .UpdateEmojiGameInfo, .UpdateAgentSettings:
+                 break
+@@ -962,6 +949,2 @@
+     let updatedStarsBalance: [PeerId: StarsAmount]
+-    let updatedTonBalance: [PeerId: StarsAmount]
+-    let walletTransferUpdates: [WalletTransferUpdate]
+-    let walletTonConnectEvents: [WalletTonConnectEvent]
+-    let updatedWalletState: Api.WalletState?
+     let updatedAgentSettings: EngineAgentSettings?
+@@ -1005,6 +988,2 @@
+     let updatedStarsBalance: [PeerId: StarsAmount]
+-    let updatedTonBalance: [PeerId: StarsAmount]
+-    let walletTransferUpdates: [WalletTransferUpdate]
+-    let walletTonConnectEvents: [WalletTonConnectEvent]
+-    let updatedWalletState: Api.WalletState?
+     let updatedAgentSettings: EngineAgentSettings?
+@@ -1018,3 +997,3 @@
+     var isEmpty: Bool {
+-        return self.addedIncomingMessageIds.isEmpty && self.addedReactionEvents.isEmpty && self.wasScheduledMessageIds.isEmpty && self.deletedMessageIds.isEmpty && self.sentScheduledMessageIds.isEmpty && self.updatedTypingActivities.isEmpty && self.updatedWebpages.isEmpty && self.updatedCalls.isEmpty && self.addedCallSignalingData.isEmpty && self.updatedGroupCallParticipants.isEmpty && self.groupCallMessageUpdates.isEmpty && self.storyUpdates.isEmpty && self.displayAlerts.isEmpty && self.dismissBotWebViews.isEmpty && self.joinChatWebViewDecisions.isEmpty && self.delayNotificatonsUntil == nil && self.updatedMaxMessageId == nil && self.updatedQts == nil && self.externallyUpdatedPeerId.isEmpty && !authorizationListUpdated && self.updatedIncomingThreadReadStates.isEmpty && self.updatedOutgoingThreadReadStates.isEmpty && !self.updateConfig && !self.isPremiumUpdated && self.updatedStarsBalance.isEmpty && self.updatedTonBalance.isEmpty && self.walletTransferUpdates.isEmpty && self.walletTonConnectEvents.isEmpty && self.updatedWalletState == nil && self.updatedAgentSettings == nil && self.updatedStarsRevenueStatus.isEmpty && self.reportMessageDelivery.isEmpty && self.addedConferenceInvitationMessagesIds.isEmpty && self.updatedStarGiftAuctionState.isEmpty && self.updatedStarGiftAuctionMyState.isEmpty && self.updatedEmojiGameInfo == nil
++        return self.addedIncomingMessageIds.isEmpty && self.addedReactionEvents.isEmpty && self.wasScheduledMessageIds.isEmpty && self.deletedMessageIds.isEmpty && self.sentScheduledMessageIds.isEmpty && self.updatedTypingActivities.isEmpty && self.updatedWebpages.isEmpty && self.updatedCalls.isEmpty && self.addedCallSignalingData.isEmpty && self.updatedGroupCallParticipants.isEmpty && self.groupCallMessageUpdates.isEmpty && self.storyUpdates.isEmpty && self.displayAlerts.isEmpty && self.dismissBotWebViews.isEmpty && self.joinChatWebViewDecisions.isEmpty && self.delayNotificatonsUntil == nil && self.updatedMaxMessageId == nil && self.updatedQts == nil && self.externallyUpdatedPeerId.isEmpty && !authorizationListUpdated && self.updatedIncomingThreadReadStates.isEmpty && self.updatedOutgoingThreadReadStates.isEmpty && !self.updateConfig && !self.isPremiumUpdated && self.updatedStarsBalance.isEmpty && self.updatedAgentSettings == nil && self.updatedStarsRevenueStatus.isEmpty && self.reportMessageDelivery.isEmpty && self.addedConferenceInvitationMessagesIds.isEmpty && self.updatedStarGiftAuctionState.isEmpty && self.updatedStarGiftAuctionMyState.isEmpty && self.updatedEmojiGameInfo == nil
+     }
+@@ -1031,6 +1010,6 @@
+     init() {
+-        self.init(addedIncomingMessageIds: [], addedReactionEvents: [], wasScheduledMessageIds: [], deletedMessageIds: [], updatedTypingActivities: [:], updatedWebpages: [:], updatedCalls: [], addedCallSignalingData: [], updatedGroupCallParticipants: [], groupCallMessageUpdates: [], storyUpdates: [], displayAlerts: [], dismissBotWebViews: [], joinChatWebViewDecisions: [], delayNotificatonsUntil: nil, updatedMaxMessageId: nil, updatedQts: nil, externallyUpdatedPeerId: Set(), authorizationListUpdated: false, updatedIncomingThreadReadStates: [:], updatedOutgoingThreadReadStates: [:], updateConfig: false, isPremiumUpdated: false, updatedStarsBalance: [:], updatedTonBalance: [:], walletTransferUpdates: [], walletTonConnectEvents: [], updatedWalletState: nil, updatedAgentSettings: nil, updatedStarsRevenueStatus: [:], sentScheduledMessageIds: Set(), reportMessageDelivery: Set(), addedConferenceInvitationMessagesIds: [], updatedStarGiftAuctionState: [:], updatedStarGiftAuctionMyState: [:], updatedEmojiGameInfo: nil)
+-    }
+-    
+-    init(addedIncomingMessageIds: [MessageId], addedReactionEvents: [(reactionAuthor: Peer, reaction: MessageReaction.Reaction, message: Message, timestamp: Int32)], wasScheduledMessageIds: [MessageId], deletedMessageIds: [DeletedMessageId], updatedTypingActivities: [PeerActivitySpace: [PeerId: PeerInputActivity?]], updatedWebpages: [MediaId: TelegramMediaWebpage?], updatedCalls: [Api.PhoneCall], addedCallSignalingData: [(Int64, Data)], updatedGroupCallParticipants: [(Int64, GroupCallParticipantsContext.Update)], groupCallMessageUpdates: [GroupCallMessageUpdate], storyUpdates: [InternalStoryUpdate], displayAlerts: [(text: String, isDropAuth: Bool)], dismissBotWebViews: [Int64], joinChatWebViewDecisions: [JoinChatWebViewDecision], delayNotificatonsUntil: Int32?, updatedMaxMessageId: Int32?, updatedQts: Int32?, externallyUpdatedPeerId: Set<PeerId>, authorizationListUpdated: Bool, updatedIncomingThreadReadStates: [PeerAndBoundThreadId: MessageId.Id], updatedOutgoingThreadReadStates: [PeerAndBoundThreadId: MessageId.Id], updateConfig: Bool, isPremiumUpdated: Bool, updatedStarsBalance: [PeerId: StarsAmount], updatedTonBalance: [PeerId: StarsAmount], walletTransferUpdates: [WalletTransferUpdate], walletTonConnectEvents: [WalletTonConnectEvent], updatedWalletState: Api.WalletState?, updatedAgentSettings: EngineAgentSettings?, updatedStarsRevenueStatus: [PeerId: StarsRevenueStats.Balances], sentScheduledMessageIds: Set<MessageId>, reportMessageDelivery: Set<MessageId>, addedConferenceInvitationMessagesIds: [MessageId], updatedStarGiftAuctionState: [Int64: GiftAuctionContext.State.AuctionState], updatedStarGiftAuctionMyState: [Int64: GiftAuctionContext.State.MyState], updatedEmojiGameInfo: EmojiGameInfo?) {
++        self.init(addedIncomingMessageIds: [], addedReactionEvents: [], wasScheduledMessageIds: [], deletedMessageIds: [], updatedTypingActivities: [:], updatedWebpages: [:], updatedCalls: [], addedCallSignalingData: [], updatedGroupCallParticipants: [], groupCallMessageUpdates: [], storyUpdates: [], displayAlerts: [], dismissBotWebViews: [], joinChatWebViewDecisions: [], delayNotificatonsUntil: nil, updatedMaxMessageId: nil, updatedQts: nil, externallyUpdatedPeerId: Set(), authorizationListUpdated: false, updatedIncomingThreadReadStates: [:], updatedOutgoingThreadReadStates: [:], updateConfig: false, isPremiumUpdated: false, updatedStarsBalance: [:], updatedAgentSettings: nil, updatedStarsRevenueStatus: [:], sentScheduledMessageIds: Set(), reportMessageDelivery: Set(), addedConferenceInvitationMessagesIds: [], updatedStarGiftAuctionState: [:], updatedStarGiftAuctionMyState: [:], updatedEmojiGameInfo: nil)
++    }
++    
++    init(addedIncomingMessageIds: [MessageId], addedReactionEvents: [(reactionAuthor: Peer, reaction: MessageReaction.Reaction, message: Message, timestamp: Int32)], wasScheduledMessageIds: [MessageId], deletedMessageIds: [DeletedMessageId], updatedTypingActivities: [PeerActivitySpace: [PeerId: PeerInputActivity?]], updatedWebpages: [MediaId: TelegramMediaWebpage?], updatedCalls: [Api.PhoneCall], addedCallSignalingData: [(Int64, Data)], updatedGroupCallParticipants: [(Int64, GroupCallParticipantsContext.Update)], groupCallMessageUpdates: [GroupCallMessageUpdate], storyUpdates: [InternalStoryUpdate], displayAlerts: [(text: String, isDropAuth: Bool)], dismissBotWebViews: [Int64], joinChatWebViewDecisions: [JoinChatWebViewDecision], delayNotificatonsUntil: Int32?, updatedMaxMessageId: Int32?, updatedQts: Int32?, externallyUpdatedPeerId: Set<PeerId>, authorizationListUpdated: Bool, updatedIncomingThreadReadStates: [PeerAndBoundThreadId: MessageId.Id], updatedOutgoingThreadReadStates: [PeerAndBoundThreadId: MessageId.Id], updateConfig: Bool, isPremiumUpdated: Bool, updatedStarsBalance: [PeerId: StarsAmount], updatedAgentSettings: EngineAgentSettings?, updatedStarsRevenueStatus: [PeerId: StarsRevenueStats.Balances], sentScheduledMessageIds: Set<MessageId>, reportMessageDelivery: Set<MessageId>, addedConferenceInvitationMessagesIds: [MessageId], updatedStarGiftAuctionState: [Int64: GiftAuctionContext.State.AuctionState], updatedStarGiftAuctionMyState: [Int64: GiftAuctionContext.State.MyState], updatedEmojiGameInfo: EmojiGameInfo?) {
+         self.addedIncomingMessageIds = addedIncomingMessageIds
+@@ -1059,6 +1038,2 @@
+         self.updatedStarsBalance = updatedStarsBalance
+-        self.updatedTonBalance = updatedTonBalance
+-        self.walletTransferUpdates = walletTransferUpdates
+-        self.walletTonConnectEvents = walletTonConnectEvents
+-        self.updatedWalletState = updatedWalletState
+         self.updatedAgentSettings = updatedAgentSettings
+@@ -1098,6 +1073,2 @@
+         self.updatedStarsBalance = state.updatedStarsBalance
+-        self.updatedTonBalance = state.updatedTonBalance
+-        self.walletTransferUpdates = state.walletTransferUpdates
+-        self.walletTonConnectEvents = state.walletTonConnectEvents
+-        self.updatedWalletState = state.updatedWalletState
+         self.updatedAgentSettings = state.updatedAgentSettings
+@@ -1182,6 +1153,2 @@
+             updatedStarsBalance: self.updatedStarsBalance.merging(other.updatedStarsBalance, uniquingKeysWith: { _, later in later }),
+-            updatedTonBalance: self.updatedTonBalance.merging(other.updatedTonBalance, uniquingKeysWith: { _, later in later }),
+-            walletTransferUpdates: self.walletTransferUpdates + other.walletTransferUpdates,
+-            walletTonConnectEvents: self.walletTonConnectEvents + other.walletTonConnectEvents,
+-            updatedWalletState: other.updatedWalletState ?? self.updatedWalletState,
+             updatedAgentSettings: other.updatedAgentSettings ?? self.updatedAgentSettings,
+diff --git a/submodules/TelegramCore/Sources/State/AccountStateEventHub.swift b/submodules/TelegramCore/Sources/State/AccountStateEventHub.swift
+--- a/submodules/TelegramCore/Sources/State/AccountStateEventHub.swift
++++ b/submodules/TelegramCore/Sources/State/AccountStateEventHub.swift
+@@ -145,9 +145,3 @@
+ 
+-    let walletTransferUpdatesPipe = ValuePipe<[WalletTransferUpdate]>()
+-    let walletTonConnectUpdatesPipe = ValuePipe<[WalletTonConnectEvent]>()
+-
+-    private let walletStateUpdatesPipe = ValuePipe<Api.WalletState>()
+-    var walletStateUpdates: Signal<Api.WalletState, NoError> {
+-        return self.walletStateUpdatesPipe.signal()
+-    }
++
+ 
+@@ -195,3 +189,2 @@
+     private var updatedStarsBalanceContext = UpdatedStarsBalanceSubscriberContext()
+-    private var updatedTonBalanceContext = UpdatedStarsBalanceSubscriberContext()
+     private var updatedStarsRevenueStatusContext = UpdatedStarsRevenueStatusSubscriberContext()
+@@ -334,14 +327,2 @@
+             self.notifyUpdatedStarsBalance(events.updatedStarsBalance)
+-        }
+-        if !events.updatedTonBalance.isEmpty {
+-            self.notifyUpdatedTonBalance(events.updatedTonBalance)
+-        }
+-        if !events.walletTransferUpdates.isEmpty {
+-            self.walletTransferUpdatesPipe.putNext(events.walletTransferUpdates)
+-        }
+-        if !events.walletTonConnectEvents.isEmpty {
+-            self.walletTonConnectUpdatesPipe.putNext(events.walletTonConnectEvents)
+-        }
+-        if let updatedWalletState = events.updatedWalletState {
+-            self.walletStateUpdatesPipe.putNext(updatedWalletState)
+         }
+@@ -506,28 +487,3 @@
+ 
+-    func updatedTonBalance() -> Signal<[PeerId: StarsAmount], NoError> {
+-        let queue = self.queue
+-        return Signal { [weak self] subscriber in
+-            let disposable = MetaDisposable()
+-            queue.async {
+-                if let strongSelf = self {
+-                    let index = strongSelf.updatedTonBalanceContext.subscribers.add({ starsBalance in
+-                        subscriber.putNext(starsBalance)
+-                    })
+-
+-                    disposable.set(ActionDisposable {
+-                        if let strongSelf = self {
+-                            strongSelf.updatedTonBalanceContext.subscribers.remove(index)
+-                        }
+-                    })
+-                }
+-            }
+-            return disposable
+-        }
+-    }
+-
+-    private func notifyUpdatedTonBalance(_ updatedTonBalance: [PeerId: StarsAmount]) {
+-        for subscriber in self.updatedTonBalanceContext.subscribers.copyItems() {
+-            subscriber(updatedTonBalance)
+-        }
+-    }
++
+ 
+diff --git a/submodules/TelegramCore/Sources/State/AccountStateManager.swift b/submodules/TelegramCore/Sources/State/AccountStateManager.swift
+--- a/submodules/TelegramCore/Sources/State/AccountStateManager.swift
++++ b/submodules/TelegramCore/Sources/State/AccountStateManager.swift
+@@ -301,12 +301,3 @@
+ 
+-        fileprivate var walletTransferUpdatesPipe: ValuePipe<[WalletTransferUpdate]> {
+-            return self.eventHub.walletTransferUpdatesPipe
+-        }
+-        fileprivate var walletTonConnectUpdatesPipe: ValuePipe<[WalletTonConnectEvent]> {
+-            return self.eventHub.walletTonConnectUpdatesPipe
+-        }
+-
+-        var walletStateUpdates: Signal<Api.WalletState, NoError> {
+-            return self.eventHub.walletStateUpdates
+-        }
++
+ 
+@@ -883,5 +874,2 @@
+                 
+-        public func updatedTonBalance() -> Signal<[PeerId: StarsAmount], NoError> {
+-            return self.eventHub.updatedTonBalance()
+-        }
+         
+@@ -1157,3 +1145,2 @@
+     public weak var starsContext: StarsContext?
+-    public weak var tonContext: StarsContext?
+     
+@@ -1330,25 +1317,5 @@
+     
+-    public func updatedTonBalance() -> Signal<[PeerId: StarsAmount], NoError> {
+-        return self.impl.signalWith { impl, subscriber in
+-            return impl.updatedTonBalance().start(next: subscriber.putNext, error: subscriber.putError, completed: subscriber.putCompletion)
+-        }
+-    }
+-
+-    func walletTransferUpdates() -> Signal<[WalletTransferUpdate], NoError> {
+-        return self.impl.signalWith { impl, subscriber in
+-            return impl.walletTransferUpdatesPipe.signal().start(next: subscriber.putNext, error: subscriber.putError, completed: subscriber.putCompletion)
+-        }
+-    }
+-
+-    func walletTonConnectUpdates() -> Signal<[WalletTonConnectEvent], NoError> {
+-        return self.impl.signalWith { impl, subscriber in
+-            return impl.walletTonConnectUpdatesPipe.signal().start(next: subscriber.putNext, error: subscriber.putError, completed: subscriber.putCompletion)
+-        }
+-    }
+-
+-    func walletStateUpdates() -> Signal<Api.WalletState, NoError> {
+-        return self.impl.signalWith { impl, subscriber in
+-            return impl.walletStateUpdates.start(next: subscriber.putNext, error: subscriber.putError, completed: subscriber.putCompletion)
+-        }
+-    }
++
++
++
+ 
+diff --git a/submodules/TelegramCore/Sources/State/Sync/StateReplay+Finalize.swift b/submodules/TelegramCore/Sources/State/Sync/StateReplay+Finalize.swift
+--- a/submodules/TelegramCore/Sources/State/Sync/StateReplay+Finalize.swift
++++ b/submodules/TelegramCore/Sources/State/Sync/StateReplay+Finalize.swift
+@@ -510,10 +510,2 @@
+     
+-    /// Reconciles each pending wallet transfer whose message id the final state resolved.
+-    func reconcileWalletTransferMessages() {
+-        for id in mappedWalletMessageIds {
+-            if let pending = transaction.getPendingMessageAction(type: .walletTransfer, id: id) as? PendingWalletTransferMessageAttribute {
+-                reconcileStoredWalletTransferMessage(transaction: transaction, id: id, pending: pending)
+-            }
+-        }
+-    }
+     
+diff --git a/submodules/TelegramCore/Sources/State/Sync/StateReplay+Payments.swift b/submodules/TelegramCore/Sources/State/Sync/StateReplay+Payments.swift
+--- a/submodules/TelegramCore/Sources/State/Sync/StateReplay+Payments.swift
++++ b/submodules/TelegramCore/Sources/State/Sync/StateReplay+Payments.swift
+@@ -7,3 +7,3 @@
+ 
+-/// Stars and TON balances, the wallet, stars revenue, the paid-reaction default privacy, gift auctions and the emoji
++/// Stars balances, stars revenue, the paid-reaction default privacy, gift auctions and the emoji
+ /// game.
+@@ -13,3 +13,3 @@
+         case .ton:
+-            updatedTonBalance[peerId] = balance
++            break
+         case .stars:
+@@ -19,9 +19,3 @@
+     
+-    func applyUpdateWalletTransfer(_ update: Api.Update) {
+-        walletTransferApiUpdates.append(update)
+-    }
+     
+-    func applyUpdateWalletState(_ state: Api.WalletState) {
+-        updatedWalletState = state
+-    }
+ 
+diff --git a/submodules/TelegramCore/Sources/State/Sync/StateReplay.swift b/submodules/TelegramCore/Sources/State/Sync/StateReplay.swift
+--- a/submodules/TelegramCore/Sources/State/Sync/StateReplay.swift
++++ b/submodules/TelegramCore/Sources/State/Sync/StateReplay.swift
+@@ -210,4 +210,2 @@
+     var addedIncomingMessageIds: [MessageId]
+-    /// Prepass. Persisted by `finalize`: the pending wallet transfers to reconcile.
+-    let mappedWalletMessageIds: [MessageId]
+ 
+@@ -265,10 +263,2 @@
+     /// Event.
+-    var updatedTonBalance: [PeerId: StarsAmount] = [:]
+-    /// Event, mapped to `WalletTransferUpdate`s by `buildResult`.
+-    var walletTransferApiUpdates: [Api.Update] = []
+-    /// Event: what `walletTonConnectEvents(operation:)` finds in every operation.
+-    var walletTonConnectEventBatch: [WalletTonConnectEvent] = []
+-    /// Event.
+-    var updatedWalletState: Api.WalletState?
+-    /// Event.
+     var updatedAgentSettings: EngineAgentSettings?
+@@ -364,3 +354,2 @@
+         self.addedIncomingMessageIds = prepass.addedIncomingMessageIds
+-        self.mappedWalletMessageIds = prepass.mappedWalletMessageIds
+     }
+@@ -383,7 +372,3 @@
+ 
+-    /// Applies the content operations, in order: each case calls its method in `StateReplay+<Family>.swift`, and the
+-    /// cases keep the order of the switch they come from. The two cases whose body does nothing stay here:
+-    /// `.UpdateAttachMenuBots`, and `.UpdateWalletTonConnectEvent`, whose event the line above the switch has already
+-    /// collected. That line, `walletTonConnectEvents(operation:)`, runs for every content operation first; it finds
+-    /// nothing in the four state operations, which `applyStateAdvance` applies afterwards. Next, a read-state operation
++    /// Applies content operations in order before state advances. A read-state operation
+     /// for a channel the account is not a member of is skipped (`readStateOperationTargetsNonMember`), judged by the peer
+@@ -392,3 +377,2 @@
+         for operation in operations {
+-            walletTonConnectEventBatch.append(contentsOf: walletTonConnectEvents(operation: operation))
+             // The server's read state for a channel the account is not a member of is not kept
+@@ -557,9 +541,2 @@
+                     self.applyUpdateStarsBalance(peerId, currency, balance)
+-                case let .UpdateWalletTransfer(update):
+-                    self.applyUpdateWalletTransfer(update)
+-                case .UpdateWalletTonConnectEvent:
+-                    // Nothing to do here: `walletTonConnectEvents(operation:)` above the switch collected the event.
+-                    break
+-                case let .UpdateWalletState(state):
+-                    self.applyUpdateWalletState(state)
+                 case let .UpdateAgentSettings(settings):
+@@ -619,3 +596,2 @@
+         self.addSecretMessagesToIncomingIds()
+-        self.reconcileWalletTransferMessages()
+         self.deletePossiblyDeliveredMessages()
+@@ -627,4 +603,3 @@
+ 
+-    /// The replay's result: the final state and the events that the operations and `finalize` collected. Built last,
+-    /// inside the transaction: its wallet transfer events read it (`WalletTransaction(apiTransaction:transaction:)`).
++    /// The replay's result: the final state and the events that the operations and `finalize` collected. Built last.
+     func buildResult() -> AccountReplayedFinalState {
+@@ -649,18 +624,2 @@
+             updatedStarsBalance: updatedStarsBalance,
+-            updatedTonBalance: updatedTonBalance,
+-            walletTransferUpdates: walletTransferApiUpdates.compactMap { update in
+-                switch update {
+-                case let .updateSentWalletTransaction(data):
+-                    guard !data.msgHash.isEmpty else { return nil }
+-                    return .sentTransaction(WalletSentTransfer(apiTransfer: data), data.transaction.map {
+-                        WalletTransaction(apiTransaction: $0, transaction: transaction)
+-                    })
+-                case let .updateWalletGaslessInfo(data):
+-                    return .gaslessInfo(WalletGaslessInfo(apiInfo: data))
+-                default:
+-                    return nil
+-                }
+-            },
+-            walletTonConnectEvents: walletTonConnectEventBatch,
+-            updatedWalletState: updatedWalletState,
+             updatedAgentSettings: updatedAgentSettings,
+diff --git a/submodules/TelegramCore/Sources/State/Sync/StateReplayBatching.swift b/submodules/TelegramCore/Sources/State/Sync/StateReplayBatching.swift
+--- a/submodules/TelegramCore/Sources/State/Sync/StateReplayBatching.swift
++++ b/submodules/TelegramCore/Sources/State/Sync/StateReplayBatching.swift
+@@ -52,3 +52,3 @@
+         switch operation {
+-        case .DeleteMessages, .DeleteMessagesWithGlobalIds, .EditMessage, .UpsertEphemeralReplacement, .DeleteEphemeralMessages, .UpdateMessagePoll, .UpdateMessageReactions, .UpdateMedia, .MergeApiChats, .MergeApiUsers, .MergePeerPresences, .UpdatePeer, .ReadInbox, .ReadOutbox, .ResetReadState, .ResetIncomingReadState, .UpdatePeerChatUnreadMark, .ResetMessageTagSummary, .UpdateNotificationSettings, .UpdateGlobalNotificationSettings, .UpdateSecretChat, .AddSecretMessages, .ReadSecretOutbox, .AddPeerInputActivity, .AddPeerLiveTypingDraftUpdate, .AddPeerLiveTypingDraftStop, .UpdateCachedPeerData, .UpdatePinnedItemIds, .UpdatePinnedSavedItemIds, .UpdatePinnedTopic, .UpdatePinnedTopicOrder, .EditForumTopic, .ReadMessageContents, .UpdateMessageImpressionCount, .UpdateInstalledStickerPacks, .UpdateRecentGifs, .UpdateChatInputState, .UpdateCall, .AddCallSignalingData, .UpdateLangPack, .UpdateMinAvailableMessage, .UpdatePeerChatInclusion, .UpdateTheme, .SyncChatListFilters, .UpdateChatListFilter, .UpdateChatListFilterOrder, .UpdateReadThread, .UpdateMessagesPinned, .UpdateGroupCallParticipants, .UpdateGroupCall, .UpdateGroupCallChainBlocks, .UpdateGroupCallMessage, .UpdateGroupCallOpaqueMessage, .UpdateAutoremoveTimeout, .UpdateAttachMenuBots, .UpdateAudioTranscription, .UpdateConfig, .UpdateMessageWidgetData, .UpdateExtendedMedia, .ResetForumTopic, .UpdateStory, .UpdateReadStories, .UpdateStoryStealthMode, .UpdateStorySentReaction, .UpdateNewAuthorization, .UpdateNewBotConnection, .UpdateWebBrowserSettings, .UpdateWebBrowserException, .UpdateWallpaper, .UpdateStarsBalance, .UpdateStarsRevenueStatus, .UpdateStarsReactionsDefaultPrivacy, .ReportMessageDelivery, .UpdateMonoForumNoPaidException, .UpdateReadFeed, .UpdateStarGiftAuctionState, .UpdateStarGiftAuctionMyState, .UpdateEmojiGameInfo, .UpdateWalletState, .UpdateAgentSettings, .UpdateWalletTransfer, .UpdateWalletTonConnectEvent:
++        case .DeleteMessages, .DeleteMessagesWithGlobalIds, .EditMessage, .UpsertEphemeralReplacement, .DeleteEphemeralMessages, .UpdateMessagePoll, .UpdateMessageReactions, .UpdateMedia, .MergeApiChats, .MergeApiUsers, .MergePeerPresences, .UpdatePeer, .ReadInbox, .ReadOutbox, .ResetReadState, .ResetIncomingReadState, .UpdatePeerChatUnreadMark, .ResetMessageTagSummary, .UpdateNotificationSettings, .UpdateGlobalNotificationSettings, .UpdateSecretChat, .AddSecretMessages, .ReadSecretOutbox, .AddPeerInputActivity, .AddPeerLiveTypingDraftUpdate, .AddPeerLiveTypingDraftStop, .UpdateCachedPeerData, .UpdatePinnedItemIds, .UpdatePinnedSavedItemIds, .UpdatePinnedTopic, .UpdatePinnedTopicOrder, .EditForumTopic, .ReadMessageContents, .UpdateMessageImpressionCount, .UpdateInstalledStickerPacks, .UpdateRecentGifs, .UpdateChatInputState, .UpdateCall, .AddCallSignalingData, .UpdateLangPack, .UpdateMinAvailableMessage, .UpdatePeerChatInclusion, .UpdateTheme, .SyncChatListFilters, .UpdateChatListFilter, .UpdateChatListFilterOrder, .UpdateReadThread, .UpdateMessagesPinned, .UpdateGroupCallParticipants, .UpdateGroupCall, .UpdateGroupCallChainBlocks, .UpdateGroupCallMessage, .UpdateGroupCallOpaqueMessage, .UpdateAutoremoveTimeout, .UpdateAttachMenuBots, .UpdateAudioTranscription, .UpdateConfig, .UpdateMessageWidgetData, .UpdateExtendedMedia, .ResetForumTopic, .UpdateStory, .UpdateReadStories, .UpdateStoryStealthMode, .UpdateStorySentReaction, .UpdateNewAuthorization, .UpdateNewBotConnection, .UpdateWebBrowserSettings, .UpdateWebBrowserException, .UpdateWallpaper, .UpdateStarsBalance, .UpdateStarsRevenueStatus, .UpdateStarsReactionsDefaultPrivacy, .ReportMessageDelivery, .UpdateMonoForumNoPaidException, .UpdateReadFeed, .UpdateStarGiftAuctionState, .UpdateStarGiftAuctionMyState, .UpdateEmojiGameInfo, .UpdateAgentSettings:
+                 if let currentAddMessages = currentAddMessages, !currentAddMessages.messages.isEmpty {
+diff --git a/submodules/TelegramCore/Sources/State/Sync/StateReplayPrepass.swift b/submodules/TelegramCore/Sources/State/Sync/StateReplayPrepass.swift
+--- a/submodules/TelegramCore/Sources/State/Sync/StateReplayPrepass.swift
++++ b/submodules/TelegramCore/Sources/State/Sync/StateReplayPrepass.swift
+@@ -10,4 +10,3 @@
+ /// operations (as built, not batched) for the incoming messages, the read maxima and the conference invitations, asks
+-/// Postbox which of the incoming and was-scheduled messages are not stored yet, and resolves the pending wallet
+-/// transfers the final state's outgoing ids map. `ReplayContext` starts from these values.
++/// Postbox which of the incoming and was-scheduled messages are not stored yet. `ReplayContext` starts from these values.
+ struct ReplayPrepass {
+@@ -27,4 +26,2 @@
+     let addedIncomingMessageIds: [MessageId]
+-    /// The pending wallet transfers whose message id the final state's outgoing ids resolve.
+-    let mappedWalletMessageIds: [MessageId]
+ 
+@@ -135,5 +132,4 @@
+ 
+-        let mappedWalletMessageIds = applyWalletTransferMessageIds(transaction: transaction, mappings: finalState.state.updatedOutgoingUniqueMessageIds)
+ 
+-        return ReplayPrepass(peerActivityTimestamps: peerActivityTimestamps, holesFromPreviousStateMessageIds: holesFromPreviousStateMessageIds, readInboxCloudMessageIds: readInboxCloudMessageIds, addedConferenceInvitationMessagesIds: addedConferenceInvitationMessagesIds, wasScheduledMessageIds: wasScheduledMessageIds, addedIncomingMessageIds: addedIncomingMessageIds, mappedWalletMessageIds: mappedWalletMessageIds)
++        return ReplayPrepass(peerActivityTimestamps: peerActivityTimestamps, holesFromPreviousStateMessageIds: holesFromPreviousStateMessageIds, readInboxCloudMessageIds: readInboxCloudMessageIds, addedConferenceInvitationMessagesIds: addedConferenceInvitationMessagesIds, wasScheduledMessageIds: wasScheduledMessageIds, addedIncomingMessageIds: addedIncomingMessageIds)
+     }
+diff --git a/submodules/TelegramCore/Sources/State/Sync/UpdateInterpreter+Payments.swift b/submodules/TelegramCore/Sources/State/Sync/UpdateInterpreter+Payments.swift
+--- a/submodules/TelegramCore/Sources/State/Sync/UpdateInterpreter+Payments.swift
++++ b/submodules/TelegramCore/Sources/State/Sync/UpdateInterpreter+Payments.swift
+@@ -7,3 +7,3 @@
+ 
+-/// Stars, the wallet, paid reactions and paid messages, gift auctions and the emoji game.
++/// Stars, paid reactions and paid messages, gift auctions and the emoji game.
+ extension UpdateInterpreter {
+@@ -12,22 +12,2 @@
+         updatedState.updateStarsBalance(peerId: accountPeerId, currency: amount.currency, balance: amount.amount)
+-    }
+-    
+-    /// Only `updateSentWalletTransaction` and `updateWalletGaslessInfo` come here (`apply` has one case for
+-    /// both). The update is kept as it is (`.UpdateWalletTransfer`), and the replay (`buildResult`) turns
+-    /// those two constructors into `WalletTransferUpdate`s; it drops an `updateSentWalletTransaction` with an
+-    /// empty `msgHash`, and any other constructor.
+-    mutating func applyWalletTransferUpdate(_ update: Api.Update) {
+-        updatedState.addWalletTransferUpdate(update)
+-    }
+-    
+-    mutating func applyWalletTonConnectSession(_ data: Api.Update.Cons_updateWalletTonConnectSession) {
+-        updatedState.addWalletTonConnectEvent(.session(WalletTonConnectSession(apiSession: data.session)))
+-    }
+-    
+-    mutating func applyWalletTonConnectPendingDisconnect(_ data: Api.Update.Cons_updateWalletTonConnectPendingDisconnect) {
+-        updatedState.addWalletTonConnectEvent(.pendingDisconnect(sessionIds: data.sessionIds))
+-    }
+-    
+-    mutating func applyWalletState(_ updateWalletStateData: Api.Update.Cons_updateWalletState) {
+-        updatedState.updateWalletState(updateWalletStateData.state)
+     }
+diff --git a/submodules/TelegramCore/Sources/State/Sync/UpdateInterpreter.swift b/submodules/TelegramCore/Sources/State/Sync/UpdateInterpreter.swift
+--- a/submodules/TelegramCore/Sources/State/Sync/UpdateInterpreter.swift
++++ b/submodules/TelegramCore/Sources/State/Sync/UpdateInterpreter.swift
+@@ -409,10 +409,4 @@
+                 self.applyStarsBalance(updateStarsBalanceData)
+-            case .updateSentWalletTransaction, .updateWalletGaslessInfo:
+-                self.applyWalletTransferUpdate(update)
+-            case let .updateWalletTonConnectSession(data):
+-                self.applyWalletTonConnectSession(data)
+-            case let .updateWalletTonConnectPendingDisconnect(data):
+-                self.applyWalletTonConnectPendingDisconnect(data)
+-            case let .updateWalletState(updateWalletStateData):
+-                self.applyWalletState(updateWalletStateData)
++            case .updateSentWalletTransaction, .updateWalletGaslessInfo, .updateWalletTonConnectSession, .updateWalletTonConnectPendingDisconnect, .updateWalletState:
++                break
+ #if TELEGRAM_AGENT_API
+diff --git a/submodules/TelegramCore/Sources/SyncCore/SyncCore_CachedUserData.swift b/submodules/TelegramCore/Sources/SyncCore/SyncCore_CachedUserData.swift
+--- a/submodules/TelegramCore/Sources/SyncCore/SyncCore_CachedUserData.swift
++++ b/submodules/TelegramCore/Sources/SyncCore/SyncCore_CachedUserData.swift
+@@ -1305,3 +1305,3 @@
+     public let gramAddress: String?
+-    public let walletCard: WalletCard?
++    private let walletCard: Data?
+     public let shareTheme: TelegramShareTheme?
+@@ -1363,3 +1363,3 @@
+ 
+-    public init(about: String?, botInfo: BotInfo?, editableBotInfo: EditableBotInfo?, peerStatusSettings: PeerStatusSettings?, pinnedMessageId: MessageId?, isBlocked: Bool, commonGroupCount: Int32, voiceCallsAvailable: Bool, videoCallsAvailable: Bool, callsPrivate: Bool, canPinMessages: Bool, hasScheduledMessages: Bool, autoremoveTimeout: CachedPeerAutoremoveTimeout, chatTheme: ChatTheme?, photo: CachedPeerProfilePhoto, personalPhoto: CachedPeerProfilePhoto, fallbackPhoto: CachedPeerProfilePhoto, voiceMessagesAvailable: Bool, wallpaper: TelegramWallpaper?, flags: CachedUserFlags, businessHours: TelegramBusinessHours?, businessLocation: TelegramBusinessLocation?, greetingMessage: TelegramBusinessGreetingMessage?, awayMessage: TelegramBusinessAwayMessage?, connectedBot: TelegramAccountConnectedBot?, businessIntro: CachedTelegramBusinessIntro, birthday: TelegramBirthday?, personalChannel: CachedTelegramPersonalChannel, botPreview: BotPreview?, starGiftsCount: Int32?, starRefProgram: TelegramStarRefProgram?, verification: PeerVerification?, sendPaidMessageStars: StarsAmount?, disallowedGifts: TelegramDisallowedGifts?, botGroupAdminRights: TelegramChatAdminRights?, botChannelAdminRights: TelegramChatAdminRights?, starRating: TelegramStarRating?, pendingStarRating: TelegramStarPendingRating?, mainProfileTab: TelegramProfileTab?, savedMusic: TelegramMediaFile?, note: Note?, myCopyProtectionEnableDate: Int32?, botManagerId: PeerId?, gramAddress: String? = nil, walletCard: WalletCard? = nil, shareTheme: TelegramShareTheme? = nil) {
++    public init(about: String?, botInfo: BotInfo?, editableBotInfo: EditableBotInfo?, peerStatusSettings: PeerStatusSettings?, pinnedMessageId: MessageId?, isBlocked: Bool, commonGroupCount: Int32, voiceCallsAvailable: Bool, videoCallsAvailable: Bool, callsPrivate: Bool, canPinMessages: Bool, hasScheduledMessages: Bool, autoremoveTimeout: CachedPeerAutoremoveTimeout, chatTheme: ChatTheme?, photo: CachedPeerProfilePhoto, personalPhoto: CachedPeerProfilePhoto, fallbackPhoto: CachedPeerProfilePhoto, voiceMessagesAvailable: Bool, wallpaper: TelegramWallpaper?, flags: CachedUserFlags, businessHours: TelegramBusinessHours?, businessLocation: TelegramBusinessLocation?, greetingMessage: TelegramBusinessGreetingMessage?, awayMessage: TelegramBusinessAwayMessage?, connectedBot: TelegramAccountConnectedBot?, businessIntro: CachedTelegramBusinessIntro, birthday: TelegramBirthday?, personalChannel: CachedTelegramPersonalChannel, botPreview: BotPreview?, starGiftsCount: Int32?, starRefProgram: TelegramStarRefProgram?, verification: PeerVerification?, sendPaidMessageStars: StarsAmount?, disallowedGifts: TelegramDisallowedGifts?, botGroupAdminRights: TelegramChatAdminRights?, botChannelAdminRights: TelegramChatAdminRights?, starRating: TelegramStarRating?, pendingStarRating: TelegramStarPendingRating?, mainProfileTab: TelegramProfileTab?, savedMusic: TelegramMediaFile?, note: Note?, myCopyProtectionEnableDate: Int32?, botManagerId: PeerId?, gramAddress: String? = nil, walletCard: Data? = nil, shareTheme: TelegramShareTheme? = nil) {
+         self.about = about
+@@ -1515,3 +1515,3 @@
+         self.gramAddress = decoder.decodeOptionalStringForKey("gramAddress")
+-        self.walletCard = decoder.decodeCodable(WalletCard.self, forKey: "walletCard")
++        self.walletCard = decoder.decodeDataForKey("walletCard")
+         self.shareTheme = decoder.decodeCodable(TelegramShareTheme.self, forKey: "shareTheme")
+@@ -1707,3 +1707,3 @@
+ 
+-        if let walletCard = self.walletCard { encoder.encodeCodable(walletCard, forKey: "walletCard") }
++        if let walletCard = self.walletCard { encoder.encodeData(walletCard, forKey: "walletCard") }
+         else { encoder.encodeNil(forKey: "walletCard") }
+@@ -1983,5 +1983,2 @@
+ 
+-    public func withUpdatedWalletCard(_ walletCard: WalletCard?) -> CachedUserData {
+-        return CachedUserData(about: self.about, botInfo: self.botInfo, editableBotInfo: self.editableBotInfo, peerStatusSettings: self.peerStatusSettings, pinnedMessageId: self.pinnedMessageId, isBlocked: self.isBlocked, commonGroupCount: self.commonGroupCount, voiceCallsAvailable: self.voiceCallsAvailable, videoCallsAvailable: self.videoCallsAvailable, callsPrivate: self.callsPrivate, canPinMessages: self.canPinMessages, hasScheduledMessages: self.hasScheduledMessages, autoremoveTimeout: self.autoremoveTimeout, chatTheme: self.chatTheme, photo: self.photo, personalPhoto: self.personalPhoto, fallbackPhoto: self.fallbackPhoto, voiceMessagesAvailable: self.voiceMessagesAvailable, wallpaper: self.wallpaper, flags: self.flags, businessHours: self.businessHours, businessLocation: self.businessLocation, greetingMessage: self.greetingMessage, awayMessage: self.awayMessage, connectedBot: self.connectedBot, businessIntro: self.businessIntro, birthday: self.birthday, personalChannel: self.personalChannel, botPreview: self.botPreview, starGiftsCount: self.starGiftsCount, starRefProgram: self.starRefProgram, verification: self.verification, sendPaidMessageStars: self.sendPaidMessageStars, disallowedGifts: self.disallowedGifts, botGroupAdminRights: self.botGroupAdminRights, botChannelAdminRights: self.botChannelAdminRights, starRating: self.starRating, pendingStarRating: self.pendingStarRating, mainProfileTab: self.mainProfileTab, savedMusic: self.savedMusic, note: self.note, myCopyProtectionEnableDate: self.myCopyProtectionEnableDate, botManagerId: self.botManagerId, gramAddress: self.gramAddress, walletCard: walletCard, shareTheme: self.shareTheme)
+-    }
+ 
+diff --git a/submodules/TelegramCore/Sources/SyncCore/SyncCore_PendingWalletTransferMessageAttribute.swift b/submodules/TelegramCore/Sources/SyncCore/SyncCore_PendingWalletTransferMessageAttribute.swift
+--- a/submodules/TelegramCore/Sources/SyncCore/SyncCore_PendingWalletTransferMessageAttribute.swift
++++ b/submodules/TelegramCore/Sources/SyncCore/SyncCore_PendingWalletTransferMessageAttribute.swift
+@@ -12,14 +12,2 @@
+     public let serverMessageId: Int32?
+-
+-    var resolvedMessageId: String? { self.transactionId ?? self.chainTraceId }
+-
+-    public init(operationId: String, expiresAt: Int32, previousMessageId: Int32, msgHash: String? = nil, transactionId: String? = nil, chainTraceId: String? = nil, serverMessageId: Int32? = nil) {
+-        self.operationId = operationId
+-        self.expiresAt = expiresAt
+-        self.previousMessageId = previousMessageId
+-        self.msgHash = msgHash
+-        self.transactionId = transactionId
+-        self.chainTraceId = chainTraceId
+-        self.serverMessageId = serverMessageId
+-    }
+ 
+@@ -73,58 +61,2 @@
+     }
+-
+-    func accepting(msgHash: String, receivedAt: Int32) -> PendingWalletTransferMessageAttribute {
+-        // Replayed receipts must not extend the deadline or change an established identity.
+-        guard self.msgHash == nil else {
+-            return self
+-        }
+-        return PendingWalletTransferMessageAttribute(
+-            operationId: self.operationId,
+-            expiresAt: Int32(clamping: Int64(receivedAt) + 90),
+-            previousMessageId: self.previousMessageId,
+-            msgHash: msgHash,
+-            transactionId: self.transactionId,
+-            chainTraceId: self.chainTraceId,
+-            serverMessageId: self.serverMessageId
+-        )
+-    }
+-
+-    func renewingPreparation(expiresAt: Int32) -> PendingWalletTransferMessageAttribute {
+-        guard self.msgHash == nil, self.resolvedMessageId == nil, self.serverMessageId == nil else { return self }
+-        return PendingWalletTransferMessageAttribute(
+-            operationId: self.operationId, expiresAt: max(self.expiresAt, expiresAt),
+-            previousMessageId: self.previousMessageId
+-        )
+-    }
+-
+-    func resolving(transactionId: String) -> PendingWalletTransferMessageAttribute {
+-        return PendingWalletTransferMessageAttribute(
+-            operationId: self.operationId,
+-            expiresAt: self.expiresAt,
+-            previousMessageId: self.previousMessageId,
+-            msgHash: self.msgHash,
+-            transactionId: transactionId,
+-            chainTraceId: self.chainTraceId,
+-            serverMessageId: self.serverMessageId
+-        )
+-    }
+-
+-    func resolving(chainTraceId: String) -> PendingWalletTransferMessageAttribute {
+-        guard self.chainTraceId == nil else { return self }
+-        return PendingWalletTransferMessageAttribute(
+-            operationId: self.operationId, expiresAt: self.expiresAt,
+-            previousMessageId: self.previousMessageId, msgHash: self.msgHash,
+-            transactionId: self.transactionId, chainTraceId: chainTraceId,
+-            serverMessageId: self.serverMessageId
+-        )
+-    }
+-
+-    func resolving(serverMessageId: Int32) -> PendingWalletTransferMessageAttribute {
+-        guard self.serverMessageId == nil, serverMessageId > 0 else { return self }
+-        return PendingWalletTransferMessageAttribute(
+-            operationId: self.operationId, expiresAt: self.expiresAt,
+-            previousMessageId: self.previousMessageId, msgHash: self.msgHash,
+-            transactionId: self.transactionId, chainTraceId: self.chainTraceId,
+-            serverMessageId: serverMessageId
+-        )
+-    }
+ }
+diff --git a/submodules/TelegramCore/Sources/TelegramEngine/Messages/TelegramEngineMessages.swift b/submodules/TelegramCore/Sources/TelegramEngine/Messages/TelegramEngineMessages.swift
+--- a/submodules/TelegramCore/Sources/TelegramEngine/Messages/TelegramEngineMessages.swift
++++ b/submodules/TelegramCore/Sources/TelegramEngine/Messages/TelegramEngineMessages.swift
+@@ -1127,4 +1127,4 @@
+         /// why there is none.
+-        public func requestBotWidgetQueryAnswer(messageId: EngineMessage.Id, queryType: BotWidgetQueryType, data: Data) -> Signal<Data?, BotWidgetQueryError> {
+-            return _internal_requestBotWidgetQueryAnswer(postbox: self.account.postbox, network: self.account.network, messageId: messageId, queryType: queryType, data: data)
++        public func requestBotWidgetQueryAnswer(messageId: EngineMessage.Id, data: Data) -> Signal<Data?, BotWidgetQueryError> {
++            return _internal_requestBotWidgetQueryAnswer(postbox: self.account.postbox, network: self.account.network, messageId: messageId, data: data)
+         }
+diff --git a/submodules/TelegramCore/Sources/TelegramEngine/Messages/WidgetQueries.swift b/submodules/TelegramCore/Sources/TelegramEngine/Messages/WidgetQueries.swift
+--- a/submodules/TelegramCore/Sources/TelegramEngine/Messages/WidgetQueries.swift
++++ b/submodules/TelegramCore/Sources/TelegramEngine/Messages/WidgetQueries.swift
+@@ -14,54 +14,2 @@
+ 
+-/// The user's wallet as the client hands it to the server with a wallet query (`userWallet`, layer 233): the wallet's
+-/// address, its balance in nanotons and, for a signature, what verifies it.
+-public struct EngineUserWallet: Equatable {
+-    /// What a verifier needs for a signature: the wallet's public key and its `StateInit` (a bag of cells), which
+-    /// `userWallet` carries together (`flags.0`).
+-    public struct Signing: Equatable {
+-        public let publicKey: Data
+-        public let stateInit: Data
+-
+-        public init(publicKey: Data, stateInit: Data) {
+-            self.publicKey = publicKey
+-            self.stateInit = stateInit
+-        }
+-    }
+-
+-    public let address: String
+-    public let balance: Int64
+-    public let signing: Signing?
+-
+-    public init(address: String, balance: Int64, signing: Signing?) {
+-        self.address = address
+-        self.balance = balance
+-        self.signing = signing
+-    }
+-}
+-
+-/// What a widget query is (`WidgetQueryType`, widget-sandbox v0.5.0, sdk-v1 §5.13): a request (`with_wallet` when the
+-/// widget asked, on a tap, for the user's wallet card), the outcome of a signature (TON Connect's `signData` result as
+-/// JSON) or of a sent transaction (its message hash as the server returned it).
+-public enum BotWidgetQueryType: Equatable {
+-    case data(withWallet: Bool)
+-    case signData(wallet: EngineUserWallet, json: String)
+-    case sentTransaction(wallet: EngineUserWallet, msgHash: String)
+-
+-    var apiQueryType: Api.WidgetQueryType {
+-        switch self {
+-        case let .data(withWallet):
+-            return .widgetQueryTypeData(.init(flags: withWallet ? 1 << 0 : 0))
+-        case let .signData(wallet, json):
+-            return .widgetQueryTypeSignData(.init(wallet: wallet.apiUserWallet, signData: .dataJSON(.init(data: json))))
+-        case let .sentTransaction(wallet, msgHash):
+-            return .widgetQueryTypeSentTransaction(.init(wallet: wallet.apiUserWallet, msgHash: msgHash))
+-        }
+-    }
+-}
+-
+-extension EngineUserWallet {
+-    var apiUserWallet: Api.UserWallet {
+-        return .userWallet(.init(flags: self.signing == nil ? 0 : 1 << 0, address: self.address, balance: self.balance, publicKey: self.signing.map { Buffer(data: $0.publicKey) }, stateInit: self.signing.map { Buffer(data: $0.stateInit) }))
+-    }
+-}
+-
+ /// The tag's mapping (design §4 call 5): `WIDGET_RESPONSE_TIMEOUT` is a timeout, a flood wait a rate limit, and everything
+@@ -78,5 +26,3 @@
+ 
+-/// Sends a widget's query of `queryType` (`data`: a request's, admitted by the widget's request gate, or a wallet call's
+-/// label) to the bot of the message `messageId`, and yields the answer's `result` (nil without one). One of the two
+-/// requests the app makes for a widget (design §4.A): only to Telegram's server, only the bot's data.
++/// Sends the widget's data to the bot attached to its message.
+ ///
+@@ -86,3 +32,3 @@
+ /// so a rate limit reaches the widget instead of the guard firing first.
+-func _internal_requestBotWidgetQueryAnswer(postbox: Postbox, network: Network, messageId: MessageId, queryType: BotWidgetQueryType, data: Data, timeout guardTimeout: Double = 30.0) -> Signal<Data?, BotWidgetQueryError> {
++func _internal_requestBotWidgetQueryAnswer(postbox: Postbox, network: Network, messageId: MessageId, data: Data, timeout guardTimeout: Double = 30.0) -> Signal<Data?, BotWidgetQueryError> {
+     if messageId.namespace != Namespaces.Message.Cloud {
+@@ -98,3 +44,3 @@
+         }
+-        return network.request(Api.functions.messages.getBotWidgetQueryAnswer(peer: inputPeer, msgId: messageId.id, queryType: queryType.apiQueryType, data: Buffer(data: data)), automaticFloodWait: false)
++        return network.request(Api.functions.messages.getBotWidgetQueryAnswer(peer: inputPeer, msgId: messageId.id, queryType: .widgetQueryTypeData(.init(flags: 0)), data: Buffer(data: data)), automaticFloodWait: false)
+         |> mapError(botWidgetQueryError)
+diff --git a/submodules/TelegramCore/Sources/TelegramEngine/Payments/StarGifts.swift b/submodules/TelegramCore/Sources/TelegramEngine/Payments/StarGifts.swift
+--- a/submodules/TelegramCore/Sources/TelegramEngine/Payments/StarGifts.swift
++++ b/submodules/TelegramCore/Sources/TelegramEngine/Payments/StarGifts.swift
+@@ -2424,22 +2424,2 @@
+     
+-    func withdrawStarGift(reference: StarGiftReference, keepOnProfile: Bool, password: String?) -> Signal<Never, WithdrawStarGiftError> {
+-        return _internal_withdrawStarGift(account: self.account, reference: reference, keepOnProfile: keepOnProfile, password: password)
+-        |> afterCompleted { [weak self] in
+-            guard let self else {
+-                return
+-            }
+-            self.queue.async {
+-                if keepOnProfile {
+-                    self.reload()
+-                } else {
+-                    if let count = self.count {
+-                        self.count = max(0, count - 1)
+-                    }
+-                    self.gifts.removeAll(where: { $0.reference == reference })
+-                    self.filteredGifts.removeAll(where: { $0.reference == reference })
+-                    self.pushState()
+-                }
+-            }
+-        }
+-    }
+ 
+@@ -3281,15 +3261,2 @@
+ 
+-    public func withdrawStarGift(reference: StarGiftReference, keepOnProfile: Bool, password: String?) -> Signal<Never, WithdrawStarGiftError> {
+-        return Signal { subscriber in
+-            let disposable = MetaDisposable()
+-            self.impl.with { impl in
+-                disposable.set(impl.withdrawStarGift(reference: reference, keepOnProfile: keepOnProfile, password: password).start(error: { error in
+-                    subscriber.putError(error)
+-                }, completed: {
+-                    subscriber.putCompletion()
+-                }))
+-            }
+-            return disposable
+-        }
+-    }
+ 
+@@ -3902,257 +3869,2 @@
+ 
+-public enum RequestStarGiftWithdrawalError : Equatable {
+-    case generic
+-    case twoStepAuthMissing
+-    case twoStepAuthTooFresh(Int32)
+-    case authSessionTooFresh(Int32)
+-    case limitExceeded
+-    case requestPassword
+-    case invalidPassword
+-    case serverProvided(text: String)
+-}
+-
+-func _internal_checkStarGiftWithdrawalAvailability(account: Account, reference: StarGiftReference) -> Signal<Never, RequestStarGiftWithdrawalError> {
+-    return account.postbox.transaction { transaction in
+-        return reference.apiStarGiftReference(transaction: transaction)
+-    }
+-    |> castError(RequestStarGiftWithdrawalError.self)
+-    |> mapToSignal { starGift in
+-        guard let starGift else {
+-            return .fail(.generic)
+-        }
+-        return account.network.request(Api.functions.payments.getStarGiftWithdrawalUrl(flags: 0, stargift: starGift, tmpPassword: Buffer()))
+-        |> mapError { error -> RequestStarGiftWithdrawalError in
+-            if error.errorDescription == "PASSWORD_HASH_INVALID" || error.errorDescription.hasPrefix("TMP_PASSWORD") {
+-                return .requestPassword
+-            } else if error.errorDescription == "PASSWORD_MISSING" {
+-                return .twoStepAuthMissing
+-            } else if error.errorDescription.hasPrefix("PASSWORD_TOO_FRESH_") {
+-                let timeout = String(error.errorDescription[error.errorDescription.index(error.errorDescription.startIndex, offsetBy: "PASSWORD_TOO_FRESH_".count)...])
+-                if let value = Int32(timeout) {
+-                    return .twoStepAuthTooFresh(value)
+-                }
+-            } else if error.errorDescription.hasPrefix("SESSION_TOO_FRESH_") {
+-                let timeout = String(error.errorDescription[error.errorDescription.index(error.errorDescription.startIndex, offsetBy: "SESSION_TOO_FRESH_".count)...])
+-                if let value = Int32(timeout) {
+-                    return .authSessionTooFresh(value)
+-                }
+-            }
+-            return .generic
+-        }
+-        |> ignoreValues
+-    }
+-}
+-
+-private let starGiftWithdrawalTemporaryPasswordPeriod: Int32 = 10 * 60
+-
+-private func starGiftWithdrawalTemporaryPasswordEntryId() -> ItemCacheEntryId {
+-    let key = ValueBoxKey(length: 1)
+-    key.setUInt8(0, value: 1)
+-    return ItemCacheEntryId(collectionId: Namespaces.CachedItemCollection.cachedTwoStepToken, key: key)
+-}
+-
+-private func _internal_cachedStarGiftWithdrawalTemporaryPassword(account: Account) -> Signal<Data?, NoError> {
+-    return account.postbox.transaction { transaction -> Data? in
+-        guard let token = transaction.retrieveItemCacheEntry(id: starGiftWithdrawalTemporaryPasswordEntryId())?.get(TemporaryTwoStepPasswordToken.self) else {
+-            return nil
+-        }
+-        let timestamp = Int32(account.network.getApproximateRemoteTimestamp())
+-        guard token.validUntilDate > timestamp + 5 else {
+-            return nil
+-        }
+-        return token.token
+-    }
+-}
+-
+-private func _internal_storeStarGiftWithdrawalTemporaryPassword(account: Account, token: TemporaryTwoStepPasswordToken?) -> Signal<Void, NoError> {
+-    return account.postbox.transaction { transaction -> Void in
+-        if let token, let entry = CodableEntry(token) {
+-            transaction.putItemCacheEntry(id: starGiftWithdrawalTemporaryPasswordEntryId(), entry: entry)
+-        } else {
+-            transaction.removeItemCacheEntry(id: starGiftWithdrawalTemporaryPasswordEntryId())
+-        }
+-    }
+-}
+-
+-private func _internal_starGiftWithdrawalTemporaryPassword(account: Account, password: String?) -> Signal<Data, RequestStarGiftWithdrawalError> {
+-    guard let password else {
+-        return _internal_cachedStarGiftWithdrawalTemporaryPassword(account: account)
+-        |> castError(RequestStarGiftWithdrawalError.self)
+-        |> mapToSignal { token -> Signal<Data, RequestStarGiftWithdrawalError> in
+-            if let token {
+-                return .single(token)
+-            } else {
+-                return .fail(.requestPassword)
+-            }
+-        }
+-    }
+-    guard !password.isEmpty else {
+-        return .fail(.invalidPassword)
+-    }
+-    return _internal_requestTemporaryTwoStepPasswordToken(account: account, password: password, period: starGiftWithdrawalTemporaryPasswordPeriod, requiresBiometrics: false)
+-    |> mapError { error -> RequestStarGiftWithdrawalError in
+-        switch error {
+-        case .invalidPassword:
+-            return .invalidPassword
+-        case .limitExceeded:
+-            return .limitExceeded
+-        case .generic:
+-            return .generic
+-        }
+-    }
+-    |> mapToSignal { token -> Signal<Data, RequestStarGiftWithdrawalError> in
+-        return _internal_storeStarGiftWithdrawalTemporaryPassword(account: account, token: token)
+-        |> castError(RequestStarGiftWithdrawalError.self)
+-        |> map { _ -> Data in
+-            return token.token
+-        }
+-    }
+-}
+-
+-private func starGiftWithdrawalError(_ error: MTRpcError) -> RequestStarGiftWithdrawalError {
+-    if error.errorCode == 406 {
+-        return .serverProvided(text: error.errorDescription)
+-    } else if error.errorDescription.hasPrefix("FLOOD_WAIT") {
+-        return .limitExceeded
+-    } else if error.errorDescription == "PASSWORD_HASH_INVALID" || error.errorDescription.hasPrefix("TMP_PASSWORD") {
+-        return .requestPassword
+-    } else if error.errorDescription == "PASSWORD_MISSING" {
+-        return .twoStepAuthMissing
+-    } else if error.errorDescription.hasPrefix("PASSWORD_TOO_FRESH_") {
+-        let timeout = String(error.errorDescription[error.errorDescription.index(error.errorDescription.startIndex, offsetBy: "PASSWORD_TOO_FRESH_".count)...])
+-        if let value = Int32(timeout) {
+-            return .twoStepAuthTooFresh(value)
+-        }
+-    } else if error.errorDescription.hasPrefix("SESSION_TOO_FRESH_") {
+-        let timeout = String(error.errorDescription[error.errorDescription.index(error.errorDescription.startIndex, offsetBy: "SESSION_TOO_FRESH_".count)...])
+-        if let value = Int32(timeout) {
+-            return .authSessionTooFresh(value)
+-        }
+-    }
+-    return .generic
+-}
+-
+-private func _internal_performStarGiftWithdrawalRequest<T>(account: Account, reference: StarGiftReference, password: String?, request: @escaping (Api.InputSavedStarGift, Buffer) -> Signal<T, MTRpcError>) -> Signal<T, RequestStarGiftWithdrawalError> {
+-    return account.postbox.transaction { transaction -> Api.InputSavedStarGift? in
+-        return reference.apiStarGiftReference(transaction: transaction)
+-    }
+-    |> castError(RequestStarGiftWithdrawalError.self)
+-    |> mapToSignal { starGift -> Signal<T, RequestStarGiftWithdrawalError> in
+-        guard let starGift else {
+-            return .fail(.generic)
+-        }
+-        return _internal_starGiftWithdrawalTemporaryPassword(account: account, password: password)
+-        |> mapToSignal { token -> Signal<T, RequestStarGiftWithdrawalError> in
+-            return request(starGift, Buffer(data: token))
+-            |> `catch` { error -> Signal<T, RequestStarGiftWithdrawalError> in
+-                let mappedError = starGiftWithdrawalError(error)
+-                if case .requestPassword = mappedError {
+-                    return _internal_storeStarGiftWithdrawalTemporaryPassword(account: account, token: nil)
+-                    |> castError(RequestStarGiftWithdrawalError.self)
+-                    |> mapToSignal { _ -> Signal<T, RequestStarGiftWithdrawalError> in
+-                        return .fail(mappedError)
+-                    }
+-                }
+-                return .fail(mappedError)
+-            }
+-        }
+-    }
+-}
+-
+-func _internal_requestStarGiftWithdrawalUrl(account: Account, reference: StarGiftReference, password: String?) -> Signal<String, RequestStarGiftWithdrawalError> {
+-    return _internal_performStarGiftWithdrawalRequest(account: account, reference: reference, password: password, request: { starGift, temporaryPassword in
+-        return account.network.request(Api.functions.payments.getStarGiftWithdrawalUrl(flags: 0, stargift: starGift, tmpPassword: temporaryPassword), automaticFloodWait: false)
+-        |> map { result -> String in
+-            switch result {
+-            case let .starGiftWithdrawalUrl(starGiftWithdrawalUrlData):
+-                return starGiftWithdrawalUrlData.url
+-            }
+-        }
+-    })
+-}
+-
+-public enum WithdrawStarGiftError: Equatable {
+-    case generic
+-    case twoStepAuthMissing
+-    case twoStepAuthTooFresh(Int32)
+-    case authSessionTooFresh(Int32)
+-    case limitExceeded
+-    case requestPassword
+-    case invalidPassword
+-    case serverProvided(text: String)
+-}
+-
+-func _internal_withdrawStarGift(account: Account, reference: StarGiftReference, keepOnProfile: Bool, password: String?) -> Signal<Never, WithdrawStarGiftError> {
+-    return _internal_performStarGiftWithdrawalRequest(account: account, reference: reference, password: password, request: { starGift, temporaryPassword in
+-        var flags: Int32 = 0
+-        if keepOnProfile {
+-            flags |= (1 << 0)
+-        }
+-        return account.network.request(Api.functions.payments.withdrawStarGift(flags: flags, stargift: starGift, tmpPassword: temporaryPassword), automaticFloodWait: false)
+-    })
+-    |> mapError { error -> WithdrawStarGiftError in
+-        switch error {
+-        case .generic:
+-            return .generic
+-        case .twoStepAuthMissing:
+-            return .twoStepAuthMissing
+-        case let .twoStepAuthTooFresh(value):
+-            return .twoStepAuthTooFresh(value)
+-        case let .authSessionTooFresh(value):
+-            return .authSessionTooFresh(value)
+-        case .limitExceeded:
+-            return .limitExceeded
+-        case .requestPassword:
+-            return .requestPassword
+-        case .invalidPassword:
+-            return .invalidPassword
+-        case let .serverProvided(text):
+-            return .serverProvided(text: text)
+-        }
+-    }
+-    |> ignoreValues
+-}
+-
+-public struct StarGiftDepositPayload: Equatable {
+-    public let nftAddress: String
+-    public let payload: Data
+-    public let amount: Int64
+-
+-    public init(nftAddress: String, payload: Data, amount: Int64) {
+-        self.nftAddress = nftAddress
+-        self.payload = payload
+-        self.amount = amount
+-    }
+-}
+-
+-public enum DepositStarGiftError {
+-    case generic
+-}
+-
+-func _internal_depositStarGift(account: Account, peerId: EnginePeer.Id, slug: String, hideSender: Bool) -> Signal<StarGiftDepositPayload, DepositStarGiftError> {
+-    return account.postbox.transaction { transaction -> Api.InputPeer? in
+-        return transaction.getPeer(peerId).flatMap(apiInputPeer)
+-    }
+-    |> castError(DepositStarGiftError.self)
+-    |> mapToSignal { inputPeer -> Signal<StarGiftDepositPayload, DepositStarGiftError> in
+-        guard let inputPeer else {
+-            return .fail(.generic)
+-        }
+-        var flags: Int32 = 0
+-        if hideSender {
+-            flags |= (1 << 0)
+-        }
+-        return account.network.request(Api.functions.payments.depositStarGift(flags: flags, peer: inputPeer, slug: slug))
+-        |> mapError { _ -> DepositStarGiftError in
+-            return .generic
+-        }
+-        |> map { result -> StarGiftDepositPayload in
+-            switch result {
+-            case let .starGiftDepositPayload(data):
+-                return StarGiftDepositPayload(nftAddress: data.nftAddress, payload: data.payload.makeData(), amount: data.amount)
+-            }
+-        }
+-    }
+-}
+-
+ public enum DisplayStarGiftError {
+diff --git a/submodules/TelegramCore/Sources/TelegramEngine/Payments/Stars.swift b/submodules/TelegramCore/Sources/TelegramEngine/Payments/Stars.swift
+--- a/submodules/TelegramCore/Sources/TelegramEngine/Payments/Stars.swift
++++ b/submodules/TelegramCore/Sources/TelegramEngine/Payments/Stars.swift
+@@ -431,2 +431,3 @@
+ private func _internal_requestStarsState(account: Account, peerId: EnginePeer.Id, ton: Bool, mode: StarsTransactionsContext.Mode, subscriptionId: String?, offset: String?, limit: Int32) -> Signal<InternalStarsStatus, RequestStarsStateError> {
++    guard !ton else { return .fail(.generic) }
+     return account.postbox.transaction { transaction -> Peer? in
+@@ -454,12 +455,5 @@
+             }
+-            if ton {
+-                flags |= 1 << 4
+-            }
+             signal = account.network.request(Api.functions.payments.getStarsTransactions(flags: flags, subscriptionId: subscriptionId, peer: inputPeer, offset: offset, limit: limit))
+         } else {
+-            var flags: Int32 = 0
+-            if ton {
+-                flags = 1 << 0
+-            }
+-            signal = account.network.request(Api.functions.payments.getStarsStatus(flags: flags, peer: inputPeer))
++            signal = account.network.request(Api.functions.payments.getStarsStatus(flags: 0, peer: inputPeer))
+         }
+@@ -582,3 +576,3 @@
+         
+-        self.updateDisposable = ((ton ? account.stateManager.updatedTonBalance() : account.stateManager.updatedStarsBalance())
++        self.updateDisposable = (account.stateManager.updatedStarsBalance()
+         |> deliverOnMainQueue).startStrict(next: { [weak self] balances in
+@@ -1753,2 +1747,3 @@
+ func _internal_getStarsTransaction(accountPeerId: PeerId, postbox: Postbox, network: Network, transactionReference: StarsTransactionReference) -> Signal<StarsContext.State.Transaction?, NoError> {
++    guard !transactionReference.ton else { return .single(nil) }
+     return postbox.transaction { transaction -> Api.InputPeer? in
+@@ -1762,3 +1757,3 @@
+             Api.functions.payments.getStarsTransactionsByID(
+-                flags: transactionReference.ton ? 1 << 0 : 0,
++                flags: 0,
+                 peer: inputPeer,
+diff --git a/submodules/TelegramCore/Sources/TelegramEngine/Payments/TelegramEnginePayments.swift b/submodules/TelegramCore/Sources/TelegramEngine/Payments/TelegramEnginePayments.swift
+--- a/submodules/TelegramCore/Sources/TelegramEngine/Payments/TelegramEnginePayments.swift
++++ b/submodules/TelegramCore/Sources/TelegramEngine/Payments/TelegramEnginePayments.swift
+@@ -135,5 +135,2 @@
+         
+-        public func peerTonContext() -> StarsContext {
+-            return StarsContext(account: self.account, ton: true)
+-        }
+         
+@@ -190,9 +187,3 @@
+         
+-        public func withdrawStarGift(reference: StarGiftReference, keepOnProfile: Bool, password: String?) -> Signal<Never, WithdrawStarGiftError> {
+-            return _internal_withdrawStarGift(account: self.account, reference: reference, keepOnProfile: keepOnProfile, password: password)
+-        }
+-
+-        public func depositStarGift(peerId: EnginePeer.Id, slug: String, hideSender: Bool) -> Signal<StarGiftDepositPayload, DepositStarGiftError> {
+-            return _internal_depositStarGift(account: self.account, peerId: peerId, slug: slug, hideSender: hideSender)
+-        }
++
+ 
+@@ -230,9 +221,3 @@
+                 
+-        public func checkStarGiftWithdrawalAvailability(reference: StarGiftReference) -> Signal<Never, RequestStarGiftWithdrawalError> {
+-            return _internal_checkStarGiftWithdrawalAvailability(account: self.account, reference: reference)
+-        }
+-        
+-        public func requestStarGiftWithdrawalUrl(reference: StarGiftReference, password: String?) -> Signal<String, RequestStarGiftWithdrawalError> {
+-            return _internal_requestStarGiftWithdrawalUrl(account: account, reference: reference, password: password)
+-        }
++        
+         
+diff --git a/submodules/TelegramCore/Sources/TelegramEngine/Peers/UpdateCachedPeerData.swift b/submodules/TelegramCore/Sources/TelegramEngine/Peers/UpdateCachedPeerData.swift
+--- a/submodules/TelegramCore/Sources/TelegramEngine/Peers/UpdateCachedPeerData.swift
++++ b/submodules/TelegramCore/Sources/TelegramEngine/Peers/UpdateCachedPeerData.swift
+@@ -517,3 +517,2 @@
+                                             .withUpdatedNote(mappedNote)
+-                                            .withUpdatedWalletCard(userFullData.walletCard.map(WalletCard.init(apiCard:)))
+                                             .withUpdatedShareTheme(userFullData.shareTheme.flatMap(TelegramShareTheme.init(apiShareTheme:)) ?? .default)
+diff --git a/submodules/TelegramCore/Sources/TelegramEngine/TelegramEngine.swift b/submodules/TelegramCore/Sources/TelegramEngine/TelegramEngine.swift
+--- a/submodules/TelegramCore/Sources/TelegramEngine/TelegramEngine.swift
++++ b/submodules/TelegramCore/Sources/TelegramEngine/TelegramEngine.swift
+@@ -19,5 +19,2 @@
+ 
+-    public lazy var wallet: Wallet = {
+-        return Wallet(account: self.account)
+-    }()
+ 
+diff --git a/submodules/TelegramCore/Tests/StateSync/AccountFinalStateEvents+Testing.swift b/submodules/TelegramCore/Tests/StateSync/AccountFinalStateEvents+Testing.swift
+--- a/submodules/TelegramCore/Tests/StateSync/AccountFinalStateEvents+Testing.swift
++++ b/submodules/TelegramCore/Tests/StateSync/AccountFinalStateEvents+Testing.swift
+@@ -34,6 +34,2 @@
+         updatedStarsBalance: [PeerId: StarsAmount] = [:],
+-        updatedTonBalance: [PeerId: StarsAmount] = [:],
+-        walletTransferUpdates: [WalletTransferUpdate] = [],
+-        walletTonConnectEvents: [WalletTonConnectEvent] = [],
+-        updatedWalletState: Api.WalletState? = nil,
+         updatedAgentSettings: EngineAgentSettings? = nil,
+@@ -72,6 +68,2 @@
+             updatedStarsBalance: updatedStarsBalance,
+-            updatedTonBalance: updatedTonBalance,
+-            walletTransferUpdates: walletTransferUpdates,
+-            walletTonConnectEvents: walletTonConnectEvents,
+-            updatedWalletState: updatedWalletState,
+             updatedAgentSettings: updatedAgentSettings,
+diff --git a/submodules/TelegramCore/Tests/StateSync/AccountFinalStateEventsUnionTests.swift b/submodules/TelegramCore/Tests/StateSync/AccountFinalStateEventsUnionTests.swift
+--- a/submodules/TelegramCore/Tests/StateSync/AccountFinalStateEventsUnionTests.swift
++++ b/submodules/TelegramCore/Tests/StateSync/AccountFinalStateEventsUnionTests.swift
+@@ -55,5 +55,2 @@
+ 
+-    private func gasless(left: Int32) -> WalletTransferUpdate {
+-        return .gaslessInfo(WalletGaslessInfo(available: true, left: left, resetAt: 0, minAmount: 0, relayerAddress: "relayer"))
+-    }
+ 
+@@ -91,10 +88,2 @@
+ 
+-    /// Nil when the value is not `walletStateEmpty`.
+-    private func walletStateEmptyFlags(_ state: Api.WalletState?) -> Int32? {
+-        if case let .walletStateEmpty(data)? = state {
+-            return data.flags
+-        } else {
+-            return nil
+-        }
+-    }
+ 
+@@ -130,6 +119,2 @@
+             updatedStarsBalance: [self.userA: self.stars(1), self.userB: self.stars(10)],
+-            updatedTonBalance: [self.userA: self.stars(1), self.userB: self.stars(10)],
+-            walletTransferUpdates: [self.gasless(left: 1)],
+-            walletTonConnectEvents: [.pendingDisconnect(sessionIds: [1])],
+-            updatedWalletState: .walletStateEmpty(.init(flags: 0)),
+             updatedAgentSettings: self.agentSettings("earlier"),
+@@ -176,6 +161,2 @@
+             updatedStarsBalance: [self.userA: self.stars(2)],
+-            updatedTonBalance: [self.userA: self.stars(2)],
+-            walletTransferUpdates: [self.gasless(left: 2)],
+-            walletTonConnectEvents: [.pendingDisconnect(sessionIds: [2])],
+-            updatedWalletState: .walletStateEmpty(.init(flags: 1 << 0)),
+             updatedAgentSettings: self.agentSettings("later"),
+@@ -223,6 +204,2 @@
+         XCTAssertEqual(merged.updatedStarsBalance, later.updatedStarsBalance)
+-        XCTAssertEqual(merged.updatedTonBalance, later.updatedTonBalance)
+-        XCTAssertEqual(merged.walletTransferUpdates, later.walletTransferUpdates)
+-        XCTAssertEqual(merged.walletTonConnectEvents, later.walletTonConnectEvents)
+-        XCTAssertEqual(self.walletStateEmptyFlags(merged.updatedWalletState), 1)
+         XCTAssertEqual(self.activeProvider(merged.updatedAgentSettings), "later")
+@@ -266,4 +243,2 @@
+         XCTAssertEqual(merged.joinChatWebViewDecisions.map { $0.queryId }, [1, 2])
+-        XCTAssertEqual(merged.walletTransferUpdates, [self.gasless(left: 1), self.gasless(left: 2)])
+-        XCTAssertEqual(merged.walletTonConnectEvents, [.pendingDisconnect(sessionIds: [1]), .pendingDisconnect(sessionIds: [2])])
+         XCTAssertEqual(merged.addedConferenceInvitationMessagesIds, [self.messageId(5), self.messageId(15)])
+@@ -297,3 +272,2 @@
+         XCTAssertEqual(merged.updatedStarsBalance, [self.userA: self.stars(2), self.userB: self.stars(10)])
+-        XCTAssertEqual(merged.updatedTonBalance, [self.userA: self.stars(2), self.userB: self.stars(10)])
+         XCTAssertEqual(merged.updatedStarsRevenueStatus, [self.userA: self.revenue(2), self.userB: self.revenue(10)])
+@@ -301,3 +275,2 @@
+         XCTAssertEqual(merged.updatedStarGiftAuctionMyState, [1: self.auctionMyState(bidAmount: 2), 2: self.auctionMyState(bidAmount: 10)])
+-        XCTAssertEqual(self.walletStateEmptyFlags(merged.updatedWalletState), 1)
+         XCTAssertEqual(self.activeProvider(merged.updatedAgentSettings), "later")
+@@ -308,3 +281,3 @@
+     func testUnionKeepsTheEarlierValueWhenTheLaterHasNone() {
+-        let earlier = AccountFinalStateEvents.testing(delayNotificatonsUntil: 30, updatedMaxMessageId: 30, updatedQts: 30, updatedWalletState: .walletStateEmpty(.init(flags: 1 << 0)), updatedAgentSettings: self.agentSettings("earlier"), updatedEmojiGameInfo: self.emojiGame("earlier"))
++        let earlier = AccountFinalStateEvents.testing(delayNotificatonsUntil: 30, updatedMaxMessageId: 30, updatedQts: 30, updatedAgentSettings: self.agentSettings("earlier"), updatedEmojiGameInfo: self.emojiGame("earlier"))
+ 
+@@ -314,3 +287,2 @@
+         XCTAssertEqual(withNothingLater.updatedQts, 30)
+-        XCTAssertEqual(self.walletStateEmptyFlags(withNothingLater.updatedWalletState), 1)
+         XCTAssertEqual(self.activeProvider(withNothingLater.updatedAgentSettings), "earlier")
+diff --git a/submodules/TelegramCore/Tests/StateSync/WidgetQueryRequestTests.swift b/submodules/TelegramCore/Tests/StateSync/WidgetQueryRequestTests.swift
+--- a/submodules/TelegramCore/Tests/StateSync/WidgetQueryRequestTests.swift
++++ b/submodules/TelegramCore/Tests/StateSync/WidgetQueryRequestTests.swift
+@@ -9,4 +9,3 @@
+ /// through a real `Network` to the scripted server, its answer's bytes, the tag's error mapping, the 30 s guard and a
+-/// local message that never reaches the server. Since v0.5.0 (the wallet) each query names its type: a plain request,
+-/// one with the user's wallet card, a signature or a sent transaction.
++/// local message that never reaches the server.
+ final class WidgetQueryRequestTests: StateSyncTestCase {
+@@ -19,4 +18,4 @@
+ 
+-    private func request(_ messageId: MessageId, queryType: BotWidgetQueryType = .data(withWallet: false), timeout: Double = 30.0) -> Signal<Data?, BotWidgetQueryError> {
+-        return _internal_requestBotWidgetQueryAnswer(postbox: self.fixture.postbox, network: self.network, messageId: messageId, queryType: queryType, data: Data("ping".utf8), timeout: timeout)
++    private func request(_ messageId: MessageId, timeout: Double = 30.0) -> Signal<Data?, BotWidgetQueryError> {
++        return _internal_requestBotWidgetQueryAnswer(postbox: self.fixture.postbox, network: self.network, messageId: messageId, data: Data("ping".utf8), timeout: timeout)
+     }
+@@ -28,6 +27,6 @@
+ 
+-    private func sentPayload(_ queryType: BotWidgetQueryType) -> Data? {
++    private func sentPayload() -> Data? {
+         let user = self.seedUserChat(200)
+         self.server.on("messages.getBotWidgetQueryAnswer", .result(Api.messages.BotWidgetQueryAnswer.botWidgetQueryAnswer(.init(flags: 1, result: "ok"))))
+-        XCTAssertEqual(self.outcome(self.request(self.messageId(user, 7), queryType: queryType)), .success(Data("ok".utf8)))
++        XCTAssertEqual(self.outcome(self.request(self.messageId(user, 7))), .success(Data("ok".utf8)))
+         return self.server.requests.first?.payload
+@@ -35,22 +34,4 @@
+ 
+-    private let card = EngineUserWallet(address: "UQ" + String(repeating: "a", count: 46), balance: 1_500_000_000, signing: EngineUserWallet.Signing(publicKey: Data([1, 2, 3]), stateInit: Data([4, 5])))
+-
+     func testAPlainRequestIsTheDataQueryWithoutTheWallet() {
+-        XCTAssertEqual(self.sentPayload(.data(withWallet: false)), self.expectedPayload(.widgetQueryTypeData(.init(flags: 0))), "arguments: \(self.server.requests.first?.arguments ?? "none")")
+-    }
+-
+-    func testARequestForTheWalletSetsWithWallet() {
+-        XCTAssertEqual(self.sentPayload(.data(withWallet: true)), self.expectedPayload(.widgetQueryTypeData(.init(flags: 1 << 0))), "arguments: \(self.server.requests.first?.arguments ?? "none")")
+-    }
+-
+-    func testASignatureCarriesTheCardAndTheResultAsJSON() {
+-        let json = "{\"signature\":\"c2ln\"}"
+-        let wallet = Api.UserWallet.userWallet(.init(flags: 1 << 0, address: self.card.address, balance: self.card.balance, publicKey: Buffer(data: Data([1, 2, 3])), stateInit: Buffer(data: Data([4, 5]))))
+-        XCTAssertEqual(self.sentPayload(.signData(wallet: self.card, json: json)), self.expectedPayload(.widgetQueryTypeSignData(.init(wallet: wallet, signData: .dataJSON(.init(data: json))))), "arguments: \(self.server.requests.first?.arguments ?? "none")")
+-    }
+-
+-    func testASentTransactionCarriesTheCardAndTheHash() {
+-        let card = EngineUserWallet(address: self.card.address, balance: 0, signing: nil)
+-        let wallet = Api.UserWallet.userWallet(.init(flags: 0, address: card.address, balance: 0, publicKey: nil, stateInit: nil))
+-        XCTAssertEqual(self.sentPayload(.sentTransaction(wallet: card, msgHash: "aGFzaA==")), self.expectedPayload(.widgetQueryTypeSentTransaction(.init(wallet: wallet, msgHash: "aGFzaA=="))), "arguments: \(self.server.requests.first?.arguments ?? "none")")
++        XCTAssertEqual(self.sentPayload(), self.expectedPayload(.widgetQueryTypeData(.init(flags: 0))), "arguments: \(self.server.requests.first?.arguments ?? "none")")
+     }

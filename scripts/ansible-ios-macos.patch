@@ -1902,23 +1902,3 @@ index 87c742a81250c5129aa79c4c7b08f15835a2dbc4..1dddaa3bfa273d0d409dc7b64b3b0363
          })
      }
      
-diff --git a/submodules/WalletContext/Sources/WalletWidgetCalls.swift b/submodules/WalletContext/Sources/WalletWidgetCalls.swift
-index b413951961c2040d6e18c233d2da558cca8a41f7..0e05c4924868260623c68ae6617c5e3ccace790e 100644
---- a/submodules/WalletContext/Sources/WalletWidgetCalls.swift
-+++ b/submodules/WalletContext/Sources/WalletWidgetCalls.swift
-@@ -355,6 +355,7 @@ func widgetSignDataRequest(json: String, walletAddress: String) throws -> Wallet
- 
- /// TON Connect's `signData` result (`SignDataResponse`): the signature in standard base64, the wallet's raw address, the
- /// timestamp, the domain and the payload as the widget sent it.
-+@available(macOS 10.15, *)
- func widgetSignDataResponse(signature: Data, rawAddress: String, timestamp: UInt64, domain: String, payloadJson: String) -> String {
-     let payload: Any = (try? JSONSerialization.jsonObject(with: Data(payloadJson.utf8))) ?? payloadJson
-     let object: [String: Any] = [
-@@ -386,6 +387,7 @@ private func widgetJSONObject(_ json: String) -> [String: Any]? {
- }
- 
- /// Base64 or base64url, padded or not, as standard padded base64; `previewFailed` otherwise.
-+@available(macOS 10.15, *)
- private func widgetBase64(_ value: String) throws -> String {
-     var normalized = value.replacingOccurrences(of: "-", with: "+").replacingOccurrences(of: "_", with: "/")
-     while normalized.hasSuffix("=") {

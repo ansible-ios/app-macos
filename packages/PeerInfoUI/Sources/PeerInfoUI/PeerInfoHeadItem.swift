@@ -1730,7 +1730,6 @@ private final class PeerInfoHeadView<Context: AccountContextProtocol> : GeneralC
     private var ratingView: PeerRatingView?
    
     private var musicView: PeerInfoMusicView?
-    private var preloadedWalletCard: WalletCard?
 
     private let backgroundView = PeerInfoBackgroundView(frame: .zero)
     

@@ -53,7 +53,7 @@ public final class ChatHTMLRowItem: ChatRowItem, HTMLTwidgetRow {
         if let widget, !isWidgetPreview {
             state.widgetRequestHandler = { [weak context] request, complete in
                 guard let context else { complete(.failure(.failed)); return }
-                _ = context.engine.messages.requestBotWidgetQueryAnswer(messageId: message.id, queryType: .data(withWallet: false), data: Data(request.data.utf8)).start(next: { data in
+                _ = context.engine.messages.requestBotWidgetQueryAnswer(messageId: message.id, data: Data(request.data.utf8)).start(next: { data in
                     complete(.success(WidgetRequestAnswer(result: data.flatMap { String(data: $0, encoding: .utf8) })))
                 }, error: { error in
                     switch error {
