@@ -2,8 +2,6 @@
 
 import PackageDescription
 
-private let requiredCheckProbe = "TONWallet"
-
 let common: [Target.Dependency] = [
     .product(name: "TGUIKit", package: "TGUIKit"),
     .product(name: "SwiftSignalKit", package: "SSignalKit"),
