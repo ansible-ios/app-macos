@@ -331,7 +331,7 @@ private func entries(_ state: State, arguments: Arguments, detailedDisposable: D
         
         for (i, tuple) in tuples.enumerated() {
             entries.append(.custom(sectionId: sectionId, index: index, value: .none, identifier: _id_overview(i), equatable: .init(tuple), comparable: nil, item: { initialSize, stableId in
-                return Fragment_OverviewRowItem(initialSize, stableId: stableId, context: arguments.context, overview: tuple.overview, currency: .stars, viewType: tuple.viewType)
+                return Fragment_OverviewRowItem(initialSize, stableId: stableId, context: arguments.context, overview: tuple.overview, currency: .xtr, viewType: tuple.viewType)
             }))
         }
     }
