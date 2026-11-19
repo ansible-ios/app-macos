@@ -17,7 +17,7 @@ concurrency:
 jobs:
   installer:
     if: github.ref == 'refs/heads/master'
-    runs-on: macos-15-intel
+    runs-on: macos-15
     timeout-minutes: 360
     env:
       TAG: ${{ inputs.tag }}
@@ -38,27 +38,21 @@ jobs:
 
       - name: Prepare build tools and pinned dependencies
         run: |
+          if ! arch -x86_64 /usr/bin/true; then softwareupdate --install-rosetta --agree-to-license; fi
           git config --global url.https://github.com/.insteadOf git@github.com:
           git submodule update --init --depth 1 --jobs 4
           git submodule foreach 'if test "$sm_path" != "submodules/ansible-ios"; then git submodule update --init --recursive --depth 1; fi'
           git -C submodules/ansible-ios submodule update --init --recursive --depth 1 -- \
             third-party/libvpx/libvpx third-party/dav1d/dav1d third-party/td/td third-party/mtproto-engine
           brew install cmake ninja meson nasm yasm zlib autoconf libtool automake pkgconf
+          export DEVELOPER_DIR="$(ls -d /Applications/Xcode_26*.app | sort -V | tail -1)/Contents/Developer"
+          echo "DEVELOPER_DIR=$DEVELOPER_DIR" >> "$GITHUB_ENV"
           xcodebuild -version
           if ! xcrun metal --version; then xcodebuild -downloadComponent MetalToolchain; fi
           sed -i '' -E '/^#define ABSL_ATTRIBUTE_LIFETIME_BOUND (\[\[clang::lifetimebound\]\]|__attribute__\(\(lifetimebound\)\))/s/.*/#define ABSL_ATTRIBUTE_LIFETIME_BOUND/' \
             submodules/tg_owt/src/third_party/abseil-cpp/absl/base/attributes.h
 
-      - name: Build universal Release application
-        run: |
-          bash scripts/prepare-ansible-ios.sh
-          if [[ "$(xcodebuild -version)" == "Xcode 27"* ]]; then bash scripts/xcode27.sh apply; fi
-          bash scripts/configure_frameworks.sh > "$RUNNER_TEMP/frameworks.log" 2>&1 || { tail -100 "$RUNNER_TEMP/frameworks.log"; exit 1; }
-          xcodebuild -quiet -workspace Ansible-Mac.xcworkspace -scheme Release -configuration Release \
-            -destination 'generic/platform=macOS' -derivedDataPath "$RUNNER_TEMP/derived" \
-            'ARCHS=arm64 x86_64' ONLY_ACTIVE_ARCH=NO CODE_SIGNING_ALLOWED=NO COMPILER_INDEX_STORE_ENABLE=NO build
-
-      - name: Configure, sign and verify the release image
+      - name: Configure the registered macOS application
         env:
           ANSIBLE_API_ID: ${{ secrets.ANSIBLE_API_ID }}
           ANSIBLE_API_HASH: ${{ secrets.ANSIBLE_API_HASH }}
@@ -67,13 +61,34 @@ jobs:
             echo "::error::Configure the macOS release ANSIBLE_API_ID and ANSIBLE_API_HASH repository secrets."
             exit 1
           fi
+          umask 077
+          printf 'ANSIBLE_API_ID = %s\nANSIBLE_API_HASH = %s\n' "$ANSIBLE_API_ID" "$ANSIBLE_API_HASH" > configurations/Ansible.local.xcconfig
+
+      - name: Build universal Release application
+        run: |
+          bash scripts/prepare-ansible-ios.sh
+          if [[ "$(xcodebuild -version)" == "Xcode 27"* ]]; then bash scripts/xcode27.sh apply; fi
+          bash scripts/configure_frameworks.sh > "$RUNNER_TEMP/frameworks.log" 2>&1 || {
+            grep -E '(^|: )(fatal )?error:|CMake Error|FAILED:' "$RUNNER_TEMP/frameworks.log" | tail -40 || true
+            tail -100 "$RUNNER_TEMP/frameworks.log"
+            exit 1
+          }
+          xcodebuild -quiet -workspace Ansible-Mac.xcworkspace -scheme Release -configuration Release \
+            -destination 'generic/platform=macOS' -derivedDataPath "$RUNNER_TEMP/derived" \
+            'ARCHS=arm64 x86_64' ONLY_ACTIVE_ARCH=NO CODE_SIGNING_ALLOWED=NO COMPILER_INDEX_STORE_ENABLE=NO build
+
+      - name: Sign and verify the release image
+        env:
+          ANSIBLE_API_ID: ${{ secrets.ANSIBLE_API_ID }}
+          ANSIBLE_API_HASH: ${{ secrets.ANSIBLE_API_HASH }}
+        run: |
           stage="$RUNNER_TEMP/image"
           mkdir "$stage"
           app="$stage/Ansible.app"
           ditto "$RUNNER_TEMP/derived/Build/Products/Release/Ansible.app" "$app"
           for plist in "$app/Contents/Info.plist" "$app/Contents/PlugIns/AnsibleShare.appex/Contents/Info.plist"; do
-            plutil -replace AnsibleApiId -string "$ANSIBLE_API_ID" "$plist"
-            plutil -replace AnsibleApiHash -string "$ANSIBLE_API_HASH" "$plist"
+            test "$(plutil -extract AnsibleApiId raw "$plist")" = "$ANSIBLE_API_ID"
+            test "$(plutil -extract AnsibleApiHash raw "$plist")" = "$ANSIBLE_API_HASH"
           done
           codesign --force --deep --sign - "$app"
           ln -s /Applications "$stage/Applications"
