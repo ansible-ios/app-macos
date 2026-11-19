@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -11,6 +12,7 @@ import xml.etree.ElementTree as ET
 
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "scripts"))
 spec = importlib.util.spec_from_file_location("prepare_telegram_api", ROOT / "scripts/prepare-ansible-api.py")
 generation = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(generation)
@@ -42,6 +44,10 @@ printf 'probes\\n' > Tests/SwiftPMGenerated/SchemaAccessorProbes.swift
         self.toolchain = patch.object(generation.subprocess, "check_output", return_value="Swift fixture 1")
         self.toolchain.start()
         self.addCleanup(self.toolchain.stop)
+        for name in ("check_packages", "check_schema", "check_generated"):
+            stub = patch.object(generation, name)
+            stub.start()
+            self.addCleanup(stub.stop)
 
     def prepare(self, check=False):
         generation.prepare(self.root, check=check)
@@ -116,6 +122,17 @@ printf 'probes\\n' > Tests/SwiftPMGenerated/SchemaAccessorProbes.swift
     def test_unprepared_checkout_fails_validation(self):
         with self.assertRaisesRegex(RuntimeError, "have not been prepared"):
             self.prepare(check=True)
+
+    def test_wallet_guard_failure_blocks_cached_and_staged_outputs(self):
+        self.prepare()
+        before = generation.outputs(self.api)
+        with patch.object(generation, "check_generated", side_effect=RuntimeError("wallet RPC")):
+            with self.assertRaisesRegex(RuntimeError, "wallet RPC"):
+                self.prepare(check=True)
+            (self.api / "swift_scheme.tl").write_text("updated schema")
+            with self.assertRaisesRegex(RuntimeError, "wallet RPC"):
+                self.prepare()
+        self.assertEqual(generation.outputs(self.api), before)
 
     def test_concurrent_builds_generate_once(self):
         with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:

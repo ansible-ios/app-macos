@@ -10,6 +10,8 @@ import subprocess
 import sys
 import tempfile
 
+from macos_package_guard import check_generated, check_packages, check_schema
+
 
 OUTPUT_DIRECTORIES = ("Sources/SwiftPMGenerated", "ObjC/SwiftPMGenerated", "Tests/SwiftPMGenerated")
 
@@ -59,6 +61,7 @@ def validate_outputs(api):
             raise RuntimeError("generator did not produce " + path)
     if "tlTypeRegistry" not in (api / required[0]).read_text():
         raise RuntimeError("generated Api0.swift has no tlTypeRegistry")
+    check_generated(api)
 
 
 def prepare(root, check=False):
@@ -71,6 +74,8 @@ def prepare(root, check=False):
         state.mkdir(parents=True, exist_ok=True)
     with (state / "lock").open("r" if check else "a") as lock:
         fcntl.flock(lock, fcntl.LOCK_SH if check else fcntl.LOCK_EX)
+        check_packages(root, host_environment())
+        check_schema(api)
         current_inputs = inputs(root)
         stamp = state / "state.json"
         try:
@@ -79,6 +84,7 @@ def prepare(root, check=False):
             saved = {}
         current_outputs = outputs(api)
         if saved.get("inputs") == current_inputs and current_outputs and saved.get("outputs") == current_outputs:
+            validate_outputs(api)
             print("TelegramApi generated sources are up to date.")
             return
         if check:

@@ -4549,7 +4549,7 @@
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = ();
-			inputPaths = ("$(SRCROOT)/scripts/prepare-ansible-api.py", "$(SRCROOT)/submodules/ansible-ios/build-system/SwiftTL", "$(SRCROOT)/submodules/ansible-ios/submodules/TelegramApi", "$(SRCROOT)/.build/ansible-api-generation",);
+			inputPaths = ("$(SRCROOT)/scripts/prepare-ansible-api.py", "$(SRCROOT)/scripts/macos_package_guard.py", "$(SRCROOT)/packages", "$(SRCROOT)/Ansible.xcodeproj/project.pbxproj", "$(SRCROOT)/configurations", "$(SRCROOT)/core-xprojects", "$(SRCROOT)/third-party", "$(SRCROOT)/submodules", "$(SRCROOT)/Ansible-Mac.xcworkspace", "$(SRCROOT)/.build/ansible-api-generation",);
 			name = "Check TelegramApi Sources";
 			outputPaths = ();
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4561,7 +4561,7 @@
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = ();
-			inputPaths = ("$(SRCROOT)/scripts/prepare-ansible-api.py", "$(SRCROOT)/submodules/ansible-ios/build-system/SwiftTL", "$(SRCROOT)/submodules/ansible-ios/submodules/TelegramApi", "$(SRCROOT)/.build/ansible-api-generation",);
+			inputPaths = ("$(SRCROOT)/scripts/prepare-ansible-api.py", "$(SRCROOT)/scripts/macos_package_guard.py", "$(SRCROOT)/packages", "$(SRCROOT)/Ansible.xcodeproj/project.pbxproj", "$(SRCROOT)/configurations", "$(SRCROOT)/core-xprojects", "$(SRCROOT)/third-party", "$(SRCROOT)/submodules", "$(SRCROOT)/Ansible-Mac.xcworkspace", "$(SRCROOT)/.build/ansible-api-generation",);
 			name = "Check TelegramApi Sources";
 			outputPaths = ();
 			runOnlyForDeploymentPostprocessing = 0;

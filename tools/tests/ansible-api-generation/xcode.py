@@ -13,8 +13,17 @@ print("Integration fixture: " + str(root), flush=True)
 (root / "Probe.xcodeproj/xcshareddata/xcschemes").mkdir(parents=True)
 (root / "scripts").mkdir()
 shutil.copy(repository / "scripts/prepare-ansible-api.py", root / "scripts/prepare-ansible-api.py")
+shutil.copy(repository / "scripts/macos_package_guard.py", root / "scripts")
 for relative in ["submodules/ansible-ios/submodules/TelegramApi", "submodules/ansible-ios/build-system/SwiftTL"]:
     shutil.copytree(repository / relative, root / relative, ignore=shutil.ignore_patterns(".build", ".swiftpm", "SwiftPMGenerated"))
+for name in ("packages", "Ansible.xcodeproj", "Ansible-Mac.xcworkspace", "core-xprojects", "configurations", "third-party"):
+    (root / name).symlink_to(repository / name, target_is_directory=True)
+for directory in ("submodules", "submodules/ansible-ios/submodules", "submodules/ansible-ios/third-party"):
+    (root / directory).mkdir(exist_ok=True)
+    for source in (repository / directory).iterdir():
+        destination = root / directory / source.name
+        if not destination.exists():
+            destination.symlink_to(source, target_is_directory=source.is_dir())
 (root / "main.swift").write_text('import TelegramApi\nprint(Api.Peer.peerUser(.init(userId: 42)))\n')
 project = json.loads(subprocess.check_output(["plutil", "-convert", "json", "-o", "-", str(repository / "Ansible.xcodeproj/project.pbxproj")]))
 check_id = "CE4D72C9B2A34D84A52D6A02"

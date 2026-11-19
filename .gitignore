@@ -30,3 +30,4 @@ core-xprojects/tlottie/build
 .ci-build-logs/
 *.profraw
 configurations/Ansible.local.xcconfig
+scripts/__pycache__/
