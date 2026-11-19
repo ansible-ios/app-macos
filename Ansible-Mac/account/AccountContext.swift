@@ -965,6 +965,10 @@ final class AccountContext {
     var premiumOrder:PremiumPromoOrder {
         return PremiumPromoOrder(appConfiguration: appConfiguration)
     }
+
+    func amount(amount: CurrencyAmount, comission: Double) -> CurrencyAmount {
+        return amount.recipientProceeds(permille: Int32((min(1, max(0, comission)) * 1000).rounded()))
+    }
     #endif
     
     func setTemporaryPwd(_ password: String) -> Void {
@@ -992,9 +996,6 @@ final class AccountContext {
         }
     }
     
-    func amount(amount: CurrencyAmount, comission: Double) -> CurrencyAmount {
-        return amount.recipientProceeds(permille: Int32((min(1, max(0, comission)) * 1000).rounded()))
-    }
     
     deinit {
        cleanup()
