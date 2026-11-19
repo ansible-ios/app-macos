@@ -1,0 +1,40 @@
+name: macOS wallet guard
+
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, reopened, synchronize, edited, ready_for_review]
+  merge_group:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: macos-wallet-guard-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  wallet-guard:
+    name: Check macOS packages and generated RPCs
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Initialize pinned dependencies for the guard
+        run: |
+          git -c url.https://github.com/.insteadOf=git@github.com: submodule update --init --depth 1 -- \
+            submodules/ansible-ios submodules/tgcalls third-party/twidget third-party/widget-sandbox
+
+      - name: Test wallet regression detection
+        run: python3 tools/tests/test_macos_package_guard.py
+
+      - name: Apply macOS patches and check packages and generated API
+        run: |
+          sh scripts/prepare-ansible-ios.sh
+          python3 scripts/prepare-ansible-api.py
+          python3 scripts/prepare-ansible-api.py --check
