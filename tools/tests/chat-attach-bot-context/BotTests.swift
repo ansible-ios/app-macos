@@ -1,5 +1,12 @@
 import Foundation
+#if canImport(ObjectiveC)
 import ObjectiveC
+#else
+private enum AssociationPolicy { case OBJC_ASSOCIATION_RETAIN_NONATOMIC }
+private func objc_setAssociatedObject(_ controller: ViewController, _ key: UnsafeRawPointer, _ value: AnyObject, _ policy: AssociationPolicy) {
+    controller.retainedOrigin = value
+}
+#endif
 import XCTest
 import SwiftSignalKit
 
@@ -44,17 +51,7 @@ final class Context: AccountContextProtocol {
     init(_ owner: Int = 1) { engine = Engine(owner) }
 }
 final class Window {}
-enum ItemMode { case destruct }
-final class ContextMenuItem {
-    let title: String
-    let handler: () -> Void
-    init(_ title: String, handler: @escaping () -> Void, itemMode: ItemMode? = nil, itemImage: Int = 0) { self.title = title; self.handler = handler }
-}
-enum MenuAnimation { case menu_message, menu_delete, menu_unmuted, menu_mute, menu_unarchive, menu_archive, menu_leave; var value: Int { 0 } }
 final class ContextMenu {
-    var items: [ContextMenuItem] = []
-    init(betterInside: Bool = false) { UI.onNewsMenuInit?() }
-    func addItem(_ item: ContextMenuItem) { items.append(item) }
     weak var delegate: ContextMenu?
     var onShow: (ContextMenu) -> Void = { _ in }
     var onClose: () -> Void = {}
@@ -103,23 +100,13 @@ func showInactiveChannels(context: any AccountContextProtocol, source: InactiveS
 func showInactiveChannels(context: any AccountContextProtocol, source: InactiveSource, analyticsContext: AnalyticsContext?) { UI.inactiveOrigins.append(analyticsContext); UI.onInactiveChannels?() }
 enum JoinChannelError: Error { case generic, tooMuchJoined, tooMuchUsers, inviteRequestSent }
 struct JoinView { let botPeer: EnginePeer; let url: String?; let queryId: Int64 }
-enum ChatListGroupId { case root, archive }
 enum ChannelJoinOutcome { case joined, webView(JoinView) }
 final class PeersEngine {
     var signal: Signal<ChannelJoinOutcome, JoinChannelError> = .complete()
     var requested: [PeerId] = []
-    var forNews: [Bool] = []
-    var effects: [String] = []
-    var effectIds: [PeerId] = []
-    var effect: Signal<Void, NoError> = .complete()
-    func joinChannel(peerId: PeerId, hash: String?, forNews: Bool = false) -> Signal<ChannelJoinOutcome, JoinChannelError> {
-        requested.append(peerId); self.forNews.append(forNews); UI.onChannelRequest?(); return signal
+    func joinChannel(peerId: PeerId, hash: String?) -> Signal<ChannelJoinOutcome, JoinChannelError> {
+        requested.append(peerId); UI.onChannelRequest?(); return signal
     }
-    func removePeerChat(peerId: PeerId, reportChatSpam: Bool) -> Signal<Void, NoError> { record("remove", peerId); return effect }
-    func updatePeerMuteSetting(peerId: PeerId, threadId: Int64?, muteInterval: Int32) -> Signal<Void, NoError> { record("mute", peerId); return effect }
-    func togglePeerMuted(peerId: PeerId, threadId: Int64?) -> Signal<Void, NoError> { record("toggle", peerId); return effect }
-    func updatePeersGroupIdInteractively(peerIds: [PeerId], groupId: ChatListGroupId) -> Signal<Void, NoError> { record(groupId == .archive ? "archive" : "unarchive", peerIds[0]); return effect }
-    func record(_ name: String, _ id: PeerId) { effects.append(name); effectIds.append(id); UI.onNewsEffect?() }
 }
 final class Messages {
     var joinResult: Signal<RequestWebViewResult, BackendError> = .single(RequestWebViewResult(flags: [1], queryId: nil, url: "resolved", keepAliveSignal: nil))
@@ -187,34 +174,6 @@ __WEB_INGRESS__
     }
 }
 typealias ChatInteraction = IncomingAction
-enum ChatState {
-    struct NewsChannelData {
-        let peerId: PeerId
-        var title = "synthetic"
-        var isMember = false
-        var isMuted = false
-        var isInNews = false
-    }
-}
-final class NewsView {
-__NEWS_MODE__
-    var data: ChatState.NewsChannelData?
-    weak var chatInteraction: ChatInteraction?
-    var isAddingToNews = false
-    var isArchived = false
-    var observedPeerId: PeerId?
-    var newsActionGeneration: UInt64 = 0
-    let newsDisposable = MetaDisposable()
-    let groupDisposable = MetaDisposable()
-    let actionDisposable = MetaDisposable()
-    let menuActionDisposable = MetaDisposable()
-    var window: Window? { chatInteraction?.context.window }
-    func applyUpdate(animated: Bool) { UI.onNewsUpdate?() }
-__NEWS_DEINIT__
-__NEWS_MODE_VALUE__
-__NEWS_CAPTURE__
-__NEWS_ACTIONS__
-}
 struct ChatNavigationHooks {
     static var shared = ChatNavigationHooks()
 __HOOKS__
@@ -254,7 +213,11 @@ __INACTIVE_INSTALL__
     hooks.openBrowserTab = { _, tab in UI.onBrowser?(); UI.tabs.append(tab) }
     ChatNavigationHooks.shared = hooks
 }
-class ViewController: NSObject { var analyticsContext: AnalyticsContext? }
+class ViewController: NSObject {
+    #if !canImport(ObjectiveC)
+    fileprivate var retainedOrigin: AnyObject?
+    #endif
+    var analyticsContext: AnalyticsContext? }
 struct BrowserTabData {
     enum Unique: Hashable { case webapp(Int64) }
     enum Source { case settings }
@@ -365,10 +328,6 @@ struct Strings {
 func strings() -> Strings { Strings() }
 __ACTION__
 enum UI {
-    static var newsInteractions: [IncomingAction] = []
-    static var onNewsMenuInit: (() -> Void)?
-    static var onNewsEffect: (() -> Void)?
-    static var onNewsUpdate: (() -> Void)?
     static var onChannelRequest: (() -> Void)?
     static var inactiveOrigins: [AnalyticsContext?] = []
     static var onInactiveChannels: (() -> Void)?
@@ -407,7 +366,6 @@ enum UI {
     static var feedback = 0
     static var missing = 0
     static func reset() {
-        newsInteractions = []; onNewsMenuInit = nil; onNewsEffect = nil; onNewsUpdate = nil
         inactiveOrigins = []; onChannelRequest = nil; onInactiveChannels = nil; installFeatureJoinHooks()
         joinStates = [:]; deferJoinOpen = false; joinOpenCallbacks = []; onJoinRequest = nil
         joinTabs = []; joinIds = []; joinOrigins = []; joinClosed = []; joinCancelled = 0; joinSuccess = 0; joinOrder = []
@@ -1190,182 +1148,6 @@ extension BotTests {
         response?.putError(.tooMuchJoined)
         XCTAssertEqual(UI.inactiveOrigins.count, 1); XCTAssertTrue(UI.inactiveOrigins[0]?.isExcluded == true)
         XCTAssertEqual(UI.exclusions, 0)
-    }
-
-    func newsView(_ context: Context, origin: AnalyticsContext = AnalyticsContext(), member: Bool = false, inNews: Bool = true, peerId: PeerId = 3) -> NewsView {
-        let interaction = IncomingAction(context, origin); UI.newsInteractions.append(interaction)
-        let view = NewsView()
-        view.bindNewsTarget(data: ChatState.NewsChannelData(peerId: peerId, isMember: member, isInNews: inNews), chatInteraction: interaction)
-        return view
-    }
-    func drainNewsMenu() {
-        let ready = expectation(description: "news menu delayed action")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { ready.fulfill() }
-        wait(for: [ready], timeout: 2)
-    }
-    func testNewsMenuOwnsPrivateExclusionUntilCloseAndThroughDelayedJoin() {
-        let context = joinContext(); let view = newsView(context, origin: AnalyticsContext(excluded: true))
-        UI.onNewsMenuInit = { XCTAssertGreaterThan(UI.exclusions, 0) }
-        let menu = view.makeMenu()!
-        XCTAssertTrue(menu.delegate === menu); XCTAssertGreaterThan(UI.exclusions, 0)
-        menu.onShow(menu)
-        UI.onChannelRequest = { XCTAssertGreaterThan(UI.exclusions, 0) }
-        UI.onProgress = { XCTAssertGreaterThan(UI.exclusions, 0) }
-        context.engine.peers.signal = .single(.webView(JoinView(botPeer: EnginePeer(Peer(2)), url: "initial", queryId: 901)))
-        menu.items[0].handler(); menu.onClose()
-        XCTAssertGreaterThan(UI.exclusions, 0)
-        drainNewsMenu()
-        XCTAssertEqual(context.engine.peers.requested, [3]); XCTAssertTrue(UI.joinOrigins.last??.isExcluded == true)
-        XCTAssertEqual(UI.exclusions, 0)
-    }
-    func testNewsMenuCapturesOriginalGrantAndConsumesDuplicateOrDifferentItemsOnce() {
-        let context = joinContext(); let origin = AnalyticsContext(); let view = newsView(context, origin: origin)
-        context.engine.peers.signal = .single(.webView(JoinView(botPeer: EnginePeer(Peer(2)), url: "initial", queryId: 901)))
-        let menu = view.makeMenu()!
-        view.chatInteraction?.origin = AnalyticsContext(excluded: true)
-        menu.items[0].handler(); menu.items[0].handler(); menu.items[1].handler(); menu.onClose()
-        drainNewsMenu()
-        XCTAssertEqual(context.engine.peers.requested, [3]); XCTAssertTrue(context.engine.peers.effects.isEmpty)
-        XCTAssertTrue(UI.joinOrigins.last??.scope === origin.scope)
-    }
-    func testNewsRebindingBeforeOrAfterMenuSelectionRejectsOldTargetEvenIfReturned() {
-        for selectedFirst in [false, true] {
-            let context = Context(); let view = newsView(context, origin: AnalyticsContext(excluded: true))
-            let original = view.chatInteraction!
-            let menu = view.makeMenu()!
-            if selectedFirst { menu.items[0].handler() }
-            view.bindNewsTarget(data: ChatState.NewsChannelData(peerId: 4, isInNews: true), chatInteraction: original)
-            view.bindNewsTarget(data: ChatState.NewsChannelData(peerId: 3, isInNews: true), chatInteraction: original)
-            if !selectedFirst { menu.items[0].handler() }
-            menu.onClose(); drainNewsMenu()
-            XCTAssertTrue(context.engine.peers.requested.isEmpty); XCTAssertTrue(context.engine.peers.effects.isEmpty)
-            XCTAssertEqual(UI.exclusions, 0); UI.reset()
-        }
-    }
-    func testNewsMenuRejectsChangedModeArchiveAndThreadWhileWaiting() {
-        for change in 0..<3 {
-            let context = Context(); let view = newsView(context)
-            let menu = view.makeMenu()!
-            menu.items[0].handler()
-            switch change {
-            case 0: view.data?.isMember = true
-            case 1: view.isArchived = true
-            default: view.chatInteraction?.presentation.chatLocation.threadId = 99
-            }
-            menu.onClose(); drainNewsMenu()
-            XCTAssertTrue(context.engine.peers.requested.isEmpty); UI.reset()
-        }
-    }
-    func testNewsAccountReplacementCancelsPendingJoinAndIgnoresLateFeedback() {
-        let context = Context(); let view = newsView(context, origin: AnalyticsContext(excluded: true), inNews: false)
-        var response: Subscriber<ChannelJoinOutcome, JoinChannelError>?
-        var disposed = 0
-        context.engine.peers.signal = Signal { response = $0; return ActionDisposable { disposed += 1; XCTAssertGreaterThan(UI.exclusions, 0) } }
-        view.addToNews()
-        XCTAssertTrue(view.isAddingToNews)
-        let replacement = IncomingAction(Context(2), AnalyticsContext(2)); UI.newsInteractions.append(replacement)
-        view.bindNewsTarget(data: ChatState.NewsChannelData(peerId: 3), chatInteraction: replacement)
-        response?.putNext(.joined); response?.putError(.tooMuchJoined)
-        XCTAssertEqual(disposed, 1); XCTAssertFalse(view.isAddingToNews); XCTAssertNil(view.observedPeerId)
-        XCTAssertEqual(UI.feedback, 0); XCTAssertTrue(UI.inactiveOrigins.isEmpty); XCTAssertEqual(UI.exclusions, 0)
-    }
-    func testDirectNewsJoinTakesOneOutcomeAndPrivateErrorUsesRecoveryCompanion() {
-        let context = Context(); let view = newsView(context, origin: AnalyticsContext(excluded: true), inNews: false)
-        var response: Subscriber<ChannelJoinOutcome, JoinChannelError>?
-        context.engine.peers.signal = Signal { response = $0; return EmptyDisposable }
-        UI.onChannelRequest = { XCTAssertGreaterThan(UI.exclusions, 0) }
-        UI.onInactiveChannels = { XCTAssertGreaterThan(UI.exclusions, 0) }
-        view.addToNews(); view.addToNews()
-        XCTAssertEqual(context.engine.peers.requested, [3]); XCTAssertEqual(context.engine.peers.forNews, [true])
-        response?.putError(.tooMuchJoined)
-        XCTAssertFalse(view.isAddingToNews); XCTAssertTrue(UI.inactiveOrigins.last??.isExcluded == true)
-        context.engine.peers.signal = Signal { subscriber in subscriber.putNext(.joined); subscriber.putNext(.joined); return EmptyDisposable }
-        view.addToNews()
-        XCTAssertEqual(UI.feedback, 1)
-    }
-    func testEmptyNewsJoinClearsPendingStateWithoutSuccessAndCanRetry() {
-        let context = Context(); let view = newsView(context, inNews: false)
-        view.addToNews(); XCTAssertFalse(view.isAddingToNews)
-        view.addToNews(); XCTAssertFalse(view.isAddingToNews)
-        XCTAssertEqual(context.engine.peers.requested, [3, 3]); XCTAssertEqual(UI.feedback, 0)
-    }
-    func testNewsAddToChatsMutesCapturedPeerOnceAfterJoinAndRejectsStaleResult() {
-        let context = Context(); let view = newsView(context)
-        var response: Subscriber<ChannelJoinOutcome, JoinChannelError>?
-        context.engine.peers.signal = Signal { response = $0; return EmptyDisposable }
-        let menu = view.makeMenu()!; menu.items[0].handler(); menu.onClose(); drainNewsMenu()
-        response?.putNext(.joined); response?.putNext(.joined)
-        XCTAssertEqual(context.engine.peers.effects, ["mute"]); XCTAssertEqual(context.engine.peers.effectIds, [3]); XCTAssertEqual(UI.feedback, 1)
-        let next = view.makeMenu()!; next.items[0].handler(); next.onClose(); drainNewsMenu()
-        view.bindNewsTarget(data: ChatState.NewsChannelData(peerId: 4), chatInteraction: view.chatInteraction!)
-        response?.putNext(.joined)
-        XCTAssertEqual(context.engine.peers.effects, ["mute"]); XCTAssertEqual(UI.feedback, 1)
-    }
-    func testNewsMenuMuteArchiveAndRemovalRetainPrivateOriginAcrossDelay() {
-        for item in 0..<3 {
-            let context = Context(); let view = newsView(context, origin: AnalyticsContext(excluded: true), member: true)
-            let menu = view.makeMenu()!
-            UI.onNewsEffect = { XCTAssertGreaterThan(UI.exclusions, 0) }
-            UI.onFeedback = { XCTAssertGreaterThan(UI.exclusions, 0) }
-            menu.items[item].handler(); menu.onClose(); drainNewsMenu()
-            XCTAssertEqual(context.engine.peers.effects, [["toggle"], ["archive"], ["remove"]][item])
-            XCTAssertEqual(context.engine.peers.effectIds, [3]); XCTAssertEqual(UI.feedback, item == 2 ? 1 : 0)
-            UI.reset()
-        }
-    }
-    func testNewsRemovalCompletionAfterRebindingDoesNotPresentOldFeedback() {
-        let context = Context(); let view = newsView(context, origin: AnalyticsContext(excluded: true), member: true)
-        var result: Subscriber<Void, NoError>?
-        context.engine.peers.effect = Signal { result = $0; return EmptyDisposable }
-        let menu = view.makeMenu()!; menu.items[2].handler(); menu.onClose(); drainNewsMenu()
-        view.bindNewsTarget(data: ChatState.NewsChannelData(peerId: 4), chatInteraction: view.chatInteraction!)
-        result?.putCompletion()
-        XCTAssertEqual(UI.feedback, 0); XCTAssertEqual(UI.exclusions, 0)
-    }
-    func testNewsMenuOwnerReleaseRejectsRetainedHandlersAndPendingAction() {
-        let context = Context(); var view: NewsView? = newsView(context, origin: AnalyticsContext(excluded: true))
-        let menu = view!.makeMenu()!; menu.items[0].handler()
-        view = nil; menu.items[0].handler(); menu.onClose(); drainNewsMenu()
-        XCTAssertTrue(context.engine.peers.requested.isEmpty); XCTAssertEqual(UI.exclusions, 0)
-    }
-    func testNewsProgressRebindingPreventsSubscriptionToOldJoin() {
-        let context = Context(); let view = newsView(context)
-        var subscribed = 0
-        context.engine.peers.signal = Signal { _ in subscribed += 1; return EmptyDisposable }
-        UI.onProgress = { view.bindNewsTarget(data: ChatState.NewsChannelData(peerId: 4), chatInteraction: view.chatInteraction!) }
-        let menu = view.makeMenu()!; menu.items[0].handler(); menu.onClose(); drainNewsMenu()
-        XCTAssertEqual(subscribed, 0)
-        UI.onProgress = nil
-    }
-
-    func testNewsRemovalAndUnarchiveUseCapturedTargetUnderPrivateContext() {
-        for member in [false, true] {
-            let context = Context(); let view = newsView(context, origin: AnalyticsContext(excluded: true), member: member)
-            view.isArchived = true
-            UI.onNewsEffect = { XCTAssertGreaterThan(UI.exclusions, 0) }
-            UI.onFeedback = { XCTAssertGreaterThan(UI.exclusions, 0) }
-            let menu = view.makeMenu()!; menu.items[1].handler(); menu.onClose(); drainNewsMenu()
-            XCTAssertEqual(context.engine.peers.effects, [member ? "unarchive" : "remove"])
-            XCTAssertEqual(context.engine.peers.effectIds, [3]); XCTAssertEqual(UI.feedback, member ? 0 : 1)
-            UI.reset()
-        }
-    }
-    func testNewsJoinRevalidatesTargetAfterOptimisticUpdateBeforeSubscribing() {
-        let context = Context(); let view = newsView(context, inNews: false)
-        UI.onNewsUpdate = { view.bindNewsTarget(data: ChatState.NewsChannelData(peerId: 4), chatInteraction: view.chatInteraction!) }
-        view.addToNews()
-        XCTAssertTrue(context.engine.peers.requested.isEmpty); XCTAssertFalse(view.isAddingToNews)
-        UI.onNewsUpdate = nil
-    }
-    func testNewsMenuRevocationBeforeDelayedRequestCannotRefreshItsGrant() {
-        let context = joinContext(); let origin = AnalyticsContext(); let view = newsView(context, origin: origin)
-        context.engine.peers.signal = .single(.webView(JoinView(botPeer: EnginePeer(Peer(2)), url: "initial", queryId: 901)))
-        let menu = view.makeMenu()!; menu.items[0].handler(); menu.onClose()
-        origin.scope?.valid = false
-        UI.onChannelRequest = { XCTAssertGreaterThan(UI.exclusions, 0) }
-        UI.onJoinOpen = { XCTAssertGreaterThan(UI.exclusions, 0) }
-        drainNewsMenu()
-        XCTAssertEqual(UI.joinTabs.count, 1); XCTAssertTrue(UI.joinOrigins.last??.scope === origin.scope)
     }
 
 }

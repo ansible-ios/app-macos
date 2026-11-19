@@ -57,12 +57,15 @@ final class Navigation {
 struct ThreadMessage: Equatable { let peerId: PeerId; let threadId: Int64 }
 struct ThreadInfo { let message: ThreadMessage; var contextHolder: Int? = nil }
 enum ChatLocation: Equatable {
-    case thread(ThreadMessage)
-    var peerId: PeerId { switch self { case let .thread(message): return message.peerId } }
-    var threadId: Int64? { switch self { case let .thread(message): return message.threadId } }
+    case peer(PeerId), thread(ThreadMessage)
+    var peerId: PeerId { switch self { case let .peer(id): return id; case let .thread(message): return message.peerId } }
+    var threadId: Int64? { switch self { case .peer: return nil; case let .thread(message): return message.threadId } }
 }
-enum ReplyThreadMode { case comments(origin: MessageId), topic(origin: MessageId), replies(origin: MessageId) }
-enum ChatMode { case thread(mode: ReplyThreadMode) }
+enum ReplyThreadMode: Equatable { case comments(origin: MessageId), topic(origin: MessageId), replies(origin: MessageId) }
+enum ChatMode: Equatable {
+    case history, thread(mode: ReplyThreadMode)
+    var isTopicMode: Bool { if case .thread(.topic) = self { return true }; return false }
+}
 struct FocusTarget { let messageId: MessageId?; var string: String? = nil }
 enum Alignment { case CenterEmpty }
 final class Interaction {
@@ -76,7 +79,8 @@ class ChatController {
     let chatInteraction = Interaction()
     var analyticsContext: AnalyticsContext?
     var presentation: AnalyticsPresentation?
-    init(_ location: ChatLocation) { chatLocation = location }
+    let mode: ChatMode
+    init(_ location: ChatLocation, mode: ChatMode = .history) { chatLocation = location; self.mode = mode }
     func inheritAnalyticsContext(_ incoming: AnalyticsContext) {
         let context: AnalyticsContext
         if let current = analyticsContext, current.isExcluded || !incoming.isExcluded { context = current } else { context = incoming }
@@ -86,10 +90,9 @@ class ChatController {
     }
 }
 final class ChatAdditionController: ChatController {
-    let mode: ChatMode
     let focusTarget: FocusTarget
     init(context: AccountContext, chatLocation: ChatLocation, mode: ChatMode, focusTarget: FocusTarget, initialAction: ChatInitialAction?, chatLocationContextHolder: Int?) {
-        self.mode = mode; self.focusTarget = focusTarget; super.init(chatLocation); UI.onChatConstruction?()
+        self.focusTarget = focusTarget; super.init(chatLocation, mode: mode); UI.onChatConstruction?()
     }
 }
 final class Engine { let payments = InvoicePayments(); let owner: Int; let messages = Messages(); let peers = Peers(); init(_ owner: Int) { self.owner = owner } }
@@ -147,8 +150,8 @@ class Peer {
     init(_ id: PeerId, forum: Bool = false) { self.id = id; isForum = forum }
 }
 final class TelegramChannel: Peer { var linkedMonoforumId: PeerId? }
-enum ChatInitialAction { case closeAfter(Int32); case inputText, direct, start, attachBot, makeWebview; case openWebview(botPeer: EnginePeer, botApp: BotApp, result: RequestWebViewResult) }
-final class Window {}
+enum ChatInitialAction { case joinVoiceChat(String?); case closeAfter(Int32); case inputText, direct, start, attachBot, makeWebview; case openWebview(botPeer: EnginePeer, botApp: BotApp, result: RequestWebViewResult) }
+final class Window { func makeKeyAndOrderFront(_ sender: Any?) {} }
 enum ConfirmResult { case basic }
 struct Strings {
     let paymentsInvoiceAlreadyActive = "active", paymentsInvoiceNotExists = "missing", giftSendDisallowError = "disallowed", giftOptionsGiftBuyLimitReached = "limit"
@@ -191,7 +194,7 @@ enum ForumUI {
         UI.topics.append(threadId); UI.topicMessages.append(messageId); UI.contexts.append(analyticsContext); UI.onTopic?()
         return UI.readiness
     }
-    static func open(_ peerId: PeerId, addition: Bool, context: AccountContext, analyticsContext: AnalyticsContext?) {
+    static func open(_ peerId: PeerId, addition: Bool, context: AccountContext, initialAction: ChatInitialAction? = nil, analyticsContext: AnalyticsContext?) {
         UI.forums.append(peerId); UI.contexts.append(analyticsContext); UI.child = analyticsContext?.beginPresentation(); UI.onForum?()
     }
 }
@@ -320,6 +323,22 @@ extension inAppLink {
     static var join: inAppLink { .joinchat(link: "synthetic", "synthetic", context: AccountContext(), callback: { _, _, _, _ in }) }
 }
 __LINK_KIND__
+__normalizedAnsibleLinkQuery__
+__isRetiredPaymentLink__
+final class PaymentLinkTests: XCTestCase {
+    func testRetiredPaymentRoutes() {
+        for value in ["ton://transfer/A", "gram://transfer/B", "tc://connect", "https://alice.TON./post",
+                      "as://settings/ton", "as://sendgrams&to=alice", "https://asme.su/GRAMS", "tg://?v=2&r=test"] {
+            XCTAssertTrue(isRetiredPaymentLink(value), value)
+        }
+    }
+
+    func testOrdinaryRoutesAndDiamondBalance() {
+        for value in ["as://stars", "as://resolve?domain=alice", "https://example.com/sendgrams", "https://ton.example.org"] {
+            XCTAssertFalse(isRetiredPaymentLink(value), value)
+        }
+    }
+}
 enum AnalyticsEvents {
     enum LinkOpenLinkKind { case miniApp, message, peer, invite, stickers, theme, proxy, external, other }
     static func linkOpen(linkKind: LinkOpenLinkKind) -> Int { 1 }
@@ -390,6 +409,21 @@ enum UI {
     }
 }
 final class LinkTests: XCTestCase {
+    func testVoiceChatLinkReusesOpenForum() {
+        let context = AccountContext()
+        let chat = ChatController(.peer(2))
+        context.bindings.navigation.push(chat)
+        openResolvedLinkPeer(Peer(2, forum: true), messageId: nil, action: .joinVoiceChat("call"), forceProfile: false,
+                             context: context, window: context.window, origin: InAppLinkOrigin(AnalyticsContext())) {
+            _, _, _, _ in XCTFail("Expected the current forum to handle the link")
+        }
+        XCTAssertTrue(UI.forums.isEmpty)
+        XCTAssertEqual(chat.chatInteraction.actions.count, 1)
+        guard case .joinVoiceChat("call")? = chat.chatInteraction.actions.first else {
+            return XCTFail("Voice chat action was lost")
+        }
+    }
+
     override func setUp() { UI.reset(); XCTAssertEqual(UI.exclusions, 0) }
     override func tearDown() { UI.reset(); XCTAssertEqual(UI.exclusions, 0) }
     func testDirectForumKeepsOriginThroughParentCloseAndChildLifetime() {
@@ -514,6 +548,7 @@ extension LinkTests {
             let chat = context.bindings.navigation.controller as! ChatAdditionController
             XCTAssertTrue(chat.analyticsContext?.isExcluded == true)
             switch chat.mode {
+            case .history: XCTFail("Expected a thread")
             case let .thread(mode):
                 switch mode {
                 case .comments: XCTAssertEqual(kind, 0)
@@ -1124,6 +1159,8 @@ __INVOICE_NAVIGATION__
     let context: AccountContext
     var window: Window? = Window()
     let invoiceAction = BrowserInvoiceAction()
+    var lastTouchTimestamp: Double?
+    let locationAction = PreparedShareCancellation(), emojiPermissionAction = PreparedShareCancellation(), emojiStatusAction = PreparedShareCancellation()
     let preparedShareAction = PreparedShareCancellation()
     var analyticsContext: AnalyticsContext?
     var events: [[String: String]] = []

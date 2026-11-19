@@ -86,17 +86,6 @@ controller = (root / 'packages/ChatUI/Sources/ChatUI/ChatController.swift').read
 start = controller.index('        chatInteraction.joinChannel = { [weak self] in')
 end = controller.index('        chatInteraction.joinGroupCall =', start)
 fixture = fixture.replace('__CHANNEL_INGRESS__', controller[start:end].replace('        chatInteraction.joinChannel = ', '        return ', 1))
-news = (root / 'packages/ChatUI/Sources/ChatUI/ChatInputStateContainers.swift').read_text()
-news = news[news.index('public final class ChatInputNewsChannelView:'):]
-for marker, begin, end in [
-    ('__NEWS_MODE__', '    private enum Mode:', '    private static let transitionDuration:'),
-    ('__NEWS_CAPTURE__', '    private struct NewsActionContext', '    public func update(data: ChatState.NewsChannelData,'),
-    ('__NEWS_ACTIONS__', '    private func afterMenuCloses(', '    public override func updateLocalizationAndTheme'),
-    ('__NEWS_MODE_VALUE__', '    private var mode:', '    override func glassMorphSlots'),
-    ('__NEWS_DEINIT__', '    deinit {', '    private var mode:')
-]:
-    start = news.index(begin)
-    fixture = fixture.replace(marker, news[start:news.index(end, start)].replace('private ', ''))
 with tempfile.TemporaryDirectory(prefix='chat-attach-bot-context-') as directory:
     directory = Path(directory)
     dependency = json.dumps(str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
