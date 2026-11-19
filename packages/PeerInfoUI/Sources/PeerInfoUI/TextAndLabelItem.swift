@@ -85,7 +85,7 @@ public class TextAndLabelItem: GeneralRowItem {
             text = hideText == true ? Array(repeating: "*", count: text.count / 2).joined() : text
             _ = attr.append(string: text, color: textColor, font: textFont)
             if detectLinks, let context = context {
-                ChatHistoryLink.detectLinks(attr, type: [.Links, .Hashtags, .Mentions, .Ton], onlyInApp: onlyInApp, context: context, color: theme.colors.link, openInfo: openInfo, hashtag: hashtag, applyProxy: { settings in
+                ChatHistoryLink.detectLinks(attr, type: [.Links, .Hashtags, .Mentions], onlyInApp: onlyInApp, context: context, color: theme.colors.link, openInfo: openInfo, hashtag: hashtag, applyProxy: { settings in
                     applyExternalProxy(settings, accountManager: context.sharedContext.accountManager)
                 })
             }
@@ -501,7 +501,7 @@ class TextAndLabelRowView: GeneralRowView {
                     self.qrView = current
                     insert(current, above: [labelView, toggleVisibility, shadowView, moreView])
                 }
-                current.set(image: AnsibleThemeHooks.shared.image(.iconWalletQR).precomposed(item.accentColor), for: .Normal)
+                current.set(image: AnsibleThemeHooks.shared.image(.iconQrCode).precomposed(item.accentColor), for: .Normal)
                 current.sizeToFit()
                 current.scaleOnClick = true
             } else if let view = self.qrView {

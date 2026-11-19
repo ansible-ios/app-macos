@@ -34,7 +34,6 @@ public enum AnsibleThemeImage {
     case iconSuggestPostApprove
     case iconSuggestPostDecline
     case iconSuggestPostEdit
-    case iconTonCurrency
     case icons8CircledPlay48
     case iconYouTubePlay
     case iconVimeoPlay
@@ -97,7 +96,6 @@ public enum AnsibleThemeImage {
     case iconOptionDiamond
     case iconOptionDice
     case iconSendMessage
-    case iconSendViaTon
     case iconStarCurrency
     case iconStarGiftLock
     case iconStarInfoBot
@@ -672,7 +670,6 @@ public enum AnsibleThemeImage {
     case iconPeerInfoChannel
     case iconPeerInfoReactions
     case iconPeerInfoStarsBalance
-    case iconPeerInfoTonBalance
     case iconPhotoCameraPlus
     case iconPhotoCameraSuggest
     case iconPipMuted
@@ -794,7 +791,6 @@ public enum AnsibleThemeImage {
     case iconSettingsStorage
     case iconSettingsStories
     case iconSettingsUpdate
-    case iconSettingsWallet
     case iconSlider
     case iconSliderNormal
     case iconStarCurrencyBigSize
@@ -809,7 +805,6 @@ public enum AnsibleThemeImage {
     case iconTabContacts
     case iconTabRecentCalls
     case iconTabSettings
-    case iconTonBalanceFilled
     case iconTouchId
     case iconTwoStepVerificationCreate
     case iconVerifiedAnsible
@@ -826,13 +821,7 @@ public enum AnsibleThemeImage {
     case iconVideoPlayerVolume
     case iconVideoPlayerVolumeOff
     case iconVoiceChatTitle
-    case iconWalletPasscodeHidden
-    case iconWalletPasscodeVisible
-    case iconWalletQR
-    case iconWalletReceive
-    case iconWalletSend
-    case iconWalletSettings
-    case iconWalletUpdate
+    case iconQrCode
     case iconWidgetPeersBoth
     case iconWidgetPeersFavorite
     case iconWidgetPeersRecent
@@ -870,7 +859,6 @@ public enum AnsibleThemeImage {
     case tabsselectLeftSystemcol
     case iconForumTabs
     case iconForumList
-    case iconFragmentAdsLogo
     case iconBoosterMultiplier
     case iconGiveawayStars
     case iconGiveawayRandom
@@ -899,7 +887,6 @@ public enum AnsibleThemeImage {
     case iconOptionNoSaving
     case iconOptionAnsible
     case iconOptionCash
-    case iconOptionGram
     case iconLivePhotoBadge
     case iconGalleryLivePhotoPlay
     case iconGalleryLivePhotoPlaying

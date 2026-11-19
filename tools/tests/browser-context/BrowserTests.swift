@@ -81,7 +81,7 @@ struct BrowserTabData {
         case webapp(bot: EnginePeer, peerId: PeerId, buttonText: String, url: String?, payload: String?, threadId: Int64?, replyTo: MessageId?, fromMenu: Bool)
         case simple(bot: EnginePeer, url: String?, buttonText: String, source: Source)
         case straight(bot: EnginePeer, peerId: PeerId, title: String, result: RequestWebViewResult)
-        case tonsite(url: String)
+        case website(url: String)
         case instantView(url: String, webPage: WebPage, anchor: String?)
         case game(url: String, peerId: PeerId, messageId: MessageId)
         var peer: EnginePeer? {
@@ -402,7 +402,7 @@ final class BrowserTests: XCTestCase {
     func testNoConfirmationRoutesSkipLookupAndDoNotMarkConsent() {
         let context = Context(); let state = BrowserStateContext.get(context); context.appConfiguration.ageBot = "synthetic"; FastSettings.needsConfirmation = true
         state.open(tab: tab(), analyticsContext: AnalyticsContext())
-        state.open(tab: .tonsite(url: "synthetic"), analyticsContext: AnalyticsContext())
+        state.open(tab: .website(url: "synthetic"), analyticsContext: AnalyticsContext())
         XCTAssertTrue(context.engine.data.requests.isEmpty); XCTAssertEqual(UI.alerts, 0); XCTAssertTrue(FastSettings.confirmed.isEmpty)
     }
     func testCloseConfirmationRechecksCountAfterAnotherTabOpens() {
@@ -553,7 +553,7 @@ extension BrowserTests {
         var policy: Subscriber<String?, NoError>?
         context.engine.data.signal = Signal { policy = $0; return EmptyDisposable }
         state.open(tab: straight(-3), uniqueId: 901, analyticsContext: AnalyticsContext())
-        state.open(tab: .tonsite(url: "synthetic"), analyticsContext: AnalyticsContext())
+        state.open(tab: .website(url: "synthetic"), analyticsContext: AnalyticsContext())
         let browser = state.browser!
         policy?.putNext(nil); policy = nil
         UI.accept?(true); UI.accept?(true)

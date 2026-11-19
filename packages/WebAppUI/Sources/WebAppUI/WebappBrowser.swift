@@ -72,7 +72,7 @@ private func makeWebViewController(context: (any AccountContextProtocol), data: 
             }
         case let .straight(_, peerId, _, result):
             signal = .single((result.url, .normal(url: result.url, botdata: .init(queryId: result.queryId, bot: bot, peerId: peerId, buttonText: "", keepAliveSignal: result.keepAliveSignal, sameOrigin: result.flags.contains(.sameOrigin)))))
-        case .tonsite:
+        case .website:
             signal = .fail(.generic)
         case .instantView:
             signal = .fail(.generic)
@@ -145,7 +145,7 @@ private func analyticsMiniAppEntry(_ data: BrowserTabData.Data) -> AnalyticsEven
         return .inlineButton
     case .straight:
         return .link
-    case .tonsite, .instantView, .game:
+    case .website, .instantView, .game:
         return nil
     }
 }
@@ -914,7 +914,7 @@ public struct BrowserTabData : Comparable, Identifiable {
         case webapp(bot: EnginePeer, peerId: PeerId, buttonText: String, url: String?, payload: String?, threadId: Int64?, replyTo: MessageId?, fromMenu: Bool)
         case simple(bot: EnginePeer, url: String?, buttonText: String, source: RequestSimpleWebViewSource)
         case straight(bot: EnginePeer, peerId: PeerId, title: String, result: RequestWebViewResult)
-        case tonsite(url: String)
+        case website(url: String)
         case instantView(url: String, webPage: TelegramMediaWebpage, anchor: String?)
         case game(url: String, peerId: PeerId, messageId: MessageId)
         public var peer: EnginePeer? {
@@ -927,7 +927,7 @@ public struct BrowserTabData : Comparable, Identifiable {
                 return bot
             case let .straight(bot, _, _, _):
                 return bot
-            case .tonsite:
+            case .website:
                 return nil
             case .instantView:
                 return nil
@@ -950,7 +950,7 @@ public struct BrowserTabData : Comparable, Identifiable {
                 return true
             case .game:
                 return true
-            case .tonsite:
+            case .website:
                 return true
             default:
                 return false
@@ -978,7 +978,7 @@ public struct BrowserTabData : Comparable, Identifiable {
                 }
             case .straight:
                 return .webapp(arc4random64())
-            case let .tonsite(url):
+            case let .website(url):
                 return .url(url)
             case let .instantView(_, webPage, _):
                 return .instantView(webPage.webpageId)
@@ -998,7 +998,7 @@ public struct BrowserTabData : Comparable, Identifiable {
             return peer._asPeer().displayTitle
         case let .straight(_, _, title, _):
             return title
-        case let .tonsite(url):
+        case let .website(url):
             if let title = external?.title {
                 return title
             }
@@ -1744,7 +1744,7 @@ private final class WebpageContainerController : GenericViewController<WebpageCo
         arguments.setLoadingState(data.unique, .loading)
         
         switch data.data {
-        case let .tonsite(url):
+        case let .website(url):
             let controller = WebsiteController(context: context, url: url, browser: arguments.makeLinkManager(data.unique))
             self.set(controller, animated: true)
             arguments.setLoadingState(data.unique, .none)

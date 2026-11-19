@@ -25,7 +25,7 @@ final class WidgetWalletHostTests: XCTestCase {
         state.isWidgetMessage = true
         state.widgetPreview = preview
         let peer = PeerId(100)
-        state.attachWidget(HTMLWidgetContext(accountPeerId: peer, basePath: directory.path, messageId: MessageId(peerId: peer, namespace: 0, id: 1), locale: "en", runtime: WidgetContext(canQuery: true, chatType: .group, wallet: true)))
+        state.attachWidget(HTMLWidgetContext(accountPeerId: peer, basePath: directory.path, messageId: MessageId(peerId: peer, namespace: 0, id: 1), locale: "en", runtime: WidgetContext(canQuery: true, chatType: .group, wallet: false)))
         let appearance = HTMLBubbleAppearance(key: "wallet-host", css: "", dark: false, incoming: true)
         let space = Space()
         let slot = try XCTUnwrap(state.twidgetSlot(appearance: appearance, width: 240, locate: { space.feedViewport }))
@@ -42,9 +42,9 @@ final class WidgetWalletHostTests: XCTestCase {
         try check(state, host)
     }
 
-    func testMessageRequestRetainsWalletFlagAndBotReply() throws {
+    func testMessageRequestWithoutWalletReachesBot() throws {
         try withHost { state, host in
-            XCTAssertTrue(host.diagnostics.logs.contains { $0.text == "wallet-ready" })
+            XCTAssertTrue(host.diagnostics.logs.contains { $0.text == "no-wallet" })
             var received: WidgetRequest?
             state.widgetRequestHandler = { request, respond in
                 received = request
@@ -52,28 +52,19 @@ final class WidgetWalletHostTests: XCTestCase {
             }
             let send = try XCTUnwrap(host.onRequest)
             var answer: WidgetRequestAnswer?
-            send(WidgetRequest(data: "order:42", wallet: true)) { result in answer = try? result.get() }
-            XCTAssertEqual(received, WidgetRequest(data: "order:42", wallet: true))
+            send(WidgetRequest(data: "order:42", wallet: false)) { result in answer = try? result.get() }
+            XCTAssertEqual(received, WidgetRequest(data: "order:42", wallet: false))
             XCTAssertEqual(answer, WidgetRequestAnswer(result: "bot-answer"))
         }
     }
 
-    func testWalletCallAndUserRejectionReachTheMessageHandler() throws {
+    func testWalletRequestIsRejectedBeforeBotDispatch() throws {
         try withHost { state, host in
-            let call = WalletCall.signData(SignDataPayload(type: .text, text: "Sign order"), data: "signed:42")
-            var received: WalletCall?
-            state.widgetWalletHandler = { value, respond in
-                received = value
-                respond(.failure(.rejected))
-            }
-            let send = try XCTUnwrap(host.onWallet)
+            XCTAssertNil(host.onWallet)
+            state.widgetRequestHandler = { _, _ in XCTFail("Unexpected bot request") }
+            let send = try XCTUnwrap(host.onRequest)
             var failure: WidgetRequestFailure?
-            send(call) { result in if case let .failure(value) = result { failure = value } }
-            XCTAssertEqual(received, call)
-            XCTAssertEqual(failure, .rejected)
-            state.widgetWalletHandler = nil
-            failure = nil
-            send(call) { result in if case let .failure(value) = result { failure = value } }
+            send(WidgetRequest(data: "order:42", wallet: true)) { if case let .failure(error) = $0 { failure = error } }
             XCTAssertEqual(failure, .notAllowed)
         }
     }

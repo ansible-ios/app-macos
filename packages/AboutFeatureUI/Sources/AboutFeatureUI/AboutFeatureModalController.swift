@@ -614,39 +614,3 @@ public func showDisableSharingModal(context: any AccountContextProtocol, peerId:
         }
     }
 }
-
-public func showFirstGramsModal(context: any AccountContextProtocol, window: Window) {
-    let description: String
-    if let rate = context.appConfiguration.data?["ton_usd_rate"] as? Double, rate.isFinite, rate > 0 {
-        let rateText = "\(rate)".prettyCurrencyNumberUsd
-        description = strings().aboutFeatureModalControllerFirstGramsRate(rateText)
-    } else {
-        description = strings().aboutFeatureModalControllerFirstGramsYouCan
-    }
-    let configuration = AboutFeatureConfiguration(
-        headerSticker: LocalAnimatedSticker.diamond,
-        headerBackgroundColor: .clear,
-        title: strings().aboutFeatureModalControllerFirstGramsTitle,
-        description: description,
-        features: [
-            .init(
-                icon: AnsibleThemeHooks.shared.image(.iconOptionAnsible).precomposed(theme.colors.accent),
-                title: strings().aboutFeatureModalControllerFirstGramsSend,
-                description: strings().aboutFeatureModalControllerFirstGramsSendInfo
-            ),
-            .init(
-                icon: AnsibleThemeHooks.shared.image(.iconOptionCash).precomposed(theme.colors.accent),
-                title: strings().aboutFeatureModalControllerFirstGramsTrade,
-                description: strings().aboutFeatureModalControllerFirstGramsTradeInfo
-            ),
-            .init(
-                icon: AnsibleThemeHooks.shared.image(.iconOptionGram).precomposed(theme.colors.accent),
-                title: strings().aboutFeatureModalControllerFirstGramsStore,
-                description: strings().aboutFeatureModalControllerFirstGramsStoreInfo
-            )
-        ],
-        buttonTitle: strings().aboutFeatureModalControllerFirstGramsGotIt
-    )
-
-    showModal(with: AboutFeatureModalController(context: context, configuration: configuration), for: window)
-}

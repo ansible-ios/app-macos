@@ -3,13 +3,13 @@ import TelegramCore
 import PasscodeCore
 import BuildConfig
 
-let unscopedWalletPasscodeCredentialManagedKey = "wallet.passcodeCredentialManaged"
+let unscopedPasscodeCredentialManagedKey = "wallet.passcodeCredentialManaged"
 
-var walletPasscodeCredentialManagedKey: String {
+var passcodeCredentialManagedKey: String {
     if let scope = PasscodeEnvironment.shared.keychainScope {
-        return unscopedWalletPasscodeCredentialManagedKey + "." + scope
+        return unscopedPasscodeCredentialManagedKey + "." + scope
     }
-    return unscopedWalletPasscodeCredentialManagedKey
+    return unscopedPasscodeCredentialManagedKey
 }
 
 
@@ -23,7 +23,7 @@ func makeAccountManagerAccessChallenge(basePath: String, isTemporary: Bool, isRe
         _ = try PasscodeEnvironment.shared.sharedAccessGroup()
         PasscodeCredentialStore.shared.configureLock(directory: basePath)
         #if !SHARE
-        if isMainProcess, UserDefaults.standard.bool(forKey: walletPasscodeCredentialManagedKey) {
+        if isMainProcess, UserDefaults.standard.bool(forKey: passcodeCredentialManagedKey) {
             if try PasscodeCredentialStore.shared.hasStoredCredential() {
                 PasscodeCredentialStore.shared.requireExistingCredential()
             }

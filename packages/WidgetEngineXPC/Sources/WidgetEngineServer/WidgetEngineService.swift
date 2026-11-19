@@ -197,7 +197,7 @@ final class ProxySink: SandboxRemoteSink {
     func remoteBridge(method: String, argsJson: String) { proxy?.bridge(method, args: argsJson) }
     func remoteCopyText(_ text: String) { proxy?.copyText(text) }
     func remoteRequest(id: Int, data: String, wallet: Bool) { proxy?.request(id, data: data, wallet: wallet) }
-    func remoteWallet(id: Int, payload: Data) { proxy?.wallet(id, payload: payload) }
+    func remoteWallet(id: Int, payload: Data) { proxy?.request(id, data: "", wallet: true) }
     func remoteStorage(_ commitJson: String) { proxy?.storage(commitJson) }
     func remoteResizeAnchor(_ edge: String) { proxy?.resizeAnchor(edge) }
     func remoteWatchesPublicData(_ on: Bool) { proxy?.watchesPublicData(on) }

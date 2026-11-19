@@ -55,16 +55,16 @@ protocol PeerInfoEntry {
 }
 
 
-func peerInfoEntries<Context: AccountContextProtocol>(view: PeerView, threadData: MessageHistoryThreadData?, threadPeer: EnginePeer?, arguments: PeerInfoArguments<Context>, inputActivities: [PeerId: PeerInputActivity], channelMembers: [RenderedChannelParticipant], mediaTabsData: PeerMediaTabsData, inviteLinksCount: Int32, joinRequestsCount: Int32, availableReactions: AvailableReactions?, source: PeerInfoController<Context>.Source, stories: PeerExpiringStoryListContext.State?, personalChannel: UserInfoPersonalChannel?, revenueState: StarsRevenueStatsContextState?, tonRevenueState: StarsRevenueStatsContextState?, webAppPermissionsState: WebAppPermissionsState?, savedMuicProfileState: ProfileSavedMusicContext.State?, globalNotificationSettings: GlobalNotificationSettings) -> [PeerInfoEntry] {
+func peerInfoEntries<Context: AccountContextProtocol>(view: PeerView, threadData: MessageHistoryThreadData?, threadPeer: EnginePeer?, arguments: PeerInfoArguments<Context>, inputActivities: [PeerId: PeerInputActivity], channelMembers: [RenderedChannelParticipant], mediaTabsData: PeerMediaTabsData, inviteLinksCount: Int32, joinRequestsCount: Int32, availableReactions: AvailableReactions?, source: PeerInfoController<Context>.Source, stories: PeerExpiringStoryListContext.State?, personalChannel: UserInfoPersonalChannel?, revenueState: StarsRevenueStatsContextState?, webAppPermissionsState: WebAppPermissionsState?, savedMuicProfileState: ProfileSavedMusicContext.State?, globalNotificationSettings: GlobalNotificationSettings) -> [PeerInfoEntry] {
     let mutedByDefault = peerViewMainPeer(view).map { !globalNotificationSettings.postboxAccessor.defaultIncludePeer($0) } ?? false
     if let threadData = threadData {
         return topicInfoEntries(view: view, threadData: threadData, threadPeer: threadPeer, arguments: arguments, mediaTabsData: mediaTabsData)
     } else if peerViewMainPeer(view) is TelegramUser {
-        return userInfoEntries(view: view, arguments: arguments, mediaTabsData: mediaTabsData, source: source, stories: stories, personalChannel: personalChannel, revenueState: revenueState, tonRevenueState: tonRevenueState, webAppPermissionsState: webAppPermissionsState, savedMuicProfileState: savedMuicProfileState, mutedByDefault: mutedByDefault)
+        return userInfoEntries(view: view, arguments: arguments, mediaTabsData: mediaTabsData, source: source, stories: stories, personalChannel: personalChannel, revenueState: revenueState, webAppPermissionsState: webAppPermissionsState, savedMuicProfileState: savedMuicProfileState, mutedByDefault: mutedByDefault)
     } else if let channel = peerViewMainPeer(view) as? TelegramChannel {
         switch channel.info {
         case .broadcast:
-            return channelInfoEntries(view: view, arguments: arguments, mediaTabsData: mediaTabsData, inviteLinksCount: inviteLinksCount, joinRequestsCount: joinRequestsCount, availableReactions: availableReactions, stories: stories, revenueState: revenueState, tonRevenueState: tonRevenueState, mutedByDefault: mutedByDefault)
+            return channelInfoEntries(view: view, arguments: arguments, mediaTabsData: mediaTabsData, inviteLinksCount: inviteLinksCount, joinRequestsCount: joinRequestsCount, availableReactions: availableReactions, stories: stories, revenueState: revenueState, mutedByDefault: mutedByDefault)
         case .group:
             return groupInfoEntries(view: view, arguments: arguments, inputActivities: inputActivities, channelMembers: channelMembers, mediaTabsData: mediaTabsData, inviteLinksCount: inviteLinksCount, joinRequestsCount: joinRequestsCount, availableReactions: availableReactions, revenueState: revenueState, mutedByDefault: mutedByDefault)
         }

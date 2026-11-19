@@ -15,143 +15,14 @@ import AlertsUI
 
 private let frequentContactsLimit = 15
 
-private struct BlockchainRow: Equatable {
-    let title: String
-    let subtitle: String?
-    let icon: NSImage
-}
-
-private final class GiftTransferDestinationRowItem: GeneralRowItem {
-    let titleLayout: TextViewLayout
-    let subtitleLayout: TextViewLayout?
-    let icon: CGImage
-    let textSpacing: CGFloat = 2
-    let iconSize = NSMakeSize(32, 32)
-    let iconInset: CGFloat = 18
-    let textInset: CGFloat = 60
-
-    init(_ initialSize: NSSize, stableId: AnyHashable, destination: BlockchainRow, action: @escaping () -> Void) {
-        self.titleLayout = TextViewLayout(.initialize(string: destination.title, color: theme.colors.text, font: .medium(.title)), maximumNumberOfLines: 1)
-        self.subtitleLayout = destination.subtitle.map { TextViewLayout(.initialize(string: $0, color: theme.colors.grayText, font: .normal(.text)), maximumNumberOfLines: 1) }
-        self.icon = destination.icon.precomposed()
-        super.init(initialSize, stableId: stableId, viewType: .singleItem, action: action)
-    }
-
-    override var height: CGFloat {
-        let textHeight = titleLayout.layoutSize.height + (subtitleLayout.map { textSpacing + $0.layoutSize.height } ?? 0)
-        return max(50, textHeight + 12)
-    }
-
-    override func makeSize(_ width: CGFloat, oldWidth: CGFloat = 0) -> Bool {
-        let result = super.makeSize(width, oldWidth: oldWidth)
-        let textWidth = max(0, blockWidth - textInset - viewType.innerInset.right)
-        titleLayout.measure(width: textWidth)
-        subtitleLayout?.measure(width: textWidth)
-        return result
-    }
-
-    override var accessibilityLabel: String? {
-        return titleLayout.attributedString.string
-    }
-
-    override var accessibilityValue: String? {
-        return subtitleLayout?.attributedString.string
-    }
-
-    override var accessibilityRole: NSAccessibility.Role? {
-        return .button
-    }
-
-    override var accessibilityIncludesChildren: Bool {
-        return false
-    }
-
-    override func accessibilityPerformPress() -> Bool {
-        action()
-        return true
-    }
-
-    override func viewClass() -> AnyClass {
-        return GiftTransferDestinationRowView.self
-    }
-}
-
-private final class GiftTransferDestinationRowView: GeneralContainableRowView {
-    private let iconView = ImageView()
-    private let titleView = TextView()
-    private let subtitleView = TextView()
-
-    required init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        iconView.isEventLess = true
-        iconView.isAccessibilityDecorative = true
-        titleView.userInteractionEnabled = false
-        titleView.isSelectable = false
-        subtitleView.userInteractionEnabled = false
-        subtitleView.isSelectable = false
-        addSubview(iconView)
-        addSubview(titleView)
-        addSubview(subtitleView)
-        containerView.setStateChangeHandler { [weak self] in
-            self?.updateColors()
-        }
-        containerView.set(handler: { [weak self] _ in
-            (self?.item as? GiftTransferDestinationRowItem)?.action()
-        }, for: .Click)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override var backdorColor: NSColor {
-        return containerView.controlState == .Highlight ? theme.colors.grayHighlight : theme.colors.background
-    }
-
-    override func updateColors() {
-        super.updateColors()
-        titleView.backgroundColor = backdorColor
-        subtitleView.backgroundColor = backdorColor
-    }
-
-    override func set(item: TableRowItem, animated: Bool = false) {
-        super.set(item: item, animated: animated)
-        guard let item = item as? GiftTransferDestinationRowItem else {
-            return
-        }
-        iconView.image = item.icon
-        iconView.setFrameSize(item.iconSize)
-        titleView.update(item.titleLayout)
-        subtitleView.update(item.subtitleLayout)
-        subtitleView.isHidden = item.subtitleLayout == nil
-        needsLayout = true
-    }
-
-    override func layout() {
-        super.layout()
-        guard let item = item as? GiftTransferDestinationRowItem else {
-            return
-        }
-        let textHeight = titleView.frame.height + (item.subtitleLayout != nil ? item.textSpacing + subtitleView.frame.height : 0)
-        let textY = floorToScreenPixels(backingScaleFactor, (containerView.frame.height - textHeight) / 2)
-        titleView.setFrameOrigin(NSMakePoint(item.textInset, textY))
-        subtitleView.setFrameOrigin(NSMakePoint(item.textInset, titleView.frame.maxY + item.textSpacing))
-        iconView.centerY(x: item.iconInset)
-    }
-}
-
 private final class Arguments {
     let context: any AccountContextProtocol
-    let blockchain: BlockchainRow?
     let searchInteractions: SearchInteractions
-    let openBlockchain: () -> Void
     let select: (EnginePeer) -> Void
 
-    init(context: any AccountContextProtocol, blockchain: BlockchainRow?, searchInteractions: SearchInteractions, openBlockchain: @escaping () -> Void, select: @escaping (EnginePeer) -> Void) {
+    init(context: any AccountContextProtocol, searchInteractions: SearchInteractions, select: @escaping (EnginePeer) -> Void) {
         self.context = context
-        self.blockchain = blockchain
         self.searchInteractions = searchInteractions
-        self.openBlockchain = openBlockchain
         self.select = select
     }
 }
@@ -191,13 +62,6 @@ private func giftTransferCanReceive(_ peer: EnginePeer, accountPeerId: PeerId) -
     }
 }
 
-private func giftTransferUnlockDays(_ canExportDate: Int32) -> Int32? {
-    let currentTime = Int32(CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)
-    guard currentTime <= canExportDate else {
-        return nil
-    }
-    return Int32(ceil(Float(canExportDate - currentTime) / 86400.0))
-}
 
 private func giftTransferSortedContacts(_ peers: [EnginePeer]) -> [EnginePeer] {
     return peers.sorted { lhs, rhs in
@@ -239,7 +103,6 @@ private func peerStatus(_ peer: EnginePeer, presence: EnginePeer.Presence?, cont
 }
 
 private let _id_search = InputDataIdentifier("_id_search")
-private let _id_blockchain = InputDataIdentifier("_id_blockchain")
 private let _id_empty = InputDataIdentifier("_id_empty")
 
 private func appendPeers(_ peers: [EnginePeer], block: String, sectionId: Int32, index: inout Int32, state: State, arguments: Arguments, entries: inout [InputDataEntry]) {
@@ -283,12 +146,6 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
         return entries
     }
 
-    if let blockchain = arguments.blockchain {
-        entries.append(.sectionId(10, type: .customModern(12)))
-        entries.append(.custom(sectionId: 10, index: 10, value: .none, identifier: _id_blockchain, equatable: .init(blockchain), comparable: nil, item: { initialSize, stableId in
-            return GiftTransferDestinationRowItem(initialSize, stableId: stableId, destination: blockchain, action: arguments.openBlockchain)
-        }))
-    }
 
     if !state.birthdays.isEmpty {
         var index: Int32 = 1000
@@ -356,7 +213,7 @@ private func giftTransferConfirmController(context: any AccountContextProtocol, 
     return controller
 }
 
-func showGiftTransfer(context: any AccountContextProtocol, window: Window, analyticsContext: AnalyticsContext, gift: StarGift.UniqueGift, reference: StarGiftReference, giftsContext: ProfileGiftsContext, canExportDate: Int32?, transferStars: Int64?, transfer: @escaping (EnginePeer, @escaping () -> Void) -> Void) {
+func showGiftTransfer(context: any AccountContextProtocol, window: Window, analyticsContext: AnalyticsContext, gift: StarGift.UniqueGift, transferStars: Int64?, transfer: @escaping (EnginePeer, @escaping () -> Void) -> Void) {
     let presentation = analyticsContext.beginPresentation()
     let actionsDisposable = DisposableSet()
     let searchDisposable = MetaDisposable()
@@ -375,10 +232,6 @@ func showGiftTransfer(context: any AccountContextProtocol, window: Window, analy
 
     let accountPeerId = context.peerId
 
-    let blockchainOption = canExportDate != nil ? StarsHooks.shared.giftTransferBlockchainOptionObserved(context, window, gift, reference, giftsContext, analyticsContext: analyticsContext) : nil
-    let blockchain = blockchainOption.map { option in
-        return BlockchainRow(title: option.title, subtitle: canExportDate.flatMap(giftTransferUnlockDays).map { strings().giftTransferSendUnlocks(strings().timerDaysOther(Int($0))) }, icon: option.icon)
-    }
 
     let updateSearch: (SearchState) -> Void = { searchState in
         let query = searchState.request.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -423,18 +276,6 @@ func showGiftTransfer(context: any AccountContextProtocol, window: Window, analy
         }))
     }
 
-    let openBlockchain: () -> Void = {
-        guard let canExportDate, let blockchainOption else {
-            return
-        }
-        if let days = giftTransferUnlockDays(canExportDate) {
-            let presentation = analyticsContext.beginPresentation()
-            alert(for: window, header: strings().giftTransferUnlockPendingTitle, info: strings().giftTransferUnlockPendingText(strings().timerDaysOther(Int(days))), onDeinit: { presentation.end() })
-        } else {
-            blockchainOption.action()
-        }
-    }
-
     let select: (EnginePeer) -> Void = { peer in
         guard let modal = getModal?(), modal.current === getController?() else {
             return
@@ -462,7 +303,7 @@ func showGiftTransfer(context: any AccountContextProtocol, window: Window, analy
         updateSearch(state)
     })
 
-    let arguments = Arguments(context: context, blockchain: blockchain, searchInteractions: searchInteractions, openBlockchain: openBlockchain, select: select)
+    let arguments = Arguments(context: context, searchInteractions: searchInteractions, select: select)
 
     let frequent: Signal<([EnginePeer], [PeerId: EnginePeer.Presence]), NoError> = context.engine.peers.recentPeers()
     |> map { recent -> [EnginePeer] in

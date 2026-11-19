@@ -988,7 +988,7 @@ final class AccountContext {
         case .stars:
             return appConfiguration.getGeneralValue("stars_stargift_resale_commission_permille", orElse: 800).decemial / 100.0
         case .ton:
-            return appConfiguration.getGeneralValue("ton_stargift_resale_commission_permille", orElse: 800).decemial / 100.0
+            return 0
         }
     }
     
@@ -1024,7 +1024,6 @@ final class AccountContext {
         actionsDisposable.dispose()
         NotificationCenter.default.removeObserver(self)
         #if !SHARE
-      //  self.walletPasscodeTimeoutContext.clear()
         self.networkStatusManager.cleanup()
         self.diceCache.cleanup()
         _chatThemes.set(.single([]))

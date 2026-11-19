@@ -143,42 +143,19 @@ private struct StarsState : Equatable {
 private struct State : Equatable {
 
     enum TransactionMode : Int {
-        case ton = 0
         case xtr = 1
         
         var text: String {
             switch self {
             case .xtr:
                 return strings().monetizationTransactionsDiamonds
-            case .ton:
-                return strings().monetizationTransactionsTON
             }
         }
     }
 
-    struct Balance : Equatable {
-        var ton: Int64
-        var usdRate: Double
-        
-        var fractional: Double {
-            return currencyToFractionalAmount(value: Double(ton), currency: "TON") ?? 0
-        }
-        
-        var usd: String {
-            return "$" + "\(self.fractional * self.usdRate)".prettyCurrencyNumberUsd
-        }
-    }
-    struct Overview : Equatable {
-        var balance: Balance
-        var last: Balance
-        var all: Balance
-    }
-    
     var config_withdraw: Bool
     
     
-    var overview: Overview = .init(balance: .init(ton: 0, usdRate: 0), last: .init(ton: 0, usdRate: 0), all: .init(ton: 0, usdRate: 0))
-    var balance: Balance = .init(ton: 0, usdRate: 0)
     var transactions: [Star_Transaction] = []
     var transactionsState: StarsTransactionsContext.State?
     
@@ -201,7 +178,7 @@ private struct State : Equatable {
     
     var adsRestricted: Bool = false
     
-    var transactionMode: TransactionMode = .ton
+    var transactionMode: TransactionMode = .xtr
     
     var starsState: StarsState?
     
@@ -220,7 +197,6 @@ private func _id_transaction(_ transaction: Star_Transaction) -> InputDataIdenti
 
 
 private let _id_balance_stars = InputDataIdentifier("_id_stars_balance")
-private let _id_balance_ton = InputDataIdentifier("_id_ton_balance")
 
 private let _id_top_hours_graph = InputDataIdentifier("_id_top_hours_graph")
 private let _id_revenue_graph = InputDataIdentifier("_id_revenue_graph")

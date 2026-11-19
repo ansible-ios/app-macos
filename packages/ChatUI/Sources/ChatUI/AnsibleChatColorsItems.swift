@@ -18,9 +18,6 @@ extension AnsibleChatColors {
         return item.isStateOverlayLayout ? !item.isInteractiveMedia ? item.presentation.chatPaidMessageOverlayServiceBubble : item.presentation.icons.chatPaidMessageOverlayBubble : item.hasBubble ? item.isIncoming ? item.presentation.icons.chatPaidMessageInBubble_incoming : item.presentation.icons.chatPaidMessageInBubble_outgoing : item.presentation.icons.chatPaidMessageOutBubble
     }
 
-    public func diceStakeIcon(_ item: ChatRowItem) -> CGImage {
-        return item.isStateOverlayLayout ? !item.isInteractiveMedia ? item.presentation.chatDiceStakeOverlayServiceBubble : item.presentation.icons.chatDiceStakeOverlayBubble : item.hasBubble ? item.isIncoming ? item.presentation.icons.chatDiceStakeInBubble_incoming : item.presentation.icons.chatDiceStakeInBubble_outgoing : item.presentation.icons.chatDiceStakeOutBubble
-    }
 
     public func messagePinnedIcon(_ item: ChatRowItem) -> CGImage {
         if item.isStateOverlayLayout {

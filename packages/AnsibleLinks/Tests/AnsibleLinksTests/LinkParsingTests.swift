@@ -302,7 +302,7 @@ final class LinkParsingTests: XCTestCase {
     }
 
     func testUnsupportedWalletRoutes() {
-        for link in ["ton://transfer/address?amount=123", "tc://connect", "tonsite://alice.ton", "https://alice.ton/path", "as://grams", "as://sendgrams?to=@alice", "https://asme.su/sendgrams"] {
+        for link in ["ton://transfer/address?amount=123", "tc://connect", "tonsite://alice.ton", "https://alice.ton/path", "as://grams", "as://sendgrams?to=@alice", "https://asme.su/sendgrams", "as://settings/ton", "https://ASME.SU/GrAmS", "as://sendgrams&to=alice", "https://alice.ton./path", "gram://transfer", "tg://?v=2&r=payload"] {
             guard case .nothing = parse(link) else { return XCTFail(link) }
         }
     }
@@ -314,7 +314,7 @@ final class LinkParsingTests: XCTestCase {
         )
         XCTAssertEqual(
             normalizedAnsibleLinkQuery("telegram://sendgrams&startapp=a&b=c"),
-            "telegram://sendgrams?startapp=a&b=c"
+            "telegram://sendgrams&startapp=a&b=c"
         )
         for unchanged in [
             "as://sendgrams?startapp=a&b=c",
@@ -400,8 +400,8 @@ final class LinkParsingTests: XCTestCase {
             ("as://premium_multigift", { if case .multigift = $0 { return true }; return false }),
             ("as://nft?slug=gift", { if case .nft(_, "gift") = $0 { return true }; return false }),
             ("as://call?slug=call", { if case .joinCall(_, "call") = $0 { return true }; return false }),
-            ("as://stars", { if case .starsInfo(_, false) = $0 { return true }; return false }),
-            ("as://ton", { if case .starsInfo(_, true) = $0 { return true }; return false }),
+            ("as://stars", { if case .starsInfo = $0 { return true }; return false }),
+            ("as://ton", { if case .nothing = $0 { return true }; return false }),
             ("as://stargift_auction?slug=gift", { if case .auction(_, "gift") = $0 { return true }; return false }),
             ("as://oauth?token=token", { if case .oauth(_, "token") = $0 { return true }; return false }),
             ("as://newbot?manager=owner&username=bot&name=My%20Bot", { if case .createBot(_, "owner", "bot", "My Bot") = $0 { return true }; return false }),

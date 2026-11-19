@@ -43,7 +43,7 @@ public let ansible_me:[String] = ["asme.su/", "www.asme.su/"]
 private let actions_me:[String] = ["joinchat/","addstickers/","addemoji/","confirmphone","socks", "proxy", "setlanguage/", "bg/", "addtheme/","invoice/", "addlist/", "boost", "giftcode/", "m/", "nft/", "call/", "auction/", "newbot/", "addstyle/", "webproxy"]
 
 let ansible_scheme:String = "as://"
-private let known_scheme:[String] = ["resolve","msg_url","join","addstickers", "addemoji","confirmphone", "socks", "proxy", "passport", "setlanguage", "bg", "privatepost", "addtheme", "settings", "invoice", "premium_offer", "restore_purchases", "login", "addlist", "boost", "giftcode", "premium_multigift", "stars_topup", "message", "nft", "call", "stars", "ton", "stargift_auction", "oauth", "newbot", "addstyle", "grams", "webproxy", sendGramsPath]
+private let known_scheme:[String] = ["resolve","msg_url","join","addstickers", "addemoji","confirmphone", "socks", "proxy", "passport", "setlanguage", "bg", "privatepost", "addtheme", "settings", "invoice", "premium_offer", "restore_purchases", "login", "addlist", "boost", "giftcode", "premium_multigift", "stars_topup", "message", "nft", "call", "stars", "ton", "stargift_auction", "oauth", "newbot", "addstyle", "grams", "webproxy"]
 
 let keyURLUsername = "domain";
 private let keyURLPhone = "phone";
@@ -126,6 +126,7 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
     let urlString = external as String
     let url = value
 
+    if isRetiredPaymentLink(urlString) { return .nothing }
     if let contact = parseContactTokenLink(urlString) {
         guard options.hasOpenInfo, options.hasContext else {
             return urlString.lowercased().hasPrefix("as://") ? .nothing : .external(link: urlString, confirm)
@@ -139,14 +140,9 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
         return .nothing
     }
 
-    if let scheme = initialURL?.scheme?.lowercased(), ["ton", "tonsite", "tonconnect", "tc"].contains(scheme) { return .nothing }
-
     if let settings = webProxySettings(from: urlString), options.hasContext, options.hasApplyProxy {
         return .socks(link: urlString, settings)
     }
-
-    let webURL = initialURL?.scheme == nil ? URL(string: "https://" + urlString) : initialURL
-    if webURL?.host?.lowercased().hasSuffix(".ton") == true { return .nothing }
 
     if let urlValue = initialURL, let host = urlValue.host?.lowercased(), options.hasContext {
 
@@ -163,9 +159,6 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
         let range = url.range(of: domain)
         if range.location != NSNotFound && (range.location == 0 || (range.location <= 8 && url.substring(from: range.location - 1).hasPrefix("/"))) {
             let string = external.substring(from: range.location + range.length)
-            if isSendGramsWebPath(string) {
-                return .nothing
-            }
             for action in actions_me {
                 if string.hasPrefix(action) {
                     let value = String(string[string.index(string.startIndex, offsetBy: action.length) ..< string.endIndex])
@@ -949,7 +942,7 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
                     }
                 case known_scheme[26]:
                     if options.hasContext {
-                        return .starsInfo(link: urlString, isTon: false)
+                        return .starsInfo(link: urlString)
                     }
                 case known_scheme[27]:
                     if options.hasContext {
@@ -975,10 +968,6 @@ public func parseInAppLink(_ url: NSString, options: InAppLinkParsingOptions = I
                     }
                 case known_scheme[32]:
                     if options.hasContext {
-                        return .nothing
-                    }
-                case known_scheme[34]:
-                    if isSendGramsSchemeAction(action) {
                         return .nothing
                     }
                 default:

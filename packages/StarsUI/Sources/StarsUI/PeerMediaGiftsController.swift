@@ -823,7 +823,7 @@ public func PeerMediaGiftsController(context: any AccountContextProtocol, peerId
         guard let reference = option.reference, let unique = option.gift.unique else {
             return
         }
-        showGiftTransfer(context: context, window: window, analyticsContext: analyticsContext, gift: unique, reference: reference, giftsContext: takeContext() ?? giftsContext, canExportDate: canExportDate, transferStars: transferStars, transfer: { peer, dismiss in
+        showGiftTransfer(context: context, window: window, analyticsContext: analyticsContext, gift: unique, transferStars: transferStars, transfer: { peer, dismiss in
             let transferContext = analyticsContext.restricting(peerId: peer.id)
             let presentation = transferContext.beginPresentation()
             defer { withExtendedLifetime(presentation) {} }

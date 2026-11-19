@@ -12,7 +12,6 @@ public final class InteractiveDiamondView: View {
     public enum ExpansionStyle {
         case centered
         case downward
-        case wallet
     }
 
     public enum AnimationMode: Equatable {
@@ -67,8 +66,6 @@ public final class InteractiveDiamondView: View {
     private var landingFeedback: DispatchWorkItem?
     private var restingSize = CGSize.zero
     private var diamondWidth: CGFloat = 0.0
-    private var walletScale: CGFloat = 1.0
-    private var walletLeftInset: CGFloat = .greatestFiniteMagnitude
     private var expandedSize = CGSize.zero
     private var transferSize = CGSize.zero
     private var completingTransferSize = CGSize.zero
@@ -82,9 +79,6 @@ public final class InteractiveDiamondView: View {
     private var expansion: Expansion?
     private var grip: CGFloat = 0.0
     private var isTracking = false
-    private var initialZoom: Float?
-    private var magnification: CGFloat = 0.0
-    private var isWalletTransfer = false
     private var openingScale: CGFloat?
 
     public var isInteractionEnabled = true {
@@ -205,10 +199,6 @@ public final class InteractiveDiamondView: View {
             return nil
         }
         let local = self.convert(point, from: superview)
-        if self.expansionStyle == .wallet {
-            let radius = self.restingSize.width * (30.0 * 0.9 / 96.0) * self.walletScale
-            return hypot(local.x - self.diamondLayer.position.x, local.y - self.diamondLayer.position.y) <= radius ? self : nil
-        }
         let area = CGRect(x: self.bounds.midX - self.hitSide / 2.0, y: self.bounds.midY - self.hitSide / 2.0, width: self.hitSide, height: self.hitSide)
         return area.contains(local) ? self : nil
     }
@@ -240,19 +230,19 @@ public final class InteractiveDiamondView: View {
             let tapDirection: Float?
             if state == .ended, self.diamondLayer.diamondStyle.tapToSpin, now - pressStart.time < 0.25,
                hypot(position.x - pressStart.position.x, position.y - pressStart.position.y) < 10.0 {
-                let centerX = self.expansionStyle == .wallet ? self.diamondLayer.position.x : self.bounds.midX
+                let centerX = self.bounds.midX
                 tapDirection = position.x < centerX ? -1.0 : 1.0
             } else {
                 tapDirection = nil
             }
             self.diamondLayer.updateDrag(
                 state: state, translation: translation, velocity: velocity,
-                scale: self.expansionStyle == .wallet ? min(self.restingSize.width, self.restingSize.height) : self.dragScale,
-                releaseImpulse: self.expansionStyle == .wallet ? nil : 3.0 * 6.5,
-                allowsFlingBurst: self.expansionStyle == .wallet, tapSpinDirection: tapDirection
+                scale: self.dragScale,
+                releaseImpulse: 3.0 * 6.5,
+                allowsFlingBurst: false, tapSpinDirection: tapDirection
             )
             if state == .ended {
-                if wasHolding, self.expansionStyle != .wallet {
+                if wasHolding {
                     self.scheduleLandingFeedback(power: releasePower)
                 }
                 break
@@ -278,32 +268,6 @@ public final class InteractiveDiamondView: View {
     private func cancelLandingFeedback() {
         self.landingFeedback?.cancel()
         self.landingFeedback = nil
-    }
-
-    public override func magnify(with event: NSEvent) {
-        if !self.updateMagnification(phase: event.phase, delta: event.magnification) {
-            super.magnify(with: event)
-        }
-    }
-
-    func updateMagnification(phase: NSEvent.Phase, delta: CGFloat) -> Bool {
-        guard self.expansionStyle == .wallet, self.isInteractionEnabled, self.animationMode == .continuous else {
-            return false
-        }
-        switch phase {
-        case .began:
-            self.initialZoom = self.diamondLayer.zoom
-            self.magnification = 0.0
-        case .ended, .cancelled:
-            self.initialZoom = nil
-            return true
-        default:
-            break
-        }
-        guard let initialZoom = self.initialZoom else { return true }
-        self.magnification += delta
-        self.diamondLayer.zoom = initialZoom * Float(1.0 + self.magnification)
-        return true
     }
 
     private func setHolding(_ holding: Bool) {
@@ -350,14 +314,6 @@ public final class InteractiveDiamondView: View {
     }
 
     private func applyExpansion() {
-        if self.isWalletTransfer {
-            self.diamondLayer.usesHighFrameRate = true
-            self.diamondLayer.interactionScale = 1.0
-            self.diamondLayer.refractionStrength = 0.0
-            self.diamondLayer.position = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
-            self.diamondLayer.renderSize = CGSize(width: 150.0, height: 150.0)
-            return
-        }
         let expanded = self.isHolding || self.expansion != nil || self.diamondLayer.isGrowthAnimating
         self.diamondLayer.usesHighFrameRate = expanded || self.openingScale != nil || self.diamondLayer.hasTransferAnimation
         self.diamondLayer.interactionScale = (self.expansionStyle != .centered ? 1.0 : Float(1.0 + 2.75 * self.grip)) * Float(self.openingScale ?? 1.0)
@@ -372,10 +328,6 @@ public final class InteractiveDiamondView: View {
             x: restingCenter.x + (expandedCenter.x - restingCenter.x) * CGFloat(refractionStrength),
             y: restingCenter.y + (expandedCenter.y - restingCenter.y) * CGFloat(refractionStrength)
         )
-        if self.expansionStyle == .wallet {
-            let halfWidth = self.diamondWidth * CGFloat(self.diamondLayer.pose.grow * self.diamondLayer.zoom) * self.walletScale * 0.55
-            self.diamondLayer.position.x = restingCenter.x + max(0.0, halfWidth - self.walletLeftInset)
-        }
         self.updateRefractionPosition()
         if self.openingScale != nil {
             self.diamondLayer.renderSize = self.openingSize
@@ -396,7 +348,6 @@ public final class InteractiveDiamondView: View {
     }
 
     public func cancelInteraction() {
-        self.initialZoom = nil
         self.cancelLandingFeedback()
         self.diamondLayer.cancelTapSpin()
         guard self.isHolding || self.expansion != nil || self.isTracking || self.diamondLayer.isGrowthAnimating else {
@@ -412,18 +363,6 @@ public final class InteractiveDiamondView: View {
         self.applyExpansion()
     }
 
-    public func updateWalletTilt(pitch: CGFloat, roll: CGFloat, scale: CGFloat, leftInset: CGFloat) {
-        guard self.expansionStyle == .wallet else { return }
-        self.walletScale = scale
-        self.walletLeftInset = leftInset
-        var style = self.diamondLayer.diamondStyle
-        style.tilt = Float(-pitch * 2.8)
-        style.lean = Float(roll * 2.6)
-        style.widthPoints = Float(self.diamondWidth * scale)
-        self.diamondLayer.update(style: style)
-        self.applyExpansion()
-    }
-
     public func updateOpeningScale(_ scale: CGFloat?) {
         guard self.openingScale != scale else { return }
         self.openingScale = scale
@@ -432,19 +371,6 @@ public final class InteractiveDiamondView: View {
 
     public func spin(_ velocity: Float, decay: Float) {
         self.diamondLayer.spin(velocity, decay: decay)
-    }
-
-    public func prepareForWalletTransfer() {
-        self.cancelInteraction()
-        self.isWalletTransfer = true
-        self.openingScale = nil
-        self.isInteractionEnabled = false
-        self.onExpansionChanged = nil
-        self.onLanding = nil
-        self.onMotionUpdated = nil
-        self.updateRefractionSource(nil)
-        self.frame = CGRect(x: self.frame.midX - 75.0, y: self.frame.midY - 75.0, width: 150.0, height: 150.0)
-        self.applyExpansion()
     }
 
     public func setTint(_ color: NSColor?, amount: CGFloat) {
@@ -458,30 +384,6 @@ public final class InteractiveDiamondView: View {
             return
         }
         self.diamondLayer.update(style: style)
-    }
-
-    public func updateWalletTransfer(width: CGFloat, rotationSpeed: Float, completion: Bool, isDark: Bool, appearance: Appearance = .blue) {
-        self.diamondLayer.lightBackground = !isDark
-        var style = self.diamondLayer.diamondStyle
-        let startsCompletion = completion && !style.backgroundStars
-        style.animationMode = .continuous
-        style.appearance = appearance
-        style.widthPoints = Float(width)
-        style.rotationSpeed = rotationSpeed
-        style.swayScale = 2.4
-        style.floatAmplitude = 0.0
-        style.backgroundStars = completion
-        style.steadyStars = false
-        style.starZoom = 0.55
-        style.starEmission = 0.3
-        style.burstSize = 0.7
-        style.burstFadeInDuration = 0.0
-        self.diamondLayer.update(style: style, preservingMotion: true)
-        if startsCompletion {
-            self.spin(12.0, decay: 0.7)
-            self.diamondLayer.emitStarBurst()
-        }
-        self.applyExpansion()
     }
 
     public func pushFromBelow(strength: Float = 1.0) {
@@ -524,8 +426,6 @@ public final class InteractiveDiamondView: View {
     }
 
     public func update(size: CGSize, diamondWidth: CGFloat, isVisible: Bool, lightBackground: Bool, appearance: Appearance = .blue, expansionStyle: ExpansionStyle = .centered, expandedCenter: CGPoint? = nil, animationMode: AnimationMode = .continuous, animateOnAppear: Bool = false, tapToSpin: Bool = false, metricsScale: CGFloat = 1.0) {
-        let returningFromFlight = self.isWalletTransfer
-        self.isWalletTransfer = false
         if self.animationMode != animationMode {
             self.cancelInteraction()
             self.animationMode = animationMode
@@ -536,7 +436,6 @@ public final class InteractiveDiamondView: View {
         }
         let isInteractive = animationMode == .continuous
         let downward = expansionStyle == .downward
-        let wallet = expansionStyle == .wallet
         let scale = metricsScale
         self.restingSize = size
         self.diamondWidth = diamondWidth
@@ -548,16 +447,6 @@ public final class InteractiveDiamondView: View {
         self.hitSide = 64.0 * scale
         self.dragScale = 220.0 * scale
         var style = self.diamondLayer.diamondStyle
-        if returningFromFlight {
-            style.rotationSpeed = 2.0 * .pi / 26.0
-            let defaults = DiamondStyle()
-            style.backgroundStars = false
-            style.steadyStars = defaults.steadyStars
-            style.starZoom = defaults.starZoom
-            style.starEmission = defaults.starEmission
-            style.burstSize = defaults.burstSize
-            style.burstFadeInDuration = defaults.burstFadeInDuration
-        }
         style.animateOnAppear = animateOnAppear
         switch animationMode {
         case .continuous:
@@ -572,22 +461,20 @@ public final class InteractiveDiamondView: View {
         style.floatPeriod = 3.2
         self.diamondLayer.highlightBoost = isInteractive ? 0.4 : 0.0
         style.mainSparkleOnRotation = isInteractive
-        style.widthPoints = Float(diamondWidth * (wallet ? self.walletScale : 1.0))
+        style.widthPoints = Float(diamondWidth)
         style.appearance = appearance
-        style.widthCompensation = !wallet
-        style.dragGrow = wallet ? 2.6 : (downward ? 3.0 : 1.0)
+        style.widthCompensation = true
+        style.dragGrow = downward ? 3.0 : 1.0
         style.growShift = downward && expandedCenter == nil ? 12.0 : 0.0
         style.growDamping = expansionStyle != .centered ? 0.62 : 0.42
         style.releaseDecay = expansionStyle != .centered ? 1.1 : 0.0
         style.releaseTilt = expansionStyle != .centered ? 0.0 : 2.6
         style.tapToSpin = isInteractive && tapToSpin
-        style.starOpacity = wallet ? 0.0 : 1.0
-        style.rightwardStars = wallet
-        style.starReferenceSize = wallet ? 240.0 : 0.0
-        if !wallet {
-            style.tilt = 0.0
-            style.lean = 0.0
-        }
+        style.starOpacity = 1.0
+        style.rightwardStars = false
+        style.starReferenceSize = 0.0
+        style.tilt = 0.0
+        style.lean = 0.0
         self.diamondLayer.update(style: style)
         self.diamondLayer.lightBackground = expansionStyle == .centered && lightBackground
         self.isRenderingEnabled = isVisible

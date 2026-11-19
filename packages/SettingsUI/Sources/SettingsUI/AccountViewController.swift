@@ -744,7 +744,7 @@ public final class AccountControllerView : Control {
         edit.set(text: strings().navigationEdit, for: .Normal)
         edit.set(color: theme.colors.accent, for: .Normal)
         edit.scaleOnClick = true
-        qrCode.set(image: (theme as! AnsiblePresentationTheme).icons.wallet_qr, for: .Normal)
+        qrCode.set(image: (theme as! AnsiblePresentationTheme).icons.qrCode, for: .Normal)
         qrCode.sizeToFit(.zero, NSMakeSize(30, 30), thatFit: true)
         self.backgroundColor = .clear
 

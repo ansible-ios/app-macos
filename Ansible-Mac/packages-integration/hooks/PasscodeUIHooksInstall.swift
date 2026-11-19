@@ -47,7 +47,7 @@ func adoptPasscodeCredential(code: String, isNewPasscode: Bool = false) throws {
     case .some(.some):
         break
     }
-    UserDefaults.standard.set(true, forKey: walletPasscodeCredentialManagedKey)
+    UserDefaults.standard.set(true, forKey: passcodeCredentialManagedKey)
 }
 
 @available(macOS 10.15, *)

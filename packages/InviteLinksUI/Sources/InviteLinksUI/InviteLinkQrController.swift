@@ -149,7 +149,7 @@ private func inviteLinkQrWriteImage(_ image: CGImage) -> String? {
 }
 
 func inviteLinkQrMenuIcon() -> NSImage {
-    let image = AnsibleThemeHooks.shared.image(.iconWalletQR).precomposed(theme.colors.text)
+    let image = AnsibleThemeHooks.shared.image(.iconQrCode).precomposed(theme.colors.text)
     return NSImage(cgImage: image, size: image.backingSize)
 }
 

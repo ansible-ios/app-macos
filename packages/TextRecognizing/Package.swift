@@ -18,6 +18,7 @@ let package = Package(
         .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
         .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
         .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
+        .package(name: "AnsibleLinks", path: "../AnsibleLinks"),
         .package(name: "TGUIKit", path: "../TGUIKit"),
         .package(name: "Translate", path: "../Translate"),
         .package(name: "libwebp", path: "../../submodules/libwebp"),
@@ -28,7 +29,8 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "TextRecognizing",
-            dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
+            dependencies: [.product(name: "AnsibleLinks", package: "AnsibleLinks"),
+                           .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
                            .product(name: "Translate", package: "Translate", condition: nil),
                            .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
                            .product(name: "TelegramCore", package: "TelegramCore", condition: nil),

@@ -1973,7 +1973,7 @@ public func Star_TransactionScreen(context: (any AccountContextProtocol), fromPe
         if let reference, case let .starGift(_, _, _, _, _, _, _, _, _, _, transferStars, canExportDate, _, _, _, _, _, _, _, _, _, _, _, _) = purpose {
             
             
-            showGiftTransfer(context: context, window: window, analyticsContext: analyticsContext, gift: gift, reference: reference, giftsContext: profileContext ?? ProfileGiftsContext(account: context.account, peerId: context.peerId), canExportDate: canExportDate, transferStars: transferStars, transfer: { peer, dismiss in
+            showGiftTransfer(context: context, window: window, analyticsContext: analyticsContext, gift: gift, transferStars: transferStars, transfer: { peer, dismiss in
                 let transferContext = analyticsContext.restricting(peerId: peer.id)
                 let presentation = transferContext.beginPresentation()
                 defer { withExtendedLifetime(presentation) {} }

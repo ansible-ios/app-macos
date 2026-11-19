@@ -3,14 +3,11 @@ import AnsibleMedia
 
 public enum LocalAnsibleCurrency : String {
     case xtr = "XTR"
-    case ton = "TON"
     
     public var logo: LocalAnimatedSticker {
         switch self {
         case .xtr:
             return .star_currency_new
-        case .ton:
-            return .ton_logo
         }
     }
     
@@ -18,8 +15,6 @@ public enum LocalAnsibleCurrency : String {
         switch self {
         case .xtr:
             return []
-        case .ton:
-            return [.init(keyPath: "", color: color)]
         }
     }
 }

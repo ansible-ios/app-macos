@@ -1,3 +1,4 @@
+import AnsibleLinks
 import Vision
 import SwiftSignalKit
 import Cocoa
@@ -171,7 +172,9 @@ public final class TextRecognizing {
 
             public var link: String? {
                 let trimmed = payload.trimmingCharacters(in: .whitespacesAndNewlines)
-                if let url = URL(string: trimmed), let scheme = url.scheme?.lowercased(), ["http", "https", "tg", "ton", "mailto"].contains(scheme) {
+                guard !isRetiredPaymentLink(trimmed) else { return nil }
+                if let url = URL(string: trimmed), let scheme = url.scheme?.lowercased() {
+                    guard ["http", "https", "tg", "as", "mailto", "tel"].contains(scheme) else { return nil }
                     return trimmed
                 }
                 guard let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue) else {

@@ -1858,9 +1858,9 @@ enum GroupInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
         case let .sharedMedia(_, viewType):
             return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoSharedMedia, type: .next, viewType: viewType, action: arguments.sharedMedia)
         case let .balance(_, stars, canSeeStars, viewType):
-            let icon = generateTonAndStarBalanceIcon(ton: nil, stars: stars)
+            let icon = generateStarBalanceIcon(stars)
             return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditBalance, icon: theme.icons.peerInfoBalance, type: .nextImage(icon), viewType: viewType, action: {
-                arguments.openStats(canSeeTon: false, canSeeStars: canSeeStars)
+                arguments.openStats(canSeeStars: canSeeStars)
             })
         case let .groupDescriptionSetup(section: _, text, viewType):
             return InputDataRowItem(initialSize, stableId: stableId.hashValue, mode: .plain, error: nil, viewType: viewType, currentText: text, placeholder: nil, inputPlaceholder: strings().peerInfoAboutPlaceholder, filter: { $0 }, updated: arguments.updateEditingDescriptionText, limit: 255)

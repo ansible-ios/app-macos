@@ -7,15 +7,6 @@ public enum PasscodeCredentialSyncError: Error, Equatable {
     case failed
 }
 
-public struct PasscodeWalletProtection: Equatable {
-    public let enabled: Bool
-    public let biometricsEnabled: Bool
-
-    public init(enabled: Bool, biometricsEnabled: Bool) {
-        self.enabled = enabled
-        self.biometricsEnabled = biometricsEnabled
-    }
-}
 
 public typealias PasscodeCredentialSyncCompletion = (Result<Void, PasscodeCredentialSyncError>) -> Void
 
@@ -24,9 +15,6 @@ public struct PasscodeCredentialHooks {
     public var passcodeChanged: (String, String, @escaping PasscodeCredentialSyncCompletion) -> Void = { _, _, completion in completion(.success(())) }
     public var passcodeDisabled: (String, @escaping PasscodeCredentialSyncCompletion) -> Void = { _, completion in completion(.success(())) }
     public var passcodeUnlocked: (String) -> Void = { _ in }
-    public var walletProtection: () -> Signal<PasscodeWalletProtection?, NoError> = { .single(nil) }
-    public var setWalletProtection: (Bool, String, @escaping PasscodeCredentialSyncCompletion) -> Void = { _, _, completion in completion(.failure(.failed)) }
-    public var setWalletBiometrics: (Bool, String, @escaping PasscodeCredentialSyncCompletion) -> Void = { _, _, completion in completion(.failure(.failed)) }
 
     public init() {
     }

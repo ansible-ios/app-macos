@@ -2599,7 +2599,6 @@ open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewCo
     private let messagesActionDisposable:MetaDisposable = MetaDisposable()
     private let unblockDisposable:MetaDisposable = MetaDisposable()
     private let updatePinnedDisposable:MetaDisposable = MetaDisposable()
-    private let tonAddressMenuDisposable = MetaDisposable()
     private let reportPeerDisposable:MetaDisposable = MetaDisposable()
     private let focusMessageDisposable:MetaDisposable = MetaDisposable()
     private var messageFocusRequestId = 0
@@ -2859,7 +2858,6 @@ open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewCo
         
         var monoforumState: MonoforumUIState?
 
-        var walletFiatRate: WalletFiatRateProjection?
 
         var presentationResolved: Bool = false
     }
@@ -4235,8 +4233,7 @@ open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewCo
                 lhs.codeSyntaxes == rhs.codeSyntaxes &&
                 lhs.peerStatus == rhs.peerStatus &&
                 (lhs.commonGroups == rhs.commonGroups || lhs.peerStatus?.phoneCountry == nil) &&
-                lhs.monoforumState == rhs.monoforumState &&
-                lhs.walletFiatRate == rhs.walletFiatRate
+                lhs.monoforumState == rhs.monoforumState
         })
         
         let currentRanksValue = self.currentRanksValue
@@ -4409,7 +4406,7 @@ open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewCo
                         includeJoin = false
                     }
                     
-                    let entries = messageEntries(msgEntries, location: chatLocation, maxReadIndex: view.isAnchorOnlyWhileLoading ? nil : maxReadIndex, dayGrouping: customChatContents == nil, renderType: chatTheme.bubbled ? .bubble : .list, includeBottom: true, timeDifference: timeDifference, ranks: ranks, pollAnswersLoading: pollAnswersLoading, threadLoading: threadLoading, groupingPhotos: true, autoplayMedia: initialData.autoplayMedia, searchState: searchState, animatedEmojiStickers: bigEmojiEnabled ? animatedEmojiStickers : [:], topFixedMessages: topMessages, customChannelDiscussionReadState: customChannelDiscussionReadState, customThreadOutgoingReadState: customThreadOutgoingReadState, addRepliesHeader: peerId == repliesPeerId && view.earlierId == nil, addWelcomeMessagesHeader: customChatContents?.kind == .welcomeMessages, updatingMedia: updatingMedia, adMessage: ads.fixed, dynamicAdMessages: ads.opportunistic, chatTheme: chatTheme, reactions: reactions, transribeState: uiState.transribe, topicCreatorId: uiState.topicCreatorId, mediaRevealed: uiState.mediaRevealed, translate: uiState.translate, storyState: uiState.storyState, peerStoryStats: view.peerStoryStats, cachedData: peerView?.cachedData, peer: peer, holeLater: view.holeLater, holeEarlier: view.holeEarlier, recommendedChannels: recommendedChannels, includeJoin: includeJoin, earlierId: view.earlierId, laterId: view.laterId, automaticDownload: initialData.autodownloadSettings, savedMessageTags: savedMessageTags, contentSettings: context.contentSettings, codeSyntaxData: uiState.codeSyntaxes, messageEffects: messageEffects, factCheckRevealed: uiState.factCheck, solutionRevealed: uiState.solutionRevealed, quoteRevealed: uiState.quoteRevealed, detailsExpanded: uiState.detailsExpanded, peerStatus: uiState.peerStatus, commonGroups: uiState.commonGroups, monoforumState: uiState.monoforumState, accountPeerId: context.peerId, contentConfig: context.contentConfig, walletFiatRate: uiState.walletFiatRate).map { ChatWrappedEntry(appearance: AppearanceWrapperEntry(entry: $0, appearance: appearance), tag: view.tag) }
+                    let entries = messageEntries(msgEntries, location: chatLocation, maxReadIndex: view.isAnchorOnlyWhileLoading ? nil : maxReadIndex, dayGrouping: customChatContents == nil, renderType: chatTheme.bubbled ? .bubble : .list, includeBottom: true, timeDifference: timeDifference, ranks: ranks, pollAnswersLoading: pollAnswersLoading, threadLoading: threadLoading, groupingPhotos: true, autoplayMedia: initialData.autoplayMedia, searchState: searchState, animatedEmojiStickers: bigEmojiEnabled ? animatedEmojiStickers : [:], topFixedMessages: topMessages, customChannelDiscussionReadState: customChannelDiscussionReadState, customThreadOutgoingReadState: customThreadOutgoingReadState, addRepliesHeader: peerId == repliesPeerId && view.earlierId == nil, addWelcomeMessagesHeader: customChatContents?.kind == .welcomeMessages, updatingMedia: updatingMedia, adMessage: ads.fixed, dynamicAdMessages: ads.opportunistic, chatTheme: chatTheme, reactions: reactions, transribeState: uiState.transribe, topicCreatorId: uiState.topicCreatorId, mediaRevealed: uiState.mediaRevealed, translate: uiState.translate, storyState: uiState.storyState, peerStoryStats: view.peerStoryStats, cachedData: peerView?.cachedData, peer: peer, holeLater: view.holeLater, holeEarlier: view.holeEarlier, recommendedChannels: recommendedChannels, includeJoin: includeJoin, earlierId: view.earlierId, laterId: view.laterId, automaticDownload: initialData.autodownloadSettings, savedMessageTags: savedMessageTags, contentSettings: context.contentSettings, codeSyntaxData: uiState.codeSyntaxes, messageEffects: messageEffects, factCheckRevealed: uiState.factCheck, solutionRevealed: uiState.solutionRevealed, quoteRevealed: uiState.quoteRevealed, detailsExpanded: uiState.detailsExpanded, peerStatus: uiState.peerStatus, commonGroups: uiState.commonGroups, monoforumState: uiState.monoforumState, accountPeerId: context.peerId, contentConfig: context.contentConfig).map { ChatWrappedEntry(appearance: AppearanceWrapperEntry(entry: $0, appearance: appearance), tag: view.tag) }
                     proccesedView = ChatHistoryView(originalView: view, filteredEntries: entries, theme: chatTheme)
                 }
             } else {
@@ -5032,12 +5029,6 @@ open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewCo
                     threadId: strongSelf.chatInteraction.chatLocation.threadId
                 )
                 strongSelf.chatInteraction.updateInput(with: "")
-                return
-            }
-            if let strongSelf = self,
-               isChatGramsModalCommand(strongSelf.chatInteraction.presentation.effectiveInput.inputText) {
-                strongSelf.chatInteraction.updateInput(with: "")
-                ChatNavigationHooks.shared.showFirstGramsModal(strongSelf.context, strongSelf.context.window)
                 return
             }
             #endif
@@ -11469,7 +11460,6 @@ open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewCo
         messagesActionDisposable.dispose()
         unblockDisposable.dispose()
         updatePinnedDisposable.dispose()
-        tonAddressMenuDisposable.dispose()
         reportPeerDisposable.dispose()
         focusMessageDisposable.dispose()
         updateFontSizeDisposable.dispose()

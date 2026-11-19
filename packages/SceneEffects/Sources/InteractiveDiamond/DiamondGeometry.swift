@@ -614,7 +614,7 @@ struct DiamondRenderData {
 
     private static let cacheVersion = 1
     private static var cacheURL: URL {
-        return URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("GramDiamond_v\(self.cacheVersion)")
+        return URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("AnsibleDiamond_v\(self.cacheVersion)")
     }
     private static var cacheParameters: [Float] {
         return [

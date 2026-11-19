@@ -23,7 +23,6 @@ public struct FontCacheKey : Hashable {
         case digitalRound
         case code
         case menlo
-        case blockchain
         case roundTimer
         case normalMonospaced
     }
@@ -31,7 +30,7 @@ public struct FontCacheKey : Hashable {
     let size: CGFloat
     
     public static func initializeCache() {
-        let all:[Font] = [.normal, .medium, .bold, .italic, .light, .ultralight, .bolditalic, .avatar, .semibold, .digitalRound, .code, .menlo, .blockchain, .italicmonospace, .semiboldItalicMonospace, .semiboldMonospace, .roundTimer, .normalMonospaced]
+        let all:[Font] = [.normal, .medium, .bold, .italic, .light, .ultralight, .bolditalic, .avatar, .semibold, .digitalRound, .code, .menlo, .italicmonospace, .semiboldItalicMonospace, .semiboldMonospace, .roundTimer, .normalMonospaced]
         for i in 10 ..< 20 {
             let fontSize = CGFloat(i)
             for type in all {
@@ -60,8 +59,6 @@ public struct FontCacheKey : Hashable {
                     caches[.init(type: type, size: fontSize)] = .code(fontSize)
                 case .menlo:
                     caches[.init(type: type, size: fontSize)] = .menlo(fontSize)
-                case .blockchain:
-                    caches[.init(type: type, size: fontSize)] = .blockchain(fontSize)
                 case .italicmonospace:
                     caches[.init(type: type, size: fontSize)] = .italicMonospace(fontSize)
                 case .semiboldItalicMonospace:
@@ -300,12 +297,6 @@ public extension NSFont {
         return NSFont(name: "Menlo-Regular", size: size) ?? NSFont.systemFont(ofSize: size)
     }
     
-    static func blockchain(_ size: FontSize)->NSFont {
-        if let font = caches[.init(type: .blockchain, size: size)] {
-            return font
-        }
-        return NSFont(name: "PT Mono", size: size) ?? NSFont.systemFont(ofSize: size)
-    }
 }
 
 public typealias FontSize = CGFloat

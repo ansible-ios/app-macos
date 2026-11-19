@@ -3,18 +3,18 @@ import Metal
 import MetalEngine
 import simd
 
-private var gramDiamondMetalLibraryValue: MTLLibrary?
+private var ansibleDiamondMetalLibraryValue: MTLLibrary?
 
-func gramDiamondMetalLibrary(device: MTLDevice) -> MTLLibrary? {
-    if let gramDiamondMetalLibraryValue {
-        return gramDiamondMetalLibraryValue
+func ansibleDiamondMetalLibrary(device: MTLDevice) -> MTLLibrary? {
+    if let ansibleDiamondMetalLibraryValue {
+        return ansibleDiamondMetalLibraryValue
     }
 
     guard let library = try? device.makeDefaultLibrary(bundle: .module) else {
         return nil
     }
 
-    gramDiamondMetalLibraryValue = library
+    ansibleDiamondMetalLibraryValue = library
     return library
 }
 
@@ -116,7 +116,7 @@ final class DiamondRenderer: ComputeState {
         lazy var lens = try? self.make(vertex: "diamondVertex", fragment: "diamondLensFragment", blending: true)
 
         init(device: MTLDevice, sampleCount: Int, pixelFormat: MTLPixelFormat) throws {
-            guard let library = gramDiamondMetalLibrary(device: device) else {
+            guard let library = ansibleDiamondMetalLibrary(device: device) else {
                 throw Failure.resource("SceneEffects/default.metallib")
             }
             self.device = device
@@ -171,8 +171,8 @@ final class DiamondRenderer: ComputeState {
         }) else { throw Failure.resource("geometry") }
         vertexBuffer = vb
         planeBuffer = pb
-        vertexBuffer.label = "GramDiamond • bevelled cut"
-        planeBuffer.label = "GramDiamond • optical hull"
+        vertexBuffer.label = "AnsibleDiamond • bevelled cut"
+        planeBuffer.label = "AnsibleDiamond • optical hull"
         let sparkles = renderData.sparkles
         mainSparkleVertexCount = sparkles.main.count
         smallSparkleVertexCount = sparkles.small.count
@@ -208,7 +208,7 @@ final class DiamondRenderer: ComputeState {
     private static func makePipeline(device: MTLDevice, library: MTLLibrary, sampleCount: Int, pixelFormat: MTLPixelFormat,
                                      vertex: String, fragment: String, blending: Bool) throws -> MTLRenderPipelineState {
         let descriptor = MTLRenderPipelineDescriptor()
-        descriptor.label = "GramDiamond • \(fragment)"
+        descriptor.label = "AnsibleDiamond • \(fragment)"
         guard let vertexFunction = library.makeFunction(name: vertex),
               let fragmentFunction = library.makeFunction(name: fragment) else {
             throw Failure.resource("\(vertex) / \(fragment)")

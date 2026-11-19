@@ -82,7 +82,6 @@ public struct SettingsUserLocationError: Error {
 
 public enum SettingsStarsCurrency {
     case stars
-    case ton
 }
 
 public struct SettingsNavigationHooks {

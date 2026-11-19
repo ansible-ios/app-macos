@@ -1,25 +1,25 @@
 #include <metal_stdlib>
 using namespace metal;
 
-struct GramDiamondCompositeRaster {
+struct AnsibleDiamondCompositeRaster {
     float4 position [[position]];
     float2 uv;
 };
 
-vertex GramDiamondCompositeRaster gramDiamondCompositeVertex(
+vertex AnsibleDiamondCompositeRaster ansibleDiamondCompositeVertex(
     constant float4 &rect [[buffer(0)]], uint vertexID [[vertex_id]]) {
     const float2 vertices[6] = {
         float2(0, 0), float2(1, 0), float2(0, 1),
         float2(1, 0), float2(0, 1), float2(1, 1)
     };
     float2 point = vertices[vertexID];
-    GramDiamondCompositeRaster out;
+    AnsibleDiamondCompositeRaster out;
     out.position = float4((rect.xy + point * rect.zw) * 2 - 1, 0, 1);
     out.uv = float2(point.x, 1 - point.y);
     return out;
 }
 
-fragment float4 gramDiamondCompositeFragment(GramDiamondCompositeRaster in [[stage_in]],
+fragment float4 ansibleDiamondCompositeFragment(AnsibleDiamondCompositeRaster in [[stage_in]],
                                              texture2d<float> scene [[texture(0)]]) {
     constexpr sampler sceneSampler(mag_filter::linear, min_filter::linear, address::clamp_to_edge);
     return scene.sample(sceneSampler, in.uv);

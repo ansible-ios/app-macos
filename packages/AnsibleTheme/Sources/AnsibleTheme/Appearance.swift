@@ -149,9 +149,6 @@ public func generateStarBalanceIcon(_ text: String) -> CGImage {
 }
 
 
-public func generateTonBalanceIcon(_ text: String) -> CGImage {
-    return generateBalanceIcon(text: text, icon: AnsibleThemeHooks.shared.image(.iconTonCurrency).precomposed(flipVertical: true, zoom: 0.75), spacing: 1)
-}
 
 private func generateBalanceIcon(text: String, icon: CGImage, spacing: CGFloat) -> CGImage {
     let textNode = TextNode.layoutText(.initialize(string: text, color: theme.colors.grayText, font: .normal(.text)), nil, 1, .end, NSMakeSize(.greatestFiniteMagnitude, 20), nil, false, .center)
@@ -171,54 +168,6 @@ private func generateBalanceIcon(text: String, icon: CGImage, spacing: CGFloat) 
     })!
 }
 
-public func generateTonAndStarBalanceIcon(ton: String?, stars: String?) -> CGImage {
-    
-    
-    let starsIcon: CGImage?
-    let tonIcon: CGImage?
-    if let stars {
-        starsIcon = generateBalanceIcon(text: stars, icon: AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed(flipVertical: true, zoom: 0.75), spacing: 1)
-    } else {
-        starsIcon = nil
-    }
-    if let ton = ton {
-        tonIcon = generateBalanceIcon(text: ton, icon: AnsibleThemeHooks.shared.image(.iconTonBalanceFilled).precomposed(flipVertical: true, zoom: 0.75), spacing: 2)
-    } else {
-        tonIcon = nil
-    }
-
-    var size = NSMakeSize(0, 0)
-    if let tonIcon {
-        size.width += tonIcon.backingSize.width
-        size.height = tonIcon.backingSize.height
-    }
-    if let starsIcon {
-        size.width += starsIcon.backingSize.width
-        size.height = max(size.height, starsIcon.backingSize.height)
-    }
-    if starsIcon != nil, tonIcon != nil {
-        size.width += 2
-    }
-    
-    return generateImage(size, contextGenerator: { size, ctx in
-        ctx.clear(size.bounds)
-        
-        if let tonIcon, let starsIcon {
-            let tonRect = size.bounds.focusY(tonIcon.backingSize, x: 0)
-            let starsRect = size.bounds.focusY(starsIcon.backingSize, x: tonRect.maxX + 2)
-            
-            ctx.draw(tonIcon, in: tonRect)
-            ctx.draw(starsIcon, in: starsRect)
-
-        } else if let tonIcon {
-            let tonRect = size.bounds.focusY(tonIcon.backingSize, x: 0)
-            ctx.draw(tonIcon, in: tonRect)
-        } else if let starsIcon {
-            let starsRect = size.bounds.focusY(starsIcon.backingSize, x: 0)
-            ctx.draw(starsIcon, in: starsRect)
-        }
-    })!
-}
 
 
 
@@ -1346,10 +1295,6 @@ public func generateIcons(from palette: ColorPalette, bubbled: Bool) -> AnsibleI
                                                chatPaidMessageInBubble_outgoing: { AnsibleThemeHooks.shared.image(.iconPaidMessageStatus).precomposed(palette.grayIconBubble_outgoing) },
                                                chatPaidMessageOutBubble: { AnsibleThemeHooks.shared.image(.iconPaidMessageStatus).precomposed(palette.grayIcon) },
                                                chatPaidMessageOverlayBubble: { AnsibleThemeHooks.shared.image(.iconPaidMessageStatus).precomposed(.white) },
-                                               chatDiceStakeInBubble_incoming: { AnsibleThemeHooks.shared.image(.iconTonCurrency).precomposed(palette.grayIconBubble_incoming, zoom: 0.8) },
-                                               chatDiceStakeInBubble_outgoing: { AnsibleThemeHooks.shared.image(.iconTonCurrency).precomposed(palette.grayIconBubble_outgoing, zoom: 0.8) },
-                                               chatDiceStakeOutBubble: { AnsibleThemeHooks.shared.image(.iconTonCurrency).precomposed(palette.grayIcon, zoom: 0.8) },
-                                                chatDiceStakeOverlayBubble: { AnsibleThemeHooks.shared.image(.iconTonCurrency).precomposed(.white, zoom: 0.8) },
                                                chatNavigationBack: { AnsibleThemeHooks.shared.image(.iconChatNavigationBack).precomposed(palette.accentIcon) },
                                                peerInfoAddMember: { AnsibleThemeHooks.shared.image(.iconNewContact).precomposed(palette.accentIcon, flipVertical: true) },
                                                chatSearchUp: { AnsibleThemeHooks.shared.image(.iconSearchArrow).precomposed(palette.accentIcon) },
@@ -1522,7 +1467,6 @@ public func generateIcons(from palette: ColorPalette, bubbled: Bool) -> AnsibleI
                                                settingsProxy: { generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconSettingsProxy).precomposed(flipVertical: true)) },
                                                settingsAppearance: { generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconAppearanceSettings).precomposed(flipVertical: true)) },
                                                settingsPassport: { generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconSettingsSecurity).precomposed(flipVertical: true)) },
-                                               settingsWallet: { generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconSettingsWallet).precomposed(flipVertical: true)) },
                                                settingsUpdate: { generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconSettingsUpdate).precomposed(flipVertical: true)) },
                                                settingsFilters: { generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconSettingsFilters).precomposed(flipVertical: true)) },
                                                settingsPremium: { generatePremiumIcon(AnsibleThemeHooks.shared.image(.iconPremiumSettings).precomposed(flipVertical: true)) },
@@ -1540,7 +1484,6 @@ public func generateIcons(from palette: ColorPalette, bubbled: Bool) -> AnsibleI
                                                settingsProxyActive: { generateSettingsActiveIcon(AnsibleThemeHooks.shared.image(.iconSettingsProxy).precomposed(palette.underSelectedColor, flipVertical: true), background: palette.accentSelect) },
                                                settingsAppearanceActive: { generateSettingsActiveIcon(AnsibleThemeHooks.shared.image(.iconAppearanceSettings).precomposed(palette.underSelectedColor, flipVertical: true), background: palette.accentSelect) },
                                                settingsPassportActive: { generateSettingsActiveIcon(AnsibleThemeHooks.shared.image(.iconSettingsSecurity).precomposed(palette.underSelectedColor, flipVertical: true), background: palette.accentSelect) },
-                                               settingsWalletActive: { generateSettingsActiveIcon(AnsibleThemeHooks.shared.image(.iconSettingsWallet).precomposed(palette.underSelectedColor, flipVertical: true), background: palette.accentSelect) },
                                                settingsUpdateActive: { generateSettingsActiveIcon(AnsibleThemeHooks.shared.image(.iconSettingsUpdate).precomposed(palette.underSelectedColor, flipVertical: true), background: palette.accentSelect) },
                                                settingsFiltersActive: { generateSettingsActiveIcon(AnsibleThemeHooks.shared.image(.iconSettingsFilters).precomposed(palette.underSelectedColor, flipVertical: true), background: palette.accentSelect) },
                                                settingsProfile: { generateSettingsIcon(AnsibleThemeHooks.shared.image(.iconSettingsProfile).precomposed(flipVertical: true)) },
@@ -1668,7 +1611,6 @@ public func generateIcons(from palette: ColorPalette, bubbled: Bool) -> AnsibleI
                                                peerInfoMembers: { AnsibleThemeHooks.shared.image(.iconChatMembers).precomposed(flipVertical: true) },
                                                peerInfoStarsBalance: { AnsibleThemeHooks.shared.image(.iconPeerInfoStarsBalance).precomposed(flipVertical: true) },
                                                peerInfoBalance: { AnsibleThemeHooks.shared.image(.iconPeerInfoBalance).precomposed(flipVertical: true) },
-                                               peerInfoTonBalance: { AnsibleThemeHooks.shared.image(.iconPeerInfoTonBalance).precomposed(flipVertical: true) },
                                                peerInfoBotUsername: { AnsibleThemeHooks.shared.image(.iconPeerInfoBotUsername).precomposed(flipVertical: true) },
                                                chatUndoAction: { AnsibleThemeHooks.shared.image(.iconChatUndoAction).precomposed(NSColor(0x29ACFF)) },
                                                appUpdate: { AnsibleThemeHooks.shared.image(.iconAppUpdate).precomposed() },
@@ -1716,14 +1658,7 @@ public func generateIcons(from palette: ColorPalette, bubbled: Bool) -> AnsibleI
                                                     ctx.clear(NSMakeRect(0, 0, size.width, size.height))
                                                     ctx.draw(image, in: NSMakeRect(0, 0, size.width, size.height))
                                                 })! },
-                                               wallet_close: { AnsibleThemeHooks.shared.image(.iconChatSearchCancel).precomposed(palette.accentIcon) },
-                                               wallet_qr: { AnsibleThemeHooks.shared.image(.iconWalletQR).precomposed(palette.accentIcon) },
-                                               wallet_receive: { AnsibleThemeHooks.shared.image(.iconWalletReceive).precomposed(palette.underSelectedColor) },
-                                               wallet_send: { AnsibleThemeHooks.shared.image(.iconWalletSend).precomposed(palette.underSelectedColor) },
-                                               wallet_settings: { AnsibleThemeHooks.shared.image(.iconWalletSettings).precomposed(palette.accentIcon) },
-                                               wallet_update: { AnsibleThemeHooks.shared.image(.iconWalletUpdate).precomposed(palette.grayIcon) },
-                                               wallet_passcode_visible: { AnsibleThemeHooks.shared.image(.iconWalletPasscodeVisible).precomposed(palette.grayIcon) },
-                                               wallet_passcode_hidden: { AnsibleThemeHooks.shared.image(.iconWalletPasscodeHidden).precomposed(palette.grayIcon) },
+                                               qrCode: { AnsibleThemeHooks.shared.image(.iconQrCode).precomposed(palette.accentIcon) },
                                                wallpaper_color_close: { AnsibleThemeHooks.shared.image(.iconGradientClose).precomposed(palette.grayIcon) },
                                                wallpaper_color_add: { AnsibleThemeHooks.shared.image(.iconGradientAdd).precomposed(palette.grayIcon) },
                                                wallpaper_color_swap: { AnsibleThemeHooks.shared.image(.iconGradientSwap).precomposed(palette.grayIcon) },

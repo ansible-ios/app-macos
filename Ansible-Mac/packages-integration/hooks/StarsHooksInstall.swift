@@ -99,10 +99,6 @@ func installStarsUIHooks() {
     }, makeAvatarMenuItem: { context, peer in
         guard let context = giftsContext(context) else { return nil }
         return GroupCallAvatarMenuItem(peer, context: context)
-    }, giftTransferBlockchainOption: { context, window, gift, reference, profileGiftsContext in
-        return nil
-    }, giftMoveToGiftsAction: { _, _, _ in
-        return nil
     }, selectContact: { context, window, title, confirmation in
         guard let context = giftsContext(context) else { return .single([]) }
         return selectModalPeers(window: window, context: context, title: title, behavior: SelectContactsBehavior(limit: 1), confirmation: confirmation)

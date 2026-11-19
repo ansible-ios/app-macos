@@ -53,8 +53,7 @@ public final class ChatHTMLRowItem: ChatRowItem, HTMLTwidgetRow {
         if let widget, !isWidgetPreview {
             state.widgetRequestHandler = { [weak context] request, complete in
                 guard let context else { complete(.failure(.failed)); return }
-                guard !request.wallet || ChatNavigationHooks.shared.widgetWalletAvailable(context) else { complete(.failure(.notAllowed)); return }
-                _ = context.engine.messages.requestBotWidgetQueryAnswer(messageId: message.id, queryType: .data(withWallet: request.wallet), data: Data(request.data.utf8)).start(next: { data in
+                _ = context.engine.messages.requestBotWidgetQueryAnswer(messageId: message.id, queryType: .data(withWallet: false), data: Data(request.data.utf8)).start(next: { data in
                     complete(.success(WidgetRequestAnswer(result: data.flatMap { String(data: $0, encoding: .utf8) })))
                 }, error: { error in
                     switch error {
@@ -63,10 +62,6 @@ public final class ChatHTMLRowItem: ChatRowItem, HTMLTwidgetRow {
                     case .failed: complete(.failure(.failed))
                     }
                 })
-            }
-            state.widgetWalletHandler = { [weak context] call, complete in
-                guard let context else { complete(.failure(.failed)); return }
-                ChatNavigationHooks.shared.openWidgetWallet(context, message, call, complete)
             }
             state.widgetCopyHandler = { [weak context] text in
                 copyToClipboard(text)
@@ -96,7 +91,7 @@ public final class ChatHTMLRowItem: ChatRowItem, HTMLTwidgetRow {
             }
         }
         let caption = ChatMessageItem.applyMessageEntities(with: [TextEntitiesMessageAttribute(entities: entities)], for: text, message: message, context: context, fontSize: theme.fontSize, openInfo: chatInteraction.openInfo, botCommand: chatInteraction.sendPlainText, hashtag: chatInteraction.hashtag, applyProxy: chatInteraction.applyProxy, textColor: theme.chat.textColor(incoming, bubbled), linkColor: theme.chat.linkColor(incoming, bubbled), monospacedPre: theme.chat.monospacedPreColor(incoming, bubbled), monospacedCode: theme.chat.monospacedCodeColor(incoming, bubbled), mediaDuration: nil, timecode: { _ in
-        }, openBank: chatInteraction.openBank, blockColor: theme.chat.blockColor(context.peerNameColors, message: message, isIncoming: incoming, bubbled: bubbled), isDark: theme.colors.isDark, bubbled: bubbled, codeSyntaxData: entry.additionalData.codeSyntaxData, loadCodeSyntax: chatInteraction.interactionEnqueueCodeSyntax, openPhoneNumber: chatInteraction.openPhoneNumberContextMenu, openTonAddress: chatInteraction.openTonAddressContextMenu, ignoreLinks: !entry.additionalData.canHighlightLinks && incoming).mutableCopy() as! NSMutableAttributedString
+        }, openBank: chatInteraction.openBank, blockColor: theme.chat.blockColor(context.peerNameColors, message: message, isIncoming: incoming, bubbled: bubbled), isDark: theme.colors.isDark, bubbled: bubbled, codeSyntaxData: entry.additionalData.codeSyntaxData, loadCodeSyntax: chatInteraction.interactionEnqueueCodeSyntax, openPhoneNumber: chatInteraction.openPhoneNumberContextMenu, ignoreLinks: !entry.additionalData.canHighlightLinks && incoming).mutableCopy() as! NSMutableAttributedString
         caption.removeWhitespaceFromQuoteAttribute()
         InlineStickerItem.apply(to: caption, associatedMedia: message.associatedMedia, entities: entities, isPremium: context.isPremium)
         let spoilerColor = bubbled ? theme.chat.grayText(incoming, bubbled) : theme.chat.textColor(incoming, bubbled)

@@ -636,7 +636,7 @@ enum ChannelInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
     case postSuggestion(section: ChannelInfoSection, enabled: Bool, amount: StarsAmount?, viewType: GeneralViewType)
     case autotranslate(section: ChannelInfoSection, peer: PeerEquatable, enabled: Bool, viewType: GeneralViewType)
     case stats(section: ChannelInfoSection, datacenterId: Int32, monetization: Bool, stars: Bool, viewType: GeneralViewType)
-    case balance(section: ChannelInfoSection, ton: String?, stars: String?, canSeeTon: Bool, canSeeStars: Bool, viewType: GeneralViewType)
+    case balance(section: ChannelInfoSection, stars: String, canSeeStars: Bool, viewType: GeneralViewType)
     case discussion(sectionId: ChannelInfoSection, group: Peer?, participantsCount: Int32?, viewType: GeneralViewType)
     case discussionDesc(sectionId: ChannelInfoSection, viewType: GeneralViewType)
     case aboutInput(sectionId: ChannelInfoSection, description:String, viewType: GeneralViewType)
@@ -671,7 +671,7 @@ enum ChannelInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
         case let .postSuggestion(section, enabled, amount, _): return .postSuggestion(section: section, enabled: enabled, amount: amount, viewType: viewType)
         case let .autotranslate(section, peer, enabled, _): return .autotranslate(section: section, peer: peer, enabled: enabled, viewType: viewType)
         case let .stats(section, datacenterId, monetization, stars, _): return .stats(section: section, datacenterId: datacenterId, monetization: monetization, stars: stars, viewType: viewType)
-        case let .balance(section, ton, stars, canSeeTon, canSeeStars, _): return .balance(section: section, ton: ton, stars: stars, canSeeTon: canSeeTon, canSeeStars: canSeeStars, viewType: viewType)
+        case let .balance(section, stars, canSeeStars, _): return .balance(section: section, stars: stars, canSeeStars: canSeeStars, viewType: viewType)
         case let .discussionDesc(sectionId, _): return .discussionDesc(sectionId: sectionId, viewType: viewType)
         case let .aboutInput(sectionId, description, _): return .aboutInput(sectionId: sectionId, description: description, viewType: viewType)
         case let .verifiedInfo(sectionId, verification, _): return .verifiedInfo(sectionId: sectionId, value: verification, viewType: viewType)
@@ -860,8 +860,8 @@ enum ChannelInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
             } else {
                 return false
             }
-        case let .balance(sectionId, ton, stars, canSeeTon, canSeeStars, viewType):
-            if case .balance(sectionId, ton, stars, canSeeTon, canSeeStars, viewType) = entry {
+        case let .balance(sectionId, stars, canSeeStars, viewType):
+            if case .balance(sectionId, stars, canSeeStars, viewType) = entry {
                 return true
             } else {
                 return false
@@ -1020,7 +1020,7 @@ enum ChannelInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
             return sectionId.rawValue
         case let .stats(sectionId, _, _, _, _):
             return sectionId.rawValue
-        case let .balance(sectionId, _, _, _, _, _):
+        case let .balance(sectionId, _, _, _):
             return sectionId.rawValue
         case let .discussionDesc(sectionId, _):
             return sectionId.rawValue
@@ -1083,7 +1083,7 @@ enum ChannelInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
             return (sectionId.rawValue * 1000) + stableIndex
         case let .stats(sectionId, _, _, _, _):
             return (sectionId.rawValue * 1000) + stableIndex
-        case let .balance(sectionId, _, _, _, _, _):
+        case let .balance(sectionId, _, _, _):
             return (sectionId.rawValue * 1000) + stableIndex
         case let .discussionDesc(sectionId, _):
             return (sectionId.rawValue * 1000) + stableIndex
@@ -1235,10 +1235,10 @@ enum ChannelInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
             return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoStatAndBoosts, icon: theme.icons.profile_channel_stats, type: .next, viewType: viewType, action: {
                 arguments.stats(datacenterId, monetization: monetization, stars: stars)
             })
-        case let .balance(_, ton, stars, canSeeTon, canSeeStars, viewType):
-            let icon = generateTonAndStarBalanceIcon(ton: ton, stars: stars)
+        case let .balance(_, stars, canSeeStars, viewType):
+            let icon = generateStarBalanceIcon(stars)
             return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditBalance, icon: theme.icons.peerInfoBalance, type: .nextImage(icon), viewType: viewType, action: {
-                arguments.openStats(canSeeTon: canSeeTon, canSeeStars: canSeeStars)
+                arguments.openStats(canSeeStars: canSeeStars)
             })
         case let .setTitle(_, text, viewType):
             return InputDataRowItem(initialSize, stableId: stableId.hashValue, mode: .plain, error: nil, viewType: viewType, currentText: text, placeholder: nil, inputPlaceholder: strings().peerInfoChannelTitlePleceholder, filter: { $0 }, updated: arguments.updateEditingName, limit: 255)
@@ -1268,7 +1268,7 @@ enum ChannelInfoSection : Int {
     case media = 9
 }
 
-func channelInfoEntries<Context: AccountContextProtocol>(view: PeerView, arguments:PeerInfoArguments<Context>, mediaTabsData: PeerMediaTabsData, inviteLinksCount: Int32, joinRequestsCount: Int32, availableReactions: AvailableReactions?, stories: PeerExpiringStoryListContext.State?, revenueState: StarsRevenueStatsContextState?, tonRevenueState: StarsRevenueStatsContextState?, mutedByDefault: Bool) -> [PeerInfoEntry] {
+func channelInfoEntries<Context: AccountContextProtocol>(view: PeerView, arguments:PeerInfoArguments<Context>, mediaTabsData: PeerMediaTabsData, inviteLinksCount: Int32, joinRequestsCount: Int32, availableReactions: AvailableReactions?, stories: PeerExpiringStoryListContext.State?, revenueState: StarsRevenueStatsContextState?, mutedByDefault: Bool) -> [PeerInfoEntry] {
     
     let arguments = arguments as! ChannelInfoArguments<Context>
     var state:ChannelInfoState {
@@ -1427,8 +1427,8 @@ func channelInfoEntries<Context: AccountContextProtocol>(view: PeerView, argumen
                 let stars: String? = revenueState?.stats?.balances.availableBalance.fullyFormatted
                 
                 
-                if cachedData.flags.contains(.canViewStarsRevenue), stars != nil {
-                    entries.append(.balance(section: .manage, ton: nil, stars: stars, canSeeTon: false, canSeeStars: cachedData.flags.contains(.canViewStarsRevenue), viewType: .innerItem))
+                if cachedData.flags.contains(.canViewStarsRevenue), let stars {
+                    entries.append(.balance(section: .manage, stars: stars, canSeeStars: cachedData.flags.contains(.canViewStarsRevenue), viewType: .innerItem))
                 }
 
             }

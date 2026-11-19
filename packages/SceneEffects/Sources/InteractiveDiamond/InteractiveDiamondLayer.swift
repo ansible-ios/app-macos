@@ -72,9 +72,9 @@ public final class InteractiveDiamondLayer: MetalEngineSubjectLayer, MetalEngine
         }
 
         required init?(device: MTLDevice) {
-            guard let library = gramDiamondMetalLibrary(device: device),
-                  let vertex = library.makeFunction(name: "gramDiamondCompositeVertex"),
-                  let fragment = library.makeFunction(name: "gramDiamondCompositeFragment") else {
+            guard let library = ansibleDiamondMetalLibrary(device: device),
+                  let vertex = library.makeFunction(name: "ansibleDiamondCompositeVertex"),
+                  let fragment = library.makeFunction(name: "ansibleDiamondCompositeFragment") else {
                 return nil
             }
             let descriptor = MTLRenderPipelineDescriptor()

@@ -81,12 +81,10 @@ public enum AnalyticsCoverage {
         "SEPasslockController": .passcodeLock,
         "SESelectController": .shareExtension,
         "SEUnauthorizedViewController": .shareExtensionLoggedOut,
-        "WalletAuthorizeController": .walletAuthorize,
-        "WalletPeerBalanceController": .walletPeerBalance,
         "InstantViewInBrowser": .instantView,
         "WebGameViewController": .botGame,
         "WebpageModalController": .botMiniApp,
-        "WebsiteController": .browserTonsite,
+        "WebsiteController": .browserWebsite,
         "EmptyChatViewController": .appNoChatSelected,
     ]
 }

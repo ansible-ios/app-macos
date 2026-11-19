@@ -612,7 +612,7 @@ public func servicePaymentAmount(_ amount: Int64, currency: String, embedDiamond
     guard currency == XTR else {
         return formatReceiptAmount(amount, currency: currency)
     }
-    let number = walletFormattedNumber(amount, walletGroupingSeparator)
+    let number = groupedCurrencyNumber(amount, currencyGroupingSeparator)
     if embedDiamond {
         return "\u{fffc}\(TINY_SPACE)\(number)"
     }

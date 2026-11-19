@@ -1,3 +1,4 @@
+import AnsibleLinks
 import Cocoa
 import AppAnalytics
 import TGUIKit
@@ -7,22 +8,18 @@ import SwiftSignalKit
 import AnsibleContext
 
 func isUnsupportedWalletNavigation(_ url: URL?) -> Bool {
-    guard let url else { return false }
-    if ["ton", "tonsite", "tc", "tonconnect"].contains(url.scheme?.lowercased() ?? "") { return true }
-    return url.host?.lowercased().hasSuffix(".ton") == true
+    return url.map { isRetiredPaymentLink($0.absoluteString) } ?? false
 }
 
 public enum BrowserLinkKind {
     case external
     case shareUrl
-    case tonConnect
-    case tonsite(String)
     case instantView
     case other
 
     var keepsSourceBrowserOpen: Bool {
         switch self {
-        case .external, .shareUrl, .tonConnect:
+        case .external, .shareUrl:
             return true
         default:
             return false

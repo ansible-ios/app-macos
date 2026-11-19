@@ -755,13 +755,6 @@ public final class ChatRichTextRowView: ChatMessageView, ChatBubbleCustomTextSel
             guard let item, ChatRichTextSenderPage.allowsOpenURL(urlItem.url, isIncoming: item.isIncoming, allowsLinks: item.entry.additionalData.canHighlightLinks) else {
                 return
             }
-            if let address = urlItem.tonAddress {
-                guard address.utf8.count == 48 else {
-                    return
-                }
-                interaction.openTonAddressContextMenu(address)
-                return
-            }
             // Mention by peer id (see InstantPageTextItem .textMentionName): open the profile directly,
             // since `inApp` doesn't resolve a `as://user?id=` URL.
             if urlItem.url.hasPrefix("as://user?id=") {

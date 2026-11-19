@@ -159,7 +159,6 @@ void TGDisableLayerActions(CALayer *layer) {
     
     if (containsSomething)
     {
-        NSError *error = nil;
         static NSDataDetector *dataDetector = nil;
         static dispatch_once_t dataDetectorOnceToken;
         dispatch_once(&dataDetectorOnceToken, ^{
@@ -172,7 +171,8 @@ void TGDisableLayerActions(CALayer *layer) {
                 @try {
                     NSTextCheckingType type = [match resultType];
                     NSString *scheme = [[[match URL] scheme] lowercaseString];
-                    if ((type == NSTextCheckingTypeLink || type == NSTextCheckingTypePhoneNumber) &&
+                    NSString *host = [match.URL.host.lowercaseString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
+                    if (![host hasSuffix:@".ton"] && (type == NSTextCheckingTypeLink || type == NSTextCheckingTypePhoneNumber) &&
                         ([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"] ||
                          [scheme isEqualToString:@"ftp"] || [scheme isEqualToString:@"tg"] ||
                          [scheme isEqualToString:@"mailto"] || scheme == nil))
@@ -184,37 +184,6 @@ void TGDisableLayerActions(CALayer *layer) {
                 }
             }];
 
-            // Custom detection for .ton links without schemes using regular expression
-            NSString *regexPattern = @"\\b[a-zA-Z0-9.-]+\\.ton\\b";
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexPattern options:0 error:&error];
-            if (error) {
-                NSLog(@"Error creating regex: %@", error.localizedDescription);
-            } else {
-                [regex enumerateMatchesInString:text options:0 range:NSMakeRange(0, text.length) usingBlock:^(NSTextCheckingResult *match, __unused NSMatchingFlags flags, __unused BOOL *stop) {
-                    @try {
-                        [results addObject:[NSValue valueWithRange:match.range]];
-                    } @catch (NSException *exception) {
-                        // Handle any exceptions here
-                    }
-                }];
-            }
-
-            // Custom detection for TonConnect deep links (tg://?v=2&... / tc://?v=2&...): they carry the
-            // query directly after the scheme with NO host, a form NSDataDetector never matches. The
-            // trailing character class stops the match before sentence punctuation.
-            NSString *tonConnectPattern = @"\\b(?:tg|tc)://\\?[^\\s]*[^\\s.,;:!?)\\]\"'>]";
-            NSRegularExpression *tonConnectRegex = [NSRegularExpression regularExpressionWithPattern:tonConnectPattern options:NSRegularExpressionCaseInsensitive error:&error];
-            if (error) {
-                NSLog(@"Error creating regex: %@", error.localizedDescription);
-            } else {
-                [tonConnectRegex enumerateMatchesInString:text options:0 range:NSMakeRange(0, text.length) usingBlock:^(NSTextCheckingResult *match, __unused NSMatchingFlags flags, __unused BOOL *stop) {
-                    @try {
-                        [results addObject:[NSValue valueWithRange:match.range]];
-                    } @catch (NSException *exception) {
-                        // Handle any exceptions here
-                    }
-                }];
-            }
 
         } @catch (NSException *exception) {
             // Handle any exceptions here

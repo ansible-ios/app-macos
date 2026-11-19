@@ -54,20 +54,7 @@ public struct StarsHooks {
     public let makeCraftAboutFeatureItem: (NSSize, AnyHashable, [GiftCraftFeature]) -> TableRowItem
     public let makeCraftingAreaItem: (NSSize, AnyHashable, GiftCraftingAreaData) -> TableRowItem
     public let makeAvatarMenuItem: (any AccountContextProtocol, Peer) -> ContextMenuItem?
-    public let giftTransferBlockchainOption: (any AccountContextProtocol, Window, StarGift.UniqueGift, StarGiftReference, ProfileGiftsContext) -> (title: String, icon: NSImage, action: () -> Void)?
-    public let giftMoveToGiftsAction: (any AccountContextProtocol, Window, StarGift.UniqueGift) -> (() -> Void)?
-    public var giftTransferBlockchainOptionWithContext: ((any AccountContextProtocol, Window, StarGift.UniqueGift, StarGiftReference, ProfileGiftsContext, AnalyticsContext) -> (title: String, icon: NSImage, action: () -> Void)?)?
 
-    public func giftTransferBlockchainOptionObserved(_ context: any AccountContextProtocol, _ window: Window, _ gift: StarGift.UniqueGift, _ reference: StarGiftReference, _ giftsContext: ProfileGiftsContext, analyticsContext: AnalyticsContext) -> (title: String, icon: NSImage, action: () -> Void)? {
-        if let giftTransferBlockchainOptionWithContext {
-            return giftTransferBlockchainOptionWithContext(context, window, gift, reference, giftsContext, analyticsContext)
-        }
-        let presentation = analyticsContext.beginPresentation()
-        guard let option = giftTransferBlockchainOption(context, window, gift, reference, giftsContext) else { return nil }
-        return (title: option.title, icon: option.icon, action: {
-            withExtendedLifetime(presentation) { option.action() }
-        })
-    }
 
     public let selectContact: (any AccountContextProtocol, Window, String, @escaping ([PeerId]) -> Signal<Bool, NoError>) -> Signal<[PeerId], NoError>
     public let openMultigift: (any AccountContextProtocol, Bool) -> Void
@@ -102,8 +89,6 @@ public struct StarsHooks {
                 inputTextViewSize: @escaping (NSView, CGFloat) -> (NSSize, CGFloat),
                 openMiniApp: @escaping (any AccountContextProtocol, EnginePeer) -> Void,
                 makeAvatarMenuItem: @escaping (any AccountContextProtocol, Peer) -> ContextMenuItem?,
-                giftTransferBlockchainOption: @escaping (any AccountContextProtocol, Window, StarGift.UniqueGift, StarGiftReference, ProfileGiftsContext) -> (title: String, icon: NSImage, action: () -> Void)?,
-                giftMoveToGiftsAction: @escaping (any AccountContextProtocol, Window, StarGift.UniqueGift) -> (() -> Void)?,
                 selectContact: @escaping (any AccountContextProtocol, Window, String, @escaping ([PeerId]) -> Signal<Bool, NoError>) -> Signal<[PeerId], NoError>,
                 openMultigift: @escaping (any AccountContextProtocol, Bool) -> Void,
                 openStarMonetization: @escaping (any AccountContextProtocol, PeerId, StarsRevenueStatsContext?) -> Void,
@@ -140,8 +125,6 @@ public struct StarsHooks {
         self.makeCraftAboutFeatureItem = makeCraftAboutFeatureItem
         self.makeCraftingAreaItem = makeCraftingAreaItem
         self.makeAvatarMenuItem = makeAvatarMenuItem
-        self.giftTransferBlockchainOption = giftTransferBlockchainOption
-        self.giftMoveToGiftsAction = giftMoveToGiftsAction
         self.selectContact = selectContact
         self.openMultigift = openMultigift
         self.openStarMonetization = openStarMonetization

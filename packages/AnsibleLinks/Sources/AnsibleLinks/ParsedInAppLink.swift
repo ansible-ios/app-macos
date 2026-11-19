@@ -32,7 +32,6 @@ public enum WallpaperPreview {
 
 public enum ParsedInAppLink {
     case external(link:String, Bool)
-    case tonsite(link: String)
     case followResolvedName(link: String, username:String, postId:Int32?, forceProfile: Bool, action:ParsedChatLinkAction?)
     case comments(link: String, username:String, threadId: Int32, commentId: Int32?)
     case topic(link: String, username:String, threadId: Int32, commentId: Int32?)
@@ -50,8 +49,6 @@ public enum ParsedInAppLink {
     case applyLocalization(link: String, value: String)
     case wallpaper(link: String, preview: WallpaperPreview)
     case theme(link: String, name: String)
-    case tonTransfer(link: String, data: ParsedWalletUrl)
-    case sendGrams(link: String, data: ParsedSendGramsLink)
     case settings(link: String, section: InAppSettingsSection)
     case invoice(link: String, slug: String)
     case premiumOffer(link: String, ref: String?)
@@ -67,7 +64,7 @@ public enum ParsedInAppLink {
     case multigift(link: String)
     case nft(link: String, slug: String)
     case joinCall(link: String, slug: String)
-    case starsInfo(link: String, isTon: Bool)
+    case starsInfo(link: String)
     case auction(link: String, slug: String)
     case oauth(link: String, token: String)
     case createBot(link: String, managerUsername: String, botUsername: String, title: String?)

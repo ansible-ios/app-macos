@@ -188,7 +188,6 @@ private enum ApplicationSpecificGlobalNotice: Int32 {
     case dismissedBirthdayPremiumGifts = 1
     case playedMessageEffects = 2
     case playedMessageEffectsSet = 3
-    case walletGramTooltip = 90
 
     public var key: ValueBoxKey {
         let v = ValueBoxKey(length: 4)
@@ -211,35 +210,14 @@ private struct ApplicationSpecificNoticeKeys {
     public static func playedMessageEffects() -> NoticeEntryKey {
         return NoticeEntryKey(namespace: noticeNamespace(namespace: globalNamespace), key: ApplicationSpecificGlobalNotice.playedMessageEffects.key)
     }
-    public static func walletGramTooltip() -> NoticeEntryKey {
-        return NoticeEntryKey(namespace: noticeNamespace(namespace: globalNamespace), key: ApplicationSpecificGlobalNotice.walletGramTooltip.key)
-    }
     public static func playedMessageEffectsSet() -> NoticeEntryKey {
         return NoticeEntryKey(namespace: noticeNamespace(namespace: globalNamespace), key: ApplicationSpecificGlobalNotice.playedMessageEffectsSet.key)
     }
 }
 
 public struct ApplicationSpecificNotice {
-    public static func getWalletGramTooltip(accountManager: AccountManager<TelegramAccountManagerTypes>) -> Signal<Int32, NoError> {
-        return accountManager.transaction { transaction in
-            transaction.getNotice(ApplicationSpecificNoticeKeys.walletGramTooltip())?.get(ApplicationSpecificCounterNotice.self)?.value ?? 0
-        }
-    }
 
-    public static func incrementWalletGramTooltip(accountManager: AccountManager<TelegramAccountManagerTypes>) -> Signal<Void, NoError> {
-        return accountManager.transaction { transaction in
-            let count = transaction.getNotice(ApplicationSpecificNoticeKeys.walletGramTooltip())?.get(ApplicationSpecificCounterNotice.self)?.value ?? 0
-            if let entry = CodableEntry(ApplicationSpecificCounterNotice(value: count + 1)) {
-                transaction.setNotice(ApplicationSpecificNoticeKeys.walletGramTooltip(), entry)
-            }
-        }
-    }
 
-    public static func resetWalletGramTooltip(accountManager: AccountManager<TelegramAccountManagerTypes>) -> Signal<Void, NoError> {
-        return accountManager.transaction { transaction in
-            transaction.setNotice(ApplicationSpecificNoticeKeys.walletGramTooltip(), nil)
-        }
-    }
 
     public static func getBotPaymentLiability(accountManager: AccountManager<TelegramAccountManagerTypes>, peerId: PeerId) -> Signal<Bool, NoError> {
         return accountManager.transaction { transaction -> Bool in

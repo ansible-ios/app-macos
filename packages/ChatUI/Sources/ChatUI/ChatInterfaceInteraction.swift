@@ -766,7 +766,6 @@ public final class ChatInteraction : InterfaceObserver  {
     }
     
     public var openPhoneNumberContextMenu: (String)->Void = { _ in }
-    public var openTonAddressContextMenu: (String)->Void = { _ in }
     
     public var toggleQuote: (QuoteMessageIndex)->Void = { _ in }
     public var toggleDetails: (DetailsMessageIndex)->Void = { _ in }
@@ -1815,7 +1814,6 @@ public final class ChatInteraction : InterfaceObserver  {
         self.replyToAnother = { _, _ in }
         self.enqueueCodeSyntax = { _, _, _, _, _ in }
         self.openPhoneNumberContextMenu = { _ in }
-        self.openTonAddressContextMenu = { _ in }
         self.toggleQuote = { _ in }
         self.toggleDetails = { _ in }
         self.markAdAsSeen = { _ in }

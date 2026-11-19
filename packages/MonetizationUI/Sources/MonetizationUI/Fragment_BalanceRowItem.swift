@@ -26,14 +26,12 @@ final class Fragment_BalanceRowItem : GeneralRowItem {
             switch currency {
             case .xtr:
                 return "≈"
-            case .ton:
-                return "≈"
             }
         }
     }
     
     let context: any AccountContextProtocol
-    let tonBalance: TextViewLayout
+    let diamondBalance: TextViewLayout
     let usdBalance: TextViewLayout
     let balance: Balance
         
@@ -54,10 +52,10 @@ final class Fragment_BalanceRowItem : GeneralRowItem {
         }
         self.canWithdraw = canWithdraw
         self.nextWithdrawalTimestamp = nextWithdrawalTimestamp
-        let tonBalance = NSAttributedString.initialize(string: formatCurrencyAmount(Int64(balance.amount), currency: balance.currency.rawValue).prettyCurrencyNumber, color: theme.colors.text, font: .medium(40)).smallDecemial
+        let diamondBalance = NSAttributedString.initialize(string: formatCurrencyAmount(Int64(balance.amount), currency: balance.currency.rawValue).prettyCurrencyNumber, color: theme.colors.text, font: .medium(40)).smallDecemial
         let usdBalance = NSAttributedString.initialize(string: balance.apxSymbol + balance.usd, color: theme.colors.grayText, font: .normal(.text)).smallDecemial
 
-        self.tonBalance = .init(tonBalance)
+        self.diamondBalance = .init(diamondBalance)
         self.usdBalance = .init(usdBalance)
 
         super.init(initialSize, stableId: stableId, viewType: viewType)
@@ -67,15 +65,13 @@ final class Fragment_BalanceRowItem : GeneralRowItem {
         switch balance.currency {
         case .xtr:
             return strings().monetizationBalanceWithdrawDiamonds
-        case .ton:
-            return strings().monetizationBalanceWithdrawTon
         }
     }
     
     override func makeSize(_ width: CGFloat, oldWidth: CGFloat = 0) -> Bool {
         _ = super.makeSize(width, oldWidth: oldWidth)
         
-        self.tonBalance.measure(width: blockWidth - viewType.innerInset.left - viewType.innerInset.right)
+        self.diamondBalance.measure(width: blockWidth - viewType.innerInset.left - viewType.innerInset.right)
         self.usdBalance.measure(width: blockWidth - viewType.innerInset.left - viewType.innerInset.right)
 
         return true
@@ -88,9 +84,7 @@ final class Fragment_BalanceRowItem : GeneralRowItem {
     override var accessibilityLabel: String? {
         switch balance.currency {
         case .xtr:
-            return tonBalance.attributedString.string + " " + strings().starListAnsibleDiamonds
-        case .ton:
-            return tonBalance.attributedString.string + " TON"
+            return diamondBalance.attributedString.string + " " + strings().starListAnsibleDiamonds
         }
     }
 
@@ -120,9 +114,9 @@ private final class BalanceRowView : GeneralContainableRowView {
     
 
     
-    private let tonBalanceView = TextView()
-    private let tonBalanceContainer = View()
-    private let tonView: MonetizationStickerView = MonetizationHooks.shared.makeStickerView(NSMakeRect(0, 0, 46, 46))
+    private let diamondBalanceView = TextView()
+    private let diamondBalanceContainer = View()
+    private let diamondIconView: MonetizationStickerView = MonetizationHooks.shared.makeStickerView(NSMakeRect(0, 0, 46, 46))
     private let usdBalanceView = TextView()
     
     
@@ -250,9 +244,9 @@ private final class BalanceRowView : GeneralContainableRowView {
 
     required init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        tonBalanceContainer.addSubview(tonView)
-        tonBalanceContainer.addSubview(tonBalanceView)
-        addSubview(tonBalanceContainer)
+        diamondBalanceContainer.addSubview(diamondIconView)
+        diamondBalanceContainer.addSubview(diamondBalanceView)
+        addSubview(diamondBalanceContainer)
         addSubview(usdBalanceView)
                 
     }
@@ -269,12 +263,12 @@ private final class BalanceRowView : GeneralContainableRowView {
             return
         }
         
-        transition.updateFrame(view: tonBalanceContainer, frame: tonBalanceContainer.centerFrameX(y: item.viewType.innerInset.top))
-        transition.updateFrame(view: tonView, frame: tonView.centerFrameY(x: 0, addition: -3))
-        transition.updateFrame(view: tonBalanceView, frame: tonBalanceView.centerFrameY(x: tonView.frame.maxX))
+        transition.updateFrame(view: diamondBalanceContainer, frame: diamondBalanceContainer.centerFrameX(y: item.viewType.innerInset.top))
+        transition.updateFrame(view: diamondIconView, frame: diamondIconView.centerFrameY(x: 0, addition: -3))
+        transition.updateFrame(view: diamondBalanceView, frame: diamondBalanceView.centerFrameY(x: diamondIconView.frame.maxX))
 
         
-        transition.updateFrame(view: usdBalanceView, frame: usdBalanceView.centerFrameX(y: tonBalanceContainer.frame.maxY - 4))
+        transition.updateFrame(view: usdBalanceView, frame: usdBalanceView.centerFrameX(y: diamondBalanceContainer.frame.maxY - 4))
         
         var withdrawY: CGFloat = containerView.frame.height - item.viewType.innerInset.left
         
@@ -300,11 +294,11 @@ private final class BalanceRowView : GeneralContainableRowView {
         }
         
         usdBalanceView.update(item.usdBalance)
-        tonBalanceView.update(item.tonBalance)
+        diamondBalanceView.update(item.diamondBalance)
         
-        tonView.updateMonetizationSticker(animation: item.balance.currency.logo, size: tonView.frame.size, context: item.context, table: item.table, colors: item.balance.currency.colored(theme.colors.accent), animated: animated)
+        diamondIconView.updateMonetizationSticker(animation: item.balance.currency.logo, size: diamondIconView.frame.size, context: item.context, table: item.table, colors: item.balance.currency.colored(theme.colors.accent), animated: animated)
         
-        tonBalanceContainer.setFrameSize(tonBalanceContainer.subviewsWidthSize)
+        diamondBalanceContainer.setFrameSize(diamondBalanceContainer.subviewsWidthSize)
 
         let currentAction: WithdrawAction
         if let withdrawAction {

@@ -22,7 +22,7 @@ final class BrowserAnalyticsOrigin {
             context = context.restricting(peerId: peerId)
         case let .game(_, peerId, messageId):
             context = context.restricting(peerId: peerId).restricting(peerId: messageId.peerId)
-        case .mainapp, .simple, .tonsite, .instantView:
+        case .mainapp, .simple, .website, .instantView:
             break
         }
         self.context = context

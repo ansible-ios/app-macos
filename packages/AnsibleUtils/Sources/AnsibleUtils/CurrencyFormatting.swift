@@ -53,32 +53,11 @@ public extension StarsAmount {
         case .stars:
             return self.stringValue
         case .ton:
-            return formatCurrencyAmount(_abs ? abs(self.value) : self.value, currency: "TON").prettyCurrencyNumberUsd
+            return strings().chatUnsupportedMessageTitle
         }
     }
 }
 
-
-public extension CurrencyAmount.Currency {
-    var stringValue: String {
-        switch self {
-        case .stars:
-            return "XTR"
-        case .ton:
-            return "TON"
-        }
-    }
-    init(_ stringValue: String) {
-        switch stringValue {
-        case "TON":
-            self = .ton
-        case "XTR":
-            self = .stars
-        default:
-            self = .stars
-        }
-    }
-}
 
 
 public extension CurrencyAmount {

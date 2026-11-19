@@ -18,7 +18,7 @@ public struct HTMLWidgetContext: Equatable {
         self.runtime = runtime
     }
 
-    public init(accountPeerId: PeerId, basePath: String, message: Message, widget: TelegramMediaWidget, locale: String, viewer: TelegramUser?, isPremium: Bool, walletAvailable: Bool = false) {
+    public init(accountPeerId: PeerId, basePath: String, message: Message, widget: TelegramMediaWidget, locale: String, viewer: TelegramUser?, isPremium: Bool) {
         let peer = message.peers[message.id.peerId]
         let chatType: WidgetChatType?
         if widget.isCopy {
@@ -36,7 +36,7 @@ public struct HTMLWidgetContext: Equatable {
         } else {
             chatType = nil
         }
-        let runtime = WidgetContext(isCopy: widget.isCopy, canQuery: widget.canQuery, backgroundQuery: widget.backgroundQuery, chatType: chatType, viewer: widget.canQuery ? WidgetViewer(id: accountPeerId.id._internalGetInt64Value(), firstName: viewer?.firstName, lastName: viewer?.lastName, username: viewer?.addressName, isPremium: isPremium) : nil, wallet: walletAvailable)
+        let runtime = WidgetContext(isCopy: widget.isCopy, canQuery: widget.canQuery, backgroundQuery: widget.backgroundQuery, chatType: chatType, viewer: widget.canQuery ? WidgetViewer(id: accountPeerId.id._internalGetInt64Value(), firstName: viewer?.firstName, lastName: viewer?.lastName, username: viewer?.addressName, isPremium: isPremium) : nil, wallet: false)
         self.init(accountPeerId: accountPeerId, basePath: basePath, messageId: message.id, locale: locale, runtime: runtime)
     }
 

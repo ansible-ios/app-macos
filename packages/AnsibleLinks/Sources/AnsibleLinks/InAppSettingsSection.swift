@@ -16,7 +16,6 @@ public enum InAppSettingsSection : Equatable {
     case premium
     case language
     case translation(TranslationSubSection?)
-    case ton
     case appearance(AppearanceSubSection?)
     case data(DataSubSection?)
     case notifications(NotificationsSubSection?)
@@ -357,8 +356,6 @@ public enum InAppSettingsSection : Equatable {
             } else {
                 self = .translation(nil)
             }
-        case "ton":
-            self = .ton
         case "appearance":
             if components.count > 1 {
                 self = .appearance(AppearanceSubSection(rawValue: components[1], components: components))

@@ -226,7 +226,7 @@ private final class RowView: GeneralContainableRowView {
         self.gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
         self.gradient.type = .radial
 
-        stickerView.image = AnsibleThemeHooks.shared.image(.iconFragmentAdsLogo).precomposed(.white)
+        stickerView.image = AnsibleThemeHooks.shared.image(.iconOptionDiamond).precomposed(.white)
         stickerView.sizeToFit()
         
         infoBlock.setFrameSize(NSMakeSize(frame.width - 40, 10 + infoHeaderView.frame.height + 10 + infoView.frame.height + 10))

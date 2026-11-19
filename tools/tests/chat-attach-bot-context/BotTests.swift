@@ -264,7 +264,7 @@ struct BrowserTabData {
         case simple(bot: EnginePeer, url: String?, buttonText: String, source: Source)
         case straight(bot: EnginePeer, peerId: PeerId, title: String, result: RequestWebViewResult)
         case game(url: String, peerId: PeerId, messageId: MessageId)
-        case tonsite(url: String)
+        case website(url: String)
         case instantView(url: String, webPage: Int, anchor: String?)
         var peer: EnginePeer? {
             switch self { case let .mainapp(bot, _), let .webapp(bot, _, _, _, _, _, _, _), let .simple(bot, _, _, _), let .straight(bot, _, _, _): return bot; default: return nil }

@@ -1198,9 +1198,6 @@ private final class HeaderView : GeneralRowView {
                     }
                 }
                 
-                if let moveToGifts = StarsHooks.shared.giftMoveToGiftsAction(item.arguments.context, item.arguments.context.window, uniqueGift) {
-                    menu.addItem(ContextMenuItem(strings().giftTransferMoveToGifts, handler: moveToGifts, itemImage: MenuAnimation.menu_replace.value))
-                }
 
                 if !item.state.canManage, let peer = item.state.owner {
                     menu.addItem(ContextMenuItem(strings().starGiftNftOfferToBuy, handler: {
@@ -2167,12 +2164,8 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             let ownerText: TextViewLayout = .init(ownerAttr, maximumNumberOfLines: 1, alwaysStaticItems: true)
             
             ownerText.interactions.processURL = { url in
-                if let url = url as? String, !url.isEmpty {
-                    if url == "owner", let peer = state.owner {
-                        arguments.openPeer(peer, false)
-                    } else {
-                        LinkHooks.shared.openExternalLink(explorerUrl + url, false)
-                    }
+                if url as? String == "owner", let peer = state.owner {
+                    arguments.openPeer(peer, false)
                 }
             }
             
@@ -2214,23 +2207,8 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
     //            badge = nil
             }
             
-            let isBlockchainAnsible = state.gift.unique?.hostPeerId != nil && state.gift.unique?.giftAddress != nil
             
-            
-            if isBlockchainAnsible, let address = state.gift.unique?.giftAddress {
-                let ownerAttr = parseMarkdownIntoAttributedString("[\(address.prefixWithDots(20, mode: .middle))](\(address))", attributes: MarkdownAttributes(body: MarkdownAttributeSet(font: .medium(.text), textColor: theme.colors.text), bold: MarkdownAttributeSet(font: .bold(.text), textColor: theme.colors.text), link: MarkdownAttributeSet(font: .medium(.text), textColor: theme.colors.accentIcon), linkAttribute: { contents in
-                    return (NSAttributedString.Key.link.rawValue, contents)
-                }))
-                
-                let layout = TextViewLayout(ownerAttr)
-                layout.interactions.processURL = { _ in
-                    LinkHooks.shared.openExternalLink(explorerUrl + address, false)
-                }
-                
-                rows.append(.init(left: .init(.initialize(string:strings().giftUniqueOwner, color: theme.colors.text, font: .normal(.text))), right: .init(name: layout, leftView: nil, rightView: nil, badge: nil)))
-            }
-            
-            rows.append(.init(left: .init(.initialize(string: isBlockchainAnsible ? strings().giftUniqueAnsible : strings().giftUniqueOwner, color: theme.colors.text, font: .normal(.text))), right: .init(name: ownerText, leftView: leftView, rightView: rightView, badge: nil)))
+            rows.append(.init(left: .init(.initialize(string: strings().giftUniqueOwner, color: theme.colors.text, font: .normal(.text))), right: .init(name: ownerText, leftView: leftView, rightView: rightView, badge: nil)))
             
             switch state.gift {
             case let .unique(gift):
@@ -2246,22 +2224,6 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
                 }
                 
                 
-//                if let resellStars = gift.resell, badge != nil {
-//                    rows.append(.init(left: .init(.initialize(string: strings().starNftPriceSale, color: theme.colors.text, font: .normal(.text))), right: .init(name: .init(.initialize(string: "\(resellStars.formatted)", color: theme.colors.text, font: .normal(.text))), leftView: { previous in
-//                        let control: ImageView
-//                        if let previous = previous as? ImageView {
-//                            control = previous
-//                        } else {
-//                            control = ImageView(frame: NSMakeRect(0, 0, 20, 20))
-//                        }
-//                        if gift.resellForTonOnly {
-//                            control.image = AnsibleThemeHooks.shared.image(.iconTonCurrency).precomposed()
-//                        } else {
-//                            control.image = AnsibleThemeHooks.shared.image(.iconStarCurrency).precomposed()
-//                        }
-//                        return control
-//                    }, badge: badge)))
-//                }
                 
                 for attr in gift.attributes {
                     switch attr {
@@ -2367,22 +2329,6 @@ private func entries(_ state: State, arguments: Arguments) -> [InputDataEntry] {
             }
             
             
-            if let address = state.gift.unique?.giftAddress, state.gift.unique?.hostPeerId == nil, case .address = state.gift.unique?.owner {
-                entries.append(.desc(sectionId: sectionId, index: index, text: .markdown(strings().starGiftOnBlockchainInfo, linkHandler: { _ in
-                    LinkHooks.shared.openExternalLink(explorerUrl + address, false)
-                }), data: .init(viewType: .singleItem, fontSize: 13, centerViewAlignment: true, alignment: .center)))
-            } else {
-//                if case .quickLook = state.source {
-//                    entries.append(.sectionId(sectionId, type: .legacy))
-//                    sectionId += 1
-//                }
-                /*
-                 else if state.convertedGift != nil {
-                     entries.append(.sectionId(sectionId, type: .legacy))
-                     sectionId += 1
-                 }
-                 */
-            }
                       
             
         } else {
@@ -2940,16 +2886,7 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
         
         
         if let gift = state.gift.unique, gift.hostPeerId != nil, gift.giftAddress != nil {
-            let lockedPresentation = analyticsContext.beginPresentation()
-            verifyAlert(
-                for: window,
-                header: strings().starGiftActionLockedTitle,
-                information: strings().starGiftActionLockedText,
-                ok: strings().starGiftActionLockedOpen,
-                successHandler: { _ in
-                    LinkHooks.shared.openExternalLink(strings().starGiftActionLockedURL, false)
-                }, onDeinit: { lockedPresentation.end() }
-            )
+            showModalText(for: window, text: strings().chatUnsupportedMessageTitle)
             return
         }
         
@@ -2978,7 +2915,7 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
             return
         }
 
-        showGiftTransfer(context: context, window: window, analyticsContext: analyticsContext, gift: unique, reference: reference, giftsContext: giftsContext, canExportDate: canExportDate, transferStars: transferStars, transfer: { peer, dismiss in
+        showGiftTransfer(context: context, window: window, analyticsContext: analyticsContext, gift: unique, transferStars: transferStars, transfer: { peer, dismiss in
             let transferContext = analyticsContext.restricting(peerId: peer.id)
             let presentation = transferContext.beginPresentation()
             defer { withExtendedLifetime(presentation) {} }
@@ -3005,15 +2942,7 @@ public func StarGift_Nft_Controller(context: (any AccountContextProtocol), gift:
         }
         
         if let gift = state.gift.unique, gift.hostPeerId != nil, gift.giftAddress != nil {
-            verifyAlert(
-                for: window,
-                header: strings().starGiftActionLockedTitle,
-                information: strings().starGiftActionLockedText,
-                ok: strings().starGiftActionLockedOpen,
-                successHandler: { _ in
-                    LinkHooks.shared.openExternalLink(strings().starGiftActionLockedURL, false)
-                }
-            )
+            showModalText(for: window, text: strings().chatUnsupportedMessageTitle)
             return
         }
         

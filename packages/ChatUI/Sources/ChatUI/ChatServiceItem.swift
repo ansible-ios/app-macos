@@ -387,7 +387,7 @@ public class ChatServiceItem: ChatRowItem {
             let components = text.components(separatedBy: ":")
             let amount = components[1]
             let timestamp = components[2]
-            let currency = CurrencyAmount.Currency(components[3])
+            let currency = CurrencyAmount.Currency.stars
 
             let color = theme.chatServiceItemTextColor
             
@@ -797,7 +797,12 @@ public class ChatServiceItem: ChatRowItem {
                     }
                 case let .customText(text, _, additionalAttributes):
                     
-                    if text.contains("post_suggest") {
+                    if text.hasPrefix("post_suggest:") {
+                        let fields = text.components(separatedBy: ":")
+                        guard fields.count == 4, fields[3] == XTR else {
+                            _ = attributedString.append(string: strings().chatUnsupportedMessageTitle, color: grayTextColor, font: NSFont.normal(theme.fontSize))
+                            break
+                        }
                         
                         var peer: Peer = peer
                         if let monoforumId = (peer as? TelegramChannel)?.linkedMonoforumId {

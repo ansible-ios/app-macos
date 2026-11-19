@@ -54,7 +54,6 @@ public struct PeerInfoNavigationHooks {
     public var makeForumSettingsController: (any AccountContextProtocol, PeerId) -> ViewController = { _, _ in ViewController() }
     public var openFragment: (any AccountContextProtocol, PeerId, PeerInfoFragmentSubject, @escaping (String) -> Void) -> Void = { _, _, _, _ in }
     public var makeStarMonetizationController: (any AccountContextProtocol, PeerId, StarsRevenueStatsContext) -> ViewController = { _, _, _ in ViewController() }
-    public var makeTonMonetizationController: (any AccountContextProtocol, PeerId, StarsRevenueStatsContext) -> ViewController = { _, _, _ in ViewController() }
     public var showRestrictMember: (any AccountContextProtocol, PeerId, PeerId, ChannelParticipant, @escaping (TelegramChatBannedRights?) -> Void) -> Void = { _, _, _, _, _ in }
     public var showChannelParticipant: (any AccountContextProtocol, PeerId, RenderedChannelParticipant) -> Void = { _, _, _ in }
     public var showRestrictMemberWithContext: ((any AccountContextProtocol, PeerId, PeerId, ChannelParticipant, @escaping (TelegramChatBannedRights?) -> Void, AnalyticsContext) -> Void)?

@@ -147,28 +147,6 @@ public final class L10n {
   public static var aboutFeatureDisableSharingTitle: String  { return L10n.tr("Localizable", "AboutFeature.DisableSharing.Title") }
   /// Unlock with Premium
   public static var aboutFeatureDisableSharingUnlockButton: String  { return L10n.tr("Localizable", "AboutFeature.DisableSharing.UnlockButton") }
-  /// Got It
-  public static var aboutFeatureModalControllerFirstGramsGotIt: String  { return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsGotIt") }
-  /// 1 Gram currently equals %1$@ USD.\nYou can:
-  public static func aboutFeatureModalControllerFirstGramsRate(_ p1: String) -> String {
-    return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsRate", p1)
-  }
-  /// Send
-  public static var aboutFeatureModalControllerFirstGramsSend: String  { return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsSend") }
-  /// Transfer Grams to anyone.\nClick Attach > Money in chats.
-  public static var aboutFeatureModalControllerFirstGramsSendInfo: String  { return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsSendInfo") }
-  /// Store
-  public static var aboutFeatureModalControllerFirstGramsStore: String  { return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsStore") }
-  /// Keep your Grams in Ansible (Settings > Wallet) or other wallets.
-  public static var aboutFeatureModalControllerFirstGramsStoreInfo: String  { return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsStoreInfo") }
-  /// Your first Grams!
-  public static var aboutFeatureModalControllerFirstGramsTitle: String  { return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsTitle") }
-  /// Trade
-  public static var aboutFeatureModalControllerFirstGramsTrade: String  { return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsTrade") }
-  /// Convert Grams to cash or crypto on exchanges.
-  public static var aboutFeatureModalControllerFirstGramsTradeInfo: String  { return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsTradeInfo") }
-  /// You can:
-  public static var aboutFeatureModalControllerFirstGramsYouCan: String  { return L10n.tr("Localizable", "AboutFeature.ModalController.FirstGramsYouCan") }
   /// Tinted
   public static var accentColorsTinted: String  { return L10n.tr("Localizable", "AccentColors.Tinted") }
   /// Open In Window
@@ -181,12 +159,8 @@ public final class L10n {
   public static var accountConfirmLogout: String  { return L10n.tr("Localizable", "Account.Confirm.Logout") }
   /// Remember, logging out cancels all your Secret Chats.
   public static var accountConfirmLogoutText: String  { return L10n.tr("Localizable", "Account.Confirm.LogoutText") }
-  /// Gram Earnings
-  public static var accountViewControllerGramEarnings: String  { return L10n.tr("Localizable", "Account.ViewController.GramEarnings") }
   /// Money
   public static var accountViewControllerMoney: String  { return L10n.tr("Localizable", "Account.ViewController.Money") }
-  /// Wallet is currently unavailable.
-  public static var accountViewControllerWalletUnavailable: String  { return L10n.tr("Localizable", "Account.ViewController.WalletUnavailable") }
   /// About
   public static var accountSettingsAbout: String  { return L10n.tr("Localizable", "AccountSettings.About") }
   /// Add Account
@@ -255,8 +229,6 @@ public final class L10n {
   public static var accountSettingsUpdateStatus: String  { return L10n.tr("Localizable", "AccountSettings.UpdateStatus") }
   /// Username
   public static var accountSettingsUsername: String  { return L10n.tr("Localizable", "AccountSettings.Username") }
-  /// Gram Wallet
-  public static var accountSettingsWallet: String  { return L10n.tr("Localizable", "AccountSettings.Wallet") }
   /// Set a password that will be required each time you log in with this phone number.
   public static var accountSettingsProtectAccountInfo: String  { return L10n.tr("Localizable", "AccountSettings.ProtectAccount.Info") }
   /// Set Additional Password
@@ -3663,12 +3635,8 @@ public final class L10n {
   public static var chatDeleteMessageSuggestedPostActionDeleteAnyway: String  { return L10n.tr("Localizable", "Chat.DeleteMessage.SuggestedPost.Action.DeleteAnyway") }
   /// Ansible Diamonds Will Be Lost
   public static var chatDeleteMessageSuggestedPostHeaderDiamonds: String  { return L10n.tr("Localizable", "Chat.DeleteMessage.SuggestedPost.Header.Stars") }
-  /// TON Will Be Lost
-  public static var chatDeleteMessageSuggestedPostHeaderTon: String  { return L10n.tr("Localizable", "Chat.DeleteMessage.SuggestedPost.Header.Ton") }
   /// You won't receive Ansible Diamonds for this post if you delete it now. The post must remain visible for at least 24 hours after publication.
   public static var chatDeleteMessageSuggestedPostInfoDiamonds: String  { return L10n.tr("Localizable", "Chat.DeleteMessage.SuggestedPost.Info.Stars") }
-  /// You won't receive TON for this post if you delete it now. The post must remain visible for at least 24 hours after publication.
-  public static var chatDeleteMessageSuggestedPostInfoTon: String  { return L10n.tr("Localizable", "Chat.DeleteMessage.SuggestedPost.Info.Ton") }
   /// Send a 🎲 emoji to any chat to get a random number from Ansible.
   public static var chatDiceResult: String  { return L10n.tr("Localizable", "Chat.Dice.Result") }
   /// Send a %@ emoji to any chat to get a random number from Ansible.
@@ -4557,22 +4525,6 @@ public final class L10n {
   public static func chatServiceGiveawayStarted(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.GiveawayStarted", p1)
   }
-  /// %1$@ sent you %2$@
-  public static func chatServiceGramTransfer(_ p1: String, _ p2: String) -> String {
-    return L10n.tr("Localizable", "Chat.Service.GramTransfer", p1, p2)
-  }
-  /// sent you %1$@
-  public static func chatServiceGramTransferIncoming(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Chat.Service.GramTransferIncoming", p1)
-  }
-  /// Someone sent you %1$@
-  public static func chatServiceGramTransferUnknown(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Chat.Service.GramTransferUnknown", p1)
-  }
-  /// You sent %1$@ %2$@
-  public static func chatServiceGramTransferYou(_ p1: String, _ p2: String) -> String {
-    return L10n.tr("Localizable", "Chat.Service.GramTransferYou", p1, p2)
-  }
   /// %d groups >
   public static func chatServiceGroupsInCommonOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Chat.Service.GroupsInCommon_other", p1)
@@ -4699,24 +4651,6 @@ public final class L10n {
   }
   /// You started a [video chat](open)
   public static var chatServiceVoiceChatStartedYou: String  { return L10n.tr("Localizable", "Chat.Service.VoiceChatStartedYou") }
-  /// Wallet request
-  public static var chatServiceWalletRequest: String  { return L10n.tr("Localizable", "Chat.Service.WalletRequest") }
-  /// Wallet request accepted
-  public static var chatServiceWalletRequestAccepted: String  { return L10n.tr("Localizable", "Chat.Service.WalletRequestAccepted") }
-  /// Wallet request declined
-  public static var chatServiceWalletRequestDeclined: String  { return L10n.tr("Localizable", "Chat.Service.WalletRequestDeclined") }
-  /// Wallet request from %1$@
-  public static func chatServiceWalletRequestFrom(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Chat.Service.WalletRequestFrom", p1)
-  }
-  /// Wallet request from %1$@ accepted
-  public static func chatServiceWalletRequestFromAccepted(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Chat.Service.WalletRequestFromAccepted", p1)
-  }
-  /// Wallet request from %1$@ declined
-  public static func chatServiceWalletRequestFromDeclined(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Chat.Service.WalletRequestFromDeclined", p1)
-  }
   /// Data from the "%@" button was transferred to the bot.
   public static func chatServiceWebData(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.WebData", p1)
@@ -5105,9 +5039,6 @@ public final class L10n {
   public static var chatServiceSuggestPostRefundedUser: String  { return L10n.tr("Localizable", "Chat.Service.SuggestPost.Refunded.User") }
   /// 🤝 Post approved.
   public static var chatServiceSuggestPostStatusApproved: String  { return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.Approved") }
-  public static func chatServiceSuggestPostStatusTonSettlement(_ peer: String) -> String {
-    return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.TonSettlement", peer)
-  }
   /// 🔁 If %1$@ removes the post before it has been live for 24 hours, your Ansible Diamonds will be refunded.
   public static func chatServiceSuggestPostStatusRefundCondition(_ p1: String) -> String {
     return L10n.tr("Localizable", "Chat.Service.SuggestPost.Status.RefundCondition", p1)
@@ -5214,48 +5145,12 @@ public final class L10n {
   public static var chatServiceVoiceChatStartedChannel1: String  { return L10n.tr("Localizable", "Chat.Service.VoiceChatStarted.Channel1") }
   /// Encrypted comment
   public static var chatServiceItemEncryptedComment: String  { return L10n.tr("Localizable", "Chat.ServiceItem.EncryptedComment") }
-  /// %1$@ sent you %2$@
-  public static func chatServiceItemGramTransfer(_ p1: String, _ p2: String) -> String {
-    return L10n.tr("Localizable", "Chat.ServiceItem.GramTransfer", p1, p2)
-  }
-  ///  (%1$@)
-  public static func chatServiceItemGramTransferFiat(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Chat.ServiceItem.GramTransferFiat", p1)
-  }
-  /// Someone sent you %1$@
-  public static func chatServiceItemGramTransferUnknown(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Chat.ServiceItem.GramTransferUnknown", p1)
-  }
-  /// You sent %1$@ %2$@
-  public static func chatServiceItemGramTransferYou(_ p1: String, _ p2: String) -> String {
-    return L10n.tr("Localizable", "Chat.ServiceItem.GramTransferYou", p1, p2)
-  }
   /// received
   public static var chatServiceItemRibbonReceived: String  { return L10n.tr("Localizable", "Chat.ServiceItem.RibbonReceived") }
   /// sent
   public static var chatServiceItemRibbonSent: String  { return L10n.tr("Localizable", "Chat.ServiceItem.RibbonSent") }
   /// UNKNOWN USER
   public static var chatServiceItemUnknownUser: String  { return L10n.tr("Localizable", "Chat.ServiceItem.UnknownUser") }
-  /// Wallet request
-  public static var chatServiceItemWalletRequest: String  { return L10n.tr("Localizable", "Chat.ServiceItem.WalletRequest") }
-  /// Wallet request accepted
-  public static var chatServiceItemWalletRequestAccepted: String  { return L10n.tr("Localizable", "Chat.ServiceItem.WalletRequestAccepted") }
-  /// Wallet request declined
-  public static var chatServiceItemWalletRequestDeclined: String  { return L10n.tr("Localizable", "Chat.ServiceItem.WalletRequestDeclined") }
-  /// Wallet request from %1$@
-  public static func chatServiceItemWalletRequestFrom(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Chat.ServiceItem.WalletRequestFrom", p1)
-  }
-  /// Wallet request from %1$@ accepted
-  public static func chatServiceItemWalletRequestFromAccepted(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Chat.ServiceItem.WalletRequestFromAccepted", p1)
-  }
-  /// Wallet request from %1$@ declined
-  public static func chatServiceItemWalletRequestFromDeclined(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Chat.ServiceItem.WalletRequestFromDeclined", p1)
-  }
-  /// Wallet is currently unavailable.
-  public static var chatServiceItemWalletUnavailable: String  { return L10n.tr("Localizable", "Chat.ServiceItem.WalletUnavailable") }
   /// All Messages
   public static var chatSidebarAllMessages: String  { return L10n.tr("Localizable", "Chat.Sidebar.AllMessages") }
   /// Show Chats
@@ -7888,14 +7783,6 @@ public final class L10n {
   public static var diceRollEmojiStakeDescription: String  { return L10n.tr("Localizable", "DiceRoll.EmojiStakeDescription") }
   /// Enter your stake
   public static var diceRollEnterStakePlaceholder: String  { return L10n.tr("Localizable", "DiceRoll.EnterStakePlaceholder") }
-  /// Maximum stake is %1$@ TON
-  public static func diceRollMaxStake(_ p1: String) -> String {
-    return L10n.tr("Localizable", "DiceRoll.MaxStake", p1)
-  }
-  /// Minimum stake is %1$@ TON
-  public static func diceRollMinStake(_ p1: String) -> String {
-    return L10n.tr("Localizable", "DiceRoll.MinStake", p1)
-  }
   /// RESULTS AND RETURNS
   public static var diceRollResultsAndReturns: String  { return L10n.tr("Localizable", "DiceRoll.ResultsAndReturns") }
   /// Save and Roll
@@ -8056,10 +7943,6 @@ public final class L10n {
   }
   /// ENTER PRICE IN DIAMONDS
   public static var editPostSuggestionPriceLabel: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Price.Label") }
-  /// Choose how many TON you want to offer %1$@ to publish this message.
-  public static func editPostSuggestionPriceTonDescription(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Edit.PostSuggestion.Price.Ton.Description", p1)
-  }
   /// Anytime
   public static var editPostSuggestionTimeAnytime: String  { return L10n.tr("Localizable", "Edit.PostSuggestion.Time.Anytime") }
   /// Select the date and time you want the post to be published.
@@ -9064,19 +8947,7 @@ public final class L10n {
   public static var crystalPieceDiamondsTotalLifetime: String  { return L10n.tr("Localizable", "Fragment.Stars.TotalLifetime") }
   /// Ansible Diamonds from your total balance can be used for ads or withdrawn as rewards 21 days after they are earned.
   public static var crystalPieceDiamondsWithdrawInfo: String  { return L10n.tr("Localizable", "Fragment.Stars.WithdrawInfo") }
-  /// You cannot withdraw more than %d TON at once.
-  public static func crystalPieceTonMaxWithdraw(_ p1: Int) -> String {
-    return L10n.tr("Localizable", "Fragment.Ton.MaxWithdraw", p1)
-  }
-  /// You cannot withdraw less than %d TON.
-  public static func crystalPieceTonMinWithdraw(_ p1: Int) -> String {
-    return L10n.tr("Localizable", "Fragment.Ton.MinWithdraw", p1)
-  }
-  /// %1$@ TON Needed
-  public static func crystalPieceTonAddFundsHeaderAmount(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Fragment.Ton.AddFunds.Header.Amount", p1)
-  }
-  /// You cannot withdraw less than 10 Grams.
+  /// The amount is below the minimum withdrawal.
   public static var crystalPieceMonetizationControllerWithdrawMinimum: String  { return L10n.tr("Localizable", "FragmentMonetization.Controller.WithdrawMinimum") }
   /// Click to view details
   public static var freezeAccountClickDetails: String  { return L10n.tr("Localizable", "FreezeAccount.ClickDetails") }
@@ -9366,16 +9237,6 @@ public final class L10n {
   public static var giftMoveToGiftsText: String  { return L10n.tr("Localizable", "Gift.MoveToGifts.Text") }
   /// Move to My Gifts
   public static var giftMoveToGiftsTitle: String  { return L10n.tr("Localizable", "Gift.MoveToGifts.Title") }
-  /// It will appear in
-  public static var giftMoveToWalletLocation: String  { return L10n.tr("Localizable", "Gift.MoveToWallet.Location") }
-  /// Move
-  public static var giftMoveToWalletMove: String  { return L10n.tr("Localizable", "Gift.MoveToWallet.Move") }
-  /// Gift moved to your wallet.
-  public static var giftMoveToWalletSuccess: String  { return L10n.tr("Localizable", "Gift.MoveToWallet.Success") }
-  /// Transfer this gift to your blockchain wallet?
-  public static var giftMoveToWalletText: String  { return L10n.tr("Localizable", "Gift.MoveToWallet.Text") }
-  /// Move to My Wallet
-  public static var giftMoveToWalletTitle: String  { return L10n.tr("Localizable", "Gift.MoveToWallet.Title") }
   /// You've already reached limit to send this gift.
   public static var giftOptionsGiftBuyLimitReached: String  { return L10n.tr("Localizable", "Gift.Options.Gift.BuyLimitReached") }
   /// Buy yourself a gift to add to your profile or reserve for later.\n\nLimited-edition gifts upgraded to collectibles can be gifted to others.
@@ -9444,14 +9305,10 @@ public final class L10n {
   public static var giftTooltipUnpinned: String  { return L10n.tr("Localizable", "Gift.Tooltip.Unpinned") }
   /// Move to My Gifts
   public static var giftTransferMoveToGifts: String  { return L10n.tr("Localizable", "Gift.Transfer.MoveToGifts") }
-  /// Move to My Wallet
-  public static var giftTransferMoveToWallet: String  { return L10n.tr("Localizable", "Gift.Transfer.MoveToWallet") }
   /// unlocks in %@
   public static func giftTransferSendUnlocks(_ p1: String) -> String {
     return L10n.tr("Localizable", "Gift.Transfer.SendUnlocks", p1)
   }
-  /// Send via Blockchain
-  public static var giftTransferSendViaBlockchain: String  { return L10n.tr("Localizable", "Gift.Transfer.SendViaBlockchain") }
   /// Transfer
   public static var giftTransferTitle: String  { return L10n.tr("Localizable", "Gift.Transfer.Title") }
   /// Do you want to transfer ownership of **%1$@** to **%2$@** for **%3$@**?
@@ -9474,10 +9331,6 @@ public final class L10n {
   }
   /// Too Early
   public static var giftTransferUnavailableTitle: String  { return L10n.tr("Localizable", "Gift.Transfer.Unavailable.Title") }
-  /// In %@, you'll be able to send this collectible to any TON blockchain address outside Ansible for sale or auction.
-  public static func giftTransferUnlockPendingText(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Gift.Transfer.UnlockPending.Text", p1)
-  }
   /// Unlocking In Progress
   public static var giftTransferUnlockPendingTitle: String  { return L10n.tr("Localizable", "Gift.Transfer.UnlockPending.Title") }
   /// Please update your Ansible application to the latest version.
@@ -9488,8 +9341,6 @@ public final class L10n {
   public static var giftTransferControllerFrequentContacts: String  { return L10n.tr("Localizable", "Gift.TransferController.FrequentContacts") }
   /// Choose Recipient
   public static var giftTransferControllerTitle: String  { return L10n.tr("Localizable", "Gift.TransferController.Title") }
-  /// Proceed
-  public static var giftTransferTonOK: String  { return L10n.tr("Localizable", "Gift.TransferTon.OK") }
   /// Only %@ of such collectibles have this attribute.
   public static func giftUniqueAttributeDescription(_ p1: String) -> String {
     return L10n.tr("Localizable", "Gift.Unique.AttributeDescription", p1)
@@ -9650,10 +9501,6 @@ public final class L10n {
   public static var giftWithdrawSecurityRequirements: String  { return L10n.tr("Localizable", "Gift.Withdraw.SecurityRequirements") }
   /// Enable 2-Step Verification
   public static var giftWithdrawSetupTwoStepAuth: String  { return L10n.tr("Localizable", "Gift.Withdraw.SetupTwoStepAuth") }
-  /// You can use Crystal Piece, a third-party service, to transfer **%@** to the TON blockchain. After that, you can manage it as an NFT with any TON wallet application.\n\nYou can also move such NFTs back to your Ansible account via Crystal Piece.
-  public static func giftWithdrawText(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Gift.Withdraw.Text", p1)
-  }
   /// Manage with Crystal Piece
   public static var giftWithdrawTitle: String  { return L10n.tr("Localizable", "Gift.Withdraw.Title") }
   /// No Recipient
@@ -10320,16 +10167,12 @@ public final class L10n {
   public static func inAppLinksIDNWarning(_ p1: String, _ p2: String) -> String {
     return L10n.tr("Localizable", "InAppLinks.IDNWarning", p1, p2)
   }
-  /// This link is invalid.
-  public static var inAppLinksInvalidWalletLink: String  { return L10n.tr("Localizable", "InAppLinks.InvalidWalletLink") }
   /// The login link has expired.
   public static var inAppLinksLoginExpired: String  { return L10n.tr("Localizable", "InAppLinks.LoginExpired") }
   /// You have successfully logged in.
   public static var inAppLinksLoginSuccess: String  { return L10n.tr("Localizable", "InAppLinks.LoginSuccess") }
   /// This style doesn't exist.
   public static var inAppLinksStyleNotFound: String  { return L10n.tr("Localizable", "InAppLinks.StyleNotFound") }
-  /// Wallet is currently unavailable.
-  public static var inAppLinksWalletUnavailable: String  { return L10n.tr("Localizable", "InAppLinks.WalletUnavailable") }
   /// open %@?
   public static func inAppLinksConfirmOpenExternal(_ p1: String) -> String {
     return L10n.tr("Localizable", "InAppLinks.Confirm.OpenExternal", p1)
@@ -11442,8 +11285,6 @@ public final class L10n {
   public static var monetizationBalanceComingLaterInfo: String  { return L10n.tr("Localizable", "Monetization.Balance.ComingLaterInfo") }
   /// Withdraw via Crystal Piece
   public static var monetizationBalanceWithdrawDiamonds: String  { return L10n.tr("Localizable", "Monetization.BalanceWithdraw.Stars") }
-  /// Withdraw via Crystal Piece
-  public static var monetizationBalanceWithdrawTon: String  { return L10n.tr("Localizable", "Monetization.BalanceWithdraw.Ton") }
   /// Ansible shares 50%@ of the revenue from ads displayed in your bot as rewards. [Learn More >]()
   public static func monetizationHeaderBot(_ p1: String) -> String {
     return L10n.tr("Localizable", "Monetization.Header.Bot", p1)
@@ -11510,16 +11351,12 @@ public final class L10n {
   public static var monetizationTransactionInfoProceeds: String  { return L10n.tr("Localizable", "Monetization.TransactionInfo.Proceeds") }
   /// Refund
   public static var monetizationTransactionInfoRefund: String  { return L10n.tr("Localizable", "Monetization.TransactionInfo.Refund") }
-  /// View in Blockchain Explorer
-  public static var monetizationTransactionInfoViewInExplorer: String  { return L10n.tr("Localizable", "Monetization.TransactionInfo.ViewInExplorer") }
   /// Collecting Rewards via %@
   public static func monetizationTransactionInfoWithdrawal(_ p1: String) -> String {
     return L10n.tr("Localizable", "Monetization.TransactionInfo.Withdrawal", p1)
   }
   /// Ansible Diamonds Transactions
   public static var monetizationTransactionsDiamonds: String  { return L10n.tr("Localizable", "Monetization.Transactions.Stars") }
-  /// TON Transactions
-  public static var monetizationTransactionsTON: String  { return L10n.tr("Localizable", "Monetization.Transactions.TON") }
   /// Proceed
   public static var monetizationWithdrawEnterPasswordDone: String  { return L10n.tr("Localizable", "Monetization.Withdraw.EnterPassword.Done") }
   /// Please enter your Two-Step Verification password to complete this action.
@@ -12276,10 +12113,6 @@ public final class L10n {
   public static var passcodeSettingsViewControllerConfirmWithTouchId: String  { return L10n.tr("Localizable", "Passcode.SettingsViewController.ConfirmWithTouchId") }
   /// Lock Ansible
   public static var passcodeSettingsViewControllerLockAnsible: String  { return L10n.tr("Localizable", "Passcode.SettingsViewController.LockTelegram") }
-  /// Lock Wallet
-  public static var passcodeSettingsViewControllerLockWallet: String  { return L10n.tr("Localizable", "Passcode.SettingsViewController.LockWallet") }
-  /// Required when sending funds or confirming other sensitive Wallet actions.
-  public static var passcodeSettingsViewControllerWalletInfo: String  { return L10n.tr("Localizable", "Passcode.SettingsViewController.WalletInfo") }
   /// Too many attempts. Try again in %1$d seconds.
   public static func passcodeControllerCooldownOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "PasscodeController.Cooldown_other", p1)
@@ -12288,12 +12121,6 @@ public final class L10n {
   public static var passcodeControllerSyncFailed: String  { return L10n.tr("Localizable", "PasscodeController.SyncFailed") }
   /// To lock, hover over the Settings icon in the tab bar and choose \"Lock Ansible\" or use ⌘ + L.\n\nNote: if you forget your local passcode, you'll need to log out of Ansible for macOS and log in again.
   public static var passcodeControllerText: String  { return L10n.tr("Localizable", "PasscodeController.Text") }
-  /// This will also turn off passcode and biometric protection for every wallet on this device.
-  public static var passcodeControllerWalletDisableWarning: String  { return L10n.tr("Localizable", "PasscodeController.WalletDisableWarning") }
-  /// Couldn't update wallet protection. Please try again.
-  public static var passcodeControllerWalletProtectionFailed: String  { return L10n.tr("Localizable", "PasscodeController.WalletProtectionFailed") }
-  /// Required when sending funds or confirming other sensitive Wallet actions.
-  public static var passcodeControllerWalletProtectionInfo: String  { return L10n.tr("Localizable", "PasscodeController.WalletProtectionInfo") }
   /// Change Passcode
   public static var passcodeControllerChangeTitle: String  { return L10n.tr("Localizable", "PasscodeController.Change.Title") }
   /// Enter current passcode
@@ -12314,10 +12141,6 @@ public final class L10n {
   public static var passcodeControllerInstallTitle: String  { return L10n.tr("Localizable", "PasscodeController.Install.Title") }
   /// Re-enter new passcode
   public static var passcodeControllerReEnterPasscodePlaceholder: String  { return L10n.tr("Localizable", "PasscodeController.ReEnterPasscode.Placeholder") }
-  /// Confirm with Touch ID
-  public static var passcodeControllerWalletBiometricsTitle: String  { return L10n.tr("Localizable", "PasscodeController.WalletBiometrics.Title") }
-  /// Confirm with Passcode
-  public static var passcodeControllerWalletProtectionTitle: String  { return L10n.tr("Localizable", "PasscodeController.WalletProtection.Title") }
   /// Create Passkey
   public static var passkeysCreatePasskey: String  { return L10n.tr("Localizable", "Passkeys.CreatePasskey") }
   /// Delete
@@ -12988,8 +12811,6 @@ public final class L10n {
   public static func peerInfoBotEditDiamondsCountOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "PeerInfo.BotEdit.StarsCount_other", p1)
   }
-  /// TON Balance
-  public static var peerInfoBotEditTonBalance: String  { return L10n.tr("Localizable", "PeerInfo.BotEdit.TonBalance") }
   /// Username
   public static var peerInfoBotEditUsername: String  { return L10n.tr("Localizable", "PeerInfo.BotEdit.Username") }
   /// Geolocation
@@ -16682,8 +16503,6 @@ public final class L10n {
   public static var starListTransactionsEmptyIncoming: String  { return L10n.tr("Localizable", "Star.List.Transactions.Empty.Incoming") }
   /// No Outgoing Transactions
   public static var starListTransactionsEmptyOutgoing: String  { return L10n.tr("Localizable", "Star.List.Transactions.Empty.Outgoing") }
-  /// You cannot withdraw less than 10 Grams.
-  public static var starListScreenWithdrawMinimumGrams: String  { return L10n.tr("Localizable", "Star.ListScreen.WithdrawMinimumGrams") }
   /// %d for resale
   public static func starMarketplaceResaleAvailableOther(_ p1: Int) -> String {
     return L10n.tr("Localizable", "Star.Marketplace.ResaleAvailable_other", p1)
@@ -16992,8 +16811,6 @@ public final class L10n {
   public static var starTransactionStarGiftDisplayOnPageAlert: String  { return L10n.tr("Localizable", "Star.Transaction.StarGift.DisplayOnPage.Alert") }
   /// The gift is no longer displayed in your profile.
   public static var starTransactionStarGiftHideFromMyPageAlert: String  { return L10n.tr("Localizable", "Star.Transaction.StarGift.HideFromMyPage.Alert") }
-  /// Use TON to buy gifts and suggest posts to channels.
-  public static var starTransactionTonDescription: String  { return L10n.tr("Localizable", "Star.Transaction.Ton.Description") }
   /// hide
   public static var starTransactionVisibilityHide: String  { return L10n.tr("Localizable", "Star.Transaction.Visibility.Hide") }
   /// Visible on your profile
@@ -17160,7 +16977,7 @@ public final class L10n {
   }
   /// Can't Choose First
   public static var starGiftNftCantChooseFirst: String  { return L10n.tr("Localizable", "StarGift.Nft.CantChooseFirst") }
-  /// You can't choose this gift as first one to craft, while it stays on blockchain.
+  /// This gift is unavailable as the first gift for crafting.
   public static var starGiftNftCantChooseFirstInfo: String  { return L10n.tr("Localizable", "StarGift.Nft.CantChooseFirstInfo") }
   /// Confirm Sale
   public static var starGiftNftConfirmSale: String  { return L10n.tr("Localizable", "StarGift.Nft.ConfirmSale") }
@@ -17178,8 +16995,6 @@ public final class L10n {
   public static var starGiftOfferConfirmTitle: String  { return L10n.tr("Localizable", "StarGift.Offer.ConfirmTitle") }
   /// Ansible Diamonds
   public static var starGiftOfferCurrencyDiamonds: String  { return L10n.tr("Localizable", "StarGift.Offer.CurrencyStars") }
-  /// TON
-  public static var starGiftOfferCurrencyTon: String  { return L10n.tr("Localizable", "StarGift.Offer.CurrencyTon") }
   /// Offer Duration
   public static var starGiftOfferDuration: String  { return L10n.tr("Localizable", "StarGift.Offer.Duration") }
   /// Choose how long **%1$@** has to accept your offer. When it expires, your %2$@ will be automatically refunded.
@@ -17194,8 +17009,6 @@ public final class L10n {
   }
   /// Offer to Buy
   public static var starGiftOfferTitle: String  { return L10n.tr("Localizable", "StarGift.Offer.Title") }
-  /// This gift is on TON blockchain. [View >]()
-  public static var starGiftOnBlockchainInfo: String  { return L10n.tr("Localizable", "StarGift.OnBlockchain.Info") }
   /// Join
   public static var starGiftOptionJoin: String  { return L10n.tr("Localizable", "StarGift.Option.Join") }
   /// Send a Gift
@@ -17214,12 +17027,8 @@ public final class L10n {
   public static var starGiftSelfAuctionLimited: String  { return L10n.tr("Localizable", "StarGift.SelfAuction.Limited") }
   /// upgraded
   public static var starGiftSelfAuctionUpgraded: String  { return L10n.tr("Localizable", "StarGift.SelfAuction.Upgraded") }
-  /// The seller only accepts TON as payment.
-  public static var starGiftSellAlertOnlyTon: String  { return L10n.tr("Localizable", "StarGift.Sell.Alert.OnlyTon") }
   /// Pay in Ansible Diamonds
   public static var starGiftSellAlertPayInDiamonds: String  { return L10n.tr("Localizable", "StarGift.Sell.Alert.PayInStars") }
-  /// Pay in TON
-  public static var starGiftSellAlertPayInTon: String  { return L10n.tr("Localizable", "StarGift.Sell.Alert.PayInTon") }
   /// Confirm Payment
   public static var starGiftSellAlertTitleConfirmPayment: String  { return L10n.tr("Localizable", "StarGift.Sell.Alert.Title.ConfirmPayment") }
   /// Make Unique
@@ -17564,8 +17373,6 @@ public final class L10n {
   public static var statsMonetization: String  { return L10n.tr("Localizable", "Stats.Monetization") }
   /// Revenue in Ansible Diamonds
   public static var statsRevenueInDiamonds: String  { return L10n.tr("Localizable", "Stats.RevenueInStars") }
-  /// Revenue in TON
-  public static var statsRevenueInTon: String  { return L10n.tr("Localizable", "Stats.RevenueInTon") }
   /// Revenue in USD
   public static var statsRevenueInUsd: String  { return L10n.tr("Localizable", "Stats.RevenueInUsd") }
   /// Show %d More
@@ -18968,18 +18775,6 @@ public final class L10n {
   public static var toastMuted: String  { return L10n.tr("Localizable", "Toast.Muted") }
   /// Unmuted
   public static var toastUnmuted: String  { return L10n.tr("Localizable", "Toast.Unmuted") }
-  /// %1$@ Gram
-  public static func tonAmountFormatGram(_ p1: String) -> String {
-    return L10n.tr("Localizable", "TonAmountFormat.Gram", p1)
-  }
-  /// %1$@ Grams
-  public static func tonAmountFormatGrams(_ p1: String) -> String {
-    return L10n.tr("Localizable", "TonAmountFormat.Grams", p1)
-  }
-  /// https://tonviewer.com/%@
-  public static func tonViewerUrl(_ p1: String) -> String {
-    return L10n.tr("Localizable", "TonViewer.Url", p1)
-  }
   /// Attach
   public static var touchBarAttach: String  { return L10n.tr("Localizable", "TouchBar.Attach") }
   /// Call
@@ -20716,8 +20511,6 @@ public final class L10n {
   public static var voiceOverCommonTheme: String  { return L10n.tr("Localizable", "VoiceOver.Common.Theme") }
   /// Toggle
   public static var voiceOverCommonToggle: String  { return L10n.tr("Localizable", "VoiceOver.Common.Toggle") }
-  /// TON Amount
-  public static var voiceOverCommonTonAmount: String  { return L10n.tr("Localizable", "VoiceOver.Common.TonAmount") }
   /// Translate
   public static var voiceOverCommonTranslate: String  { return L10n.tr("Localizable", "VoiceOver.Common.Translate") }
   /// Typing
@@ -20812,10 +20605,6 @@ public final class L10n {
   public static var voiceOverRecordingStopAndPreview: String  { return L10n.tr("Localizable", "VoiceOver.Recording.StopAndPreview") }
   /// Clear
   public static var voiceOverSearchClear: String  { return L10n.tr("Localizable", "VoiceOver.Search.Clear") }
-  /// Word %d
-  public static func voiceOverWalletWord(_ p1: Int) -> String {
-    return L10n.tr("Localizable", "VoiceOver.Wallet.Word", p1)
-  }
   /// You can reduce motion for better performance.
   public static var voiecChatReduceMotionDesc: String  { return L10n.tr("Localizable", "VoiecChat.ReduceMotion.Desc") }
   /// REDUCE MOTION
@@ -20836,146 +20625,6 @@ public final class L10n {
   public static var voiecChatSettingsReduceMotionDesc: String  { return L10n.tr("Localizable", "VoiecChat.Settings.ReduceMotion.Desc") }
   /// Edit
   public static var w486f4DlTitle: String  { return L10n.tr("Localizable", "W48-6f-4Dl.title") }
-  /// Too many attempts. Try again in %1$d seconds.
-  public static func walletAuthorizeControllerTooManyAttemptsOther(_ p1: Int) -> String {
-    return L10n.tr("Localizable", "Wallet.AuthorizeController.TooManyAttempts_other", p1)
-  }
-  /// Try again in %1$@.
-  public static func walletAuthorizedOperationPasswordTooNewInfo(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.AuthorizedOperation.PasswordTooNewInfo", p1)
-  }
-  /// For your security, try again in %1$@.
-  public static func walletAuthorizedOperationSessionTooNewInfo(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.AuthorizedOperation.SessionTooNewInfo", p1)
-  }
-  /// %1$@ disconnected.
-  public static func walletConnectedAppsControllerAppDisconnected(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.ConnectedAppsController.AppDisconnected", p1)
-  }
-  /// You are now connected to %1$@.
-  public static func walletControllerConnectedTo(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.Controller.ConnectedTo", p1)
-  }
-  /// Connect to %1$@
-  public static func walletControllerConnectTo(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.Controller.ConnectTo", p1)
-  }
-  /// %1$@ · Failed
-  public static func walletControllerFailedSuffix(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.Controller.FailedSuffix", p1)
-  }
-  /// %1$@ won’t be able to move funds without permission.
-  public static func walletControllerNoFundsWithoutPermission(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.Controller.NoFundsWithoutPermission", p1)
-  }
-  /// It will ask you to prove ownership of this wallet to %1$@.
-  public static func walletControllerPermissionProof(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.Controller.PermissionProof", p1)
-  }
-  /// Transactions under %1$@ are hidden.
-  public static func walletControllerSmallTransactionsHidden(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.Controller.SmallTransactionsHidden", p1)
-  }
-  /// By using this service, you agree to the [Terms](%1$@).
-  public static func walletControllerTermsAgreement(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.Controller.TermsAgreement", p1)
-  }
-  /// to %1$@
-  public static func walletControllerToAddress(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.Controller.ToAddress", p1)
-  }
-  /// The first %1$d transfers each day are free. The rest cost almost nothing.
-  public static func walletControllerZeroFeesInfoOther(_ p1: Int) -> String {
-    return L10n.tr("Localizable", "Wallet.Controller.ZeroFeesInfo_other", p1)
-  }
-  /// A secret phrase must contain exactly 12 or 24 words. The pasted phrase contains %1$d.
-  public static func walletImportControllerInvalidWordCountOther(_ p1: Int) -> String {
-    return L10n.tr("Localizable", "Wallet.ImportController.InvalidWordCount_other", p1)
-  }
-  /// Your current secret phrase must contain exactly 12 or 24 words. The pasted phrase contains %1$d.
-  public static func walletImportControllerInvalidWordCountCurrentOther(_ p1: Int) -> String {
-    return L10n.tr("Localizable", "Wallet.ImportController.InvalidWordCountCurrent_other", p1)
-  }
-  /// %1$d. %2$@
-  public static func walletImportControllerSuggestion(_ p1: Int, _ p2: String) -> String {
-    return L10n.tr("Localizable", "Wallet.ImportController.Suggestion", p1, p2)
-  }
-  /// **1 Gram** currently equals **%1$@**.\nYou can:
-  public static func walletInfoControllerFirstGramsRateInfo(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.InfoController.FirstGramsRateInfo", p1)
-  }
-  /// The native currency of the TON blockchain. **1 Gram** currently equals **%1$@**.
-  public static func walletInfoControllerGramRateInfo(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.InfoController.GramRateInfo", p1)
-  }
-  /// The first %1$d transfers each day are free. The rest cost almost nothing.
-  public static func walletInfoControllerZeroFeesInfoOther(_ p1: Int) -> String {
-    return L10n.tr("Localizable", "Wallet.InfoController.ZeroFeesInfo_other", p1)
-  }
-  /// This TON Blockchain address is linked to %1$@ on Ansible.
-  public static func walletLinkedRecipientRowItemLinkedTo(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.LinkedRecipientRowItem.LinkedTo", p1)
-  }
-  /// %1$@’s wallet
-  public static func walletLinkedRecipientRowItemPeerWallet(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.LinkedRecipientRowItem.PeerWallet", p1)
-  }
-  /// This will cancel all your Secret Chats and **delete wallet backups holding %1$@**. You will lose access to these funds if you haven't saved their recovery phrases.\n\nYou can use Ansible on all your devices at once and use several accounts in the same app.
-  public static func walletLogoutWarningBackupsWillBeDeleted(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.LogoutWarning.BackupsWillBeDeleted", p1)
-  }
-  /// %1$@ owns %2$@ on the TON blockchain.
-  public static func walletPeerBalanceControllerPeerBalanceNotice(_ p1: String, _ p2: String) -> String {
-    return L10n.tr("Localizable", "Wallet.PeerBalanceController.PeerBalanceNotice", p1, p2)
-  }
-  /// There were no results for “%1$@”.\nTry another name or address.
-  public static func walletRecipientNoResultsItemNoResultsFor(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.RecipientNoResultsItem.NoResultsFor", p1)
-  }
-  /// Balance: %1$@
-  public static func walletSendControllerBalance(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.SendController.Balance", p1)
-  }
-  /// The collectible has been sent to %1$@.
-  public static func walletSendControllerCollectibleSent(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.SendController.CollectibleSent", p1)
-  }
-  /// You need %1$@ including the network fee to send this transfer.
-  public static func walletSendControllerInsufficientFundsInfo(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.SendController.InsufficientFundsInfo", p1)
-  }
-  /// You need %1$@ to update your secret phrase. Add funds and try again.
-  public static func walletSettingsControllerErrorInsufficientBalance(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.SettingsController.ErrorInsufficientBalance", p1)
-  }
-  /// %1$@ — last used %2$@
-  public static func walletSettingsControllerPreviousWalletSubtitle(_ p1: String, _ p2: String) -> String {
-    return L10n.tr("Localizable", "Wallet.SettingsController.PreviousWalletSubtitle", p1, p2)
-  }
-  /// Only %@ can be used to change the color of your card.
-  public static func walletStickerColorRestricted(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.Sticker.ColorRestricted", p1)
-  }
-  /// %@s
-  public static func walletStickerColorRestrictedCollection(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.Sticker.ColorRestrictedCollection", p1)
-  }
-  /// .\n\nAnsible covers your first %1$d transfers each day.
-  public static func walletTransactionControllerNetworkFeeGaslessOther(_ p1: Int) -> String {
-    return L10n.tr("Localizable", "Wallet.TransactionController.NetworkFeeGasless_other", p1)
-  }
-  /// Send %1$@
-  public static func walletTransactionControllerSendAmount(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.TransactionController.SendAmount", p1)
-  }
-  /// %1$d recipients
-  public static func walletTransferPresentationRecipientsOther(_ p1: Int) -> String {
-    return L10n.tr("Localizable", "Wallet.TransferPresentation.Recipients_other", p1)
-  }
-  /// The app can submit this transfer until %1$@.
-  public static func walletTransferPresentationSubmitUntil(_ p1: String) -> String {
-    return L10n.tr("Localizable", "Wallet.TransferPresentation.SubmitUntil", p1)
-  }
   /// %1$@ will be able to apply this wallpaper
   public static func wallpaperBackgroundNoApplyToPeer(_ p1: String) -> String {
     return L10n.tr("Localizable", "Wallpaper.Background.NoApplyToPeer", p1)

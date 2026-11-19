@@ -404,16 +404,6 @@ open class AnsiblePresentationTheme : PresentationTheme {
         }
     }
 
-    private var _chatDiceStakeOverlayServiceBubble: CGImage?
-    open var chatDiceStakeOverlayServiceBubble: CGImage {
-        if let icon = _chatDiceStakeOverlayServiceBubble {
-            return icon
-        } else {
-            let new = AnsibleThemeHooks.shared.image(.iconTonCurrency).precomposed(self.chatServiceItemTextColor, zoom: 0.8)
-            _chatDiceStakeOverlayServiceBubble = new
-            return new
-        }
-    }
 
     private var _chat_pinned_message_overlay_service_bubble: CGImage?
     open var chat_pinned_message_overlay_service_bubble: CGImage {

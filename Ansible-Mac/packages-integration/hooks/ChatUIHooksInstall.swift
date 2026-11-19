@@ -270,7 +270,7 @@ private func makeChatNavigationHooks() -> ChatNavigationHooks {
         context.bindings.rootNavigation().push(MessageStatsController(context, subject: .messageId(messageId), analyticsContext: analyticsContext))
     }
     hooks.openHTMLPage = { context, url in
-        BrowserStateContext.get(context).open(tab: .tonsite(url: url.absoluteString))
+        BrowserStateContext.get(context).open(tab: .website(url: url.absoluteString))
     }
     hooks.showVerifyAgeAlert = { context, window in
         showModal(with: VerifyAgeAlertController(context: context), for: window)
@@ -750,9 +750,6 @@ private func makeChatNavigationHooks() -> ChatNavigationHooks {
         editImageWithEvents(context, url, defaultData, Analytics.shared.unresolvedContext(), {}, {})
     }
     #if DEBUG
-    hooks.showFirstGramsModal = { context, window in
-        showFirstGramsModal(context: context, window: window)
-    }
     #endif
     return hooks
 }

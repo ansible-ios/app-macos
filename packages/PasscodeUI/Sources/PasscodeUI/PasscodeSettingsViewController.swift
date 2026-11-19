@@ -20,10 +20,6 @@ private enum PasscodeEntry : Comparable, Identifiable {
     case autoLock(sectionId:Int, time:Int32?, viewType: GeneralViewType)
     case turnTouchId(sectionId:Int, enabled: Bool, viewType: GeneralViewType)
     case lockAnsibleHeader(sectionId:Int, viewType: GeneralViewType)
-    case lockWalletHeader(sectionId:Int, viewType: GeneralViewType)
-    case walletPasscode(sectionId:Int, enabled: Bool, available: Bool, viewType: GeneralViewType)
-    case walletBiometrics(sectionId:Int, enabled: Bool, available: Bool, viewType: GeneralViewType)
-    case walletInfo(sectionId:Int, viewType: GeneralViewType)
     case section(sectionId:Int)
     
     public var stableId:Int {
@@ -44,14 +40,6 @@ private enum PasscodeEntry : Comparable, Identifiable {
             return 6
         case .lockAnsibleHeader:
             return 7
-        case .lockWalletHeader:
-            return 8
-        case .walletPasscode:
-            return 9
-        case .walletBiometrics:
-            return 10
-        case .walletInfo:
-            return 11
         case let .section(sectionId):
             return (sectionId + 1) * 1000 - sectionId
         }
@@ -74,14 +62,6 @@ private enum PasscodeEntry : Comparable, Identifiable {
         case let .turnTouchId(sectionId, _, _):
             return (sectionId * 1000) + stableId
         case let .lockAnsibleHeader(sectionId, _):
-            return (sectionId * 1000) + stableId
-        case let .lockWalletHeader(sectionId, _):
-            return (sectionId * 1000) + stableId
-        case let .walletPasscode(sectionId, _, _, _):
-            return (sectionId * 1000) + stableId
-        case let .walletBiometrics(sectionId, _, _, _):
-            return (sectionId * 1000) + stableId
-        case let .walletInfo(sectionId, _):
             return (sectionId * 1000) + stableId
         case let .section(sectionId):
             return (sectionId + 1) * 1000 - sectionId
@@ -154,18 +134,6 @@ fileprivate func prepareTransition(left:[AppearanceWrapperEntry<PasscodeEntry>],
             return GeneralTextRowItem(initialSize, stableId: entry.stableId, text: strings().passcodeControllerText, viewType: viewType)
         case let .lockAnsibleHeader(_, viewType):
             return GeneralTextRowItem(initialSize, stableId: entry.stableId, text: strings().passcodeSettingsViewControllerLockAnsible, viewType: viewType)
-        case let .lockWalletHeader(_, viewType):
-            return GeneralTextRowItem(initialSize, stableId: entry.stableId, text: strings().passcodeSettingsViewControllerLockWallet, viewType: viewType)
-        case let .walletInfo(_, viewType):
-            return GeneralTextRowItem(initialSize, stableId: entry.stableId, text: strings().passcodeSettingsViewControllerWalletInfo, viewType: viewType)
-        case let .walletPasscode(_, enabled, available, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: entry.stableId, name: strings().passcodeSettingsViewControllerConfirmWithPasscode, type: .switchable(enabled), viewType: viewType, action: {
-                arguments.toggleWalletProtection(!enabled)
-            }, enabled: available, autoswitch: false)
-        case let .walletBiometrics(_, enabled, available, viewType):
-            return GeneralInteractedRowItem(initialSize, stableId: entry.stableId, name: strings().passcodeSettingsViewControllerConfirmWithTouchId, type: .switchable(enabled), viewType: viewType, action: {
-                arguments.toggleWalletBiometrics(!enabled)
-            }, enabled: available, autoswitch: false)
         case let .turnTouchId(_, enabled, viewType):
             return GeneralInteractedRowItem(initialSize, stableId: entry.stableId, name: strings().passcodeUseTouchId, type: .switchable(enabled), viewType: viewType, action: {
                 arguments.toggleTouchId(!enabled)
@@ -204,17 +172,13 @@ private final class PasscodeSettingsArguments {
     public let change:()->Void
     public let ifAway:()->Void
     public let toggleTouchId:(Bool)->Void
-    public let toggleWalletProtection:(Bool)->Void
-    public let toggleWalletBiometrics:(Bool)->Void
-    public init(_ context: any AccountContextProtocol, turnOn: @escaping()->Void, turnOff: @escaping()->Void, change:@escaping()->Void, ifAway: @escaping()-> Void, toggleTouchId:@escaping(Bool)->Void, toggleWalletProtection:@escaping(Bool)->Void, toggleWalletBiometrics:@escaping(Bool)->Void) {
+    public init(_ context: any AccountContextProtocol, turnOn: @escaping()->Void, turnOff: @escaping()->Void, change:@escaping()->Void, ifAway: @escaping()-> Void, toggleTouchId:@escaping(Bool)->Void) {
         self.context = context
         self.turnOn = turnOn
         self.turnOff = turnOff
         self.change = change
         self.ifAway = ifAway
         self.toggleTouchId = toggleTouchId
-        self.toggleWalletProtection = toggleWalletProtection
-        self.toggleWalletBiometrics = toggleWalletBiometrics
     }
 }
 
@@ -224,11 +188,10 @@ open class PasscodeSettingsViewController<Context: AccountContextProtocol>: Tabl
         return strings().ansiblePasscodeSettingsViewController
     }
     
-    public var installsForWallet = false
 
     private let disposable = MetaDisposable()
     private func show(mode: PasscodeMode) {
-        self.navigationController?.push(PasscodeController(sharedContext: context.sharedContext, mode: mode, installsForWallet: installsForWallet))
+        self.navigationController?.push(PasscodeController(sharedContext: context.sharedContext, mode: mode))
     }
     
     deinit {
@@ -292,10 +255,6 @@ open class PasscodeSettingsViewController<Context: AccountContextProtocol>: Tabl
             _ = updateAdditionalSettingsInteractively(accountManager: context.sharedContext.accountManager, { current -> AdditionalSettings in
                 return current.withUpdatedTouchId(enabled)
             }).start()
-        }, toggleWalletProtection: { [weak self] enabled in
-            self?.show(mode: .walletProtection(enabled: enabled))
-        }, toggleWalletBiometrics: { [weak self] enabled in
-            self?.show(mode: .walletBiometrics(enabled: enabled))
         })
         
         let initialSize = self.atomicSize.modify({$0})

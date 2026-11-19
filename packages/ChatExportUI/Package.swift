@@ -3,6 +3,7 @@
 import PackageDescription
 
 let deps: [(String, String)] = [
+    ("AnsibleLinks", "../AnsibleLinks"),
     ("AnsibleMediaUtils", "../AnsibleMediaUtils"),
     ("ShortPeerRow", "../ShortPeerRow"),
     ("TGUIKit", "../TGUIKit"),

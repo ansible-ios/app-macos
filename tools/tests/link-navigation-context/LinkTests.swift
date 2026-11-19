@@ -312,8 +312,6 @@ struct StickerPackPreviewSource {}
 struct ProxyServerSettings {}
 struct inAppSecureIdRequest {}
 struct WallpaperPreview {}
-struct ParsedWalletUrl {}
-struct ParsedSendGramsLink {}
 struct TelegramMediaWebpage {}
 struct InAppSettingsSection {}
 enum CachedChannelData { struct ActiveCall {} }
@@ -1312,7 +1310,6 @@ extension LinkTests {
     private func accountRoutes(_ context: AccountContext) -> [inAppLink] {
         let callback: (PeerId, Bool, MessageId?, ChatInitialAction?) -> Void = { _, _, _, _ in }
         return [
-            .tonsite(link: "synthetic", context: context),
             .followResolvedName(link: "synthetic", username: "synthetic", postId: nil, forceProfile: false, context: context, action: nil, callback: callback),
             .noPaidMessagesToken(link: "synthetic", username: "synthetic", token: "synthetic", context: context, callback: callback),
             .contactToken(link: "synthetic", token: "synthetic", freeToken: nil, context: context, callback: callback),
@@ -1330,8 +1327,6 @@ extension LinkTests {
             .applyLocalization(link: "synthetic", context: context, value: "synthetic"),
             .wallpaper(link: "synthetic", context: context, preview: .init()),
             .theme(link: "synthetic", context: context, name: "synthetic"),
-            .tonTransfer(link: "synthetic", context: context, data: .init()),
-            .sendGrams(link: "synthetic", context: context, data: .init()),
             .settings(link: "synthetic", context: context, section: .init()),
             .joinGroupCall(link: "synthetic", context: context, peerId: 2, call: .init()),
             .invoice(link: "synthetic", context: context, slug: "synthetic"),
@@ -1347,7 +1342,7 @@ extension LinkTests {
             .multigift(link: "synthetic", context: context),
             .nft(link: "synthetic", slug: "synthetic", context: context),
             .joinCall(link: "synthetic", slug: "synthetic", context: context),
-            .starsInfo(link: "synthetic", context: context, isTon: false),
+            .starsInfo(link: "synthetic", context: context),
             .auction(link: "synthetic", slug: "synthetic", context: context),
             .oauth(link: "synthetic", token: "synthetic", context: context),
             .createBot(link: "synthetic", context: context, managerUsername: "synthetic", botUsername: "synthetic", title: nil),

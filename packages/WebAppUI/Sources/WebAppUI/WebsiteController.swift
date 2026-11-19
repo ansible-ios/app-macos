@@ -639,12 +639,7 @@ public final class WebsiteController : ModalViewController, WKNavigationDelegate
         if navigationAction.targetFrame == nil {
             let context = self.context
             if let url = navigationAction.request.url?.absoluteString {
-                switch BrowserHooks.shared.classifyLink(context, url) {
-                case .tonsite:
-                    break
-                default:
-                    BrowserHooks.shared.openLink(context, url, self.window, false, {})
-                }
+                BrowserHooks.shared.openLink(context, url, self.window, false, {})
             }
         }
         return nil

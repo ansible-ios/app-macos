@@ -193,7 +193,6 @@ public final class WidgetEngineXPCChannel: SandboxRemoteChannel {
         func bridge(_ method: String, args: String) { current?.remoteBridge(method: method, argsJson: args) }
         func copyText(_ text: String) { current?.remoteCopyText(text) }
         func request(_ id: Int, data: String, wallet: Bool) { current?.remoteRequest(id: id, data: data, wallet: wallet) }
-        func wallet(_ id: Int, payload: Data) { current?.remoteWallet(id: id, payload: payload) }
         func storage(_ json: String) { current?.remoteStorage(json) }
         func resizeAnchor(_ edge: String) { current?.remoteResizeAnchor(edge) }
         func watchesPublicData(_ on: Bool) { current?.remoteWatchesPublicData(on) }

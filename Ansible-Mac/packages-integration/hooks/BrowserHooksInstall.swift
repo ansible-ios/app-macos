@@ -23,8 +23,6 @@ func installBrowserUIHooks() {
             return .external
         case .shareUrl:
             return .shareUrl
-        case let .tonsite(link, _):
-            return .tonsite(link)
         case .instantView:
             return .instantView
         default:

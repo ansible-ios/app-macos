@@ -175,7 +175,6 @@ public class ChatRowItem: TableRowItem {
     public private(set) var postAuthor:TextViewLayout?
     public private(set) var editedLabel:TextViewLayout?
     public private(set) var paidMessage:TextViewLayout?
-    public private(set) var diceStake:TextViewLayout?
 
     public private(set) var messageEffect: AvailableMessageEffects.MessageEffect?
    
@@ -2990,7 +2989,7 @@ public class ChatRowItem: TableRowItem {
         if let message = entry.message {
             if let widget = message.media.first as? TelegramMediaWidget {
                 let context = interaction.interactionContext
-                let widgetContext = HTMLWidgetContext(accountPeerId: context.account.peerId, basePath: context.account.basePath, message: message, widget: widget, locale: appCurrentLanguage.languageCode, viewer: context.myPeer as? TelegramUser, isPremium: context.isPremium, walletAvailable: ChatNavigationHooks.shared.widgetWalletAvailable(context))
+                let widgetContext = HTMLWidgetContext(accountPeerId: context.account.peerId, basePath: context.account.basePath, message: message, widget: widget, locale: appCurrentLanguage.languageCode, viewer: context.myPeer as? TelegramUser, isPremium: context.isPremium)
                 let state = HTMLWidgetStore.shared.state(mediaBox: context.account.postbox.mediaBox, message: message, widget: widget, context: widgetContext)
                 return ChatHTMLRowItem(initialSize, interaction, context, entry, theme: theme, document: nil, widget: widget, widgetState: state)
             }

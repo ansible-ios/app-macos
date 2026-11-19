@@ -914,8 +914,7 @@ private func analyticsLinkContext(_ inapp: inAppLink, inherited: AnalyticsContex
         return validated(context, peerId: peerId)
     case let .story(_, _, _, messageId, context):
         return validated(context, peerId: messageId?.peerId)
-    case let .tonsite(_, context),
-         let .followResolvedName(_, _, _, _, context, _, _),
+    case let .followResolvedName(_, _, _, _, context, _, _),
          let .noPaidMessagesToken(_, _, _, context, _),
          let .contactToken(_, _, _, context, _),
          let .comments(_, _, context, _, _),
@@ -930,8 +929,6 @@ private func analyticsLinkContext(_ inapp: inAppLink, inherited: AnalyticsContex
          let .applyLocalization(_, context, _),
          let .wallpaper(_, context, _),
          let .theme(_, context, _),
-         let .tonTransfer(_, context, _),
-         let .sendGrams(_, context, _),
          let .settings(_, context, _),
          let .invoice(_, context, _),
          let .premiumOffer(_, _, context),
@@ -945,7 +942,7 @@ private func analyticsLinkContext(_ inapp: inAppLink, inherited: AnalyticsContex
          let .multigift(_, context),
          let .nft(_, _, context),
          let .joinCall(_, _, context),
-         let .starsInfo(_, context, _),
+         let .starsInfo(_, context),
          let .auction(_, _, context),
          let .oauth(_, _, context),
          let .createBot(_, context, _, _, _),
@@ -1652,8 +1649,6 @@ func execute(inapp:inAppLink, window: Window? = nil, isExternal: Bool = false, a
             }
         })
         afterComplete(true)
-    case .tonTransfer, .sendGrams:
-        afterComplete(false)
     case .instantView:
         afterComplete(true)
     case let .settings(_, context, section):
@@ -1891,9 +1886,6 @@ func execute(inapp:inAppLink, window: Window? = nil, isExternal: Bool = false, a
             case .do_not_translate:
                 controller = LanguageController(context, focusOnItemTag: .doNotTranslate)
             }
-        case .ton:
-            afterComplete(false)
-            return
         case let .appearance(subSection):
             switch subSection {
             case .none:
@@ -2169,8 +2161,6 @@ func execute(inapp:inAppLink, window: Window? = nil, isExternal: Bool = false, a
             }
         })
         afterComplete(true)
-    case .tonsite:
-        afterComplete(false)
     case let .starsTopup(_, amount, purpose, context):
         let balance = context.starsContext.state |> map { $0?.balance } |> take(1) |> deliverOnMainQueue
         _ = balance.startStandalone(next: { balance in
@@ -2211,8 +2201,7 @@ func execute(inapp:inAppLink, window: Window? = nil, isExternal: Bool = false, a
             }
         })
         afterComplete(true)
-    case let .starsInfo(_, context, isTon):
-        guard !isTon else { afterComplete(false); return }
+    case let .starsInfo(_, context):
         showModal(with: Star_ListScreen(context: context, source: .account), for: getWindow(context))
         afterComplete(true)
     case let .auction(_, slug, context):
@@ -2326,7 +2315,6 @@ enum inAppLink {
     
     
     case external(link:String, Bool) // link, confirm
-    case tonsite(link: String, context: AccountContext)
     case peerInfo(link: String, peerId:PeerId, action:ChatInitialAction?, openChat:Bool, postId:Int32?, callback:(PeerId, Bool, MessageId?, ChatInitialAction?)->Void)
     case followResolvedName(link: String, username:String, postId:Int32?, forceProfile: Bool, context: AccountContext, action:ChatInitialAction?, callback:(PeerId, Bool, MessageId?, ChatInitialAction?)->Void)
     case noPaidMessagesToken(link: String, username: String, token: String, context: AccountContext, callback:(PeerId, Bool, MessageId?, ChatInitialAction?)->Void)
@@ -2350,8 +2338,6 @@ enum inAppLink {
     case applyLocalization(link: String, context: AccountContext, value: String)
     case wallpaper(link: String, context: AccountContext, preview: WallpaperPreview)
     case theme(link: String, context: AccountContext, name: String)
-    case tonTransfer(link: String, context: AccountContext, data: ParsedWalletUrl)
-    case sendGrams(link: String, context: AccountContext, data: ParsedSendGramsLink)
     case instantView(link: String, webpage: TelegramMediaWebpage, anchor: String?)
     case settings(link: String, context: AccountContext, section: InAppSettingsSection)
     case joinGroupCall(link: String, context: AccountContext, peerId: PeerId, call: CachedChannelData.ActiveCall)
@@ -2369,7 +2355,7 @@ enum inAppLink {
     case multigift(link: String, context: AccountContext)
     case nft(link: String, slug: String, context: AccountContext)
     case joinCall(link: String, slug: String, context: AccountContext)
-    case starsInfo(link: String, context: AccountContext, isTon: Bool)
+    case starsInfo(link: String, context: AccountContext)
     case auction(link: String, slug: String, context: AccountContext)
     case oauth(link: String, token: String, context: AccountContext)
     case createBot(link: String, context: AccountContext, managerUsername: String, botUsername: String, title: String?)
@@ -2415,10 +2401,6 @@ enum inAppLink {
             return link
         case let .theme(link, _, _):
             return link
-        case let .tonTransfer(link, _, _):
-            return link
-        case let .sendGrams(link, _, _):
-            return link
         case let .instantView(link, _, _):
             return link
         case let .settings(link, _, _):
@@ -2447,15 +2429,13 @@ enum inAppLink {
             return link
         case let .businessLink(link, _, _):
             return link
-        case let .tonsite(link, _):
-            return link
         case let .starsTopup(link, _, _, _):
             return link
         case let .nft(link, _, _):
             return link
         case let .joinCall(link, _, _):
             return link
-        case let .starsInfo(link, _, _):
+        case let .starsInfo(link, _):
             return link
         case let .auction(link, _, _):
             return link
@@ -2475,9 +2455,6 @@ enum inAppLink {
 
 func inApp(for url:NSString, context: AccountContext? = nil, peerId:PeerId? = nil, messageId: MessageId? = nil, openInfo:((PeerId, Bool, MessageId?, ChatInitialAction?)->Void)? = nil, hashtag:((String)->Void)? = nil, command:((String)->Void)? = nil, applyProxy:((ProxyServerSettings) -> Void)? = nil, confirm: Bool = false) -> inAppLink {
 
-    let source = normalizedAnsibleLinkQuery(url as String)
-    if let scheme = URLComponents(string: source)?.scheme?.lowercased(), ["ton", "tonsite", "tc", "tonconnect"].contains(scheme) { return .nothing }
-
     let options = InAppLinkParsingOptions(
         peerId: peerId,
         messageId: messageId,
@@ -2492,8 +2469,6 @@ func inApp(for url:NSString, context: AccountContext? = nil, peerId:PeerId? = ni
     switch parseInAppLink(url, options: options) {
     case let .external(link, confirm):
         return .external(link: link, confirm)
-    case .tonsite:
-        return .nothing
     case let .followResolvedName(link, username, postId, forceProfile, action):
         guard let context, let openInfo else { return .nothing }
         return .followResolvedName(link: link, username: username, postId: postId, forceProfile: forceProfile, context: context, action: action.map(chatInitialAction), callback: openInfo)
@@ -2550,8 +2525,6 @@ func inApp(for url:NSString, context: AccountContext? = nil, peerId:PeerId? = ni
     case let .theme(link, name):
         guard let context else { return .nothing }
         return .theme(link: link, context: context, name: name)
-    case .tonTransfer, .sendGrams:
-        return .nothing
     case let .settings(link, section):
         guard let context else { return .nothing }
         return .settings(link: link, context: context, section: section)
@@ -2596,9 +2569,9 @@ func inApp(for url:NSString, context: AccountContext? = nil, peerId:PeerId? = ni
     case let .joinCall(link, slug):
         guard let context else { return .nothing }
         return .joinCall(link: link, slug: slug, context: context)
-    case let .starsInfo(link, isTon):
+    case let .starsInfo(link):
         guard let context else { return .nothing }
-        return .starsInfo(link: link, context: context, isTon: isTon)
+        return .starsInfo(link: link, context: context)
     case let .auction(link, slug):
         guard let context else { return .nothing }
         return .auction(link: link, slug: slug, context: context)

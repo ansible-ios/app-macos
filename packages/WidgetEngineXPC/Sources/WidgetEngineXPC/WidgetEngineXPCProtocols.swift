@@ -36,7 +36,6 @@ import Foundation
     func bridge(_ method: String, args: String)
     func copyText(_ text: String)
     func request(_ id: Int, data: String, wallet: Bool)
-    func wallet(_ id: Int, payload: Data)
     func storage(_ json: String)
     func resizeAnchor(_ edge: String)
     func watchesPublicData(_ on: Bool)

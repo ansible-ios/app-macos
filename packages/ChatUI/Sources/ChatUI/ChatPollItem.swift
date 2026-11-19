@@ -599,8 +599,6 @@ public class ChatPollItem: ChatRowItem {
                 chatInteraction?.openBank(bank)
             }, isDark: theme.colors.isDark, bubbled: renderType == .bubble, openPhoneNumber: { [weak chatInteraction] phone in
                 chatInteraction?.openPhoneNumberContextMenu(phone)
-            }, openTonAddress: { [weak chatInteraction] address in
-                chatInteraction?.openTonAddressContextMenu(address)
             }, ignoreLinks: !object.additionalData.canHighlightLinks && isIncoming).mutableCopy() as! NSMutableAttributedString
             let layout = TextViewLayout(descAttr, selectText: self.presentation.chat.selectText(isIncoming, renderType == .bubble), strokeLinks: renderType == .bubble, alwaysStaticItems: true, disableTooltips: false, mayItems: canCopyText)
             layout.interactions = LinkHooks.shared.globalLinkExecutor()

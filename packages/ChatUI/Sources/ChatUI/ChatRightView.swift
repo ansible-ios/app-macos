@@ -239,8 +239,6 @@ public class ChatRightView: View, ViewDisplayDelegate {
         public private(set) var edit: NSRect?
         public private(set) var paidMessageCount: NSRect?
         public private(set) var paidMessageImage: NSRect?
-        public private(set) var diceStakeCount: NSRect?
-        public private(set) var diceStakeImage: NSRect?
         public private(set) var date: NSRect?
         public private(set) var failed: NSRect?
         public private(set) var effect: NSRect?
@@ -344,18 +342,6 @@ public class ChatRightView: View, ViewDisplayDelegate {
                 self.date = makeDate(item, size, &x)
             }
 
-            if let diceStake = item.diceStake {
-                var rect_i = size.bounds.focus(item.presentation.chat.diceStakeIcon(item).backingSize)
-                rect_i.origin.x = x + 2
-                rect_i.origin.y -= 1
-                x = rect_i.maxX
-                var rect_t = size.bounds.focus(diceStake.layoutSize)
-                rect_t.origin.x = x
-                x = rect_t.maxX
-
-                self.diceStakeImage = rect_i
-                self.diceStakeCount = rect_t
-            }
             self.width = measureWidth()
         }
         
@@ -425,8 +411,6 @@ public class ChatRightView: View, ViewDisplayDelegate {
             include(self.read)
             include(self.sending)
             include(self.effect)
-            include(self.diceStakeCount)
-            include(self.diceStakeImage)
             include(self.paidMessageCount)
             include(self.paidMessageImage)
             include(self.replyCount)
@@ -483,8 +467,6 @@ public class ChatRightView: View, ViewDisplayDelegate {
     private var replyCountImage: ChatRightIconLayer?
     private var paidMessageCountView: ChatRightTextLayer?
     private var paidMessageImage: ChatRightIconLayer?
-    private var diceStakeCountView: ChatRightTextLayer?
-    private var diceStakeImageView: ChatRightIconLayer?
     private var viewsCountView: ChatRightTextLayer?
     private var viewsImageView: ChatRightIconLayer?
     private var postAuthorView: ChatRightTextLayer?
@@ -709,38 +691,6 @@ public class ChatRightView: View, ViewDisplayDelegate {
             }
         }
 
-        if let diceStake = item.diceStake, let diceStakeImage = frames.diceStakeImage, let diceStakeCount = frames.diceStakeCount {
-            if self.diceStakeCountView == nil {
-                self.diceStakeCountView = ChatRightView.makeTextLayer(diceStakeCount)
-                self.contentLayer.addSublayer(self.diceStakeCountView!)
-                if animated {
-                    self.diceStakeCountView?.animateAlpha(from: 0, to: 1, duration: 0.2)
-                    self.diceStakeCountView?.animateScaleCenter(from: 0.1, to: 1, duration: 0.2)
-                }
-            }
-            self.diceStakeCountView?.update(diceStake)
-
-            if self.diceStakeImageView == nil {
-                self.diceStakeImageView = ChatRightView.makeIconLayer(diceStakeImage)
-                self.contentLayer.addSublayer(self.diceStakeImageView!)
-                if animated {
-                    self.diceStakeImageView?.animateAlpha(from: 0, to: 1, duration: 0.2)
-                    self.diceStakeImageView?.animateScaleCenter(from: 0.1, to: 1, duration: 0.2)
-                }
-            }
-            self.diceStakeImageView?.image = item.presentation.chat.diceStakeIcon(item)
-            self.diceStakeImageView?.sizeToFit()
-
-        } else {
-            if let view = self.diceStakeCountView {
-                self.diceStakeCountView = nil
-                ChatRightView.removeIcon(view, animated: animated)
-            }
-            if let view = self.diceStakeImageView {
-                self.diceStakeImageView = nil
-                ChatRightView.removeIcon(view, animated: animated)
-            }
-        }
 
         if let pinRect = frames.pin {
             if self.pinView == nil {
@@ -939,13 +889,6 @@ public class ChatRightView: View, ViewDisplayDelegate {
             transition.updateFrame(layer: view, frame: frame)
             view.updateDrawLayer()
         }
-        if let frame = frames.diceStakeImage, let view = diceStakeImageView {
-            transition.updateFrame(layer: view, frame: frame)
-        }
-        if let frame = frames.diceStakeCount, let view = diceStakeCountView {
-            transition.updateFrame(layer: view, frame: frame)
-            view.updateDrawLayer()
-        }
     }
 
     public override func layout() {
@@ -956,7 +899,7 @@ public class ChatRightView: View, ViewDisplayDelegate {
 
     public override func viewDidChangeBackingProperties() {
         super.viewDidChangeBackingProperties()
-        for layer in [replyCountView, paidMessageCountView, diceStakeCountView, dateView, editView, viewsCountView, postAuthorView] {
+        for layer in [replyCountView, paidMessageCountView, dateView, editView, viewsCountView, postAuthorView] {
             layer?.updateScale(backingScaleFactor)
         }
     }

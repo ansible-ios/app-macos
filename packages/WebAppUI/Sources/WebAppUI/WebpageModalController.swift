@@ -1638,11 +1638,6 @@ public class WebpageModalController: ModalViewController, WKNavigationDelegate, 
                 decisionHandler(.cancel)
                 return
             }
-            if case .tonConnect = BrowserHooks.shared.classifyLink(context, url.absoluteString) {
-                decisionHandler(.cancel)
-                BrowserHooks.shared.openLink(context, url.absoluteString, self.window, true, {})
-                return
-            }
         }
         if navigationAction.navigationType == .linkActivated {
             if let url = navigationAction.request.url {

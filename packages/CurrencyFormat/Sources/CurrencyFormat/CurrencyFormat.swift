@@ -40,7 +40,6 @@ private func loadCurrencyFormatterEntries() -> [String: CurrencyFormatterEntry] 
         }
     }
     
-    result["TON"] = .init(symbol: "", thousandsSeparator: ",", decimalSeparator: ".", symbolOnLeft: true, spaceBetweenAmountAndSymbol: false, decimalDigits: 9)
     result["XTR"] = .init(symbol: "", thousandsSeparator: ",", decimalSeparator: ".", symbolOnLeft: true, spaceBetweenAmountAndSymbol: false, decimalDigits: 0)
 
     return result
@@ -134,8 +133,8 @@ public func currencyToFractionalAmount(value: Double, currency: String) -> Doubl
 }
 
 public func formatReceiptAmount(_ amount: Int64, currency: String) -> String {
-    if currency == "TON" {
-        return formatTonAmountText(amount, maxDecimalPositions: nil) + " TON"
+    if ["TON", "GRAM"].contains(currency.uppercased()) {
+        return ""
     }
     guard currencyFormatterEntries[currency] != nil else {
         return "\(amount) \(currency)"
@@ -144,6 +143,7 @@ public func formatReceiptAmount(_ amount: Int64, currency: String) -> String {
 }
 
 public func formatCurrencyAmount(_ amount: Int64, currency: String) -> String {
+    if ["TON", "GRAM"].contains(currency.uppercased()) { return "" }
     if let entry = currencyFormatterEntries[currency] ?? currencyFormatterEntries["USD"] {
         var result = ""
         if amount < 0 {
@@ -156,10 +156,6 @@ public func formatCurrencyAmount(_ amount: Int64, currency: String) -> String {
             }
         }
         
-        if currency == "TON" {
-            var pb = 0
-            pb += 1;
-        }
         
         // Handle integer part with thousands separator
         var integerPart = amount.magnitude

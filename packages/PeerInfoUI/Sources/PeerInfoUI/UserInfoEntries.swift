@@ -345,11 +345,6 @@ class UserInfoArguments<Context: AccountContextProtocol> : PeerInfoArguments<Con
         }
     }
     
-    func openTonBalance() {
-        if let revenueContext = getTonContext?() {
-            self.pullNavigation()?.push(PeerInfoNavigationHooks.shared.makeTonMonetizationController(context, peerId, revenueContext))
-        }
-    }
     
     func shareContact() {
         ownContactShareAction.reset()
@@ -1298,7 +1293,6 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
     case aboutInfo(sectionId:Int, text: String, viewType: GeneralViewType)
     case botManager(sectionId:Int, peer: EnginePeer, viewType: GeneralViewType)
     case botStarsBalance(sectionId:Int, text: String, viewType: GeneralViewType)
-    case botTonBalance(sectionId:Int, text: String, viewType: GeneralViewType)
     case botPermissionsHeader(sectionId:Int, text: String, viewType: GeneralViewType)
     case botPermissionsStatus(sectionId:Int, value: Bool, viewType: GeneralViewType)
     case botPermissionsGeo(sectionId:Int, value: Bool, viewType: GeneralViewType)
@@ -1375,8 +1369,6 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
         case .botManager(_, _, let viewType):
             return viewType
         case .botStarsBalance(_, _, let viewType):
-            return viewType
-        case .botTonBalance(_, _, let viewType):
             return viewType
         case .botPermissionsHeader(_, _, let viewType):
             return viewType
@@ -1495,7 +1487,6 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
         case let .setNotes(sectionId, note, placeholder, _): return .setNotes(sectionId: sectionId, note: note, placeholder: placeholder, viewType: viewType)
         case let .setNotesInfo(sectionId, text, _): return .setNotesInfo(sectionId: sectionId, text: text, viewType: viewType)
         case let .botStarsBalance(sectionId, text, _): return .botStarsBalance(sectionId: sectionId, text: text, viewType: viewType)
-        case let .botTonBalance(sectionId, text, _): return .botTonBalance(sectionId: sectionId, text: text, viewType: viewType)
         case let .botPermissionsHeader(sectionId, text, _): return .botPermissionsHeader(sectionId: sectionId, text: text, viewType: viewType)
         case let .botPermissionsStatus(sectionId, value, _): return .botPermissionsStatus(sectionId: sectionId, value: value, viewType: viewType)
         case let .botPermissionsGeo(sectionId, value, _): return .botPermissionsGeo(sectionId: sectionId, value: value, viewType: viewType)
@@ -1666,13 +1657,6 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
         case let .botStarsBalance(sectionId, text, viewType):
             switch entry {
             case .botStarsBalance(sectionId, text, viewType):
-                return true
-            default:
-                return false
-            }
-        case let .botTonBalance(sectionId, text, viewType):
-            switch entry {
-            case .botTonBalance(sectionId, text, viewType):
                 return true
             default:
                 return false
@@ -2094,8 +2078,6 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
             return 109
         case .botStarsBalance:
             return 110
-        case .botTonBalance:
-            return 111
         case .botPermissionsHeader:
             return 112
         case .botPermissionsStatus:
@@ -2226,8 +2208,6 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
         case let .verifyAccounts(sectionId, _, _):
             return (sectionId * 1000) + stableIndex
         case let .botStarsBalance(sectionId, _, _):
-            return (sectionId * 1000) + stableIndex
-        case let .botTonBalance(sectionId, _, _):
             return (sectionId * 1000) + stableIndex
         case let .botPermissionsHeader(sectionId, _, _):
             return (sectionId * 1000) + stableIndex
@@ -2401,9 +2381,6 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
         case let .botStarsBalance(_, text, viewType):
             let icon = generateStarBalanceIcon(text)
             return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditDiamondsBalanceNew, icon: theme.icons.peerInfoStarsBalance, type: .nextImage(icon), viewType: viewType, action: arguments.openStarsBalance)
-        case let .botTonBalance(_, text, viewType):
-            let icon = generateTonBalanceIcon(text)
-            return GeneralInteractedRowItem(initialSize, stableId: stableId.hashValue, name: strings().peerInfoBotEditTonBalance, icon: theme.icons.peerInfoTonBalance, type: .nextImage(icon), viewType: viewType, action: arguments.openTonBalance)
         case let .botPermissionsHeader(_, text, viewType):
             return GeneralTextRowItem(initialSize, stableId: stableId.hashValue, text: .plain(text), viewType: viewType)
         case let .botPermissionsStatus(_, value, viewType):
@@ -2698,7 +2675,7 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
 
 
 
-func userInfoEntries<Context: AccountContextProtocol>(view: PeerView, arguments: PeerInfoArguments<Context>, mediaTabsData: PeerMediaTabsData, source: PeerInfoController<Context>.Source, stories: PeerExpiringStoryListContext.State?, personalChannel: UserInfoPersonalChannel?, revenueState: StarsRevenueStatsContextState?, tonRevenueState: StarsRevenueStatsContextState?, webAppPermissionsState: WebAppPermissionsState?, savedMuicProfileState: ProfileSavedMusicContext.State?, mutedByDefault: Bool) -> [PeerInfoEntry] {
+func userInfoEntries<Context: AccountContextProtocol>(view: PeerView, arguments: PeerInfoArguments<Context>, mediaTabsData: PeerMediaTabsData, source: PeerInfoController<Context>.Source, stories: PeerExpiringStoryListContext.State?, personalChannel: UserInfoPersonalChannel?, revenueState: StarsRevenueStatsContextState?, webAppPermissionsState: WebAppPermissionsState?, savedMuicProfileState: ProfileSavedMusicContext.State?, mutedByDefault: Bool) -> [PeerInfoEntry] {
     
     if savedMuicProfileState != nil {
         var bp = 0

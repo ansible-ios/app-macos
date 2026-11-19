@@ -73,7 +73,6 @@ class PeerInfoArguments<Context: AccountContextProtocol> {
     let mediaController: ()->PeerMediaController<Context>?
     
     let getStarsContext:(()->StarsRevenueStatsContext?)?
-    let getTonContext:(()->StarsRevenueStatsContext?)?
     let getStarGiftsContext:(()->ProfileGiftsContext?)?
     let getSavedMusicContext:(()->ProfileSavedMusicContext?)?
 
@@ -190,8 +189,8 @@ class PeerInfoArguments<Context: AccountContextProtocol> {
         pushViewController(PeerInfoNavigationHooks.shared.makeSelectColorController(context, peer))
     }
     
-    func openStats(canSeeTon: Bool, canSeeStars: Bool) {
-        self.pushViewController(ChannelStatsSegmentController(context, peerId: peerId, isChannel: true, monetization: canSeeTon, stars: canSeeStars && !canSeeTon, onlyMonetization: true, analyticsContext: captureAnalyticsContext()))
+    func openStats(canSeeStars: Bool) {
+        self.pushViewController(ChannelStatsSegmentController(context, peerId: peerId, isChannel: true, monetization: false, stars: canSeeStars, onlyMonetization: true, analyticsContext: captureAnalyticsContext()))
     }
     
     func openWelcomeMessages() {
@@ -270,7 +269,7 @@ class PeerInfoArguments<Context: AccountContextProtocol> {
         }
     }
     
-    init(context: Context, peerId:PeerId, state:PeerInfoState, isAd: Bool, pushViewController:@escaping(ViewController)->Void, pullNavigation:@escaping()->NavigationViewController?, mediaController: @escaping()->PeerMediaController<Context>?, getStarsContext: (()->StarsRevenueStatsContext?)? = nil, getTonContext: (()->StarsRevenueStatsContext?)? = nil, getStarGiftsContext: (()->ProfileGiftsContext?)? = nil, getSavedMusicContext: (()->ProfileSavedMusicContext?)? = nil) {
+    init(context: Context, peerId:PeerId, state:PeerInfoState, isAd: Bool, pushViewController:@escaping(ViewController)->Void, pullNavigation:@escaping()->NavigationViewController?, mediaController: @escaping()->PeerMediaController<Context>?, getStarsContext: (()->StarsRevenueStatsContext?)? = nil, getStarGiftsContext: (()->ProfileGiftsContext?)? = nil, getSavedMusicContext: (()->ProfileSavedMusicContext?)? = nil) {
         self.value = Atomic(value: state)
         _statePromise.set(.single(state))
         self.context = context
@@ -280,7 +279,6 @@ class PeerInfoArguments<Context: AccountContextProtocol> {
         self.pullNavigation = pullNavigation
         self.mediaController = mediaController
         self.getStarsContext = getStarsContext
-        self.getTonContext = getTonContext
         self.getStarGiftsContext = getStarGiftsContext
         self.getSavedMusicContext = getSavedMusicContext
     }
@@ -533,7 +531,6 @@ public class PeerInfoController<Context: AccountContextProtocol>: EditableViewCo
     private let mediaController: PeerMediaController<Context>
     
     private let revenueContext: StarsRevenueStatsContext?
-    private let tonRevenueContext: StarsRevenueStatsContext? = nil
     
     private let starGiftsProfile: ProfileGiftsContext
     private let savedMuicProfile: ProfileSavedMusicContext?
@@ -800,8 +797,6 @@ public class PeerInfoController<Context: AccountContextProtocol>: EditableViewCo
              return self?.mediaController
         }, getStarsContext: { [weak self] in
             return self?.revenueContext
-        }, getTonContext: { [weak self] in
-            return self?.tonRevenueContext
         }, getStarGiftsContext: { [weak self] in
             return self?.starGiftsProfile
         }, getSavedMusicContext: { [weak self] in
@@ -1185,12 +1180,6 @@ public class PeerInfoController<Context: AccountContextProtocol>: EditableViewCo
             revenueState = .single(nil)
         }
         
-        let tonRevenueState: Signal<StarsRevenueStatsContextState?, NoError>
-        if let tonRevenueContext {
-            tonRevenueState = tonRevenueContext.state |> map(Optional.init)
-        } else {
-            tonRevenueState = .single(nil)
-        }
         
         let savedMuicProfileState: Signal<ProfileSavedMusicContext.State?, NoError>
         if let savedMuicProfile {
@@ -1309,11 +1298,11 @@ public class PeerInfoController<Context: AccountContextProtocol>: EditableViewCo
             
             
             
-            return combineLatest(queue: prepareQueue, context.account.viewTracker.peerView(peerId, updateData: true), arguments.statePromise, appearanceSignal, inputActivityState.get(), channelMembersPromise.get(), mediaTabsData, mediaReady, inviteLinksCount, joinRequestsCount, availableReactions, threadData, threadPeer, storiesSignal, personalChannelSignal, revenueState, tonRevenueState, webAppPermissionsState(context: context, peerId: peerId), savedMuicProfileState, globalNotificationSettings)
-            |> mapToQueue { view, state, appearance, inputActivities, channelMembers, mediaTabsData, _, inviteLinksCount, joinRequestsCount, availableReactions, threadData, threadPeer, stories, personalChannel, revenueState, tonRevenueState, webAppPermissionsState, savedMuicProfileState, globalNotificationSettings -> Signal<(PeerView, TableUpdateTransition, MessageHistoryThreadData?, EnginePeer?), NoError> in
+            return combineLatest(queue: prepareQueue, context.account.viewTracker.peerView(peerId, updateData: true), arguments.statePromise, appearanceSignal, inputActivityState.get(), channelMembersPromise.get(), mediaTabsData, mediaReady, inviteLinksCount, joinRequestsCount, availableReactions, threadData, threadPeer, storiesSignal, personalChannelSignal, revenueState, webAppPermissionsState(context: context, peerId: peerId), savedMuicProfileState, globalNotificationSettings)
+            |> mapToQueue { view, state, appearance, inputActivities, channelMembers, mediaTabsData, _, inviteLinksCount, joinRequestsCount, availableReactions, threadData, threadPeer, stories, personalChannel, revenueState, webAppPermissionsState, savedMuicProfileState, globalNotificationSettings -> Signal<(PeerView, TableUpdateTransition, MessageHistoryThreadData?, EnginePeer?), NoError> in
                     
                     
-                let entries:[AppearanceWrapperEntry<PeerInfoSortableEntry>] = peerInfoEntries(view: view, threadData: threadData, threadPeer: threadPeer, arguments: arguments, inputActivities: inputActivities, channelMembers: channelMembers, mediaTabsData: mediaTabsData, inviteLinksCount: inviteLinksCount, joinRequestsCount: joinRequestsCount, availableReactions: availableReactions, source: source, stories: stories, personalChannel: personalChannel, revenueState: revenueState, tonRevenueState: tonRevenueState, webAppPermissionsState: webAppPermissionsState, savedMuicProfileState: savedMuicProfileState, globalNotificationSettings: globalNotificationSettings).map({PeerInfoSortableEntry(entry: $0)}).map({AppearanceWrapperEntry(entry: $0, appearance: appearance)})
+                let entries:[AppearanceWrapperEntry<PeerInfoSortableEntry>] = peerInfoEntries(view: view, threadData: threadData, threadPeer: threadPeer, arguments: arguments, inputActivities: inputActivities, channelMembers: channelMembers, mediaTabsData: mediaTabsData, inviteLinksCount: inviteLinksCount, joinRequestsCount: joinRequestsCount, availableReactions: availableReactions, source: source, stories: stories, personalChannel: personalChannel, revenueState: revenueState, webAppPermissionsState: webAppPermissionsState, savedMuicProfileState: savedMuicProfileState, globalNotificationSettings: globalNotificationSettings).map({PeerInfoSortableEntry(entry: $0)}).map({AppearanceWrapperEntry(entry: $0, appearance: appearance)})
                     let previous = previousEntries.swap(entries)
                     return prepareEntries(from: previous, to: entries, account: context.account, initialSize: initialSize.modify({$0}), peerId: peerId, arguments:arguments, animated: previous != nil) |> runOn(onMainQueue.swap(false) ? .mainQueue() : prepareQueue) |> map { (view, $0, threadData, threadPeer) }
                     

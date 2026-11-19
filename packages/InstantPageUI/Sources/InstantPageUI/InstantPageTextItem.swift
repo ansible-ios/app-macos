@@ -23,16 +23,14 @@ extension NSAttributedString.Key {
 public struct InstantPageUrlItem: Hashable {
     public let url: String
     public let webpageId: MediaId?
-    public let tonAddress: String?
     
-    public init(url: String, webpageId: MediaId?, tonAddress: String? = nil) {
+    public init(url: String, webpageId: MediaId?) {
         self.url = url
         self.webpageId = webpageId
-        self.tonAddress = tonAddress
     }
     
     public static func ==(lhs: InstantPageUrlItem, rhs: InstantPageUrlItem) -> Bool {
-        return lhs.url == rhs.url && lhs.webpageId == rhs.webpageId && lhs.tonAddress == rhs.tonAddress
+        return lhs.url == rhs.url && lhs.webpageId == rhs.webpageId
     }
 }
 
@@ -945,12 +943,7 @@ private func renderedAttributedStringForRichText(_ text: RichText, styleStack: I
         styleStack.pop()
         return result
     case let .textTonAddress(text):
-        var components = URLComponents(string: "https://asme.su/sendgrams")!
-        components.queryItems = [URLQueryItem(name: "to", value: text.plainText)]
-        styleStack.push(.link(false))
-        let result = attributedStringForRichText(text, styleStack: styleStack, url: InstantPageUrlItem(url: components.string!, webpageId: nil, tonAddress: text.plainText), inlineButtonMaxWidth: inlineButtonMaxWidth, isInsideTableCell: isInsideTableCell)
-        styleStack.pop()
-        return result
+        return attributedStringForRichText(text, styleStack: styleStack, url: nil, inlineButtonMaxWidth: inlineButtonMaxWidth, isInsideTableCell: isInsideTableCell)
     case let .textMention(text):
         styleStack.push(.link(false))
         let routed = InstantPageUrlItem(url: text.plainText, webpageId: nil)

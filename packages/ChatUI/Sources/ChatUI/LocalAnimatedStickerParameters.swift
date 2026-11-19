@@ -115,8 +115,6 @@ extension LocalAnimatedSticker {
             playPolicy = .onceEnd
         case .fragment:
             playPolicy = .onceEnd
-        case .ton_logo:
-            playPolicy = .onceEnd
         case .affiliate_link:
             playPolicy = .onceEnd
         case .freeze_duck:

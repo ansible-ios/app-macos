@@ -142,7 +142,7 @@ extension GiftOptionsRowItem.Option {
         switch type {
         case let .price(string):
             parts.append(string)
-        case let .stars(amount, _, addPlus, _):
+        case let .stars(amount, _, addPlus):
             if nativeStarGift?.native.generic?.isAuction == true, nativeStarGift?.native.generic?.soldOut == nil {
                 parts.append(strings().starGiftOptionJoin)
             } else {
@@ -210,7 +210,7 @@ public final class GiftOptionsRowItem : GeneralRowItem {
         
         public enum TypeValue {
             case price(String)
-            case stars(Int64, Bool, Bool, Bool)
+            case stars(Int64, Bool, Bool)
             case none
         }
         public struct Badge {
@@ -345,7 +345,7 @@ public final class GiftOptionsRowItem : GeneralRowItem {
                 resale = false
             }
             
-            return .init(file: option.media, image: nil, colors: [], text: nil, type: preview ? .none : .stars(price, false, resale, false), badge: badge, peer: nil, invisible: false, pinned: false, toggleSelect: nil, limitDatePurchase: option.native.generic?.lockedUntilDate, priceBadge: nil, nativeStarGift: option)
+            return .init(file: option.media, image: nil, colors: [], text: nil, type: preview ? .none : .stars(price, false, resale), badge: badge, peer: nil, invisible: false, pinned: false, toggleSelect: nil, limitDatePurchase: option.native.generic?.lockedUntilDate, priceBadge: nil, nativeStarGift: option)
         }
         
         public static func initialize(_ option: StarGift.UniqueGift, context: (any AccountContextProtocol), resale: Bool = false, showNumber: Bool = false) -> Option {
@@ -369,7 +369,7 @@ public final class GiftOptionsRowItem : GeneralRowItem {
             
             let priceValue = option.resellStars(context)
             
-            return .init(file: option.file!, image: nil, colors: [], text: nil, type: option.resellAmounts != nil && showNumber && priceValue != nil ? .stars(priceValue!.amount.value, true, resale, option.resellForTonOnly) : .none, badge: badge, peer: nil, invisible: false, pinned: false, toggleSelect: nil, limitDatePurchase: nil, priceBadge: nil, nativeStarUniqueGift: option)
+            return .init(file: option.file!, image: nil, colors: [], text: nil, type: option.resellAmounts != nil && showNumber && priceValue != nil ? .stars(priceValue!.amount.value, true, resale) : .none, badge: badge, peer: nil, invisible: false, pinned: false, toggleSelect: nil, limitDatePurchase: nil, priceBadge: nil, nativeStarUniqueGift: option)
         }
         
         
@@ -591,7 +591,6 @@ public final class GiftOptionsRowView:  GeneralContainableRowView {
         private let surfaceView = SimpleLayer()
         private var premiumSelectView: View?
         private var toggleSelect: SelectingControl?
-        private var onlyTonView: OnlyTonView?
         private var limitDatePurchase: ImageView?
 
         private class PriceView: View {
@@ -618,36 +617,6 @@ public final class GiftOptionsRowView:  GeneralContainableRowView {
                 super.layout()
                 self.textView.center()
             }
-        }
-        
-        private class OnlyTonView : View {
-            private let visual = VisualEffect(frame: NSMakeRect(0, 0, 24, 24))
-            private let imageView = ImageView()
-            public required init(frame frameRect: NSRect) {
-                super.init(frame: frameRect)
-                addSubview(visual)
-                addSubview(imageView)
-                
-                imageView.image = AnsibleThemeHooks.shared.image(.iconTonCurrency).precomposed(.white)
-                imageView.isAccessibilityDecorative = true
-                imageView.sizeToFit()
-                self.layer?.cornerRadius = 15
-                
-                needsLayout = true
-                
-            }
-            
-            public required init?(coder: NSCoder) {
-                fatalError("init(coder:) has not been implemented")
-            }
-            
-            
-            public override func layout() {
-                super.layout()
-                self.visual.frame = bounds
-                self.imageView.center()
-            }
-            
         }
         
         private class StarPriceView: View {
@@ -824,7 +793,7 @@ public final class GiftOptionsRowView:  GeneralContainableRowView {
                 current.backgroundColor = option.gift?.unique != nil ? NSColor.white.withAlphaComponent(0.2) : theme.colors.accent.withAlphaComponent(0.2)
                 current.update(text: priceLayout)
                 
-            case let .stars(int64, plain, addPlus, _):
+            case let .stars(int64, plain, addPlus):
                 if let view = self.priceView {
                     performSubviewRemoval(view, animated: false)
                     self.priceView = nil
@@ -839,10 +808,6 @@ public final class GiftOptionsRowView:  GeneralContainableRowView {
                     self.starPriceView = current
                 }
                 
-                if let view = self.onlyTonView {
-                    performSubviewRemoval(view, animated: false)
-                    self.onlyTonView = nil
-                }
                 
                 current.effect.isHidden = plain
                 
@@ -869,10 +834,6 @@ public final class GiftOptionsRowView:  GeneralContainableRowView {
                 if let view = self.starPriceView {
                     performSubviewRemoval(view, animated: false)
                     self.starPriceView = nil
-                }
-                if let view = self.onlyTonView {
-                    performSubviewRemoval(view, animated: false)
-                    self.onlyTonView = nil
                 }
             }
             
@@ -983,19 +944,6 @@ public final class GiftOptionsRowView:  GeneralContainableRowView {
                 self.priceBadgeView = nil
             }
             
-            if option.nativeProfileGift?.gift.unique?.resellForTonOnly == true || option.nativeStarUniqueGift?.resellForTonOnly == true {
-                let current: OnlyTonView
-                if let view = self.onlyTonView {
-                    current = view
-                } else {
-                    current = OnlyTonView(frame: NSMakeRect(4, 4, 30, 30))
-                    self.onlyTonView = current
-                    addSubview(current)
-                }
-            } else if let view = self.onlyTonView {
-                performSubviewRemoval(view, animated: animated)
-                self.onlyTonView = nil
-            }
             
             if option.limitDatePurchase != nil {
                 let current: ImageView
@@ -1137,9 +1085,6 @@ public final class GiftOptionsRowView:  GeneralContainableRowView {
             }
             if let avatarView {
                 avatarView.setFrameOrigin(NSMakePoint(4, 4))
-            }
-            if let onlyTonView {
-                onlyTonView.setFrameOrigin(NSMakePoint(4, 4))
             }
             if let limitDatePurchase {
                 limitDatePurchase.setFrameOrigin(NSMakePoint(4, 4))

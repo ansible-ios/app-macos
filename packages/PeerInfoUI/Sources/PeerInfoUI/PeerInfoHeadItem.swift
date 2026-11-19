@@ -472,9 +472,6 @@ class PeerInfoHeadItem<Context: AccountContextProtocol>: GeneralRowItem {
         if !editing {
             height = photoDimension + insets.bottom + nameLayout.layoutSize.height + statusLayout.layoutSize.height + insets.bottom
             
-            if walletBalance != nil {
-                height += PeerInfoBalanceView.spacing + PeerInfoBalanceView.height
-            }
             if !items.isEmpty {
                 let maxActionSize: NSSize = items.max(by: { $0.size.height < $1.size.height })!.size
                 height += maxActionSize.height + insets.top
@@ -707,7 +704,6 @@ class PeerInfoHeadItem<Context: AccountContextProtocol>: GeneralRowItem {
     let hasLiveStream: Bool
     
     let musicFile: TelegramMediaFile?
-    let walletBalance: Int64?
 
     var hasProfileStrip: Bool {
         return !editing && musicFile != nil
@@ -821,7 +817,6 @@ class PeerInfoHeadItem<Context: AccountContextProtocol>: GeneralRowItem {
             self.musicFile = nil
         }
 
-        self.walletBalance = nil
         
         self.rating = (peerView.cachedData as? CachedUserData)?.starRating
         
@@ -980,8 +975,6 @@ class PeerInfoHeadItem<Context: AccountContextProtocol>: GeneralRowItem {
         
     }
 
-    func openWalletBalance(morphSource: (() -> NSView?)? = nil) {
-    }
     
     var colorfulProfile: Bool {
         if let _ = nameColor {
@@ -1738,7 +1731,6 @@ private final class PeerInfoHeadView<Context: AccountContextProtocol> : GeneralC
    
     private var musicView: PeerInfoMusicView?
     private var preloadedWalletCard: WalletCard?
-    private var balanceView: PeerInfoBalanceView?
 
     private let backgroundView = PeerInfoBackgroundView(frame: .zero)
     
@@ -2458,17 +2450,6 @@ private final class PeerInfoHeadView<Context: AccountContextProtocol> : GeneralC
             statusOffset = rating.smallSize.width + 3
         }
         
-        if let balanceView {
-            let size = balanceView.size
-            let frame: NSRect
-            if item.isAvatarExpanded {
-                frame = NSMakeRect(containerView.frame.width - 16 - size.width, statusContainer.frame.midY - size.height / 2, size.width, size.height)
-            } else {
-                frame = NSMakeRect(floor((containerView.frame.width - size.width) / 2), statusContainer.frame.maxY + PeerInfoBalanceView.spacing, size.width, size.height)
-            }
-            let balanceTransition: ContainedViewLayoutTransition = balanceView.frame.isEmpty ? .immediate : transition
-            balanceTransition.updateFrame(view: balanceView, frame: frame)
-        }
         if let musicView {
             let stripHeight = PeerInfoMusicView.height(colorful: item.colorfulProfile)
             transition.updateFrame(view: musicView, frame: NSMakeRect(0, containerView.frame.height - stripHeight, containerView.frame.width, stripHeight))
@@ -2529,9 +2510,9 @@ private final class PeerInfoHeadView<Context: AccountContextProtocol> : GeneralC
         
         var exclusionRects: [CGRect] = []
         
-        let titleWidth = max(140.0, nameView.frame.width, balanceView?.frame.width ?? 0) + 42.0
+        let titleWidth = max(140.0, nameView.frame.width) + 42.0
         let titleTop = min(nameView.frame.minY, photoContainer.frame.maxY + 6.0)
-        let titleBottom = max(nameView.frame.maxY, statusContainer.frame.maxY, balanceView?.frame.maxY ?? 0)
+        let titleBottom = max(nameView.frame.maxY, statusContainer.frame.maxY)
         if titleBottom > titleTop {
             exclusionRects.append(CGRect(x: floor((size.width - titleWidth) / 2), y: titleTop, width: titleWidth, height: titleBottom - titleTop))
         }
@@ -2802,31 +2783,6 @@ private final class PeerInfoHeadView<Context: AccountContextProtocol> : GeneralC
             self.musicView = nil
         }
 
-        if let walletBalance = item.walletBalance, !item.editing {
-            let current: PeerInfoBalanceView
-            if let view = self.balanceView {
-                current = view
-            } else {
-                current = PeerInfoBalanceView(frame: .zero)
-                self.balanceView = current
-                self.addSubview(current)
-                if animated {
-                    current.layer?.animateAlpha(from: 0, to: 1, duration: 0.2)
-                }
-            }
-            if item.isAvatarExpanded {
-                current.update(balance: walletBalance, textColor: .white, iconColor: .white, backgroundColor: NSColor.black.withAlphaComponent(0.3), colorfull: true, useGlass: System.liquidGlass)
-            } else {
-                current.update(balance: walletBalance, textColor: item.textColor, iconColor: item.colorfulProfile ? item.textColor : theme.colors.accent, backgroundColor: item.actionColor, colorfull: item.colorfulProfile, useGlass: System.liquidGlass && item.nameColor != nil && item.threadId == nil && !item.editing)
-            }
-
-            current.control.setSingle(handler: { [weak item, weak current] _ in
-                item?.openWalletBalance(morphSource: { [weak current] in current?.control })
-            }, for: .Click)
-        } else if let view = self.balanceView {
-            performSubviewRemoval(view, animated: animated)
-            self.balanceView = nil
-        }
         
         if  item.hasLiveStream {
             let current: ImageView
@@ -2988,7 +2944,7 @@ private final class PeerInfoHeadView<Context: AccountContextProtocol> : GeneralC
         if visible, let item = self.item as? PeerInfoHeadItem<Context>, item.editing {
             return
         }
-        let views: [View?] = [expandedShadeView, nameView, statusContainer, actionsView, balanceView]
+        let views: [View?] = [expandedShadeView, nameView, statusContainer, actionsView]
         for view in views.compactMap({ $0 }) where view.layer?.opacity != (visible ? 1 : 0) {
             view.change(opacity: visible ? 1 : 0, animated: animated)
         }

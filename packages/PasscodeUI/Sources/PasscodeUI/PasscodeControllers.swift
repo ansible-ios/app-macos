@@ -23,20 +23,16 @@ public enum PasscodeMode : Equatable {
     case install
     case change
     case disable
-    case walletProtection(enabled: Bool)
-    case walletBiometrics(enabled: Bool)
 }
 
 private struct PasscodeState : Equatable {
     public let mode: PasscodeMode
     public let data: [InputDataIdentifier : InputDataValue]
     public let errors: [InputDataIdentifier : InputDataValueError]
-    public let walletProtectionEnabled: Bool
-    public init(mode: PasscodeMode, data: [InputDataIdentifier : InputDataValue], errors: [InputDataIdentifier : InputDataValueError], walletProtectionEnabled: Bool) {
+    public init(mode: PasscodeMode, data: [InputDataIdentifier : InputDataValue], errors: [InputDataIdentifier : InputDataValueError]) {
         self.mode = mode
         self.data = data
         self.errors = errors
-        self.walletProtectionEnabled = walletProtectionEnabled
     }
     
     public func withUpdatedError(_ error: InputDataValueError?, for key: InputDataIdentifier) -> PasscodeState {
@@ -46,18 +42,15 @@ private struct PasscodeState : Equatable {
         } else {
             errors.removeValue(forKey: key)
         }
-        return PasscodeState(mode: self.mode, data: self.data, errors: errors, walletProtectionEnabled: self.walletProtectionEnabled)
+        return PasscodeState(mode: self.mode, data: self.data, errors: errors)
     }
     
     public func withUpdatedValue(_ value: InputDataValue, for key: InputDataIdentifier) -> PasscodeState {
         var data = self.data
         data[key] = value
-        return PasscodeState(mode: self.mode, data: data, errors: self.errors, walletProtectionEnabled: self.walletProtectionEnabled)
+        return PasscodeState(mode: self.mode, data: data, errors: self.errors)
     }
 
-    public func withUpdatedWalletProtectionEnabled(_ walletProtectionEnabled: Bool) -> PasscodeState {
-        return PasscodeState(mode: self.mode, data: self.data, errors: self.errors, walletProtectionEnabled: walletProtectionEnabled)
-    }
 }
 
 private let _id_input_new_passcode = InputDataIdentifier("_id_input_new_passcode")
@@ -65,10 +58,7 @@ private let _id_input_re_new_passcode = InputDataIdentifier("_id_input_re_new_pa
 
 private let _id_input_current = InputDataIdentifier("_id_input_current")
 
-private let passcodeWalletDisableWarning = strings().passcodeControllerWalletDisableWarning
-private let passcodeWalletProtectionInfo = strings().passcodeControllerWalletProtectionInfo
 private let passcodeSyncFailedText = strings().passcodeControllerSyncFailed
-private let passcodeWalletProtectionFailedText = strings().passcodeControllerWalletProtectionFailed
 
 private func passcodeCooldownText(_ seconds: Int) -> String {
     return strings().passcodeControllerCooldownOther(seconds)
@@ -120,7 +110,7 @@ private func passcodeEntries(_ state: PasscodeState) -> [InputDataEntry] {
         
         
         
-    case .disable, .walletProtection, .walletBiometrics:
+    case .disable:
         entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().passcodeControllerHeaderCurrent), data: InputDataGeneralTextData(viewType: .textTopItem)))
         index += 1
         
@@ -128,19 +118,8 @@ private func passcodeEntries(_ state: PasscodeState) -> [InputDataEntry] {
         index += 1
     }
     
-    switch state.mode {
-    case .walletProtection, .walletBiometrics:
-        entries.append(.desc(sectionId: sectionId, index: index, text: .plain(passcodeWalletProtectionInfo), data: InputDataGeneralTextData(detectBold: false, viewType: .textBottomItem)))
-        index += 1
-    case .disable where state.walletProtectionEnabled:
-        entries.append(.desc(sectionId: sectionId, index: index, text: .plain(passcodeWalletDisableWarning), data: InputDataGeneralTextData(detectBold: false, viewType: .textBottomItem)))
-        index += 1
         entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().passcodeControllerText), data: InputDataGeneralTextData(detectBold: false, viewType: .textBottomItem)))
-        index += 1
-    default:
-        entries.append(.desc(sectionId: sectionId, index: index, text: .plain(strings().passcodeControllerText), data: InputDataGeneralTextData(detectBold: false, viewType: .textBottomItem)))
-        index += 1
-    }
+    index += 1
     
     entries.append(.sectionId(sectionId, type: .normal))
     sectionId += 1
@@ -156,10 +135,10 @@ private func passcodeCredentialSyncCompletion(_ completion: @escaping PasscodeCr
     }
 }
 
-public func PasscodeController(sharedContext: (any SharedAccountContextProtocol), mode: PasscodeMode, installsForWallet: Bool = false) -> ViewController {
+public func PasscodeController(sharedContext: (any SharedAccountContextProtocol), mode: PasscodeMode) -> ViewController {
     
     
-    let initialState = PasscodeState(mode: mode, data: [:], errors: [:], walletProtectionEnabled: false)
+    let initialState = PasscodeState(mode: mode, data: [:], errors: [:])
     
     let statePromise = ValuePromise(initialState, ignoreRepeated: false)
     let stateValue = Atomic(value: initialState)
@@ -179,10 +158,6 @@ public func PasscodeController(sharedContext: (any SharedAccountContextProtocol)
         title = strings().passcodeControllerChangeTitle
     case .disable:
         title = strings().passcodeControllerDisableTitle
-    case .walletProtection:
-        title = strings().passcodeControllerWalletProtectionTitle
-    case .walletBiometrics:
-        title = strings().passcodeControllerWalletBiometricsTitle
     }
     
     var shouldMakeNextResponderAfterTransition: InputDataIdentifier? = nil
@@ -224,13 +199,6 @@ public func PasscodeController(sharedContext: (any SharedAccountContextProtocol)
         }))
     }
 
-    if case .disable = mode {
-        actionsDisposable.add((PasscodeCredentialHooks.shared.walletProtection() |> take(1) |> deliverOnMainQueue).start(next: { protection in
-            updateState {
-                $0.withUpdatedWalletProtectionEnabled(protection?.enabled ?? false)
-            }
-        }))
-    }
     
     let controller = InputDataController(dataSignal: dataSignal |> map { InputDataSignalValue(entries: $0) }, title: title, validateData: { data in
         
@@ -267,25 +235,9 @@ public func PasscodeController(sharedContext: (any SharedAccountContextProtocol)
                     f(.fail(.fields(fields)))
                 } else {
                     PasscodeCredentialHooks.shared.passcodeInstalled(passcode, passcodeCredentialSyncCompletion({ result in
-                        let commit: () -> Void = {
-                            commitPasscode(.plaintextPassword(value: ""), {
-                                sharedContext.appEncryptionValue.change(passcode)
-                            }, result, f)
-                        }
-                        guard installsForWallet else {
-                            commit()
-                            return
-                        }
-                        guard case .success = result else {
-                            commit()
-                            return
-                        }
-                        PasscodeCredentialHooks.shared.setWalletProtection(true, passcode, passcodeCredentialSyncCompletion({ protectionResult in
-                            commit()
-                            if case .failure = protectionResult {
-                                alertSyncFailure(passcodeWalletProtectionFailedText)
-                            }
-                        }))
+                        commitPasscode(.plaintextPassword(value: ""), {
+                            sharedContext.appEncryptionValue.change(passcode)
+                        }, result, f)
                     }))
                 }
                 
@@ -368,43 +320,6 @@ public func PasscodeController(sharedContext: (any SharedAccountContextProtocol)
                         }, result, f)
                     }))
                 }
-            case let .walletProtection(enabled), let .walletBiometrics(enabled):
-                let current = state.data[_id_input_current]?.stringValue ?? ""
-
-                if !verifyCurrent(current) {
-                    updateState {
-                        $0.withUpdatedError(InputDataValueError(description: strings().passcodeControllerErrorCurrent, target: .data), for: _id_input_current)
-                    }
-                    f(.fail(.fields([_id_input_current : .shake])))
-                    return
-                }
-                let update: (Bool, String, @escaping PasscodeCredentialSyncCompletion) -> Void
-                if case .walletBiometrics = state.mode {
-                    update = PasscodeCredentialHooks.shared.setWalletBiometrics
-                } else {
-                    update = PasscodeCredentialHooks.shared.setWalletProtection
-                }
-                update(enabled, current, passcodeCredentialSyncCompletion({ result in
-                    switch result {
-                    case .success:
-                        f(.success(.navigationBackWithPushAnimation))
-                    case let .failure(error):
-                        switch error {
-                        case .invalidCode:
-                            updateState {
-                                $0.withUpdatedError(InputDataValueError(description: strings().passcodeControllerErrorCurrent, target: .data), for: _id_input_current)
-                            }
-                            f(.fail(.fields([_id_input_current : .shake])))
-                        case let .cooldown(seconds):
-                            updateState {
-                                $0.withUpdatedError(InputDataValueError(description: passcodeCooldownText(seconds), target: .data), for: _id_input_current)
-                            }
-                            f(.fail(.fields([_id_input_current : .shake])))
-                        case .failed:
-                            f(.fail(.alert(passcodeWalletProtectionFailedText)))
-                        }
-                    }
-                }))
             }
             
             updateState {
@@ -439,12 +354,7 @@ public func PasscodeController(sharedContext: (any SharedAccountContextProtocol)
 
     weakController = controller
 
-    switch mode {
-    case .walletProtection, .walletBiometrics:
-        controller.analyticsScreen = .walletProtection
-    default:
-        controller.analyticsScreen = .settingsPrivacyPasscodeSetup
-    }
+    controller.analyticsScreen = .settingsPrivacyPasscodeSetup
 
     return controller
     

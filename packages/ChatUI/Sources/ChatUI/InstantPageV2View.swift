@@ -232,9 +232,6 @@ public final class InstantPageV2View: View, NSViewToolTipOwner, HorizontalScroll
             return url.removingPercentEncoding?.prefixWithDots(70) ?? url
         }
         if let link = self.linkItem(at: point) {
-            if link.tonAddress != nil {
-                return ""
-            }
             // Peer mentions carry an internal `as://user?id=` URL; show the visible name instead.
             if link.url.hasPrefix("as://user?id="), let text = self.linkDisplayText(at: point) {
                 return text

@@ -46,7 +46,6 @@ public final class HTMLBubbleState: NSObject, HTMLScriptHost {
 
     public var linkHandler: ((HTMLBubbleState, String) -> Void)?
     public var widgetRequestHandler: ((WidgetRequest, @escaping (Result<WidgetRequestAnswer, WidgetRequestFailure>) -> Void) -> Void)?
-    public var widgetWalletHandler: ((WalletCall, @escaping (Result<WidgetRequestAnswer, WidgetRequestFailure>) -> Void) -> Void)?
     public var widgetCopyHandler: ((String) -> Void)?
     var widgetWatchHandler: (() -> Void)?
     var widgetVisible = false
@@ -731,12 +730,8 @@ public final class HTMLBubbleState: NSObject, HTMLScriptHost {
                 self?.twidgetAction(action)
             }
             host.onRequest = { [weak self] request, complete in
-                guard let handler = self?.widgetRequestHandler else { complete(.failure(.notAllowed)); return }
+                guard !request.wallet, let handler = self?.widgetRequestHandler else { complete(.failure(.notAllowed)); return }
                 handler(request, complete)
-            }
-            host.onWallet = { [weak self] call, complete in
-                guard let handler = self?.widgetWalletHandler else { complete(.failure(.notAllowed)); return }
-                handler(call, complete)
             }
             host.onCopyText = { [weak self] text in self?.widgetCopyHandler?(text) }
             host.onWatchPublicData = { [weak self] _ in self?.widgetWatchHandler?() }
