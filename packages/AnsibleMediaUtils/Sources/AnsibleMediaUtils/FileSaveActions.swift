@@ -4,6 +4,7 @@ import Postbox
 import SwiftSignalKit
 import InAppSettings
 import AnsibleUIKit
+import AppAnalytics
 import FilePanels
 import AnsibleTheme
 import AnsibleUtils
@@ -174,7 +175,9 @@ private func saveMediaAs(resource: MediaResource, reference: AnyMediaReference, 
     let level = window.level
     window.level = .normal
 
+    Analytics.shared.screens.showStandalone(.systemFileSave, owner: panel)
     panel.begin { result in
+        Analytics.shared.screens.hideStandalone(owner: panel)
         window.level = level
         guard result == .OK, let url = panel.url else {
             return

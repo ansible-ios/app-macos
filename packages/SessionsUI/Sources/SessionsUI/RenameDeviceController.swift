@@ -1,4 +1,5 @@
 import Foundation
+import AppAnalytics
 import Cocoa
 import AnsibleUIKit
 import SwiftSignalKit
@@ -60,6 +61,7 @@ func RenameDeviceController(context: any AccountContextProtocol) -> InputDataMod
     }
 
     let controller = InputDataController(dataSignal: signal, title: strings().renameDeviceControllerTitle)
+    controller.analyticsScreen = .settingsDevicesSession
 
     controller.updateDatas = { data in
         updateState { current in

@@ -1,3 +1,4 @@
+import AppAnalytics
 import Cocoa
 import AnsibleUIKit
 import SwiftSignalKit
@@ -347,6 +348,7 @@ func NotificationExceptionSettingsModalController(context: any AccountContextPro
     }
 
     let controller = InputDataController(dataSignal: signal, title: peer._asPeer().displayTitle)
+    controller.analyticsScreen = .settingsNotifications
 
     controller.onDeinit = {
         actionsDisposable.dispose()
