@@ -42,8 +42,8 @@ jobs:
           python3 scripts/prepare-ansible-api.py
           python3 scripts/prepare-ansible-api.py --check
 
-      - name: Check Layer 233 schema and wire compatibility
-        run: python3 tools/tests/layer233/run.py
-
       - name: Test forum RPC failures and settings recovery
         run: python3 tools/tests/forum-errors/run.py
+
+      - name: Check Layer 233 schema and wire compatibility
+        run: python3 tools/tests/layer233/run.py

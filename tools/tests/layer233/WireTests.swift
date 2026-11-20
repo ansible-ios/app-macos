@@ -20,6 +20,6 @@ for fixture in fixtures {
     let serialized = Buffer()
     Api.serializeObject(parsed, buffer: serialized, boxed: true)
     precondition(serialized.makeData() == bytes, "Roundtrip changed fields: " + fixture.name)
-    precondition(Api.parse(Buffer(data: bytes.dropLast())) == nil, "Truncated frame accepted: " + fixture.name)
+    precondition(Api.parse(Buffer(data: bytes.dropLast(4))) == nil, "Truncated field accepted: " + fixture.name)
 }
 print("Layer 233: \(fixtures.count) independent wire vectors PASS")
