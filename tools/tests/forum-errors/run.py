@@ -26,8 +26,20 @@ receive = source[a:b]
 a = source.index("    let update:()->Void =")
 b = source.index("    let signal = statePromise.get()", a)
 actions = source[a:b]
+source = (core / "ApiUtils/TelegramMediaAction.swift").read_text()
+a = source.index("func forumTopicEditComponents(")
+b = source.index("func telegramMediaActionFromApiAction", a)
+topic = source[a:b]
+source = (core / "Account/AccountIntermediateState.swift").read_text()
+a = source.index("enum MessageWidgetDataChange:")
+b = source.index("enum AccountStateMutationOperation", a)
+widget_change = source[a:b]
+source = (core / "State/MessageWidgetStoreUpdates.swift").read_text()
+a = source.index("extension TelegramMediaWidget")
+b = source.index("func storeMessageReplacingWidget", a)
+widget_update = source[a:source.rfind("}", a, b) + 1]
 fixture = Path(__file__).with_name("ForumErrorsTests.swift").read_text()
-for key, value in {"CORE":function, "FACADE":facade, "STATE":state, "SETUP":setup, "RECEIVE":receive, "ACTIONS":actions}.items():
+for key, value in {"CORE":function, "FACADE":facade, "STATE":state, "SETUP":setup, "RECEIVE":receive, "ACTIONS":actions, "TOPIC":topic, "WIDGET_CHANGE":widget_change, "WIDGET_UPDATE":widget_update}.items():
     fixture = fixture.replace("__" + key + "__", value)
 with tempfile.TemporaryDirectory(prefix="forum-errors-") as directory:
     directory = Path(directory)

@@ -184,3 +184,52 @@ context.account.network.fail?("NETWORK_ERROR")
 drain()
 expect(context.window.alerts == alerts, "cancelled controller receives no late error")
 print("Forum/sidebar errors: \(checks) checks PASS")
+
+enum TelegramMediaActionType {
+    enum ForumTopicEditComponent: Equatable {
+        case title(String)
+        case iconFileId(Int64?)
+        case isClosed(Bool)
+        case isHidden(Bool)
+    }
+}
+__TOPIC__
+__WIDGET_CHANGE__
+struct TelegramMediaWidget: Equatable {
+    let width: Int32
+    let height: Int32
+    let payload: Data
+    let isCopy: Bool
+    let canQuery: Bool
+    let backgroundQuery: Bool
+    let chatData: Data?
+    let publicData: Data?
+    let publicDataHash: Int64?
+    let widgetId: Int64?
+}
+__WIDGET_UPDATE__
+let priorChecks = checks
+expect(forumTopicEditComponents(title: nil, iconEmojiId: nil, closed: nil, hidden: nil).isEmpty, "absent topic fields leave state unchanged")
+expect(forumTopicEditComponents(title: "", iconEmojiId: 0, closed: .boolFalse, hidden: .boolFalse) == [.title(""), .iconFileId(nil), .isClosed(false), .isHidden(false)], "empty title, zero icon and false flags are applied")
+expect(forumTopicEditComponents(title: "Topic", iconEmojiId: 777, closed: .boolTrue, hidden: .boolTrue) == [.title("Topic"), .iconFileId(777), .isClosed(true), .isHidden(true)], "all positive topic fields applied")
+expect(messageWidgetDataChange(nil) == .unchanged, "absent widget field is unchanged")
+expect(messageWidgetDataChange("") == .set(nil), "empty widget field clears stored data")
+expect(messageWidgetDataChange("Привет") == .set(Data("Привет".utf8)), "widget state preserves Unicode")
+let old = Data("old".utf8)
+let replacement = Data("new".utf8)
+let widget = TelegramMediaWidget(width: 200, height: 100, payload: Data([1,2,3]), isCopy: false, canQuery: true, backgroundQuery: true, chatData: old, publicData: old, publicDataHash: 11, widgetId: 987)
+let changes: [MessageWidgetDataChange] = [.unchanged, .set(nil), .set(replacement)]
+for chat in changes {
+    for shared in changes {
+        let updated = widget.withUpdatedState(chatData: chat, publicData: shared, publicDataHash: 22)
+        var expectedChat: Data? = old
+        var expectedShared: Data? = old
+        var expectedHash: Int64? = 11
+        if case let .set(value) = chat { expectedChat = value }
+        if case let .set(value) = shared { expectedShared = value; expectedHash = 22 }
+        expect(updated.chatData == expectedChat && updated.publicData == expectedShared && updated.publicDataHash == expectedHash, "independent absent/clear/replace widget states and hash")
+        expect(updated.width == widget.width && updated.height == widget.height && updated.payload == widget.payload && updated.isCopy == widget.isCopy && updated.canQuery == widget.canQuery && updated.backgroundQuery == widget.backgroundQuery && updated.widgetId == widget.widgetId, "widget updates preserve identity, payload, flags and dimensions")
+        expect(updated.withUpdatedState(chatData: chat, publicData: shared, publicDataHash: 22) == updated, "repeated widget data update is idempotent")
+    }
+}
+print("Layer 233 topic/widget semantics: \(checks - priorChecks) checks PASS")
