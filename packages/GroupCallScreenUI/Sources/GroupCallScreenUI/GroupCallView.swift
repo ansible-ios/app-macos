@@ -39,7 +39,7 @@ private final class NoStreamView : View {
                 if let data = LocalAnimatedSticker.group_call_stream_empty.data {
                     let size = NSMakeSize(80, 80)
                     let view = LottiePlayerView(frame: size.bounds)
-                    view.isAccessibilityDecorative = true
+                    view.setAccessibilityElement(false)
                     addSubview(view)
                     let reduceMotion = NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
                     view.set(LottieAnimation(compressed: data, key: .init(key: .bundle("group_call_stream_empty"), size: size), cachePurpose: .none, playPolicy: reduceMotion ? .framesCount(1) : .onceEnd))
