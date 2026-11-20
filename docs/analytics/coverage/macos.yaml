@@ -11,6 +11,13 @@ ignore_reasons:
   dead_code: "Not used"
 
 items:
+  "class:ChatUI/ForumSidebarController": {ignore: embedded, note: 'Topic sidebar within a chat'}
+  "class:ChatListUI/ChatPreviewModalController": {ignore: container, note: 'Hosts the chat preview'}
+  "class:CalendarUI/CalendarSearchController": app.calendar
+  "class:CalendarUI/CalendarModalController": {ignore: container, note: 'Hosts the calendar controller'}
+  "class:AnsibleUIKit/OverlayWindow": {ignore: container, note: 'Hosts the presented modal'}
+  "class:AnsibleUIKit/MenuPanelWindow": {ignore: transient, note: 'Context menu panel'}
+  "class:AnsibleUIKit/MenuHostWindow": {ignore: transient, note: 'Context menu host'}
   "class:AudioPlayerUI/AudioPlayerUIPlaceholderInstantVideoPIP": {ignore: placeholder}
   "class:AudioPlayerUI/PlayerListController": media_player.playlist
   "class:AuthUI/AuthController": {ignore: container, note: "hosts the auth.* steps"}
@@ -73,7 +80,6 @@ items:
   "class:DataUsageUI/StorageUsageBlockController": {ignore: embedded, note: "lists inside settings.storage_usage"}
   "class:DataUsageUI/StorageUsageController": [settings.storage_usage, settings.storage_usage.chat]
   "class:DateSelectorUI/DateSelectorModalController": [app.date_picker, chat.schedule_message]
-  "class:EntertainmentUI/EmojiToleranceController": {ignore: dead_code}
   "class:EntertainmentUI/EmojiesController": {screens: [chat.input.emoji, premium.emoji_status, app.emoji_picker], note: "chat.input.emoji inside the input panel (EntertainmentViewController, including story replies) and as the input emoji button popover while editing a message or in a business chat-link chat; premium.emoji_status as the .channelStatus popover; app.emoji_picker as any standalone picker popover (.backgroundIcon, AI style icon, emoji insert in the rich editor, text fields and gift messages); every other mode is embedded in its host screen"}
   "class:EntertainmentUI/EntertainmentViewController": {ignore: container, note: "hosts chat.input.emoji, .stickers, .gifs"}
   "class:EntertainmentUI/EntertainmentSidebarController": {ignore: container, note: "Attaches the existing entertainment controller and forwards its lifecycle; the child owns the picker screens."}
@@ -94,8 +100,6 @@ items:
   "class:ImageCanvasUI/EditVideoCropController": media_editor.video.crop
   "class:ImageCanvasUI/EditVideoToolsController": media_editor.video.tools
   "class:ImageCanvasUI/EditImageControls": {ignore: embedded, note: "toolbar of media_editor.image"}
-  "class:NewsUI/NewsController": news
-  "class:NewsUI/NewsListController": {ignore: embedded, note: "Table content hosted by NewsController for its recommended and added feeds."}
   "class:InputDataUI/InputDataController": {ignore: base}
   "class:InputDataUI/InputDataModalController": {ignore: base}
   "class:InputDataUI/ValuesSelectorModalController": app.value_picker
@@ -189,9 +193,6 @@ items:
   "class:AnsibleUtils/TableViewController": {ignore: base}
   "class:AnsibleUtils/AnsibleGenericViewController": {ignore: base}
   "class:AnsibleUtils/AnsibleViewController": {ignore: base}
-  "class:WalletUI/WalletAuthorizeController": wallet.authorize
-  "class:WalletUI/WalletModalController": {ignore: base}
-  "class:WalletUI/WalletPeerBalanceController": wallet.peer_balance
   "class:WallpaperUI/WallpaperPatternPreviewController": {ignore: embedded, note: "pattern picker strip with intensity slider in wallpaper previews"}
   "class:WebAppUI/InstantViewInBrowser": instant_view
   "class:WebAppUI/TabsController": {ignore: embedded, note: "tab strip of the in-app browser"}
@@ -201,15 +202,21 @@ items:
   "class:WebAppUI/WebappBrowserController": {ignore: container}
   "class:WebAppUI/WebpageContainerController": {ignore: container}
   "class:WebAppUI/WebpageModalController": bot.mini_app
-  "class:WebAppUI/WebsiteController": browser.tonsite
+  "class:WebAppUI/WebsiteController": browser.website
   "class:WidgetUI/EmptyChatViewController": app.no_chat_selected
   "class:WidgetUI/WidgetAppIconController": {ignore: embedded, note: "card in app.no_chat_selected"}
   "class:WidgetUI/WidgetAppearanceController": {ignore: embedded, note: "card in app.no_chat_selected"}
   "class:WidgetUI/WidgetController": {ignore: container}
   "class:WidgetUI/WidgetRecentPeersController": {ignore: embedded, note: "card in app.no_chat_selected"}
   "class:WidgetUI/WidgetStickersController": {ignore: embedded, note: "card in app.no_chat_selected"}
+  "inputdata:SettingsUI/showMessagePriceEditor": settings.privacy.messages
+  "inputdata:SettingsUI/ReactionNotificationSettingsController": settings.notifications
+  "inputdata:SettingsUI/NotificationExceptionSettingsModalController": settings.notifications
+  "inputdata:SettingsUI/NotificationCategorySettingsController": settings.notifications
+  "inputdata:SessionsUI/RenameDeviceController": settings.devices.session
+  "inputdata:InviteLinksUI/InviteLinkQrController": peer_info.invite_links.link
+  "inputdata:InputDataUI/unsupportedPaymentController": {ignore: transient, note: 'Unsupported payment notice'}
   "inputdata:AboutFeatureUI/AboutFeatureModalController": app.feature_info
-  "inputdata:AddTonBalanceUI/AddTonBalanceController": ton.add_funds
   "inputdata:AffiliateUI/Affiliate_LinkPreview": affiliate.link
   "inputdata:AffiliateUI/Affiliate_PeerController": [affiliate.programs, affiliate.programs.existing]
   "inputdata:AffiliateUI/Affiliate_ProgramPreview": affiliate.program
@@ -254,7 +261,6 @@ items:
   "inputdata:ChatListUI/SavedPeersController": peer_info.media.saved_chats
   "inputdata:ChatUI/DeclineSuggestPostModalController": chat.suggested_post.rejection
   "inputdata:ChatUI/DeleteGroupMessagesController": chat.delete_options
-  "inputdata:ChatUI/DiceRollController": chat.dice_stake
   "inputdata:ChatUI/EditPostSuggestionController": chat.suggested_post.editor
   "inputdata:ChatUI/FactCheckController": chat.fact_check
   "inputdata:ChatUI/NewContactController": contacts.add_known_user
@@ -306,14 +312,14 @@ items:
   "inputdata:InviteLinksUI/RequestJoinMemberListController": peer_info.join_requests
   "inputdata:LocationUI/LocationModalPreview@LiveLocationViewController.swift": chat.location_preview
   "inputdata:LocationUI/LocationModalPreview@LocationPreviewController.swift": {ignore: dead_code, note: "overload without callers"}
-  "inputdata:MonetizationUI/FragmentMonetizationController": {screens: [peer_info.monetization], note: "includes the TON-only mode opened from a bot profile (onlyTonContext)"}
+  "inputdata:MonetizationUI/FragmentMonetizationController": peer_info.monetization
   "inputdata:MonetizationUI/FragmentMonetizationPromoController": peer_info.monetization.about
   "inputdata:MonetizationUI/FragmentStarMonetizationController": peer_info.stars_balance
   "inputdata:MonetizationUI/FragmentUsernameController": peer_info.collectible
   "inputdata:MonetizationUI/adsInfoController": [chat.sponsored_info, search.ad_info]
   "inputdata:MonetizationUI/withdraw": peer_info.stars_balance.withdraw
   "inputdata:MonetizationUI/withdrawStarBalance": peer_info.stars_balance.withdraw
-  "inputdata:PasscodeUI/PasscodeController": [settings.privacy.passcode.setup, wallet.protection]
+  "inputdata:PasscodeUI/PasscodeController": settings.privacy.passcode.setup
   "inputdata:PasskeysUI/FrozenAccountController": app.frozen_account
   "inputdata:PasskeysUI/PasskeysController": settings.privacy.passkeys
   "inputdata:PasskeysUI/SetupEmailController": [settings.privacy.login_email, settings.privacy.login_email.code]
@@ -407,7 +413,7 @@ items:
   "inputdata:StarsUI/Star_AuctionInfoController": gifts.auction.about
   "inputdata:StarsUI/Star_AuctionListController": gifts.auction.list
   "inputdata:StarsUI/Star_AuctionPreviewController": gifts.auction
-  "inputdata:StarsUI/Star_ListScreen": [stars.balance, stars.purchase, ton.balance, stars.gift]
+  "inputdata:StarsUI/Star_ListScreen": [stars.balance, stars.purchase, stars.gift]
   "inputdata:StarsUI/Star_PurschaseInApp": stars.payment
   "inputdata:StarsUI/Star_ReactionsController": [stars.reaction, stories.live.stars]
   "inputdata:StarsUI/Star_SubscriptionScreen": stars.subscription
@@ -430,24 +436,6 @@ items:
   "inputdata:TranslateUI/AiStylePreviewModalController": chat.ai_editor.style_preview
   "inputdata:TranslateUI/TranslateModalController": [chat.translation, chat.ai_editor]
   "inputdata:VerifyAgeUI/VerifyAgeAlertController": app.age_verification
-  "inputdata:WalletUI/WalletCollectibleDetailsController": wallet.collectible
-  "inputdata:WalletUI/WalletConnectLinkController": {ignore: dead_code, note: "no callers"}
-  "inputdata:WalletUI/WalletConnectedAppInfoController": wallet.connected_app
-  "inputdata:WalletUI/WalletConnectedAppsController": wallet.connected_apps
-  "inputdata:WalletUI/WalletController": wallet
-  "inputdata:WalletUI/WalletImportPage": [wallet.recovery_phrase.entry, wallet.recovery_phrase.verify, wallet.backup]
-  "inputdata:WalletUI/WalletInfoController": [wallet.info, wallet.recovery_phrase.warning]
-  "inputdata:WalletUI/WalletReceiveController": wallet.receive
-  "inputdata:WalletUI/WalletReplaceController": wallet.replace
-  "inputdata:WalletUI/WalletSettingsController": wallet.settings
-  "inputdata:WalletUI/WalletTonConnectController#1": [wallet.ton_connect.connect, wallet.ton_connect.operation, wallet.ton_connect.sign_data]
-  "inputdata:WalletUI/WalletTonConnectController#2": wallet.ton_connect.confirmation
-  "inputdata:WalletUI/WalletTransactionController": [wallet.transaction, wallet.transfer.confirmation, wallet.collectible.confirmation]
-  "inputdata:WalletUI/makeWalletRecipientController": [wallet.transfer.recipient, wallet.collectible.recipient]
-  "inputdata:WalletUI/makeWalletSendController": wallet.transfer
-  "inputdata:WalletUI/makeWordsController": wallet.recovery_phrase
-  "inputdata:WalletUI/walletCommentInputController": wallet.transfer.comment
-  "inputdata:WalletUI/walletPasswordPromptController": wallet.password
   "inputdata:WallpaperUI/ChannelWallpapersController": peer_info.wallpaper
   "inputdata:WallpaperUI/ChatWallpaperModalController": [chat.wallpaper, settings.appearance.wallpaper]
   "inputdata:WallpaperUI/WallpaperPreviewController": app.wallpaper_preview
@@ -458,6 +446,7 @@ items:
   "system_alert:DataUsageUI/showOutOfMemoryWarning": app.low_disk_space
   "system_alert:Ansible-Mac/AuthorizedApplicationContext.init": app.server_notice
   "system_alert:WebAppUI/WebpageModalController.handleScriptMessage": bot.mini_app.popup
+  "system_panel:AnsibleMediaUtils/saveMediaAs": system.file_save
   "system_panel:ChatUI/RichTextEditorCoordinator.presentAddToGroupPicker": system.file_picker
   "system_panel:ChatUI/RichTextEditorCoordinator.presentFilePicker": system.file_picker
   "system_panel:ChatUI/RichTextEditorCoordinator.presentImagePicker": system.file_picker
@@ -467,15 +456,14 @@ items:
   "system_panel:FilePanels/savePanel#1": system.file_save
   "system_panel:FilePanels/savePanel#2": system.file_save
   "system_panel:FilePanels/selectFolder": system.folder_picker
+  "window_site:ChatUI/ChatNavigationLabSession.runReuseParity": {ignore: lab}
+  "window_site:ChatUI/ChatNavigationLabSession.runParity": {ignore: lab}
   "window_site:CallsUI/CallVideoLabSession.present": {ignore: lab}
   "window_site:CallsUI/ScreenCaptureLabSession.runScenario": {ignore: lab}
   "window_site:ChatListUI/StatusView.playAnimation": {ignore: transient, note: "emoji status animation overlay"}
-  "window_site:ChatUI/ChatController.viewDidLoad": {ignore: transient, note: "message effect picker on the send button"}
-  "window_site:ChatUI/ChatRowItem": {ignore: transient, note: "reaction picker over a message"}
   "window_site:CrashRecoveryUI/CrashRecoveryWindowController.init": app.crash_recovery
   "window_site:EntertainmentUI/EmojiPanelLabSession.openPanel": {ignore: lab}
   "window_site:EntertainmentUI/GifPanelLabSession.openPanel": {ignore: lab}
-  "window_site:EntertainmentUI/ReactionsWindowController.makeView": {screens: [chat.reaction_picker, chat.message_effect_picker], note: "chat.reaction_picker in .reactions and .defaultTags modes; chat.message_effect_picker in .messageEffects mode"}
   "window_site:ForumSettingsUI/ForumNameRowItemView.set": {ignore: transient, note: "topic icon animation overlay"}
   "window_site:GalleryUI/GalleryViewer.init": media_viewer
   "window_site:GalleryUI/ModernPictureInPictureVideoWindow.init": {ignore: helper, note: "off-screen frame saver of media_viewer.pip"}
@@ -485,16 +473,12 @@ items:
   "window_site:GalleryUI/VideoPlayerLabSession.runLegacyStorm": {ignore: lab}
   "window_site:GalleryUI/VideoPlayerLabSession.runVideo": {ignore: lab}
   "window_site:GroupCallScreenUI/makeGroupWindow": {ignore: container, note: "hosts group_call.active"}
-  "window_site:GroupCallScreenUI/reactionsValues": {ignore: transient, note: "reaction picker in a group call"}
   "window_site:InstantPageUI/InstantViewController.init": {ignore: dead_code, note: "window of the unused InstantViewController"}
   "window_site:PassportUI/PassportWindowController.init": {ignore: container, note: "hosts passport"}
-  "window_site:PreviewSenderUI/PreviewSenderController.viewDidLoad": {ignore: transient, note: "message effect picker"}
   "window_site:PrivateCallScreen/PeerCallScreen.init": {ignore: container, note: "window of call.active"}
   "window_site:StarsUI/UniqueGiftLabSession.openWindow": {ignore: lab}
   "window_site:StoriesUI/StoryRecorderOverlayWindowController.init#1": {ignore: transient, note: "story reply recording overlay"}
   "window_site:StoriesUI/StoryRecorderOverlayWindowController.init#2": {ignore: transient, note: "story reply recording lock overlay"}
-  "window_site:StoriesUI/storyReactionsValues": {ignore: transient, note: "reaction picker in the story viewer"}
-  "window_site:AnsibleUIKit/AppMenuController.getView": {ignore: transient, note: "context menus; tracked with menu.* events"}
   "window_site:Ansible-Mac/SupportAccountContext.open": {ignore: container, note: "another account in its own window"}
   "window_site:Ansible-Mac/SupportAccountContext.openChat": {ignore: container, note: "a chat in its own window"}
   "window_site:AnsibleShare/ShareViewController.launchExtension": {ignore: helper, note: "hidden window backing the share extension"}

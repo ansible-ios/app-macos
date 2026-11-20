@@ -24,7 +24,6 @@ sections:
   premium: Telegram Premium
   stars: Telegram Stars
   gifts: Gifts
-  wallet: Wallet
   bot: Bots and mini apps
   link: Opening t.me and external links
   share: Forwarding and sharing to chats
@@ -45,7 +44,6 @@ sections:
   instant_view: Instant View articles
   browser: In-app web browser
   system: Operating system pickers and panels
-  ton: TON balance in Telegram
 
 actions:
   show: A screen became visible
@@ -280,8 +278,8 @@ screens:
     description: "A popup a mini app asked to show."
   bot.mini_app.share_message:
     description: "Share a message prepared by a mini app."
-  browser.tonsite:
-    description: "A TON site (tonsite:// or .ton domain) in the in-app browser."
+  browser.website:
+    description: "A website in the in-app browser."
   call.active:
     description: "A one-to-one voice or video call."
   call.conference_incoming:
@@ -319,8 +317,6 @@ screens:
     description: "Details of a shared contact card."
   chat.delete_options:
     description: "Delete messages or a reaction in a group, with options to ban, report or delete all from the user."
-  chat.dice_stake:
-    description: "Emoji dice game: set the stake and roll."
   chat.fact_check:
     description: "Add or change a fact-check note on a channel message."
   chat.forum_topic_editor:
@@ -691,7 +687,7 @@ screens:
   peer_info.members:
     description: "Members or subscribers of a group or channel, as a separate list."
   peer_info.monetization:
-    description: "Ad revenue and TON balance of a channel or bot."
+    description: "Ad revenue and Ansible Diamonds balance of a channel or bot."
   peer_info.monetization.about:
     description: "How channels and bots earn from ads."
   peer_info.permissions:
@@ -1000,67 +996,6 @@ screens:
     description: "The system folder chooser (download or export folder)."
   system.photo_picker:
     description: "The system picture chooser (pick or take a photo)."
-  ton.add_funds:
-    description: "How to add TON to your balance."
-  ton.balance:
-    description: "Your TON balance and history."
-  wallet:
-    description: "Wallet home: balance, send, receive, transactions."
-  wallet.authorize:
-    description: "Unlock the wallet with a passcode or Touch ID."
-  wallet.backup:
-    description: "Turn on wallet backup."
-  wallet.collectible:
-    description: "A collectible in the wallet."
-  wallet.collectible.confirmation:
-    description: "Confirm sending a collectible."
-  wallet.collectible.recipient:
-    description: "Choose who to send a collectible to."
-  wallet.connected_app:
-    description: "One connected app."
-  wallet.connected_apps:
-    description: "Apps connected to the wallet."
-  wallet.info:
-    description: "Wallet explanations and onboarding."
-  wallet.password:
-    description: "Enter the Telegram password to authorize a wallet operation."
-  wallet.peer_balance:
-    description: "View a peer's wallet card and open a transfer. Never include the balance, address or peer identity."
-    platforms: [macos]
-  wallet.protection:
-    description: "Protect the wallet with a passcode or Touch ID."
-  wallet.receive:
-    description: "Receive funds: address and QR."
-  wallet.recovery_phrase:
-    description: "Your secret recovery phrase."
-  wallet.recovery_phrase.entry:
-    description: "Enter a secret recovery phrase."
-  wallet.recovery_phrase.verify:
-    description: "Check that you saved the recovery phrase by entering some of its words."
-  wallet.recovery_phrase.warning:
-    description: "Security warning before showing the recovery phrase."
-  wallet.replace:
-    description: "Replace the wallet with another one."
-  wallet.settings:
-    description: "Wallet keys and backup."
-  wallet.ton_connect.confirmation:
-    description: "Confirm an app's transaction."
-  wallet.ton_connect.connect:
-    description: "An app asks to connect to the wallet."
-  wallet.ton_connect.operation:
-    description: "An app asks to send a transfer."
-  wallet.ton_connect.sign_data:
-    description: "An app asks to sign data."
-  wallet.transaction:
-    description: "A wallet transaction."
-  wallet.transfer:
-    description: "Send funds: amount."
-  wallet.transfer.comment:
-    description: "Comment for a transfer."
-  wallet.transfer.confirmation:
-    description: "Confirm a transfer."
-  wallet.transfer.recipient:
-    description: "Choose who to send funds to."
 
 menus:
   chat_list.item:

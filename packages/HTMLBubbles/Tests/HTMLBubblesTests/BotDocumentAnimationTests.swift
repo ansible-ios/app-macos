@@ -101,9 +101,9 @@ final class BotDocumentAnimationTests: XCTestCase {
         XCTAssertGreaterThan(result.line, 100)
     }
 
-    func testRealGramChartAnimatesAfterBackgroundPrepare() throws {
+    func testSampleMarketHistoryChartAnimatesAfterBackgroundPrepare() throws {
         for _ in 0 ..< 3 {
-            let result = try run(prepare: true, name: "gram-real.html")
+            let result = try run(prepare: true, name: "sample-market-history.html")
             XCTAssertGreaterThan(result.frames, 10)
         }
     }
