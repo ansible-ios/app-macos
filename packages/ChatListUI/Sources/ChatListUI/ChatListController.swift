@@ -868,7 +868,9 @@ public class ChatListController<Context: AccountContextProtocol> : PeersListCont
         }, switchOffForum: {
             switch mode {
             case let .forum(peerId, _, _):
-                _ = context.engine.peers.setChannelForumMode(id: peerId, isForum: false, displayForumAsTabs: true, displayForumAsSidebar: false).start()
+                _ = (context.engine.peers.setChannelForumMode(id: peerId, isForum: false, displayForumAsTabs: true, displayForumAsSidebar: false) |> deliverOnMainQueue).start(error: { _ in
+                    alert(for: context.window, info: strings().unknownError)
+                })
             default:
                 break
             }

@@ -30,6 +30,8 @@ private final class Arguments {
 private struct State : Equatable {
     public var isForum: Bool = false
     public var mode: ForumDisplayMode = .tabs
+    public var isLoaded = false
+    public var isUpdating = false
 }
 
 private let _id_header = InputDataIdentifier("_id_header")
@@ -83,6 +85,9 @@ public func ForumSettingsController(context: any AccountContextProtocol, peerId:
     let actionsDisposable = DisposableSet()
 
     let initialState = State()
+    var confirmedState = initialState
+    let updateDisposable = MetaDisposable()
+    actionsDisposable.add(updateDisposable)
     
     let statePromise = ValuePromise(initialState, ignoreRepeated: true)
     let stateValue = Atomic(value: initialState)
@@ -98,7 +103,7 @@ public func ForumSettingsController(context: any AccountContextProtocol, peerId:
         }
     }
     
-    actionsDisposable.add(context.engine.data.subscribe(TelegramEngine.EngineData.Item.Peer.Peer(id: peerId)).start(next: { peer in
+    actionsDisposable.add((context.engine.data.subscribe(TelegramEngine.EngineData.Item.Peer.Peer(id: peerId)) |> deliverOnMainQueue).start(next: { peer in
         if let peer {
             switch peer {
             case let .channel(channel):
@@ -112,6 +117,9 @@ public func ForumSettingsController(context: any AccountContextProtocol, peerId:
                     } else {
                         current.mode = .list
                     }
+                    current.isLoaded = true
+                    confirmedState = current
+                    confirmedState.isUpdating = false
                     return current
                 }
             default:
@@ -122,10 +130,26 @@ public func ForumSettingsController(context: any AccountContextProtocol, peerId:
     
     let update:()->Void = {
         let state = stateValue.with { $0 }
-        _ = showModalProgress(signal: context.engine.peers.setChannelForumMode(id: peerId, isForum: state.isForum, displayForumAsTabs: state.mode != .list, displayForumAsSidebar: state.isForum && state.mode == .sidebar), for: context.window).start()
+        guard state.isLoaded, !state.isUpdating else { return }
+        updateState { current in
+            var current = current
+            current.isUpdating = true
+            return current
+        }
+        updateDisposable.set(showModalProgress(signal: context.engine.peers.setChannelForumMode(id: peerId, isForum: state.isForum, displayForumAsTabs: state.mode != .list, displayForumAsSidebar: state.isForum && state.mode == .sidebar) |> deliverOnMainQueue, for: context.window).start(error: { _ in
+            updateState { _ in confirmedState }
+            alert(for: window, info: strings().unknownError)
+        }, completed: {
+            updateState { current in
+                var current = current
+                current.isUpdating = false
+                return current
+            }
+        }))
     }
 
     let arguments = Arguments(context: context, toggleForum: {
+        guard stateValue.with({ $0.isLoaded && !$0.isUpdating }) else { return }
         updateState { current in
             var current = current
             current.isForum = !current.isForum
@@ -133,6 +157,7 @@ public func ForumSettingsController(context: any AccountContextProtocol, peerId:
         }
         update()
     }, selectMode: { mode in
+        guard stateValue.with({ $0.isLoaded && !$0.isUpdating }) else { return }
         updateState { current in
             var current = current
             current.mode = mode

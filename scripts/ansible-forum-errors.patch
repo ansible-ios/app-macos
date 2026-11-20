@@ -1,0 +1,51 @@
+diff --git a/submodules/TelegramCore/Sources/ForumChannels.swift b/submodules/TelegramCore/Sources/ForumChannels.swift
+--- a/submodules/TelegramCore/Sources/ForumChannels.swift
++++ b/submodules/TelegramCore/Sources/ForumChannels.swift
+@@ -537,25 +537,23 @@
+     }
+ }
+ 
+-func _internal_setChannelForumMode(postbox: Postbox, network: Network, stateManager: AccountStateManager, peerId: PeerId, isForum: Bool, displayForumAsTabs: Bool, displayForumAsSidebar: Bool) -> Signal<Never, NoError> {
++public enum SetChannelForumModeError {
++    case generic
++}
++
++func _internal_setChannelForumMode(postbox: Postbox, network: Network, stateManager: AccountStateManager, peerId: PeerId, isForum: Bool, displayForumAsTabs: Bool, displayForumAsSidebar: Bool) -> Signal<Never, SetChannelForumModeError> {
+     return postbox.transaction { transaction -> Api.InputChannel? in
+         return transaction.getPeer(peerId).flatMap(apiInputChannel)
+     }
+-    |> mapToSignal { inputChannel -> Signal<Never, NoError> in
++    |> castError(SetChannelForumModeError.self)
++    |> mapToSignal { inputChannel -> Signal<Never, SetChannelForumModeError> in
+         guard let inputChannel = inputChannel else {
+-            return .complete()
++            return .fail(.generic)
+         }
+         return network.request(Api.functions.channels.toggleForum(channel: inputChannel, enabled: isForum ? .boolTrue : .boolFalse, tabs: displayForumAsTabs ? .boolTrue : .boolFalse, sidebar: displayForumAsSidebar ? .boolTrue : .boolFalse))
+-        |> map(Optional.init)
+-        |> `catch` { _ -> Signal<Api.Updates?, NoError> in
+-            return .single(nil)
+-        }
+-        |> mapToSignal { result -> Signal<Never, NoError> in
+-            guard let result = result else {
+-                return .complete()
+-            }
++        |> mapError { _ in SetChannelForumModeError.generic }
++        |> mapToSignal { result -> Signal<Never, SetChannelForumModeError> in
+             stateManager.addUpdates(result)
+-            
+             return .complete()
+         }
+     }
+diff --git a/submodules/TelegramCore/Sources/TelegramEngine/Peers/TelegramEnginePeers.swift b/submodules/TelegramCore/Sources/TelegramEngine/Peers/TelegramEnginePeers.swift
+--- a/submodules/TelegramCore/Sources/TelegramEngine/Peers/TelegramEnginePeers.swift
++++ b/submodules/TelegramCore/Sources/TelegramEngine/Peers/TelegramEnginePeers.swift
+@@ -1345,7 +1345,7 @@
+             |> ignoreValues
+         }
+         
+-        public func setChannelForumMode(id: EnginePeer.Id, isForum: Bool, displayForumAsTabs: Bool, displayForumAsSidebar: Bool) -> Signal<Never, NoError> {
++        public func setChannelForumMode(id: EnginePeer.Id, isForum: Bool, displayForumAsTabs: Bool, displayForumAsSidebar: Bool) -> Signal<Never, SetChannelForumModeError> {
+             return _internal_setChannelForumMode(postbox: self.account.postbox, network: self.account.network, stateManager: self.account.stateManager, peerId: id, isForum: isForum, displayForumAsTabs: displayForumAsTabs, displayForumAsSidebar: displayForumAsSidebar)
+         }
+         
