@@ -387,7 +387,7 @@ open class ContactsController<Context: AccountContextProtocol>: PeersListControl
     }
     
     open override var defaultBarTitle: String {
-        return localizedString("Telegram.ContactsController")
+        return localizedString("Contacts.ContacsSeparator", legacyKey: "Telegram.ContactsController")
     }
     
     public init(_ context:Context) {

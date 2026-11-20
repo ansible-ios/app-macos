@@ -134,7 +134,7 @@ fileprivate func prepareTransition(left:[AppearanceWrapperEntry<InputContextEntr
 open class PeerMediaGifsController<Context: AccountContextProtocol>: AnsibleGenericViewController<PeerMediaGifsView, Context> {
 
     open override var defaultBarTitle: String {
-        return localizedString("Telegram.PeerMediaGifsController")
+        return localizedString("PeerMedia.Gifs", legacyKey: "Telegram.PeerMediaGifsController")
     }
 
     private let peerId: PeerId

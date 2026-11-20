@@ -38,7 +38,7 @@ private func animateStatusAppearance(_ items: [TableRowItem]) {
 public final class PremiumStatusController<Context: AccountContextProtocol> : AnsibleViewController<Context> {
 
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.PremiumStatusController")
+        return localizedString("SelectColor.EmojiStatus.User", legacyKey: "Telegram.PremiumStatusController")
     }
     
     private let emojis: EmojiesController<Context>
@@ -117,7 +117,7 @@ public final class PremiumStatusController<Context: AccountContextProtocol> : An
 public final class SetupQuickReactionController<Context: AccountContextProtocol> : AnsibleViewController<Context> {
 
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.SetupQuickReactionController")
+        return localizedString("Reaction.Settings.Quick.Title", legacyKey: "Telegram.SetupQuickReactionController")
     }
     
     private let emojis: EmojiesController<Context>

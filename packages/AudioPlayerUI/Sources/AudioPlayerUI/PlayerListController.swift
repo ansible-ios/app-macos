@@ -830,7 +830,7 @@ final class PlayerListView : View, APDelegate {
 public class PlayerListController: ModalViewController {
     
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.PlayerListController")
+        return localizedString("VoiceOver.Common.Playlist", legacyKey: "Telegram.PlayerListController")
     }
     
     public enum Source {

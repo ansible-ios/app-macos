@@ -296,7 +296,7 @@ public struct PeerMediaUpdate {
 open class PeerMediaListController<Context: AccountContextProtocol>: TableViewController<Context>, PeerMediaSearchable {
 
     open override var defaultBarTitle: String {
-        return localizedString("Telegram.PeerMediaListController")
+        return localizedString("PeerMedia.Media", legacyKey: "Telegram.PeerMediaListController")
     }
     
     private var peerId:PeerId

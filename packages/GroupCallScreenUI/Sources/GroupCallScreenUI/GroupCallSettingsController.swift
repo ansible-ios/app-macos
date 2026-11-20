@@ -617,7 +617,7 @@ private func groupCallSettingsEntries(callState: GroupCallUIState, devices: IODe
 public final class GroupCallSettingsController : ModalViewController {
 
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.GroupCallSettingsController")
+        return localizedString("Chanel.EventFilter.Settings", legacyKey: "Telegram.GroupCallSettingsController")
     }
 
     fileprivate let sharedContext: any SharedAccountContextProtocol

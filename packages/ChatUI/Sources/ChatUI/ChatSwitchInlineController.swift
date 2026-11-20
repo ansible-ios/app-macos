@@ -15,7 +15,7 @@ import MessageUtils
 
 open class ChatSwitchInlineController<Context: AccountContextProtocol>: ChatController<Context> {
     open override var defaultBarTitle: String {
-        return localizedString("Telegram.ChatSwitchInlineController")
+        return localizedString("Modal.Share", legacyKey: "Telegram.ChatSwitchInlineController")
     }
     private let fallbackId:PeerId
     private let fallbackMode: ChatMode

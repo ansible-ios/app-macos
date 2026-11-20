@@ -235,7 +235,7 @@ final class WidgetListView: View {
 final class WidgetController<Context: AccountContextProtocol> : AnsibleGenericViewController<WidgetListView, Context> {
     
     override var defaultBarTitle: String {
-        return localizedString("Telegram.WidgetController")
+        return localizedString("HTMLDemo.Catalog.AllWidgets", legacyKey: "Telegram.WidgetController")
     }
     
     private var controllers:[ViewController] = []

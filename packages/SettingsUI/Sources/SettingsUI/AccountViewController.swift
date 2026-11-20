@@ -1315,7 +1315,7 @@ open class AccountViewController<Context: AccountContextProtocol> : AnsibleGener
     }
 
     open override var defaultBarTitle: String {
-        return localizedString("Telegram.AccountViewController")
+        return localizedString("Chanel.EventFilter.Settings", legacyKey: "Telegram.AccountViewController")
     }
 
     public init(_ context: Context, focusOnSearch: Bool = false) {

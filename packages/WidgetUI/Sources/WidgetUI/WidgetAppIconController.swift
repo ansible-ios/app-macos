@@ -62,7 +62,7 @@ private struct State : Equatable {
 final class WidgetAppIconController<Context: AccountContextProtocol> : AnsibleGenericViewController<WidgetView<WidgetAppIconContainer>, Context> {
     
     override var defaultBarTitle: String {
-        return localizedString("Telegram.WidgetAppIconController")
+        return localizedString("EmptyChat.AppIcon", legacyKey: "Telegram.WidgetAppIconController")
     }
     
     private let disposable = DisposableSet()

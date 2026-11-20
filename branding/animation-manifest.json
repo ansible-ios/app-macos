@@ -277,5 +277,14 @@
     "width": 100,
     "height": 100,
     "frames": 36
+  },
+  {
+    "path": "Resources/ass/fragment.ass",
+    "role": "crystal-piece",
+    "source": "web/assets_ass_general__Fragment.ass",
+    "sha256": "34c7f212e48b63fdd2e9aeba6ef09255ebc3897d822796d6777917250296d770",
+    "width": 512,
+    "height": 512,
+    "frames": 120
   }
 ]

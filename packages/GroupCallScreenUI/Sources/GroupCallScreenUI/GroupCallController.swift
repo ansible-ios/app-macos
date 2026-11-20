@@ -775,7 +775,7 @@ private func peerEntries(state: GroupCallUIState, account: Account, arguments: G
 public final class GroupCallUIController : ViewController {
 
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.GroupCallUIController")
+        return localizedString("Chat.GroupCall.Title", legacyKey: "Telegram.GroupCallUIController")
     }
     
     public final class UIData {

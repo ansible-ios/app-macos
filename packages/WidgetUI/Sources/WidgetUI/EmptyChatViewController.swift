@@ -153,7 +153,7 @@ public class EmptyChatView : View {
 open class EmptyChatViewController<Context: AccountContextProtocol>: AnsibleGenericViewController<EmptyChatView, Context> {
     
     open override var defaultBarTitle: String {
-        return localizedString("Telegram.EmptyChatViewController")
+        return localizedString("Widget.Recent.Title", legacyKey: "Telegram.EmptyChatViewController")
     }
     
     private let cards: WidgetController<Context>

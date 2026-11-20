@@ -362,7 +362,7 @@ public enum EntertainmentViewControllerMode {
 
 public class EntertainmentViewController<Context: AccountContextProtocol>: AnsibleGenericViewController<EntertainmentView, Context> {
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.EntertainmentViewController")
+        return localizedString("Entertainment.Emoji", legacyKey: "Telegram.EntertainmentViewController")
     }
     private let languageDisposable:MetaDisposable = MetaDisposable()
 

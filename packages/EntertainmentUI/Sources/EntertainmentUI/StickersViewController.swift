@@ -1216,7 +1216,7 @@ public class NStickersView : View {
 
 public class NStickersViewController<Context: AccountContextProtocol>: AnsibleGenericViewController<NStickersView, Context>, TableViewDelegate, Notifable {
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.NStickersViewController")
+        return localizedString("Entertainment.Stickers", legacyKey: "Telegram.NStickersViewController")
     }
 
     private let searchValue = ValuePromise<SearchState>(.init(state: .None, request: nil))

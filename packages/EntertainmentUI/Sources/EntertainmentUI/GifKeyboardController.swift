@@ -450,7 +450,7 @@ public final class GifKeyboardView : View {
 
 public final class GifKeyboardController<Context: AccountContextProtocol> : AnsibleGenericViewController<GifKeyboardView, Context> {
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.GifKeyboardController")
+        return localizedString("Entertainment.GIF", legacyKey: "Telegram.GifKeyboardController")
     }
     
     private let disposable = MetaDisposable()

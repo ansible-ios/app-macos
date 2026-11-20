@@ -129,6 +129,14 @@ public func localizedString(_ key:String) -> String {
     }
 }
 
+public func localizedString(_ key: String, legacyKey: String) -> String {
+    let legacyValue = localizedString(legacyKey)
+    if !legacyValue.isEmpty && legacyValue != legacyKey {
+        return legacyValue
+    }
+    return localizedString(key)
+}
+
 //public func localizedString(_ key:String, countable:Int = 0, apply:Bool = true) -> String {
 //    let suffix:String
 //    if countable == 1 {

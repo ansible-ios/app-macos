@@ -2558,7 +2558,7 @@ open class ChatController<Context: AccountContextProtocol>: AnsibleGenericViewCo
     }
 
     open override var defaultBarTitle: String {
-        return localizedString("Telegram.ChatController")
+        return localizedString("ShortcutsController.Chat", legacyKey: "Telegram.ChatController")
     }
 
     var state: ViewControllerState = .Normal 

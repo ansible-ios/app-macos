@@ -845,7 +845,7 @@ private struct StoryReferenceEntry : Comparable, Identifiable {
 public final class StoryMediaController<Context: AccountContextProtocol> : AnsibleGenericViewController<StoryMediaView, Context> {
 
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.StoryMediaController")
+        return localizedString("StorageUsage.Category.Stories", legacyKey: "Telegram.StoryMediaController")
     }
     
     private let actionsDisposable = DisposableSet()
