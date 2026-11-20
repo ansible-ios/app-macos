@@ -1,3 +1,4 @@
+import AppAnalytics
 import Cocoa
 import AnsibleUIKit
 import SwiftSignalKit
@@ -760,6 +761,7 @@ public func NotificationCategorySettingsController(context: any AccountContextPr
     }
 
     let controller = InputDataController(dataSignal: signal, title: category.title, removeAfterDisappear: false, hasDone: false, identifier: "notification-category-settings")
+    controller.analyticsScreen = .settingsNotifications
 
     let pendingFocus = Atomic<Bool>(value: focusOnItemTag != nil)
     controller.afterTransaction = { controller in

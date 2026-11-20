@@ -4,6 +4,9 @@ import Foundation
 
 public enum AnalyticsCoverage {
     public static let screenForClass: [String: AnalyticsScreen] = [
+        "SEPasslockController": .passcodeLock,
+        "SESelectController": .shareExtension,
+        "SEUnauthorizedViewController": .shareExtensionLoggedOut,
         "PlayerListController": .mediaPlayerPlaylist,
         "Auth_AwaitingResetController": .authResetWait,
         "Auth_CodeEntryController": .authCode,
@@ -19,6 +22,7 @@ public enum AnalyticsCoverage {
         "EditImageModalController": .mediaEditorImage,
         "VideoAvatarModalController": .mediaEditorVideoAvatar,
         "CalendarController": .appCalendar,
+        "CalendarSearchController": .appCalendar,
         "CallRatingModalViewController": .callRating,
         "DesktopCapturerWindow": .callShareScreen,
         "RecentCallsViewController": .callHistory,
@@ -78,9 +82,6 @@ public enum AnalyticsCoverage {
         "FeaturedStickerPacksController": .settingsStickersEmojiTrending,
         "InstalledStickerPacksController": .settingsStickersEmoji,
         "StoryStealthModeController": .storiesStealthMode,
-        "SEPasslockController": .passcodeLock,
-        "SESelectController": .shareExtension,
-        "SEUnauthorizedViewController": .shareExtensionLoggedOut,
         "InstantViewInBrowser": .instantView,
         "WebGameViewController": .botGame,
         "WebpageModalController": .botMiniApp,

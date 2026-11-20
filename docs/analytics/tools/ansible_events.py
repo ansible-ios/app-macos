@@ -814,7 +814,7 @@ def coverage_report(inventory, mapping, used, unused):
         "|---|---|",
     ]
     for screen in sorted(used):
-        sources = ", ".join(f"`{by_key[k]['path'].split('/')[-1]}:{by_key[k]['line']}` {k.split('/', 1)[-1]}" for k in used[screen])
+        sources = ", ".join(f"`{os.path.basename(by_key[k]['path'])}:{by_key[k]['line']}` {k.split('/', 1)[-1]}" for k in used[screen])
         lines.append(f"| `{screen}` | {sources} |")
     lines += ["", "## Ignored", "", "| Item | Reason | Note |", "|---|---|---|"]
     for key in sorted(items):

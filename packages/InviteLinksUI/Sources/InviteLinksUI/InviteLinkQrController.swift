@@ -1,3 +1,4 @@
+import AppAnalytics
 import Cocoa
 import AnsibleUIKit
 import SwiftSignalKit
@@ -248,6 +249,7 @@ public func InviteLinkQrController(context: any AccountContextProtocol, link: St
     ]))
 
     let controller = InputDataController(dataSignal: signal, title: strings().inviteLinkQrCodeTitle)
+    controller.analyticsScreen = .peerInfoInviteLinksLink
 
     controller.onDeinit = {
         actions.close = nil
