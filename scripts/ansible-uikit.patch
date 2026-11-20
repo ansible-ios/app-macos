@@ -1,0 +1,48 @@
+diff --git a/submodules/MediaPlayer/Package.swift b/submodules/MediaPlayer/Package.swift
+--- a/submodules/MediaPlayer/Package.swift
++++ b/submodules/MediaPlayer/Package.swift
+@@ -21 +21 @@
+-        .package(name: "TGUIKit", path: "../../../../packages/TGUIKit"),
++        .package(name: "AnsibleUIKit", path: "../../../../packages/AnsibleUIKit"),
+@@ -36 +36 @@
+-                           .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
++                           .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
+diff --git a/submodules/MediaPlayer/Sources/FFMpegFileReader.swift b/submodules/MediaPlayer/Sources/FFMpegFileReader.swift
+--- a/submodules/MediaPlayer/Sources/FFMpegFileReader.swift
++++ b/submodules/MediaPlayer/Sources/FFMpegFileReader.swift
+@@ -6 +6 @@
+-import TGUIKit
++import AnsibleUIKit
+diff --git a/submodules/MediaPlayer/Sources/FFMpegMediaVideoFrameDecoder.swift b/submodules/MediaPlayer/Sources/FFMpegMediaVideoFrameDecoder.swift
+--- a/submodules/MediaPlayer/Sources/FFMpegMediaVideoFrameDecoder.swift
++++ b/submodules/MediaPlayer/Sources/FFMpegMediaVideoFrameDecoder.swift
+@@ -5 +5 @@
+-import TGUIKit
++import AnsibleUIKit
+diff --git a/submodules/MediaPlayer/Sources/SoftwareVideoSource.swift b/submodules/MediaPlayer/Sources/SoftwareVideoSource.swift
+--- a/submodules/MediaPlayer/Sources/SoftwareVideoSource.swift
++++ b/submodules/MediaPlayer/Sources/SoftwareVideoSource.swift
+@@ -6 +6 @@
+-import TGUIKit
++import AnsibleUIKit
+diff --git a/submodules/MediaPlayer/Sources/UniversalSoftwareVideoSource.swift b/submodules/MediaPlayer/Sources/UniversalSoftwareVideoSource.swift
+--- a/submodules/MediaPlayer/Sources/UniversalSoftwareVideoSource.swift
++++ b/submodules/MediaPlayer/Sources/UniversalSoftwareVideoSource.swift
+@@ -6 +6 @@
+-import TGUIKit
++import AnsibleUIKit
+diff --git a/submodules/MetalEngine/Package.swift b/submodules/MetalEngine/Package.swift
+--- a/submodules/MetalEngine/Package.swift
++++ b/submodules/MetalEngine/Package.swift
+@@ -17 +17 @@
+-        .package(name: "TGUIKit", path: "../../../../packages/TGUIKit"),
++        .package(name: "AnsibleUIKit", path: "../../../../packages/AnsibleUIKit"),
+@@ -27 +27 @@
+-                           .product(name: "TGUIKit", package: "TGUIKit", condition: nil)],
++                           .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil)],
+diff --git a/submodules/MetalEngine/Sources/MetalEngine.swift b/submodules/MetalEngine/Sources/MetalEngine.swift
+--- a/submodules/MetalEngine/Sources/MetalEngine.swift
++++ b/submodules/MetalEngine/Sources/MetalEngine.swift
+@@ -9 +9 @@
+-import TGUIKit
++import AnsibleUIKit
