@@ -30,6 +30,9 @@ jobs:
           git -c url.https://github.com/.insteadOf=git@github.com: submodule update --init --depth 1 -- \
             submodules/ansible-ios submodules/tgcalls third-party/twidget third-party/widget-sandbox
 
+      - name: Test community avatar navigation
+        run: python3 tools/tests/community-dropdown/run.py
+
       - name: Test wallet regression detection
         run: python3 tools/tests/test_macos_package_guard.py
 
@@ -38,3 +41,6 @@ jobs:
           sh scripts/prepare-ansible-ios.sh
           python3 scripts/prepare-ansible-api.py
           python3 scripts/prepare-ansible-api.py --check
+
+      - name: Check Layer 233 schema and wire compatibility
+        run: python3 tools/tests/layer233/run.py

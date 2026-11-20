@@ -1494,7 +1494,7 @@ public class ChatListRowItem: TableRowItem {
     }
 
     public var owningCommunityId: PeerId? {
-        return (peer as? TelegramChannel)?.linkedCommunityId
+        return peer?.containerPeerId
     }
 
     public var showsCommunityDropdown: Bool {
