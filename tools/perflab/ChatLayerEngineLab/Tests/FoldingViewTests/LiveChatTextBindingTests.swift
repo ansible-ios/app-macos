@@ -1,12 +1,12 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 @testable import FoldingViewHarness
 @testable import ChatLayerEngine
 
 final class LiveChatTextBindingTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
     let fixtures = ChatTextReuseTests()
 
     func nativeItem(_ id: Int, context: BlockContext, text: String? = nil) -> FoldingViewHarness.ChatMessageItem {

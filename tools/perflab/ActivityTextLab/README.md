@@ -14,7 +14,7 @@ Eleven functional tests pass in debug, release, and Address Sanitizer configurat
 - Empty activity, cleanup, selection preservation, view geometry, bounded retention, and model release.
 - 637 byte-for-byte CoreText raster comparisons against fresh original measurement, with matching attributed text, line ranges, line frames, and layout sizes. The matrix includes emoji, combining characters, RTL, CJK, long text, truncation, zero/negative widths, and 1×/2×/3× scales. A separate test confirms that the raster helper produces nonblank output.
 
-`prepare.py` extracts the entire current production model and view, actual animation geometry/theme, and actual `PeerInputActivity` enum. It verifies the preserved original model against commit `d3f4a6235`. Both models compile against real TGUIKit, AppKit, CoreText, and SwiftSignalKit. The only current-model change for testing is making the layout helper internal. Model class names differ to allow side-by-side execution.
+`prepare.py` extracts the entire current production model and view, actual animation geometry/theme, and actual `PeerInputActivity` enum. It verifies the preserved original model against commit `d3f4a6235`. Both models compile against real AnsibleUIKit, AppKit, CoreText, and SwiftSignalKit. The only current-model change for testing is making the layout helper internal. Model class names differ to allow side-by-side execution.
 
 The lab uses small peer/identifier and localization fixtures, shared by both models; it does not link TelegramCore or the production localization catalog. The rendering proofs cover text lines, not full screenshots or compositor timing. Normal and `SHARE` production frontend parsing pass. The full Telegram application was not built or profiled.
 
@@ -47,4 +47,4 @@ swiftc -frontend -parse packages/ShortPeerRow/Sources/ShortPeerRow/ChatActivitie
 swiftc -frontend -parse -D SHARE packages/ShortPeerRow/Sources/ShortPeerRow/ChatActivitiesModel.swift
 ```
 
-`provenance.json` records production, reference, generated-source, and supporting-source hashes. The checked-in logs are final successful runs. During test development, the selection test initially called inaccessible TGUIKit APIs; it was corrected to set the public layout selection value before these final runs.
+`provenance.json` records production, reference, generated-source, and supporting-source hashes. The checked-in logs are final successful runs. During test development, the selection test initially called inaccessible AnsibleUIKit APIs; it was corrected to set the public layout selection value before these final runs.

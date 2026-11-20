@@ -1,8 +1,8 @@
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import MergeListsReference
 
-struct SimpleRow: Comparable, TGUIKit.Identifiable {
+struct SimpleRow: Comparable, AnsibleUIKit.Identifiable {
     let stableId: Int
     let order: Int
     let value: Int
@@ -12,7 +12,7 @@ struct SimpleRow: Comparable, TGUIKit.Identifiable {
     }
 }
 
-struct PayloadRow: Comparable, TGUIKit.Identifiable {
+struct PayloadRow: Comparable, AnsibleUIKit.Identifiable {
     let stableId: AnyHashable
     let order: Int
     let title: String
@@ -26,7 +26,7 @@ struct PayloadRow: Comparable, TGUIKit.Identifiable {
 var checksum = 0
 
 @inline(never)
-func measure<T>(_ left: [T], _ right: [T], allUpdated: Bool, reference: Bool, repeats: Int) -> Double where T: Comparable, T: TGUIKit.Identifiable {
+func measure<T>(_ left: [T], _ right: [T], allUpdated: Bool, reference: Bool, repeats: Int) -> Double where T: Comparable, T: AnsibleUIKit.Identifiable {
     let start = DispatchTime.now().uptimeNanoseconds
     for _ in 0..<repeats {
         let diff = reference
@@ -39,7 +39,7 @@ func measure<T>(_ left: [T], _ right: [T], allUpdated: Bool, reference: Bool, re
     return Double(DispatchTime.now().uptimeNanoseconds - start) / Double(repeats) / 1000
 }
 
-func benchmark<T>(_ name: String, makeRow: (Int, Int, Int) -> T) where T: Comparable, T: TGUIKit.Identifiable {
+func benchmark<T>(_ name: String, makeRow: (Int, Int, Int) -> T) where T: Comparable, T: AnsibleUIKit.Identifiable {
     for count in [100, 1000, 10000] {
         let left = (0..<count).map { makeRow($0, $0, 0) }
         var edited = left

@@ -9,7 +9,7 @@
     "packages/EntertainmentUI/Sources/EntertainmentUI/StickersViewController.swift": "59aba8c2af8de16c3da3a8b9b924cd8544c00f99607950534223dc0c6d8babd7",
     "packages/EntertainmentUI/Sources/EntertainmentUI/EmojiesController.swift": "54a266ce7bc42d8ee67a0c8187342d7fe910d639efcb8f2f01d6f153e2babbc3",
     "packages/AnsibleUtils/Sources/AnsibleUtils/InputSources.swift": "0a342c9f4e3ba8d01ca660721fa6562b3452e9e33a03d96052d59bae1f4e2709",
-    "packages/TGUIKit/Sources/Extensions.swift": "866dad29f2faac7c5529ade3ca10fb93dc37383ad9b473c8a7c45eb05a243212",
+    "packages/AnsibleUIKit/Sources/Extensions.swift": "866dad29f2faac7c5529ade3ca10fb93dc37383ad9b473c8a7c45eb05a243212",
     "packages/EntertainmentUI/Sources/EntertainmentUI/EmojiPanelSearchData.swift": "51fe9be793d2f222623b853d4bb58cac5b285668aebf8bcca5ab585ebab3be22"
   },
   "tests": {

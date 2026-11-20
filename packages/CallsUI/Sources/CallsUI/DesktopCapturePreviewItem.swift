@@ -1,7 +1,7 @@
 import Foundation
 import AVFoundation
 import TgVoipWebrtc
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import AnsibleUtils
 import AnsibleCallsCore

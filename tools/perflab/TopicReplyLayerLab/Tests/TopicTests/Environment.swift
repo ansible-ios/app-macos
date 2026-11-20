@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 protocol AccountContextProtocol: AnyObject {
     var account: FixtureAccount { get }

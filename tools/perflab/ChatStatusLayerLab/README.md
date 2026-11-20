@@ -1,6 +1,6 @@
 # Chat status layer lab
 
-This harness compiles the actual `ChatRightTextLayer` extracted from `ChatRightView.swift` against real TGUIKit/AppKit. `Reference.swift` preserves its implementation at `c4a15e92f`. No drawing or geometry behavior is stubbed; the harness only provides the named app icons required by TGUIKit initialization.
+This harness compiles the actual `ChatRightTextLayer` extracted from `ChatRightView.swift` against real AnsibleUIKit/AppKit. `Reference.swift` preserves its implementation at `c4a15e92f`. No drawing or geometry behavior is stubbed; the harness only provides the named app icons required by AnsibleUIKit initialization.
 
 Run from the repository root:
 

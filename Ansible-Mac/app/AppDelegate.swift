@@ -4,7 +4,7 @@ import SwiftSignalKit
 import Postbox
 import TelegramCore
 import DateUtils
-import TGUIKit
+import AnsibleUIKit
 import AppAnalytics
 import Quartz
 import MtProtoKit
@@ -19,7 +19,7 @@ import Localization
 import ApiCredentials
 import EDSunriseSet
 import ObjcUtils
-import TGModernGrowingTextView
+import AnsibleModernGrowingTextView
 import FoundationUtils
 import InAppSettings
 import ThemeSettings
@@ -278,7 +278,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
     private var rustEngineCrash: CrashedRun?
 
     func applicationWillFinishLaunching(_ notification: Notification) {
-        TGUIKitAccessibility.isEnabled = FastSettings.accessibilityTreeEffective
+        AnsibleUIKitAccessibility.isEnabled = FastSettings.accessibilityTreeEffective
         Analytics.shared.isEnabled = false
         analyticsLaunchStart = Analytics.shared.now
         AnalyticsLifecycle.install()

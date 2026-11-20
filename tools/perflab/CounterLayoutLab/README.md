@@ -1,6 +1,6 @@
 # Counter digit measurement
 
-The native test harness links the real TGUIKit package and compares DynamicCounterTextView with its frozen source from commit `3d21a5571`. Run `python3 tools/perflab/CounterLayoutLab/prepare.py` before building the lab. The generated reference only adds the TGUIKit import and renames the class.
+The native test harness links the real AnsibleUIKit package and compares DynamicCounterTextView with its frozen source from commit `3d21a5571`. Run `python3 tools/perflab/CounterLayoutLab/prepare.py` before building the lab. The generated reference only adds the AnsibleUIKit import and renames the class.
 
 ## Change
 
@@ -27,7 +27,7 @@ Run the release benchmark with:
 COUNTER_BENCHMARK=1 swift test --package-path tools/perflab/CounterLayoutLab --scratch-path /tmp/CounterLayoutLab-release -c release
 ```
 
-Sanitizer runs omit COUNTER_BENCHMARK and use separate scratch directories. Broader TGUIKit and chat-layer test results are recorded in provenance.json. No full Telegram build or end-to-end chat latency measurement is claimed.
+Sanitizer runs omit COUNTER_BENCHMARK and use separate scratch directories. Broader AnsibleUIKit and chat-layer test results are recorded in provenance.json. No full Telegram build or end-to-end chat latency measurement is claimed.
 
 ## Measurements
 

@@ -1,6 +1,6 @@
 import Cocoa
 import AppAnalytics
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import SwiftSignalKit
 import Postbox
@@ -66,7 +66,7 @@ final class ChatAccessibleImageButton: ImageButton {
 
     override func isAccessibilityElement() -> Bool {
         if accessibilityPress != nil {
-            return TGUIKitAccessibility.isEnabled && !isAccessibilityDecorative && !isHidden
+            return AnsibleUIKitAccessibility.isEnabled && !isAccessibilityDecorative && !isHidden
         }
         return super.isAccessibilityElement()
     }

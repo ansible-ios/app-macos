@@ -1,7 +1,7 @@
 import Cocoa
 import CoreText
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import Emoji
 import AnsibleTheme
 import AnsibleUtils

@@ -13,7 +13,7 @@ python3 tools/perflab/StickerDecodeLab/prepare-isolated.py /tmp/StickerDecodeVal
 swift test --package-path /tmp/StickerDecodeValidation --scratch-path /tmp/StickerDecodeValidation-build -c release
 ASAN_OPTIONS=detect_leaks=0 swift test --package-path /tmp/StickerDecodeValidation --scratch-path /tmp/StickerDecodeValidation-asan --sanitize address --filter 'DecodeTests.(DecodeTests|PathTests|ExtendedPathTests)'
 swift test --package-path /tmp/StickerDecodeValidation --scratch-path /tmp/StickerDecodeValidation-tsan --sanitize thread --filter 'DecodeTests.(DecodeTests|PathTests|ExtendedPathTests)'
-swift test --package-path /tmp/StickerDecodeValidation/TGUIKit --scratch-path /tmp/StickerDecodeValidation-kit -c release
+swift test --package-path /tmp/StickerDecodeValidation/AnsibleUIKit --scratch-path /tmp/StickerDecodeValidation-kit -c release
 STICKER_DECODE_BENCHMARK=1 STICKER_PATH_BENCHMARK=1 swift test --package-path /tmp/StickerDecodeValidation --scratch-path /tmp/StickerDecodeValidation-build -c release --skip-build --filter 'DecodeBenchmarkTests|PathBenchmarkTests'
 cp /tmp/sticker-decode-benchmark.json /tmp/decode-forward.json
 cp /tmp/sticker-path-benchmark.json /tmp/pipeline-forward.json
@@ -23,7 +23,7 @@ cp /tmp/sticker-path-benchmark.json /tmp/pipeline-reverse.json
 STICKER_DECODE_MEMORY=1 swift test --package-path /tmp/StickerDecodeValidation --scratch-path /tmp/StickerDecodeValidation-build -c release --skip-build --filter DecodeMemoryTests
 ```
 
-Use fresh output directories and run builds sequentially. Run timing and allocator observations without competing compilers. The generator freezes two complete TGUIKit modules, differing only in the decoder. Its reference is commit fce7c808c; other worktree files are copied identically, including local changes. Test-only accessors expose images and the private fallback/length/table helpers. They do not instrument production decoding or drawing. All measured source and dependency hashes are recorded with the results.
+Use fresh output directories and run builds sequentially. Run timing and allocator observations without competing compilers. The generator freezes two complete AnsibleUIKit modules, differing only in the decoder. Its reference is commit fce7c808c; other worktree files are copied identically, including local changes. Test-only accessors expose images and the private fallback/length/table helpers. They do not instrument production decoding or drawing. All measured source and dependency hashes are recorded with the results.
 
 `python3 tools/perflab/StickerDecodeLab/prepare-standalone.py /tmp/StickerDecodeQuick` generates a smaller Foundation-only package for the three exhaustive decoder tests, timings and allocator observations.
 
@@ -51,7 +51,7 @@ The full Telegram app, chat-opening latency and scrolling FPS are outside these 
 
 ## Final results
 
-Release, Address Sanitizer and Thread Sanitizer each pass all 16 focused functional tests. The full frozen TGUIKit suite passes 420 functional tests (18 optional measurements skipped); the Foundation-only package passes its three functional tests. All 680 frozen compiler inputs and 259 production source/test files match the recorded hashes. Fresh generators reproduce 527 decoder-lab Swift files and three manifests, and 523 prior path-lab Swift files and three manifests. The earlier path lab explicitly restores its archived decoder in both modules, preserving that historical comparison after the decoder table's representation change.
+Release, Address Sanitizer and Thread Sanitizer each pass all 16 focused functional tests. The full frozen AnsibleUIKit suite passes 420 functional tests (18 optional measurements skipped); the Foundation-only package passes its three functional tests. All 680 frozen compiler inputs and 259 production source/test files match the recorded hashes. Fresh generators reproduce 527 decoder-lab Swift files and three manifests, and 523 prior path-lab Swift files and three manifests. The earlier path lab explicitly restores its archived decoder in both modules, preserving that historical comparison after the decoder table's representation change.
 
 The final measurements use two independent processes with opposite initial ordering. Each process alternates nine batches. Selected median ranges are below; complete per-workload results, including controls and the forced fallback, are in [results/medians.md](results/medians.md).
 

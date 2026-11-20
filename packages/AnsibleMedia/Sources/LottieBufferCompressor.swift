@@ -3,7 +3,7 @@ import Compression
 import Accelerate
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import ApiCredentials
 
 private let enableDifference = false

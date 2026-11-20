@@ -3,7 +3,7 @@ import UserNotifications
 import SwiftSignalKit
 import TelegramCore
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import ApiCredentials
 import AppKit
 

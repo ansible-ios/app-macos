@@ -520,7 +520,7 @@ public final class RichTextEditorView: NSView {
 
     /// Installs a host context-menu handler. On right-click the editor calls it with the click `location`
     /// (canvas coords), the media under the click (if any), and whether there's a selection; if the handler
-    /// returns `true` (the host showed its own menu, e.g. a TGUIKit `ContextMenu`), the editor suppresses
+    /// returns `true` (the host showed its own menu, e.g. a AnsibleUIKit `ContextMenu`), the editor suppresses
     /// its native `NSMenu`. Return `false` to fall back to the built-in menu.
     public func registerContextMenuHandler(_ handler: @escaping (_ location: NSPoint, _ media: EditorMediaContext?, _ hasSelection: Bool, _ event: NSEvent) -> Bool) {
         canvas.contextMenuRequested = handler

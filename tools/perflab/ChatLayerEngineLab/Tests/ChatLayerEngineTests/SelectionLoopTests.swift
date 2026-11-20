@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class SelectionLoopTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func row(_ string: String, layered: Bool) throws -> NSView {
         let layout = TextViewLayout(NSAttributedString(string: string, attributes: [.font: NSFont.systemFont(ofSize: 14)]))

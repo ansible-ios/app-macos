@@ -1,6 +1,6 @@
 import InputTextView
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 
 private let quoteIcon: CGImage = InputTextView.sharedFoldingQuoteIconForLab()

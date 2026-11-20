@@ -4,11 +4,11 @@ This pass changes only the shared text drawing function in `TextView.swift`. It 
 
 ## Reference and coverage
 
-The lab preparation script preserves the complete shared drawing function and view wrapper from `f23a0ca31` as `PreviousTextRenderer`, compiled inside the copied production TGUIKit source. Only names and test bookkeeping accessors change. This isolates this pass from the earlier TextViewLayer extraction and chat metadata migration. The original `bce10beff` renderer comparisons also continue to run.
+The lab preparation script preserves the complete shared drawing function and view wrapper from `f23a0ca31` as `PreviousTextRenderer`, compiled inside the copied production AnsibleUIKit source. Only names and test bookkeeping accessors change. This isolates this pass from the earlier TextViewLayer extraction and chat metadata migration. The original `bce10beff` renderer comparisons also continue to run.
 
 A new 600-case matrix compares full, nonblank bitmaps exactly: five fixtures (plain, LTR quotes, RTL quotes, mixed-direction quotes and code blocks), three scales, five primary selections, four additional-selection arrays, and selectable/nonselectable views. It covers missing and zero-length selections, overlapping/reversed-order additional highlights, and selections spanning lines. Quote fixtures assert that they contain 14 distinct blocks. Adjacent quote attributes initially coalesced into one block; unquoted separator lines correct that fixture. Render bounds are asserted large enough for every complete layout.
 
-All 10 functional lab tests pass in debug, release and Address Sanitizer, with two optional benchmarks skipped. This includes the previous 1,681 bitmap comparisons plus the new 600 comparisons. The shared TGUIKit suite also passes 216 functional tests, with two optional tests skipped. Production interaction, accessibility, layout measurement and view/layer hierarchy code are untouched.
+All 10 functional lab tests pass in debug, release and Address Sanitizer, with two optional benchmarks skipped. This includes the previous 1,681 bitmap comparisons plus the new 600 comparisons. The shared AnsibleUIKit suite also passes 216 functional tests, with two optional tests skipped. Production interaction, accessibility, layout measurement and view/layer hierarchy code are untouched.
 
 ## Benchmark
 

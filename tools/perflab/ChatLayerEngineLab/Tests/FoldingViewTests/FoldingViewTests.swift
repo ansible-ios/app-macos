@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import FoldingViewHarness
 
 final class FoldingViewTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func content(_ count: Int, quoted: Bool = false) -> (NSAttributedString, [TextViewLayout], [NSRange]) {
         let full = NSMutableAttributedString()

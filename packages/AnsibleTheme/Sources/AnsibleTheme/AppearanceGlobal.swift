@@ -3,7 +3,7 @@ import TelegramCore
 import Localization
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 
 public final class Appearance : Equatable {
     public let language: AnsibleLocalization

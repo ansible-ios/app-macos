@@ -7,7 +7,7 @@
 #import <dlfcn.h>
 #import <QuartzCore/QuartzCore.h>
 
-void TGDisableLayerActions(CALayer *layer) {
+void AnsibleDisableLayerActions(CALayer *layer) {
     static NSDictionary *actions;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -801,7 +801,7 @@ void TGDisableLayerActions(CALayer *layer) {
     
 }
 
-//NSImage *TGIdenticonImage(NSData *data, CGSize size)
+//NSImage *AnsibleIdenticonImage(NSData *data, CGSize size)
 //{
 //    
 //    uint8_t bits[128];
@@ -867,7 +867,7 @@ void TGDisableLayerActions(CALayer *layer) {
 //}
 
 
-NSImage *TGIdenticonImage(NSData *data, NSData *additionalData, CGSize size)
+NSImage *AnsibleIdenticonImage(NSData *data, NSData *additionalData, CGSize size)
 {
     uint8_t bits[128];
     memset(bits, 0, 128);
@@ -1363,7 +1363,7 @@ int colorIndexForUid(int32_t uid, int32_t myUserId)
     
     return colorIndex;
 }
-inline int64_t TGPeerIdFromChannelId(int32_t channelId) {
+inline int64_t AnsiblePeerIdFromChannelId(int32_t channelId) {
     return ((int64_t)INT32_MIN) * 2 - ((int64_t)channelId);
 }
 
@@ -1471,7 +1471,7 @@ static inline CGSize fitSize(CGSize size, CGSize maxSize)
 }
 
 
-CGImageRef TGBlurredAlphaImage(CGImageRef source, CGSize size, CGFloat scale)
+CGImageRef AnsibleBlurredAlphaImage(CGImageRef source, CGSize size, CGFloat scale)
 {
     
     CGSize fittedSize = fitSize(size, CGSizeMake(90, 90));

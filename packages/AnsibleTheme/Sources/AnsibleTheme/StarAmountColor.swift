@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public func getStarAmountColorMapping(value: Int64) -> NSColor {
     if value >= 10000 {

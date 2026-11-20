@@ -3,7 +3,7 @@ import CalendarUtils
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import Localization
 
 public extension RenderedPeer {

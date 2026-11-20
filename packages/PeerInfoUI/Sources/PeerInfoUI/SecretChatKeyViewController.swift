@@ -1,6 +1,6 @@
 import Cocoa
 import ObjcUtils
-import TGUIKit
+import AnsibleUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit
@@ -39,7 +39,7 @@ public class SecretChatKeyView : View {
         
         let keySignatureData = fingerprint.sha1.data()
         let additionalSignature = fingerprint.sha256.data()
-        let image = TGIdenticonImage(keySignatureData, additionalSignature, NSMakeSize(264, 264))
+        let image = AnsibleIdenticonImage(keySignatureData, additionalSignature, NSMakeSize(264, 264))
         imageView.image = image.precomposed(flipVertical: true)
         imageView.sizeToFit()
         

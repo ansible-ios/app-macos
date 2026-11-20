@@ -1,6 +1,6 @@
 import AppKit
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatListUI
 
 private final class AvatarSelectionTestLayer: CALayer {

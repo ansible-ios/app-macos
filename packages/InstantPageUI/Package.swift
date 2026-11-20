@@ -13,7 +13,7 @@ let package = Package(
         .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
         .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
         .package(name: "Emoji", path: "../../submodules/ansible-ios/submodules/Emoji"),
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "InputView", path: "../InputView"),
         .package(name: "ColorPalette", path: "../ColorPalette"),
         .package(name: "Localization", path: "../Localization"),
@@ -36,7 +36,7 @@ let package = Package(
         .target(
             name: "InstantPageUI",
             dependencies: [
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "InputView", package: "InputView", condition: nil),
                 .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
                 .product(name: "TelegramCore", package: "TelegramCore", condition: nil),

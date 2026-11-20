@@ -1,6 +1,6 @@
 import XCTest
 import AppKit
-@testable import TGUIKit
+@testable import AnsibleUIKit
 import TelegramCore
 import Postbox
 import AnsibleTheme

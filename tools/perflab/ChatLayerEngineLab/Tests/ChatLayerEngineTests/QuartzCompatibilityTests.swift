@@ -1,6 +1,6 @@
 import Quartz
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class QuartzCompatibilityTests: XCTestCase {
@@ -12,7 +12,7 @@ final class QuartzCompatibilityTests: XCTestCase {
     }
 
     func testTextNodeSelectionWithImageKitImported() {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let node = ChatLayerTextNode(id: "text", selectable: false)
         XCTAssertFalse(node.isSelectable)
         node.isSelectable = true

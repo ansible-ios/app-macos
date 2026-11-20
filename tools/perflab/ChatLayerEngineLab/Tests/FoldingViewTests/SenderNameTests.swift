@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 @testable import ChatLayerEngine
 
 final class SenderNameTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func layout(_ text: String = "Sender name", link: String? = nil, color: NSColor = .systemBlue) -> TextViewLayout {
         let text = NSMutableAttributedString(string: text, attributes: [.font: NSFont.systemFont(ofSize: 13, weight: .medium), .foregroundColor: color])
@@ -97,7 +97,7 @@ final class SenderNameTests: XCTestCase {
         NSCursor.iBeam.set()
         host.updateHover(at: point)
         XCTAssertEqual(NSCursor.current, NSCursor.iBeam)
-        TGUIKitAccessibility.isEnabled = true
+        AnsibleUIKitAccessibility.isEnabled = true
         XCTAssertTrue(host.accessibilityHitTest(window.convertPoint(toScreen: host.convert(point, to: nil))) as AnyObject === overlay.cell)
         XCTAssertFalse(host.handlePointer(.down, at: point))
         overlay.isHidden = true

@@ -3,7 +3,7 @@ import XCTest
 import SwiftSignalKit
 import ObjectiveC
 import Darwin
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 private final class NativeMenuTextView: TextView {
@@ -24,7 +24,7 @@ final class TextMenuTests: XCTestCase {
     private var legacy = true
 
     override func setUpWithError() throws {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         legacy = System.legacyMenu
         System.legacyMenu = true
         let method = try XCTUnwrap(class_getClassMethod(NSMenu.self, #selector(NSMenu.popUpContextMenu(_:with:for:))))

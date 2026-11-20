@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import ColorPalette
 import ComponentsUI
 import SwiftSignalKit

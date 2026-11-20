@@ -3,13 +3,13 @@
 
 #import <zlib.h>
 
-bool TGIsGzippedData(NSData *data) {
+bool AnsibleIsGzippedData(NSData *data) {
     const UInt8 *bytes = (const UInt8 *)data.bytes;
     return (data.length >= 2 && bytes[0] == 0x1f && bytes[1] == 0x8b);
 }
 
-NSData *TGGZipData(NSData *data, float level) {
-    if (data.length == 0 || TGIsGzippedData(data)) {
+NSData *AnsibleGZipData(NSData *data, float level) {
+    if (data.length == 0 || AnsibleIsGzippedData(data)) {
         return data;
     }
     
@@ -43,9 +43,9 @@ NSData *TGGZipData(NSData *data, float level) {
     return output;
 }
 
-NSData * _Nullable TGGUnzipData(NSData *data, uint sizeLimit)
+NSData * _Nullable AnsibleGUnzipData(NSData *data, uint sizeLimit)
 {
-    if (data.length == 0 || !TGIsGzippedData(data)) {
+    if (data.length == 0 || !AnsibleIsGzippedData(data)) {
         return nil;
     }
     

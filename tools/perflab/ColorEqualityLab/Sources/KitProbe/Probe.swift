@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 @inline(never) public func kitCandidate(_ lhs: NSColor, _ rhs: NSColor) -> Bool { lhs == rhs }
 public func kitOptional(_ lhs: NSColor?, _ rhs: NSColor?) -> Bool { lhs == rhs }

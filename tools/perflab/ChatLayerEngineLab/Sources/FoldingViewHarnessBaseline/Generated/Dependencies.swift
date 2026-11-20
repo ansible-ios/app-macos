@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 enum LiteMode { case emoji }
 protocol AccountContextProtocol: AnyObject {

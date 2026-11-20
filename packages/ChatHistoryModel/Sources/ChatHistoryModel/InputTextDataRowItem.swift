@@ -3,7 +3,7 @@ import Cocoa
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import InputView
 import InputTextView
 import GeneralRows

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 extension CGContext {
     func roundPositioned(_ size: NSSize, _ cornerRadius: CGFloat = .cornerRadius, positionFlags: LayoutPositionFlags? = nil) {

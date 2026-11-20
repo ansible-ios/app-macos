@@ -1,6 +1,6 @@
 import Cocoa
-import TGUIKit
-import TGModernGrowingTextView
+import AnsibleUIKit
+import AnsibleModernGrowingTextView
 import SwiftSignalKit
 import Postbox
 import TelegramCore
@@ -834,7 +834,7 @@ final class StoryInputView : Control, StoryInput {
         return false
     }
     
-    func maxCharactersLimit(_ textView: TGModernGrowingTextView!) -> Int32 {
+    func maxCharactersLimit(_ textView: AnsibleModernGrowingTextView!) -> Int32 {
         return 255
     }
     

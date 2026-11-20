@@ -1,6 +1,6 @@
 import Cocoa
 import Localization
-import TGUIKit
+import AnsibleUIKit
 
 class SEModalProgressView: View {
     private let progress:LinearProgressControl = LinearProgressControl(progressHeight: 8)

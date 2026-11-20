@@ -5,10 +5,10 @@ import subprocess
 
 lab = Path(__file__).resolve().parent
 root = lab.parents[2]
-path = 'packages/TGUIKit/Sources/LinearProgressControl.swift'
+path = 'packages/AnsibleUIKit/Sources/LinearProgressControl.swift'
 reference = (lab / 'Reference.swift.txt').read_text()
 assert reference == subprocess.check_output(['git', 'show', 'd0610bf3d:' + path], cwd=root).decode()
-output = '@testable import TGUIKit\n' + reference.replace('LinearProgressControl', 'LegacyProgressControl').replace('LinearProgressAlignment', 'LegacyProgressAlignment')
+output = '@testable import AnsibleUIKit\n' + reference.replace('LinearProgressControl', 'LegacyProgressControl').replace('LinearProgressAlignment', 'LegacyProgressAlignment')
 target = lab / 'Sources/ProgressReference/Generated.swift'
 target.parent.mkdir(parents=True, exist_ok=True)
 target.write_text(output)

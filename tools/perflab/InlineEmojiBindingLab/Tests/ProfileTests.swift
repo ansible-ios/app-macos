@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import CandidateBindingHarness
 import NativeBindingHarness
@@ -100,7 +100,7 @@ final class ProfileTests: XCTestCase {
             XCTFail("Set INLINE_EMOJI_ROLE to native or layer")
             return
         }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         System.updateScaleFactor(2)
         defer { System.updateScaleFactor(2) }
         let caption = environment["INLINE_EMOJI_CAPTION"] == "1"

@@ -6,7 +6,7 @@ let deps: [(String, String)] = [
     ("HotKey", "../HotKey"),
     ("KeyboardKey", "../KeyboardKey"),
     ("AnsibleContext", "../AnsibleContext"),
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("InAppSettings", "../InAppSettings"),
 ]
 

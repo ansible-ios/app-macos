@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 
 private final class FixtureWindow: NSWindow {
     var key = true
@@ -11,7 +11,7 @@ private final class FixtureWindow: NSWindow {
 
 final class LifecycleTests: XCTestCase {
     private var windows: [FixtureWindow] = []
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
     override func tearDown() {
         windows.forEach { $0.contentView = nil; $0.close() }
         windows.removeAll()

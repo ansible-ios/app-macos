@@ -1,14 +1,14 @@
 import Cocoa
 import QuartzCore
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import ChatLayerEngine
 
 final class CodeHeaderBenchmarkTests: XCTestCase {
     func testCopyAndHeaderBindingCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_CODE_HEADER_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in code header benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         var results: [String: [[Double]]] = [:]
         var sink = 0
         let fixture = CodeHeaderTests()

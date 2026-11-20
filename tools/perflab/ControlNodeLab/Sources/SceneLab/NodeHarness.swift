@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import LabSupport
 
 public final class NodeHarness: HarnessBase {

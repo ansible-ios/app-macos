@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 struct ReadState { let count: Int; var isMuted = false }
 struct LabTheme {

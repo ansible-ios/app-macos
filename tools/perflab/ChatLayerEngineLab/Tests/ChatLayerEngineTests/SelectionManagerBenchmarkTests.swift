@@ -1,13 +1,13 @@
 import Cocoa
 import QuartzCore
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class SelectionManagerBenchmarkTests: XCTestCase {
     func testSelectionCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_SELECTION_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in selection manager benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         var results: [String: [[Double]]] = [:]
         var sink = 0
         func measure(_ name: String, count: Int, original: () -> Void, current: () -> Void) {

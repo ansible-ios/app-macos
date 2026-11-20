@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import InputView
 import InlineStickerLayer

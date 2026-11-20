@@ -1,10 +1,10 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import Translate
 import Postbox
-import TGModernGrowingTextView
+import AnsibleModernGrowingTextView
 import Localization
 import AlertsUI
 import AvatarUI

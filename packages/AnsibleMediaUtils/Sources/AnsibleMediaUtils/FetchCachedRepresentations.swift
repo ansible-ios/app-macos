@@ -3,7 +3,7 @@ import TelegramCore
 import ApiCredentials
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import libwebp
 import GZIP
 import Svg
@@ -27,7 +27,7 @@ public func makeLottieImage(from zippedData: Data,
                      scale: CGFloat = 2.0,
                      maxUnzip: UInt32 = 8 * 1024 * 1024) -> NSImage? {
     return autoreleasepool {
-        guard let data = TGGUnzipData(zippedData, maxUnzip) else { return nil }
+        guard let data = AnsibleGUnzipData(zippedData, maxUnzip) else { return nil }
         guard let json = String(data: data, encoding: .utf8), !json.isEmpty else { return nil }
         guard let renderer = LottieRenderHooks.shared.makeRenderer(json) else { return nil }
 
@@ -219,7 +219,7 @@ private func fetchCachedPatternWallpaperMaskRepresentation(account: Account, res
             
             var fillSlot: Array<[String:Any]> = Array()
             
-            if let data = TGGUnzipData(data, 8 * 1024 * 1024), data.count > 5, let string = String(data: data.subdata(in: 0 ..< 5), encoding: .utf8), string == "<?xml" {
+            if let data = AnsibleGUnzipData(data, 8 * 1024 * 1024), data.count > 5, let string = String(data: data.subdata(in: 0 ..< 5), encoding: .utf8), string == "<?xml" {
                 
                 let size = NSMakeSize(400, 800)
                 
@@ -415,7 +415,7 @@ private func fetchCachedAnimatedStickerRepresentation(account: Account, resource
                 } else {
                     image = convertFromWebP(data)?._cgImage ?? NSImage(data: data)?.cgImage(forProposedRect: nil, context: nil, hints: nil)
                     
-                    if image == nil, let data = TGGUnzipData(data, 8 * 1024 * 1024) {
+                    if image == nil, let data = AnsibleGUnzipData(data, 8 * 1024 * 1024) {
                         if let json = String(data: transformedWithFitzModifier(data: data, fitzModifier: representation.fitzModifier), encoding: .utf8),
                            let renderer = LottieRenderHooks.shared.makeRenderer(json), renderer.endFrame() > 0 {
                             let frame = min(max(0, Int32(clamping: representation.frame)), renderer.endFrame() - 1)
@@ -688,7 +688,7 @@ private func fetchCachedSlotRepresentation(account: Account, data: [(Data, Int32
         
         var images: [CGImage] = []
         for (data, frame) in data {
-            var dataValue: Data! = TGGUnzipData(data, 8 * 1024 * 1024)
+            var dataValue: Data! = AnsibleGUnzipData(data, 8 * 1024 * 1024)
             if dataValue == nil {
                 dataValue = data
             }
@@ -754,7 +754,7 @@ private func fetchCachedSlotRepresentation(account: Account, data: [(Data, Int32
 private func fetchCachedDiceRepresentation(account: Account, data: Data, representation: CachedDiceRepresentation) -> Signal<CachedMediaResourceRepresentationResult, NoError> {
     return Signal { subscriber in
         
-        var dataValue: Data! = TGGUnzipData(data, 8 * 1024 * 1024)
+        var dataValue: Data! = AnsibleGUnzipData(data, 8 * 1024 * 1024)
         if dataValue == nil {
             dataValue = data
         }
@@ -811,7 +811,7 @@ private func fetchCachedDiceRepresentation(account: Account, data: Data, represe
 public func getAnimatedStickerThumb(data: Data, size: NSSize = NSMakeSize(512, 512)) -> Signal<String?, NoError> {
     
     return .single(data) |> deliverOn(lottieThreadPool) |> map { data -> String? in
-        var dataValue: Data! = TGGUnzipData(data, 8 * 1024 * 1024)
+        var dataValue: Data! = AnsibleGUnzipData(data, 8 * 1024 * 1024)
         if dataValue == nil {
             dataValue = data
         }

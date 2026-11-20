@@ -300,7 +300,7 @@ The Swift packages can be tested on their own without building the app, for exam
 
 ```
 cd packages/WalletEngine && swift test
-cd packages/TGUIKit && swift build
+cd packages/AnsibleUIKit && swift build
 ```
 
 ## Troubleshooting

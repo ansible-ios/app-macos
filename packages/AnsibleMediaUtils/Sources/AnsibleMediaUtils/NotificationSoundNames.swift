@@ -3,7 +3,7 @@ import Postbox
 import TelegramCore
 import SwiftSignalKit
 import Localization
-import TGUIKit
+import AnsibleUIKit
 
 private var modernSoundsNamePaths: [String] {
     return [

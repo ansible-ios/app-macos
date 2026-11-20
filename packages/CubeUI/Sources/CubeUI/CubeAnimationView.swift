@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import simd
 
 public final class CubeAnimationView: View {

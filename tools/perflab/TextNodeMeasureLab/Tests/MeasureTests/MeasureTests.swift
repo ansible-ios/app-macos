@@ -1,19 +1,19 @@
 import AppKit
 import CoreText
 import XCTest
-import class TGUIKit.TextNode
-import class TGUIKit.TextNodeLayout
-import struct TGUIKit.TextNodeCutout
-import class TGUIKitBaseline.TextNode
-import class TGUIKitBaseline.TextNodeLayout
-import struct TGUIKitBaseline.TextNodeCutout
+import class AnsibleUIKit.TextNode
+import class AnsibleUIKit.TextNodeLayout
+import struct AnsibleUIKit.TextNodeCutout
+import class AnsibleUIKitBaseline.TextNode
+import class AnsibleUIKitBaseline.TextNodeLayout
+import struct AnsibleUIKitBaseline.TextNodeCutout
 
 final class MeasureTests: XCTestCase {
     override func setUp() { super.setUp(); MeasureBootstrap.install() }
 
     func testOriginalMinimumLineLimitRegression() throws {
         guard ProcessInfo.processInfo.environment["TEXTNODE_BASELINE_CRASH"] == "1" else { throw XCTSkip("Isolated original line-limit crash reproduction") }
-        _ = TGUIKitBaseline.TextNode.layoutText(text("a label", mode: 0), nil, Int.min, .end, CGSize(width: 90, height: 50), nil, false, .left)
+        _ = AnsibleUIKitBaseline.TextNode.layoutText(text("a label", mode: 0), nil, Int.min, .end, CGSize(width: 90, height: 50), nil, false, .left)
     }
 
     private func text(_ string: String, mode: Int) -> NSAttributedString {
@@ -55,10 +55,10 @@ final class MeasureTests: XCTestCase {
                             let selected = mode % 2 == 1
                             let spacing: CGFloat? = mode == 2 ? 4.5 : nil
                             let alignment: NSTextAlignment = mode == 3 ? .center : .left
-                            let cutout = mode == 2 ? TGUIKit.TextNodeCutout(position: .TopLeft, size: CGSize(width: 30, height: 35)) : nil
-                            let oldCutout = mode == 2 ? TGUIKitBaseline.TextNodeCutout(position: .TopLeft, size: CGSize(width: 30, height: 35)) : nil
-                            let a = TGUIKitBaseline.TextNode.layoutText(value, nil, limit, truncation, size, oldCutout, selected, alignment, spacing)
-                            let b = TGUIKit.TextNode.layoutText(value, nil, limit, truncation, size, cutout, selected, alignment, spacing)
+                            let cutout = mode == 2 ? AnsibleUIKit.TextNodeCutout(position: .TopLeft, size: CGSize(width: 30, height: 35)) : nil
+                            let oldCutout = mode == 2 ? AnsibleUIKitBaseline.TextNodeCutout(position: .TopLeft, size: CGSize(width: 30, height: 35)) : nil
+                            let a = AnsibleUIKitBaseline.TextNode.layoutText(value, nil, limit, truncation, size, oldCutout, selected, alignment, spacing)
+                            let b = AnsibleUIKit.TextNode.layoutText(value, nil, limit, truncation, size, cutout, selected, alignment, spacing)
                             XCTAssertEqual(a.0.measurementSnapshot(), b.0.measurementSnapshot(), "string=\(stringIndex), mode=\(mode), width=\(width), limit=\(limit), truncation=\(truncation)")
                             if width == 90 || width == 320 {
                                 for scale: CGFloat in [1, 2] {
@@ -88,8 +88,8 @@ final class MeasureTests: XCTestCase {
                 for limit in [1, 2, 3] {
                     let value = text(string, mode: 3)
                     let size = CGSize(width: width, height: 100)
-                    let a = TGUIKitBaseline.TextNode.layoutText(value, nil, limit, .end, size, nil, false, .left)
-                    let b = TGUIKit.TextNode.layoutText(value, nil, limit, .end, size, nil, false, .left)
+                    let a = AnsibleUIKitBaseline.TextNode.layoutText(value, nil, limit, .end, size, nil, false, .left)
+                    let b = AnsibleUIKit.TextNode.layoutText(value, nil, limit, .end, size, nil, false, .left)
                     XCTAssertEqual(a.0.measurementSnapshot(), b.0.measurementSnapshot())
                 }
             }
@@ -112,33 +112,33 @@ final class MeasureTests: XCTestCase {
             let truncation: CTLineTruncationType = [.start, .middle, .end][next(3)]
             let selected = next(2) == 1
             let alignment: NSTextAlignment = next(2) == 1 ? .center : .left
-            let a = TGUIKitBaseline.TextNode.layoutText(value, nil, limit, truncation, size, .init(position: .TopRight, size: CGSize(width: 22, height: 30)), selected, alignment)
-            let b = TGUIKit.TextNode.layoutText(value, nil, limit, truncation, size, .init(position: .TopRight, size: CGSize(width: 22, height: 30)), selected, alignment)
+            let a = AnsibleUIKitBaseline.TextNode.layoutText(value, nil, limit, truncation, size, .init(position: .TopRight, size: CGSize(width: 22, height: 30)), selected, alignment)
+            let b = AnsibleUIKit.TextNode.layoutText(value, nil, limit, truncation, size, .init(position: .TopRight, size: CGSize(width: 22, height: 30)), selected, alignment)
             XCTAssertEqual(a.0.measurementSnapshot(), b.0.measurementSnapshot(), "Randomized case \(index)")
         }
     }
 
     func testReusedLayoutsTrackSelectionWidthAndMutableText() throws {
         let value = NSMutableAttributedString(attributedString: text("initial title", mode: 0))
-        let oldNode = TGUIKitBaseline.TextNode(), newNode = TGUIKit.TextNode()
+        let oldNode = AnsibleUIKitBaseline.TextNode(), newNode = AnsibleUIKit.TextNode()
         for iteration in 0..<24 {
             let string = ["Alice Parker", "a longer filename.mov", "שלום עולם 👩🏽‍💻"][iteration / 8]
             value.replaceCharacters(in: NSRange(location: 0, length: value.length), with: string)
             let width: CGFloat = iteration % 4 < 2 ? 80 : 240
             let selected = iteration % 2 == 1
             let size = CGSize(width: width, height: 50)
-            let a = TGUIKitBaseline.TextNode.layoutText(maybeNode: oldNode, value, nil, 1, .middle, size, nil, selected, .left)
-            let b = TGUIKit.TextNode.layoutText(maybeNode: newNode, value, nil, 1, .middle, size, nil, selected, .left)
+            let a = AnsibleUIKitBaseline.TextNode.layoutText(maybeNode: oldNode, value, nil, 1, .middle, size, nil, selected, .left)
+            let b = AnsibleUIKit.TextNode.layoutText(maybeNode: newNode, value, nil, 1, .middle, size, nil, selected, .left)
             XCTAssertEqual(a.0.measurementSnapshot(), b.0.measurementSnapshot())
             XCTAssertTrue(b.1 === newNode)
-            let repeatLayout = TGUIKit.TextNode.layoutText(maybeNode: newNode, value, nil, 1, .middle, size, nil, selected, .left)
+            let repeatLayout = AnsibleUIKit.TextNode.layoutText(maybeNode: newNode, value, nil, 1, .middle, size, nil, selected, .left)
             XCTAssertTrue(repeatLayout.0 === b.0)
             let old = try pixels(size: a.0.size, scale: 2) { a.1.draw($0, in: $1, backingScaleFactor: 2, backgroundColor: .white) }
             let new = try pixels(size: b.0.size, scale: 2) { b.1.draw($0, in: $1, backingScaleFactor: 2, backgroundColor: .white) }
             XCTAssertTrue(old == new)
         }
-        let normal = TGUIKit.TextNode.layoutText(value, nil, 1, .end, CGSize(width: 240, height: 50), nil, false, .left)
-        let selected = TGUIKit.TextNode.layoutText(value, nil, 1, .end, CGSize(width: 240, height: 50), nil, true, .left)
+        let normal = AnsibleUIKit.TextNode.layoutText(value, nil, 1, .end, CGSize(width: 240, height: 50), nil, false, .left)
+        let selected = AnsibleUIKit.TextNode.layoutText(value, nil, 1, .end, CGSize(width: 240, height: 50), nil, true, .left)
         let normalPixels = try pixels(size: normal.0.size, scale: 2) { normal.1.draw($0, in: $1, backingScaleFactor: 2, backgroundColor: .white) }
         let selectedPixels = try pixels(size: selected.0.size, scale: 2) { selected.1.draw($0, in: $1, backingScaleFactor: 2, backgroundColor: .white) }
         XCTAssertNotEqual(normalPixels, selectedPixels)
@@ -150,16 +150,16 @@ final class MeasureTests: XCTestCase {
             for cutoutWidth: CGFloat in [-CGFloat.greatestFiniteMagnitude, CGFloat.greatestFiniteMagnitude] {
                 let size = CGSize(width: width, height: 100)
                 let cutout = CGSize(width: cutoutWidth, height: 50)
-                let a = TGUIKitBaseline.TextNode.layoutText(value, nil, 1, .end, size, .init(position: .TopRight, size: cutout), false, .left)
-                let b = TGUIKit.TextNode.layoutText(value, nil, 1, .end, size, .init(position: .TopRight, size: cutout), false, .left)
+                let a = AnsibleUIKitBaseline.TextNode.layoutText(value, nil, 1, .end, size, .init(position: .TopRight, size: cutout), false, .left)
+                let b = AnsibleUIKit.TextNode.layoutText(value, nil, 1, .end, size, .init(position: .TopRight, size: cutout), false, .left)
                 XCTAssertEqual(a.0.measurementSnapshot(), b.0.measurementSnapshot())
             }
         }
         for value: NSAttributedString? in [nil, text("", mode: 0), value] {
             for limit in [Int.min, -1, 0] {
                 let size = CGSize(width: 100, height: 100)
-                let a = TGUIKitBaseline.TextNode.layoutText(value, nil, 0, .end, size, nil, false, .left)
-                let b = TGUIKit.TextNode.layoutText(value, nil, limit, .end, size, nil, false, .left)
+                let a = AnsibleUIKitBaseline.TextNode.layoutText(value, nil, 0, .end, size, nil, false, .left)
+                let b = AnsibleUIKit.TextNode.layoutText(value, nil, limit, .end, size, nil, false, .left)
                 XCTAssertEqual(a.0.measurementSnapshot(), b.0.measurementSnapshot())
             }
         }
@@ -169,13 +169,13 @@ final class MeasureTests: XCTestCase {
         let values = ["Alice Parker", "long filename with extension.mov", "👩🏽‍💻 mixed emoji 🇦🇪", "مرحبا بالعالم שלום", "one\ntwo\nthree"].map {
             NSAttributedString(string: $0, attributes: [.font: NSFont.systemFont(ofSize: 14), .foregroundColor: NSColor.black])
         }
-        let expected = values.map { TGUIKitBaseline.TextNode.layoutText($0, nil, 1, .middle, CGSize(width: 90, height: 50), nil, false, .left).0.measurementSnapshot() }
+        let expected = values.map { AnsibleUIKitBaseline.TextNode.layoutText($0, nil, 1, .middle, CGSize(width: 90, height: 50), nil, false, .left).0.measurementSnapshot() }
         let lock = NSLock()
         var mismatches: [Int] = []
         DispatchQueue.concurrentPerform(iterations: 600) { iteration in
             autoreleasepool {
                 let index = iteration % values.count
-                let actual = TGUIKit.TextNode.layoutText(values[index], nil, 1, .middle, CGSize(width: 90, height: 50), nil, false, .left).0.measurementSnapshot()
+                let actual = AnsibleUIKit.TextNode.layoutText(values[index], nil, 1, .middle, CGSize(width: 90, height: 50), nil, false, .left).0.measurementSnapshot()
                 if actual != expected[index] {
                     lock.lock()
                     mismatches.append(iteration)

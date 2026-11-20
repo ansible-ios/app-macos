@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public func chatTextInputCopyText(_ text: NSAttributedString) -> NSAttributedString {
     let result = NSMutableAttributedString(attributedString: text)

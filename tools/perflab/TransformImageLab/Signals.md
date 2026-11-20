@@ -33,15 +33,15 @@ The first uncontended run measured 8.3% faster cached-stream delivery; other cas
 
 ## Validation status
 
-All 281 TGUIKit functional tests (10 optional benchmarks skipped) and all 134 chat mini-app functional tests (14 optional benchmarks skipped) passed in release, totaling 415 functional tests.
+All 281 AnsibleUIKit functional tests (10 optional benchmarks skipped) and all 134 chat mini-app functional tests (14 optional benchmarks skipped) passed in release, totaling 415 functional tests.
 
-The full TGUIKit AddressSanitizer suite is not entirely green. Two runs each had one ControlHoverTests failure: testMovementDoesNotRepeatHoverUntilExitAndReentry at line 79, then testParentEntryCannotReplaceChildHover at line 61. The eight hover tests passed when run in isolation. The fixture waits a fixed 0.4 seconds for a 0.3-second delayed callback; timing sensitivity is a hypothesis, not an established root cause. These existing local hover files were not changed by this pass. Both full runs passed all fourteen new image lifecycle tests and reported no AddressSanitizer memory error. The failed logs and isolated hover result are retained rather than discarded.
+The full AnsibleUIKit AddressSanitizer suite is not entirely green. Two runs each had one ControlHoverTests failure: testMovementDoesNotRepeatHoverUntilExitAndReentry at line 79, then testParentEntryCannotReplaceChildHover at line 61. The eight hover tests passed when run in isolation. The fixture waits a fixed 0.4 seconds for a 0.3-second delayed callback; timing sensitivity is a hypothesis, not an established root cause. These existing local hover files were not changed by this pass. Both full runs passed all fourteen new image lifecycle tests and reported no AddressSanitizer memory error. The failed logs and isolated hover result are retained rather than discarded.
 
 All 134 chat mini-app functional tests also passed under AddressSanitizer. No full Telegram build, whole-app frame-time measurement or resident-memory measurement was performed.
 
 ```sh
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter 'TransformImageSignalTests|TransformImageAssignmentTests|TransformImageViewTests|ScopedImageCacheTests'
-IMAGE_SIGNAL_BENCHMARK=1 swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter TransformImageSignalBenchmarkTests
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter 'TransformImageSignalTests|TransformImageAssignmentTests|TransformImageViewTests|ScopedImageCacheTests'
+IMAGE_SIGNAL_BENCHMARK=1 swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter TransformImageSignalBenchmarkTests
 ```
 
 The subsequent hover investigation, fixture isolation and successful full sanitizer reruns are documented in [ControlHoverLab](../ControlHoverLab/README.md). The original failed runs above remain preserved.

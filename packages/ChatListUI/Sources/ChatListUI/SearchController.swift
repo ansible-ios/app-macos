@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import Postbox
 import TelegramCore
@@ -1895,7 +1895,7 @@ public class SearchController<Context: AccountContextProtocol>: GenericViewContr
         self.window?.set(handler: { [weak self] _ -> KeyHandlerResult in
             guard let `self` = self else {return .rejected}
             
-            if self.window?.firstResponder?.className != "TGUIKit.SearchTextField" {
+            if self.window?.firstResponder?.className != "AnsibleUIKit.SearchTextField" {
                 return .rejected
             }
             
@@ -1936,7 +1936,7 @@ public class SearchController<Context: AccountContextProtocol>: GenericViewContr
         
       
         self.window?.set(handler: { [weak self] _ -> KeyHandlerResult in
-            if self?.window?.firstResponder?.className != "TGUIKit.SearchTextField" {
+            if self?.window?.firstResponder?.className != "AnsibleUIKit.SearchTextField" {
                 return .rejected
             }
             if self?.hasResultsForScope != true {
@@ -1953,7 +1953,7 @@ public class SearchController<Context: AccountContextProtocol>: GenericViewContr
         
         
         self.window?.set(handler: { [weak self] _ -> KeyHandlerResult in
-            if self?.window?.firstResponder?.className != "TGUIKit.SearchTextField" {
+            if self?.window?.firstResponder?.className != "AnsibleUIKit.SearchTextField" {
                 return .rejected
             }
             if self?.hasResultsForScope != true {

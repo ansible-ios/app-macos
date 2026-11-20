@@ -1,7 +1,7 @@
 #if DEBUG
 import Cocoa
 import ImageIO
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox

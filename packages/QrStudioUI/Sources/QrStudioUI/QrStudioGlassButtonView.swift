@@ -1,6 +1,6 @@
 import Foundation
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 struct QrStudioGlassAppearance: Equatable {
     let tintColor: NSColor

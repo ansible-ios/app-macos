@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
@@ -17,7 +17,7 @@ import SecureIdUtils
 import AnsibleLinks
 import PhoneNumberUtils
 import KeyboardKey
-import TGPassportMRZ
+import AnsiblePassportMRZ
 import OCR
 import FilePanels
 import ObjcUtils
@@ -94,7 +94,7 @@ private struct EditSettingsValues {
 private func updateFrontMrz(file: String, relative: SecureIdRequestedFormFieldValue, updateState: @escaping ((PassportState)->PassportState)->Void) {
     if let image = NSImage(contentsOfFile: file) {
         let string = recognizeMRZ(image.precomposed(), nil)
-        let mrz = TGPassportMRZ.parseLines(string?.components(separatedBy: "\n"))
+        let mrz = AnsiblePassportMRZ.parseLines(string?.components(separatedBy: "\n"))
         let localFile:SecureIdVerificationDocument = .local(SecureIdVerificationLocalDocument(id: arc4random64(), resource: LocalFileReferenceMediaResource(localFilePath: file, randomId: arc4random64()), state: .uploading(0)))
         
         updateState { current in
@@ -2314,7 +2314,7 @@ private func identityEntries( _ state: PassportState, context: (any AccountConte
                             if let file = files?.first {
                                 if let image = NSImage(contentsOfFile: file) {
                                     let string = recognizeMRZ(image.precomposed(), nil)
-                                    let mrz = TGPassportMRZ.parseLines(string?.components(separatedBy: "\n"))
+                                    let mrz = AnsiblePassportMRZ.parseLines(string?.components(separatedBy: "\n"))
                                     let localFile:SecureIdVerificationDocument = .local(SecureIdVerificationLocalDocument(id: arc4random64(), resource: LocalFileReferenceMediaResource(localFilePath: file, randomId: arc4random64()), state: .uploading(0)))
                                     
                                     updateState { current in

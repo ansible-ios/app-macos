@@ -2,7 +2,7 @@ import XCTest
 import AppKit
 import Postbox
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import AnsibleTheme
 import LocalAnimations
 @testable import StarsUI

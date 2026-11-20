@@ -1,8 +1,8 @@
 import Cocoa
 import QuartzCore
 import XCTest
-import class TGUIKit.TextViewLayout
-import class TGUIKitBaseline.TextViewLayout
+import class AnsibleUIKit.TextViewLayout
+import class AnsibleUIKitBaseline.TextViewLayout
 
 final class QuoteBenchmarkTests: XCTestCase {
     func testCosts() throws {
@@ -40,8 +40,8 @@ final class QuoteBenchmarkTests: XCTestCase {
             ("mixed_quotes", String(repeating: "hello world one two three ", count: 12), Array(repeating: 1, count: 35) + Array(repeating: 0, count: 35) + Array(repeating: 2, count: 35), false, 400)
         ]
         for (name, text, pattern, decorated, count) in cases {
-            let oldText = TGUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated)
-            let newText = TGUIKit.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated)
+            let oldText = AnsibleUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated)
+            let newText = AnsibleUIKit.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated)
             if name.hasPrefix("colored_") {
                 for index in stride(from: 0, to: oldText.length, by: 3) {
                     let range = NSRange(location: index, length: min(3, oldText.length - index))
@@ -50,14 +50,14 @@ final class QuoteBenchmarkTests: XCTestCase {
                     newText.addAttribute(.foregroundColor, value: color, range: range)
                 }
             }
-            let old = TGUIKitBaseline.TextViewLayout(oldText)
-            let new = TGUIKit.TextViewLayout(newText)
+            let old = AnsibleUIKitBaseline.TextViewLayout(oldText)
+            let new = AnsibleUIKit.TextViewLayout(newText)
             measure(name + "_cold", count: count, old: { _ in
-                let value = TGUIKitBaseline.TextViewLayout(oldText)
+                let value = AnsibleUIKitBaseline.TextViewLayout(oldText)
                 value.measure(width: 280)
                 return value.layoutSize.height
             }, new: { _ in
-                let value = TGUIKit.TextViewLayout(newText)
+                let value = AnsibleUIKit.TextViewLayout(newText)
                 value.measure(width: 280)
                 return value.layoutSize.height
             })

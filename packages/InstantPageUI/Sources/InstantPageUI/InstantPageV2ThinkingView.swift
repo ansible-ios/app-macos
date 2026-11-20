@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 private final class InstantPageV2ThinkingContentView: View {
     private var item: InstantPageV2TextItem

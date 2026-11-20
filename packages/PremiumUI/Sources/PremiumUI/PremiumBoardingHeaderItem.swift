@@ -1,7 +1,7 @@
 import AppAnalytics
 import Cocoa
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import AnsibleMedia
 import TelegramCore
 import Postbox

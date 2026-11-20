@@ -3,7 +3,7 @@
 import PackageDescription
 
 let deps: [(String, String)] = [
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("PerfLab", "../PerfLab"),
     ("InAppSettings", "../InAppSettings"),
     ("Localization", "../Localization"),
@@ -77,7 +77,7 @@ let package = Package(
             name: "ChatListUITests",
             dependencies: [
                 "ChatListUI",
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "AnsibleMedia", package: "AnsibleMedia", condition: nil),
                 .product(name: "TLottie", package: "TLottie", condition: nil),
                 .product(name: "LocalAnimations", package: "LocalAnimations", condition: nil),

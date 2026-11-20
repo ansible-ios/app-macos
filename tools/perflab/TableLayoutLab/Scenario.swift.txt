@@ -2,7 +2,7 @@ import AppKit
 import XCTest
 import QuartzCore
 @testable import class MODULE.TableView
-@testable import class MODULE.TGFlipableTableView
+@testable import class MODULE.AnsibleFlipableTableView
 import class MODULE.TableRowItem
 import class MODULE.TableRowView
 import class MODULE.TableStickItem
@@ -127,7 +127,7 @@ func runVariantStickyScenario() -> [[NSRect]] {
 
 private final class VariantSecondaryHeader: TableStickItem {}
 
-private final class VariantEndTable: TGFlipableTableView {
+private final class VariantEndTable: AnsibleFlipableTableView {
     var completed: (() -> Void)?
     override func endUpdates() {
         super.endUpdates()

@@ -1,6 +1,6 @@
 import Cocoa
 import AppAnalytics
-import TGUIKit
+import AnsibleUIKit
 
 func installInputTextViewHooks() {
     var hooks = InputTextViewHooks(checkSendingAbility: { event in

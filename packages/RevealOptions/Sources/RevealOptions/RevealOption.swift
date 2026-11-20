@@ -1,5 +1,5 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 
 public protocol RevealOptionAnimationView: NSView {
     func play()

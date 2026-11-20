@@ -6,7 +6,7 @@ import TelegramCore
 import Postbox
 import TelegramMediaPlayer
 import RangeSet
-import TGUIKit
+import AnsibleUIKit
 import HLSPlayback
 
 public final class HLSVideoNativeContentView: NSView, UniversalVideoContentView {

@@ -1,6 +1,6 @@
 import Cocoa
 import InputDataUI
-import TGUIKit
+import AnsibleUIKit
 import InAppSettings
 
 extension InputTextDataRowView: @retroactive InputDataTextFormatting {

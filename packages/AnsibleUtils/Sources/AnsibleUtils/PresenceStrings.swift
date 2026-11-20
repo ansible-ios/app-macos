@@ -2,12 +2,12 @@ import Cocoa
 import Postbox
 import TelegramCore
 import DateUtils
-import TGUIKit
+import AnsibleUIKit
 import MapKit
 import CalendarUtils
 import Strings
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import Postbox
 import Localization

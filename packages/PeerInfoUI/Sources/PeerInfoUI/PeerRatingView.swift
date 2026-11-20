@@ -1,6 +1,6 @@
 import Cocoa
 import Svg
-import TGUIKit
+import AnsibleUIKit
 import Postbox
 import SwiftSignalKit
 import TelegramCore

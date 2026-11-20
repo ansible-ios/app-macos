@@ -2,7 +2,7 @@ import Cocoa
 import XCTest
 import QuartzCore
 import ObjectiveC
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 @testable import ChatLayerEngineBaseline
 @testable import FoldingViewHarness
@@ -28,7 +28,7 @@ final class LiveFoldingBenchmarkTests: XCTestCase {
 
     func testCompleteBindingAndConstructionCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_FOLD_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in folded quote binding benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         var batches: [String: [[Double]]] = [:], counts: [String: [Int]] = [:]
         var sink = 0
         let reversed = ProcessInfo.processInfo.environment["CHAT_FOLD_REVERSE"] == "1"
@@ -95,7 +95,7 @@ final class LiveFoldingBenchmarkTests: XCTestCase {
 
     func testRetainedFoldedRowMemory() throws {
         guard let mode = ProcessInfo.processInfo.environment["CHAT_FOLD_MEMORY"], ["original", "layers"].contains(mode) else { throw XCTSkip("Opt-in fresh-process folded row memory probe") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let count = 2000
         let samples = autoreleasepool { (0..<count).map { items($0, count: 3, kind: "folded") } }
         autoreleasepool {

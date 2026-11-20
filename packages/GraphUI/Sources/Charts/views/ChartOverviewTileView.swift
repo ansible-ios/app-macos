@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 private let tileInsets = NSEdgeInsets(top: 11, left: 14, bottom: 12, right: 14)
 private let tileCornerRadius: CGFloat = 20

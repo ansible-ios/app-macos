@@ -1,9 +1,9 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 
 final class SwipeTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
     private var left: SwipeDirection { .left(.failed(delta: 0, controller: ViewController())) }
     private var right: SwipeDirection { .right(.success(delta: 0, controller: ViewController())) }
     private func row() -> CandidateRow { CandidateRow(frame: NSRect(x: 0, y: 0, width: 400, height: 80)) }

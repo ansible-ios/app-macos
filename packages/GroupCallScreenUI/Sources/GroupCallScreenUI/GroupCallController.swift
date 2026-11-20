@@ -1,7 +1,7 @@
 import Cocoa
 import Foundation
 import AVFoundation
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import Postbox
 import ColorPalette

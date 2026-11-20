@@ -2,24 +2,24 @@ import Cocoa
 import XCTest
 import QuartzCore
 import Darwin
-import class TGUIKit.DrawingContext
-import struct TGUIKit.System
-import struct TGUIKit.DeviceGraphicsContextSettings
-import func TGUIKit.setDisplayColorSpace
-import class TGUIKitBaseline.DrawingContext
-import struct TGUIKitBaseline.System
-import struct TGUIKitBaseline.DeviceGraphicsContextSettings
-import func TGUIKitBaseline.setDisplayColorSpace
+import class AnsibleUIKit.DrawingContext
+import struct AnsibleUIKit.System
+import struct AnsibleUIKit.DeviceGraphicsContextSettings
+import func AnsibleUIKit.setDisplayColorSpace
+import class AnsibleUIKitBaseline.DrawingContext
+import struct AnsibleUIKitBaseline.System
+import struct AnsibleUIKitBaseline.DeviceGraphicsContextSettings
+import func AnsibleUIKitBaseline.setDisplayColorSpace
 
 final class ContextBenchmarkTests: XCTestCase {
     func testCosts() throws {
         guard ProcessInfo.processInfo.environment["DRAWING_CONTEXT_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in drawing-context benchmark") }
         _ = NSApplication.shared
         NSApp.setActivationPolicy(.accessory)
-        TGUIKit.System.updateScaleFactor(2)
-        TGUIKitBaseline.System.updateScaleFactor(2)
-        TGUIKit.setDisplayColorSpace(nil)
-        TGUIKitBaseline.setDisplayColorSpace(nil)
+        AnsibleUIKit.System.updateScaleFactor(2)
+        AnsibleUIKitBaseline.System.updateScaleFactor(2)
+        AnsibleUIKit.setDisplayColorSpace(nil)
+        AnsibleUIKitBaseline.setDisplayColorSpace(nil)
         let factory = ContextTests()
         let reverse = ProcessInfo.processInfo.environment["DRAWING_CONTEXT_REVERSE"] == "1"
         var results: [String: [[Double]]] = [:]
@@ -38,30 +38,30 @@ final class ContextBenchmarkTests: XCTestCase {
         }
         let samples = UnsafeMutablePointer<Int>.allocate(capacity: 4)
         samples.initialize(repeating: 0, count: 4)
-        defer { samples.deinitialize(count: 4); samples.deallocate(); TGUIKitBaseline.DeviceGraphicsContextSettings.install(nil); TGUIKitBaseline.setDisplayColorSpace(nil); TGUIKit.DeviceGraphicsContextSettings.install(nil); TGUIKit.setDisplayColorSpace(nil) }
+        defer { samples.deinitialize(count: 4); samples.deallocate(); AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(nil); AnsibleUIKitBaseline.setDisplayColorSpace(nil); AnsibleUIKit.DeviceGraphicsContextSettings.install(nil); AnsibleUIKit.setDisplayColorSpace(nil) }
         for format in ["default", "installed_srgb", "installed_float"] {
-            if format == "installed_srgb" { TGUIKit.DeviceGraphicsContextSettings.install(factory.format(CGColorSpace.sRGB)); TGUIKitBaseline.DeviceGraphicsContextSettings.install(factory.format(CGColorSpace.sRGB)) }
-            if format == "installed_float" { TGUIKit.DeviceGraphicsContextSettings.install(factory.format(CGColorSpace.extendedLinearSRGB, floating: true)); TGUIKitBaseline.DeviceGraphicsContextSettings.install(factory.format(CGColorSpace.extendedLinearSRGB, floating: true)) }
+            if format == "installed_srgb" { AnsibleUIKit.DeviceGraphicsContextSettings.install(factory.format(CGColorSpace.sRGB)); AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(factory.format(CGColorSpace.sRGB)) }
+            if format == "installed_float" { AnsibleUIKit.DeviceGraphicsContextSettings.install(factory.format(CGColorSpace.extendedLinearSRGB, floating: true)); AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(factory.format(CGColorSpace.extendedLinearSRGB, floating: true)) }
             for size in [CGSize(width: 16, height: 16), CGSize(width: 120, height: 80), CGSize(width: 512, height: 288)] {
                 let name = "\(format)_\(Int(size.width))x\(Int(size.height))"
                 let iterations = size.width > 128 ? 150 : 1500
                 measure(name + "_construct", count: iterations, operations: [
-                    { TGUIKitBaseline.DrawingContext(size: size, scale: 2, clear: true).length },
-                    { TGUIKit.DrawingContext(size: size, scale: 2, clear: true).length }
+                    { AnsibleUIKitBaseline.DrawingContext(size: size, scale: 2, clear: true).length },
+                    { AnsibleUIKit.DrawingContext(size: size, scale: 2, clear: true).length }
                 ])
                 measure(name + "_paint_export", count: iterations, operations: [
-                    { let c = TGUIKitBaseline.DrawingContext(size: size, scale: 2, clear: true); c.withContext { factory.paint($0, size: size) }; return c.generateImage()!.width },
-                    { let c = TGUIKit.DrawingContext(size: size, scale: 2, clear: true); c.withContext { factory.paint($0, size: size) }; return c.generateImage()!.width }
+                    { let c = AnsibleUIKitBaseline.DrawingContext(size: size, scale: 2, clear: true); c.withContext { factory.paint($0, size: size) }; return c.generateImage()!.width },
+                    { let c = AnsibleUIKit.DrawingContext(size: size, scale: 2, clear: true); c.withContext { factory.paint($0, size: size) }; return c.generateImage()!.width }
                 ])
             }
-            let old = TGUIKitBaseline.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true)
-            let new = TGUIKit.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true)
+            let old = AnsibleUIKitBaseline.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true)
+            let new = AnsibleUIKit.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true)
             measure(format + "_repeated_export", count: 5000, operations: [{ old.generateImage()!.width }, { new.generateImage()!.width }])
             measure(format + "_four_workers_800_contexts", count: 8, operations: [
                 {
                     DispatchQueue.concurrentPerform(iterations: 4) { worker in
                         var sum = 0
-                        for _ in 0..<200 { autoreleasepool { let c = TGUIKitBaseline.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true); sum += c.generateImage()!.width } }
+                        for _ in 0..<200 { autoreleasepool { let c = AnsibleUIKitBaseline.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true); sum += c.generateImage()!.width } }
                         samples[worker] = sum
                     }
                     return samples[0] + samples[1] + samples[2] + samples[3]
@@ -69,26 +69,26 @@ final class ContextBenchmarkTests: XCTestCase {
                 {
                     DispatchQueue.concurrentPerform(iterations: 4) { worker in
                         var sum = 0
-                        for _ in 0..<200 { autoreleasepool { let c = TGUIKit.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true); sum += c.generateImage()!.width } }
+                        for _ in 0..<200 { autoreleasepool { let c = AnsibleUIKit.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true); sum += c.generateImage()!.width } }
                         samples[worker] = sum
                     }
                     return samples[0] + samples[1] + samples[2] + samples[3]
                 }
             ])
         }
-        TGUIKit.DeviceGraphicsContextSettings.install(factory.format(CGColorSpace.sRGB))
-        TGUIKitBaseline.DeviceGraphicsContextSettings.install(factory.format(CGColorSpace.sRGB))
-        TGUIKit.setDisplayColorSpace(CGColorSpace(name: CGColorSpace.displayP3))
-        TGUIKitBaseline.setDisplayColorSpace(CGColorSpace(name: CGColorSpace.displayP3))
+        AnsibleUIKit.DeviceGraphicsContextSettings.install(factory.format(CGColorSpace.sRGB))
+        AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(factory.format(CGColorSpace.sRGB))
+        AnsibleUIKit.setDisplayColorSpace(CGColorSpace(name: CGColorSpace.displayP3))
+        AnsibleUIKitBaseline.setDisplayColorSpace(CGColorSpace(name: CGColorSpace.displayP3))
         for size in [CGSize(width: 16, height: 16), CGSize(width: 120, height: 80), CGSize(width: 512, height: 288)] {
             measure("display_p3_\(Int(size.width))x\(Int(size.height))", count: size.width > 128 ? 100 : 1200, operations: [
-                { let c = TGUIKitBaseline.DrawingContext(size: size, scale: 2, clear: true); c.withContext { factory.paint($0, size: size) }; return c.generateDisplayImage()!.width },
-                { let c = TGUIKit.DrawingContext(size: size, scale: 2, clear: true); c.withContext { factory.paint($0, size: size) }; return c.generateDisplayImage()!.width }
+                { let c = AnsibleUIKitBaseline.DrawingContext(size: size, scale: 2, clear: true); c.withContext { factory.paint($0, size: size) }; return c.generateDisplayImage()!.width },
+                { let c = AnsibleUIKit.DrawingContext(size: size, scale: 2, clear: true); c.withContext { factory.paint($0, size: size) }; return c.generateDisplayImage()!.width }
             ])
         }
         XCTAssertGreaterThan(sink, 0)
-        let old = TGUIKitBaseline.DrawingContext(size: CGSize(width: 16, height: 16), scale: 1, clear: true)
-        let new = TGUIKit.DrawingContext(size: CGSize(width: 16, height: 16), scale: 1, clear: true)
+        let old = AnsibleUIKitBaseline.DrawingContext(size: CGSize(width: 16, height: 16), scale: 1, clear: true)
+        let new = AnsibleUIKit.DrawingContext(size: CGSize(width: 16, height: 16), scale: 1, clear: true)
         let sizes = [malloc_size(Unmanaged.passUnretained(old).toOpaque()), malloc_size(Unmanaged.passUnretained(new).toOpaque())]
         try JSONSerialization.data(withJSONObject: ["unit": "microseconds_per_operation", "batches_before_after": results, "reverse": reverse, "sink": sink, "context_allocation_bytes": sizes], options: [.sortedKeys, .prettyPrinted]).write(to: URL(fileURLWithPath: "/tmp/drawing-context-benchmark.json"))
     }

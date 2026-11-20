@@ -32,9 +32,9 @@ The first run measured 7.4% less fresh-render work, 9.2% less repeated nonempty 
 
 Seven new functional tests cover committed state during callbacks, same-image callback assignment, replacement and clearing during callbacks, restoring externally modified layer contents, capture toggling during callbacks, repeated empty layer assignments, and distinct images with identical pixels. The existing image pipeline tests cover background transforms, supplied protected buffers, cache skips, replay, and exact image pixels. ScopedImageCache tests cover fresh and cached display attribution, attachment to a window, shared scopes and eviction after screen closure.
 
-The complete suites passed in both release and AddressSanitizer: 267 TGUIKit functional tests (9 optional benchmarks skipped) and 134 chat mini-app functional tests (14 optional benchmarks skipped), totaling 401 functional tests per configuration. No full Telegram build or whole-app frame-time measurement was performed.
+The complete suites passed in both release and AddressSanitizer: 267 AnsibleUIKit functional tests (9 optional benchmarks skipped) and 134 chat mini-app functional tests (14 optional benchmarks skipped), totaling 401 functional tests per configuration. No full Telegram build or whole-app frame-time measurement was performed.
 
 ```sh
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter 'TransformImageAssignmentTests|TransformImageViewTests|ScopedImageCacheTests'
-IMAGE_ASSIGNMENT_BENCHMARK=1 swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter TransformImageAssignmentBenchmarkTests
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter 'TransformImageAssignmentTests|TransformImageViewTests|ScopedImageCacheTests'
+IMAGE_ASSIGNMENT_BENCHMARK=1 swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter TransformImageAssignmentBenchmarkTests
 ```

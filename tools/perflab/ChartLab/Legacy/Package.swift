@@ -6,7 +6,7 @@ let package = Package(
     name: "ChartLabLegacy",
     platforms: [.macOS(.v14)],
     dependencies: [
-        .package(name: "TGUIKit", path: "../../../../packages/TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../../../../packages/AnsibleUIKit"),
         .package(name: "SSignalKit", path: "../../../../submodules/ansible-ios/submodules/SSignalKit"),
     ],
     targets: [
@@ -17,7 +17,7 @@ let package = Package(
             name: "GraphUI",
             dependencies: [
                 "GraphCore",
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
             ],
             path: "Modules/GraphUI"),
@@ -26,7 +26,7 @@ let package = Package(
             dependencies: [
                 "GraphUI",
                 "GraphCore",
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
             ],
             path: "Modules/ChartLab"),
     ]

@@ -3,7 +3,7 @@ import AnsibleContext
 import Foundation
 import HotKey
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import InAppSettings
 import KeyboardKey
 

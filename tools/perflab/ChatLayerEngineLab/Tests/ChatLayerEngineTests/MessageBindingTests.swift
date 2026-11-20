@@ -1,12 +1,12 @@
 import Cocoa
 import XCTest
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import ChatLayerEngine
 
 final class MessageBindingTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     private func fixture(_ source: FoldingTextLayout) throws -> (ChatLayerSceneView, ChatLayerMessageTextNode) {
         let scene = ChatLayerSceneView(frame: NSRect(x: 0, y: 0, width: 400, height: 600))

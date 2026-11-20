@@ -1,6 +1,6 @@
 import Cocoa
 import CryptoKit
-import TGUIKit
+import AnsibleUIKit
 
 initializeLab()
 let kinds = ["plain", "one", "sparse", "dense", "wrapped", "rtl", "emoji", "empty"]

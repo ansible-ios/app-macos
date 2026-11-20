@@ -6,7 +6,7 @@ import QuartzCore
 final class CaptionReuseBenchmarkTests: XCTestCase {
     func testCaptionBindingCosts() throws {
         guard ProcessInfo.processInfo.environment["CAPTION_REUSE_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in caption binding benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let fixture = CaptionReuseTests()
         var results: [String: [[Double]]] = [:]
         for count in [1, 3, 10] {

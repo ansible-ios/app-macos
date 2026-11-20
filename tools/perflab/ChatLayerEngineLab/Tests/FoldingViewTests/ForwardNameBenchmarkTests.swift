@@ -2,13 +2,13 @@ import Cocoa
 import XCTest
 import QuartzCore
 import Darwin
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class ForwardNameBenchmarkTests: XCTestCase {
     func testForwardBindingCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_FORWARD_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in forwarded name benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let factory = ForwardNameTests(), frame = NSRect(x: 0, y: 0, width: 300, height: 120)
         let photo = ProcessInfo.processInfo.environment["CHAT_FORWARD_PHOTO"] == "1"
         var results: [String: [[Double]]] = [:], sink = 0
@@ -54,7 +54,7 @@ final class ForwardNameBenchmarkTests: XCTestCase {
 
     func testRetainedSenderMemory() throws {
         guard let mode = ProcessInfo.processInfo.environment["CHAT_FORWARD_MEMORY"], ["native", "layers"].contains(mode) else { throw XCTSkip("Opt-in fresh-process forwarded name memory probe") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let present = ProcessInfo.processInfo.environment["CHAT_FORWARD_PRESENT"] == "1", count = 5000
         let factory = ForwardNameTests(), frame = NSRect(x: 0, y: 0, width: 300, height: 120)
         let photo = ProcessInfo.processInfo.environment["CHAT_FORWARD_PHOTO"] == "1"

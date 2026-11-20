@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-@testable import TGUIKit
+@testable import AnsibleUIKit
 
 final class MetadataTests: XCTestCase {
     override func setUp() {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         theme = MetadataPresentation()
         metadataStrings = MetadataStrings()
     }

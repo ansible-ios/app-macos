@@ -2,10 +2,10 @@ import Cocoa
 import XCTest
 import Darwin
 import ObjectiveC
-import class TGUIKit.StickerShimmerEffectView
-import class TGUIKitBaseline.StickerShimmerEffectView
-import enum TGUIKit.GradientCacheInspection
-import enum TGUIKitBaseline.GradientCacheInspection
+import class AnsibleUIKit.StickerShimmerEffectView
+import class AnsibleUIKitBaseline.StickerShimmerEffectView
+import enum AnsibleUIKit.GradientCacheInspection
+import enum AnsibleUIKitBaseline.GradientCacheInspection
 
 final class GradientBenchmarkTests: XCTestCase {
     func testCosts() throws {
@@ -94,11 +94,11 @@ final class GradientBenchmarkTests: XCTestCase {
                         let start = CACurrentMediaTime()
                         for _ in 0..<200 {
                             if variant == 0 {
-                                let value = TGUIKitBaseline.StickerShimmerEffectView()
+                                let value = AnsibleUIKitBaseline.StickerShimmerEffectView()
                                 value.update(backgroundColor: nil, data: data, size: CGSize(width: 64, height: 48))
                                 retained.append(value)
                             } else {
-                                let value = TGUIKit.StickerShimmerEffectView()
+                                let value = AnsibleUIKit.StickerShimmerEffectView()
                                 value.update(backgroundColor: nil, data: data, size: CGSize(width: 64, height: 48))
                                 retained.append(value)
                             }

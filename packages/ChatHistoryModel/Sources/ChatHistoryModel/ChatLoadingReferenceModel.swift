@@ -1,7 +1,7 @@
 import AppKit
 import SwiftSignalKit
 import InlineStickerLayer
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import MessageTextUtils
 import AnsibleContext

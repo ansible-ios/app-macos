@@ -3,7 +3,7 @@ import TelegramCore
 
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import Localization
 import AnsibleTheme
 import AnsibleContext

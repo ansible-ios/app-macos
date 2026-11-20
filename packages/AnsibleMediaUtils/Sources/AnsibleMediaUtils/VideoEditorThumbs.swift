@@ -1,6 +1,6 @@
 import Cocoa
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import Accelerate
 import CoreMedia
 import AVFoundation

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import InAppSettings
 import SwiftSignalKit
@@ -352,9 +352,9 @@ private func generalSettingsEntries(arguments:GeneralSettingsArguments, baseSett
     entries.append(.header(sectionId: sectionId, uniqueId: headerUnique, text: strings().generalSettingsSpellingTitle))
     headerUnique -= 1
     
-    let key1 = "ContinuousSpellCheckingEnabled" + "TGGrowingTextView"
-    let key2 = "GrammarCheckingEnabled" + "TGGrowingTextView"
-    let key3 = "AutomaticSpellingCorrectionEnabled" + "TGGrowingTextView"
+    let key1 = "ContinuousSpellCheckingEnabled" + "AnsibleGrowingTextView"
+    let key2 = "GrammarCheckingEnabled" + "AnsibleGrowingTextView"
+    let key3 = "AutomaticSpellingCorrectionEnabled" + "AnsibleGrowingTextView"
     
     entries.append(.checkSpellingWhileTyping(sectionId: sectionId, enabled: UserDefaults.standard.bool(forKey: key1), key: key1, viewType: .firstItem))
     entries.append(.checkGrammarWithSpelling(sectionId: sectionId, enabled: UserDefaults.standard.bool(forKey: key2), key: key2, viewType: .innerItem))

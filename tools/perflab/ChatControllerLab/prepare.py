@@ -77,7 +77,7 @@ shutil.copy(helper_path, out / 'Sources/LabCode/ChatInitialRowSelection.swift')
 provenance = {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in [controller_path, helper_path]}
 (out / 'provenance.json').write_text(json.dumps(provenance, indent=2) + '\n')
 
-table_path = root / 'packages/TGUIKit/Sources/TableView.swift'
+table_path = root / 'packages/AnsibleUIKit/Sources/TableView.swift'
 table_source = table_path.read_text()
 focus = 'public struct TableScrollFocus' + between(table_source, 'public struct TableScrollFocus', 'public enum TableScrollState')
 (out / 'Sources/ScrollTypes').mkdir(exist_ok=True)

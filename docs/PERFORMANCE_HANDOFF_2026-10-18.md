@@ -17,7 +17,7 @@ Read the root AGENTS.md instructions. No new code comments except task markers. 
 
 The user explicitly requested pausing for the handoff. The existing goal is PAUSED, saved verbatim in goal.json. Resume only when the user asks; do not create a duplicate goal or mark it complete. The recovery archive preserves the earlier pre-pause checkpoint; this live document and goal.json contain the updated status.
 
-Objective: find similar improvements across the app, especially TGUIKit, chat, peer info, media and other screens; improve performance and reduce memory; validate carefully; look for further waste after each run. Chat scrolling and message rendering are especially important. The user previously requested sustained work until told to stop, for at least nine hours. That duration has already been exceeded. This handoff request takes precedence over starting more work now.
+Objective: find similar improvements across the app, especially AnsibleUIKit, chat, peer info, media and other screens; improve performance and reduce memory; validate carefully; look for further waste after each run. Chat scrolling and message rendering are especially important. The user previously requested sustained work until told to stop, for at least nine hours. That duration has already been exceeded. This handoff request takes precedence over starting more work now.
 
 No reliable percentage of full ChatRowView migration is established. Do not invent one. We are migrating bounded pieces with native fallbacks, not claiming complete chat-row coverage.
 
@@ -100,7 +100,7 @@ These precede the latest visibility change.
 Lab: tools/perflab/InlineEmojiBindingLab.
 Frozen initial implementation: /tmp/InlineEmojiBindingCheck; scratch /tmp/InlineEmojiBindingCheck-build.
 Baseline is actual immediate pre-inline code captured from 41a9837eef539288e1319ca480012623d75b408c.
-Both variants use actual shared current FoldingTextView/TGUIKit and identical deterministic bitmap media.
+Both variants use actual shared current FoldingTextView/AnsibleUIKit and identical deterministic bitmap media.
 
 Preflight: 108 exact pixel comparisons, accounts/source/tint/size/frame/selection/copy/visibility. Fixture initially compared coordinates before attached layout completed; layout and CATransaction.flush fixed the fixture without loosening assertions. Explicit repair manifests record this.
 

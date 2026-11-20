@@ -9,7 +9,7 @@ baseline = 'df79cde92'
 path = 'packages/PremiumStatusUI/Sources/PremiumStatusUI/PremiumStatusControl.swift'
 original = subprocess.check_output(['git', 'show', baseline + ':' + path], cwd=root, text=True)
 current = (root / path).read_text()
-output = 'import Cocoa\nimport TGUIKit\n'
+output = 'import Cocoa\nimport AnsibleUIKit\n'
 for prefix, source in [('Reference', original), ('Candidate', current)]:
     output += source[source.index('protocol PremiumStatusRenderHost') if 'protocol PremiumStatusRenderHost' in source else source.index('public final class PremiumStatusControl :'):].replace('PremiumStatusControl', prefix + 'PremiumStatusControl') + '\n'
 (lab / 'Tests/StatusTests/Generated.swift').write_text(output)

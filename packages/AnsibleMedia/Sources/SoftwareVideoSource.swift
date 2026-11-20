@@ -1,7 +1,7 @@
 import Foundation
 import TelegramMediaPlayer
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 import Accelerate
 import CoreMedia
 

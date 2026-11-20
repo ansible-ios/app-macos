@@ -1,6 +1,6 @@
 import Cocoa
 import ShortPeerRow
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import Postbox
 import TelegramCore

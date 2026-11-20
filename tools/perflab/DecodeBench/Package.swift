@@ -8,7 +8,7 @@ let package = Package(
     name: "DecodeBench",
     platforms: [.macOS(.v12)],
     dependencies: [
-        .package(name: "TGUIKit", path: "../../../packages/TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../../../packages/AnsibleUIKit"),
         .package(name: "SSignalKit", path: "../../../submodules/ansible-ios/submodules/SSignalKit"),
         .package(name: "FFMpegBinding", path: "../../../submodules/ansible-ios/submodules/FFMpegBinding"),
         .package(name: "YuvConversion", path: "../../../submodules/ansible-ios/submodules/YuvConversion"),
@@ -17,7 +17,7 @@ let package = Package(
         .executableTarget(
             name: "DecodeBench",
             dependencies: [
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
                 .product(name: "FFMpegBinding", package: "FFMpegBinding", condition: nil),
                 .product(name: "YuvConversion", package: "YuvConversion", condition: nil),

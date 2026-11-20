@@ -1,7 +1,7 @@
 import Cocoa
 import InstantPageUI
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox

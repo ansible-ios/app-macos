@@ -22,7 +22,7 @@ cp /tmp/chat-scene-layout-benchmark.json /tmp/scene-reverse.json
 
 Use a fresh output directory. Build, test and benchmark sequentially, with no competing compiler work during timing. The icon environment variable points at the local asset-only app fixture used by ChatLayerEngineLab; supply an equivalent bundle when reproducing the real copy-icon test elsewhere. Omitting it skips that test.
 
-The baseline is commit ac8b2d907. The generator uses ChatLayerEngineLab's standalone host and freezes two complete engine modules, differing only in ChatLayerScene.swift and ChatLayerRowView.swift. It freezes current TGUIKit sources and tests, records root dependency hashes, and appends the same test-only index/state-allocation inspector to both scene files. Production sources do not contain that inspector. Source guards require the recorded original or candidate revision; use the recorded checkout if subsequent changes have modified these files.
+The baseline is commit ac8b2d907. The generator uses ChatLayerEngineLab's standalone host and freezes two complete engine modules, differing only in ChatLayerScene.swift and ChatLayerRowView.swift. It freezes current AnsibleUIKit sources and tests, records root dependency hashes, and appends the same test-only index/state-allocation inspector to both scene files. Production sources do not contain that inspector. Source guards require the recorded original or candidate revision; use the recorded checkout if subsequent changes have modified these files.
 
 The fixture uses real AppKit views/windows, Core Animation layers and production engine methods. Account models and some assets come from the existing standalone host. It does not build Telegram or simulate the full message/media pipeline.
 
@@ -59,7 +59,7 @@ The corrected exploratory benchmark is retained separately. Its final production
 
 The final frozen suite passes 345 functional chat/folding-text tests, with 34 optional measurements skipped (379 total). The real copy-icon asset fixture passes. All eight focused tests pass under Address Sanitizer, with leak detection disabled. The full suite also includes the existing CPU bitmap, bounded Metal frame, selection, accessibility, lifecycle and animation checks; those retain their existing scope and tolerances. Production Swift files pass syntax parsing.
 
-A fresh generator reproduces 432 Swift files and both manifests after normalizing the temporary path. All 584 recorded compiler/dependency inputs remain unchanged. The measured engine source matches production, and the frozen TGUIKit source/tests match the current worktree. Baseline and candidate modules differ only in the two intended production files. The complete Telegram app was not built.
+A fresh generator reproduces 432 Swift files and both manifests after normalizing the temporary path. All 584 recorded compiler/dependency inputs remain unchanged. The measured engine source matches production, and the frozen AnsibleUIKit source/tests match the current worktree. Baseline and candidate modules differ only in the two intended production files. The complete Telegram app was not built.
 
 No matching swift-frontend, xcodebuild or clang processes were present in either final run's pre/post checks. The full table and all nine batches per variant are retained in [results/medians.md](results/medians.md) and the timing JSON files.
 

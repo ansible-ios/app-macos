@@ -5,13 +5,13 @@ let package = Package(
     name: "ModalMorphLab",
     platforms: [.macOS(.v12)],
     dependencies: [
-        .package(name: "TGUIKit", path: "../../../packages/TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../../../packages/AnsibleUIKit"),
     ],
     targets: [
         .executableTarget(
             name: "ModalMorphLab",
             dependencies: [
-                .product(name: "TGUIKit", package: "TGUIKit"),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit"),
             ],
             path: "Sources"),
     ]

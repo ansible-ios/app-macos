@@ -5,7 +5,7 @@ let package = Package(
     name: "WidgetResizeRealLab",
     platforms: [.macOS(.v12)],
     dependencies: [
-        .package(name: "TGUIKit", path: "../../../packages/TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../../../packages/AnsibleUIKit"),
         .package(name: "twidget", path: "../../../third-party/twidget"),
         .package(name: "WidgetSandbox", path: "../../../third-party/widget-sandbox"),
     ],
@@ -13,7 +13,7 @@ let package = Package(
         .executableTarget(
             name: "WidgetResizeRealLab",
             dependencies: [
-                .product(name: "TGUIKit", package: "TGUIKit"),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit"),
                 .product(name: "TwidgetRenderer", package: "twidget"),
                 .product(name: "WidgetSandbox", package: "WidgetSandbox"),
             ],

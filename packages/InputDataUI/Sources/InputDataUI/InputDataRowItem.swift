@@ -5,8 +5,8 @@ import AnsibleTheme
 import AnsibleUtils
 import Localization
 import Cocoa
-import TGUIKit
-import TGModernGrowingTextView
+import AnsibleUIKit
+import AnsibleModernGrowingTextView
 import Postbox
 
 public protocol InputDataRowDataValue {
@@ -340,13 +340,13 @@ private final class InputDataSecureField : NSSecureTextField {
 }
 
 
-open class InputDataRowView : GeneralRowView, TGModernGrowingDelegate, NSTextFieldDelegate, InputDataTextFormatting {
+open class InputDataRowView : GeneralRowView, AnsibleModernGrowingDelegate, NSTextFieldDelegate, InputDataTextFormatting {
     public let containerView = GeneralRowContainerView(frame: NSZeroRect)
     private let placeholderTextView = TextView()
     private let rightActionView: ImageButton = ImageButton()
     private var loadingView: ProgressIndicator? = nil
     private var placeholderAction: ImageButton?
-    public let textView: TGModernGrowingTextView = TGModernGrowingTextView(frame: NSZeroRect, unscrollable: true)
+    public let textView: AnsibleModernGrowingTextView = AnsibleModernGrowingTextView(frame: NSZeroRect, unscrollable: true)
     private let secureField: InputDataSecureField = InputDataSecureField(frame: NSMakeRect(0, 0, 100, 16))
     private let textLimitation: TextViewLabel = TextViewLabel(frame: NSMakeRect(0, 0, 16, 14))
     let separator = SimpleLayer()
@@ -442,7 +442,7 @@ open class InputDataRowView : GeneralRowView, TGModernGrowingDelegate, NSTextFie
             return
         }
         var effectiveRange:NSRange = NSMakeRange(NSNotFound, 0)
-        let defaultTag: TGInputTextTag? = self.textView.attributedString().attribute(NSAttributedString.Key(rawValue: TGCustomLinkAttributeName), at: range.location, effectiveRange: &effectiveRange) as? TGInputTextTag
+        let defaultTag: AnsibleInputTextTag? = self.textView.attributedString().attribute(NSAttributedString.Key(rawValue: AnsibleCustomLinkAttributeName), at: range.location, effectiveRange: &effectiveRange) as? AnsibleInputTextTag
         
         
         let defaultUrl = defaultTag?.attachment as? String
@@ -606,7 +606,7 @@ open class InputDataRowView : GeneralRowView, TGModernGrowingDelegate, NSTextFie
         }
     }
     
-    public func maxCharactersLimit(_ textView: TGModernGrowingTextView!) -> Int32 {
+    public func maxCharactersLimit(_ textView: AnsibleModernGrowingTextView!) -> Int32 {
         if let item = item as? InputDataRowItem {
             if item.hasTextLimitation {
                 return 10000
@@ -675,7 +675,7 @@ open class InputDataRowView : GeneralRowView, TGModernGrowingDelegate, NSTextFie
         
     }
     
-    open func textViewSize(_ textView: TGModernGrowingTextView!) -> NSSize {
+    open func textViewSize(_ textView: AnsibleModernGrowingTextView!) -> NSSize {
         return textView.frame.size
     }
     

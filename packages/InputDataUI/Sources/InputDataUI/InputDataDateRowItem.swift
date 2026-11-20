@@ -5,9 +5,9 @@ import AnsibleTheme
 import AnsibleUtils
 import Localization
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import CalendarUtils
-import TGModernGrowingTextView
+import AnsibleModernGrowingTextView
 import KeyboardKey
 
 public class InputDataDateRowItem: GeneralRowItem, InputDataRowDataValue {
@@ -63,11 +63,11 @@ public class InputDataDateRowItem: GeneralRowItem, InputDataRowDataValue {
 }
 
 
-final class InputDataDateRowView : GeneralRowView, TGModernGrowingDelegate {
+final class InputDataDateRowView : GeneralRowView, AnsibleModernGrowingDelegate {
     private let placeholderTextView = TextView()
-    private let dayInput = TGModernGrowingTextView(frame: NSZeroRect)
-    private let monthInput = TGModernGrowingTextView(frame: NSZeroRect)
-    private let yearInput = TGModernGrowingTextView(frame: NSZeroRect)
+    private let dayInput = AnsibleModernGrowingTextView(frame: NSZeroRect)
+    private let monthInput = AnsibleModernGrowingTextView(frame: NSZeroRect)
+    private let yearInput = AnsibleModernGrowingTextView(frame: NSZeroRect)
 
     private let firstSeparator = TextViewLabel()
     private let secondSeparator = TextViewLabel()
@@ -103,7 +103,7 @@ final class InputDataDateRowView : GeneralRowView, TGModernGrowingDelegate {
         
     }
     
-    public func maxCharactersLimit(_ textView: TGModernGrowingTextView!) -> Int32 {
+    public func maxCharactersLimit(_ textView: AnsibleModernGrowingTextView!) -> Int32 {
         switch true {
         case textView === dayInput:
             return 2
@@ -121,7 +121,7 @@ final class InputDataDateRowView : GeneralRowView, TGModernGrowingDelegate {
         bp += 1
     }
     
-    func textViewSize(_ textView: TGModernGrowingTextView!) -> NSSize {
+    func textViewSize(_ textView: AnsibleModernGrowingTextView!) -> NSSize {
         return textView.frame.size
     }
     

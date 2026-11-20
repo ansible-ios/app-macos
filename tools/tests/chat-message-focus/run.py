@@ -14,7 +14,7 @@ def read_source(path):
     return subprocess.check_output(['git', '-C', str(root), 'show', 'HEAD:' + path], text=True) if args.baseline else (root / path).read_text()
 
 controller = args.source.read_text() if args.source else read_source('packages/ChatUI/Sources/ChatUI/ChatController.swift')
-clip = read_source('packages/TGUIKit/Sources/TGClipView.swift')
+clip = read_source('packages/AnsibleUIKit/Sources/AnsibleClipView.swift')
 
 def section(source, start, end):
     offset = source.index(start)

@@ -3,7 +3,7 @@ import AppKit
 import CoreImage
 import CoreImage.CIFilterBuiltins
 import SwiftSignalKit
-@testable import TGUIKit
+@testable import AnsibleUIKit
 @testable import TextRecognizing
 
 func makeCanvas(_ size: CGSize, draw: (CGContext) -> Void) -> CGImage {

@@ -2,7 +2,7 @@ import AppKit
 import QuartzCore
 import Metal
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ActivityPlaybackCore
 
 private final class FocusWindow: NSWindow {

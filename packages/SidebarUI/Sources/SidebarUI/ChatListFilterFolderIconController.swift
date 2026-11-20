@@ -7,7 +7,7 @@ import Localization
 import GeneralRows
 import InputDataUI
 
-import TGUIKit
+import AnsibleUIKit
 
 final class ChatListFolderIconsView : View {
 

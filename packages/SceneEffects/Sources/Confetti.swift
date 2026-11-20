@@ -1,6 +1,6 @@
 import Cocoa
 import AnsibleMediaUtils
-import TGUIKit
+import AnsibleUIKit
 import CoreGraphics
 import QuartzCore
 import TelegramCore

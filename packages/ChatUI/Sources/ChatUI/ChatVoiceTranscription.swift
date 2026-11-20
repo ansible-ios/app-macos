@@ -2,7 +2,7 @@ import Cocoa
 import os.log
 import QuartzCore
 import AppAnalytics
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import InputView
 import AlertsUI

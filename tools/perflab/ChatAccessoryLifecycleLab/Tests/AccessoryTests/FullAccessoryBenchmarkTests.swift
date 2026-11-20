@@ -1,10 +1,10 @@
 import Cocoa
 import Darwin
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 
 final class FullAccessoryBenchmarkTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     private func fixture(_ index: Int, rich: Bool) -> ChatAccessoryModel {
         let model = ChatAccessoryModel()

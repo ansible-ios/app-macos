@@ -1,7 +1,7 @@
 import Foundation
 import Postbox
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 
 public struct CachedSearchMessages : Equatable {
     public var result: SearchMessagesResult

@@ -17,10 +17,10 @@ BLUR_EDGE_BENCHMARK=1 swift test --package-path /tmp/BlurEdgeMaskValidation --sc
 cp /tmp/blur-edge-mask-benchmark.json /tmp/blur-forward.json
 BLUR_EDGE_BENCHMARK=1 BLUR_EDGE_REVERSE=1 swift test --package-path /tmp/BlurEdgeMaskValidation --scratch-path /tmp/BlurEdgeMaskValidation-build -c release --skip-build --filter BlurEdgeBenchmarkTests
 cp /tmp/blur-edge-mask-benchmark.json /tmp/blur-reverse.json
-swift test --package-path /tmp/BlurEdgeMaskValidation/TGUIKit --scratch-path /tmp/BlurEdgeMaskValidation-kit -c release
+swift test --package-path /tmp/BlurEdgeMaskValidation/AnsibleUIKit --scratch-path /tmp/BlurEdgeMaskValidation-kit -c release
 ```
 
-Use a fresh output directory and run builds sequentially. Measure without competing compilers. The generator creates two complete TGUIKit libraries that differ only in BlurEdgeView.swift, restoring the captured original implementation in the baseline. Test-only extensions expose the actual private mask method in both modules and the candidate's bounded-cache operations. They add no instance fields; production contains no inspection API. Selective imports avoid the existing TGUIKit class/module name collision; the initial test-import compilation failure is retained.
+Use a fresh output directory and run builds sequentially. Measure without competing compilers. The generator creates two complete AnsibleUIKit libraries that differ only in BlurEdgeView.swift, restoring the captured original implementation in the baseline. Test-only extensions expose the actual private mask method in both modules and the candidate's bounded-cache operations. They add no instance fields; production contains no inspection API. Selective imports avoid the existing AnsibleUIKit class/module name collision; the initial test-import compilation failure is retained.
 
 ## Measurements
 
@@ -45,7 +45,7 @@ Sixteen simultaneously retained, identical 420×48 views have sixteen unique mas
 
 Eight focused tests cover 120 exact mask-pixel comparisons across widths, fractional heights, negative/positive padding and both directions; 36 exact complete CIMaskedVariableBlur output comparisons at three radii; non-vacuous checks that positive radii actually change the input; parameter changes and foreign filter reset; tint/frame equivalence; zero-size behavior; shared source identity; the sixteen-entry bound; eviction; weak release; concurrent same-key misses; and concurrent eviction across different keys.
 
-All eight pass release, Address Sanitizer and Thread Sanitizer. Address Sanitizer disables leak detection. The complete frozen TGUIKit suite passes 397 functional tests with 18 optional measurements skipped. The production file passes Swift syntax parsing. No complete Telegram build or whole-app scrolling measurement was performed.
+All eight pass release, Address Sanitizer and Thread Sanitizer. Address Sanitizer disables leak detection. The complete frozen AnsibleUIKit suite passes 397 functional tests with 18 optional measurements skipped. The production file passes Swift syntax parsing. No complete Telegram build or whole-app scrolling measurement was performed.
 
 A fresh generator reproduces both libraries' 177 source files and 76 test files each, plus all three lab test files. The final Thread Sanitizer and complete-suite snapshot matches production exactly, with the recorded test-only extension appended. Four whitespace-only blank lines were cleaned after the timing/Address Sanitizer snapshot; all nonblank lines and all tests are unchanged. Both sets of 662 input hashes are retained and verified.
 

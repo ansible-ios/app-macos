@@ -1,6 +1,6 @@
 import Foundation
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 
 final class ChatBirthdaySaveAction {

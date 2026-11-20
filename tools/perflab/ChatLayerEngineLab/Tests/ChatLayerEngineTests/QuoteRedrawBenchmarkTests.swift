@@ -1,13 +1,13 @@
 import Cocoa
 import XCTest
 import ObjectiveC
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 
 final class QuoteRedrawBenchmarkTests: XCTestCase {
     func testAssignmentAndRasterizationCosts() throws {
         guard ProcessInfo.processInfo.environment["QUOTE_REDRAW_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in quote redraw benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         System.updateScaleFactor(2)
         let reverse = ProcessInfo.processInfo.environment["QUOTE_REDRAW_REVERSE"] == "1"
         var batches: [String: [[Double]]] = [:]

@@ -1,14 +1,14 @@
 import Cocoa
 import XCTest
-@testable import class TGUIKit.PathDataReader
-@testable import func TGUIKit.renderPath
-@testable import func TGUIKit.generateStickerPlaceholderImage
-@testable import struct TGUIKit.System
-@testable import class TGUIKitBaseline.PathDataReader
-@testable import func TGUIKitBaseline.renderPath
-@testable import func TGUIKitBaseline.generateStickerPlaceholderImage
-@testable import let TGUIKitBaseline.decodingMap
-@testable import struct TGUIKitBaseline.System
+@testable import class AnsibleUIKit.PathDataReader
+@testable import func AnsibleUIKit.renderPath
+@testable import func AnsibleUIKit.generateStickerPlaceholderImage
+@testable import struct AnsibleUIKit.System
+@testable import class AnsibleUIKitBaseline.PathDataReader
+@testable import func AnsibleUIKitBaseline.renderPath
+@testable import func AnsibleUIKitBaseline.generateStickerPlaceholderImage
+@testable import let AnsibleUIKitBaseline.decodingMap
+@testable import struct AnsibleUIKitBaseline.System
 
 private final class PathFailures {
     private let lock = NSLock()
@@ -30,7 +30,7 @@ let placeholderPaths = [
 ]
 
 func encodedPath(_ path: String) -> Data {
-    let map = TGUIKitBaseline.decodingMap
+    let map = AnsibleUIKitBaseline.decodingMap
     return Data(path.map { character in
         let token = character == " " ? "," : String(character)
         return UInt8(192 + map.firstIndex(of: token)!)
@@ -51,7 +51,7 @@ final class ExtendedPathTests: XCTestCase {
         for separator in separators {
             for input in ["M -0" + separator + "1 2 L .25 30 z", "M 1.2" + separator + "e-3 4 L 20 30 z", "A 1 2 3 " + separator + "1 20 30 M 3 4 z"] {
                 let foreign = NSString(string: input) as String
-                XCTAssertEqual(signature(TGUIKitBaseline.PathDataReader(input: foreign).read()), signature(TGUIKit.PathDataReader(input: foreign).read()), input)
+                XCTAssertEqual(signature(AnsibleUIKitBaseline.PathDataReader(input: foreign).read()), signature(AnsibleUIKit.PathDataReader(input: foreign).read()), input)
             }
         }
     }
@@ -65,29 +65,29 @@ final class ExtendedPathTests: XCTestCase {
             if index % 3 == 0 { number += "." + String(random.next(1000000)) }
             if index % 5 == 0 { number += "e-" + String(random.next(400)) }
             let input = "M \(number) \(number) C 1 2 3 4 5 6 7 8 9 10 11 12 z"
-            let old = TGUIKitBaseline.PathDataReader(input: input).read(), new = TGUIKit.PathDataReader(input: input).read()
+            let old = AnsibleUIKitBaseline.PathDataReader(input: input).read(), new = AnsibleUIKit.PathDataReader(input: input).read()
             XCTAssertEqual(signature(old), signature(new))
             for (a, b) in zip(old, new) { XCTAssertLessThanOrEqual(b.data.capacity, a.data.capacity) }
         }
         for command in ["M", "m", "L", "l", "H", "h", "V", "v", "C", "c", "S", "s", "Q", "q", "T", "t", "A", "a"] {
             let input = command + " " + Array(repeating: "1", count: 2000).joined(separator: " ") + " z"
-            let old = TGUIKitBaseline.PathDataReader(input: input).read(), new = TGUIKit.PathDataReader(input: input).read()
+            let old = AnsibleUIKitBaseline.PathDataReader(input: input).read(), new = AnsibleUIKit.PathDataReader(input: input).read()
             XCTAssertEqual(signature(old), signature(new))
             for (a, b) in zip(old, new) { XCTAssertLessThanOrEqual(b.data.capacity, a.data.capacity) }
         }
     }
 
     func testConcurrentIndependentReadersAndRendering() {
-        let expected = placeholderPaths.map { signature(TGUIKitBaseline.PathDataReader(input: $0).read()) }
+        let expected = placeholderPaths.map { signature(AnsibleUIKitBaseline.PathDataReader(input: $0).read()) }
         let referencePixels = placeholderPaths.map { input in
-            pathPixels(scale: 1, variant: 1) { TGUIKitBaseline.renderPath(TGUIKitBaseline.PathDataReader(input: input).read(), context: $0) }
+            pathPixels(scale: 1, variant: 1) { AnsibleUIKitBaseline.renderPath(AnsibleUIKitBaseline.PathDataReader(input: input).read(), context: $0) }
         }
         let failures = PathFailures()
         DispatchQueue.concurrentPerform(iterations: 512) { index in
             let selected = index % placeholderPaths.count
-            let segments = TGUIKit.PathDataReader(input: placeholderPaths[selected]).read()
+            let segments = AnsibleUIKit.PathDataReader(input: placeholderPaths[selected]).read()
             if signature(segments) != expected[selected] { failures.add() }
-            let actual = pathPixels(scale: 1, variant: 1) { TGUIKit.renderPath(segments, context: $0) }
+            let actual = pathPixels(scale: 1, variant: 1) { AnsibleUIKit.renderPath(segments, context: $0) }
             if actual != referencePixels[selected] { failures.add() }
         }
         XCTAssertEqual(failures.value, 0)
@@ -102,8 +102,8 @@ final class ExtendedPathTests: XCTestCase {
                     for imageSize in [CGSize(width: 96, height: 96), CGSize(width: 512, height: 400)] {
                         for background: NSColor? in [nil, NSColor(displayP3Red: 0.3, green: 0.4, blue: 0.5, alpha: 0.8)] {
                             let foreground = NSColor(displayP3Red: 0.8, green: 0.4, blue: 0.2, alpha: 0.5)
-                            let old = try XCTUnwrap(TGUIKitBaseline.generateStickerPlaceholderImage(data: data, size: size, scale: scale, imageSize: imageSize, backgroundColor: background, foregroundColor: foreground))
-                            let new = try XCTUnwrap(TGUIKit.generateStickerPlaceholderImage(data: data, size: size, scale: scale, imageSize: imageSize, backgroundColor: background, foregroundColor: foreground))
+                            let old = try XCTUnwrap(AnsibleUIKitBaseline.generateStickerPlaceholderImage(data: data, size: size, scale: scale, imageSize: imageSize, backgroundColor: background, foregroundColor: foreground))
+                            let new = try XCTUnwrap(AnsibleUIKit.generateStickerPlaceholderImage(data: data, size: size, scale: scale, imageSize: imageSize, backgroundColor: background, foregroundColor: foreground))
                             XCTAssertEqual(old.width, new.width); XCTAssertEqual(old.height, new.height)
                             XCTAssertTrue(shimmerPixels(old) == shimmerPixels(new))
                             pairs += 1
@@ -119,7 +119,7 @@ final class ExtendedPathTests: XCTestCase {
         var pairs = 0
         for kind in ShimmerKind.allCases {
             for scale: CGFloat in [1, 2, 3] {
-                TGUIKit.System.updateScaleFactor(scale); TGUIKitBaseline.System.updateScaleFactor(scale)
+                AnsibleUIKit.System.updateScaleFactor(scale); AnsibleUIKitBaseline.System.updateScaleFactor(scale)
                 for (index, path) in placeholderPaths.enumerated() {
                     for opaque in [false, true] {
                         var input = ShimmerInput()

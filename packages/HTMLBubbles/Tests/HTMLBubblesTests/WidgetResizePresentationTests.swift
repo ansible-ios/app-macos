@@ -1,6 +1,6 @@
 import AppKit
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import WidgetSandbox
 @testable import TwidgetRenderer
 @testable import HTMLBubbles

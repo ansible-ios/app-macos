@@ -9,7 +9,7 @@ import TelegramCore
 
 import SwiftSignalKit
 import RangeSet
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import AudioPlayerCore
 

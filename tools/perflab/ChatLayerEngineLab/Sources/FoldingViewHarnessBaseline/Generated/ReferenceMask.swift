@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 func referenceMaskImage(size: NSSize, y: CGFloat, scale: CGFloat) -> CGImage? {
     return generateImage(size, scale: scale, rotatedContext: { size, context in
         context.clear(CGRect(origin: .zero, size: size))

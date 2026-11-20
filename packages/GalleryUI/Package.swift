@@ -4,7 +4,7 @@ import PackageDescription
 
 let deps: [(String, String)] = [
     ("SecureIdUtils", "../SecureIdUtils"),
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("KeyboardKey", "../KeyboardKey"),
     ("InstantPageUI", "../InstantPageUI"),
     ("ColorPalette", "../ColorPalette"),
@@ -67,7 +67,7 @@ let package = Package(
             name: "GalleryUITests",
             dependencies: [
                 "GalleryUI",
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "KeyboardKey", package: "KeyboardKey", condition: nil),
                 .product(name: "InputView", package: "InputView", condition: nil),
             ],

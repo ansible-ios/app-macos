@@ -1,6 +1,6 @@
 import Foundation
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 let qrStudioRevealDiscImage: CGImage? = {
     let side = 128

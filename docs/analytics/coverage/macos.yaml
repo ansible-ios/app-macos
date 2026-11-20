@@ -159,24 +159,24 @@ items:
   "class:StoriesUI/StoryMediaController": {screens: [peer_info.media.stories, peer_info.media.archived_stories, stories.archive], note: "peer_info.media.stories and peer_info.media.archived_stories as profile tabs; stories.archive when pushed on its own"}
   "class:StoriesUI/StoryModalController": [stories.viewer, stories.live]
   "class:StoriesUI/StoryStealthModeController": stories.stealth_mode
-  "class:TGUIKit/AppWindow": {ignore: base}
-  "class:TGUIKit/CatalinaStyledSegmentController": {ignore: embedded, note: "segmented control"}
-  "class:TGUIKit/GenericViewController": {ignore: base}
-  "class:TGUIKit/MajorNavigationController": {ignore: container}
-  "class:TGUIKit/ModalController": {ignore: container}
-  "class:TGUIKit/ModalViewController": {ignore: base}
-  "class:TGUIKit/NavigationViewController": {ignore: container}
-  "class:TGUIKit/ProgressModalController": {ignore: transient}
-  "class:TGUIKit/RevealTableItemController": {ignore: helper, note: "swipe actions of table rows"}
-  "class:TGUIKit/SPopoverViewController": {ignore: transient}
-  "class:TGUIKit/SectionViewController": {ignore: container}
-  "class:TGUIKit/SuccessModalController": {ignore: transient}
-  "class:TGUIKit/TabBarController": {ignore: container}
-  "class:TGUIKit/TextAndLabelModalController": {ignore: transient}
-  "class:TGUIKit/TooltipController": {ignore: dead_code, note: "never created; tooltip() uses TooltipView directly"}
-  "class:TGUIKit/ViewController": {ignore: base}
-  "class:TGUIKit/VolumeControllerPopover": {ignore: transient}
-  "class:TGUIKit/Window": {ignore: base}
+  "class:AnsibleUIKit/AppWindow": {ignore: base}
+  "class:AnsibleUIKit/CatalinaStyledSegmentController": {ignore: embedded, note: "segmented control"}
+  "class:AnsibleUIKit/GenericViewController": {ignore: base}
+  "class:AnsibleUIKit/MajorNavigationController": {ignore: container}
+  "class:AnsibleUIKit/ModalController": {ignore: container}
+  "class:AnsibleUIKit/ModalViewController": {ignore: base}
+  "class:AnsibleUIKit/NavigationViewController": {ignore: container}
+  "class:AnsibleUIKit/ProgressModalController": {ignore: transient}
+  "class:AnsibleUIKit/RevealTableItemController": {ignore: helper, note: "swipe actions of table rows"}
+  "class:AnsibleUIKit/SPopoverViewController": {ignore: transient}
+  "class:AnsibleUIKit/SectionViewController": {ignore: container}
+  "class:AnsibleUIKit/SuccessModalController": {ignore: transient}
+  "class:AnsibleUIKit/TabBarController": {ignore: container}
+  "class:AnsibleUIKit/TextAndLabelModalController": {ignore: transient}
+  "class:AnsibleUIKit/TooltipController": {ignore: dead_code, note: "never created; tooltip() uses TooltipView directly"}
+  "class:AnsibleUIKit/ViewController": {ignore: base}
+  "class:AnsibleUIKit/VolumeControllerPopover": {ignore: transient}
+  "class:AnsibleUIKit/Window": {ignore: base}
   "class:Ansible-Mac/AuthModalController": {ignore: container, note: "modal that hosts the auth.* steps"}
   "class:Ansible-Mac/MainViewController": {ignore: container}
   "class:Ansible-Mac/UpdateTabController": {ignore: embedded, note: "update bar under the chat list and on the login screen"}
@@ -494,7 +494,7 @@ items:
   "window_site:StoriesUI/StoryRecorderOverlayWindowController.init#1": {ignore: transient, note: "story reply recording overlay"}
   "window_site:StoriesUI/StoryRecorderOverlayWindowController.init#2": {ignore: transient, note: "story reply recording lock overlay"}
   "window_site:StoriesUI/storyReactionsValues": {ignore: transient, note: "reaction picker in the story viewer"}
-  "window_site:TGUIKit/AppMenuController.getView": {ignore: transient, note: "context menus; tracked with menu.* events"}
+  "window_site:AnsibleUIKit/AppMenuController.getView": {ignore: transient, note: "context menus; tracked with menu.* events"}
   "window_site:Ansible-Mac/SupportAccountContext.open": {ignore: container, note: "another account in its own window"}
   "window_site:Ansible-Mac/SupportAccountContext.openChat": {ignore: container, note: "a chat in its own window"}
   "window_site:AnsibleShare/ShareViewController.launchExtension": {ignore: helper, note: "hidden window backing the share extension"}

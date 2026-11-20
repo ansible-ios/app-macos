@@ -6,7 +6,7 @@ import SwiftSignalKit
 import AnsibleContext
 import TelegramCore
 import AnsibleUtils
-import TGUIKit
+import AnsibleUIKit
 
 final class ChatPaidMediaPurchase {
     private let active = Atomic(value: false)

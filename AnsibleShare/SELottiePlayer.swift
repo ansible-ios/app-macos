@@ -1,7 +1,7 @@
 import Foundation
 import SwiftSignalKit
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import GZIP
 import Accelerate
@@ -1161,7 +1161,7 @@ public final class SE_LottieAnimation : Equatable {
     public func initialize() -> SE_RenderContainer? {
         switch type {
         case .lottie:
-            let decompressed = TGGUnzipData(self.compressed, 8 * 1024 * 1024)
+            let decompressed = AnsibleGUnzipData(self.compressed, 8 * 1024 * 1024)
             let data: Data?
             if let decompressed = decompressed {
                 data = decompressed
@@ -1187,7 +1187,7 @@ public final class SE_LottieAnimation : Equatable {
                 }
             }
         case .webp:
-            let decompressed = TGGUnzipData(self.compressed, 8 * 1024 * 1024)
+            let decompressed = AnsibleGUnzipData(self.compressed, 8 * 1024 * 1024)
             let data: Data?
             if let decompressed = decompressed {
                 data = decompressed

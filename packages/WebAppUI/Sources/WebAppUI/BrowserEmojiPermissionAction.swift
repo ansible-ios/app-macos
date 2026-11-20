@@ -6,7 +6,7 @@ import AnsibleUtils
 import Postbox
 import AlertsUI
 import Localization
-import TGUIKit
+import AnsibleUIKit
 
 final class BrowserEmojiPermissionAction {
     private final class Request {

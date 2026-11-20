@@ -31,7 +31,7 @@
   ],
   "limitations": [
     "Extracted production preparation and getters with fixture account/peer/row environment",
-    "Real TGUIKit TextNode and Core Text rendering",
+    "Real AnsibleUIKit TextNode and Core Text rendering",
     "Full Telegram app build and end-to-end scrolling not performed",
     "Object counts are not resident-memory measurements",
     "First hover can perform deferred text shaping; selected preparation eagerly creates both variants"

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public enum LiteFeature { case emoji }
 public protocol AccountContextProtocol { func isLite(_ feature: LiteFeature) -> Bool }

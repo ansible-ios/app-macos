@@ -1,13 +1,13 @@
 import Cocoa
 import XCTest
 import Darwin
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class HighlightBenchmarkTests: XCTestCase {
     func testInactiveHighlightOverhead() throws {
         guard ProcessInfo.processInfo.environment["CHAT_HIGHLIGHT_BENCHMARK"] != nil else { throw XCTSkip("Opt-in inactive highlight overhead") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let layout = MessageTextTests().layout(["An ordinary message without an active search highlight."]).blocks[0].text
         let old = ReferenceHighlightTextNode(id: "old", selectable: true)
         let new = ChatLayerTextNode(id: "new", selectable: true)

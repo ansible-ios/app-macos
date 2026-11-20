@@ -12,10 +12,10 @@ POSITION_BENCHMARK=1 swift test --package-path /tmp/ScrollPositionValidation --s
 cp /tmp/scroll-position-benchmark.json /tmp/position-forward.json
 POSITION_BENCHMARK=1 POSITION_REVERSE=1 swift test --package-path /tmp/ScrollPositionValidation --scratch-path /tmp/ScrollPositionValidation-build -c release --skip-build --filter PositionBenchmarkTests
 cp /tmp/scroll-position-benchmark.json /tmp/position-reverse.json
-swift test --package-path /tmp/ScrollPositionValidation/TGUIKit --scratch-path /tmp/ScrollPositionValidation-kit -c release
+swift test --package-path /tmp/ScrollPositionValidation/AnsibleUIKit --scratch-path /tmp/ScrollPositionValidation-kit -c release
 ```
 
-Use a fresh output directory. Run timing without other builds. The generator freezes complete TGUIKit libraries for both implementations, restoring the captured original ScrollView.swift and TableView.swift in the baseline. Other production sources match. The TableView reference includes unrelated pending changes already present before this optimization; only the scroll-observer block is changed by this experiment and commit.
+Use a fresh output directory. Run timing without other builds. The generator freezes complete AnsibleUIKit libraries for both implementations, restoring the captured original ScrollView.swift and TableView.swift in the baseline. Other production sources match. The TableView reference includes unrelated pending changes already present before this optimization; only the scroll-observer block is changed by this experiment and commit.
 
 ## Measurements
 
@@ -39,7 +39,7 @@ The broader fixture attaches two 1,000-row tables to a hidden native window, mov
 
 Seven focused tests run against each implementation, fourteen total, passing release and Address Sanitizer with leak detection disabled. The geometry matrix checks 144 sequential states per implementation, covering both document orientations, fractional offsets, unchanged positions, changing document/viewport sizes, short documents, content insets and direction history. Further tests cover resetting history, removing the document, fresh geometry after mutation, measured document-query counts, unobserved point callbacks, observer installation/removal during callbacks, document resizing during callbacks, and reentrant row removal. The baseline and candidate have different expected query counts but identical behavior expectations.
 
-The seven candidate tests are also installed in the production TGUIKit test target. The full frozen suite passes 404 functional tests, with 18 optional measurements skipped. Existing tests include coalesced final-position delivery, row mutation during scroll listeners, sticky headers, visible ranges and animation completion.
+The seven candidate tests are also installed in the production AnsibleUIKit test target. The full frozen suite passes 404 functional tests, with 18 optional measurements skipped. Existing tests include coalesced final-position delivery, row mutation during scroll listeners, sticky headers, visible ranges and animation completion.
 
 A fresh generator reproduces 512 Swift source/test files across both modules and the lab. All 665 recorded compiler inputs remain unchanged. Both measured production files exactly match the current worktree. Only benchmark iteration counts changed after Address Sanitizer and complete-suite validation; production and functional tests are unchanged. The earlier benchmark source and input manifest are retained. The full application has not been built by this lab.
 

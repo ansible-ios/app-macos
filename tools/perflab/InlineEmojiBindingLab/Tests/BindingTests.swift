@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import InputView
 import InlineStickerLayer
@@ -57,7 +57,7 @@ final class BindingTests: XCTestCase {
     private var preflightContext = ""
 
     override func setUp() {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         System.updateScaleFactor(2)
     }
     override func tearDown() { System.updateScaleFactor(2) }

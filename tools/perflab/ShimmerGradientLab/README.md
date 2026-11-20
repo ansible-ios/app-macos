@@ -15,7 +15,7 @@ python3 tools/perflab/ShimmerGradientLab/prepare-isolated.py /tmp/GradientValida
 swift test --package-path /tmp/GradientValidation --scratch-path /tmp/GradientValidation-build -c release
 ASAN_OPTIONS=detect_leaks=0 swift test --package-path /tmp/GradientValidation --scratch-path /tmp/GradientValidation-asan --sanitize address --filter GradientTests.GradientTests
 swift test --package-path /tmp/GradientValidation --scratch-path /tmp/GradientValidation-tsan --sanitize thread --filter GradientTests.GradientTests
-swift test --package-path /tmp/GradientValidation/TGUIKit --scratch-path /tmp/GradientValidation-kit -c release
+swift test --package-path /tmp/GradientValidation/AnsibleUIKit --scratch-path /tmp/GradientValidation-kit -c release
 SHIMMER_GRADIENT_BENCHMARK=1 swift test --package-path /tmp/GradientValidation --scratch-path /tmp/GradientValidation-build -c release --skip-build --filter GradientBenchmarkTests
 cp /tmp/shimmer-gradient-benchmark.json /tmp/gradient-forward.json
 SHIMMER_GRADIENT_BENCHMARK=1 SHIMMER_GRADIENT_REVERSE=1 swift test --package-path /tmp/GradientValidation --scratch-path /tmp/GradientValidation-build -c release --skip-build --filter GradientBenchmarkTests
@@ -24,7 +24,7 @@ python3 tools/perflab/ShimmerGradientLab/prepare-mask-regressions.py /tmp/Gradie
 swift test --package-path /tmp/GradientMaskRegression --scratch-path /tmp/GradientMaskRegression-build -c release
 ```
 
-Use new output directories. Build and measure sequentially, with no competing compilers during timing. The generator freezes two complete TGUIKit modules and records hashes; only ShimmerLayer.swift and ShimmerEffect.swift differ. Baseline versions of those files come from commit 68117c309. Other worktree sources are copied identically to both modules. Shared dependency paths are recorded. Test-only inspectors expose images, animation state and cache counters; production contains no inspection API or raster probes.
+Use new output directories. Build and measure sequentially, with no competing compilers during timing. The generator freezes two complete AnsibleUIKit modules and records hashes; only ShimmerLayer.swift and ShimmerEffect.swift differ. Baseline versions of those files come from commit 68117c309. Other worktree sources are copied identically to both modules. Shared dependency paths are recorded. Test-only inspectors expose images, animation state and cache counters; production contains no inspection API or raster probes.
 
 The separate mask-regression generator restores the earlier mask baseline from ShimmerRenderLab and reruns its tests against the new production implementation. This retains the baseline bug reproductions rather than replacing them with assertions that merely mirror the new code.
 
@@ -55,7 +55,7 @@ The full Telegram app, chat-opening latency and scrolling FPS are outside these 
 
 ## Final results
 
-All 13 focused release tests pass, as do all 13 under Address Sanitizer and Thread Sanitizer. The 12 earlier shimmer-mask regressions pass against the new implementation. The complete frozen TGUIKit suite passes 420 functional tests, with 18 optional measurements skipped. Address Sanitizer leak detection is disabled.
+All 13 focused release tests pass, as do all 13 under Address Sanitizer and Thread Sanitizer. The 12 earlier shimmer-mask regressions pass against the new implementation. The complete frozen AnsibleUIKit suite passes 420 functional tests, with 18 optional measurements skipped. Address Sanitizer leak detection is disabled.
 
 Fresh generators reproduce 521 Swift files and three manifests for both the gradient fixture and the separate mask-regression fixture after temporary-path normalization. All 1,778 recorded inputs and 259 production source/test files remain unchanged. The timing fixture adds full sticker-construction cases to the sanitizer fixture's benchmark file; production and functional-regression sources are identical. That earlier optional benchmark source is archived as well. The mask implementation and the foreground geometry/animation code are verified byte-identical to their respective original suffixes.
 

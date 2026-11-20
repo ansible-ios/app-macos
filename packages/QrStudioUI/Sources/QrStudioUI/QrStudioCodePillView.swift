@@ -1,7 +1,7 @@
 import Foundation
 import Cocoa
 import QuartzCore
-import TGUIKit
+import AnsibleUIKit
 import AnsibleTheme
 
 private final class QrStudioPillLabelView: View {

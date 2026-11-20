@@ -1,7 +1,7 @@
 import Cocoa
 import XCTest
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 private final class NativeLinkView: TextView {
@@ -38,7 +38,7 @@ final class LinkInteractionTests: XCTestCase {
     }
     private var windows: [NSWindow] = []
 
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
     override func tearDown() {
         windows.forEach { $0.contentView = nil; $0.close() }
         windows.removeAll()

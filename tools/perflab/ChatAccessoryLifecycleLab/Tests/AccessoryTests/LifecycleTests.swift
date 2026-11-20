@@ -1,7 +1,7 @@
 import Cocoa
 import Darwin
 import XCTest
-@testable import TGUIKit
+@testable import AnsibleUIKit
 
 private final class KeyWindow: NSWindow {
     var key = true
@@ -25,7 +25,7 @@ private final class CountingReference: ReferenceAccessory {
 }
 final class LifecycleTests: XCTestCase {
     private var windows: [KeyWindow] = []
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
     override func tearDown() {
         windows.forEach { $0.contentView = nil; $0.close() }
         windows.removeAll()

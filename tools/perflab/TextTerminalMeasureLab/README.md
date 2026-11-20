@@ -11,14 +11,14 @@ python3 tools/perflab/TextTerminalMeasureLab/prepare-isolated.py /tmp/TextTermin
 swift test --package-path /tmp/TextTerminalMeasureValidation --scratch-path /tmp/TextTerminalMeasureValidation-build -c release
 ASAN_OPTIONS=detect_leaks=0 swift test --package-path /tmp/TextTerminalMeasureValidation --scratch-path /tmp/TextTerminalMeasureValidation-asan --sanitize address --filter TerminalMeasureTests
 swift test --package-path /tmp/TextTerminalMeasureValidation --scratch-path /tmp/TextTerminalMeasureValidation-tsan --sanitize thread --filter TerminalMeasureTests
-swift test --package-path /tmp/TextTerminalMeasureValidation/TGUIKit --scratch-path /tmp/TextTerminalMeasureValidation-kit -c release
+swift test --package-path /tmp/TextTerminalMeasureValidation/AnsibleUIKit --scratch-path /tmp/TextTerminalMeasureValidation-kit -c release
 TERMINAL_MEASURE_BENCHMARK=1 swift test --package-path /tmp/TextTerminalMeasureValidation --scratch-path /tmp/TextTerminalMeasureValidation-build -c release --skip-build --filter TerminalMeasureBenchmarkTests
 cp /tmp/terminal-measure-benchmark.json /tmp/terminal-forward.json
 TERMINAL_MEASURE_BENCHMARK=1 TERMINAL_MEASURE_REVERSE=1 swift test --package-path /tmp/TextTerminalMeasureValidation --scratch-path /tmp/TextTerminalMeasureValidation-build -c release --skip-build --filter TerminalMeasureBenchmarkTests
 cp /tmp/terminal-measure-benchmark.json /tmp/terminal-reverse.json
 ```
 
-Use a fresh output directory. Build, test and benchmark sequentially without competing builds. The baseline is commit 8a3e83047. The generator freezes two complete TGUIKit modules differing only in the production TextView.swift change. Its source guard requires the recorded original or candidate revision; use the recorded checkout when later TextView.swift changes exist. Both modules receive identical test-only snapshot helpers reused from QuoteMeasureLab. Named theme icons have identical placeholders. The lab uses real Core Text shaping and TextViewLayer bitmap drawing.
+Use a fresh output directory. Build, test and benchmark sequentially without competing builds. The baseline is commit 8a3e83047. The generator freezes two complete AnsibleUIKit modules differing only in the production TextView.swift change. Its source guard requires the recorded original or candidate revision; use the recorded checkout when later TextView.swift changes exist. Both modules receive identical test-only snapshot helpers reused from QuoteMeasureLab. Named theme icons have identical placeholders. The lab uses real Core Text shaping and TextViewLayer bitmap drawing.
 
 ## Coverage
 
@@ -43,7 +43,7 @@ No full Telegram build, onscreen scrolling FPS, GPU timing, allocation-byte coun
 
 ## Final results
 
-All 11 focused tests pass in release, Address Sanitizer and Thread Sanitizer. Address Sanitizer leak detection is disabled. The full frozen TGUIKit suite passes 420 functional tests, with 18 optional measurements/captures skipped (438 total). A fresh generator reproduces 521 Swift files and three manifests after temporary-path normalization. All 674 recorded compiler/dependency inputs remain unchanged. Exact replacements, source hashes, raw batches and test logs are retained in this lab.
+All 11 focused tests pass in release, Address Sanitizer and Thread Sanitizer. Address Sanitizer leak detection is disabled. The full frozen AnsibleUIKit suite passes 420 functional tests, with 18 optional measurements/captures skipped (438 total). A fresh generator reproduces 521 Swift files and three manifests after temporary-path normalization. All 674 recorded compiler/dependency inputs remain unchanged. Exact replacements, source hashes, raw batches and test logs are retained in this lab.
 
 Both final benchmark runs had no matching compiler processes in their pre/post checks. The complete 44-row table is in [results/medians.md](results/medians.md).
 

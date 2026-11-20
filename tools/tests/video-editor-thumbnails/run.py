@@ -8,7 +8,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--baseline', action='store_true')
 args = parser.parse_args()
 source = subprocess.check_output(['git', 'show', '489ec8d18bbba43bf9bed52f31c28a35c3e6fde2:packages/AnsibleMediaUtils/Sources/AnsibleMediaUtils/VideoEditorThumbs.swift'], cwd=root, text=True) if args.baseline else (root/'packages/AnsibleMediaUtils/Sources/AnsibleMediaUtils/VideoEditorThumbs.swift').read_text()
-source = '\n'.join(line for line in source.splitlines() if line not in ['import TGUIKit', 'import AnsibleTheme', 'import AnsibleContext', 'import AnsibleUtils'])
+source = '\n'.join(line for line in source.splitlines() if line not in ['import AnsibleUIKit', 'import AnsibleTheme', 'import AnsibleContext', 'import AnsibleUtils'])
 shim = Path(__file__).with_name('Support.swift').read_text()
 with tempfile.TemporaryDirectory(prefix='video-editor-thumbnails-') as directory:
     directory = Path(directory)

@@ -32,7 +32,7 @@ Keep the composer scope registry atomic and version its privacy changes. A conte
 
 - Source: `generated/events.json`, the fully resolved registry. Every param in it has its `type` and `values` filled in, so you never need to resolve references yourself.
 - Generate typed constants in your language from that file: event names, screen ids, menu ids and items, settings, flow ids with their steps and params, and every enum's values.
-- Never write an event name, screen id, step or enum value as a string literal in app code. Add it to `events.yaml`, run `tools/tg_events.py lint`, regenerate.
+- Never write an event name, screen id, step or enum value as a string literal in app code. Add it to `events.yaml`, run `tools/ansible_events.py lint`, regenerate.
 
 For media-preview additions, `add_paste`/`add_drop` mean the normalized selection changed. The draft `add_paste_unchanged`/`add_drop_unchanged` steps mean a nonempty addition left that selection unchanged and followed the existing no-change feedback path. They preserve the original entry route, selected count bucket, mode, blocker and send retry count. Empty callback lists and text-only paste are not unchanged media additions. Consecutive identical steps coalesce and the normal trace cap applies, so these summaries do not provide exact repeat counts. They are UX evidence, not bot classification.
 
@@ -105,7 +105,7 @@ Implement screens at the navigation layer, not per screen.
 - `menu.open {menu, screen, via}` once per opened menu, and `menu.select {menu, item, screen}` before the chosen item runs. Items without a registry id send nothing.
 - All visibility/menu rules are conditional on eligibility. Panels inherit the initiating scope. Secret transitions clear visibility/source history silently; no private duration or hide event may be emitted on return. Track ownership per window/account instead of attributing work from a global latest screen.
 
-How macOS does it: every TGUIKit `ViewController` reports `viewDidAppear`/`viewDidDisappear`/`deinit` to `AnalyticsScreenTracker` through `ViewControllerLifecycleHooks`. The screen id is `controller.analyticsScreen` when set (factories, multi-mode controllers) or comes from the class name through `AnalyticsCoverage.screenForClass`, generated from `coverage/macos.yaml`. Windows and system panels that are not view controllers call `screens.showStandalone`/`hideStandalone`. `tg_events.py coverage --tags` checks that every factory, multi-mode and standalone screen is tagged in code.
+How macOS does it: every AnsibleUIKit `ViewController` reports `viewDidAppear`/`viewDidDisappear`/`deinit` to `AnalyticsScreenTracker` through `ViewControllerLifecycleHooks`. The screen id is `controller.analyticsScreen` when set (factories, multi-mode controllers) or comes from the class name through `AnalyticsCoverage.screenForClass`, generated from `coverage/macos.yaml`. Windows and system panels that are not view controllers call `screens.showStandalone`/`hideStandalone`. `ansible_events.py coverage --tags` checks that every factory, multi-mode and standalone screen is tagged in code.
 
 The `viewWillAppear` hook establishes exclusion before visibility callbacks. The generic modal wrapper reports its own hooks before forwarding appearance to navigation children, and releases its identity after their disappearance callbacks. It does not grant ordinary scopes to children. `ChatController` assigns a namespace-only privacy context during initialization, before peer data arrives. Action handlers capture an account-bound context before asynchronous work; a child receives that same immutable context. `captureContext(..., inherited:)` can only reuse its original eligible scope, never replace a revoked one. Native panels use `beginPresentation()` before delayed opening and release it after the completion callback returns. Unmigrated panel callers receive an unresolved context and suspend collection. Existing public signatures forward to this conservative path for already compiled callers.
 
@@ -624,7 +624,7 @@ Every screen of your app needs an inventory decision, so eligible `screen.show` 
 1. Build an inventory of everything screen-like in your code: controllers, fragments or views that are shown on their own, modals, sheets, windows, system dialogs and pickers. `tools/macos_inventory.py` is the macOS version.
 2. Write `coverage/<platform>.yaml` with a decision for each item: a screen id, a list of screen ids (one controller with several modes), or `{ignore: <reason>}` with a reason from `ignore_reasons` (base, container, embedded, placeholder, lab, transient, helper, dead_code).
 3. When your app has a screen the registry lacks, add it to `events.yaml` first; do not invent a local name.
-4. Make the check fail in CI when the inventory and the mapping disagree, like `tg_events.py coverage` does for macOS.
+4. Make the check fail in CI when the inventory and the mapping disagree, like `ansible_events.py coverage` does for macOS.
 
 `coverage/macos.md` lists every registry screen with its macOS sources; use it to find the matching screen in your app.
 
@@ -641,7 +641,7 @@ Integers and milliseconds are finite, nonnegative, exact JSON integers no greate
 
 ## 8. Definition of done
 
-1. `python3 tools/tg_events.py lint` passes.
+1. `python3 tools/ansible_events.py lint` passes.
 2. Your platform's tests run every case in `fixtures/flows.json` and pass.
 3. No event names, screen ids, steps or enum values appear as string literals outside generated code.
 4. Every screen-like item in your inventory has a decision in `coverage/<platform>.yaml`, and the check passes.

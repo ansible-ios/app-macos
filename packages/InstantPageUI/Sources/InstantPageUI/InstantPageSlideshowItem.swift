@@ -9,7 +9,7 @@ import TelegramCore
 import SwiftSignalKit
 import RangeSet
 
-import TGUIKit
+import AnsibleUIKit
 
 public class InstantPageSlideshowItem: InstantPageItem {
     public var frame: CGRect

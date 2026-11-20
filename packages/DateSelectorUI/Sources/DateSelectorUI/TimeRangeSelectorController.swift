@@ -9,7 +9,7 @@ import AnsibleContext
 import AnsibleTheme
 import Localization
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import AppAnalytics
 

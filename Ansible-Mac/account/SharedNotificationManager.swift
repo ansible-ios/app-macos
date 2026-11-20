@@ -3,7 +3,7 @@ import SwiftSignalKit
 import Postbox
 import TelegramCore
 import BuildConfig
-import TGUIKit
+import AnsibleUIKit
 import ObjcUtils
 import InAppSettings
 import PasscodeCore

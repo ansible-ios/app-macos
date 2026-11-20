@@ -12,14 +12,14 @@ The shared `optionalItem(at:)` lookup rejects negative indexes before touching t
 python3 tools/perflab/VisibleEnumerationLab/prepare-isolated.py /tmp/VisibleEnumerationValidation
 swift test --package-path /tmp/VisibleEnumerationValidation --scratch-path /tmp/VisibleEnumerationValidation-build -c release
 ASAN_OPTIONS=detect_leaks=0 swift test --package-path /tmp/VisibleEnumerationValidation --scratch-path /tmp/VisibleEnumerationValidation-asan --sanitize address
-swift test --package-path /tmp/VisibleEnumerationValidation/TGUIKit --scratch-path /tmp/VisibleEnumerationValidation-kit -c release
+swift test --package-path /tmp/VisibleEnumerationValidation/AnsibleUIKit --scratch-path /tmp/VisibleEnumerationValidation-kit -c release
 ENUMERATION_BENCHMARK=1 ENUMERATION_FINAL=1 swift test --package-path /tmp/VisibleEnumerationValidation --scratch-path /tmp/VisibleEnumerationValidation-build -c release --skip-build --filter EnumerationBenchmarkTests
 cp /tmp/visible-enumeration-benchmark.json /tmp/enumeration-forward.json
 ENUMERATION_BENCHMARK=1 ENUMERATION_FINAL=1 ENUMERATION_REVERSE=1 swift test --package-path /tmp/VisibleEnumerationValidation --scratch-path /tmp/VisibleEnumerationValidation-build -c release --skip-build --filter EnumerationBenchmarkTests
 cp /tmp/visible-enumeration-benchmark.json /tmp/enumeration-reverse.json
 ```
 
-Use fresh output directories and run timing without competing builds. `ENUMERATION_BASELINE_CRASH=1` enables the deliberately crashing original regression test; leave it unset for ordinary validation. The generator requires the captured original or exact final TableView source and freezes two complete TGUIKit modules. Their production difference is limited to the two methods. Test-only inspection and rejected candidate extensions expose buffer identity and support comparisons; they are not included in the app. The reference preserves unrelated pending scroll-completion edits present when captured.
+Use fresh output directories and run timing without competing builds. `ENUMERATION_BASELINE_CRASH=1` enables the deliberately crashing original regression test; leave it unset for ordinary validation. The generator requires the captured original or exact final TableView source and freezes two complete AnsibleUIKit modules. Their production difference is limited to the two methods. Test-only inspection and rejected candidate extensions expose buffer identity and support comparisons; they are not included in the app. The reference preserves unrelated pending scroll-completion edits present when captured.
 
 ## Measured results and costs
 
@@ -35,9 +35,9 @@ This change is a correctness fix plus a small shared lookup optimization. It doe
 
 Seven focused tests pass in release and Address Sanitizer, with leak detection disabled. There are 288 native viewport/inset/direction/early-exit scenarios for the production candidate against the original, and 864 additional trace comparisons for experimental snapshot alternatives. The native scenarios cover flipped and nonflipped tables, content insets, fractional scroll positions and expanded or reduced viewport ranges.
 
-Additional focused cases cover clearing, live replacement, removal outside the viewport, tail shrink/regrow, invalid lookup indexes, and stale ranges. One focused test documents the intentionally different snapshot semantics of rejected alternatives. Six tests added to the production TGUIKit target cover real native-window clearing in both directions, later replacement visibility, stale/overflowing ranges with early exit, shrink/regrow, lookup identity after replacement/removal, and nested enumeration after clearing.
+Additional focused cases cover clearing, live replacement, removal outside the viewport, tail shrink/regrow, invalid lookup indexes, and stale ranges. One focused test documents the intentionally different snapshot semantics of rejected alternatives. Six tests added to the production AnsibleUIKit target cover real native-window clearing in both directions, later replacement visibility, stale/overflowing ranges with early exit, shrink/regrow, lookup identity after replacement/removal, and nested enumeration after clearing.
 
-The complete frozen TGUIKit suite passes 413 functional tests with 18 optional measurements skipped. All 668 recorded compiler inputs remain unchanged after validation. The tested source, measured source and worktree implementation match; the lab appends test-only extensions. Complete logs, input hashes, final source snapshot, baseline crash evidence and raw timing batches are retained in `results`.
+The complete frozen AnsibleUIKit suite passes 413 functional tests with 18 optional measurements skipped. All 668 recorded compiler inputs remain unchanged after validation. The tested source, measured source and worktree implementation match; the lab appends test-only extensions. Complete logs, input hashes, final source snapshot, baseline crash evidence and raw timing batches are retained in `results`.
 
 ## Rejected experiments
 

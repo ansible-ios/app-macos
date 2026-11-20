@@ -1,6 +1,6 @@
 import XCTest
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatListUI
 
 private final class SpacerItem: TableRowItem {

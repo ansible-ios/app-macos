@@ -1,12 +1,12 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 @testable import FoldingViewHarness
 @testable import ChatLayerEngine
 
 final class LayerCaptionTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
     let fixtures = CaptionReuseTests()
 
     func nativeCaption(_ id: Int, text: String? = nil, context: BlockContext) -> FoldingViewHarness.ChatRowItem.RowCaption {

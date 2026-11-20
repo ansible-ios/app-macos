@@ -1,6 +1,6 @@
 import Foundation
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 private func qrStudioMeshWeights(_ t: Double) -> (Double, Double, Double) {
     var u = min(max(t, 0.0), 1.0) * 2.0

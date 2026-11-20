@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import Playback
 
 final class PlaybackTests: XCTestCase {

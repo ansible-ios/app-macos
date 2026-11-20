@@ -2,7 +2,7 @@ import Foundation
 import Cocoa
 import QuartzCore
 import CoreImage
-import TGUIKit
+import AnsibleUIKit
 
 struct QrStudioToast {
     struct Action {

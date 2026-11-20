@@ -1,7 +1,7 @@
 import XCTest
 import TelegramCore
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 @testable import AppAnalytics
 
 private final class ModalPrivacyContent: ViewController {

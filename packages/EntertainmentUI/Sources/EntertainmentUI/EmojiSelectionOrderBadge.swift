@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 let emojiSelectionOrderBadgeSide: CGFloat = 13
 let emojiSelectionOrderCircleSide: CGFloat = 30

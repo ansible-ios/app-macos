@@ -1,7 +1,7 @@
 import Foundation
 import AppAnalytics
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import InputView
 import ColorPalette
 import SwiftSignalKit

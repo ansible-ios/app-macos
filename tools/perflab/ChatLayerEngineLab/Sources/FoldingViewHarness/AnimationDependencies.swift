@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 enum ReferenceIcon { case iconQuote, iconCopyCode }
 struct AnsibleThemeHooks {

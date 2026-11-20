@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import ChatLayerEngine
 
 final class QuotePreparationScanTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func testGeneralPresentationPreservesLastQuoteTypeAcrossMixedAttributes() {
         let values: [Any] = [TextViewBlockQuoteData(id: 1, colors: .init(main: .blue)), NSNull(), TextViewBlockQuoteData(id: 2, colors: .init(main: .red), collapsable: true)]

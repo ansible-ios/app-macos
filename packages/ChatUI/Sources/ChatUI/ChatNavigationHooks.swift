@@ -4,7 +4,7 @@ import Cocoa
 import ColorPalette
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import AnsibleContext
 import AnsibleCallsCore

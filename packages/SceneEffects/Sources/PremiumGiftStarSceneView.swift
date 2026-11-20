@@ -1,7 +1,7 @@
 import Foundation
 
 
-import TGUIKit
+import AnsibleUIKit
 import SceneKit
 import SwiftSignalKit
 

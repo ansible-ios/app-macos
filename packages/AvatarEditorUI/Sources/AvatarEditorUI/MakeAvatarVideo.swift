@@ -3,7 +3,7 @@ import Cocoa
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 
 public func makeAvatarVideo(_ object: MediaObjectToAvatar, updatePhoto: @escaping(Signal<NSImage, NoError>) -> Void, updateVideo: @escaping(Signal<VideoAvatarGeneratorState, NoError>) -> Void) {
     

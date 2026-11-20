@@ -47,12 +47,12 @@ def freeze_package(source):
     (target / 'Package.swift').write_text(rewritten)
     return target
 
-kit = freeze_package(root / 'packages/TGUIKit')
+kit = freeze_package(root / 'packages/AnsibleUIKit')
 helper = root / 'packages/ChatUI/Sources/ChatUI/ChatLayerInlineEmoji.swift'
 capture(helper, output / 'Sources/InlineEmojiHelper/ChatLayerInlineEmoji.swift')
 manifest = output / 'Package.swift'
 assert digest(manifest) == digest(lab / 'Package.swift'), 'Lab manifest changed during snapshot'
-manifest.write_text(manifest.read_text().replace('../../../packages/TGUIKit', str(kit)))
+manifest.write_text(manifest.read_text().replace('../../../packages/AnsibleUIKit', str(kit)))
 for source, expected in source_hashes.items():
     assert digest(root / source) == expected, 'Source changed during snapshot: ' + source
 for source in lab.rglob('*'):
@@ -63,5 +63,5 @@ for source in lab.rglob('*'):
 for source, expected in source_hashes.items():
     assert digest(root / source) == expected, 'Source changed during snapshot: ' + source
 frozen_hashes = {str(path.relative_to(output)): digest(path) for path in output.rglob('*') if path.is_file()}
-(output / 'provenance.json').write_text(json.dumps({'production_helper_sha256': digest(helper), 'source_sha256': source_hashes, 'frozen_sha256': frozen_hashes, 'scope': 'Exact helper plus real TGUIKit and local dependency sources; account/media stand-ins; no real decoding or fetching.'}, indent=2, sort_keys=True) + '\n')
+(output / 'provenance.json').write_text(json.dumps({'production_helper_sha256': digest(helper), 'source_sha256': source_hashes, 'frozen_sha256': frozen_hashes, 'scope': 'Exact helper plus real AnsibleUIKit and local dependency sources; account/media stand-ins; no real decoding or fetching.'}, indent=2, sort_keys=True) + '\n')
 print(output)

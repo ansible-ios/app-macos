@@ -1,6 +1,6 @@
 import Cocoa
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 
 public func copyToClipboard(_ input: ChatTextInputState) -> Void {
     let pb = NSPasteboard.general

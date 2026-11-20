@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import FoldingBlocksHarness
 
 final class InlineEmojiColorReuseTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     private func layout(quoted: Bool, tint: NSColor?, textColor: NSColor = .black, fileId: Int64 = 101, fontSize: CGFloat = 16) -> FoldingTextLayout.ViewLayout {
         let value = NSMutableAttributedString(string: "🦆 hello مرحبا", attributes: [.font: NSFont.systemFont(ofSize: fontSize), .foregroundColor: textColor])

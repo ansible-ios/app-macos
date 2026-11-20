@@ -1,6 +1,6 @@
 import Foundation
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import InAppSettings
 import GeneralRows
 import Localization

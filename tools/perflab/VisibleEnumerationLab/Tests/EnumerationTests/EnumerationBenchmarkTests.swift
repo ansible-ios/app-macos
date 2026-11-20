@@ -1,10 +1,10 @@
 import AppKit
 import XCTest
 import QuartzCore
-import class TGUIKit.TableView
-import class TGUIKitBaseline.TableView
-import class TGUIKit.TableRowItem
-import class TGUIKitBaseline.TableRowItem
+import class AnsibleUIKit.TableView
+import class AnsibleUIKitBaseline.TableView
+import class AnsibleUIKit.TableRowItem
+import class AnsibleUIKitBaseline.TableRowItem
 
 final class EnumerationBenchmarkTests: XCTestCase {
     func testCosts() throws {
@@ -35,13 +35,13 @@ final class EnumerationBenchmarkTests: XCTestCase {
             let height = CGFloat(visibleCount * 60)
             let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 640, height: height), styleMask: .borderless, backing: .buffered, defer: false)
             window.isReleasedWhenClosed = false
-            let a = TGUIKitBaseline.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: height))
-            let b = TGUIKit.TableView(frame: NSRect(x: 320, y: 0, width: 320, height: height))
+            let a = AnsibleUIKitBaseline.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: height))
+            let b = AnsibleUIKit.TableView(frame: NSRect(x: 320, y: 0, width: 320, height: height))
             window.contentView!.addSubview(a); window.contentView!.addSubview(b)
             a.beginTableUpdates(); b.beginTableUpdates()
             for id in 0..<1000 {
-                _ = a.addItem(item: TGUIKitBaseline.TableRowItem(.zero, stableId: id))
-                _ = b.addItem(item: TGUIKit.TableRowItem(.zero, stableId: id))
+                _ = a.addItem(item: AnsibleUIKitBaseline.TableRowItem(.zero, stableId: id))
+                _ = b.addItem(item: AnsibleUIKit.TableRowItem(.zero, stableId: id))
             }
             a.endTableUpdates(); b.endTableUpdates()
             window.contentView!.layoutSubtreeIfNeeded()
@@ -71,13 +71,13 @@ final class EnumerationBenchmarkTests: XCTestCase {
         for rows in [100, 10000] {
             let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 640, height: 600), styleMask: .borderless, backing: .buffered, defer: false)
             window.isReleasedWhenClosed = false
-            let a = TGUIKitBaseline.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 600))
-            let b = TGUIKit.TableView(frame: NSRect(x: 320, y: 0, width: 320, height: 600))
+            let a = AnsibleUIKitBaseline.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 600))
+            let b = AnsibleUIKit.TableView(frame: NSRect(x: 320, y: 0, width: 320, height: 600))
             window.contentView!.addSubview(a); window.contentView!.addSubview(b)
             a.beginTableUpdates(); b.beginTableUpdates()
             for id in 0..<rows {
-                _ = a.addItem(item: TGUIKitBaseline.TableRowItem(.zero, stableId: id))
-                _ = b.addItem(item: TGUIKit.TableRowItem(.zero, stableId: id))
+                _ = a.addItem(item: AnsibleUIKitBaseline.TableRowItem(.zero, stableId: id))
+                _ = b.addItem(item: AnsibleUIKit.TableRowItem(.zero, stableId: id))
             }
             a.endTableUpdates(); b.endTableUpdates()
             window.contentView!.layoutSubtreeIfNeeded()
@@ -106,10 +106,10 @@ final class EnumerationBenchmarkTests: XCTestCase {
             measure("mutation_outside_viewport_\(rows)", count: 20000, operations: operations)
             window.close()
         }
-        let oldLookup = TGUIKitBaseline.TableView(frame: .zero), newLookup = TGUIKit.TableView(frame: .zero)
+        let oldLookup = AnsibleUIKitBaseline.TableView(frame: .zero), newLookup = AnsibleUIKit.TableView(frame: .zero)
         for id in 0..<1000 {
-            _ = oldLookup.addItem(item: TGUIKitBaseline.TableRowItem(.zero, stableId: id), redraw: false)
-            _ = newLookup.addItem(item: TGUIKit.TableRowItem(.zero, stableId: id), redraw: false)
+            _ = oldLookup.addItem(item: AnsibleUIKitBaseline.TableRowItem(.zero, stableId: id), redraw: false)
+            _ = newLookup.addItem(item: AnsibleUIKit.TableRowItem(.zero, stableId: id), redraw: false)
         }
         for index in [-1, 0, 500, 999, 1000, Int.max] {
             measure("lookup_\(index)", count: 1000000, operations: [

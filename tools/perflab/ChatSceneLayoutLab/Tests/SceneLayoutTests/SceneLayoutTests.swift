@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 @testable import LayoutBaseline
 
@@ -33,7 +33,7 @@ final class SceneLayoutTests: XCTestCase {
         let b: [ChatLayerEngine.ChatLayerNode]
     }
 
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func pair(_ count: Int = 8, counting: Bool = true) throws -> Pair {
         let frame = CGRect(x: 0, y: 0, width: 500, height: 300)

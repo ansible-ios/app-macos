@@ -1,13 +1,13 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 @testable import FoldingViewHarness
 @testable import ChatLayerEngine
 
 final class LiveLinkedTextTests: XCTestCase {
     let factory = ChatTextReuseTests()
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func testPlainLinkedAndQuotedTransitionsReuseOrReplaceTheCorrectRenderer() throws {
         let context = BlockContext(), row = LayerChatTextRow(frame: .zero)

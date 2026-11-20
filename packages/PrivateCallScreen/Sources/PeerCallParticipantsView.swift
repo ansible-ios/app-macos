@@ -3,7 +3,7 @@ import Foundation
 import AppKit
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import Localization
 
 internal final class PeerCallParticipantsView : View {

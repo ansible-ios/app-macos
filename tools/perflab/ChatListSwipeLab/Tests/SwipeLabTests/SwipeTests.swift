@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import SwipeLab
 
 final class SwipeTests: XCTestCase {
     override func setUp() {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
     }
 
     func item(_ id: Int = 0) -> ChatListRowItem { ChatListRowItem(.zero, stableId: id) }

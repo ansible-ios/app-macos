@@ -10,16 +10,16 @@ lab = Path(__file__).resolve().parent
 root = lab.parents[2]
 output = Path(sys.argv[1]).resolve()
 assert output.is_relative_to(Path('/tmp').resolve()) or output.is_relative_to(Path('/private/tmp'))
-kit = root / 'packages/TGUIKit'
+kit = root / 'packages/AnsibleUIKit'
 for name in ['Sources', 'Tests']:
-    destination = output / 'TGUIKit' / name
+    destination = output / 'AnsibleUIKit' / name
     if destination.exists():
         shutil.rmtree(destination)
     shutil.copytree(kit / name, destination)
 manifest = (kit / 'Package.swift').read_text()
 manifest = re.sub(r'(\.package\(name: "[^"]+", path: ")([^"]+)', lambda m: m[1] + str((kit / m[2]).resolve()), manifest)
-(output / 'TGUIKit/Package.swift').write_text(manifest)
-path = 'packages/TGUIKit/Sources/TextView.swift'
+(output / 'AnsibleUIKit/Package.swift').write_text(manifest)
+path = 'packages/AnsibleUIKit/Sources/TextView.swift'
 reference = subprocess.check_output(['git', 'show', 'bce10beff:' + path], cwd=root, text=True)
 a = reference.index('    public override func draw(_ layer: CALayer, in ctx: CGContext) {', reference.index('open class TextView:'))
 b = reference.index('    public override func rightMouseDown(', a)
@@ -32,7 +32,7 @@ public final class LegacyTextRenderer: TextView {
     public var inAnimation = false
     public var referenceBlockHeaderRects: [(NSRect, NSRange)] = []
 ''' + method + '}\n'
-target = output / 'TGUIKit/Sources/TextView.swift'
+target = output / 'AnsibleUIKit/Sources/TextView.swift'
 test_access = """
 extension TextView {
     public func labRecordSelectionDraw() { lastDrawnSelectionState = currentSelectionState }
@@ -61,11 +61,11 @@ for name in ['Sources', 'Tests']:
     if destination.exists():
         shutil.rmtree(destination)
     shutil.copytree(lab / name, destination)
-(output / 'TextViewLayerLab/Package.swift').write_text((lab / 'Package.swift').read_text().replace('../../../packages/TGUIKit', '../TGUIKit'))
+(output / 'TextViewLayerLab/Package.swift').write_text((lab / 'Package.swift').read_text().replace('../../../packages/AnsibleUIKit', '../AnsibleUIKit'))
 chat_path = 'packages/ChatUI/Sources/ChatUI/ChatRightView.swift'
 chat_reference = subprocess.check_output(['git', 'show', 'bce10beff:' + chat_path], cwd=root, text=True)
 chat_current = (root / chat_path).read_text()
-chat_output = 'import Cocoa\nimport TGUIKit\n'
+chat_output = 'import Cocoa\nimport AnsibleUIKit\n'
 for name, source in [('LegacyChatTextLayer', chat_reference), ('CurrentChatTextLayer', chat_current)]:
     block = source[source.index('final class ChatRightTextLayer:'):source.index('public class ChatRightView:')]
     chat_output += block.replace('ChatRightTextLayer', name)

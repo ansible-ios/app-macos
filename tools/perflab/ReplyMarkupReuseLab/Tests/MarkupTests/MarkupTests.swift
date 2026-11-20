@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 
 final class MarkupTests: XCTestCase {
     override func setUp() {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         GeneralRowsHooks.shared = GeneralRowsHooks()
         AnsibleUtilsHooks.shared = AnsibleUtilsHooks()
     }

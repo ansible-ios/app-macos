@@ -1,10 +1,10 @@
 import Cocoa
 import Darwin
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 
 final class BenchmarkTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
     private func model(_ index: Int) -> TopicReplyItemLayout {
         TopicReplyItemLayout("Topic \(index) with a longer title", width: 120 + CGFloat(index % 3) * 40, lines: index % 2 == 0 ? 1 : 3)
     }

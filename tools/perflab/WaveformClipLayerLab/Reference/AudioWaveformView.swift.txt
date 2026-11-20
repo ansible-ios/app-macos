@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 fileprivate final class AudioWaveformDrawingSamples {
     struct Prepared {

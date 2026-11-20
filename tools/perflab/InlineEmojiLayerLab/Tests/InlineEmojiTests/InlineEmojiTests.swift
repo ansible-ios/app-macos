@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import InputView
 import InlineStickerLayer

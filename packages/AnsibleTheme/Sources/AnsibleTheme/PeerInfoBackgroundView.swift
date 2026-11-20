@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public final class PeerInfoBackgroundView: View {
     private let backgroundGradientLayer: SimpleGradientLayer = SimpleGradientLayer()

@@ -1,6 +1,6 @@
 # Glyph-run drawing lab
 
-This AppKit mini-app builds the complete baseline and candidate TGUIKit renderers in separate temporary packages. The baseline is `8557150e7`; only `TextView.swift`, `TextNode.swift` and the new internal `TextRunDrawing.swift` differ. Source hashes are retained with the results. The working checkout is never switched.
+This AppKit mini-app builds the complete baseline and candidate AnsibleUIKit renderers in separate temporary packages. The baseline is `8557150e7`; only `TextView.swift`, `TextNode.swift` and the new internal `TextRunDrawing.swift` differ. Source hashes are retained with the results. The working checkout is never switched.
 
 The change keeps `CTRunDraw` and the existing run order, text positions and partial-glyph accounting. It traverses Core Text's own run array directly, removes an unused string-range query, and checks for a partial-glyph limit once per line. Explicit glyph counts are retained: although a zero-length range gives identical pixels, an in-process experiment found that it slows emoji and mixed-text rendering. An internal helper is inlined at its two production call sites so the optional position and glyph-limit arguments can be specialized. No retained cache or per-view/layout storage is added.
 
@@ -10,7 +10,7 @@ An initial `CTLineDraw` experiment was rejected: whole-line drawing changes unde
 
 ## Validation
 
-- TGUIKit regression tests cover the complete toolkit in debug and release, with focused Address Sanitizer checks; exact counts, log hashes and source hashes are recorded in `Evidence/validation.json`.
+- AnsibleUIKit regression tests cover the complete toolkit in debug and release, with focused Address Sanitizer checks; exact counts, log hashes and source hashes are recorded in `Evidence/validation.json`.
 - 756 byte-for-byte pixel/context comparisons cover seven text corpora, nine styles, 1×/2×/3× drawing, normal/flipped text matrices and both callers' position-reset behavior. They include Arabic/Hebrew, CJK, combining marks, ligatures, emoji, empty text, color/font changes, underline, strikethrough, kerning, baseline offsets, stroke and transparent glyphs.
 - Partial-glyph limits are checked from below zero to beyond the total glyph count across multiple runs and lines, including the returned count and resulting text position.
 - 1,000 temporary-line draws exercise Core Text object lifetimes.
@@ -55,11 +55,11 @@ For each variant, run its built executable with `--snapshots /tmp/text-run-resul
 
 ```sh
 python3 tools/perflab/TextRunDrawingLab/compare.py /tmp/text-run-results
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-debug
-TEXT_RUN_BENCHMARK=1 swift test -c release --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release
-swift test --sanitize address --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-asan --filter 'TextRunDrawingTests|TextHitTestingTests|TextViewUpdateRegressionTests|TextViewUpdateTests|TableScrollGeometryTests'
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-debug
+TEXT_RUN_BENCHMARK=1 swift test -c release --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release
+swift test --sanitize address --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-asan --filter 'TextRunDrawingTests|TextHitTestingTests|TextViewUpdateRegressionTests|TextViewUpdateTests|TableScrollGeometryTests'
 ```
 
-The opt-in test writes `/tmp/text-run-alternating.json`. Run benchmarks sequentially and separately from builds/tests. Theme image placeholders initialize TGUIKit; both variants receive the same images.
+The opt-in test writes `/tmp/text-run-alternating.json`. Run benchmarks sequentially and separately from builds/tests. Theme image placeholders initialize AnsibleUIKit; both variants receive the same images.
 
 The rejected zero-range alternative is reproducible with `Experiments/RunRangeChoices.swift`. Its three timing columns are the original NSArray loop, direct CFArray traversal with a zero-length range, and direct traversal with an explicit glyph count. `Evidence/range-choice-experiment.txt` records the measurements that led to retaining explicit counts.

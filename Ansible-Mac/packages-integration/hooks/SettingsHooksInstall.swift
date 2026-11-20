@@ -8,7 +8,7 @@ import SettingsUI
 import SelectColorUI
 import StarsUI
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import AnsibleLinks
 import ThemeSettings

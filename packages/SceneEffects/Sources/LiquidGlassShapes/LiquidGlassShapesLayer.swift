@@ -1,7 +1,7 @@
 import Foundation
 import Cocoa
 import Metal
-import TGUIKit
+import AnsibleUIKit
 import MetalEngine
 
 public protocol LiquidGlassShapesSource: AnyObject {

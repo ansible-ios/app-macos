@@ -1,6 +1,6 @@
 import XCTest
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit

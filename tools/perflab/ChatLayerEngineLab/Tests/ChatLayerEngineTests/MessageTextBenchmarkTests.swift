@@ -1,7 +1,7 @@
 import Cocoa
 import QuartzCore
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import ChatLayerEngine
 
@@ -30,7 +30,7 @@ private final class NativeMessageText {
 final class MessageTextBenchmarkTests: XCTestCase {
     func testPreparationAndBindingCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_MESSAGE_TEXT_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in message text cost breakdown") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let fixture = MessageTextTests()
         var results: [String: [Double]] = [:]
         var sink: CGFloat = 0
@@ -69,7 +69,7 @@ final class MessageTextBenchmarkTests: XCTestCase {
 
     func testConstructionAndBindingIncludingPresentationPreparation() throws {
         guard ProcessInfo.processInfo.environment["CHAT_MESSAGE_TEXT_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in message text benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let fixture = MessageTextTests()
         var results: [String: [[Double]]] = [:]
         var sink: CGFloat = 0

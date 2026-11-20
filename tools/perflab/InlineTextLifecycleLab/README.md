@@ -4,11 +4,11 @@
 
 The controls now create a renderer only when a measured layout has embedded items and a context, and create an observer only while that renderer is attached to a window. Clearing inline content stops playback, clears the renderer, and releases both helpers before frame changes can deliver an obsolete callback. Binding content refreshes playback immediately; InteractiveTextView refreshes again after centering its child during layout. Embedded avatars and other static items conservatively retain the renderer/observer path because the renderer protocol does not expose animation presence.
 
-A compile error was also found: InlineTextView overrides TextView.viewDidMoveToWindow outside TGUIKit, while the base override was public rather than open. The base method is now open. The harness imports TGUIKit normally in its generated control source, so compiling the complete subclass verifies that access boundary.
+A compile error was also found: InlineTextView overrides TextView.viewDidMoveToWindow outside AnsibleUIKit, while the base override was public rather than open. The base method is now open. The harness imports AnsibleUIKit normally in its generated control source, so compiling the complete subclass verifies that access boundary.
 
 ## Validation
 
-`prepare.py` copies both complete production control classes, changing only their names to compile reference and candidate together. The baseline is `343bbb304`. Both versions use real TGUIKit text rendering, AppKit windows/scroll views, and the actual selector-based observer. Account context and the renderer protocol are represented by fixtures that record factory calls, binding parameters, playback requests, cleanup, and release. No Lottie decoding or media fetching is tested.
+`prepare.py` copies both complete production control classes, changing only their names to compile reference and candidate together. The baseline is `343bbb304`. Both versions use real AnsibleUIKit text rendering, AppKit windows/scroll views, and the actual selector-based observer. Account context and the renderer protocol are represented by fixtures that record factory calls, binding parameters, playback requests, cleanup, and release. No Lottie decoding or media fetching is tested.
 
 The first compilation reproduced the non-open override error. After correcting the shared base declaration for both reference and candidate, six baseline lifecycle tests produced 26 assertion failures. An intermediate candidate exposed an own-frame notification during clear; cleanup was moved before text-frame changes.
 
@@ -54,6 +54,6 @@ swift test --package-path tools/perflab/InlineTextLifecycleLab --sanitize addres
 swift test --package-path tools/perflab/InlineTextLifecycleLab --sanitize thread
 ```
 
-Use separate scratch paths and sequential builds. Raw logs, timing batches, frozen generated classes, source delta, and source hashes are in `results/`. All changed source files are parsed separately. Full TGUIKit and chat-layer regression suites are run after the final source changes.
+Use separate scratch paths and sequential builds. Raw logs, timing batches, frozen generated classes, source delta, and source hashes are in `results/`. All changed source files are parsed separately. Full AnsibleUIKit and chat-layer regression suites are run after the final source changes.
 
-Validation passed: 515 functional release tests (10 inline-control, 371 TGUIKit, 134 chat-layer), plus all 10 inline-control tests under each of Address Sanitizer and Thread Sanitizer. All changed sources parsed successfully; benchmark-only tests were skipped in sanitizer runs.
+Validation passed: 515 functional release tests (10 inline-control, 371 AnsibleUIKit, 134 chat-layer), plus all 10 inline-control tests under each of Address Sanitizer and Thread Sanitizer. All changed sources parsed successfully; benchmark-only tests were skipped in sanitizer runs.

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import GraphCore
 private enum Constants {
     static let cropIndocatorLineWidth: CGFloat = 1

@@ -1,5 +1,5 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 
 final class SnapshotWindow: NSWindow {
     override var backingScaleFactor: CGFloat {

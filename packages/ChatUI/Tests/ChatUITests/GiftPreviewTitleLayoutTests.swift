@@ -1,6 +1,6 @@
 import XCTest
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatUI
 
 final class GiftPreviewTitleLayoutTests: XCTestCase {

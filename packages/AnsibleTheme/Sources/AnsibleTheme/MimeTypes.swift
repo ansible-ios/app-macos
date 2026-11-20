@@ -1,6 +1,6 @@
 import Cocoa
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import GZIP
 
 public enum AnsibleStickerFormat {
@@ -31,7 +31,7 @@ public enum AnsibleStickerFormat {
     }
 
     public static func dimensions(in data: Data) -> (width: Int32, height: Int32)? {
-        guard data.count <= byteLimit, let json = TGGUnzipData(data, UInt32(byteLimit)), json.count <= byteLimit,
+        guard data.count <= byteLimit, let json = AnsibleGUnzipData(data, UInt32(byteLimit)), json.count <= byteLimit,
               let object = (try? JSONSerialization.jsonObject(with: json)) as? [String: Any],
               object["layers"] is [Any], let width = object["w"] as? Int32, let height = object["h"] as? Int32,
               width > 0, height > 0 else { return nil }

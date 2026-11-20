@@ -1,6 +1,6 @@
-@testable import func TGUIKit.decodeFallbackForLab
-@testable import func TGUIKit.decodeStickerThumbnailData
-@testable import func TGUIKitBaseline.decodeStickerThumbnailData
+@testable import func AnsibleUIKit.decodeFallbackForLab
+@testable import func AnsibleUIKit.decodeStickerThumbnailData
+@testable import func AnsibleUIKitBaseline.decodeStickerThumbnailData
 import Foundation
 import QuartzCore
 import XCTest
@@ -20,7 +20,7 @@ final class DecodeBenchmarkTests: XCTestCase {
                     autoreleasepool {
                         let start = CACurrentMediaTime()
                         for _ in 0..<1000 {
-                            let result = variant == 0 ? TGUIKitBaseline.decodeStickerThumbnailData(input) : variant == 1 ? TGUIKit.decodeStickerThumbnailData(input) : TGUIKit.decodeFallbackForLab(input)
+                            let result = variant == 0 ? AnsibleUIKitBaseline.decodeStickerThumbnailData(input) : variant == 1 ? AnsibleUIKit.decodeStickerThumbnailData(input) : AnsibleUIKit.decodeFallbackForLab(input)
                             sink += result.utf8.count
                         }
                         batches[variant].append((CACurrentMediaTime() - start) * 1e6 / 1000)

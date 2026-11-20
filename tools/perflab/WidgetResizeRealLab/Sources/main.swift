@@ -1,5 +1,5 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 import TwidgetRenderer
 import WidgetSandbox
 

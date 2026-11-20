@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import enum TGUIKit.ContainedViewLayoutTransition
-import enum TGUIKitBaseline.ContainedViewLayoutTransition
-import class TGUIKit.View
-import class TGUIKitBaseline.View
-import class TGUIKit.VisualEffect
-import class TGUIKitBaseline.VisualEffect
+import enum AnsibleUIKit.ContainedViewLayoutTransition
+import enum AnsibleUIKitBaseline.ContainedViewLayoutTransition
+import class AnsibleUIKit.View
+import class AnsibleUIKitBaseline.View
+import class AnsibleUIKit.VisualEffect
+import class AnsibleUIKitBaseline.VisualEffect
 
 final class FrameLayer: CALayer {
     var lookups = 0
@@ -81,8 +81,8 @@ final class FrameTests: XCTestCase {
     func testMatchingImmediateFrameAvoidsAnimationLookupsAndWrites() {
         let old = view(), new = view()
         var a = [Bool](), b = [Bool]()
-        TGUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: initial) { a.append($0) }
-        TGUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: initial) { b.append($0) }
+        AnsibleUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: initial) { a.append($0) }
+        AnsibleUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: initial) { b.append($0) }
         XCTAssertEqual((old.layer as! FrameLayer).lookups, 2)
         XCTAssertEqual((new.layer as! FrameLayer).lookups, 0)
         XCTAssertEqual(a, [true]); XCTAssertEqual(a, b)
@@ -95,8 +95,8 @@ final class FrameTests: XCTestCase {
             let old = view(layered: layered), new = view(layered: layered)
             for frame in [initial, CGRect(x: 5.5, y: -3.25, width: 20, height: 30), .zero, initial, initial] {
                 var a = [Bool](), b = [Bool]()
-                TGUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: frame) { a.append($0) }
-                TGUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: frame) { b.append($0) }
+                AnsibleUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: frame) { a.append($0) }
+                AnsibleUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: frame) { b.append($0) }
                 XCTAssertEqual(a, [true]); XCTAssertEqual(a, b)
                 equal(old, new)
             }
@@ -112,8 +112,8 @@ final class FrameTests: XCTestCase {
                     XCTAssertEqual(endpoint, addAnimations(new, position: position, bounds: bounds))
                     let frame = target == 0 ? initial : target == 1 ? endpoint : CGRect(x: 90, y: 70, width: 130, height: 80)
                     var a = [Bool](), b = [Bool]()
-                    TGUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: frame) { a.append($0) }
-                    TGUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: frame) { b.append($0) }
+                    AnsibleUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: frame) { a.append($0) }
+                    AnsibleUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: frame) { b.append($0) }
                     XCTAssertEqual(a, [true]); XCTAssertEqual(a, b)
                     equal(old, new)
                 }
@@ -129,8 +129,8 @@ final class FrameTests: XCTestCase {
                 _ = addAnimations(new, position: pending, bounds: pending)
                 let frame = target == 0 ? initial : target == 1 ? endpoint : CGRect(x: 30, y: 20, width: 100, height: 90)
                 var a = [Bool](), b = [Bool]()
-                TGUIKitBaseline.ContainedViewLayoutTransition.animated(duration: 0.2, curve: .easeOut).updateFrame(view: old, frame: frame) { a.append($0) }
-                TGUIKit.ContainedViewLayoutTransition.animated(duration: 0.2, curve: .easeOut).updateFrame(view: new, frame: frame) { b.append($0) }
+                AnsibleUIKitBaseline.ContainedViewLayoutTransition.animated(duration: 0.2, curve: .easeOut).updateFrame(view: old, frame: frame) { a.append($0) }
+                AnsibleUIKit.ContainedViewLayoutTransition.animated(duration: 0.2, curve: .easeOut).updateFrame(view: new, frame: frame) { b.append($0) }
                 equal(old, new)
                 old.layer?.removeAllAnimations(); new.layer?.removeAllAnimations()
                 CATransaction.flush()
@@ -150,8 +150,8 @@ final class FrameTests: XCTestCase {
                 view.bounds.origin = CGPoint(x: 5, y: 7)
             }
             let target = old.frame
-            TGUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: target)
-            TGUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: target)
+            AnsibleUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: target)
+            AnsibleUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: target)
             equal(old, new)
             XCTAssertTrue(CATransform3DEqualToTransform(old.layer!.transform, new.layer!.transform))
         }
@@ -166,19 +166,19 @@ final class FrameTests: XCTestCase {
         window.contentView!.layoutSubtreeIfNeeded()
         let target = CGRect(x: 25, y: 30, width: 80, height: 60)
         var a = [Bool](), b = [Bool]()
-        TGUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: initial) {
+        AnsibleUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: initial) {
             a.append($0)
-            TGUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: target) { a.append($0) }
+            AnsibleUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: target) { a.append($0) }
         }
-        TGUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: initial) {
+        AnsibleUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: initial) {
             b.append($0)
-            TGUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: target) { b.append($0) }
+            AnsibleUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: target) { b.append($0) }
         }
         XCTAssertEqual(a, [true, true]); XCTAssertEqual(a, b)
         equal(old, new)
     }
     func testRealToolkitViewResizeCallbacksAndCompletionOrderMatch() {
-        let old = TGUIKitBaseline.View(frame: initial), new = TGUIKit.View(frame: initial)
+        let old = AnsibleUIKitBaseline.View(frame: initial), new = AnsibleUIKit.View(frame: initial)
         var a = [String](), b = [String]()
         old.customHandler.size = { a.append("size \($0)") }
         old.customHandler.origin = { a.append("origin \($0)") }
@@ -186,8 +186,8 @@ final class FrameTests: XCTestCase {
         new.customHandler.origin = { b.append("origin \($0)") }
         for target in [initial, CGRect(x: 4, y: 5, width: 100, height: 80), initial] {
             a.removeAll(); b.removeAll()
-            TGUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: target) { a.append("complete \($0)") }
-            TGUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: target) { b.append("complete \($0)") }
+            AnsibleUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: target) { a.append("complete \($0)") }
+            AnsibleUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: target) { b.append("complete \($0)") }
             XCTAssertEqual(a, b)
             XCTAssertEqual(a.last, "complete true")
             XCTAssertEqual(old.frame, new.frame)
@@ -195,13 +195,13 @@ final class FrameTests: XCTestCase {
     }
 
     func testVisualEffectImmediateAndAnimatedNoOpMatch() {
-        let old = TGUIKitBaseline.VisualEffect(frame: initial), new = TGUIKit.VisualEffect(frame: initial)
+        let old = AnsibleUIKitBaseline.VisualEffect(frame: initial), new = AnsibleUIKit.VisualEffect(frame: initial)
         for target in [initial, CGRect(x: 30, y: 40, width: 90, height: 70), initial] {
             var a = [Bool](), b = [Bool]()
-            TGUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: target) { a.append($0) }
-            TGUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: target) { b.append($0) }
-            TGUIKitBaseline.ContainedViewLayoutTransition.animated(duration: 0.2, curve: .easeOut).updateFrame(view: old, frame: target) { a.append($0) }
-            TGUIKit.ContainedViewLayoutTransition.animated(duration: 0.2, curve: .easeOut).updateFrame(view: new, frame: target) { b.append($0) }
+            AnsibleUIKitBaseline.ContainedViewLayoutTransition.immediate.updateFrame(view: old, frame: target) { a.append($0) }
+            AnsibleUIKit.ContainedViewLayoutTransition.immediate.updateFrame(view: new, frame: target) { b.append($0) }
+            AnsibleUIKitBaseline.ContainedViewLayoutTransition.animated(duration: 0.2, curve: .easeOut).updateFrame(view: old, frame: target) { a.append($0) }
+            AnsibleUIKit.ContainedViewLayoutTransition.animated(duration: 0.2, curve: .easeOut).updateFrame(view: new, frame: target) { b.append($0) }
             XCTAssertEqual(a, [true, true]); XCTAssertEqual(a, b)
             XCTAssertEqual(old.frame, new.frame)
         }

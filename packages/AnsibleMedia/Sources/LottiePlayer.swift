@@ -1,7 +1,7 @@
 import Cocoa
 import SwiftSignalKit
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import Metal
 import TelegramCore
 import GZIP
@@ -1728,7 +1728,7 @@ public final class LottieAnimation : Equatable {
     
     
     fileprivate func makeBridge() -> LottieRendererBridge? {
-        let data: Data = TGGUnzipData(self.compressed, 8 * 1024 * 1024) ?? self.compressed
+        let data: Data = AnsibleGUnzipData(self.compressed, 8 * 1024 * 1024) ?? self.compressed
         if !data.isEmpty {
             let modified: Data
             if let color = self.colors.first(where: { $0.keyPath == "" }) {
@@ -1771,7 +1771,7 @@ public final class LottieAnimation : Equatable {
                 }
             }
         case .webp:
-            let decompressed = TGGUnzipData(self.compressed, 8 * 1024 * 1024)
+            let decompressed = AnsibleGUnzipData(self.compressed, 8 * 1024 * 1024)
             let data: Data?
             if let decompressed = decompressed {
                 data = decompressed

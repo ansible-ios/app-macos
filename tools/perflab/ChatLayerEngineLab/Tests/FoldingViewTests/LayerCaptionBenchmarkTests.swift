@@ -1,14 +1,14 @@
 import Cocoa
 import XCTest
 import QuartzCore
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 @testable import FoldingViewHarness
 
 final class LayerCaptionBenchmarkTests: XCTestCase {
     func testBindingCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_CAPTION_LAYER_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in caption binding benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let context = BlockContext(), fixtures = CaptionReuseTests()
         var results: [String: [[Double]]] = [:], counts: [String: [Int]] = [:], sink = 0
         for count in [1, 3, 10] {
@@ -48,7 +48,7 @@ final class LayerCaptionBenchmarkTests: XCTestCase {
 
     func testRetainedMemory() throws {
         guard let mode = ProcessInfo.processInfo.environment["CHAT_CAPTION_LAYER_MEMORY"], ["native", "layers"].contains(mode) else { throw XCTSkip("Opt-in fresh-process caption memory probe") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let context = BlockContext(), fixtures = CaptionReuseTests(), count = 3000
         let items = autoreleasepool { (0..<count).map { ChatRowItem([fixtures.caption($0, context: context)]) } }
         autoreleasepool {

@@ -1,6 +1,6 @@
 import XCTest
 import AppKit
-@testable import TGUIKit
+@testable import AnsibleUIKit
 
 private final class HoverTestControl: Control {
     var pointerInside = true
@@ -13,7 +13,7 @@ private final class HoverTestControl: Control {
 final class ControlHoverTests: XCTestCase {
     override func setUp() {
         super.setUp()
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
     }
 
     private func event(_ type: NSEvent.EventType = .mouseMoved) -> NSEvent {

@@ -5,7 +5,7 @@ import SceneEffects
 import SwiftSignalKit
 import AnsibleContext
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 
 private final class PremiumStoreOperation {
     private static let registryLock = NSLock()

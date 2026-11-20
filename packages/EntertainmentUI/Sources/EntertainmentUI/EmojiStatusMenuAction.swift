@@ -2,7 +2,7 @@ import Foundation
 import SwiftSignalKit
 import AnsibleContext
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import Localization
 
 final class EmojiStatusMenuAction {

@@ -3,7 +3,7 @@
 import PackageDescription
 
 let common: [Target.Dependency] = [
-    .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+    .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
     .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
     .product(name: "TelegramCore", package: "TelegramCore", condition: nil),
     .product(name: "Postbox", package: "Postbox", condition: nil),
@@ -22,7 +22,7 @@ let package = Package(
         .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
         .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
         .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "ColorPalette", path: "../ColorPalette"),
         .package(name: "Localization", path: "../Localization"),
         .package(name: "AnsibleTheme", path: "../AnsibleTheme"),
@@ -60,7 +60,7 @@ let package = Package(
                 "ShortPeerRow",
                 .product(name: "TelegramCore", package: "TelegramCore", condition: nil),
                 .product(name: "Postbox", package: "Postbox", condition: nil),
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "AnsibleTheme", package: "AnsibleTheme", condition: nil),
                 .product(name: "GeneralRows", package: "GeneralRows", condition: nil),
                 .product(name: "ColorPalette", package: "ColorPalette", condition: nil),

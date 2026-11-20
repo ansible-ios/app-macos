@@ -10,4 +10,4 @@ for name, info in meta.items():
     for before, after in info['replacements']:
         assert candidate.count(before) == 1
         candidate = candidate.replace(before, after)
-    assert (root / 'packages/TGUIKit/Sources' / name).read_text() == candidate
+    assert (root / 'packages/AnsibleUIKit/Sources' / name).read_text() == candidate

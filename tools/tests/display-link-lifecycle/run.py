@@ -5,7 +5,7 @@ import tempfile
 
 root = Path(__file__).resolve().parents[3]
 parser = argparse.ArgumentParser()
-parser.add_argument('--source', type=Path, default=root / 'packages/TGUIKit/Sources/DisplayLinkAnimator.swift')
+parser.add_argument('--source', type=Path, default=root / 'packages/AnsibleUIKit/Sources/DisplayLinkAnimator.swift')
 parser.add_argument('--evidence', type=Path, required=True)
 args = parser.parse_args()
 source = args.source.read_text()

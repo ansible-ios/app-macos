@@ -1,12 +1,12 @@
 import AppKit
 import XCTest
-@testable import class TGUIKit.TableView
-@testable import class TGUIKit.TGFlipableTableView
-import class TGUIKit.TableRowItem
-import class TGUIKitBaseline.TableView
-import class TGUIKitBaseline.TableRowItem
+@testable import class AnsibleUIKit.TableView
+@testable import class AnsibleUIKit.AnsibleFlipableTableView
+import class AnsibleUIKit.TableRowItem
+import class AnsibleUIKitBaseline.TableView
+import class AnsibleUIKitBaseline.TableRowItem
 
-private final class RangeTable: TGFlipableTableView {
+private final class RangeTable: AnsibleFlipableTableView {
     var forcedRange: NSRange?
     override func rows(in rect: NSRect) -> NSRange {
         if let forcedRange {
@@ -27,9 +27,9 @@ final class EnumerationTests: XCTestCase {
         guard ProcessInfo.processInfo.environment["ENUMERATION_BASELINE_CRASH"] == "1" else { throw XCTSkip("Isolated original crash reproduction") }
         let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 320, height: 400), styleMask: .borderless, backing: .buffered, defer: false)
         window.isReleasedWhenClosed = false
-        let table = TGUIKitBaseline.TableView(frame: window.contentView!.bounds)
+        let table = AnsibleUIKitBaseline.TableView(frame: window.contentView!.bounds)
         window.contentView!.addSubview(table)
-        for id in 0..<4 { _ = table.addItem(item: TGUIKitBaseline.TableRowItem(.zero, stableId: id)) }
+        for id in 0..<4 { _ = table.addItem(item: AnsibleUIKitBaseline.TableRowItem(.zero, stableId: id)) }
         table.layoutSubtreeIfNeeded()
         XCTAssertGreaterThan(table.visibleRows().length, 1)
         table.enumerateVisibleItems { _ in table.removeAll(); return true }
@@ -40,12 +40,12 @@ final class EnumerationTests: XCTestCase {
         for flipped in [false, true] {
             let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 640, height: 240), styleMask: .borderless, backing: .buffered, defer: false)
             window.isReleasedWhenClosed = false
-            let a = TGUIKitBaseline.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240), isFlipped: flipped)
-            let b = TGUIKit.TableView(frame: NSRect(x: 320, y: 0, width: 320, height: 240), isFlipped: flipped)
+            let a = AnsibleUIKitBaseline.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240), isFlipped: flipped)
+            let b = AnsibleUIKit.TableView(frame: NSRect(x: 320, y: 0, width: 320, height: 240), isFlipped: flipped)
             window.contentView!.addSubview(a); window.contentView!.addSubview(b)
             for id in 0..<60 {
-                _ = a.addItem(item: TGUIKitBaseline.TableRowItem(.zero, stableId: id))
-                _ = b.addItem(item: TGUIKit.TableRowItem(.zero, stableId: id))
+                _ = a.addItem(item: AnsibleUIKitBaseline.TableRowItem(.zero, stableId: id))
+                _ = b.addItem(item: AnsibleUIKit.TableRowItem(.zero, stableId: id))
             }
             window.contentView!.layoutSubtreeIfNeeded()
             for top in [CGFloat(0), 25] {
@@ -76,11 +76,11 @@ final class EnumerationTests: XCTestCase {
         for variant in 0..<4 {
             for reversed in [false, true] {
                 for mutation in 0..<4 {
-                    let table = TGUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240))
+                    let table = AnsibleUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240))
                     let spy = RangeTable(frame: table.bounds)
                     table.tableView = spy
                     table.updateAfterInitialize()
-                    for id in 0..<10 { _ = table.addItem(item: TGUIKit.TableRowItem(.zero, stableId: id)) }
+                    for id in 0..<10 { _ = table.addItem(item: AnsibleUIKit.TableRowItem(.zero, stableId: id)) }
                     spy.forcedRange = NSRange(location: 2, length: 4)
                     let enumerate = [table.enumerationLabSlice, table.enumerationLabCopied, table.enumerationLabTemporary, table.enumerationLabBulk][variant]
                     var seen: [Int] = []
@@ -90,10 +90,10 @@ final class EnumerationTests: XCTestCase {
                             switch mutation {
                             case 0: table.removeAll()
                             case 1: table.remove(at: 0)
-                            case 2: _ = table.insert(item: TGUIKit.TableRowItem(.zero, stableId: 100), at: 0)
+                            case 2: _ = table.insert(item: AnsibleUIKit.TableRowItem(.zero, stableId: 100), at: 0)
                             default:
                                 table.remove(at: 4)
-                                _ = table.insert(item: TGUIKit.TableRowItem(.zero, stableId: 100), at: 4)
+                                _ = table.insert(item: AnsibleUIKit.TableRowItem(.zero, stableId: 100), at: 4)
                             }
                         }
                         return true
@@ -107,11 +107,11 @@ final class EnumerationTests: XCTestCase {
     func testLiveReplacementAndClearingPreserveSafeIteration() {
         for reversed in [false, true] {
             for mutation in 0..<3 {
-                let table = TGUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240))
+                let table = AnsibleUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240))
                 let spy = RangeTable(frame: table.bounds)
                 table.tableView = spy
                 table.updateAfterInitialize()
-                for id in 0..<10 { _ = table.addItem(item: TGUIKit.TableRowItem(.zero, stableId: id)) }
+                for id in 0..<10 { _ = table.addItem(item: AnsibleUIKit.TableRowItem(.zero, stableId: id)) }
                 spy.forcedRange = NSRange(location: 2, length: 4)
                 var seen: [Int] = []
                 table.enumerateVisibleItems(reversed: reversed) { item in
@@ -120,7 +120,7 @@ final class EnumerationTests: XCTestCase {
                         if mutation == 0 { table.removeAll() }
                         else if mutation == 1 {
                             table.remove(at: 4)
-                            _ = table.insert(item: TGUIKit.TableRowItem(.zero, stableId: 100), at: 4)
+                            _ = table.insert(item: AnsibleUIKit.TableRowItem(.zero, stableId: 100), at: 4)
                         } else { table.remove(at: 9) }
                     }
                     return true
@@ -133,17 +133,17 @@ final class EnumerationTests: XCTestCase {
 
     func testShrinkingTailAndRegrowingWithinVisibleRange() {
         for regrow in [false, true] {
-            let table = TGUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240))
+            let table = AnsibleUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240))
             let spy = RangeTable(frame: table.bounds)
             table.tableView = spy
             table.updateAfterInitialize()
-            for id in 0..<4 { _ = table.addItem(item: TGUIKit.TableRowItem(.zero, stableId: id)) }
+            for id in 0..<4 { _ = table.addItem(item: AnsibleUIKit.TableRowItem(.zero, stableId: id)) }
             spy.forcedRange = NSRange(location: 0, length: 4)
             var seen: [Int] = []
             table.enumerateVisibleItems { item in
                 seen.append(item.stableId.base as! Int)
                 if seen.count == 1 { table.remove(at: 3) }
-                if seen.count == 2 && regrow { _ = table.addItem(item: TGUIKit.TableRowItem(.zero, stableId: 100)) }
+                if seen.count == 2 && regrow { _ = table.addItem(item: AnsibleUIKit.TableRowItem(.zero, stableId: 100)) }
                 return true
             }
             XCTAssertEqual(seen, regrow ? [0, 1, 2, 100] : [0, 1, 2])
@@ -151,10 +151,10 @@ final class EnumerationTests: XCTestCase {
     }
 
     func testOptionalLookupTracksReplacementRemovalAndInvalidIndexes() {
-        let table = TGUIKit.TableView(frame: .zero)
+        let table = AnsibleUIKit.TableView(frame: .zero)
         XCTAssertNil(table.optionalItem(at: 0))
-        let first = TGUIKit.TableRowItem(.zero, stableId: 1)
-        let second = TGUIKit.TableRowItem(.zero, stableId: 2)
+        let first = AnsibleUIKit.TableRowItem(.zero, stableId: 1)
+        let second = AnsibleUIKit.TableRowItem(.zero, stableId: 2)
         _ = table.addItem(item: first)
         XCTAssertTrue(table.optionalItem(at: 0) === first)
         for index in [Int.min, -1, 1, Int.max] { XCTAssertNil(table.optionalItem(at: index)) }
@@ -167,11 +167,11 @@ final class EnumerationTests: XCTestCase {
 
     func testOutsideViewportMutationDoesNotCopyTheWholeList() {
         for count in [100, 10000] {
-            let table = TGUIKit.TableView(frame: .zero)
+            let table = AnsibleUIKit.TableView(frame: .zero)
             let spy = RangeTable(frame: .zero)
             table.tableView = spy
             table.updateAfterInitialize()
-            for id in 0..<count { _ = table.addItem(item: TGUIKit.TableRowItem(.zero, stableId: id)) }
+            for id in 0..<count { _ = table.addItem(item: AnsibleUIKit.TableRowItem(.zero, stableId: id)) }
             let tail = table.lastItem!
             spy.forcedRange = NSRange(location: 2, length: 4)
             let storage = table.enumerationLabStorage
@@ -190,11 +190,11 @@ final class EnumerationTests: XCTestCase {
     }
 
     func testEmptyAndStaleRangesAreBounded() {
-        let table = TGUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240))
+        let table = AnsibleUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240))
         let spy = RangeTable(frame: table.bounds)
         table.tableView = spy
         table.updateAfterInitialize()
-        for id in 0..<4 { _ = table.addItem(item: TGUIKit.TableRowItem(.zero, stableId: id)) }
+        for id in 0..<4 { _ = table.addItem(item: AnsibleUIKit.TableRowItem(.zero, stableId: id)) }
         let cases: [(NSRange, [Int])] = [(.init(location: NSNotFound, length: 0), []), (.init(location: NSNotFound, length: 1), []), (.init(location: 0, length: 0), []), (.init(location: -1, length: 3), []), (.init(location: 0, length: -1), []), (.init(location: 4, length: 2), []), (.init(location: 2, length: Int.max), [2, 3])]
         for (range, expected) in cases {
             for enumerate in [table.enumerateVisibleItems, table.enumerationLabCopied, table.enumerationLabTemporary, table.enumerationLabBulk] {

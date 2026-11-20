@@ -10,7 +10,7 @@ python3 tools/perflab/ChatStatusWidthLab/run.py --benchmark --results tools/perf
 python3 tools/perflab/ChatStatusWidthLab/run.py --sanitize
 ```
 
-The harness compiles the entire actual production `Frames` struct, including its initializer and frame placement helpers. `Reference.swift` preserves the original at `2d15cc5ee`. The geometry extensions are extracted from TGUIKit. `Environment.swift` supplies message flags and already measured text/icon sizes; it does not implement width calculation. Test-only initializers allow arbitrary rectangle fixtures to exercise edge cases beyond ordinary message layouts. The runner also verifies the production `rightSize` access and frame reconstruction call site.
+The harness compiles the entire actual production `Frames` struct, including its initializer and frame placement helpers. `Reference.swift` preserves the original at `2d15cc5ee`. The geometry extensions are extracted from AnsibleUIKit. `Environment.swift` supplies message flags and already measured text/icon sizes; it does not implement width calculation. Test-only initializers allow arbitrary rectangle fixtures to exercise edge cases beyond ordinary message layouts. The runner also verifies the production `rightSize` access and frame reconstruction call site.
 
 152,624 comparisons cover:
 

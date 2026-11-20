@@ -1,13 +1,13 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 @testable import LayoutBaseline
 
 final class SceneLayoutBenchmarkTests: XCTestCase {
     func testCosts() throws {
         guard ProcessInfo.processInfo.environment["SCENE_LAYOUT_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in scene layout benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let reverse = ProcessInfo.processInfo.environment["SCENE_LAYOUT_REVERSE"] == "1"
         var sink = 0, results: [String: [[Double]]] = [:]
         func measure(_ name: String, count: Int = 5000, operations: [() -> Int]) {

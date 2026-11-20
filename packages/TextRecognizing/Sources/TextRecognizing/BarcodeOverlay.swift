@@ -1,6 +1,6 @@
 import Foundation
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 @available(macOS 10.15, *)
 final class BarcodeOverlay {

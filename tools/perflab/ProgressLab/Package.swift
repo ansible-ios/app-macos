@@ -6,13 +6,13 @@ let package = Package(
     name: "ProgressLab",
     platforms: [.macOS(.v12)],
     dependencies: [
-        .package(name: "TGUIKit", path: "../../../packages/TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../../../packages/AnsibleUIKit"),
     ],
     targets: [
         .executableTarget(
             name: "ProgressLab",
             dependencies: [
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
             ],
             path: "Sources/ProgressLab"),
     ]

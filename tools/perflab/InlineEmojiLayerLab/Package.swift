@@ -4,12 +4,12 @@ import PackageDescription
 let package = Package(
     name: "InlineEmojiLayerLab",
     platforms: [.macOS(.v10_15)],
-    dependencies: [.package(path: "../../../packages/TGUIKit")],
+    dependencies: [.package(path: "../../../packages/AnsibleUIKit")],
     targets: [
         .target(name: "AnsibleContext"),
         .target(name: "InputView"),
-        .target(name: "InlineStickerLayer", dependencies: ["TGUIKit", "AnsibleContext", "InputView"]),
-        .target(name: "InlineEmojiHelper", dependencies: ["TGUIKit", "AnsibleContext", "InputView", "InlineStickerLayer"]),
-        .testTarget(name: "InlineEmojiTests", dependencies: ["InlineEmojiHelper", "TGUIKit", "AnsibleContext", "InputView", "InlineStickerLayer"])
+        .target(name: "InlineStickerLayer", dependencies: ["AnsibleUIKit", "AnsibleContext", "InputView"]),
+        .target(name: "InlineEmojiHelper", dependencies: ["AnsibleUIKit", "AnsibleContext", "InputView", "InlineStickerLayer"]),
+        .testTarget(name: "InlineEmojiTests", dependencies: ["InlineEmojiHelper", "AnsibleUIKit", "AnsibleContext", "InputView", "InlineStickerLayer"])
     ]
 )

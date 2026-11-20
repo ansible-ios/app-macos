@@ -1,6 +1,6 @@
 import Foundation
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 import Localization
 import AnsibleTheme
 import GeneralRows

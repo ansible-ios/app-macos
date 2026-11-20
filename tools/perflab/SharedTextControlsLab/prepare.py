@@ -11,9 +11,9 @@ for source, target, replacements in [
     ('TextViewLabel.swift', 'ReferenceLabel.swift', [('TextViewLabel', 'ReferenceTextViewLabel'), ('TextDelegate', 'ReferenceTextDelegate'), ('DrawLayer', 'ReferenceLabelDrawLayer')]),
     ('TitledBarView.swift', 'ReferenceTitle.swift', [('TitledBarView', 'ReferenceTitledBarView'), ('TitledContainerView', 'ReferenceTitledContainerView'), ('TitleBarImageSide', 'ReferenceTitleBarImageSide')])
 ]:
-    path = 'packages/TGUIKit/Sources/' + source
+    path = 'packages/AnsibleUIKit/Sources/' + source
     original = subprocess.check_output(['git', 'show', baseline + ':' + path], cwd=root, text=True)
-    reference = original.replace('import Cocoa', 'import Cocoa\n@testable import TGUIKit')
+    reference = original.replace('import Cocoa', 'import Cocoa\n@testable import AnsibleUIKit')
     for before, after in replacements:
         reference = reference.replace(before, after)
     (lab / 'Tests/SharedTextControlsTests' / target).write_text(reference)

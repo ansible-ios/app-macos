@@ -1,4 +1,4 @@
-import TGUIKit
+import AnsibleUIKit
 import AppKit
 import TelegramCore
 import AnsibleMedia

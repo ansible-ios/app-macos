@@ -1,6 +1,6 @@
 # Animation observer lifecycle and table-row scoping
 
-This mini-app compiles real TGUIKit twice. The baseline restores `AnimatableContentObserver.swift` and `TableRowView.swift` from `70b45f289`; all other sources are shared. It creates real AppKit windows and 40 `TableRowView` subclasses, then posts 1,000 geometry notifications per batch, with 100 warm-up posts and nine measured batches. Each row overrides the animation callback with a counter. These numbers measure notification plumbing, not animation rendering or app frame rate.
+This mini-app compiles real AnsibleUIKit twice. The baseline restores `AnimatableContentObserver.swift` and `TableRowView.swift` from `70b45f289`; all other sources are shared. It creates real AppKit windows and 40 `TableRowView` subclasses, then posts 1,000 geometry notifications per batch, with 100 warm-up posts and nine measured batches. Each row overrides the animation callback with a counter. These numbers measure notification plumbing, not animation rendering or app frame rate.
 
 ## Changes
 
@@ -24,9 +24,9 @@ Table rows use the scoped observer and update it on superview changes. Missing s
 
 The reverse-order run confirms the same result: irrelevant posts become 12–15× cheaper, while relevant posts cost approximately 0.8–1.2 microseconds more across all 40 rows. This is a correctness/lifecycle tradeoff, not a speedup for normal scroll notifications. The callback body is deliberately minimal. Every run checks that detached rows receive no further animation callbacks. The baseline removes all 40 independent listeners during attachment; the candidate preserves them.
 
-Ten additional lifecycle regression tests reproduce retained source views and callbacks after detach, and cover retargeting, changed options/selectors, changed handlers, 1,000 unchanged updates, independent listeners, reparenting between scroll views, and release of targets/captured payloads. Existing TGUIKit tests also exercise real AppKit scrolling and resizing. No full Telegram build or resident-memory measurement is claimed.
+Ten additional lifecycle regression tests reproduce retained source views and callbacks after detach, and cover retargeting, changed options/selectors, changed handlers, 1,000 unchanged updates, independent listeners, reparenting between scroll views, and release of targets/captured payloads. Existing AnsibleUIKit tests also exercise real AppKit scrolling and resizing. No full Telegram build or resident-memory measurement is claimed.
 
-The complete TGUIKit suite passes in debug and release: 202 tests, including 200 functional tests and two skipped opt-in benchmarks, with zero failures in each configuration. The 15 focused observer and table-scroll tests also pass under Address Sanitizer.
+The complete AnsibleUIKit suite passes in debug and release: 202 tests, including 200 functional tests and two skipped opt-in benchmarks, with zero failures in each configuration. The 15 focused observer and table-scroll tests also pass under Address Sanitizer.
 
 ## Reproduce
 
@@ -40,9 +40,9 @@ swift build -c release --package-path /tmp/animation-observer-lab/candidate/Anim
 /tmp/animation-observer-lab/baseline/AnimationObserverLab/.build/release/AnimationObserverLab /tmp/observer-before.json
 /tmp/animation-observer-lab/candidate/AnimationObserverLab/.build/release/AnimationObserverLab /tmp/observer-after.json
 python3 tools/perflab/AnimationObserverLab/compare.py /tmp/observer-before.json /tmp/observer-after.json
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-debug
-swift test -c release --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release
-swift test --sanitize address --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-asan --filter 'AnimationObserverLifecycleTests|AnimatableContentObserverTests|TableScroll'
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-debug
+swift test -c release --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release
+swift test --sanitize address --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-asan --filter 'AnimationObserverLifecycleTests|AnimatableContentObserverTests|TableScroll'
 ```
 
 Wait for builds and other CPU-heavy work to finish before timing. Repeat the measurements in reverse order. Initialization uses placeholder theme images; no image rendering is benchmarked.

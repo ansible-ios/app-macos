@@ -1,6 +1,6 @@
 import Cocoa
 import CryptoKit
-import TGUIKit
+import AnsibleUIKit
 
 initializeLab()
 NSApp.setActivationPolicy(.accessory)

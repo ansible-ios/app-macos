@@ -1,6 +1,6 @@
 import XCTest
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 @testable import InlineMediaGrid
 

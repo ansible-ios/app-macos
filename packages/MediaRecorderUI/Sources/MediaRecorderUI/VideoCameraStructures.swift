@@ -1,6 +1,6 @@
 import Cocoa
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
@@ -12,7 +12,7 @@ import AnsibleUtils
 import AnsibleMedia
 import AnsibleMediaUtils
 import ObjcUtils
-import TGVideoCameraMovie
+import AnsibleVideoCameraMovie
 import AVFoundation
 
 public struct VideoRecorderPreviewCommand {

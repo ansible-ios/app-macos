@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public enum LiteFeature { case emoji, blur }
 public final class FixtureAccount {}

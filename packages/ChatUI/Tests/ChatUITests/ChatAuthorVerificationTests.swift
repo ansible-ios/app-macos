@@ -3,7 +3,7 @@ import XCTest
 import Postbox
 import TelegramCore
 import PremiumStatusUI
-import TGUIKit
+import AnsibleUIKit
 import AnsibleTheme
 import ThemeSettings
 import ColorPalette

@@ -1,7 +1,7 @@
 import Cocoa
 import XCTest
 import Metal
-@testable import TGUIKit
+@testable import AnsibleUIKit
 @testable import ChatTextRows
 
 extension LayerTests {

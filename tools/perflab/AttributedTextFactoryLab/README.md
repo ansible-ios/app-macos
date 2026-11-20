@@ -2,11 +2,11 @@
 
 `NSAttributedString.initialize(string:color:font:)` previously created an empty mutable string, appended a separate attributed string, applied its attributes, and copied the result. Styled text now initializes the mutable builder with its final string, applies the same attributes, and retains the immutable-copy boundary. Unstyled, nil, and empty inputs construct the immutable result directly.
 
-This removes intermediate construction and append work without a cache or extra retained state. The separate mutable-string `append(string:color:font:)` method is unchanged, including its attribute inheritance behavior. Default arguments and public signatures are unchanged. The factory is used throughout the app: a source inspection found 212 `.initialize(string:` occurrences in ChatUI, 62 in ChatListUI, 38 in TGUIKit, 16 in PeerInfoUI, 13 in PeerMediaUI, and 14 in ShortPeerRow. These are textual occurrences, not runtime invocation counts.
+This removes intermediate construction and append work without a cache or extra retained state. The separate mutable-string `append(string:color:font:)` method is unchanged, including its attribute inheritance behavior. Default arguments and public signatures are unchanged. The factory is used throughout the app: a source inspection found 212 `.initialize(string:` occurrences in ChatUI, 62 in ChatListUI, 38 in AnsibleUIKit, 16 in PeerInfoUI, 13 in PeerMediaUI, and 14 in ShortPeerRow. These are textual occurrences, not runtime invocation counts.
 
 ## Native validation
 
-The candidate invokes the real TGUIKit implementation. `prepare.py` extracts the original method from `b134e8654`, renames it for the reference, and verifies that its original append and setFont dependencies remain unchanged. `generation.json` records hashes. A small AppKit bootstrap provides the named presentation icons required by TGUIKit.
+The candidate invokes the real AnsibleUIKit implementation. `prepare.py` extracts the original method from `b134e8654`, renames it for the reference, and verifies that its original append and setFont dependencies remain unchanged. `generation.json` records hashes. A small AppKit bootstrap provides the named presentation icons required by AnsibleUIKit.
 
 Eight functional tests cover:
 
@@ -57,9 +57,9 @@ TEXT_FACTORY_BENCHMARK=1 TEXT_FACTORY_REVERSE=1 swift test --package-path tools/
 TEXT_FACTORY_ALTERNATIVES=1 swift test --package-path tools/perflab/AttributedTextFactoryLab -c release
 swift test --package-path tools/perflab/AttributedTextFactoryLab --sanitize address
 swift test --package-path tools/perflab/AttributedTextFactoryLab --sanitize thread
-swift test --package-path packages/TGUIKit -c release
+swift test --package-path packages/AnsibleUIKit -c release
 ```
 
 Run sequentially with separate scratch paths. Save `/tmp/attributed-text-factory-benchmark.json` before repeating the primary benchmark; the alternatives write `/tmp/attributed-text-alternatives.json`. Raw samples, logs, the reference source, and input hashes are retained in `results/`.
 
-Final validation passed on arm64 macOS 26.4: eight new functional tests, 371 existing TGUIKit functional tests (389 total, 18 opt-in tests skipped), both benchmark orders, and all eight new tests under each of Address Sanitizer and Thread Sanitizer. No sanitizer errors were reported. The changed production source parsed successfully, and all 257 recorded source/test inputs remained unchanged through final verification.
+Final validation passed on arm64 macOS 26.4: eight new functional tests, 371 existing AnsibleUIKit functional tests (389 total, 18 opt-in tests skipped), both benchmark orders, and all eight new tests under each of Address Sanitizer and Thread Sanitizer. No sanitizer errors were reported. The changed production source parsed successfully, and all 257 recorded source/test inputs remained unchanged through final verification.

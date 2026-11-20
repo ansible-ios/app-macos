@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class ChatReactionTextLayer: SimpleLayer {
     private final class TextAccessibilityElement: NSAccessibilityElement {
@@ -11,7 +11,7 @@ final class ChatReactionTextLayer: SimpleLayer {
         }
 
         override func isAccessibilityElement() -> Bool {
-            guard TGUIKitAccessibility.isEnabled, let owner, let host = owner.host else { return false }
+            guard AnsibleUIKitAccessibility.isEnabled, let owner, let host = owner.host else { return false }
             return !host.isHiddenOrHasHiddenAncestor && !owner.isHidden && owner.opacity > 0 && (owner.textLayout?.attributedString.length ?? 0) > 0
         }
 
@@ -78,7 +78,7 @@ final class ChatReactionTextLayer: SimpleLayer {
     }
 
     func accessibleChild() -> NSAccessibilityElement? {
-        guard TGUIKitAccessibility.isEnabled, host != nil, (textLayout?.attributedString.length ?? 0) > 0 else { return nil }
+        guard AnsibleUIKitAccessibility.isEnabled, host != nil, (textLayout?.attributedString.length ?? 0) > 0 else { return nil }
         let element = textAccessibilityElement ?? TextAccessibilityElement(owner: self)
         textAccessibilityElement = element
         return element.isAccessibilityElement() ? element : nil

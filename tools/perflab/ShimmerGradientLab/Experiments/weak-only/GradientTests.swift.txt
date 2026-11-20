@@ -1,13 +1,13 @@
 import Cocoa
 import XCTest
-import class TGUIKit.GradientLayerHarness
-import class TGUIKitBaseline.GradientLayerHarness
-import class TGUIKit.ShimmerEffectForegroundView
-import class TGUIKitBaseline.ShimmerEffectForegroundView
-import enum TGUIKit.GradientCacheInspection
-import enum TGUIKitBaseline.GradientCacheInspection
-import struct TGUIKit.DeviceGraphicsContextSettings
-import struct TGUIKitBaseline.DeviceGraphicsContextSettings
+import class AnsibleUIKit.GradientLayerHarness
+import class AnsibleUIKitBaseline.GradientLayerHarness
+import class AnsibleUIKit.ShimmerEffectForegroundView
+import class AnsibleUIKitBaseline.ShimmerEffectForegroundView
+import enum AnsibleUIKit.GradientCacheInspection
+import enum AnsibleUIKitBaseline.GradientCacheInspection
+import struct AnsibleUIKit.DeviceGraphicsContextSettings
+import struct AnsibleUIKitBaseline.DeviceGraphicsContextSettings
 
 struct GradientInput {
     var background: NSColor = .clear
@@ -27,18 +27,18 @@ struct GradientHarness {
 func gradient(layer: Bool, baseline: Bool) -> GradientHarness {
     if layer {
         if baseline {
-            let value = TGUIKitBaseline.GradientLayerHarness()
+            let value = AnsibleUIKitBaseline.GradientLayerHarness()
             return GradientHarness(owner: value, object: value.object, update: { value.update(background: $0.background, foreground: $0.foreground) }, image: { value.image })
         } else {
-            let value = TGUIKit.GradientLayerHarness()
+            let value = AnsibleUIKit.GradientLayerHarness()
             return GradientHarness(owner: value, object: value.object, update: { value.update(background: $0.background, foreground: $0.foreground) }, image: { value.image })
         }
     } else {
         if baseline {
-            let value = TGUIKitBaseline.ShimmerEffectForegroundView()
+            let value = AnsibleUIKitBaseline.ShimmerEffectForegroundView()
             return GradientHarness(owner: value, object: value, update: { value.update(backgroundColor: $0.background, foregroundColor: $0.foreground, gradientSize: $0.length, duration: $0.duration, horizontal: $0.horizontal) }, image: { value.imageForGradientLab })
         } else {
-            let value = TGUIKit.ShimmerEffectForegroundView()
+            let value = AnsibleUIKit.ShimmerEffectForegroundView()
             return GradientHarness(owner: value, object: value, update: { value.update(backgroundColor: $0.background, foregroundColor: $0.foreground, gradientSize: $0.length, duration: $0.duration, horizontal: $0.horizontal) }, image: { value.imageForGradientLab })
         }
     }
@@ -57,12 +57,12 @@ func gradientPixels(_ image: CGImage) -> [UInt8] {
 final class GradientTests: XCTestCase {
     override func setUp() {
         MeasureBootstrap.install()
-        TGUIKit.GradientCacheInspection.reset(); TGUIKitBaseline.GradientCacheInspection.reset()
-        TGUIKit.DeviceGraphicsContextSettings.install(nil); TGUIKitBaseline.DeviceGraphicsContextSettings.install(nil)
+        AnsibleUIKit.GradientCacheInspection.reset(); AnsibleUIKitBaseline.GradientCacheInspection.reset()
+        AnsibleUIKit.DeviceGraphicsContextSettings.install(nil); AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(nil)
     }
     override func tearDown() {
-        TGUIKit.GradientCacheInspection.reset(); TGUIKitBaseline.GradientCacheInspection.reset()
-        TGUIKit.DeviceGraphicsContextSettings.install(nil); TGUIKitBaseline.DeviceGraphicsContextSettings.install(nil)
+        AnsibleUIKit.GradientCacheInspection.reset(); AnsibleUIKitBaseline.GradientCacheInspection.reset()
+        AnsibleUIKit.DeviceGraphicsContextSettings.install(nil); AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(nil)
     }
     func flush() {
         CATransaction.flush()
@@ -118,8 +118,8 @@ final class GradientTests: XCTestCase {
             XCTAssertEqual(bytes, (baseline ? 32 : 1) * 320 * 16 * 4)
             XCTAssertNil(weakImage)
         }
-        XCTAssertEqual(TGUIKit.GradientCacheInspection.liveImages, 0)
-        XCTAssertEqual(TGUIKit.GradientCacheInspection.pixelBytes, 0)
+        XCTAssertEqual(AnsibleUIKit.GradientCacheInspection.liveImages, 0)
+        XCTAssertEqual(AnsibleUIKit.GradientCacheInspection.pixelBytes, 0)
     }
 
     func testUnusedLayerImagesAreNotRetainedAndMetadataIsBounded() {
@@ -146,12 +146,12 @@ final class GradientTests: XCTestCase {
             XCTAssertNil(owner)
             if !baseline { XCTAssertNil(image) }
             if baseline {
-                XCTAssertEqual(TGUIKitBaseline.GradientCacheInspection.liveImages, 256)
-                XCTAssertEqual(TGUIKitBaseline.GradientCacheInspection.pixelBytes, 256 * 320 * 16 * 4)
+                XCTAssertEqual(AnsibleUIKitBaseline.GradientCacheInspection.liveImages, 256)
+                XCTAssertEqual(AnsibleUIKitBaseline.GradientCacheInspection.pixelBytes, 256 * 320 * 16 * 4)
             } else {
-                XCTAssertLessThanOrEqual(TGUIKit.GradientCacheInspection.metadataCount, 32)
-                XCTAssertEqual(TGUIKit.GradientCacheInspection.liveImages, 0)
-                XCTAssertEqual(TGUIKit.GradientCacheInspection.pixelBytes, 0)
+                XCTAssertLessThanOrEqual(AnsibleUIKit.GradientCacheInspection.metadataCount, 32)
+                XCTAssertEqual(AnsibleUIKit.GradientCacheInspection.liveImages, 0)
+                XCTAssertEqual(AnsibleUIKit.GradientCacheInspection.pixelBytes, 0)
             }
         }
     }
@@ -171,10 +171,10 @@ final class GradientTests: XCTestCase {
                 XCTAssertEqual(before, gradientPixels(try XCTUnwrap(old.image())))
                 XCTAssertNotEqual(before, gradientPixels(try XCTUnwrap(new.image())))
                 input.background = .black; input.foreground = .white
-                TGUIKitBaseline.GradientCacheInspection.reset()
+                AnsibleUIKitBaseline.GradientCacheInspection.reset()
                 let fresh = gradient(layer: layer, baseline: true); fresh.update(input)
                 XCTAssertEqual(gradientPixels(try XCTUnwrap(fresh.image())), gradientPixels(try XCTUnwrap(new.image())))
-                TGUIKitBaseline.GradientCacheInspection.reset()
+                AnsibleUIKitBaseline.GradientCacheInspection.reset()
             }
         }
     }
@@ -185,7 +185,7 @@ final class GradientTests: XCTestCase {
             let value = gradient(layer: false, baseline: false)
             var input = GradientInput(); input.length = CGFloat(32 + index)
             value.update(input); held.append(value)
-            XCTAssertLessThanOrEqual(TGUIKit.GradientCacheInspection.metadataCount, 32)
+            XCTAssertLessThanOrEqual(AnsibleUIKit.GradientCacheInspection.metadataCount, 32)
         }
         let value = try XCTUnwrap(held.last), image = try XCTUnwrap(value.image())
         var input = GradientInput(); input.length = 131; input.duration = 2
@@ -213,7 +213,7 @@ extension GradientTests {
         let input = GradientInput(), colorSpace = CGColorSpaceCreateDeviceRGB()
         DispatchQueue.concurrentPerform(iterations: 512) { index in
             let key = index % 16
-            let image = TGUIKit.GradientCacheInspection.image(background: input.background, foreground: input.foreground, size: CGSize(width: 64 + key, height: 16), horizontal: true, colorSpace: colorSpace)!
+            let image = AnsibleUIKit.GradientCacheInspection.image(background: input.background, foreground: input.foreground, size: CGSize(width: 64 + key, height: 16), horizontal: true, colorSpace: colorSpace)!
             images.add(image, key: key)
         }
         let values = images.values
@@ -225,15 +225,15 @@ extension GradientTests {
             let reference = gradient(layer: false, baseline: true); reference.update(input)
             XCTAssertEqual(gradientPixels(try XCTUnwrap(group.first)), gradientPixels(try XCTUnwrap(reference.image())))
         }
-        XCTAssertEqual(TGUIKit.GradientCacheInspection.liveImages, 16)
+        XCTAssertEqual(AnsibleUIKit.GradientCacheInspection.liveImages, 16)
     }
 
     func testGraphicsSettingsChangesDoNotReuseOldBitmapFormats() throws {
         var held: [GradientHarness] = []
         for spaceName in [CGColorSpace.sRGB, CGColorSpace.displayP3, CGColorSpace.sRGB] {
             let context = try XCTUnwrap(CGContext(data: nil, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 32, space: CGColorSpace(name: spaceName)!, bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue))
-            TGUIKit.DeviceGraphicsContextSettings.install(context); TGUIKitBaseline.DeviceGraphicsContextSettings.install(context)
-            TGUIKitBaseline.GradientCacheInspection.reset()
+            AnsibleUIKit.DeviceGraphicsContextSettings.install(context); AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(context)
+            AnsibleUIKitBaseline.GradientCacheInspection.reset()
             for layer in [false, true] {
                 let old = gradient(layer: layer, baseline: true), new = gradient(layer: layer, baseline: false)
                 old.update(GradientInput()); new.update(GradientInput())
@@ -247,8 +247,8 @@ extension GradientTests {
     }
 
     func testFramesAndAnimationPropertiesMatch() throws {
-        let old = TGUIKitBaseline.ShimmerEffectForegroundView()
-        let new = TGUIKit.ShimmerEffectForegroundView()
+        let old = AnsibleUIKitBaseline.ShimmerEffectForegroundView()
+        let new = AnsibleUIKit.ShimmerEffectForegroundView()
         old.frame = CGRect(x: 0, y: 0, width: 180, height: 100)
         new.frame = CGRect(x: 0, y: 100, width: 180, height: 100)
         let window = NSWindow(contentRect: CGRect(x: 0, y: 0, width: 300, height: 300), styleMask: [.borderless], backing: .buffered, defer: false)
@@ -282,12 +282,12 @@ extension GradientTests {
         weak var weakImage: CGImage?
         autoreleasepool {
             let input = GradientInput()
-            let image = TGUIKit.GradientCacheInspection.image(background: input.background, foreground: input.foreground, size: CGSize(width: 320, height: 16), horizontal: true, colorSpace: CGColorSpaceCreateDeviceRGB())!
+            let image = AnsibleUIKit.GradientCacheInspection.image(background: input.background, foreground: input.foreground, size: CGSize(width: 320, height: 16), horizontal: true, colorSpace: CGColorSpaceCreateDeviceRGB())!
             weakImage = image
-            XCTAssertEqual(TGUIKit.GradientCacheInspection.liveImages, 1)
+            XCTAssertEqual(AnsibleUIKit.GradientCacheInspection.liveImages, 1)
         }
         XCTAssertNil(weakImage)
-        XCTAssertEqual(TGUIKit.GradientCacheInspection.liveImages, 0)
+        XCTAssertEqual(AnsibleUIKit.GradientCacheInspection.liveImages, 0)
     }
 }
 
@@ -296,7 +296,7 @@ extension GradientTests {
         weak var weakImage: CGImage?
         autoreleasepool {
             let input = GradientInput()
-            let image = TGUIKit.GradientCacheInspection.image(background: input.background, foreground: input.foreground, size: CGSize(width: 320, height: 16), horizontal: true, colorSpace: CGColorSpaceCreateDeviceRGB())!
+            let image = AnsibleUIKit.GradientCacheInspection.image(background: input.background, foreground: input.foreground, size: CGSize(width: 320, height: 16), horizontal: true, colorSpace: CGColorSpaceCreateDeviceRGB())!
             let layer = CALayer()
             layer.contents = image
             weakImage = layer.contents as! CGImage?
@@ -313,7 +313,7 @@ extension GradientTests {
         weak var weakImage: CGImage?
         autoreleasepool {
             let input = GradientInput()
-            let image = TGUIKit.GradientCacheInspection.image(background: input.background, foreground: input.foreground, size: CGSize(width: 320, height: 16), horizontal: true, colorSpace: CGColorSpaceCreateDeviceRGB())!
+            let image = AnsibleUIKit.GradientCacheInspection.image(background: input.background, foreground: input.foreground, size: CGSize(width: 320, height: 16), horizontal: true, colorSpace: CGColorSpaceCreateDeviceRGB())!
             let layer = CALayer()
             layer.contents = image
             weakImage = layer.contents as! CGImage?
@@ -334,7 +334,7 @@ extension GradientTests {
         old.update(input); new.update(input)
         XCTAssertTrue(old.image() === original)
         XCTAssertFalse(new.image() === previous)
-        TGUIKitBaseline.GradientCacheInspection.reset()
+        AnsibleUIKitBaseline.GradientCacheInspection.reset()
         let fresh = gradient(layer: true, baseline: true); fresh.update(input)
         XCTAssertTrue(gradientPixels(try XCTUnwrap(fresh.image())) == gradientPixels(try XCTUnwrap(new.image())))
         XCTAssertFalse(gradientPixels(previous) == gradientPixels(try XCTUnwrap(new.image())))

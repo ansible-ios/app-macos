@@ -2,7 +2,7 @@ import AppKit
 import QuartzCore
 import Darwin
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import OriginalInkDust
 
 final class InkDustBenchmarkTests: XCTestCase {

@@ -16,7 +16,7 @@ FRAME_BENCHMARK=1 FRAME_REVERSE=1 swift test --package-path /tmp/FrameTransition
 cp /tmp/frame-transition-benchmark.json /tmp/frame-reverse.json
 ```
 
-Use a fresh output directory and run timing without competing builds. The repository directory is a generator template. Two complete TGUIKit copies differ only in `ContainableController.swift`; the baseline restores the captured original file. Calls use both public APIs from the same test module. The initial benchmark lacked the standalone theme images needed by TextView construction and trapped during theme initialization. Bootstrap now registers placeholder theme icons and sets the same scale for both modules. These icons are not part of the measured layout workload.
+Use a fresh output directory and run timing without competing builds. The repository directory is a generator template. Two complete AnsibleUIKit copies differ only in `ContainableController.swift`; the baseline restores the captured original file. Calls use both public APIs from the same test module. The initial benchmark lacked the standalone theme images needed by TextView construction and trapped during theme initialization. Bootstrap now registers placeholder theme icons and sets the same scale for both modules. These icons are not part of the measured layout workload.
 
 ## Measurements
 
@@ -40,10 +40,10 @@ Repeated sixteen-control layout uses 23–27% less CPU time; updating four contr
 
 ## Functional coverage
 
-Eight tests check unchanged/changed frames, layerless views, pending position/bounds animations with model/end/third destinations, animated endpoint and completion behavior, transformed/anchored views, attached windows, reentrant completions, real TGUIKit resize callbacks and native visual-effect views. They compare frame/bounds writes, callback order, animation keys, endpoints and durations. The optimization preserves pending animations on an immediate no-op, matching the original behavior.
+Eight tests check unchanged/changed frames, layerless views, pending position/bounds animations with model/end/third destinations, animated endpoint and completion behavior, transformed/anchored views, attached windows, reentrant completions, real AnsibleUIKit resize callbacks and native visual-effect views. They compare frame/bounds writes, callback order, animation keys, endpoints and durations. The optimization preserves pending animations on an immediate no-op, matching the original behavior.
 
 ## Final validation
 
-The final release and Address Sanitizer runs each pass all eight functional tests and skip the opt-in benchmark. Address Sanitizer disables leak detection. The frozen TGUIKit suite passes 397 functional tests with 18 optional measurements skipped. The chat-layer/folding-text suite passes 337 with 33 optional measurements skipped, including the real icon-loader fixture. The changed production file passes Swift syntax parsing.
+The final release and Address Sanitizer runs each pass all eight functional tests and skip the opt-in benchmark. Address Sanitizer disables leak detection. The frozen AnsibleUIKit suite passes 397 functional tests with 18 optional measurements skipped. The chat-layer/folding-text suite passes 337 with 33 optional measurements skipped, including the real icon-loader fixture. The changed production file passes Swift syntax parsing.
 
 The generator reproduces both complete library source trees and all final test sources exactly. All 1,065 recorded compiler inputs remain unchanged after validation, and the production source matches the measured snapshot. Complete logs, raw batches, captured baseline/current source and input hashes are retained in results/. No full-app build, presented-frame measurement or retained-memory comparison was performed.

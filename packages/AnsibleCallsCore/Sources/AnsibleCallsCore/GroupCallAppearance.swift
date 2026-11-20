@@ -1,7 +1,7 @@
 import Cocoa
 import Foundation
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import ColorPalette
 import AnsibleTheme
 import GeneralRows

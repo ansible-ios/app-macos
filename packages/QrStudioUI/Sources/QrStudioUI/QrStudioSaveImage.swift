@@ -2,7 +2,7 @@ import Foundation
 import AppAnalytics
 import AppKit
 import ImageIO
-import TGUIKit
+import AnsibleUIKit
 import FilePanels
 
 func qrStudioWriteTemporaryImage(_ image: CGImage, name: String = "qr-code.jpg") -> URL? {

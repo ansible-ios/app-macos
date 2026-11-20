@@ -1,4 +1,4 @@
-import TGUIKit
+import AnsibleUIKit
 import Cocoa
 import SwiftSignalKit
 import Postbox

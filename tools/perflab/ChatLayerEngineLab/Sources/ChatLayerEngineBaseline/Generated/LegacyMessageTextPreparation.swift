@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 
 struct LegacyChatLayerMessageTextPresentation {
@@ -19,7 +19,7 @@ struct LegacyChatLayerMessageTextPresentation {
 }
 
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 
 extension LegacyChatLayerMessageTextPresentation {

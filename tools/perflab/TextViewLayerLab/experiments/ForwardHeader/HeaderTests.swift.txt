@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-@testable import TGUIKit
+@testable import AnsibleUIKit
 @testable import ChatTextRows
 
 extension LayerTests {
@@ -35,7 +35,7 @@ extension LayerTests {
     func testHeaderAccessibilityValueFrameRebindAndVisibility() {
         let window = NSWindow(contentRect: NSRect(x: 80, y: 100, width: 400, height: 150), styleMask: [.borderless], backing: .buffered, defer: false)
         window.isReleasedWhenClosed = false
-        defer { window.close(); TGUIKitAccessibility.isEnabled = true }
+        defer { window.close(); AnsibleUIKitAccessibility.isEnabled = true }
         let old = LegacyHeaderHost(frame: NSRect(x: 12, y: 15, width: 360, height: 80))
         let new = ChatRowContentView(frame: old.frame)
         window.contentView!.addSubview(old)
@@ -57,10 +57,10 @@ extension LayerTests {
             XCTAssertFalse(element.isAccessibilityElement())
             new.isHidden = false
             XCTAssertTrue(element.isAccessibilityElement())
-            TGUIKitAccessibility.isEnabled = false
+            AnsibleUIKitAccessibility.isEnabled = false
             XCTAssertNil(new.accessibilityChildren())
             XCTAssertFalse(element.isAccessibilityElement())
-            TGUIKitAccessibility.isEnabled = true
+            AnsibleUIKitAccessibility.isEnabled = true
         }
         new.updateForwardHeader(nil, frame: .zero, animated: false)
         XCTAssertTrue(AccessibilityAudit.elements(new).isEmpty)

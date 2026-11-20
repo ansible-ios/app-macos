@@ -1,7 +1,7 @@
 import Cocoa
 import Metal
 import MetalEngine
-import TGUIKit
+import AnsibleUIKit
 
 struct DiamondStyle: Equatable {
     typealias Appearance = InteractiveDiamondView.Appearance

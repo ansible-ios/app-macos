@@ -1,7 +1,7 @@
 import Cocoa
 import Svg
 import GZIP
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import InAppSettings
 import SwiftSignalKit
@@ -258,7 +258,7 @@ private func builtinBackgound(_ palette: ColorPalette) -> NSImage {
     builtinBackgroundLock.unlock()
     let data = try? Data(contentsOf: Bundle.main.url(forResource: "builtin-wallpaper-svg", withExtension: nil)!)
     if let data = data {
-        var image = drawSvgImageNano(TGGUnzipData(data, 8 * 1024 * 1024)!, NSMakeSize(400, 800), nil)!
+        var image = drawSvgImageNano(AnsibleGUnzipData(data, 8 * 1024 * 1024)!, NSMakeSize(400, 800), nil)!
 
         let intense = CGFloat(0.5)
         if palette.isDark {

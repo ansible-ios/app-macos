@@ -2,7 +2,7 @@ import AppAnalytics
 import AlertsUI
 import Dispatch
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 
 func sharePickerConfirmation(context: AnalyticsContext, window: Window, header: String, information: String, ok: String) -> Signal<Bool, NoError> {
     return Signal { subscriber in

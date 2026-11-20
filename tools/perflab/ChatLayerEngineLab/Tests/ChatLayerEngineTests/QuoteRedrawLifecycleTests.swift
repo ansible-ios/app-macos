@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 
 final class QuoteRedrawLifecycleTests: XCTestCase {
     override func setUp() {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         System.updateScaleFactor(2)
     }
 

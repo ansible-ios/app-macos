@@ -4,7 +4,7 @@ import CoreSpotlight
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import MurMurHash32
 import AnsibleTheme
 import AnsibleLinks

@@ -1,5 +1,5 @@
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import Localization
 import Postbox
 import TelegramCore

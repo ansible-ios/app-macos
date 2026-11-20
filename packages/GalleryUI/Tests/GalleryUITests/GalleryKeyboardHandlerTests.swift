@@ -1,6 +1,6 @@
 import AppKit
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import KeyboardKey
 import InputView
 @testable import GalleryUI

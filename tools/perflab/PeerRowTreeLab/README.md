@@ -14,7 +14,7 @@ Nine functional tests pass in debug, release, and Address Sanitizer configuratio
 - External children and reparented controls restore the baseline order. Selection/theme updates, saved-message rules, activity detach/reuse, window attachment, geometry observer delivery, and object release are covered.
 - Production Swift frontend parsing passes in normal and `SHARE` configurations.
 
-`prepare.py` extracts the exact current status and activity binding blocks plus the ordering helper. It verifies the original blocks against `623601c18`. Both implementations use real TGUIKit `Control`, `AnimatableContentObserver`, AppKit view/window lifecycle, and Core Animation layers. Source hashes are recorded in `provenance.json`.
+`prepare.py` extracts the exact current status and activity binding blocks plus the ordering helper. It verifies the original blocks against `623601c18`. Both implementations use real AnsibleUIKit `Control`, `AnimatableContentObserver`, AppKit view/window lifecycle, and Core Animation layers. Source hashes are recorded in `provenance.json`.
 
 Peer/account/theme data, premium badges, and activity models are small fixtures. Their updates use real controls and observers but do not load Telegram accounts, animated emoji, or activity text. Deferred removal is simulated by retaining the fading control at partial opacity until explicit completion; production animation timing is outside this test. Raster captures initialize the real backing-layer tree in a reusable offscreen window, then render its model layers. These prove hierarchy behavior, not full profile screenshots or compositor performance. The full application was not built.
 

@@ -1,6 +1,6 @@
 import Cocoa
 
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import InAppSettings
 import SwiftSignalKit

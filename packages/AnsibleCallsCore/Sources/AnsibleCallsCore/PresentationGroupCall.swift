@@ -6,7 +6,7 @@ import InAppSettings
 import SwiftSignalKit
 import AVFoundation
 import TelegramVoip
-import TGUIKit
+import AnsibleUIKit
 import CallVideoLayer
 import TgVoipWebrtc
 import TdBinding

@@ -14,7 +14,7 @@ def effects(text):
 reference = (lab / 'Reference.swift.txt').read_text()
 assert reference == effects(original)
 fixed_reference = reference.replace('private static let whiteParticle: CGImage = BadgeStarsViewEffect.whiteParticle', 'private static let whiteParticle: CGImage = AnsibleThemeHooks.shared.image(.starReactionParticle).precomposed(.white)')
-output = 'import AppKit\nimport QuartzCore\nimport TGUIKit\n'
+output = 'import AppKit\nimport QuartzCore\nimport AnsibleUIKit\n'
 for prefix, code in [('Candidate', effects(source)), ('Reference', fixed_reference)]:
     output += code.replace('StarsButtonEffectLayer', prefix + 'Button').replace('BadgeStarsViewEffect', prefix + 'Badge')
 output += reference[reference.index('public final class BadgeStarsViewEffect:'):].replace('BadgeStarsViewEffect', 'BrokenBadge')

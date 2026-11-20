@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import ChatLayerEngine
 
 final class FoldingTransitionTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
     let text = "First quoted line\nSecond quoted line\nThird quoted line\nFourth quoted line\nLast quoted line"
     func layout(_ revealed: Bool) -> FoldingTextLayout {
         FoldingQuoteTests().source(text, revealed: revealed)

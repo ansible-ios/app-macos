@@ -6,7 +6,7 @@ The candidate retains only the current resolved CGColor and size. Unchanged upda
 
 ## Validation
 
-Eight functional tests pass in debug, release, and Address Sanitizer builds; one benchmark is skipped unless enabled. They use real AppKit, TGUIKit SimpleLayer, CAEmitterLayer, CAEmitterCell, the existing color-over-life behavior factory, and the app's particle PNG. Tests cover:
+Eight functional tests pass in debug, release, and Address Sanitizer builds; one benchmark is skipped unless enabled. They use real AppKit, AnsibleUIKit SimpleLayer, CAEmitterLayer, CAEmitterCell, the existing color-over-life behavior factory, and the app's particle PNG. Tests cover:
 
 - Initial emitter parameters, colors, geometry and particle image bytes across five colors and four sizes.
 - 1,000 unchanged updates: the original replaces the color behavior 1,000 times, while the candidate keeps its behavior and seed.

@@ -1,7 +1,7 @@
 import Cocoa
 import ImageIO
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 
 final class TintTests: XCTestCase {
     override func setUp() {
@@ -239,7 +239,7 @@ final class TintTests: XCTestCase {
         for (old, new) in zip(original, current) { equal(new, old) }
     }
 
-    func testPublicAPIThroughRealTGUIKit() {
+    func testPublicAPIThroughRealAnsibleUIKit() {
         for size in [NSSize(width: 16, height: 16), NSSize(width: 15.5, height: 17.25), NSSize(width: 65, height: 70)] {
             let image = source(size: size)
             for scale: CGFloat in [0, 1, 2, 3] {

@@ -1,6 +1,6 @@
 # ChatLayerControlNode equivalence lab
 
-Proves that `ChatLayerControlNode` (packages/ChatUI/Sources/ChatUI/ChatLayerControlNode.swift) fires the same handler events and state transitions as TGUIKit's `Control` for the same pointer input.
+Proves that `ChatLayerControlNode` (packages/ChatUI/Sources/ChatUI/ChatLayerControlNode.swift) fires the same handler events and state transitions as AnsibleUIKit's `Control` for the same pointer input.
 
 ```sh
 python3 tools/perflab/ControlNodeLab/prepare.py
@@ -8,7 +8,7 @@ swift test --package-path tools/perflab/ControlNodeLab
 LAB_EXPECT_MUTANT_EQUAL=1 swift test --package-path tools/perflab/ControlNodeLab --filter testMutantIsDetected
 ```
 
-The last command is the oracle check and is expected to fail. The package builds the real TGUIKit by path (the SSignalKit path needs an initialized `submodules/ansible-ios`).
+The last command is the oracle check and is expected to fail. The package builds the real AnsibleUIKit by path (the SSignalKit path needs an initialized `submodules/ansible-ios`).
 
 ## Setup
 
@@ -43,7 +43,7 @@ The last command is the oracle check and is expected to fail. The package builds
 - Forwarding goes to `scene.nextResponder` and skips ancestor nodes. This applies wherever `Control` calls `super` while the node keeps the pointer captured: control-click with `sendRightMouseAnyway`, `rightMouseDown` with forwarding, and drags/ups after a captured down. Plain declines return `false`, so the scene still offers those events to ancestor nodes before calling `super`. Examples are a left down with `userInteractionEnabled = false` and other mouse buttons.
 - `isEnabled` follows `Control` semantics: the node still gets events while disabled. The node overrides `isEnabled` and `isEffectivelyEnabled`, so the scene never blocks it, and its accessibility element reports enabled.
 - Menus are presented with `AppMenu.show(..., for: scene)`. `AppMenu` sets `isSelected` only on `Control` views, so the node chains `ContextMenu.onShow/onClose` to set `isSelected`. The presentation callbacks are not exercised here because the menus are empty. `ModalMorphContextSource.registerOwner` ignores non-Control views, so a modal opened from the menu does not morph from the node.
-- Not reproduced: `appTooltip` (TGUIKit's custom tooltip view; the node uses an NSView tooltip rect instead), glass touch effects, `mouseDownCanMoveWindow`, `hideAnimated`, `scrollWheel`, `redirectView`, and `mouseEntered/Exited` forwarding when `userInteractionEnabled` is false. `apply(state:)` touches the layer background only after `set(background:for:)` has been used, and the cursor only after `set(cursor:for:)`. The cursor is applied through `node.cursor`, so it changes on the next pointer update.
+- Not reproduced: `appTooltip` (AnsibleUIKit's custom tooltip view; the node uses an NSView tooltip rect instead), glass touch effects, `mouseDownCanMoveWindow`, `hideAnimated`, `scrollWheel`, `redirectView`, and `mouseEntered/Exited` forwarding when `userInteractionEnabled` is false. `apply(state:)` touches the layer background only after `set(background:for:)` has been used, and the cursor only after `set(cursor:for:)`. The cursor is applied through `node.cursor`, so it changes on the next pointer update.
 - Enter/exit during a press: the scene updates hover on every drag, and the node ignores `.entered/.exited` while `NSEvent.pressedMouseButtons != 0`, as Control's tracking area does. With this in place, a drag-out logs `MouseDragging` and then the Normal state, matching real AppKit. An earlier oracle synthesized enter/exit during drags and hid an ordering bug (Normal fired before `MouseDragging`). Against the fixed oracle, that node failed `testDragOut`, `testDragOutAndBack` and `testScaleDownOnClick`. Untested: whether AppKit sends a late `mouseExited` to a Control after a drag released outside. If it does, Control gets one more `.Other` handler call that the node does not.
 - Tooltip rects ignore layer transforms. If an ancestor moves, the rect stays stale until the node's own frame changes or the next pointer event reaches the node. `ChatLayerSceneView.removeAllToolTips()` does not notify the node, because the scene's tooltip registry is typed to `ChatLayerTextNode`.
 - `.cancelled` (scene capture invalidated by hiding, removal, or window resigning key) resets the node to Normal and cancels the long-press timers. `Control` has no equivalent. Removing the node from the scene also resets it to Normal, like `Control.viewDidMoveToWindow(nil)`.

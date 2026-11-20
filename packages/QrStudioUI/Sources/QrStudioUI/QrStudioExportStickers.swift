@@ -4,7 +4,7 @@ import ImageIO
 import SwiftSignalKit
 import Postbox
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import AnsibleMedia
 

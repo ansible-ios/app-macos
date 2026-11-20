@@ -4,7 +4,7 @@ import InAppSettings
 import SwiftSignalKit
 import Postbox
 import AnsibleMedia
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import AnsibleTheme
 import AnsibleUtils

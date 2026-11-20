@@ -1,6 +1,6 @@
 import Cocoa
 import QuartzCore
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import Postbox
 

@@ -5,7 +5,7 @@ import AnsibleTheme
 import AnsibleUtils
 import Localization
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 
 public final class InputDataTableBasedItem : GeneralRowItem {

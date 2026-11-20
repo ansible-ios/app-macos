@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 func installAnsibleLinksHooks() {
     LinkHooks.install(LinkHooks(callbackLink: { text, handler in

@@ -1,6 +1,6 @@
 import Foundation
 import CoreImage
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import InAppSettings

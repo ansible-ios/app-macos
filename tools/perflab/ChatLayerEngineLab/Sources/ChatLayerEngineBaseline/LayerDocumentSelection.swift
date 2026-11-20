@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class LayerDocumentSelection: NSResponder {
     private weak var document: NSView?

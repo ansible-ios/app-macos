@@ -6,7 +6,7 @@ import subprocess
 lab = Path(__file__).resolve().parent
 root = lab.parents[2]
 baseline = '343bbb304'
-output = 'import Cocoa\nimport TGUIKit\n'
+output = 'import Cocoa\nimport AnsibleUIKit\n'
 provenance = {'baseline': baseline, 'sources': {}}
 for name in ['InteractiveTextView', 'InlineTextView']:
     path = 'packages/GeneralRows/Sources/GeneralRows/' + name + '.swift'

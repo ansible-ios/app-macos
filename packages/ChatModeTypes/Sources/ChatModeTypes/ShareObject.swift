@@ -1,7 +1,7 @@
 import Cocoa
 import AnsibleUtils
 import InputView
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox

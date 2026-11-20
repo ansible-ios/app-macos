@@ -10,7 +10,7 @@ parser.add_argument('--source', type=Path, default=root / 'packages/AnsibleMedia
 parser.add_argument('--skip')
 parser.add_argument('--filter')
 args = parser.parse_args()
-source = args.source.read_text().replace('import TGUIKit\n', '').replace('import ObjcUtils\n', '')
+source = args.source.read_text().replace('import AnsibleUIKit\n', '').replace('import ObjcUtils\n', '')
 source = source.replace('fileprivate ', '').replace('private ', '').replace('public ', '').replace('open ', '')
 source = source.replace('TAVSampleBufferDisplayLayer : AVSampleBufferDisplayLayer', 'TAVSampleBufferDisplayLayer : ControlledSampleBufferDisplayLayer')
 source = source.replace('AVAssetReader(asset:', 'ControlledAssetReader(asset:')

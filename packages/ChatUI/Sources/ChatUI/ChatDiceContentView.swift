@@ -3,7 +3,7 @@ import SceneEffects
 import Postbox
 import TelegramCore
 import InAppSettings
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import AnsibleMedia
 import CurrencyFormat

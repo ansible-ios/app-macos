@@ -7,8 +7,8 @@
 extern "C" {
 #endif
     
-    NSData * _Nullable TGGZipData(NSData * __nonnull data, float level);
-    NSData * _Nullable TGGUnzipData(NSData * __nullable data, uint sizeLimit);
+    NSData * _Nullable AnsibleGZipData(NSData * __nonnull data, float level);
+    NSData * _Nullable AnsibleGUnzipData(NSData * __nullable data, uint sizeLimit);
     
 #ifdef __cplusplus
 }

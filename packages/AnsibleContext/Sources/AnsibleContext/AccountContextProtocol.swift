@@ -2,7 +2,7 @@ import Foundation
 import Postbox
 import SwiftSignalKit
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import ColorPalette
 import InAppSettings
 #if !SHARE

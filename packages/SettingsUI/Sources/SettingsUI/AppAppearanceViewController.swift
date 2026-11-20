@@ -4,7 +4,7 @@ import ThemeSettings
 import ColorPalette
 import SwiftSignalKit
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import InAppSettings
 import Localization
 import AnsibleTheme

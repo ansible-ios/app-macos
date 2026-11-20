@@ -2,7 +2,7 @@ import Foundation
 import TelegramCore
 import SwiftSignalKit
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import AnsibleMedia
 import Cocoa
 import AnsibleContext

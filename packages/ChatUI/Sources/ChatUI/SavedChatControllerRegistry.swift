@@ -2,7 +2,7 @@ import Cocoa
 import Postbox
 import TelegramCore
 import AnsibleContext
-import TGUIKit
+import AnsibleUIKit
 
 final class SavedChatControllerRegistry {
     static let shared = SavedChatControllerRegistry()

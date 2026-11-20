@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class ReferenceChatRightTextLayer: SimpleLayer {
     private final class DrawLayer: SimpleLayer {

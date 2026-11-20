@@ -1,13 +1,13 @@
 import Cocoa
 import QuartzCore
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class EmbeddedSelectionBenchmarkTests: XCTestCase {
     func testEmbeddedSelectionCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_EMBEDDED_SELECTION_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in embedded selection benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let fixtures = EmbeddedTextSelectionTests()
         let window = fixtures.window()
         defer { window.contentView = nil; window.close() }

@@ -1,13 +1,13 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 @testable import SortingBaseline
 
 final class SiblingOrderTests: XCTestCase {
     override func setUp() {
-        TGUIKitTestBootstrap.install()
-        TGUIKitAccessibility.isEnabled = true
+        AnsibleUIKitTestBootstrap.install()
+        AnsibleUIKitAccessibility.isEnabled = true
     }
 
     func pair(_ levels: [Int]) throws -> (SortingBaseline.ChatLayerNode, ChatLayerEngine.ChatLayerNode) {

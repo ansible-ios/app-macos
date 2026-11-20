@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 
 final class BenchmarkTests: XCTestCase {
     func testRedrawCost() throws {
         guard ProcessInfo.processInfo.environment["MARKUP_BENCHMARK"] != nil else { throw XCTSkip("Opt-in native reply markup benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let reverse = ProcessInfo.processInfo.environment["MARKUP_REVERSE"] != nil
         GeneralRowsHooks.shared.makeInlineTextRenderer = { let renderer = RendererFixture(); renderer.recordsEvents = false; return renderer }
         let interactions = ReplyMarkupInteractions()

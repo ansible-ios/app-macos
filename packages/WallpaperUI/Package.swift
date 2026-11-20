@@ -4,7 +4,7 @@ import PackageDescription
 
 let deps: [(String, String)] = [
     ("AppAnalytics", "../AppAnalytics"),
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("ColorPalette", "../ColorPalette"),
     ("InAppSettings", "../InAppSettings"),
     ("Localization", "../Localization"),
@@ -20,7 +20,7 @@ let deps: [(String, String)] = [
     ("AnsibleMediaUtils", "../AnsibleMediaUtils"),
     ("AnsibleIconsTheme", "../AnsibleIconsTheme"),
     ("ChatHistoryModel", "../ChatHistoryModel"),
-    ("TGModernGrowingTextView", "../TGModernGrowingTextView"),
+    ("AnsibleModernGrowingTextView", "../AnsibleModernGrowingTextView"),
     ("FilePanels", "../FilePanels"),
     ("PremiumUI", "../PremiumUI"),
     ("DiceCache", "../DiceCache"),

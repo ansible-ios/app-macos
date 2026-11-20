@@ -1,7 +1,7 @@
 import Cocoa
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 #if SHARE
 import AnsibleThemeShare
 #else

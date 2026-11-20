@@ -77,7 +77,7 @@ extension DocumentCanvasView {
         let p = convert(event.locationInWindow, from: nil)
         placeCaretForContextClick(at: p)   // a right-click in a cell targets that cell (menu + commands)
 
-        // Let the host present its own (e.g. TGUIKit) menu; if it does, suppress the native one.
+        // Let the host present its own (e.g. AnsibleUIKit) menu; if it does, suppress the native one.
         if let handler = contextMenuRequested {
             if handler(p, mediaContext(atCanvasPoint: p), selFrom != selTo, event) { return nil }
         }

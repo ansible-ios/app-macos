@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import ChatLayerEngine
 
 final class StaticQuoteTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install(); System.updateScaleFactor(2) }
+    override func setUp() { AnsibleUIKitTestBootstrap.install(); System.updateScaleFactor(2) }
     override func tearDown() { System.updateScaleFactor(2) }
 
     func source(_ string: String, width: CGFloat = 240, code: Bool = false, colors: Int = 0, collapsable: Bool = false, header: Bool = false) -> FoldingTextLayout {

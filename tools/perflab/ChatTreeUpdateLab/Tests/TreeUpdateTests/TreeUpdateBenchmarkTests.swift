@@ -1,13 +1,13 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 @testable import TreeBaseline
 
 final class TreeUpdateBenchmarkTests: XCTestCase {
     func testCosts() throws {
         guard ProcessInfo.processInfo.environment["TREE_UPDATE_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in tree update benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let reverse = ProcessInfo.processInfo.environment["TREE_UPDATE_REVERSE"] == "1"
         let factory = TreeUpdateTests()
         var sink = 0, results: [String: [[Double]]] = [:]

@@ -1,6 +1,6 @@
 import Cocoa
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import AnsibleUtils
 import SwiftSignalKit

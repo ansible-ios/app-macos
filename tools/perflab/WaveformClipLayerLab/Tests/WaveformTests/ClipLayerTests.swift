@@ -1,7 +1,7 @@
 import Cocoa
 import QuartzCore
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import WaveformCurrent
 @testable import WaveformOriginal
 

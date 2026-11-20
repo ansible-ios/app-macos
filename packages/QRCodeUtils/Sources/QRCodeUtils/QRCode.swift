@@ -2,7 +2,7 @@ import Cocoa
 import Foundation
 import CoreImage
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import AnsibleMediaUtils
 
 public enum QrCodeIcon {

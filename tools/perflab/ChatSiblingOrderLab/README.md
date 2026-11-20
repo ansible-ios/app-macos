@@ -16,7 +16,7 @@ SIBLING_ORDER_BENCHMARK=1 SIBLING_ORDER_REVERSE=1 swift test --package-path /tmp
 cp /tmp/chat-sibling-order-benchmark.json /tmp/sibling-reverse.json
 ```
 
-Use a fresh output directory and run timing without competing compilers. The generator uses the existing ChatLayerEngineLab host and creates two complete engine modules differing only in ChatLayerScene.swift. Both use the same frozen TGUIKit and model stubs. The baseline restores the captured original scene file. Identical test-only extensions expose private ordering and array storage in each module; production code has no inspection API. The generator verifies the module difference and records source hashes.
+Use a fresh output directory and run timing without competing compilers. The generator uses the existing ChatLayerEngineLab host and creates two complete engine modules differing only in ChatLayerScene.swift. Both use the same frozen AnsibleUIKit and model stubs. The baseline restores the captured original scene file. Identical test-only extensions expose private ordering and array storage in each module; production code has no inspection API. The generator verifies the module difference and records source hashes.
 
 The complete host regression suite runs by omitting the test filter. Its real copy-icon fixture needs `CHAT_COPY_ICON_BUNDLE` pointing to an app bundle containing the theme assets; final validation used the existing `/tmp/PrecomposedTintFinalAssets/Probe.app` fixture. Without that fixture the asset test may be skipped. Placeholder theme icons bootstrap the other tests equally in both engines.
 
@@ -49,7 +49,7 @@ Six focused tests compare the original and candidate modules. Coverage includes 
 
 The final release suite passes 343 functional tests with 34 optional measurements skipped, including all six new tests and the real icon-loader fixture. All six focused tests also pass Address Sanitizer with leak detection disabled. The changed production file passes Swift syntax parsing. No full-app build or scrolling FPS measurement is claimed.
 
-A fresh generator invocation reproduced all 99 engine/harness source files, 73 host test files, 177 TGUIKit source files and 76 TGUIKit test files byte-for-byte. The final compiled source and production source match; compiler-input and production hashes are retained with the logs.
+A fresh generator invocation reproduced all 99 engine/harness source files, 73 host test files, 177 AnsibleUIKit source files and 76 AnsibleUIKit test files byte-for-byte. The final compiled source and production source match; compiler-input and production hashes are retained with the logs.
 
 ## Alternatives checked
 

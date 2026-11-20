@@ -2,7 +2,7 @@ import Cocoa
 import SwiftSignalKit
 import TelegramCore
 
-import TGUIKit
+import AnsibleUIKit
 import AnsibleTheme
 import AnsibleContext
 import AnsibleUtils

@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 
 final class IconIdentityBenchmarkTests: XCTestCase {
     func testBindingCost() throws {
         guard ProcessInfo.processInfo.environment["TOPIC_IDENTITY_TIMING"] != nil else { throw XCTSkip("Opt-in icon identity benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         theme = FixtureTheme()
         let reverse = ProcessInfo.processInfo.environment["TOPIC_REVERSE"] != nil
         let context = FixtureContext()

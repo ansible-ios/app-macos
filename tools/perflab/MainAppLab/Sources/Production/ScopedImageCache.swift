@@ -1,1 +1,1 @@
-../../../../../packages/TGUIKit/Sources/ScopedImageCache.swift
+../../../../../packages/AnsibleUIKit/Sources/ScopedImageCache.swift

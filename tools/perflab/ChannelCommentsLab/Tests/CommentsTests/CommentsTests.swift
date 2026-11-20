@@ -1,7 +1,7 @@
 import Cocoa
 import QuartzCore
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import CommentsHarness
 
 private final class CommentsTestWindow: Window {
@@ -339,9 +339,9 @@ final class CommentsTests: XCTestCase {
             XCTAssertTrue(window.contentView?.hitTest(point) === current, "Text area hits the button")
         }
         XCTAssertTrue(current.subviews.isEmpty, "No native subviews at rest")
-        let previous = TGUIKitAccessibility.isEnabled
-        TGUIKitAccessibility.isEnabled = true
-        defer { TGUIKitAccessibility.isEnabled = previous }
+        let previous = AnsibleUIKitAccessibility.isEnabled
+        AnsibleUIKitAccessibility.isEnabled = true
+        defer { AnsibleUIKitAccessibility.isEnabled = previous }
         XCTAssertTrue(current.isAccessibilityElement())
         XCTAssertEqual(current.accessibilityRole(), .button)
         XCTAssertEqual(current.accessibilityLabel(), "123 comments")

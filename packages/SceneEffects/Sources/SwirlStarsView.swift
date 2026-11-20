@@ -1,7 +1,7 @@
 import Cocoa
 import Foundation
 import SceneKit
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 
 public protocol PremiumDecorationProtocol {

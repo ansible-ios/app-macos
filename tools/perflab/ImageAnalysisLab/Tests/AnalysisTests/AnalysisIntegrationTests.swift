@@ -1,15 +1,15 @@
 import AppKit
 import XCTest
-import func TGUIKit.imageRequiresInversion
-@testable import func TGUIKit.imageHasTransparency
-import func TGUIKit.analysisLabSamplingSize
-import func TGUIKit.generateTintedImage
-import struct TGUIKit.System
-import struct TGUIKit.DeviceGraphicsContextSettings
-import func TGUIKitBaseline.imageRequiresInversion
-import func TGUIKitBaseline.analysisLabSamplingSize
-import func TGUIKitBaseline.generateTintedImage
-import struct TGUIKitBaseline.System
+import func AnsibleUIKit.imageRequiresInversion
+@testable import func AnsibleUIKit.imageHasTransparency
+import func AnsibleUIKit.analysisLabSamplingSize
+import func AnsibleUIKit.generateTintedImage
+import struct AnsibleUIKit.System
+import struct AnsibleUIKit.DeviceGraphicsContextSettings
+import func AnsibleUIKitBaseline.imageRequiresInversion
+import func AnsibleUIKitBaseline.analysisLabSamplingSize
+import func AnsibleUIKitBaseline.generateTintedImage
+import struct AnsibleUIKitBaseline.System
 
 final class AnalysisIntegrationTests: XCTestCase {
     private func bytes(_ image: CGImage) throws -> Data {
@@ -20,12 +20,12 @@ final class AnalysisIntegrationTests: XCTestCase {
     }
 
     func testActualTintPipelinePreservesVisibleArtwork() throws {
-        TGUIKit.System.updateScaleFactor(1)
-        TGUIKitBaseline.System.updateScaleFactor(1)
+        AnsibleUIKit.System.updateScaleFactor(1)
+        AnsibleUIKitBaseline.System.updateScaleFactor(1)
         for subject in [Pixel.black, Pixel.white, Pixel(255, 0, 0)] {
             let image = try fixture(width: 32, height: 32) { x, y in x >= 14 && x < 18 && y >= 14 && y < 18 ? subject : .clear }
-            let old = TGUIKitBaseline.imageRequiresInversion(image) ? try XCTUnwrap(TGUIKitBaseline.generateTintedImage(image: image, color: .blue)) : image
-            let new = TGUIKit.imageRequiresInversion(image) ? try XCTUnwrap(TGUIKit.generateTintedImage(image: image, color: .blue)) : image
+            let old = AnsibleUIKitBaseline.imageRequiresInversion(image) ? try XCTUnwrap(AnsibleUIKitBaseline.generateTintedImage(image: image, color: .blue)) : image
+            let new = AnsibleUIKit.imageRequiresInversion(image) ? try XCTUnwrap(AnsibleUIKit.generateTintedImage(image: image, color: .blue)) : image
             let actual = try bytes(new)
             let expectedCenter: [UInt8] = subject.red == 0 ? [0, 0, 255, 255] : subject.green == 255 ? [255, 255, 255, 255] : [255, 0, 0, 255]
             XCTAssertEqual(Array(actual[(16 * 128 + 16 * 4)..<(16 * 128 + 16 * 4 + 4)]), expectedCenter)
@@ -38,20 +38,20 @@ final class AnalysisIntegrationTests: XCTestCase {
     func testSamplingDimensionsMatchTheExistingPath() throws {
         for (width, height) in [(16, 16), (2048, 32), (32, 2048), (128, 512), (512, 128), (129, 1024), (513, 129), (512, 512)] {
             let image = try fixture(width: width, height: height) { _, _ in .black }
-            XCTAssertEqual(TGUIKit.analysisLabSamplingSize(image), TGUIKitBaseline.analysisLabSamplingSize(image))
+            XCTAssertEqual(AnsibleUIKit.analysisLabSamplingSize(image), AnsibleUIKitBaseline.analysisLabSamplingSize(image))
         }
     }
 
     func testClassificationDoesNotDependOnInstalledDrawingFormat() throws {
-        defer { TGUIKit.DeviceGraphicsContextSettings.install(nil) }
+        defer { AnsibleUIKit.DeviceGraphicsContextSettings.install(nil) }
         let dark = try fixture(width: 32, height: 32) { x, _ in x == 0 ? .clear : .black }
         let white = try fixture(width: 32, height: 32) { x, _ in x == 0 ? .clear : .white }
         for space in [CGColorSpaceCreateDeviceRGB(), try XCTUnwrap(CGColorSpace(name: CGColorSpace.displayP3))] {
             for alpha in [CGImageAlphaInfo.premultipliedFirst, .premultipliedLast] {
                 let context = try XCTUnwrap(CGContext(data: nil, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 32, space: space, bitmapInfo: alpha.rawValue | CGBitmapInfo.byteOrder32Big.rawValue))
-                TGUIKit.DeviceGraphicsContextSettings.install(context)
-                XCTAssertTrue(TGUIKit.imageRequiresInversion(dark))
-                XCTAssertFalse(TGUIKit.imageRequiresInversion(white))
+                AnsibleUIKit.DeviceGraphicsContextSettings.install(context)
+                XCTAssertTrue(AnsibleUIKit.imageRequiresInversion(dark))
+                XCTAssertFalse(AnsibleUIKit.imageRequiresInversion(white))
             }
         }
     }
@@ -72,8 +72,8 @@ final class AnalysisIntegrationTests: XCTestCase {
                 if dark { return Pixel(20, 20, 20, alpha) }
                 return next(2) == 0 ? Pixel(240, 240, 240, alpha) : Pixel(220, 0, 0, alpha)
             }
-            XCTAssertEqual(TGUIKit.imageHasTransparency(image), transparency)
-            XCTAssertEqual(TGUIKit.imageRequiresInversion(image), transparency && total > 0 && Double(matching) / Double(total) > 0.85, "Randomized case \(iteration)")
+            XCTAssertEqual(AnsibleUIKit.imageHasTransparency(image), transparency)
+            XCTAssertEqual(AnsibleUIKit.imageRequiresInversion(image), transparency && total > 0 && Double(matching) / Double(total) > 0.85, "Randomized case \(iteration)")
         }
     }
 
@@ -83,7 +83,7 @@ final class AnalysisIntegrationTests: XCTestCase {
         var failures: [Int] = []
         DispatchQueue.concurrentPerform(iterations: 400) { iteration in
             let index = iteration % images.count
-            if TGUIKit.imageRequiresInversion(images[index]) != (index == 0) {
+            if AnsibleUIKit.imageRequiresInversion(images[index]) != (index == 0) {
                 lock.lock(); failures.append(iteration); lock.unlock()
             }
         }
@@ -96,15 +96,15 @@ final class AnalysisIntegrationTests: XCTestCase {
         let maskProvider = try XCTUnwrap(CGDataProvider(data: maskData as CFData))
         let mask = try XCTUnwrap(CGImage(maskWidth: 32, height: 32, bitsPerComponent: 8, bitsPerPixel: 8, bytesPerRow: 32, provider: maskProvider, decode: nil, shouldInterpolate: false))
         let masked = try XCTUnwrap(source.masking(mask))
-        XCTAssertTrue(TGUIKit.imageHasTransparency(masked))
-        XCTAssertTrue(TGUIKit.imageRequiresInversion(masked))
+        XCTAssertTrue(AnsibleUIKit.imageHasTransparency(masked))
+        XCTAssertTrue(AnsibleUIKit.imageRequiresInversion(masked))
         let white = try fixture(width: 32, height: 32, format: .rgba) { x, _ in x == 0 ? .clear : .white }
         let decode: [CGFloat] = [1, 0, 1, 0, 1, 0]
         let decoded = try decode.withUnsafeBufferPointer { values in
             try XCTUnwrap(CGImage(width: white.width, height: white.height, bitsPerComponent: white.bitsPerComponent, bitsPerPixel: white.bitsPerPixel, bytesPerRow: white.bytesPerRow, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: white.bitmapInfo, provider: try XCTUnwrap(white.dataProvider), decode: values.baseAddress, shouldInterpolate: false, intent: .defaultIntent))
         }
-        XCTAssertFalse(TGUIKit.imageRequiresInversion(white))
-        XCTAssertTrue(TGUIKit.imageRequiresInversion(decoded))
+        XCTAssertFalse(AnsibleUIKit.imageRequiresInversion(white))
+        XCTAssertTrue(AnsibleUIKit.imageRequiresInversion(decoded))
     }
 
     func testUnsupportedImageFormatsRemainExcluded() throws {
@@ -117,8 +117,8 @@ final class AnalysisIntegrationTests: XCTestCase {
         ]
         for (componentBits, pixelBits, rowBytes, space, info) in specifications {
             let image = try XCTUnwrap(CGImage(width: 1, height: 1, bitsPerComponent: componentBits, bitsPerPixel: pixelBits, bytesPerRow: rowBytes, space: space, bitmapInfo: CGBitmapInfo(rawValue: info), provider: provider, decode: nil, shouldInterpolate: false, intent: .defaultIntent))
-            XCTAssertFalse(TGUIKit.imageHasTransparency(image))
-            XCTAssertFalse(TGUIKit.imageRequiresInversion(image))
+            XCTAssertFalse(AnsibleUIKit.imageHasTransparency(image))
+            XCTAssertFalse(AnsibleUIKit.imageRequiresInversion(image))
         }
     }
 

@@ -1,6 +1,6 @@
 # ProgressBarLab
 
-This mini-app compares the complete previous `LinearProgressControl` from `d0610bf3d` with the current production class imported from TGUIKit. `prepare.py` verifies the preserved source against Git and generates a renamed reference class. The reference uses `@testable import TGUIKit` for the inherited tracking-area property; no production API was widened. Both controls use actual AppKit, Core Animation and TGUIKit code. The only fixture assets are bootstrap theme icons and a small generated scrubber image.
+This mini-app compares the complete previous `LinearProgressControl` from `d0610bf3d` with the current production class imported from AnsibleUIKit. `prepare.py` verifies the preserved source against Git and generates a renamed reference class. The reference uses `@testable import AnsibleUIKit` for the inherited tracking-area property; no production API was widened. Both controls use actual AppKit, Core Animation and AnsibleUIKit code. The only fixture assets are bootstrap theme icons and a small generated scrubber image.
 
 ## Change
 
@@ -12,7 +12,7 @@ A control without a scrubber or ranges now owns two views (control and container
 
 ## Validation
 
-Nine functional tests pass in debug, release and Address Sanitizer. The opt-in benchmark is skipped in ordinary runs. The shared TGUIKit suite also passes all 213 functional tests, with two optional tests skipped.
+Nine functional tests pass in debug, release and Address Sanitizer. The opt-in benchmark is skipped in ordinary runs. The shared AnsibleUIKit suite also passes all 213 functional tests, with two optional tests skipped.
 
 - 430 exact static pixel pairs in the main geometry, appearance and invalid-input matrices: 1×/2×/3× rasterization, fractional sizes, all alignments, insets, minimum visibility, rounded/explicit corners, preview, colors, scrubbers, overlapping ranges, negative/oversized progress and NaN normalization.
 - Additional comparisons after scrubbing, playback stopping/resizing and range removal. Geometry tolerates less than 0.00000001 points of AppKit floating-point roundoff; pixel comparisons are exact.
@@ -47,7 +47,7 @@ swift test -c release --package-path tools/perflab/ProgressBarLab --scratch-path
 swift test --sanitize address --package-path tools/perflab/ProgressBarLab --scratch-path /tmp/ProgressBarLab-asan
 PROGRESS_RENDER_DIR=/tmp/progress-renders swift test --skip-build --package-path tools/perflab/ProgressBarLab --scratch-path /tmp/ProgressBarLab-debug --filter ProgressTests.testAnimatedMetalFramesMatch
 PROGRESS_BENCHMARK=1 swift test -c release --skip-build --package-path tools/perflab/ProgressBarLab --scratch-path /tmp/ProgressBarLab-release --filter ProgressTests.testBenchmark
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-debug
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-debug
 ```
 
 Use separate scratch directories for each package. Run CPU benchmarks after builds and GPU tests finish. Benchmark output is `/tmp/progress-benchmark.json`.

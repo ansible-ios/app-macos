@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class RowTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install(); System.updateScaleFactor(2) }
+    override func setUp() { AnsibleUIKitTestBootstrap.install(); System.updateScaleFactor(2) }
     override func tearDown() { System.updateScaleFactor(2) }
     func testCompleteRowBitmapParityAndViewCount() throws {
         var comparisons = 0
@@ -78,7 +78,7 @@ final class RowTests: XCTestCase {
         let key = NSEvent.keyEvent(with: .keyDown, location: .zero, modifierFlags: [], timestamp: 1, windowNumber: 0, context: nil, characters: " ", charactersIgnoringModifiers: " ", isARepeat: false, keyCode: 49)!
         scene.keyDown(with: key)
         XCTAssertEqual(actions, 1)
-        TGUIKitAccessibility.isEnabled = true
+        AnsibleUIKitAccessibility.isEnabled = true
         let accessible = try XCTUnwrap(scene.accessibilityChildren()?.first as? NSAccessibilityProtocol)
         XCTAssertTrue(accessible.accessibilityPerformPress())
         XCTAssertEqual(actions, 2)
@@ -89,7 +89,7 @@ final class RowTests: XCTestCase {
 
 extension RowTests {
     func testAccessibilityIsReachableThroughDocument() throws {
-        TGUIKitAccessibility.isEnabled = true
+        AnsibleUIKitAccessibility.isEnabled = true
         let document = ChatLayerDemo.makeDocument(layerBased: true, count: 3, onAction: { _ in })
         let elements = AccessibilityAudit.elements(document)
         XCTAssertGreaterThan(elements.count, 30)

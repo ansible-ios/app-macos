@@ -9,13 +9,13 @@ let package = Package(
         .library(name: "ComponentsUI", targets: ["ComponentsUI"]),
     ],
     dependencies: [
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
     ],
     targets: [
         .target(
             name: "ComponentsUI",
             dependencies: [
-                .product(name: "TGUIKit", package: "TGUIKit"),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit"),
             ],
             path: "Sources/ComponentsUI"),
     ]

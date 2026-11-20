@@ -2,7 +2,7 @@ import AppKit
 import XCTest
 import Postbox
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import ChatHistoryModel
 import InAppSettings
 import AnsibleContext

@@ -1,7 +1,7 @@
 import AppAnalytics
 import Cocoa
 import AVFoundation
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import ColorPalette
 import Localization

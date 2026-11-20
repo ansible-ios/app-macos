@@ -15,7 +15,7 @@ s = p.read_text()
 asset_end = reference.index('final class ReferenceIconQuoteLayer')
 assert reference[:asset_end].strip() in s, 'The unchanged quote resource must match the captured original'
 reference = 'private let quoteIcon = referenceSharedQuoteIcon()\n\n' + reference[asset_end:]
-(output / 'ReferenceIcon.swift').write_text('import Cocoa\nimport TGUIKit\n' + reference)
+(output / 'ReferenceIcon.swift').write_text('import Cocoa\nimport AnsibleUIKit\n' + reference)
 a = s.index('    private final class CopyIconCache {')
 b = s.index('    var blockQuotes:', a)
 s = s[:a] + s[a:b].replace('private ', '') + s[b:]

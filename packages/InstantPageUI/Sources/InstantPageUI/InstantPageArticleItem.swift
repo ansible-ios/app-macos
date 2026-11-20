@@ -9,7 +9,7 @@ import Foundation
 import Postbox
 import TelegramCore
 
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import RangeSet
 

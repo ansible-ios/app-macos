@@ -9,7 +9,7 @@ baseline = '828654359'
 path = 'packages/InlineStickerLayer/Sources/InlineStickerLayer/InlineStickerItemLayer.swift'
 original = subprocess.check_output(['git', 'show', baseline + ':' + path], cwd=root, text=True)
 current = (root / path).read_text()
-output = 'import Cocoa\nimport TGUIKit\n'
+output = 'import Cocoa\nimport AnsibleUIKit\n'
 for prefix, source in [('Reference', original), ('Candidate', current)]:
     start = source.index('public final class InlineStickerView:')
     end = source.index('public final class InlineStickerItemLayer :', start)

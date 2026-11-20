@@ -1,6 +1,6 @@
 import Cocoa
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import AlertsUI
 import Localization

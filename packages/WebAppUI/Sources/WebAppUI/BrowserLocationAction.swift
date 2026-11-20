@@ -8,7 +8,7 @@ import Postbox
 import InputDataUI
 import AlertsUI
 import Localization
-import TGUIKit
+import AnsibleUIKit
 
 final class BrowserLocationAction {
     private final class Request {

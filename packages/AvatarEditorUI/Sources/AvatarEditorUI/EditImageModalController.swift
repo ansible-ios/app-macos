@@ -1,6 +1,6 @@
 import AppAnalytics
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import ColorPalette
 import ImageCanvasUI

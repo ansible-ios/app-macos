@@ -11,12 +11,12 @@ assert output.is_relative_to(Path('/tmp').resolve()) and not output.exists()
 subprocess.run([sys.executable, str(lab / 'prepare-isolated.py'), str(output)], check=True)
 shutil.rmtree(output / 'Tests')
 shutil.copytree(mask_lab / 'Tests', output / 'Tests')
-manifest = (mask_lab / 'Package.swift').read_text().replace('../../../packages/TGUIKit', str(output / 'TGUIKit'))
+manifest = (mask_lab / 'Package.swift').read_text().replace('../../../packages/AnsibleUIKit', str(output / 'AnsibleUIKit'))
 (output / 'Package.swift').write_text(manifest)
-for module in ['TGUIKit', 'TGUIKitBaseline']:
+for module in ['AnsibleUIKit', 'AnsibleUIKitBaseline']:
     for name in ['ShimmerLayer.swift', 'StickerShimmerEffectView.swift']:
         path = output / module / 'Sources' / name
-        if module == 'TGUIKitBaseline':
+        if module == 'AnsibleUIKitBaseline':
             source = gzip.decompress((mask_lab / 'Reference' / (name + '.gz')).read_bytes()).decode()
         else:
             source = path.read_text()

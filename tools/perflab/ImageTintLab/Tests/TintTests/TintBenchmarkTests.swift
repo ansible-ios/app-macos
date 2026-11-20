@@ -1,7 +1,7 @@
 import Cocoa
 import XCTest
 import QuartzCore
-import TGUIKit
+import AnsibleUIKit
 
 final class TintBenchmarkTests: XCTestCase {
     func testCosts() throws {

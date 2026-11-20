@@ -22,7 +22,7 @@ markers = ['    public override func set(item:TableRowItem, animated:Bool = fals
 reference = '\n\n'.join(extract(original, marker) for marker in markers) + '\n'
 reference = '\n'.join(line.rstrip() for line in reference.splitlines()) + '\n'
 assert (lab / 'Reference/ChatRowObserver.swift.txt').read_text() == reference
-output = 'import Cocoa\nimport TGUIKit\n\n'
+output = 'import Cocoa\nimport AnsibleUIKit\n\n'
 for name, text in [('BaselineRow', original), ('CandidateRow', source)]:
     fields = ''
     if name == 'CandidateRow':
@@ -39,4 +39,4 @@ for name, text in [('BaselineRow', original), ('CandidateRow', source)]:
 generated = lab / 'Sources/ChatRowObserverHarness/Generated'
 generated.mkdir(parents=True, exist_ok=True)
 (generated / 'Rows.swift').write_text(output)
-(lab / 'observer-provenance.json').write_text(json.dumps({'baseline_commit': '6a45ed29f', 'source_sha256': {p: hashlib.sha256((root / p).read_bytes()).hexdigest() for p in [source_path, 'packages/TGUIKit/Sources/InterfaceObserver.swift']}, 'generated_sha256': hashlib.sha256(output.encode()).hexdigest(), 'scope': 'Complete production set(item:), notify, window lifecycle, deinit and observer helper; rendering and Telegram models are stand-ins. Actual TGUIKit InterfaceObserver and NSView window attachment.'}, indent=2) + '\n')
+(lab / 'observer-provenance.json').write_text(json.dumps({'baseline_commit': '6a45ed29f', 'source_sha256': {p: hashlib.sha256((root / p).read_bytes()).hexdigest() for p in [source_path, 'packages/AnsibleUIKit/Sources/InterfaceObserver.swift']}, 'generated_sha256': hashlib.sha256(output.encode()).hexdigest(), 'scope': 'Complete production set(item:), notify, window lifecycle, deinit and observer helper; rendering and Telegram models are stand-ins. Actual AnsibleUIKit InterfaceObserver and NSView window attachment.'}, indent=2) + '\n')

@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class EmbeddedTextSelectionTests: XCTestCase {
@@ -11,7 +11,7 @@ final class EmbeddedTextSelectionTests: XCTestCase {
         override var textSelectionSources: ChatTextSelectionSources { nativeOnly ? .views(selectableTextViews) : .mixed(sources) }
     }
 
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func makeLayout(_ string: String) -> TextViewLayout {
         let text = NSAttributedString(string: string, attributes: [.font: NSFont.systemFont(ofSize: 14), .foregroundColor: NSColor.red])

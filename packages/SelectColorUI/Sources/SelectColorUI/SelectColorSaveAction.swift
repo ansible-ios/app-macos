@@ -1,6 +1,6 @@
 import Foundation
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 
 final class SelectColorSaveAction {
     private let disposable = MetaDisposable()

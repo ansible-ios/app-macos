@@ -1,6 +1,6 @@
 import Foundation
 import AVFoundation
-import TGUIKit
+import AnsibleUIKit
 import TgVoipWebrtc
 import SwiftSignalKit
 import AnsibleMedia

@@ -11,7 +11,7 @@ let package = Package(
     dependencies: [
         .package(name: "FFMpegBinding", path: "../../submodules/ansible-ios/submodules/FFMpegBinding"),
         .package(name: "AppAnalytics", path: "../AppAnalytics"),
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "ColorPalette", path: "../ColorPalette"),
         .package(name: "Localization", path: "../Localization"),
         .package(name: "AnsibleTheme", path: "../AnsibleTheme"),
@@ -28,7 +28,7 @@ let package = Package(
             dependencies: [
                 .product(name: "FFMpegBinding", package: "FFMpegBinding", condition: nil),
                 .product(name: "AppAnalytics", package: "AppAnalytics", condition: nil),
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "ColorPalette", package: "ColorPalette", condition: nil),
                 .product(name: "Localization", package: "Localization", condition: nil),
                 .product(name: "AnsibleTheme", package: "AnsibleTheme", condition: nil),

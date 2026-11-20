@@ -11,9 +11,9 @@ The view now tracks one weak selection interaction. Rebinding to the same intera
 - Eight regression tests pass in debug, release and Address Sanitizer configurations. Release also runs the ninth test, the opt-in benchmark.
 - 1,500 combinations of legacy/modern geometry, fractional widths, insets, selection/deletion controls, badges, scam/fake/premium/verified flags, right actions, status images and context labels; each is also prepared again for selection.
 - Fixed-width accessory mutations check invalidation independently of window resizing.
-- 1,128 byte-for-byte bitmap comparisons using real TGUIKit `TextNode` and Core Text, covering normal/selected colors, English, Arabic, Hebrew, Chinese, combining marks, emoji, truncation, empty text and 1×/2×/3× drawing.
+- 1,128 byte-for-byte bitmap comparisons using real AnsibleUIKit `TextNode` and Core Text, covering normal/selected colors, English, Arabic, Hebrew, Chinese, combining marks, emoji, truncation, empty text and 1×/2×/3× drawing.
 - 1,000 unchanged preparations retain all four layout and node identities; resizing replaces them.
-- All 36 transitions between plain, selectable, interactable and deletable states, plus repeated binding, detach, reattach and release. Observer delivery uses real TGUIKit `InterfaceObserver` and actual AppKit view attachment.
+- All 36 transitions between plain, selectable, interactable and deletable states, plus repeated binding, detach, reattach and release. Observer delivery uses real AnsibleUIKit `InterfaceObserver` and actual AppKit view attachment.
 - Both modified production files pass Swift frontend parsing for normal and `SHARE` configurations. The share package uses symlinks to the same files.
 
 The harness stubs account/peer data and row accessories. It supplies numeric `textInset` values rather than creating avatars or premium controls. It compiles the exact production preparation method and observer helper/lifecycle methods, with a small NSView adapter replacing the full row's `set` method; extraction checks that production `set` invokes the helper and has no separate observer registration. It does not exercise the complete row hierarchy, accessibility, avatars or a live Telegram window. Full app compilation and end-to-end scrolling were not performed.
@@ -44,7 +44,7 @@ SHORT_PEER_BENCHMARK=1 swift test -c release --package-path tools/perflab/ShortP
 swift test --sanitize address --package-path tools/perflab/ShortPeerRowLab --scratch-path /tmp/ShortPeerRowLab-asan
 ```
 
-The benchmark writes `/tmp/short-peer-row-benchmark.json`. Generated sources and build products are ignored. Theme images are placeholders required to initialize TGUIKit; they are not included in the text comparisons.
+The benchmark writes `/tmp/short-peer-row-benchmark.json`. Generated sources and build products are ignored. Theme images are placeholders required to initialize AnsibleUIKit; they are not included in the text comparisons.
 
 ## Accessory reuse pass
 
@@ -52,7 +52,7 @@ The next pass removes repeated work from `ShortPeerRowView.set`. An unchanged co
 
 Right action callbacks now pass the action's declared `index`, rather than its position in the array. Rebinding still installs the new item's callback and accessibility label, and callbacks retain the item weakly.
 
-`prepare.py` extracts the current context-label helper, accessory switch and right-action binding code verbatim. It compiles them in an AppKit adapter with real TGUIKit `TextView`, `ImageView`, `ImageButton` and `SwitchView`. `ReferenceAccessories.swift.txt` preserves the same blocks from `7b573a350`; `accessory-provenance.json` records the production, reference and generated source hashes. Theme images and account/peer data are supplied by the adapter. These tests do not execute the complete row's avatar, premium badge, layout or parent-table binding.
+`prepare.py` extracts the current context-label helper, accessory switch and right-action binding code verbatim. It compiles them in an AppKit adapter with real AnsibleUIKit `TextView`, `ImageView`, `ImageButton` and `SwitchView`. `ReferenceAccessories.swift.txt` preserves the same blocks from `7b573a350`; `accessory-provenance.json` records the production, reference and generated source hashes. Theme images and account/peer data are supplied by the adapter. These tests do not execute the complete row's avatar, premium badge, layout or parent-table binding.
 
 The expanded suite has 15 regression tests and two opt-in benchmarks. Debug and Address Sanitizer run all 15 regressions; the release run also executes the accessory benchmark. The original preparation, rendering and observer tests continue to pass. The new tests include:
 
@@ -90,7 +90,7 @@ Raw timings and all nine trials per scenario are in `accessory-results.json`; ve
 
 `ShortPeerRowView.updatePresentation` redraws the paid-message badge on every selection notification and row binding. A one-entry cache now reuses its existing image when the formatted amount, resolved colors, font, scale and star-image identity match. The cache is created only for paid badges, retains no previous entries, and is discarded when the badge is removed or changes to the premium-required icon. Unchanged images are not assigned back to the layer. Layout and animation behavior remain in the original binding method.
 
-`prepare.py` extracts the production cache, drawing function and presentation binding method. The reference preserves the previous binding and drawing code from `007289e39`. Tests execute real TGUIKit image views, text measurement and Core Graphics rendering, using both resolutions of the app's `star_small` asset. Peer/account data and theme values are supplied by the harness. This does not compile the entire row's avatar and account integration or the full Telegram app.
+`prepare.py` extracts the production cache, drawing function and presentation binding method. The reference preserves the previous binding and drawing code from `007289e39`. Tests execute real AnsibleUIKit image views, text measurement and Core Graphics rendering, using both resolutions of the app's `star_small` asset. Peer/account data and theme values are supplied by the harness. This does not compile the entire row's avatar and account integration or the full Telegram app.
 
 The suite now passes 23 functional tests in debug, release and Address Sanitizer, with three opt-in benchmarks skipped in normal runs. Eight new regressions cover:
 

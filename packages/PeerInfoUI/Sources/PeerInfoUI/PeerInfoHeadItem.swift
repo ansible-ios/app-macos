@@ -1,6 +1,6 @@
 import Cocoa
 import ComponentsUI
-import TGUIKit
+import AnsibleUIKit
 import UniqueGiftBackground
 import AvatarEditorUI
 import Postbox

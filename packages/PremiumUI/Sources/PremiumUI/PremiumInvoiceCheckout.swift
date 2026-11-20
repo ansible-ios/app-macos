@@ -5,7 +5,7 @@ import SceneEffects
 import SwiftSignalKit
 import AnsibleContext
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 
 func premiumInvoiceCheckout(context: any AccountContextProtocol, slug: String, analyticsContext: AnalyticsContext, paid: @escaping () -> Void) {
     let presentation = analyticsContext.beginPresentation()

@@ -24,7 +24,7 @@ private let markdownInlineHTMLInlineIntent = InlinePresentationIntent(rawValue: 
 private let markdownDefaultBlockImageDimensions = PixelDimensions(width: 1200, height: 900)
 private let markdownDefaultInlineImageDimensions = PixelDimensions(width: 18, height: 18)
 private let markdownRawHTMLTagRegex = try! NSRegularExpression(pattern: #"</?([A-Za-z][A-Za-z0-9:-]*)\b[^>]*?>"#)
-private let markdownFormulaPlaceholderRegex = try! NSRegularExpression(pattern: #"TGMDMATH\d+TGMD"#)
+private let markdownFormulaPlaceholderRegex = try! NSRegularExpression(pattern: #"AnsibleMDMATH\d+AnsibleMD"#)
 private let markdownVoidHTMLTags: Set<String> = [
     "area",
     "base",
@@ -675,7 +675,7 @@ private func markdownLineContentAndEnding(_ line: String) -> (content: String, e
 }
 
 private func markdownFormulaPlaceholder(_ index: Int) -> String {
-    return "TGMDMATH\(index)TGMD"
+    return "AnsibleMDMATH\(index)AnsibleMD"
 }
 
 private func markdownAcceptedFormulaDescriptor(

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class SelectPeerInteraction: InterfaceObserver {
     func emit(_ value: Int) { notifyObservers(value: value, oldValue: 0, animated: false) }

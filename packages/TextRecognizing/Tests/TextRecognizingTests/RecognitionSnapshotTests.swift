@@ -1,6 +1,6 @@
 import XCTest
 import AppKit
-@testable import TGUIKit
+@testable import AnsibleUIKit
 @testable import TextRecognizing
 
 final class RecognitionSnapshotTests: XCTestCase {

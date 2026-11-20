@@ -1,6 +1,6 @@
 import AppKit
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import ChatHistoryModel
 import InAppSettings
 import AnsibleTheme

@@ -11,29 +11,29 @@ root = lab.parents[2]
 variant, destination = sys.argv[1:]
 assert variant in ("baseline", "candidate")
 destination = Path(destination)
-kit = root / "packages/TGUIKit"
+kit = root / "packages/AnsibleUIKit"
 baseline = "28cf6ba5f"
 changed = ["TextView.swift", "TableView.swift"]
 
 for name in ("Sources", "Tests"):
-    target = destination / "TGUIKit" / name
+    target = destination / "AnsibleUIKit" / name
     if target.exists():
         shutil.rmtree(target)
     shutil.copytree(kit / name, target)
 manifest = (kit / "Package.swift").read_text()
 manifest = re.sub(r'(\.package\(name: "[^"]+", path: ")([^"]+)', lambda m: m[1] + str((kit / m[2]).resolve()), manifest)
-(destination / "TGUIKit/Package.swift").write_text(manifest)
+(destination / "AnsibleUIKit/Package.swift").write_text(manifest)
 if variant == "baseline":
     for name in changed:
         source = subprocess.check_output(["git", "show", f"{baseline}:packages/TGUIKit/Sources/{name}"], cwd=root)
-        (destination / "TGUIKit/Sources" / name).write_bytes(source)
+        (destination / "AnsibleUIKit/Sources" / name).write_bytes(source)
 
 target = destination / "TextScrollLab/Sources"
 if target.exists():
     shutil.rmtree(target)
 shutil.copytree(lab / "Sources", target)
-(destination / "TextScrollLab/Package.swift").write_text((lab / "Package.swift").read_text().replace("../../../packages/TGUIKit", "../TGUIKit"))
-files = [destination / "TGUIKit/Sources" / name for name in changed]
+(destination / "TextScrollLab/Package.swift").write_text((lab / "Package.swift").read_text().replace("../../../packages/AnsibleUIKit", "../AnsibleUIKit"))
+files = [destination / "AnsibleUIKit/Sources" / name for name in changed]
 files.append(destination / "TextScrollLab/Sources/TextScrollLab/main.swift")
 provenance = {
     "variant": variant,

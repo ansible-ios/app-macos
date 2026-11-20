@@ -1,14 +1,14 @@
 import Cocoa
 import XCTest
 import QuartzCore
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 @testable import FoldingViewHarness
 
 final class LiveChatTextBenchmarkTests: XCTestCase {
     func testRetainedLiveTextMemory() throws {
         guard let mode = ProcessInfo.processInfo.environment["CHAT_LIVE_TEXT_MEMORY"], ["native", "layers"].contains(mode) else { throw XCTSkip("Opt-in fresh-process live text memory probe") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let context = BlockContext(), factory = ChatTextReuseTests(), count = 3000
         let linked = ProcessInfo.processInfo.environment["CHAT_LIVE_TEXT_LINKED"] == "1"
         let quoted = ProcessInfo.processInfo.environment["CHAT_LIVE_TEXT_QUOTED"] == "1"
@@ -50,7 +50,7 @@ final class LiveChatTextBenchmarkTests: XCTestCase {
 
     func testLiveTextBindingCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_LIVE_TEXT_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in live text binding benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let fixtures = ChatTextReuseTests()
         let attached = ProcessInfo.processInfo.environment["CHAT_LIVE_TEXT_ATTACHED"] == "1"
         let windows: [Window] = attached ? (0..<2).map { _ in

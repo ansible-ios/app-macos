@@ -2,7 +2,7 @@ import Foundation
 import AnsibleContext
 import Localization
 import AnsibleTheme
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox

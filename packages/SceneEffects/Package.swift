@@ -11,7 +11,7 @@ let package = Package(
             targets: ["SceneEffects"]),
     ],
     dependencies: [
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "AnsibleMedia", path: "../AnsibleMedia"),
         .package(name: "AnsibleContext", path: "../AnsibleContext"),
         .package(name: "AnsibleMediaUtils", path: "../AnsibleMediaUtils"),
@@ -29,7 +29,7 @@ let package = Package(
         .target(
             name: "SceneEffects",
             dependencies: [
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
                 .product(name: "MetalEngine", package: "MetalEngine", condition: nil),
                 .product(name: "TelegramCore", package: "TelegramCore", condition: nil),

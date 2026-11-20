@@ -76,6 +76,6 @@ All **17 tests pass** in debug, release, Address Sanitizer, and Thread Sanitizer
 
 The bitmap check draws actual `CTLine` objects. It does not render the complete production `TextView`; decoration geometry is compared separately. Some cold baseline bugs may be shared by both implementations: equivalence is evidence against regressions, not a proof that all existing behavior is correct.
 
-The edited production files pass Swift syntax parsing. The helper also typechecks in Swift 5 mode targeting x86_64 macOS 10.13. The full TGUIKit dependency graph and main app have not been built in this lab. A main-app smoke pass should still cover chat pane resizing, message editing, theme/font changes, RTL/emoji messages, links/selection, and truncated previews.
+The edited production files pass Swift syntax parsing. The helper also typechecks in Swift 5 mode targeting x86_64 macOS 10.13. The full AnsibleUIKit dependency graph and main app have not been built in this lab. A main-app smoke pass should still cover chat pane resizing, message editing, theme/font changes, RTL/emoji messages, links/selection, and truncated previews.
 
 Raw outputs, source hashes, and validation metadata are in [Evidence](Evidence/). No telegram-ios source is changed by this work.

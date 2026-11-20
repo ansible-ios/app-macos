@@ -1,7 +1,7 @@
 import Foundation
 import TelegramCore
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import InAppSettings
 
 func sidebarFilterIncluding(_ filter: ChatListFilter, peerIds: [PeerId], maximumPeers: Int, categoryForPeer: (PeerId) -> ChatListFilterPeerCategories?) -> ChatListFilter {

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 
 final class ReferenceHighlightTextNode: ChatLayerNode {

@@ -2,7 +2,7 @@ import Cocoa
 import CoreVideo
 import ImageIO
 import CoreServices
-import TGUIKit
+import AnsibleUIKit
 import FastBlur
 
 public extension CVImageBuffer {

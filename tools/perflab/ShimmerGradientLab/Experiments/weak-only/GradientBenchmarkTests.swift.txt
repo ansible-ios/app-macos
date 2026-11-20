@@ -2,8 +2,8 @@ import Cocoa
 import XCTest
 import Darwin
 import ObjectiveC
-import enum TGUIKit.GradientCacheInspection
-import enum TGUIKitBaseline.GradientCacheInspection
+import enum AnsibleUIKit.GradientCacheInspection
+import enum AnsibleUIKitBaseline.GradientCacheInspection
 
 final class GradientBenchmarkTests: XCTestCase {
     func testCosts() throws {

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import Localization
 import AnsibleTheme
 import AnsibleUtils

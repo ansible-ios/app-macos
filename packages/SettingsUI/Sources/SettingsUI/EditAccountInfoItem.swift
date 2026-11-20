@@ -1,7 +1,7 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
-import TGModernGrowingTextView
+import AnsibleModernGrowingTextView
 import Postbox
 import SwiftSignalKit
 import KeyboardKey
@@ -59,10 +59,10 @@ public class EditAccountInfoItem: GeneralRowItem {
     }
 }
 
-private final class EditAccountInfoItemView : TableRowView, TGModernGrowingDelegate {
+private final class EditAccountInfoItemView : TableRowView, AnsibleModernGrowingDelegate {
     private let containerView = GeneralRowContainerView(frame: NSZeroRect)
-    private let firstNameTextView: TGModernGrowingTextView = TGModernGrowingTextView(frame: NSZeroRect)
-    private let lastNameTextView: TGModernGrowingTextView = TGModernGrowingTextView(frame: NSZeroRect)
+    private let firstNameTextView: AnsibleModernGrowingTextView = AnsibleModernGrowingTextView(frame: NSZeroRect)
+    private let lastNameTextView: AnsibleModernGrowingTextView = AnsibleModernGrowingTextView(frame: NSZeroRect)
     private let avatar: AvatarControl = AvatarControl(font: .avatar(22))
     private let nameSeparator: View = View()
     private let secondSeparator: View = View()
@@ -287,7 +287,7 @@ private final class EditAccountInfoItemView : TableRowView, TGModernGrowingDeleg
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func maxCharactersLimit(_ textView: TGModernGrowingTextView!) -> Int32 {
+    public func maxCharactersLimit(_ textView: AnsibleModernGrowingTextView!) -> Int32 {
         return 64
     }
     
@@ -295,7 +295,7 @@ private final class EditAccountInfoItemView : TableRowView, TGModernGrowingDeleg
         
     }
     
-    public func textViewSize(_ textView: TGModernGrowingTextView!) -> NSSize {
+    public func textViewSize(_ textView: AnsibleModernGrowingTextView!) -> NSSize {
         return textView.frame.size
     }
     

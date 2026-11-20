@@ -1,6 +1,6 @@
 import Cocoa
 import ObjectiveC
-import TGUIKit
+import AnsibleUIKit
 
 public final class LabWindow: NSWindow {
     public var pointer: NSPoint = .zero

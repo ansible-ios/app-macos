@@ -5,9 +5,9 @@ import Postbox
 import SwiftSignalKit
 import AVFoundation
 import QuickLook
-import TGUIKit
+import AnsibleUIKit
 import libwebp
-import TGGifConverter
+import AnsibleGifConverter
 import InAppSettings
 import AnsibleMedia
 import AnsibleMediaResources
@@ -400,7 +400,7 @@ public class Sender: NSObject {
                                 makeFileMedia(true)
                             } else {
                                 let data = compressImageToJPEG(image, quality: 0.75)
-                                let path = NSTemporaryDirectory() + "tg_image_\(arc4random()).jpeg"
+                                let path = NSTemporaryDirectory() + "ansible_image_\(arc4random()).jpeg"
                                 FileManager.default.createFile(atPath: path, contents: data)
 
                                 
@@ -516,7 +516,7 @@ public class Sender: NSObject {
         }
         
         if mime.hasSuffix("gif"), isMedia {
-            attrs.append(TelegramMediaFileAttribute.Video(duration: 0, size:TGGifConverter.gifDimensionSize(path).pixel, flags: [], preloadSize: nil, coverTime: nil, videoCodec: nil))
+            attrs.append(TelegramMediaFileAttribute.Video(duration: 0, size:AnsibleGifConverter.gifDimensionSize(path).pixel, flags: [], preloadSize: nil, coverTime: nil, videoCodec: nil))
             if !inCollage {
                 attrs.append(TelegramMediaFileAttribute.Animated)
             }
@@ -546,7 +546,7 @@ public class Sender: NSObject {
         } else {
             let getname:(String)->String = { path in
                 var result: String = path.nsstring.lastPathComponent
-                if result.contains("tg_temp_archive_") {
+                if result.contains("ansible_temp_archive_") || result.contains("tg_temp_archive_") {
                     result = "Ansible Archive"
                 }
                 if path.isDirectory {

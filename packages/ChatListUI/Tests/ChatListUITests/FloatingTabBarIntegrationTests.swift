@@ -1,6 +1,6 @@
 import AppKit
 import XCTest
-@testable import TGUIKit
+@testable import AnsibleUIKit
 import AnsibleMedia
 import TLottie
 import LocalAnimations

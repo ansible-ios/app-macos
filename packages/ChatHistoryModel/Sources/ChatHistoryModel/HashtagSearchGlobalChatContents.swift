@@ -1,7 +1,7 @@
 import Foundation
 import SwiftSignalKit
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import AnsibleContext
 import ChatModeTypes

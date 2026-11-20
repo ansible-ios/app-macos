@@ -6,7 +6,7 @@ import Postbox
 import SwiftSignalKit
 import AnsibleContext
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 
 final class InviteJoinAction {
     private var closed = false

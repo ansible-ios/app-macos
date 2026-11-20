@@ -17,7 +17,7 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
         .package(name: "MetalEngine", path: "../../submodules/ansible-ios/submodules/MetalEngine"),
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "AnsibleTheme", path: "../AnsibleTheme"),
     ],
     targets: [
@@ -27,7 +27,7 @@ let package = Package(
             name: "DustLayer",
             dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
                            .product(name: "MetalEngine", package: "MetalEngine", condition: nil),
-                           .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                           .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                            .product(name: "AnsibleTheme", package: "AnsibleTheme", condition: nil)],
             path: "Sources/",
             resources: [.copy("DustEffectShaders.metal"),

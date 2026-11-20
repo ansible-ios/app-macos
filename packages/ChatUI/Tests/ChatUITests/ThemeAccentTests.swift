@@ -3,7 +3,7 @@ import AppKit
 import ColorPalette
 import ThemeSettings
 import AnsibleTheme
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import Postbox
 

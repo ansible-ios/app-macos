@@ -3,7 +3,7 @@ import TelegramCore
 import Postbox
 import AppKit
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import CallVideoLayer
 
 internal final class Arguments {

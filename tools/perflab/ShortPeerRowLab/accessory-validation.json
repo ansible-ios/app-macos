@@ -25,9 +25,9 @@
   "source_sha256": {
     "packages/ShortPeerRow/Sources/ShortPeerRow/ShortPeerRowView.swift": "0de88e44b73a31340d1cf89c568eeb9c51d37db532ef827ef1b054d73da8cd38",
     "packages/ShortPeerRow/Sources/ShortPeerRow/ShortPeerRowItem.swift": "4987233ea8c930280a1dc531d53732e9e4a4b9442e5a9a35bc58eaf4b99039bb",
-    "packages/TGUIKit/Sources/TextView.swift": "5341231d018dbc9dd8455c345e3f975461888d8a7ab6adb7f0d9a12e4a9fad4d",
-    "packages/TGUIKit/Sources/TextNode.swift": "a7eb0032f5a2a64ab9349210bfff6537dcdc797d399dc74c58516dd1f23d2b24",
-    "packages/TGUIKit/Sources/TextRunDrawing.swift": "fc8be08c9252ecdafd18f1ff53681fb7fe766dd2034b07935c50e8a49ea02a04",
+    "packages/AnsibleUIKit/Sources/TextView.swift": "5341231d018dbc9dd8455c345e3f975461888d8a7ab6adb7f0d9a12e4a9fad4d",
+    "packages/AnsibleUIKit/Sources/TextNode.swift": "a7eb0032f5a2a64ab9349210bfff6537dcdc797d399dc74c58516dd1f23d2b24",
+    "packages/AnsibleUIKit/Sources/TextRunDrawing.swift": "fc8be08c9252ecdafd18f1ff53681fb7fe766dd2034b07935c50e8a49ea02a04",
     "tools/perflab/ShortPeerRowLab/Sources/PeerRows/AccessoryEnvironment.swift": "aff69d2a664fbd9c9564ee3d46c826168b1848650a639cc437a013936dceeb1b",
     "tools/perflab/ShortPeerRowLab/Sources/PeerRows/Environment.swift": "f92ed600aadc9da3c42f81ea19e43907293e8ecd9b06ee37adb62dc67ebc0587",
     "tools/perflab/ShortPeerRowLab/Sources/PeerRows/ReferenceObserver.swift": "a615ce769955b19fab06d587c0799090ec674afdec5cae8c67ccdc554f5afb87",

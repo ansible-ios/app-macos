@@ -12,7 +12,7 @@ let package = Package(
         .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
         .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
         .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "ColorPalette", path: "../ColorPalette"),
         .package(name: "Localization", path: "../Localization"),
         .package(name: "DateUtils", path: "../DateUtils"),
@@ -35,7 +35,7 @@ let package = Package(
         .target(
             name: "CommunityUI",
             dependencies: [
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
                 .product(name: "TelegramCore", package: "TelegramCore", condition: nil),
                 .product(name: "Postbox", package: "Postbox", condition: nil),

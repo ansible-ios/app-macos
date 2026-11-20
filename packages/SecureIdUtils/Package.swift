@@ -14,7 +14,7 @@ let package = Package(
         .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
         .package(name: "Localization", path: "../Localization"),
         .package(name: "AnsibleTheme", path: "../AnsibleTheme"),
-        .package(name: "TGPassportMRZ", path: "../TGPassportMRZ"),
+        .package(name: "AnsiblePassportMRZ", path: "../AnsiblePassportMRZ"),
     ],
     targets: [
         .target(
@@ -25,7 +25,7 @@ let package = Package(
                 .product(name: "Postbox", package: "Postbox", condition: nil),
                 .product(name: "Localization", package: "Localization", condition: nil),
                 .product(name: "AnsibleTheme", package: "AnsibleTheme", condition: nil),
-                .product(name: "TGPassportMRZ", package: "TGPassportMRZ", condition: nil),
+                .product(name: "AnsiblePassportMRZ", package: "AnsiblePassportMRZ", condition: nil),
             ],
             path: "Sources/SecureIdUtils"),
     ]

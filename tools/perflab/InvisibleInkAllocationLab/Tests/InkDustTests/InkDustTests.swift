@@ -1,7 +1,7 @@
 import AppKit
 import QuartzCore
 import XCTest
-@testable import TGUIKit
+@testable import AnsibleUIKit
 @testable import OriginalInkDust
 
 private final class InkWindow: NSWindow {

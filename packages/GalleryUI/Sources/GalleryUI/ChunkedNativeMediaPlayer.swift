@@ -1,6 +1,6 @@
 import Foundation
 import AVFoundation
-import TGUIKit
+import AnsibleUIKit
 import Postbox
 import SwiftSignalKit
 import TelegramMediaPlayer

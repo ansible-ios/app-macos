@@ -5,7 +5,7 @@ import json
 lab = Path(__file__).resolve().parent
 root = lab.parents[2]
 source = root / 'packages/InputTextView/Sources/InputTextView/FoldingTextView.swift'
-key_source = root / 'packages/TGUIKit/Sources/TextView.swift'
+key_source = root / 'packages/AnsibleUIKit/Sources/TextView.swift'
 text = source.read_text()
 method = text[text.index('    public static func breakString('):text.index('    public static func make(', text.index('    public static func breakString('))]
 key = next(line for line in key_source.read_text().splitlines() if 'public static let quote = NSAttributedString.Key' in line)

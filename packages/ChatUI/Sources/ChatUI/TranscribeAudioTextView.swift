@@ -1,5 +1,5 @@
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import AnsibleMedia
 import Cocoa
 import Postbox

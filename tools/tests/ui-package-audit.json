@@ -1,6 +1,6 @@
 {
   "updated": "2026-10-17",
-  "scope": "All packages named *UI and TGUIKit; additional UI components outside this naming convention still require discovery.",
+  "scope": "All packages named *UI and AnsibleUIKit; additional UI components outside this naming convention still require discovery.",
   "coverage": "No package is marked complete. Partial means only the specific behaviors recorded in screen-audit.json were reviewed.",
   "packages": [
     {
@@ -586,7 +586,7 @@
       ]
     },
     {
-      "package": "TGUIKit",
+      "package": "AnsibleUIKit",
       "status": "pending",
       "swift_source_files": 176,
       "controller_files": 10,

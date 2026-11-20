@@ -6,7 +6,7 @@ The renderer retains the original logical text bounds, drawing bleed, whole-poin
 
 ## Validation scope
 
-`prepare.py` compiles the complete native view from `6ecf012c1` and the complete current view against real TGUIKit/AppKit/Core Animation/Core Text. It renames classes, adjusts visibility, and adds read-only test accessors. The layout fixture uses the production sequence of attributed text, embedded item, measurement, and `generateAutoBlock`. Account/model services and actual emoji decoding are replaced by stand-ins; a generated asymmetric image validates icon placement and orientation.
+`prepare.py` compiles the complete native view from `6ecf012c1` and the complete current view against real AnsibleUIKit/AppKit/Core Animation/Core Text. It renames classes, adjusts visibility, and adds read-only test accessors. The layout fixture uses the production sequence of attributed text, embedded item, measurement, and `generateAutoBlock`. Account/model services and actual emoji decoding are replaced by stand-ins; a generated asymmetric image validates icon placement and orientation.
 
 Eleven functional tests cover view/layer reduction in an attached window, icon reuse/replacement/removal, click handling and labels, window attachment/detachment/key policy, clipping, animated centering, title-change animation timing, backing-scale changes, and object release. Thirty-nine exact bitmap comparisons cover wrapping, Arabic, CJK, family emoji, 1x/2x/3x, and empty/iconless cases. Native/candidate visibility is also compared with a centered label clipped at six horizontal offsets.
 
@@ -52,7 +52,7 @@ A shared identity now records account, icon source kind, and the inputs that aff
 
 Eleven new tests cover these transitions, source-ID collisions, account changes, multi-scalar initials, late metadata, playback removal, and retained identity when appearance stays unchanged. The initial baseline run produced 23 failed assertions. The final playback-removal assertion additionally marks the old layer playable before replacement. All 22 functional tests pass in release, Address Sanitizer, and Thread Sanitizer; the original 39 bitmap pairs still match exactly. All 415 frozen compiler inputs remained unchanged through final validation. Address Sanitizer disables leak scanning; the existing explicit ownership tests remain enabled.
 
-The reply view and helper compile against real TGUIKit. Separator and vertical tests compile the exact production topic-binding branches. The account, models, file factory, and decoder are stand-ins; the generated reply-ID expression is extracted directly from production. This does not compile the complete account-backed layout initializer, separator/vertical controllers, or the main application. The three complete production files pass Swift syntax parsing.
+The reply view and helper compile against real AnsibleUIKit. Separator and vertical tests compile the exact production topic-binding branches. The account, models, file factory, and decoder are stand-ins; the generated reply-ID expression is extracted directly from production. This does not compile the complete account-backed layout initializer, separator/vertical controllers, or the main application. The three complete production files pass Swift syntax parsing.
 
 Nine alternating benchmark batches, repeated in reverse order, measure the binding work below. Values are microseconds per bind, shown as first/reversed-order medians. Layouts are premeasured and emoji images are static stand-ins.
 

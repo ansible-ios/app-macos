@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 enum SplitState { case single, dual, minimisize }
 final class Context { var layout: SplitState = .dual }

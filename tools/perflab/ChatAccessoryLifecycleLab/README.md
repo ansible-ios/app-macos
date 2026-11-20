@@ -8,7 +8,7 @@ The change removes and stops obsolete layers, allocates/subscribes the observer 
 
 The lab extracts the production header/message reconciliation blocks, lifecycle callbacks, observer code, inline-layer binding method, and update tail verbatim. The baseline is `7a9252645`. `prepare.py` also copies the exact production `InlineStickerPlayback` and `InlineStickerKeyCollection` helpers.
 
-Tests use real AppKit windows, NSScrollView, TextView, Core Animation hierarchy, visible rectangles, and TGUIKit notification observers. Window key state is controlled by a fixture. Account services and emoji decoding are replaced by lightweight fixtures; emoji layers use the same SimpleLayer superclass and record playback state. The fixture updates text frames to exercise ordering but does not compile the entire ChatAccessoryView or account-backed model. Rendering pixels, real Lottie decoder shutdown, and end-to-end app frame times are outside this lab's scope.
+Tests use real AppKit windows, NSScrollView, TextView, Core Animation hierarchy, visible rectangles, and AnsibleUIKit notification observers. Window key state is controlled by a fixture. Account services and emoji decoding are replaced by lightweight fixtures; emoji layers use the same SimpleLayer superclass and record playback state. The fixture updates text frames to exercise ordering but does not compile the entire ChatAccessoryView or account-backed model. Rendering pixels, real Lottie decoder shutdown, and end-to-end app frame times are outside this lab's scope.
 
 The initial eight tests reproduced 14 failures: retained layers after missing text, unused observer subscriptions, duplicate/pre-layout playback passes, and retained observer/layer objects. A first candidate still failed immediate weak-release assertions. The final fixture matches production's SimpleLayer base, and the release test flushes the Core Animation transaction before checking weak references.
 
@@ -47,7 +47,7 @@ swift test --package-path tools/perflab/ChatAccessoryLifecycleLab --sanitize thr
 
 Use separate scratch paths and sequential builds. Wait for unrelated compiler activity before benchmarking. Generation/source hashes, extracted code, source delta, raw timing batches, and test logs are preserved in `results/`. The complete production source is syntax-parsed separately. The full Telegram application is not built.
 
-Validation passed: 11 functional accessory tests in release and under each of Address Sanitizer and Thread Sanitizer; 25 existing TGUIKit observer and text-layer regression tests also passed. Both benchmark orders passed exact callback-count checks, and whole-file parsing passed.
+Validation passed: 11 functional accessory tests in release and under each of Address Sanitizer and Thread Sanitizer; 25 existing AnsibleUIKit observer and text-layer regression tests also passed. Both benchmark orders passed exact callback-count checks, and whole-file parsing passed.
 
 ## Accessory text and icon layers
 
@@ -55,11 +55,11 @@ Plain accessory headers and message previews now draw directly with `TextViewLay
 
 The adapter uses one drawing layer per plain label, without a container layer. Its logical text rectangle remains separate from the expanded drawing bounds. Explicit position/bounds animations preserve those drawing insets at the animation endpoint. Native fallback retains its original text rendering and event behavior.
 
-Both helper types live in `ChatAccessoryModel.swift`, so an existing Xcode package source list compiles them with their caller. Sizing uses `TextViewLayer.textSize`; spoiler detection reads the public attributed-string key. Neither accesses fileprivate TGUIKit properties, and no shared-library API changes are needed.
+Both helper types live in `ChatAccessoryModel.swift`, so an existing Xcode package source list compiles them with their caller. Sizing uses `TextViewLayer.textSize`; spoiler detection reads the public attributed-string key. Neither accesses fileprivate AnsibleUIKit properties, and no shared-library API changes are needed.
 
 ### Full accessory validation
 
-The expanded fixture compiles the complete current `ChatAccessoryView`, `StarsView`, and text/icon helpers against real TGUIKit, alongside the native accessory from `9953e0ace`. The original lifecycle fixture remains pinned to `9953e0ace`; its tests alone do not validate the new view implementation. Account, model, theme, and media services are explicit stand-ins. Test-only accessors expose geometry, observer state, and pattern-image injection without changing production algorithms.
+The expanded fixture compiles the complete current `ChatAccessoryView`, `StarsView`, and text/icon helpers against real AnsibleUIKit, alongside the native accessory from `9953e0ace`. The original lifecycle fixture remains pinned to `9953e0ace`; its tests alone do not validate the new view implementation. Account, model, theme, and media services are explicit stand-ins. Test-only accessors expose geometry, observer state, and pattern-image injection without changing production algorithms.
 
 There are 26 functional tests and three opt-in benchmarks. Fifteen tests exercise the full current view/helper: sizing, empty text, concealed/revealed spoiler fallback, block quotes, rich-to-plain transitions, native view reuse, custom emoji/observer cleanup, accessibility, scale changes, click handlers, summary info actions, animation endpoints, and object release. Thirty-seven bitmap pairs match the native baseline exactly: 12 text comparisons at 1x/2x/3x with RTL/CJK/family emoji, 24 poll/quote/style/geometry variants at those scales, and one patterned-background comparison. The snapshot harness preserves existing image contents without drawing them a second time.
 

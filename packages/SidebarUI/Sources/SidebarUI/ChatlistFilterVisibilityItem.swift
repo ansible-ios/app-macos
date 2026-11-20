@@ -6,7 +6,7 @@ import Localization
 import GeneralRows
 import InputDataUI
 
-import TGUIKit
+import AnsibleUIKit
 
 
 private func generateThumb(_ basic: CGImage, active: CGImage?) -> CGImage {

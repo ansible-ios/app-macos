@@ -2,7 +2,7 @@ import Cocoa
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 #if SHARE
 import AnsibleThemeShare
 import AnsibleContextShare

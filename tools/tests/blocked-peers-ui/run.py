@@ -30,7 +30,7 @@ else:
     methods += source[start:source.index('    open override func update(with state:', start)]
     pending = 'stateValue.with { Set($0.removingPeerId.map { [$0] } ?? []) }'
 fixture = Path(__file__).with_name('BlockedPeersUITests.swift').read_text()
-merge = (root / 'packages/TGUIKit/Sources/MergeLists.swift').read_text()
+merge = (root / 'packages/AnsibleUIKit/Sources/MergeLists.swift').read_text()
 fixture = fixture.replace('__MERGE__', merge[:merge.index('public func mergeListsStableWithUpdatesReversed')])
 fixture = fixture.replace('__PRODUCTION__', (state + entries).replace('private ', ''))
 fixture = fixture.replace('__FIELDS__', fields.replace('private ', '')).replace('__METHODS__', methods.replace('private ', ''))

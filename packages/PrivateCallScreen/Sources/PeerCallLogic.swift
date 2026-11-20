@@ -1,5 +1,5 @@
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 
 struct PeerCallActionSpec: Equatable {
     let type: PeerCallActionType

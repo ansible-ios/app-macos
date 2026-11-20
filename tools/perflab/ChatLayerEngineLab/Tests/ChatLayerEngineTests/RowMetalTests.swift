@@ -1,7 +1,7 @@
 import Cocoa
 import XCTest
 import Metal
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 extension RowTests {

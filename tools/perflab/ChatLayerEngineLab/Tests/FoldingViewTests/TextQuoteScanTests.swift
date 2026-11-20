@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import FoldingViewHarness
 @testable import ChatLayerEngine
 
 final class TextQuoteScanTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func check(_ layout: TextViewLayout, file: StaticString = #filePath, line: UInt = #line) {
         let last = layout.attributedString.containsAttribute(attributeName: TextInputAttributes.quote) as? TextViewBlockQuoteData

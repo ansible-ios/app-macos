@@ -1,7 +1,7 @@
 import Cocoa
 import ImageIO
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 private let extensionImageCache = Atomic<[String: CGImage]>(value: [:])
 
 private let redColors: (UInt32, UInt32) = (0xf0625d, 0xde524e)

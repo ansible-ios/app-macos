@@ -12,7 +12,7 @@ The regression tests reproduce the original failures: resize mode and inset chan
 
 ## Measurements
 
-Tests compile the real TGUIKit and SwiftSignalKit implementations. LegacyTransformImageView.swift is the complete source from a3a810b1d with class names prefixed, a testable TGUIKit import, and whitespace normalization; provenance.json records and verifies this capture. Both benchmark variants use the corrected TransformImageArguments equality, isolating delivery overhead rather than comparing a correct renderer with one that skips necessary updates.
+Tests compile the real AnsibleUIKit and SwiftSignalKit implementations. LegacyTransformImageView.swift is the complete source from a3a810b1d with class names prefixed, a testable AnsibleUIKit import, and whitespace normalization; provenance.json records and verifies this capture. Both benchmark variants use the corrected TransformImageArguments equality, isolating delivery overhead rather than comparing a correct renderer with one that skips necessary updates.
 
 Nine alternating release batches after warmup, microseconds per operation. The repeat run is shown; the first run is also retained.
 
@@ -29,9 +29,9 @@ The initial run measured 80–81% less repeated-update work and 41.4% less chang
 
 Ten focused functional tests cover all argument fields, exact/transitive corner equality, cache keys, required redraws, argument replay, clear/dispose/rebind, new data with unchanged arguments, already-rendered invalidation, exact image pixels against the original pipeline, synchronous reentrant argument replay, background rendering, main-thread delivery and real protected sample-buffer generation. Nonblank images differ across mode/inset changes, while each original/current pixel pair is exact. The pixel comparison uses a small DrawingContext renderer; full Telegram media decoding is outside this harness.
 
-The complete TGUIKit suite passed 260 functional tests (8 optional benchmarks skipped), and the chat mini-app passed 134 functional tests (14 optional benchmarks skipped), in both release and AddressSanitizer builds: 394 functional tests per configuration, with zero failures. Full Telegram is not built. Results and original failure logs are in results/; OriginalArguments.swift.txt retains the old equality and hashing for inspection.
+The complete AnsibleUIKit suite passed 260 functional tests (8 optional benchmarks skipped), and the chat mini-app passed 134 functional tests (14 optional benchmarks skipped), in both release and AddressSanitizer builds: 394 functional tests per configuration, with zero failures. Full Telegram is not built. Results and original failure logs are in results/; OriginalArguments.swift.txt retains the old equality and hashing for inspection.
 
 ```sh
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter 'TransformImageArgumentsTests|TransformImageViewTests'
-TRANSFORM_IMAGE_BENCHMARK=1 swift test --skip-build --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter TransformImageBenchmarkTests
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter 'TransformImageArgumentsTests|TransformImageViewTests'
+TRANSFORM_IMAGE_BENCHMARK=1 swift test --skip-build --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter TransformImageBenchmarkTests
 ```

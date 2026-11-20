@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public struct ReplyMarkupButton {
     public enum Action { case url(String), payment, switchInline, openUserProfile, openWebApp, openWebView, copyText, callback }

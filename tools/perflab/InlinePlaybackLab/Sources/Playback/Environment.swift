@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public final class InlineStickerItemLayer: SimpleLayer {
     public weak var superview: NSView?

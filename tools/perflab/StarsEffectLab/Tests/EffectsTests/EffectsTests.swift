@@ -1,7 +1,7 @@
 import AppKit
 import QuartzCore
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import Effects
 
 final class EffectsTests: XCTestCase {

@@ -3,7 +3,7 @@ import TelegramCore
 
 import Postbox
 import FoundationUtils
-import TGUIKit
+import AnsibleUIKit
 import AnsibleMediaUtils
 import AnsibleTheme
 import AnsibleUtils

@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 
 private func incremental(_ string: String, color: NSColor?, font: NSFont?) -> NSAttributedString {
     var attributes: [NSAttributedString.Key: Any] = [:]
@@ -32,7 +32,7 @@ private func mutable(_ string: String, color: NSColor?, font: NSFont?) -> NSAttr
 final class AlternativesTests: XCTestCase {
     func testAlternativeConstructionBenchmark() throws {
         guard ProcessInfo.processInfo.environment["TEXT_FACTORY_ALTERNATIVES"] != nil else { throw XCTSkip("Opt-in construction alternatives") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let font = NSFont.normal(13), color = NSColor.labelColor
         let methods: [(String, (String, NSColor?, NSFont?) -> NSAttributedString)] = [
             ("reference", { NSAttributedString.referenceInitialize(string: $0, color: $1, font: $2) }),

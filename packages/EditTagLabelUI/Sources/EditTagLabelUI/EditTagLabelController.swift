@@ -2,7 +2,7 @@ import Foundation
 import Postbox
 import TelegramCore
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import InputDataUI
 import GeneralRows

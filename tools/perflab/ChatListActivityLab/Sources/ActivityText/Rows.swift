@@ -1,5 +1,5 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 
 enum PeerListState {
     struct InputActivities {

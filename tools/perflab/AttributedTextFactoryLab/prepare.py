@@ -5,13 +5,13 @@ import subprocess
 
 lab = Path(__file__).resolve().parent
 root = lab.parents[2]
-path = 'packages/TGUIKit/Sources/Extensions.swift'
+path = 'packages/AnsibleUIKit/Sources/Extensions.swift'
 baseline = 'b134e8654'
 original = subprocess.check_output(['git', 'show', baseline + ':' + path], cwd=root, text=True)
 current = (root / path).read_text()
 start = original.index('    static func initialize(string:')
 end = original.index('    convenience init(string:', start)
-reference = 'import Cocoa\nimport TGUIKit\nextension NSAttributedString {\n' + original[start:end].replace('func initialize(', 'func referenceInitialize(') + '}\n'
+reference = 'import Cocoa\nimport AnsibleUIKit\nextension NSAttributedString {\n' + original[start:end].replace('func initialize(', 'func referenceInitialize(') + '}\n'
 for signature, ending in [('    @discardableResult func append(string:', '    func add(link:'), ('    func setFont(font:', '\n}\n')]:
     old_start = original.index(signature)
     new_start = current.index(signature)

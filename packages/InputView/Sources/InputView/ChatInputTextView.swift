@@ -1,6 +1,6 @@
 import Foundation
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 import ColorPalette
 import Localization
 
@@ -1614,7 +1614,7 @@ public final class InputTextView: BaseTextView, NSLayoutManagerDelegate, NSTextS
     }
     
     private var settingsKey: String {
-        return "TGGrowingTextView"
+        return "AnsibleGrowingTextView"
     }
 
     public override var isContinuousSpellCheckingEnabled: Bool {

@@ -23,11 +23,11 @@ Five functional tests exercise idle construction and reset; row menu requests wi
 
 Before the change, the suite produced seven expected allocation assertions while the subscription lifecycle checks passed. Afterward, all five functional tests and the opt-in allocation benchmark passed. The tests use pending menu signals so they can observe cancellation without opening a real menu.
 
-The full TGUIKit suite passed 291 functional tests in release and AddressSanitizer (12 optional benchmarks skipped). The chat mini-app passed 134 functional tests in both configurations (14 optional benchmarks skipped). Together, all 425 functional tests passed in each configuration.
+The full AnsibleUIKit suite passed 291 functional tests in release and AddressSanitizer (12 optional benchmarks skipped). The chat mini-app passed 134 functional tests in both configurations (14 optional benchmarks skipped). Together, all 425 functional tests passed in each configuration.
 
 Source hashes, baseline identity and raw logs are retained alongside this document. The suites run against the working tree, which includes unrelated pending changes. This is not an isolated clean-checkout or full Telegram application build.
 
 ```sh
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter DeferredInteractionTests
-DEFERRED_INTERACTION_BENCHMARK=after swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter DeferredInteractionTests
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter DeferredInteractionTests
+DEFERRED_INTERACTION_BENCHMARK=after swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter DeferredInteractionTests
 ```

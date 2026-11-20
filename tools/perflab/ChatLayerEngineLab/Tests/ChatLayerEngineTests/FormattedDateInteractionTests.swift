@@ -2,7 +2,7 @@ import Cocoa
 import XCTest
 import ObjectiveC
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import ChatLayerEngine
 
@@ -16,7 +16,7 @@ final class FormattedDateInteractionTests: XCTestCase {
     private var legacy = true
 
     override func setUpWithError() throws {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         legacy = System.legacyMenu
         System.legacyMenu = true
         let method = try XCTUnwrap(class_getClassMethod(NSMenu.self, #selector(NSMenu.popUpContextMenu(_:with:for:))))

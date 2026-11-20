@@ -1,6 +1,6 @@
 import Cocoa
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 
 public extension ChatListFilter {
     var icon: CGImage {

@@ -36,7 +36,7 @@ eager_source = subprocess.check_output(['git', 'show', 'd0610bf3d:' + item_path]
 eager_block = eager_source[eager_source.index('    open override func prepare(_ selected:Bool)'):eager_source.index('    open var ctxMonoforumMessages:')]
 assert (lab / 'ReferenceEagerPrepare.swift.txt').read_text() == eager_block
 eager_reference = eager_block.replace('open override func', 'func')
-output = 'import Cocoa\nimport TGUIKit\n\nclass ShortPeerRowItem: ItemEnvironment {\n' + fields + selected_properties + prepare + '}\n\nclass ReferenceRowItem: ItemEnvironment {\n' + eager_properties + reference + '}\n'
+output = 'import Cocoa\nimport AnsibleUIKit\n\nclass ShortPeerRowItem: ItemEnvironment {\n' + fields + selected_properties + prepare + '}\n\nclass ReferenceRowItem: ItemEnvironment {\n' + eager_properties + reference + '}\n'
 output += '\nclass EagerRowItem: ItemEnvironment {\n' + fields + eager_properties + eager_reference + '}\n'
 output += '''
 class RowObserverView: NSView, Notifable {
@@ -57,7 +57,7 @@ accessory_body = view[accessory_start:accessory_end]
 accessory_body += view[view.index('        if !item.rightActions.actions.isEmpty {', accessory_end):view.index('        if let displayLayout = item.ctxMonoforumMessages {', accessory_end)]
 helper = view[view.index('    private func updateContextLabel('):view.index('    open override func set(item:')]
 style = next(line for line in view.splitlines() if 'private var choiceImageStyle:' in line)
-accessories = 'import Cocoa\nimport TGUIKit\n\n'
+accessories = 'import Cocoa\nimport AnsibleUIKit\n\n'
 for name, body, methods in [('CurrentAccessoryView', accessory_body, style + '\n' + helper), ('ReferenceAccessoryView', accessory_reference, '')]:
     accessories += 'class ' + name + ': AccessoryEnvironment {\n' + methods + '\n    override func bind(_ item: AccessoryItem, animated: Bool = false) {\n' + body + '    }\n}\n'
 (lab / 'Sources/PeerRows/GeneratedAccessories.swift').write_text(accessories)
@@ -68,7 +68,7 @@ badge = (root / badge_path).read_text()
 badge_reference = (lab / 'ReferencePaidBadge.swift.txt').read_text()
 badge_method = view[view.index('    private func updatePresentation('):view.index('    open func isEqual(to other:')]
 reference_method, reference_draw = badge_reference.split('public func generalSendPaidMessage', 1)
-badge_output = 'import Cocoa\nimport TGUIKit\n\n' + badge[badge.index('final class SendPaidMessageBadgeCache'):]
+badge_output = 'import Cocoa\nimport AnsibleUIKit\n\n' + badge[badge.index('final class SendPaidMessageBadgeCache'):]
 badge_output += '\npublic func referenceGeneralSendPaidMessage' + reference_draw
 for name, body in [('CurrentPaidBadgeView', badge_method), ('ReferencePaidBadgeView', reference_method.replace('generalSendPaidMessage(', 'referenceGeneralSendPaidMessage('))]:
     badge_output += '\nclass ' + name + ': PaidBadgeEnvironment {\n' + body.replace('private func updatePresentation(', 'override func bind(') + '}\n'

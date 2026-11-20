@@ -17,14 +17,14 @@ python3 tools/perflab/ImageAnalysisLab/prepare-isolated.py /tmp/ImageAnalysisVal
 swift test --package-path /tmp/ImageAnalysisValidation --scratch-path /tmp/ImageAnalysisValidation-build -c release
 ASAN_OPTIONS=detect_leaks=0 swift test --package-path /tmp/ImageAnalysisValidation --scratch-path /tmp/ImageAnalysisValidation-asan --sanitize address
 swift test --package-path /tmp/ImageAnalysisValidation --scratch-path /tmp/ImageAnalysisValidation-tsan --sanitize thread
-swift test --package-path /tmp/ImageAnalysisValidation/TGUIKit --scratch-path /tmp/ImageAnalysisValidation-kit -c release
+swift test --package-path /tmp/ImageAnalysisValidation/AnsibleUIKit --scratch-path /tmp/ImageAnalysisValidation-kit -c release
 IMAGE_ANALYSIS_BENCHMARK=1 swift test --package-path /tmp/ImageAnalysisValidation --scratch-path /tmp/ImageAnalysisValidation-build -c release --skip-build --filter AnalysisBenchmarkTests
 cp /tmp/image-analysis-benchmark.json /tmp/image-forward.json
 IMAGE_ANALYSIS_BENCHMARK=1 IMAGE_ANALYSIS_REVERSE=1 swift test --package-path /tmp/ImageAnalysisValidation --scratch-path /tmp/ImageAnalysisValidation-build -c release --skip-build --filter AnalysisBenchmarkTests
 cp /tmp/image-analysis-benchmark.json /tmp/image-reverse.json
 ```
 
-Use fresh output directories and time without competing builds. The generator freezes complete original and candidate TGUIKit libraries; ImageTransparency.swift is their only production-source difference. Test-only inspection wrappers expose the actual sampling-context dimensions. They are not shipped in the app. The telegram-ios implementation was read for context but is not modified.
+Use fresh output directories and time without competing builds. The generator freezes complete original and candidate AnsibleUIKit libraries; ImageTransparency.swift is their only production-source difference. Test-only inspection wrappers expose the actual sampling-context dimensions. They are not shipped in the app. The telegram-ios implementation was read for context but is not modified.
 
 ## Measurements
 
@@ -51,6 +51,6 @@ Eleven focused tests pass in release, Address Sanitizer and Thread Sanitizer. Le
 - 512 deterministic randomized images across alpha distributions, eight source layouts and device RGB/sRGB/Display P3.
 - 400 concurrent classifications, masked images, decode arrays and excluded grayscale/opaque/16-bit source formats.
 
-Two production-target tests cover the corrected tint decisions. The full frozen TGUIKit suite passes 417 functional tests, with 18 optional measurements skipped. All 673 recorded source/dependency inputs remain unchanged after validation, and the measured production source matches the worktree. A fresh generator run reproduces 520 Swift sources and all three package manifests after output-path normalization. Logs, raw batches, reference/final source snapshots and input hashes are retained in `results`. No full Telegram build was performed.
+Two production-target tests cover the corrected tint decisions. The full frozen AnsibleUIKit suite passes 417 functional tests, with 18 optional measurements skipped. All 673 recorded source/dependency inputs remain unchanged after validation, and the measured production source matches the worktree. A fresh generator run reproduces 520 Swift sources and all three package manifests after output-path normalization. Logs, raw batches, reference/final source snapshots and input hashes are retained in `results`. No full Telegram build was performed.
 
 The first prototype combined alpha and color scanning. The final implementation checks alpha first so opaque samples skip color analysis. Its earlier source and probe logs are retained under `results/experiments`. Archived logs normalize trailing whitespace.

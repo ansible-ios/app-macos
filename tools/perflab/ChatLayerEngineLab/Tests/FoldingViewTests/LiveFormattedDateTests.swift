@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import FoldingViewHarness
 @testable import ChatLayerEngine
 
 final class LiveFormattedDateTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     private func addDate(to text: TextViewLayout, value: Any? = nil) {
         let string = NSMutableAttributedString(attributedString: text.attributedString)

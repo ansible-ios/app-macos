@@ -3,7 +3,7 @@
 import PackageDescription
 
 let common: [Target.Dependency] = [
-    .product(name: "TGUIKit", package: "TGUIKit"),
+    .product(name: "AnsibleUIKit", package: "AnsibleUIKit"),
     .product(name: "SwiftSignalKit", package: "SSignalKit"),
     .product(name: "TelegramCore", package: "TelegramCore"),
     .product(name: "Postbox", package: "Postbox"),
@@ -19,7 +19,7 @@ let package = Package(
     dependencies: [
         .package(name: "rnoise", path: "../../submodules/ansible-ios/third-party/rnnoise"),
         .package(name: "ColorPalette", path: "../ColorPalette"),
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
         .package(name: "TelegramCore", path: "../../submodules/ansible-ios/submodules/TelegramCore"),
         .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
@@ -45,7 +45,7 @@ let package = Package(
         .testTarget(name: "AvatarUITests", dependencies: [
             "AvatarUI",
             .product(name: "rnoise", package: "rnoise"),
-            .product(name: "TGUIKit", package: "TGUIKit"),
+            .product(name: "AnsibleUIKit", package: "AnsibleUIKit"),
             .product(name: "ColorPalette", package: "ColorPalette"),
             .product(name: "Postbox", package: "Postbox"),
             .product(name: "TelegramCore", package: "TelegramCore"),

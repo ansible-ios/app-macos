@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import FoldingViewHarness
 
 final class ChatTextReuseTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func item(_ id: Int, count: Int = 1, quoted: Bool = false, context: BlockContext, streaming: Bool = false, text: String? = nil, collapsable: Bool = false, linked: Bool = false) -> ChatMessageItem {
         let full = NSMutableAttributedString()

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class BeforeForwardNameRowView: ChatLayerSceneView {
     private(set) var forwardHeader: ChatLayerTextNode?

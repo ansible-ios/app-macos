@@ -6,7 +6,7 @@ import AnsibleUtils
 import AnsibleTheme
 import AnsibleContext
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox

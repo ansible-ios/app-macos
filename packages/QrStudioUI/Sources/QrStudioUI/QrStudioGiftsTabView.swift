@@ -1,7 +1,7 @@
 import Foundation
 import Cocoa
 import CoreText
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import AnsibleContext
 import AnsibleMedia

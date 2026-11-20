@@ -1,6 +1,6 @@
 import Cocoa
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import UniqueGiftBackground
 import TelegramCore
 import Postbox
@@ -1038,7 +1038,7 @@ private final class FilterRowView: TableStickView {
     
     public override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
-        if superview?.className == "TGUIKit.TGFlipableTableView" {
+        if superview?.className == "AnsibleUIKit.AnsibleFlipableTableView" {
             var bp = 0
             bp += 1
         }

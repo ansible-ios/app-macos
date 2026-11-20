@@ -1,22 +1,22 @@
 import Cocoa
 import XCTest
-import class TGUIKit.DrawingContext
-import struct TGUIKit.System
-import struct TGUIKit.DeviceGraphicsContextSettings
-import func TGUIKit.setDisplayColorSpace
-import class TGUIKitBaseline.DrawingContext
-import struct TGUIKitBaseline.System
-import struct TGUIKitBaseline.DeviceGraphicsContextSettings
-import func TGUIKitBaseline.setDisplayColorSpace
+import class AnsibleUIKit.DrawingContext
+import struct AnsibleUIKit.System
+import struct AnsibleUIKit.DeviceGraphicsContextSettings
+import func AnsibleUIKit.setDisplayColorSpace
+import class AnsibleUIKitBaseline.DrawingContext
+import struct AnsibleUIKitBaseline.System
+import struct AnsibleUIKitBaseline.DeviceGraphicsContextSettings
+import func AnsibleUIKitBaseline.setDisplayColorSpace
 
 final class ContextTests: XCTestCase {
     override func setUp() {
         _ = NSApplication.shared
         NSApp.setActivationPolicy(.accessory)
-        TGUIKit.System.updateScaleFactor(2)
-        TGUIKitBaseline.System.updateScaleFactor(2)
-        TGUIKit.setDisplayColorSpace(nil)
-        TGUIKitBaseline.setDisplayColorSpace(nil)
+        AnsibleUIKit.System.updateScaleFactor(2)
+        AnsibleUIKitBaseline.System.updateScaleFactor(2)
+        AnsibleUIKit.setDisplayColorSpace(nil)
+        AnsibleUIKitBaseline.setDisplayColorSpace(nil)
     }
 
     func format(_ space: CFString, floating: Bool = false) -> CGContext {
@@ -42,15 +42,15 @@ final class ContextTests: XCTestCase {
     }
 
     func testStaticFormatPixelsAndGeometryMatch() {
-        defer { TGUIKitBaseline.DeviceGraphicsContextSettings.install(nil); TGUIKitBaseline.setDisplayColorSpace(nil); TGUIKit.DeviceGraphicsContextSettings.install(nil) }
+        defer { AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(nil); AnsibleUIKitBaseline.setDisplayColorSpace(nil); AnsibleUIKit.DeviceGraphicsContextSettings.install(nil) }
         for format in [format(CGColorSpace.sRGB), format(CGColorSpace.displayP3), format(CGColorSpace.extendedLinearSRGB, floating: true)] {
-            TGUIKit.DeviceGraphicsContextSettings.install(format)
-            TGUIKitBaseline.DeviceGraphicsContextSettings.install(format)
+            AnsibleUIKit.DeviceGraphicsContextSettings.install(format)
+            AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(format)
             for size in [CGSize(width: 16, height: 16), CGSize(width: 15.5, height: 23.25), CGSize(width: 0.5, height: 0.25), CGSize(width: 127, height: 65)] {
                 for scale: CGFloat in [0, 1, 1.5, 2, 3] {
                     for flip in [false, true] {
-                        let old = TGUIKitBaseline.DrawingContext(size: size, scale: scale, clear: true)
-                        let new = TGUIKit.DrawingContext(size: size, scale: scale, clear: true)
+                        let old = AnsibleUIKitBaseline.DrawingContext(size: size, scale: scale, clear: true)
+                        let new = AnsibleUIKit.DrawingContext(size: size, scale: scale, clear: true)
                         old.withFlippedContext(horizontal: flip, vertical: !flip) { paint($0, size: old.size) }
                         new.withFlippedContext(horizontal: flip, vertical: !flip) { paint($0, size: new.size) }
                         equal(old.generateImage()!, new.generateImage()!)
@@ -65,16 +65,16 @@ final class ContextTests: XCTestCase {
 
     func testExistingContextKeepsItsRenderingColorSpaceAfterSettingsChange() {
         let srgb = format(CGColorSpace.sRGB), p3 = format(CGColorSpace.displayP3)
-        TGUIKit.DeviceGraphicsContextSettings.install(srgb)
-        TGUIKitBaseline.DeviceGraphicsContextSettings.install(srgb)
-        defer { TGUIKitBaseline.DeviceGraphicsContextSettings.install(nil); TGUIKitBaseline.setDisplayColorSpace(nil); TGUIKit.DeviceGraphicsContextSettings.install(nil) }
-        let old = TGUIKitBaseline.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true)
-        let new = TGUIKit.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true)
+        AnsibleUIKit.DeviceGraphicsContextSettings.install(srgb)
+        AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(srgb)
+        defer { AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(nil); AnsibleUIKitBaseline.setDisplayColorSpace(nil); AnsibleUIKit.DeviceGraphicsContextSettings.install(nil) }
+        let old = AnsibleUIKitBaseline.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true)
+        let new = AnsibleUIKit.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true)
         old.withContext { paint($0, size: old.size) }
         new.withContext { paint($0, size: new.size) }
         let expected = old.generateImage()!
-        TGUIKit.DeviceGraphicsContextSettings.install(p3)
-        TGUIKitBaseline.DeviceGraphicsContextSettings.install(p3)
+        AnsibleUIKit.DeviceGraphicsContextSettings.install(p3)
+        AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(p3)
         let incorrectlyTagged = old.generateImage()!
         XCTAssertFalse(CFEqual(expected.colorSpace!, incorrectlyTagged.colorSpace!))
         equal(new.generateImage()!, expected)
@@ -82,15 +82,15 @@ final class ContextTests: XCTestCase {
     }
 
     func testDisplayConversionMatchesOriginal() {
-        TGUIKit.DeviceGraphicsContextSettings.install(format(CGColorSpace.sRGB))
-        TGUIKitBaseline.DeviceGraphicsContextSettings.install(format(CGColorSpace.sRGB))
-        defer { TGUIKitBaseline.DeviceGraphicsContextSettings.install(nil); TGUIKitBaseline.setDisplayColorSpace(nil); TGUIKit.DeviceGraphicsContextSettings.install(nil); TGUIKit.setDisplayColorSpace(nil) }
-        TGUIKit.setDisplayColorSpace(CGColorSpace(name: CGColorSpace.displayP3))
-        TGUIKitBaseline.setDisplayColorSpace(CGColorSpace(name: CGColorSpace.displayP3))
+        AnsibleUIKit.DeviceGraphicsContextSettings.install(format(CGColorSpace.sRGB))
+        AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(format(CGColorSpace.sRGB))
+        defer { AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(nil); AnsibleUIKitBaseline.setDisplayColorSpace(nil); AnsibleUIKit.DeviceGraphicsContextSettings.install(nil); AnsibleUIKit.setDisplayColorSpace(nil) }
+        AnsibleUIKit.setDisplayColorSpace(CGColorSpace(name: CGColorSpace.displayP3))
+        AnsibleUIKitBaseline.setDisplayColorSpace(CGColorSpace(name: CGColorSpace.displayP3))
         for size in [CGSize(width: 16, height: 16), CGSize(width: 127, height: 65)] {
             for scale: CGFloat in [1, 2, 3] {
-                let old = TGUIKitBaseline.DrawingContext(size: size, scale: scale, clear: true)
-                let new = TGUIKit.DrawingContext(size: size, scale: scale, clear: true)
+                let old = AnsibleUIKitBaseline.DrawingContext(size: size, scale: scale, clear: true)
+                let new = AnsibleUIKit.DrawingContext(size: size, scale: scale, clear: true)
                 old.withContext { paint($0, size: size) }
                 new.withContext { paint($0, size: size) }
                 let expected = old.generateDisplayImage()!
@@ -102,18 +102,18 @@ final class ContextTests: XCTestCase {
 
     func testConcurrentFormatChangesKeepEachContextInternallyConsistent() {
         let a = format(CGColorSpace.sRGB), b = format(CGColorSpace.extendedLinearSRGB, floating: true)
-        TGUIKit.DeviceGraphicsContextSettings.install(a)
-        TGUIKitBaseline.DeviceGraphicsContextSettings.install(a)
-        defer { TGUIKitBaseline.DeviceGraphicsContextSettings.install(nil); TGUIKitBaseline.setDisplayColorSpace(nil); TGUIKit.DeviceGraphicsContextSettings.install(nil) }
+        AnsibleUIKit.DeviceGraphicsContextSettings.install(a)
+        AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(a)
+        defer { AnsibleUIKitBaseline.DeviceGraphicsContextSettings.install(nil); AnsibleUIKitBaseline.setDisplayColorSpace(nil); AnsibleUIKit.DeviceGraphicsContextSettings.install(nil) }
         let lock = NSLock()
         var mismatches = 0
         DispatchQueue.concurrentPerform(iterations: 5) { worker in
             if worker == 0 {
-                for index in 0..<2000 { TGUIKit.DeviceGraphicsContextSettings.install(index % 2 == 0 ? a : b) }
+                for index in 0..<2000 { AnsibleUIKit.DeviceGraphicsContextSettings.install(index % 2 == 0 ? a : b) }
             } else {
                 for _ in 0..<500 {
                     autoreleasepool {
-                        let context = TGUIKit.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true)
+                        let context = AnsibleUIKit.DrawingContext(size: CGSize(width: 16, height: 16), scale: 2, clear: true)
                         context.withContext { paint($0, size: context.size) }
                         let image = context.generateImage()!
                         let expectedSpace = image.bitsPerComponent == 8 ? a.colorSpace! : b.colorSpace!
@@ -129,11 +129,11 @@ final class ContextTests: XCTestCase {
 
     func testImageKeepsPixelsAliveAfterContextRelease() {
         let image: CGImage = autoreleasepool {
-            let context = TGUIKit.DrawingContext(size: CGSize(width: 15, height: 17), scale: 2, clear: true)
+            let context = AnsibleUIKit.DrawingContext(size: CGSize(width: 15, height: 17), scale: 2, clear: true)
             context.withContext { paint($0, size: context.size) }
             return context.generateImage()!
         }
-        let reference = TGUIKitBaseline.DrawingContext(size: CGSize(width: 15, height: 17), scale: 2, clear: true)
+        let reference = AnsibleUIKitBaseline.DrawingContext(size: CGSize(width: 15, height: 17), scale: 2, clear: true)
         reference.withContext { paint($0, size: reference.size) }
         equal(image, reference.generateImage()!)
     }

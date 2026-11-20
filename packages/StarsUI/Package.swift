@@ -3,7 +3,7 @@
 import PackageDescription
 
 let deps: [(String, String)] = [
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("ChatModeTypes", "../ChatModeTypes"),
     ("InlineStickerLayer", "../InlineStickerLayer"),
     ("UniqueGiftBackground", "../UniqueGiftBackground"),

@@ -2,8 +2,8 @@ import Cocoa
 import XCTest
 import QuartzCore
 import Darwin
-import class TGUIKit.VisualEffect
-import class TGUIKitBaseline.VisualEffect
+import class AnsibleUIKit.VisualEffect
+import class AnsibleUIKitBaseline.VisualEffect
 
 final class MaskBenchmarkTests: XCTestCase {
     func testCosts() throws {
@@ -32,14 +32,14 @@ final class MaskBenchmarkTests: XCTestCase {
             results[name] = batches
         }
         measure("construct_unmasked", [
-            { let view = TGUIKitBaseline.VisualEffect(frame: frame); return Int(view.frame.width) },
-            { let view = TGUIKit.VisualEffect(frame: frame); return Int(view.frame.width) }
+            { let view = AnsibleUIKitBaseline.VisualEffect(frame: frame); return Int(view.frame.width) },
+            { let view = AnsibleUIKit.VisualEffect(frame: frame); return Int(view.frame.width) }
         ])
         measure("construct_masked", [
-            { let view = TGUIKitBaseline.VisualEffect(frame: frame); view.maskContents = image; return Int(view.frame.width) },
-            { let view = TGUIKit.VisualEffect(frame: frame); view.maskContents = image; return Int(view.frame.width) }
+            { let view = AnsibleUIKitBaseline.VisualEffect(frame: frame); view.maskContents = image; return Int(view.frame.width) },
+            { let view = AnsibleUIKit.VisualEffect(frame: frame); view.maskContents = image; return Int(view.frame.width) }
         ])
-        let old = TGUIKitBaseline.VisualEffect(frame: frame), new = TGUIKit.VisualEffect(frame: frame)
+        let old = AnsibleUIKitBaseline.VisualEffect(frame: frame), new = AnsibleUIKit.VisualEffect(frame: frame)
         measure("assign_nil", [
             { old.maskContents = nil; return Int(old.frame.width) },
             { new.maskContents = nil; return Int(new.frame.width) }
@@ -79,7 +79,7 @@ final class MaskBenchmarkTests: XCTestCase {
         var allocationCounts: [[String: Int]] = []
         for baseline in [true, false] {
             autoreleasepool {
-                let views: [NSView] = (0..<1000).map { _ in baseline ? TGUIKitBaseline.VisualEffect(frame: frame) : TGUIKit.VisualEffect(frame: frame) }
+                let views: [NSView] = (0..<1000).map { _ in baseline ? AnsibleUIKitBaseline.VisualEffect(frame: frame) : AnsibleUIKit.VisualEffect(frame: frame) }
                 var layers = 0, bytes = 0
                 for view in views {
                     for name in ["overlay", "overlayMask"] {

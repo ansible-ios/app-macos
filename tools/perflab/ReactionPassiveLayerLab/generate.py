@@ -24,7 +24,7 @@ def block(text, needle):
     return text[start:end]
 
 header = '''import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 struct LabReaction {
     enum Kind { case builtin; case custom }

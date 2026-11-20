@@ -9,7 +9,7 @@ let package = Package(
         .library(name: "CubeUI", targets: ["CubeUI"]),
     ],
     dependencies: [
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "AnsibleContext", path: "../AnsibleContext"),
         .package(name: "AnsibleUtils", path: "../AnsibleUtils"),
         .package(name: "AnsibleMediaUtils", path: "../AnsibleMediaUtils"),
@@ -23,7 +23,7 @@ let package = Package(
         .target(
             name: "CubeUI",
             dependencies: [
-                .product(name: "TGUIKit", package: "TGUIKit"),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit"),
                 .product(name: "AnsibleContext", package: "AnsibleContext", condition: nil),
                 .product(name: "AnsibleUtils", package: "AnsibleUtils", condition: nil),
                 .product(name: "AnsibleMediaUtils", package: "AnsibleMediaUtils", condition: nil),

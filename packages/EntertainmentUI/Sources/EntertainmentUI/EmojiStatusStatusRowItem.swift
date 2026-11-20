@@ -1,5 +1,5 @@
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import AnsibleTheme
 import GeneralRows
 import Cocoa

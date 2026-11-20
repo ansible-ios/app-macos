@@ -1,7 +1,7 @@
 import Foundation
 import AppKit
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import Postbox
 

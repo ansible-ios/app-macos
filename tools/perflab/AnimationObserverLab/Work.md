@@ -12,7 +12,7 @@ The targeted test passed on the original implementation and failed with two asse
 
 ## Measurements
 
-BaselineCompactObserver.swift captures the implementation at d23460572, with renamed classes, the unchanged public options type imported from TGUIKit, a testable import and whitespace normalization. Benchmarks use real AppKit view hierarchies with zero, four or sixteen additional ancestor views between the observed view and its scroll document. Each case has 100 warmup operations and nine alternating baseline/candidate batches of 10,000 operations.
+BaselineCompactObserver.swift captures the implementation at d23460572, with renamed classes, the unchanged public options type imported from AnsibleUIKit, a testable import and whitespace normalization. Benchmarks use real AppKit view hierarchies with zero, four or sixteen additional ancestor views between the observed view and its scroll document. Each case has 100 warmup operations and nine alternating baseline/candidate batches of 10,000 operations.
 
 The construction case retains all 10,000 observer objects in an array, then releases them within the timed batch. Its measurement includes construction, array storage and cleanup. Binding cases repeatedly update actual observer instances after warmup. They do not measure rendering, animation callbacks or scrolling frame time. Times are small, in tens or hundreds of nanoseconds per operation; percentage changes do not represent whole-app speedups.
 
@@ -40,11 +40,11 @@ The allocation check inspects live objects with malloc_size. Both observer insta
 
 Eight new functional tests cover attached and detached hierarchy lookup counts, explicit-container updates, lazy receiver creation and reuse, release during nested delivery, and detach/re-attach during delivery. The existing observer suite also checks retargeting, options, selectors, independent listeners, source/target lifetimes and table-row reparenting. The original six-test fixture produced five expected lookup-count failures; the final fixture adds two receiver-allocation tests.
 
-The final implementation passed all 306 TGUIKit and 134 chat mini-app functional tests in release and AddressSanitizer: 440 in each configuration. Each suite skipped 14 optional benchmarks. Only the opt-in timing harness was subsequently expanded; the eight observer regressions and the expanded benchmark were rerun successfully.
+The final implementation passed all 306 AnsibleUIKit and 134 chat mini-app functional tests in release and AddressSanitizer: 440 in each configuration. Each suite skipped 14 optional benchmarks. Only the opt-in timing harness was subsequently expanded; the eight observer regressions and the expanded benchmark were rerun successfully.
 
 Raw measurements, the failed experiment, source hashes and validation logs are in Evidence/work/ and work-provenance.json. These are working-tree package and mini-app checks, including unrelated pending changes. The full Telegram application was not built or benchmarked.
 
 ```sh
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter 'Animat(ionObserver|ableContentObserver)'
-OBSERVER_WORK_BENCHMARK=1 swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter AnimationObserverWorkBenchmarkTests
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter 'Animat(ionObserver|ableContentObserver)'
+OBSERVER_WORK_BENCHMARK=1 swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter AnimationObserverWorkBenchmarkTests
 ```

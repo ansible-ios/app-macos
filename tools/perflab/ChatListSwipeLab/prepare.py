@@ -45,7 +45,7 @@ original = subprocess.check_output(['git', 'show', baseline+':'+row_path], cwd=r
 current = (root/row_path).read_text()
 if '--baseline' in sys.argv:
     current = original
-output = 'import Cocoa\nimport TGUIKit\n' + generated('ReferenceRow', original) + generated('CandidateRow', current)
+output = 'import Cocoa\nimport AnsibleUIKit\n' + generated('ReferenceRow', original) + generated('CandidateRow', current)
 controller = subprocess.check_output(['git', 'show', baseline+':'+controller_path], cwd=root, text=True) if '--baseline' in sys.argv else (root/controller_path).read_text()
 for name, row, code in [('ReferenceController', 'ReferenceRow', subprocess.check_output(['git', 'show', baseline+':'+controller_path], cwd=root, text=True)), ('CandidateController', 'CandidateRow', controller)]:
     update = method(code, '    open override func updateSwipingState(_ state: SwipeState, controller: ViewController, isPrevious: Bool)').replace('open override', 'override').replace('ChatListRowView', row).replace('controller: ViewController', 'controller: ControllerTarget')

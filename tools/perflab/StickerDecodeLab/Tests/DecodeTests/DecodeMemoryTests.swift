@@ -1,6 +1,6 @@
-@testable import func TGUIKit.decodeFallbackForLab
-@testable import func TGUIKit.decodeStickerThumbnailData
-@testable import func TGUIKitBaseline.decodeStickerThumbnailData
+@testable import func AnsibleUIKit.decodeFallbackForLab
+@testable import func AnsibleUIKit.decodeStickerThumbnailData
+@testable import func AnsibleUIKitBaseline.decodeStickerThumbnailData
 import Foundation
 import XCTest
 import Darwin
@@ -19,8 +19,8 @@ final class DecodeMemoryTests: XCTestCase {
         for length in [1, 16, 64, 256, 1024] {
             let input = Data((0..<length).map { UInt8(($0 * 17) % 256) })
             for _ in 0..<100 {
-                sink += TGUIKitBaseline.decodeStickerThumbnailData(input).utf8.count
-                sink += TGUIKit.decodeStickerThumbnailData(input).utf8.count
+                sink += AnsibleUIKitBaseline.decodeStickerThumbnailData(input).utf8.count
+                sink += AnsibleUIKit.decodeStickerThumbnailData(input).utf8.count
             }
             var variants = [[[Int]](), [[Int]](), [[Int]]()]
             for batch in 0..<5 {
@@ -29,7 +29,7 @@ final class DecodeMemoryTests: XCTestCase {
                         var strings = [String](); strings.reserveCapacity(2000)
                         let before = allocatedDecodeBytes()
                         for _ in 0..<2000 {
-                            strings.append(variant == 0 ? TGUIKitBaseline.decodeStickerThumbnailData(input) : variant == 1 ? TGUIKit.decodeStickerThumbnailData(input) : TGUIKit.decodeFallbackForLab(input))
+                            strings.append(variant == 0 ? AnsibleUIKitBaseline.decodeStickerThumbnailData(input) : variant == 1 ? AnsibleUIKit.decodeStickerThumbnailData(input) : AnsibleUIKit.decodeFallbackForLab(input))
                         }
                         let retained = withExtendedLifetime(strings) { allocatedDecodeBytes() }
                         sink += strings.reduce(0) { $0 + $1.utf8.count }

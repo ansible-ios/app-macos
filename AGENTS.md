@@ -24,7 +24,7 @@ Read the matching document before starting the task.
 ### Project Structure
 - **Ansible-Mac/** - Thin app target: launch and hook installation (`app/`), the concrete `AccountContext` (`account/`), hook installers and bridges (`packages-integration/`), strings (`en.lproj/Localizable.strings`)
 - **packages/** - Swift Package Manager modules; almost every feature and UI lives here
-- **packages/TGUIKit/** - UI Library
+- **packages/AnsibleUIKit/** - UI Library
 - **AnsibleShare/** - Share extension
 - **submodules/** - Core libraries and telegram-ios shared code (TelegramCore, Postbox, SSignalKit)
 - **core-xprojects/** - Native framework build projects (OpenH264, FFmpeg, WebRTC, etc.)
@@ -35,7 +35,7 @@ Only the modules you will touch most. Find anything else with `grep -rn "func Na
 
 | Module | Use it for |
 |---|---|
-| `TGUIKit` | Views, `TableView`, `ViewController`, modals, `Window` |
+| `AnsibleUIKit` | Views, `TableView`, `ViewController`, modals, `Window` |
 | `AnsibleContext` | `AccountContextProtocol`; packages take `any AccountContextProtocol` |
 | `Localization` | `strings()`, generated from `Ansible-Mac/en.lproj/Localizable.strings` by `tools/swiftgen.sh` |
 | `AnsibleTheme` | The `theme` global, `AnsiblePresentationTheme`, `deliverOnPrepareQueue` |
@@ -62,7 +62,7 @@ Only the modules you will touch most. Find anything else with `grep -rn "func Na
 ### Dependencies
 - Declare only modules whose symbols you actually use; never add dependencies "just in case"
 - No screen package may depend on another screen package; existing ones are debt
-- Keep feature code out of hubs (`TGUIKit`, `AnsibleTheme`, `AnsibleContext`, `Localization`, `AnsibleUtils`, `InAppSettings`, `GeneralRows`, `InputDataUI`); a hub API change recompiles ~90 packages
+- Keep feature code out of hubs (`AnsibleUIKit`, `AnsibleTheme`, `AnsibleContext`, `Localization`, `AnsibleUtils`, `InAppSettings`, `GeneralRows`, `InputDataUI`); a hub API change recompiles ~90 packages
 - `*Share` products are for the share extension only
 
 ### Moving Code into Packages

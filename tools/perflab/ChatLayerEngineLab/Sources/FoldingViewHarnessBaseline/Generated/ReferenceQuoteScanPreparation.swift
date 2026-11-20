@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngineBaseline
 
 extension ChatLayerMessageTextPresentation {

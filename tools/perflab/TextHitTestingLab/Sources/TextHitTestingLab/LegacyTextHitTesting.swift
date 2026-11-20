@@ -1,1 +1,1 @@
-../../../../../packages/TGUIKit/Tests/TGUIKitTests/LegacyTextHitTesting.swift
+../../../../../packages/AnsibleUIKit/Tests/AnsibleUIKitTests/LegacyTextHitTesting.swift

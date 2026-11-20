@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 
 final class IconIdentityTests: XCTestCase {
     override func setUp() {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         theme = FixtureTheme()
         ChatInterfaceHooks.shared.fileCalls = 0
     }

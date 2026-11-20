@@ -1,17 +1,17 @@
 import Cocoa
 import CoreImage
 import XCTest
-import class TGUIKit.BlurEdgeView
-import class TGUIKitBaseline.BlurEdgeView
-import enum TGUIKit.BlurEdgeCacheInspection
-import enum TGUIKit.ContainedViewLayoutTransition
-import enum TGUIKitBaseline.ContainedViewLayoutTransition
+import class AnsibleUIKit.BlurEdgeView
+import class AnsibleUIKitBaseline.BlurEdgeView
+import enum AnsibleUIKit.BlurEdgeCacheInspection
+import enum AnsibleUIKit.ContainedViewLayoutTransition
+import enum AnsibleUIKitBaseline.ContainedViewLayoutTransition
 
 final class BlurEdgeTests: XCTestCase {
     let context = CIContext(options: [.cacheIntermediates: false])
     let colorSpace = CGColorSpace(name: CGColorSpace.sRGB)!
 
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func pixels(_ image: CIImage, rect: CGRect) -> [UInt8] {
         var data = [UInt8](repeating: 0, count: Int(rect.width * rect.height) * 4)
@@ -19,9 +19,9 @@ final class BlurEdgeTests: XCTestCase {
         return data
     }
 
-    func pair(size: CGSize, padding: CGFloat = 0, top: Bool = false) -> (TGUIKitBaseline.BlurEdgeView, TGUIKit.BlurEdgeView) {
-        let a = TGUIKitBaseline.BlurEdgeView(frame: CGRect(origin: .zero, size: size))
-        let b = TGUIKit.BlurEdgeView(frame: a.frame)
+    func pair(size: CGSize, padding: CGFloat = 0, top: Bool = false) -> (AnsibleUIKitBaseline.BlurEdgeView, AnsibleUIKit.BlurEdgeView) {
+        let a = AnsibleUIKitBaseline.BlurEdgeView(frame: CGRect(origin: .zero, size: size))
+        let b = AnsibleUIKit.BlurEdgeView(frame: a.frame)
         a.padding = padding; b.padding = padding
         a.update(edge: top ? .top : .bottom, edgeSize: 10, rect: a.frame, transition: .immediate)
         b.update(edge: top ? .top : .bottom, edgeSize: 10, rect: b.frame, transition: .immediate)
@@ -137,7 +137,7 @@ final class BlurEdgeTests: XCTestCase {
         XCTAssertGreaterThan(source.bytesPerRow * source.height, 0)
         let b = pairs[0].1
         let images = try (0..<32).map { try XCTUnwrap(b.maskForLab(size: CGSize(width: 701 + $0, height: 19))) }
-        XCTAssertLessThanOrEqual(TGUIKit.BlurEdgeCacheInspection.count, 16)
+        XCTAssertLessThanOrEqual(AnsibleUIKit.BlurEdgeCacheInspection.count, 16)
         XCTAssertFalse(b.maskForLab(size: CGSize(width: 701, height: 19)) === images[0])
         XCTAssertEqual(images[0].extent, CGRect(x: 0, y: 0, width: 701, height: 19))
     }
@@ -145,7 +145,7 @@ final class BlurEdgeTests: XCTestCase {
     func testWeakCacheDoesNotKeepUnusedMaskAlive() throws {
         weak var weakMask: CIImage?
         try autoreleasepool {
-            var b: TGUIKit.BlurEdgeView? = TGUIKit.BlurEdgeView(frame: CGRect(x: 0, y: 0, width: 913, height: 31))
+            var b: AnsibleUIKit.BlurEdgeView? = AnsibleUIKit.BlurEdgeView(frame: CGRect(x: 0, y: 0, width: 913, height: 31))
             weakMask = try mask(b!)
             XCTAssertNotNil(weakMask)
             b?.layer?.backgroundFilters = nil
@@ -159,7 +159,7 @@ final class BlurEdgeTests: XCTestCase {
         let lock = NSLock()
         var images = [CIImage]()
         DispatchQueue.concurrentPerform(iterations: 64) { _ in
-            let image = TGUIKit.BlurEdgeCacheInspection.image(size: CGSize(width: 1087, height: 23), padding: 21, bottom: true) {
+            let image = AnsibleUIKit.BlurEdgeCacheInspection.image(size: CGSize(width: 1087, height: 23), padding: 21, bottom: true) {
                 CIImage(color: .white).cropped(to: CGRect(x: 0, y: 0, width: 1087, height: 23))
             }!
             lock.lock(); images.append(image); lock.unlock()
@@ -167,7 +167,7 @@ final class BlurEdgeTests: XCTestCase {
         XCTAssertEqual(images.count, 64)
         XCTAssertEqual(Set(images.map(ObjectIdentifier.init)).count, 1)
         XCTAssertEqual(images[0].extent, CGRect(x: 0, y: 0, width: 1087, height: 23))
-        XCTAssertLessThanOrEqual(TGUIKit.BlurEdgeCacheInspection.count, 16)
+        XCTAssertLessThanOrEqual(AnsibleUIKit.BlurEdgeCacheInspection.count, 16)
     }
     func testConcurrentEvictionKeepsMasksMatchedToKeys() throws {
         let lock = NSLock()
@@ -175,14 +175,14 @@ final class BlurEdgeTests: XCTestCase {
         DispatchQueue.concurrentPerform(iterations: 128) { iteration in
             let index = iteration % 64
             let size = CGSize(width: 1200 + index, height: 17)
-            let image = TGUIKit.BlurEdgeCacheInspection.image(size: size, padding: CGFloat(index), bottom: index % 2 == 0) {
+            let image = AnsibleUIKit.BlurEdgeCacheInspection.image(size: size, padding: CGFloat(index), bottom: index % 2 == 0) {
                 CIImage(color: .white).cropped(to: CGRect(origin: .zero, size: size))
             }!
             lock.lock(); results.append((index, image)); lock.unlock()
         }
         XCTAssertEqual(results.count, 128)
         for (index, image) in results { XCTAssertEqual(image.extent, CGRect(x: 0, y: 0, width: 1200 + index, height: 17)) }
-        XCTAssertLessThanOrEqual(TGUIKit.BlurEdgeCacheInspection.count, 16)
+        XCTAssertLessThanOrEqual(AnsibleUIKit.BlurEdgeCacheInspection.count, 16)
     }
 
 }

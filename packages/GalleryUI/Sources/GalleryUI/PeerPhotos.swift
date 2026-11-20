@@ -5,7 +5,7 @@ import SwiftSignalKit
 import TelegramApi
 import TelegramCore
 import AnsibleUtils
-import TGUIKit
+import AnsibleUIKit
 import Localization
 import AnsibleTheme
 import AnsibleContext

@@ -1,7 +1,7 @@
 import Cocoa
 import TelegramCore
 import DateUtils
-import TGUIKit
+import AnsibleUIKit
 import Postbox
 import Strings
 import AnsibleContext

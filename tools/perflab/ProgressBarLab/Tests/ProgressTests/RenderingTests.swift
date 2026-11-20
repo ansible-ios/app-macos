@@ -2,7 +2,7 @@ import Cocoa
 import XCTest
 import QuartzCore
 import Metal
-import TGUIKit
+import AnsibleUIKit
 import ProgressReference
 
 extension ProgressTests {

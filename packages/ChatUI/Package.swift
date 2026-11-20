@@ -3,7 +3,7 @@
 import PackageDescription
 
 let deps: [(String, String)] = [
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("PerfLab", "../PerfLab"),
     ("ColorPalette", "../ColorPalette"),
     ("InAppSettings", "../InAppSettings"),
@@ -50,7 +50,7 @@ let deps: [(String, String)] = [
     ("ShortPeerRow", "../ShortPeerRow"),
     ("StarsUI", "../StarsUI"),
     ("SystemPermissions", "../SystemPermissions"),
-    ("TGModernGrowingTextView", "../TGModernGrowingTextView"),
+    ("AnsibleModernGrowingTextView", "../AnsibleModernGrowingTextView"),
     ("Translate", "../Translate"),
     ("InlineMediaGrid", "../InlineMediaGrid"),
     ("KeyboardKey", "../KeyboardKey"),
@@ -66,7 +66,7 @@ let deps: [(String, String)] = [
     ("DiceCache", "../DiceCache"),
     ("InlineStickerLayer", "../InlineStickerLayer"),
     ("UniqueGiftBackground", "../UniqueGiftBackground"),
-    ("TGVideoCameraMovie", "../TGVideoCameraMovie"),
+    ("AnsibleVideoCameraMovie", "../AnsibleVideoCameraMovie"),
     ("HTMLBubbles", "../HTMLBubbles"),
     ("AppAnalytics", "../AppAnalytics"),
 ]
@@ -104,6 +104,6 @@ let package = Package(
             linkerSettings: [
                 .linkedFramework("Speech"),
             ]),
-        .testTarget(name: "ChatUITests", dependencies: ["ChatUI", .product(name: "HLSPlayback", package: "HLSPlayback", condition: nil), .product(name: "AnsibleMedia", package: "AnsibleMedia", condition: nil), .product(name: "TelegramMediaPlayer", package: "TelegramMediaPlayer", condition: nil), .product(name: "InstantPageUI", package: "InstantPageUI", condition: nil), .product(name: "AnsibleUtils", package: "AnsibleUtils", condition: nil), .product(name: "AudioPlayerCore", package: "AudioPlayerCore", condition: nil), .product(name: "FetchManager", package: "FetchManager", condition: nil), .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil), .product(name: "SceneEffects", package: "SceneEffects", condition: nil), .product(name: "TGUIKit", package: "TGUIKit", condition: nil), .product(name: "AnsibleTheme", package: "AnsibleTheme", condition: nil), .product(name: "GeneralRows", package: "GeneralRows", condition: nil), .product(name: "InAppSettings", package: "InAppSettings", condition: nil), .product(name: "ColorPalette", package: "ColorPalette", condition: nil), .product(name: "ThemeSettings", package: "ThemeSettings", condition: nil), .product(name: "rnoise", package: "rnoise", condition: nil), .product(name: "Localization", package: "Localization", condition: nil), .product(name: "TelegramCore", package: "TelegramCore", condition: nil), .product(name: "LocalAnimations", package: "LocalAnimations", condition: nil), .product(name: "StarsUI", package: "StarsUI", condition: nil)], path: "Tests/ChatUITests"),
+        .testTarget(name: "ChatUITests", dependencies: ["ChatUI", .product(name: "HLSPlayback", package: "HLSPlayback", condition: nil), .product(name: "AnsibleMedia", package: "AnsibleMedia", condition: nil), .product(name: "TelegramMediaPlayer", package: "TelegramMediaPlayer", condition: nil), .product(name: "InstantPageUI", package: "InstantPageUI", condition: nil), .product(name: "AnsibleUtils", package: "AnsibleUtils", condition: nil), .product(name: "AudioPlayerCore", package: "AudioPlayerCore", condition: nil), .product(name: "FetchManager", package: "FetchManager", condition: nil), .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil), .product(name: "SceneEffects", package: "SceneEffects", condition: nil), .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil), .product(name: "AnsibleTheme", package: "AnsibleTheme", condition: nil), .product(name: "GeneralRows", package: "GeneralRows", condition: nil), .product(name: "InAppSettings", package: "InAppSettings", condition: nil), .product(name: "ColorPalette", package: "ColorPalette", condition: nil), .product(name: "ThemeSettings", package: "ThemeSettings", condition: nil), .product(name: "rnoise", package: "rnoise", condition: nil), .product(name: "Localization", package: "Localization", condition: nil), .product(name: "TelegramCore", package: "TelegramCore", condition: nil), .product(name: "LocalAnimations", package: "LocalAnimations", condition: nil), .product(name: "StarsUI", package: "StarsUI", condition: nil)], path: "Tests/ChatUITests"),
     ]
 )

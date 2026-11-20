@@ -141,6 +141,6 @@ The existing events in `legacy` predate these rules and may carry ids; their voc
 
 ## 9. Tooling and implementation
 
-- `tools/tg_events.py lint` enforces these rules on `events.yaml`: format, sections, actions, banned UI words, glossary terms, param types and values. A registry change is reviewable only when lint passes.
-- `tools/tg_events.py gen` writes `generated/events.json`, the resolved registry every client generates its typed constants from. Do not write names as string literals.
+- `tools/ansible_events.py lint` enforces these rules on `events.yaml`: format, sections, actions, banned UI words, glossary terms, param types and values. A registry change is reviewable only when lint passes.
+- `tools/ansible_events.py gen` writes `generated/events.json`, the resolved registry every client generates its typed constants from. Do not write names as string literals.
 - Client behavior (transport, common params, flow recorder, screens, debug checks) is specified in [IMPLEMENTING.md](IMPLEMENTING.md) and verified with `fixtures/flows.json`.

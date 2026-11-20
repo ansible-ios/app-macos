@@ -6,8 +6,8 @@
     "release",
     "address-sanitizer"
   ],
-  "tguikit_functional_tests": 213,
-  "tguikit_skipped_optional_tests": 2,
+  "ansibleuikit_functional_tests": 213,
+  "ansibleuikit_skipped_optional_tests": 2,
   "static_matrix_pixel_pairs": 430,
   "additional_rendered_scenarios": [
     "scrubbing enabled/disabled and live/deferred",
@@ -36,7 +36,7 @@
     "Controlled GPU samples do not measure wall-clock playback pacing"
   ],
   "sha256": {
-    "packages/TGUIKit/Sources/LinearProgressControl.swift": "8275281b5a5f8c170e3e76a84c02ec0e1c3a3f99ca7451986a396eeb91cc7c89",
+    "packages/AnsibleUIKit/Sources/LinearProgressControl.swift": "8275281b5a5f8c170e3e76a84c02ec0e1c3a3f99ca7451986a396eeb91cc7c89",
     "tools/perflab/ProgressBarLab/Tests/ProgressTests/BenchmarkTests.swift": "ee69f82ad8d1ed48f6936d5ff00838d934d160859fbfb659788bacbb5574e626",
     "tools/perflab/ProgressBarLab/Tests/ProgressTests/ProgressTests.swift": "9166576fd1e727e03ec86e07a779abd22497aab080bc3db98a56ca02b1d84a2c",
     "tools/perflab/ProgressBarLab/Tests/ProgressTests/RenderingTests.swift": "c447bb1e7b7d086d1f930f515bf60694fd94c3e0487ede462e7e1ea9b8e55f3e"

@@ -1,7 +1,7 @@
 import Cocoa
 import Foundation
 import WebKit
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
@@ -32,7 +32,7 @@ import LocalAuthentication
  */
 
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox

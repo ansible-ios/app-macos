@@ -4,7 +4,7 @@ import TelegramCore
 import InAppSettings
 import SwiftSignalKit
 import AVFoundation
-import TGUIKit
+import AnsibleUIKit
 import AnsibleMedia
 import TgVoipWebrtc
 import AnsibleCallsCore

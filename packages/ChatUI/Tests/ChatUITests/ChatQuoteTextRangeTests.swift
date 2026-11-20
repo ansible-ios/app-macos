@@ -2,7 +2,7 @@ import XCTest
 import InputView
 import InlineStickerLayer
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatUI
 
 final class ChatQuoteTextRangeTests: XCTestCase {

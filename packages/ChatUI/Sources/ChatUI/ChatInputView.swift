@@ -1,8 +1,8 @@
 import Foundation
 import Cocoa
 import MediaRecorderUI
-import TGUIKit
-import TGUIKit
+import AnsibleUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import InputView

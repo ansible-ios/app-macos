@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class CrossRowSelectionTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install(); System.updateScaleFactor(2) }
+    override func setUp() { AnsibleUIKitTestBootstrap.install(); System.updateScaleFactor(2) }
 
     func makeScene(_ string: String, origin: NSPoint = NSPoint(x: 20, y: 30)) throws -> (ChatLayerSceneView, ChatLayerTextNode) {
         let scene = ChatLayerSceneView(frame: NSRect(x: 0, y: 0, width: 300, height: 160))

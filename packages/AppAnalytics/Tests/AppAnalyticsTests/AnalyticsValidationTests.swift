@@ -1,6 +1,6 @@
 import XCTest
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 @testable import AppAnalytics
 
 private enum ForgedFlow: AnalyticsFlowSpec {

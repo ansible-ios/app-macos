@@ -3,7 +3,7 @@ import TelegramCore
 import InAppSettings
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import BuildConfig
 import AccountResetSupport
 import ApiCredentials

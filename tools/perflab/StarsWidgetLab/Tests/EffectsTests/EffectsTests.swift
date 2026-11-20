@@ -1,6 +1,6 @@
 import AppKit
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import Effects
 
 final class EffectsTests: XCTestCase {

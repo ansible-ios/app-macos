@@ -1,6 +1,6 @@
 import AppKit
 import Darwin
-import TGUIKit
+import AnsibleUIKit
 
 _ = NSApplication.shared
 NSApp.setActivationPolicy(.accessory)

@@ -6,7 +6,7 @@ The observer is now created only for attached, automatically managed views. Deta
 
 ## Native harness
 
-`prepare.py` extracts the complete production `InlineStickerView` class from baseline `828654359` and the working tree, changing only the class names. Both compile against the real TGUIKit `Control`, `SimpleLayer`, and `AnimatableContentTokenObserver`. Tests use native AppKit windows, scroll views, clipping, hierarchy callbacks, and notifications. Account/media types and the animation layer implementation are fixtures: the layer records playback assignments and constructor arguments without fetching or decoding media.
+`prepare.py` extracts the complete production `InlineStickerView` class from baseline `828654359` and the working tree, changing only the class names. Both compile against the real AnsibleUIKit `Control`, `SimpleLayer`, and `AnimatableContentTokenObserver`. Tests use native AppKit windows, scroll views, clipping, hierarchy callbacks, and notifications. Account/media types and the animation layer implementation are fixtures: the layer records playback assignments and constructor arguments without fetching or decoding media.
 
 Ten functional tests cover deferred allocation, external playback ownership, attachment/removal/reattachment, key-window changes, non-key-capable windows, real scroll clipping, reparenting, duplicate registration prevention, resize fallback, disabled playback enforcement, constructor/geometry parity, and weak release of views and observers. The unchanged implementation reproduced 12 failed assertions for unwanted allocations, subscriptions, and helper retention. The candidate passes all ten.
 
@@ -39,9 +39,9 @@ INLINE_STICKER_BENCHMARK=1 swift test --package-path tools/perflab/InlineSticker
 INLINE_STICKER_BENCHMARK=1 INLINE_STICKER_REVERSE=1 swift test --package-path tools/perflab/InlineStickerLifecycleLab -c release
 swift test --package-path tools/perflab/InlineStickerLifecycleLab --sanitize address
 swift test --package-path tools/perflab/InlineStickerLifecycleLab --sanitize thread
-swift test --package-path packages/TGUIKit -c release --filter 'AnimatableContentObserverTests|AnimationObserverWorkTests|AnimationObserverLifecycleTests'
+swift test --package-path packages/AnsibleUIKit -c release --filter 'AnimatableContentObserverTests|AnimationObserverWorkTests|AnimationObserverLifecycleTests'
 ```
 
 Use separate scratch paths and run sequentially. The benchmark writes raw batches to `/tmp/inline-sticker-benchmark.json`; save each run before repeating. Preserved logs, timings, generated classes, the production delta, and hashes live in `results/`. Source parsing checks the entire production file separately. `results/validation.json` records final check results.
 
-Final validation passed: 10 functional lifecycle tests and 20 existing TGUIKit observer regressions in release, plus the 10 lifecycle tests under each of Address Sanitizer and Thread Sanitizer. Both benchmark orders passed their count assertions, and whole-file parsing passed. No sanitizer failures were reported.
+Final validation passed: 10 functional lifecycle tests and 20 existing AnsibleUIKit observer regressions in release, plus the 10 lifecycle tests under each of Address Sanitizer and Thread Sanitizer. Both benchmark orders passed their count assertions, and whole-file parsing passed. No sanitizer failures were reported.

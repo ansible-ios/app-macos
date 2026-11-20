@@ -11,7 +11,7 @@ WallpaperUI, ThemeSettings. No existing tests for any of these.
 
 ### PhotoCache / theme image caches (agent, 2026-10-06)
 Files: `packages/AnsibleTheme/Sources/AnsibleTheme/PhotoCache.swift` (+ byte-identical `AnsibleThemeShare` copy),
-`packages/TGUIKit/Sources/ScopedImageCache.swift`.
+`packages/AnsibleUIKit/Sources/ScopedImageCache.swift`.
 
 Premise reframe: theme **CGImages already route through the budgeted `ScopedImageCache`** (byte budgets +
 idle expiry + scroll-scope expiry). The outlier is the **wallpaper** path.
@@ -86,7 +86,7 @@ PremiumBadgeImages: pure generators, NO cache — recompute per call (cost=recom
 ### Wallpapers & animated background (agent, 2026-10-06)
 Decode point: `generateBackgroundMode` AnsiblePresentationTheme.swift:195-243 — `.image`:206/`.file`:213/`.custom`:227
 all `NSImage(contentsOf: wallpaperPath(...))` with NO downscale (maxSize plumbed :195/:595/:607 but IGNORED here).
-View: TGUIKit ViewController.swift:55-457 `BackgroundView` (imageView SimpleLayer @System.backingScale; AnimatedGradient
+View: AnsibleUIKit ViewController.swift:55-457 `BackgroundView` (imageView SimpleLayer @System.backingScale; AnimatedGradient
 for >2 colors, BackgroundGradientView ≤2; softLight filter :319; TileControl tiles pattern across N SimpleLayers :205).
 Animated gradient: SoftwareGradientBackground.swift:205-499 — per-pixel CPU `generateGradientImage`:111-203 (malloc/free
 per call), 8-entry GradientImageCache:73-109, pre-generates duration*fps 16×16 frames into a one-shot CAKeyframe
@@ -112,10 +112,10 @@ Ranked:
    draws the full wallpaper into a 1×1 ctx → turns lazy NSImage into resident decoded bitmap per bg-mode change.
 8. Off-main theme gen re-decodes from disk bypassing cache (AnsiblePresentationTheme.swift:638-640) — same as core #1.
 Non-findings (verified OK): pattern wallpapers rasterized once (disk-cached, 400×800/512×512); scrolling doesn't redraw bg
-(TGClipView empty draw); NO retain cycle/leaked animator in bg views; BackgroundView reused across chat switches; .background
+(AnsibleClipView empty draw); NO retain cycle/leaked animator in bg views; BackgroundView reused across chat switches; .background
 `==` blind-true harmless (NSCache keys on Int hashValue).
 
-## Consolidated plan (impact × safety; hub blast radius matters — TGUIKit/AnsibleTheme recompile ~90 pkgs)
+## Consolidated plan (impact × safety; hub blast radius matters — AnsibleUIKit/AnsibleTheme recompile ~90 pkgs)
 MEMORY (user's main concern): M1 cap wallpaper decode size [wp#1]; M2 wallpaperCache byte budget [pc#1/wp#2];
 M3 wallpaperCache in purge hook [pc#2/wp#2]; M4 drop _backgroundMode / trim wallpaperCache on theme switch & inactive
 themes [pc#3/wp#2]; M5 eager regen route through cache [core#1/wp#8]; M6 messageBubbleImageCache eviction [core#7].
@@ -129,13 +129,13 @@ Round order (safest high-value first, each tested/lab-verified, behavior-preserv
 budget/purge/trim+cleanup) → M1 (decode cap) → M5+M6 → C8/D3 → R2 → C9 → then weigh the hub/concurrency/behavior ones
 (C1/C2/C3/C5/R1) with the advisor + user real-app verify.
 TEST INFRA NOTE: AnsibleTheme likely won't `swift build` standalone (like GeneralRows). Extractable logic (byte-budget
-eviction) can be unit-tested in TGUIKit (builds standalone, ModalMorphLab proved it) or a self-contained lab; cache-policy
+eviction) can be unit-tested in AnsibleUIKit (builds standalone, ModalMorphLab proved it) or a self-contained lab; cache-policy
 + decode-cap need a lab or the user's app run.
 
 ## Blockers resolved (advisor pass, 2026-10-06)
-- **AnsibleTheme BUILDS STANDALONE** (`swift build --package-path packages/AnsibleTheme` → exit 0, ~104s). TGUIKit
-  has a real XCTest target (Tests/TGUIKitTests/*, incl. ScopedImageCacheTests). → decode-cap helper + unit test go in
-  TGUIKit (`swift test --package-path packages/TGUIKit`); wiring compile-verified with `swift build` on AnsibleTheme.
+- **AnsibleTheme BUILDS STANDALONE** (`swift build --package-path packages/AnsibleTheme` → exit 0, ~104s). AnsibleUIKit
+  has a real XCTest target (Tests/AnsibleUIKitTests/*, incl. ScopedImageCacheTests). → decode-cap helper + unit test go in
+  AnsibleUIKit (`swift test --package-path packages/AnsibleUIKit`); wiring compile-verified with `swift build` on AnsibleTheme.
 - PhotoCache.swift the two trees are byte-IDENTICAL → every edit lands in BOTH (AnsibleTheme + AnsibleThemeShare); the
   wallpaper DECODE lives in AnsiblePresentationTheme.swift inside `#if !SHARE` (Share returns .plain), so decode changes
   are no-ops in the Share build but keep the files in sync anyway.
@@ -147,12 +147,12 @@ eviction) can be unit-tested in TGUIKit (builds standalone, ModalMorphLab proved
 ## Finalized round order
 - R0 dead-code: D1 (cachedThemeThumb :507 double lookup, cacheThemeThumb :520-524 identical branches) + D2 (WallpaperCache.maxCount,
   WallpaperCachedRecord.date, removeRecord) — both PhotoCache trees. Zero behavior change.
-- R1 **M1 decode cap**: TGUIKit helper `downsampledImage(contentsOfFile:maxPixelSize:)` (CGImageSourceCreateThumbnailAtIndex +
+- R1 **M1 decode cap**: AnsibleUIKit helper `downsampledImage(contentsOfFile:maxPixelSize:)` (CGImageSourceCreateThumbnailAtIndex +
   kCGImageSourceShouldCacheImmediately=false, downsample ONLY if larger) + XCTest; wire into generateBackgroundMode .image/.file/.custom
   (:206/213/227) with cap = backgroundSize × System.backingScale. Patterns (small masks ≤400×800) are < cap ⇒ untouched (tiling safe).
 - R2 cache story: M5 (route :638-640 through cachedBackground) + M2 (wallpaperCache totalCostLimit + cost:) + M3 (add to
   purgeImageCachesForMemoryPressure) + M4 (drop _backgroundMode on theme switch / inactive themes).
-- R3 C8/D3 (remove CloneView + dead dimmed gen, TGUIKit, lab-verify gradient still renders) ; R2b M6 messageBubbleImageCache eviction.
+- R3 C8/D3 (remove CloneView + dead dimmed gen, AnsibleUIKit, lab-verify gradient still renders) ; R2b M6 messageBubbleImageCache eviction.
 - R4 R2(messageSecretTimer palette-key+bound), C9 (cache transparentBackground), C7 (edge color from small img).
 - LATER/RISKY (need user real-app run): C1 emoticon rebuild gate+off-main (AccountContext, app target), C2 `_theme.modify{$0}`→`.with{$0}`
   (confirm SwiftSignalKit2 Atomic.with semantics first), C3 icon COW (869 accessors — check for a shared helper), C5 collapse double bg.
@@ -165,7 +165,7 @@ for count+bytes of image backing stores. Expect M1 to cut resident wallpaper bit
 ## Done this loop (local commits on beta, NOT pushed — holding for user)
 - Research (3 agents) + plan + advisor + blockers.
 - **R0** `bbeb677b8` AnsibleTheme: remove dead PhotoCache members (maxCount/date/removeRecord; themeThumb no-op lookups). Builds.
-- **R1 (hero)** `fad045d27` TGUIKit downsampledImage + 4 XCTests (pass) ; `4aa9281fe` AnsibleTheme cap wallpaper decode to
+- **R1 (hero)** `fad045d27` AnsibleUIKit downsampledImage + 4 XCTests (pass) ; `4aa9281fe` AnsibleTheme cap wallpaper decode to
   maxSize×backingScale (=3160px longest side for the default 1040×1580 theme). Fixes the uncapped full-res wallpaper bitmap
   held in every live theme's `_backgroundMode` — the user's "holds images". Small pattern masks (≤~512×800) are < cap ⇒
   untouched (tiling safe). AnsibleTheme builds standalone.
@@ -175,13 +175,13 @@ for count+bytes of image backing stores. Expect M1 to cut resident wallpaper bit
     size), so the cap is display-independent. On a very tall window (>1580pt, e.g. 6K XDR) a huge wallpaper could be marginally
     softer than full-native. Rare; if it matters, make backgroundSize screen-derived. Current behavior was uncapped (full native).
 
-- **R3** `08f64d533` TGUIKit: animated-gradient dimmed image now lazy (the 2 non-animated paths rendered a wasted
+- **R3** `08f64d533` AnsibleUIKit: animated-gradient dimmed image now lazy (the 2 non-animated paths rendered a wasted
   saturation-1.7 gradient every layout/size-change for CloneViews that are never created; visible gradient = contentView
   non-dimmed image, unchanged). +GradientBackgroundTests (2 pass).
 - **M3+M6** `3bbae3f76` AnsibleTheme: cap messageBubbleImageCache (was unbounded/process-lifetime) + add wallpaperCache
   & bubble cache to purgeImageCachesForMemoryPressure (both were skipped). Builds.
 
-- **C2** `1ac609b9a` TGUIKit: `presentation` read `_theme.modify {$0}` (redundant re-store/retain-release per read on the
+- **C2** `1ac609b9a` AnsibleUIKit: `presentation` read `_theme.modify {$0}` (redundant re-store/retain-release per read on the
   per-draw hot path) → `.with {$0}` (read-only, same return). Verified via both Atomic impls' source. Builds.
 - **R2** `6ccb493e3` AnsibleTheme: messageSecretTimer colors from self.palette not global theme.colors (non-active-theme
   staleness). Builds.
@@ -215,10 +215,10 @@ for count+bytes of image backing stores. Expect M1 to cut resident wallpaper bit
 - **#5** `74aaa275a` animated-gradient branch left _dimmedImage stale with no clones → reset (trivial).
 Confirmation agent CLEARED: messageBubbleImageCache cap, wallpaperCache growth, purge completeness, animated gradient (no leaked
 timer/frames), ColorPalette (class, no images), theme/wallpaper persistence (holds resource refs not decoded images), icon caches
-(bounded in practice), BackgroundView/TileControl (shared contents, reused). Full TGUIKit suite 82/82 after each round.
+(bounded in practice), BackgroundView/TileControl (shared contents, reused). Full AnsibleUIKit suite 82/82 after each round.
 
-LOOP TOTAL: 15 commits, 11 files, +201/-65, all local on beta (NOT pushed). Packages touched: TGUIKit, AnsibleTheme, SettingsUI,
-AnsibleMediaUtils. Every package that builds standalone was built; TGUIKit has 6 new tests (all pass).
+LOOP TOTAL: 15 commits, 11 files, +201/-65, all local on beta (NOT pushed). Packages touched: AnsibleUIKit, AnsibleTheme, SettingsUI,
+AnsibleMediaUtils. Every package that builds standalone was built; AnsibleUIKit has 6 new tests (all pass).
 
 ## Advisor completeness pass (2026-10-06) — addressed
 - #1 builtinBackground globals inside #if !SHARE → Share module recompiled clean (verified). OK.
@@ -240,8 +240,8 @@ here. A full 19-getter lock rewrite of a hub's hot getters was judged higher-ris
 side). Advisor concurred: severity analysis wins, do only _backgroundMode.
 
 ## ✅ LOOP COMPLETE (2026-10-06)
-17 commits, all local on beta (NOT pushed — user builds). Final gate: TGUIKit + AnsibleTheme + SettingsUI all build at HEAD;
-TGUIKit 82/82 tests (6 new); no external backgroundSize writers (proper grep). AnsibleMediaUtils can't standalone-build (verified
+17 commits, all local on beta (NOT pushed — user builds). Final gate: AnsibleUIKit + AnsibleTheme + SettingsUI all build at HEAD;
+AnsibleUIKit 82/82 tests (6 new); no external backgroundSize writers (proper grep). AnsibleMediaUtils can't standalone-build (verified
 #4 by inspection). API note: backgroundSize open var → public private(set) (NO subclasses, NO external writers — both verified).
 Remaining = the 2 USER DECISIONS below (C1, C5) — behavior-changing, app-target, need a real-app run I can't do.
 

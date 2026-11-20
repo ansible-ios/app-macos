@@ -1,10 +1,10 @@
 import AppKit
 import QuartzCore
 import XCTest
-import func TGUIKit.imageRequiresInversion
-@testable import func TGUIKit.imageHasTransparency
-import func TGUIKitBaseline.imageRequiresInversion
-@testable import func TGUIKitBaseline.imageHasTransparency
+import func AnsibleUIKit.imageRequiresInversion
+@testable import func AnsibleUIKit.imageHasTransparency
+import func AnsibleUIKitBaseline.imageRequiresInversion
+@testable import func AnsibleUIKitBaseline.imageHasTransparency
 
 final class AnalysisBenchmarkTests: XCTestCase {
     func testCosts() throws {
@@ -24,8 +24,8 @@ final class AnalysisBenchmarkTests: XCTestCase {
             }
             for transparencyOnly in [false, true] {
                 let key = name + (transparencyOnly ? "_alpha" : "_inversion")
-                let old: () -> Bool = { transparencyOnly ? TGUIKitBaseline.imageHasTransparency(image) : TGUIKitBaseline.imageRequiresInversion(image) }
-                let new: () -> Bool = { transparencyOnly ? TGUIKit.imageHasTransparency(image) : TGUIKit.imageRequiresInversion(image) }
+                let old: () -> Bool = { transparencyOnly ? AnsibleUIKitBaseline.imageHasTransparency(image) : AnsibleUIKitBaseline.imageRequiresInversion(image) }
+                let new: () -> Bool = { transparencyOnly ? AnsibleUIKit.imageHasTransparency(image) : AnsibleUIKit.imageRequiresInversion(image) }
                 decisions[key] = [old(), new()]
                 for _ in 0..<5 { sink += old() ? 1 : 0; sink += new() ? 1 : 0 }
                 let iterations = width > 512 ? 32 : 128

@@ -4,7 +4,7 @@ import Postbox
 import AnsibleMedia
 import TelegramMediaPlayer
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import AnsibleTheme
 import AnsibleContext
 import AnsibleUtils

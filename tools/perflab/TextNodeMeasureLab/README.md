@@ -15,14 +15,14 @@ python3 tools/perflab/TextNodeMeasureLab/prepare-isolated.py /tmp/TextNodeMeasur
 swift test --package-path /tmp/TextNodeMeasureValidation --scratch-path /tmp/TextNodeMeasureValidation-build -c release
 ASAN_OPTIONS=detect_leaks=0 swift test --package-path /tmp/TextNodeMeasureValidation --scratch-path /tmp/TextNodeMeasureValidation-asan --sanitize address
 swift test --package-path /tmp/TextNodeMeasureValidation --scratch-path /tmp/TextNodeMeasureValidation-tsan --sanitize thread
-swift test --package-path /tmp/TextNodeMeasureValidation/TGUIKit --scratch-path /tmp/TextNodeMeasureValidation-kit -c release
+swift test --package-path /tmp/TextNodeMeasureValidation/AnsibleUIKit --scratch-path /tmp/TextNodeMeasureValidation-kit -c release
 TEXTNODE_MEASURE_BENCHMARK=1 swift test --package-path /tmp/TextNodeMeasureValidation --scratch-path /tmp/TextNodeMeasureValidation-build -c release --skip-build --filter MeasureBenchmarkTests
 cp /tmp/text-node-measure-benchmark.json /tmp/text-node-forward.json
 TEXTNODE_MEASURE_BENCHMARK=1 TEXTNODE_MEASURE_REVERSE=1 swift test --package-path /tmp/TextNodeMeasureValidation --scratch-path /tmp/TextNodeMeasureValidation-build -c release --skip-build --filter MeasureBenchmarkTests
 cp /tmp/text-node-measure-benchmark.json /tmp/text-node-reverse.json
 ```
 
-Use new output directories and measure without competing builds. `TEXTNODE_BASELINE_CRASH=1` enables the deliberately crashing original regression test; leave it unset for ordinary validation. The generator freezes complete original and candidate TGUIKit libraries. Their only production-source difference is TextNode.swift. Both receive an identical test-only inspection extension that returns line frames, string ranges, glyph identifiers, glyph positions, advances and string indexes. No inspection code is shipped in the app.
+Use new output directories and measure without competing builds. `TEXTNODE_BASELINE_CRASH=1` enables the deliberately crashing original regression test; leave it unset for ordinary validation. The generator freezes complete original and candidate AnsibleUIKit libraries. Their only production-source difference is TextNode.swift. Both receive an identical test-only inspection extension that returns line frames, string ranges, glyph identifiers, glyph positions, advances and string indexes. No inspection code is shipped in the app.
 
 ## Performance
 
@@ -45,7 +45,7 @@ Six functional tests pass in release, Address Sanitizer and Thread Sanitizer. Le
 - 24 mutable-input/width/selection transitions, each with an exact bitmap pair and layout-reuse checks. A separate assertion verifies that the real selected-color attribute changes pixels.
 - Four extreme cutout cases, nine nil/empty/nonpositive-limit comparisons and 600 concurrent independent measurements against precomputed original glyph snapshots.
 
-The total is 6,945 matching geometry/glyph snapshots and 2,520 matching bitmap pairs. The full frozen TGUIKit suite passes 415 functional tests with 18 optional measurements skipped. Two new production-target tests cover nonpositive line limits and transitions between limited, unlimited and reused layouts.
+The total is 6,945 matching geometry/glyph snapshots and 2,520 matching bitmap pairs. The full frozen AnsibleUIKit suite passes 415 functional tests with 18 optional measurements skipped. Two new production-target tests cover nonpositive line limits and transitions between limited, unlimited and reused layouts.
 
 All 670 recorded source/dependency inputs are verified unchanged after validation. A fresh generator run reproduces 517 Swift sources and all three package manifests after output-path normalization. The tested, measured and production TextNode sources match, apart from the lab-only inspection extension. Final logs, raw timing batches, input hashes, source snapshots and sanitized baseline-crash evidence are retained in `results`.
 

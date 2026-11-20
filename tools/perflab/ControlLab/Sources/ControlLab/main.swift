@@ -1,6 +1,6 @@
 import AppKit
 import Darwin
-import TGUIKit
+import AnsibleUIKit
 
 func image(_ selected: Bool) -> CGImage {
     let context = CGContext(data: nil, width: 44, height: 44, bitsPerComponent: 8, bytesPerRow: 0, space: CGColorSpace(name: CGColorSpace.sRGB)!, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
@@ -135,7 +135,7 @@ func measureRows() -> [String: Any] {
 if CommandLine.arguments.contains("--preview") {
     let window = NSWindow(contentRect: CGRect(x: 0, y: 0, width: 500, height: 600), styleMask: [.titled, .closable, .resizable], backing: .buffered, defer: false)
     window.isReleasedWhenClosed = false
-    window.title = "TGUIKit control performance lab"
+    window.title = "AnsibleUIKit control performance lab"
     let scroll = NSScrollView(frame: window.contentView!.bounds)
     scroll.autoresizingMask = [.width, .height]
     scroll.hasVerticalScroller = true

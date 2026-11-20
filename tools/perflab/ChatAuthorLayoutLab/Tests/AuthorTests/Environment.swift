@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 enum MonoforumState { case vertical, horizontal }
 final class ReplyFixture {

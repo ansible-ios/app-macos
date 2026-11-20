@@ -1,6 +1,6 @@
 import Foundation
 import InputView
-import TGUIKit
+import AnsibleUIKit
 
 func chatQuoteTextRange(in layoutString: NSAttributedString, text: String, offset: Int?) -> NSRange? {
     guard !text.isEmpty else { return nil }

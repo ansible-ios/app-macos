@@ -6,13 +6,13 @@ No geometry is cached. Line ordering, width normalization, alignment, corner rou
 
 ## Validation
 
-The real TGUIKit renderer is tested, without a Telegram account:
+The real AnsibleUIKit renderer is tested, without a Telegram account:
 
-- All 204 functional TGUIKit tests pass in debug and release (206 total, two opt-in benchmarks skipped).
+- All 204 functional AnsibleUIKit tests pass in debug and release (206 total, two opt-in benchmarks skipped).
 - 24 focused functional tests pass under Address Sanitizer (26 total, two benchmark skips).
 - Four new tests compare exact image pixels, size, origin, and nil behavior against the preserved implementation. They cover wrapping, blank lines, CRLF, Unicode separators, emoji, combining sequences, RTL, three alignments, 1×/2×/3× scales, transparent masks, every range boundary in a mixed Unicode string, and 200 seeded cases with truncation, cutouts, reordered/mutated geometry, remeasurement, and text replacement.
 - A real NSAttributedString subclass confirms that whole-block generation changes from one temporary attributed substring per line to zero.
-- Separate baseline and candidate mini-apps produce identical hashes and metadata for all 144 mask snapshots. Both build the complete TGUIKit renderer; the only library difference is `TextView.swift` from baseline `314247f46` versus the working tree.
+- Separate baseline and candidate mini-apps produce identical hashes and metadata for all 144 mask snapshots. Both build the complete AnsibleUIKit renderer; the only library difference is `TextView.swift` from baseline `314247f46` versus the working tree.
 
 `LegacyTextBlock.swift` preserves both original methods and the private whole-block rasterizer. The range-specific reference uses the unchanged public rasterizer. `prepare.py` verifies the reference against the baseline commit, allowing only identifier substitutions, removed comments, and whitespace differences. Evidence includes source provenance, raw benchmark trials, snapshot hashes, and test summaries.
 
@@ -40,9 +40,9 @@ The styled fixture is 5.65–5.87× faster; wrapped paragraphs take 11–15% les
 From the repository root:
 
 ```sh
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-debug
-swift test -c release --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release
-swift test --sanitize address --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-asan --filter 'TextBlockTests|TextRunDrawingTests|SpoilerGeometryTests|TextViewUpdateRegressionTests|TextViewUpdateTests'
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-debug
+swift test -c release --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release
+swift test --sanitize address --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-asan --filter 'TextBlockTests|TextRunDrawingTests|SpoilerGeometryTests|TextViewUpdateRegressionTests|TextViewUpdateTests'
 python3 tools/perflab/TextBlockLab/prepare.py baseline /tmp/text-block-lab/baseline
 python3 tools/perflab/TextBlockLab/prepare.py candidate /tmp/text-block-lab/candidate
 swift build -c release --package-path /tmp/text-block-lab/baseline/TextBlockLab

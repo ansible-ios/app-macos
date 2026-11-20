@@ -35,7 +35,7 @@ def declaration(source, marker):
     return source[start:cursor]
 
 prefix = '''import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 
 open class AvatarControl: NSView {

@@ -24,7 +24,7 @@ The Metal/CARenderer harness produces 24 exact, nonblank frame pairs across stea
 
 `prepare.py` extracts the entire production effect classes and both actual `updateColors` methods. The untouched original source is checked against `89aab78a1`. For configuration, timing, and GPU comparisons, the reference repairs only the self-referential particle initializer; otherwise the baseline would render no slider particles. The untouched broken class remains available for the regression probe and test.
 
-The lab uses real TGUIKit layers/views, Core Animation emitters/behaviors, and the production 1×/2× star asset. A small hook fixture loads those assets with their 22-point logical size. Gradient methods run in minimal containers with the real effect instances. It does not build the full auction/reaction controllers, accounts, inline sticker playback, or main application. Production source passes Swift frontend parsing.
+The lab uses real AnsibleUIKit layers/views, Core Animation emitters/behaviors, and the production 1×/2× star asset. A small hook fixture loads those assets with their 22-point logical size. Gradient methods run in minimal containers with the real effect instances. It does not build the full auction/reaction controllers, accounts, inline sticker playback, or main application. Production source passes Swift frontend parsing.
 
 ## Reproduce
 

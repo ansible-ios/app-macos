@@ -10,8 +10,8 @@ a = source.index('private final class CollectionFilterRowView')
 a = source.index('    override func set(item:',a); brace = source.index('{',a); depth = 1; end = brace + 1
 while depth:
     depth += (source[end] == '{') - (source[end] == '}'); end += 1
-diff = (root/'packages/TGUIKit/Sources/MergeLists.swift').read_text().split('public func mergeListsStableWithUpdatesReversed')[0]
-apply = (root/'packages/TGUIKit/Sources/ApplyMergedRows.swift').read_text().replace('import Cocoa','import Foundation').replace('public func applyMergedRows','func _applyMergedRows')
+diff = (root/'packages/AnsibleUIKit/Sources/MergeLists.swift').read_text().split('public func mergeListsStableWithUpdatesReversed')[0]
+apply = (root/'packages/AnsibleUIKit/Sources/ApplyMergedRows.swift').read_text().replace('import Cocoa','import Foundation').replace('public func applyMergedRows','func _applyMergedRows')
 fixture = Path(__file__).with_name('StoryAlbumDragTests.swift').read_text().replace('__SET__',source[a:end]).replace('__DIFF__',diff).replace('__APPLY__',apply)
 with tempfile.TemporaryDirectory(prefix='story-album-drag-') as directory:
     directory = Path(directory)

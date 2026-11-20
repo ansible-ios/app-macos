@@ -11,7 +11,7 @@ let package = Package(
     dependencies: [
         .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
         .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "Strings", path: "../Strings"),
     ],
     targets: [
@@ -20,7 +20,7 @@ let package = Package(
             dependencies: [
                 .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
                 .product(name: "Postbox", package: "Postbox", condition: nil),
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "Strings", package: "Strings", condition: nil),
             ],
             path: "Sources/EmojiReplacements"),

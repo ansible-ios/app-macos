@@ -1,3 +1,3 @@
 // swift-tools-version:5.9
 import PackageDescription
-let package = Package(name: "ReplyMarkupReuseLab", platforms: [.macOS(.v10_15)], dependencies: [.package(path: "../../../packages/TGUIKit")], targets: [.testTarget(name: "MarkupTests", dependencies: ["TGUIKit"])])
+let package = Package(name: "ReplyMarkupReuseLab", platforms: [.macOS(.v10_15)], dependencies: [.package(path: "../../../packages/AnsibleUIKit")], targets: [.testTarget(name: "MarkupTests", dependencies: ["AnsibleUIKit"])])

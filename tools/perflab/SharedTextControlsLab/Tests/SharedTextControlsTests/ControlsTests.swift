@@ -2,7 +2,7 @@ import Cocoa
 import XCTest
 import Darwin
 import ObjectiveC.runtime
-@testable import TGUIKit
+@testable import AnsibleUIKit
 
 private final class LabelSpy: TextViewLabel {
     var displayRequests = 0
@@ -20,7 +20,7 @@ private final class ReferenceInsetTitleBar: ReferenceTitledBarView {
 }
 
 final class ControlsTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     private func text(_ string: String) -> NSAttributedString {
         NSAttributedString(string: string, attributes: [.font: NSFont.systemFont(ofSize: 14), .foregroundColor: NSColor.black])

@@ -18,7 +18,7 @@ let package = Package(
         .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
         .package(name: "AnsibleContext", path: "../AnsibleContext"),
         .package(name: "AnsibleTheme", path: "../AnsibleTheme"),
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
     ],
     targets: [
         .target(
@@ -33,7 +33,7 @@ let package = Package(
                 .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
                 .product(name: "AnsibleContext", package: "AnsibleContext", condition: nil),
                 .product(name: "AnsibleTheme", package: "AnsibleTheme", condition: nil),
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
             ],
             path: "Sources/LocalAnimations"),
     ]

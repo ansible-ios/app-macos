@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import FoldingBlocksHarness
 
 final class FoldingPlaybackTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func layout(quoted: Bool, media: Int = 0) -> FoldingTextLayout.ViewLayout {
         let value = NSMutableAttributedString(string: "🦆 hello مرحبا", attributes: [.font: NSFont.systemFont(ofSize: 16), .foregroundColor: NSColor.black])

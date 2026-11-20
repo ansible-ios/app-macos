@@ -1,6 +1,6 @@
 #if DEBUG
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 
 public enum PeerMediaGridDebug {
     public static var rowViewsCreated = 0

@@ -3,7 +3,7 @@
 import PackageDescription
 
 let deps: [(String, String)] = [
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("InAppSettings", "../InAppSettings"),
     ("Localization", "../Localization"),
     ("AnsibleTheme", "../AnsibleTheme"),
@@ -14,7 +14,7 @@ let deps: [(String, String)] = [
     ("GeneralRows", "../GeneralRows"),
     ("ShortPeerRow", "../ShortPeerRow"),
     ("InputDataUI", "../InputDataUI"),
-    ("TGModernGrowingTextView", "../TGModernGrowingTextView"),
+    ("AnsibleModernGrowingTextView", "../AnsibleModernGrowingTextView"),
     ("AlertsUI", "../AlertsUI"),
     ("LocalAnimations", "../LocalAnimations"),
     ("FilePanels", "../FilePanels"),

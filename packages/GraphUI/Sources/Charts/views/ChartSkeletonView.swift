@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import GraphCore
 
 private let shineWidth: CGFloat = 280

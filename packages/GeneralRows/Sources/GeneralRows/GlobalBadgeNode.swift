@@ -1,6 +1,6 @@
 import Cocoa
 import AnsibleUtils
-import TGUIKit
+import AnsibleUIKit
 import Postbox
 import SwiftSignalKit
 import TelegramCore

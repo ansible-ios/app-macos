@@ -2,7 +2,7 @@ import Cocoa
 import TelegramCore
 import InAppSettings
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import InputDataUI
 import GeneralRows
 import Localization

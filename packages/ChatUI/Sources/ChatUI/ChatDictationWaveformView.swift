@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class ChatDictationWaveformView: View {
     private let bars = CAShapeLayer()

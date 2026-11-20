@@ -6,7 +6,7 @@ import QuartzCore
 final class FoldingPlaybackBenchmarkTests: XCTestCase {
     func testBlockCosts() throws {
         guard ProcessInfo.processInfo.environment["FOLDING_PLAYBACK_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in folding playback benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let fixtures = FoldingPlaybackTests()
         var results: [String: Any] = [:]
         var sink = 0

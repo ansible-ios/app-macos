@@ -6,7 +6,7 @@ import Localization
 import GeneralRows
 import InputDataUI
 
-import TGUIKit
+import AnsibleUIKit
 
 class ChatListFiltersHeaderItem: GeneralRowItem {
     fileprivate let textLayout: TextViewLayout

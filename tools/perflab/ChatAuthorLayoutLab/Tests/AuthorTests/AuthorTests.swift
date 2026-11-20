@@ -1,9 +1,9 @@
 import Cocoa
 import XCTest
-@testable import TGUIKit
+@testable import AnsibleUIKit
 
 final class AuthorTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     private func layout(_ text: String, forward: Bool = false, lines: Int32 = 1) -> TextViewLayout {
         let value = NSMutableAttributedString(attributedString: .initialize(string: text, color: .blue, font: .medium(13)))

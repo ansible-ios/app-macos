@@ -2,7 +2,7 @@ import Cocoa
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import ColorPalette
 #if !SHARE
 import AnsibleMediaResources

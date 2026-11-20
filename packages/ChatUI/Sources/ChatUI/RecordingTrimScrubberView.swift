@@ -1,6 +1,6 @@
 import Cocoa
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import ColorPalette
 import AnsibleTheme
@@ -8,7 +8,7 @@ import AnsibleMedia
 import AnsibleMediaUtils
 import ObjcUtils
 import Localization
-import TGVideoCameraMovie
+import AnsibleVideoCameraMovie
 import AVFoundation
 
 private enum Metrics {

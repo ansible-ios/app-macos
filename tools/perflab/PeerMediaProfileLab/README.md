@@ -20,7 +20,7 @@ swift run --sanitize address --package-path tools/perflab/PeerMediaProfileLab --
 
 ## Validation
 
-The runner extracts the actual entry conversion, both media state types, profile activity pipeline, tab/readiness pipeline, grid-sizing helper, TGUIKit row-style helper, Postbox `MessageIndex`, and chat date-grouping implementation. It uses the real SwiftSignalKit package. `Reference.swift` and `ReferenceTabPipeline.txt` preserve the corresponding behavior from commit `bea877776`. `provenance.json` records source hashes.
+The runner extracts the actual entry conversion, both media state types, profile activity pipeline, tab/readiness pipeline, grid-sizing helper, AnsibleUIKit row-style helper, Postbox `MessageIndex`, and chat date-grouping implementation. It uses the real SwiftSignalKit package. `Reference.swift` and `ReferenceTabPipeline.txt` preserve the corresponding behavior from commit `bea877776`. `provenance.json` records source hashes.
 
 The harness supplies lightweight message, settings, history-view, activity, and controller fixtures. It does not load accounts, fetch resources, instantiate the full UI controllers, measure text, or render views. Media expansion is a fixture transformation shared by both implementations; its production implementation is outside this change. Benchmark messages are lightweight reference objects, so absolute timings are not a measurement of the full Telegram data model.
 

@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-@testable import TGUIKit
+@testable import AnsibleUIKit
 import MergeHarness
 
 private var retainedImages: [NSImage] = []

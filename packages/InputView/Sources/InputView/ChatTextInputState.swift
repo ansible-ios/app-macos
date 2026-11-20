@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
@@ -927,7 +927,7 @@ public final class ChatTextInputState: Codable, Equatable {
             }
         }
 
-        let dateDetectionKey = "AutomaticDateDetectionEnabled1TGGrowingTextView"
+        let dateDetectionKey = "AutomaticDateDetectionEnabled1AnsibleGrowingTextView"
         let dateDetectionEnabled = UserDefaults.standard.bool(forKey: dateDetectionKey)
         if extractDate && dateDetectionEnabled {
             let extractedDates = extractDates(from: inputText)

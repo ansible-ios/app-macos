@@ -1,7 +1,7 @@
 import Foundation
 import AnsibleMedia
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import InputDataUI

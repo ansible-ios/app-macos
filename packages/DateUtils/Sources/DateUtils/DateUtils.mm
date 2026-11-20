@@ -130,7 +130,7 @@ static inline bool dateHas12hFormat()
     return value_dateHas12hFormat;
 }
 
-bool TGUse12hDateFormat()
+bool AnsibleUse12hDateFormat()
 {
     if (!DateUtilsInitialized)
         initializeDateUtils();

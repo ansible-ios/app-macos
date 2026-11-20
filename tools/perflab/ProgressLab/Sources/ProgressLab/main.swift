@@ -1,6 +1,6 @@
 import AppKit
 import QuartzCore
-@testable import TGUIKit
+@testable import AnsibleUIKit
 
 private typealias WindowCaptureFunction = @convention(c) (CGRect, UInt32, UInt32, UInt32) -> Unmanaged<CGImage>?
 

@@ -1,6 +1,6 @@
 import Foundation
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public func applyAvatarStack(_ peers: [Avatar], current: inout [Avatar], avatars: inout [AvatarContentView], avatarsContainer: View, photoSize: NSSize, animated: Bool, makeControl: (Avatar) -> AvatarContentView) {
     let duration = Double(0.2)

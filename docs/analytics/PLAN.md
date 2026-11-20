@@ -154,7 +154,7 @@ Keep abuse research separate from UX reporting: document the purpose, permitted 
 - Bound memory, snapshots, event size, queue count/bytes/age, and events per journey/session. Define drop policy and sampling in registry/runtime configuration. Sample whole journeys at eligible start so denominators and steps remain comparable; never sample around privacy rules.
 - Add crash recovery only after privacy-safe snapshot ownership, versioning, expiry and purge exist. Persist only allowlisted ordinary flow state; quarantine/discard unknown older state. Emit interrupted once after authorized eligible recovery, never in another account or after opt-out. No snapshot for excluded or unresolved flows.
 - Reuse the core transport instead of adding a second queue. Audit every core/direct caller and existing persisted schema before activation. Distinguish product analytics from functional protocol operations; record any necessary submodule changes explicitly.
-- Avoid adding feature logic to TGUIKit or another hub. Keep policy/recording in AppAnalytics and route metadata at feature boundaries through existing hooks. Shared controller lifecycle APIs should carry only the minimum scope abstraction; never add screen-to-screen package dependencies.
+- Avoid adding feature logic to AnsibleUIKit or another hub. Keep policy/recording in AppAnalytics and route metadata at feature boundaries through existing hooks. Shared controller lifecycle APIs should carry only the minimum scope abstraction; never add screen-to-screen package dependencies.
 
 ## 9. Scenario ledger and trace contract
 
@@ -214,9 +214,9 @@ The initial audit was source-only. Documentation whitespace and local Markdown-l
 Rerun from the repository root using a Python environment with PyYAML:
 
 ```sh
-python3 docs/analytics/tools/tg_events.py lint
-python3 docs/analytics/tools/tg_events.py gen --check --swift packages/AppAnalytics/Sources/AppAnalytics/AnalyticsRegistry.swift --swift-coverage packages/AppAnalytics/Sources/AppAnalytics/AnalyticsCoverage.swift
-python3 docs/analytics/tools/tg_events.py coverage --tags --report /tmp/telegram-analytics-coverage.md
+python3 docs/analytics/tools/ansible_events.py lint
+python3 docs/analytics/tools/ansible_events.py gen --check --swift packages/AppAnalytics/Sources/AppAnalytics/AnalyticsRegistry.swift --swift-coverage packages/AppAnalytics/Sources/AppAnalytics/AnalyticsCoverage.swift
+python3 docs/analytics/tools/ansible_events.py coverage --tags --report /tmp/telegram-analytics-coverage.md
 python3 -m unittest discover -s docs/analytics/tools -p 'test_*.py'
 ```
 
@@ -272,7 +272,7 @@ CLANG_MODULE_CACHE_PATH=/tmp/telegram-analytics-module-cache SWIFTPM_MODULECACHE
 
 ### Generated runtime validation
 
-`AnalyticsValidation.swift` validates against metadata emitted by `tg_events.py`, including supported macOS events/screens, enum/bucket values, booleans, finite nonnegative exact integers, menu/item and setting/value pairing, and the selected flow's own params and steps. Unknown free-form fields are no longer accepted by `flow.end`. Validation runs before debug logging and sink admission, including after common metadata is added. Rejected events do not consume a sequence number.
+`AnalyticsValidation.swift` validates against metadata emitted by `ansible_events.py`, including supported macOS events/screens, enum/bucket values, booleans, finite nonnegative exact integers, menu/item and setting/value pairing, and the selected flow's own params and steps. Unknown free-form fields are no longer accepted by `flow.end`. Validation runs before debug logging and sink admission, including after common metadata is added. Rejected events do not consume a sequence number.
 
 Flow setters validate before storing; invalid values or custom unregistered steps discard state silently. Unknown flow specs do not start a recorder. Timings cannot crash on non-finite values; backwards flow clocks discard the record. `setIfAbsent` does not construct unused fallback values. The existing flow fixtures still pass unchanged.
 
@@ -284,8 +284,8 @@ The now-runnable screen coverage check reports **23 baseline errors**: 13 unmapp
 
 
 ```sh
-/tmp/telegram-analytics-plan-venv/bin/python docs/analytics/tools/tg_events.py lint
-/tmp/telegram-analytics-plan-venv/bin/python docs/analytics/tools/tg_events.py gen --check --swift packages/AppAnalytics/Sources/AppAnalytics/AnalyticsRegistry.swift --swift-coverage packages/AppAnalytics/Sources/AppAnalytics/AnalyticsCoverage.swift
+/tmp/telegram-analytics-plan-venv/bin/python docs/analytics/tools/ansible_events.py lint
+/tmp/telegram-analytics-plan-venv/bin/python docs/analytics/tools/ansible_events.py gen --check --swift packages/AppAnalytics/Sources/AppAnalytics/AnalyticsRegistry.swift --swift-coverage packages/AppAnalytics/Sources/AppAnalytics/AnalyticsCoverage.swift
 /tmp/telegram-analytics-plan-venv/bin/python -m unittest discover -s docs/analytics/tools -p 'test_*.py'
 CLANG_MODULE_CACHE_PATH=/tmp/telegram-analytics-module-cache SWIFTPM_MODULECACHE_OVERRIDE=/tmp/telegram-analytics-module-cache swift test --package-path packages/AppAnalytics --scratch-path /tmp/telegram-analytics-transport-tests --disable-sandbox --jobs 4
 CLANG_MODULE_CACHE_PATH=/tmp/telegram-analytics-module-cache SWIFTPM_MODULECACHE_OVERRIDE=/tmp/telegram-analytics-module-cache swift test --package-path packages/AppAnalytics --scratch-path /tmp/telegram-analytics-build --disable-sandbox --jobs 4 -c release
@@ -297,7 +297,7 @@ CLANG_MODULE_CACHE_PATH=/tmp/telegram-analytics-module-cache SWIFTPM_MODULECACHE
 
 `ChatController` classifies the chat namespace immediately after initialization, before peer data arrives. The lifecycle tracker establishes exclusion at `viewWillAppear`. Main attachment handlers, composer file/image/RTF paste and drop-to-preview callbacks capture context before async work and pass it through `ChatUIHooks`, preview initialization and preview editors. Rich-editor entry points also restrict referenced source peers. Unscoped children presented during an excluded interval retain that exclusion after the parent closes. These changes propagate privacy, not interaction origin or outcomes.
 
-The 12 context tests bring the privacy/schema suite to **55 passing tests in debug and release**. They use real TGUIKit controllers and cover early namespace exclusion, child lifetime, native-presentation leases, immutable inheritance, account changes, late callbacks, foreign hubs, source restrictions and ordinary positive controls. This does not prove native picker behavior or all navigation wrappers.
+The 12 context tests bring the privacy/schema suite to **55 passing tests in debug and release**. They use real AnsibleUIKit controllers and cover early namespace exclusion, child lifetime, native-presentation leases, immutable inheritance, account changes, late callbacks, foreign hubs, source restrictions and ordinary positive controls. This does not prove native picker behavior or all navigation wrappers.
 
 Known integration gaps at that checkpoint included generic modal lifecycle hooks, Stories preview-constructor context and direct Shift-drop. Those now have source fixes described below. Edit replacements, broader gallery/profile/forwarding descendants and multi-window native picker behavior remain unverified. Ordinary root chat contexts are classification-only; action capture, not a global visibility fallback, supplies eligible scopes.
 

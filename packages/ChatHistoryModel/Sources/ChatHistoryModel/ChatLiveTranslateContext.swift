@@ -5,7 +5,7 @@ import SwiftSignalKit
 import TelegramCore
 import Translate
 import InAppSettings
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import AnsibleUtils
 import AnsibleTheme

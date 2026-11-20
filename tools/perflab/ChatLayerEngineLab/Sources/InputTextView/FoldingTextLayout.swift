@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public final class FoldingTextLayout {
     public var blocks: [ViewLayout]

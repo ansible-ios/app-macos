@@ -1,5 +1,5 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 
 final class RevealOptionsView: View {
     private(set) var options: [RevealOption] = []

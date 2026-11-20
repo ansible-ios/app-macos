@@ -1,12 +1,12 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import ChatLayerEngine
 
 final class DemoDelegate: NSObject, NSApplicationDelegate {
     var window: Window!
     func applicationDidFinishLaunching(_ notification: Notification) {
         ChatLayerDemo.bootstrap()
-        TGUIKitAccessibility.isEnabled = true
+        AnsibleUIKitAccessibility.isEnabled = true
         window = Window(contentRect: NSRect(x: 100, y: 100, width: 940, height: 760), styleMask: [.titled, .closable, .resizable, .miniaturizable], backing: .buffered, defer: false)
         window.title = "Chat rows: native views / layer engine"
         let root = View(frame: NSRect(x: 0, y: 0, width: 940, height: 760))

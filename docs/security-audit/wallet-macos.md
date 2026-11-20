@@ -48,12 +48,12 @@ with a different signature (Developer ID direct ↔ App Store) hits the macOS ke
 universal blocker). Either way it affects anyone who moves between build signatures with a live wallet.
 
 ### F3 — Secret phrase harvestable via the macOS Accessibility API — MEDIUM, HIGH conf. Local fix.
-The words grid uses `TGUIKit.TextView` with `isSelectable=false`/`userInteractionEnabled=false`
+The words grid uses `AnsibleUIKit.TextView` with `isSelectable=false`/`userInteractionEnabled=false`
 (`WalletWordsGridRowItem.swift:131-141`) to block mouse-copy, but `TextView.accessibilityLabel()`
 (`TextView.swift:3522`) still returns each word's full string, so VoiceOver or any
 Accessibility-permitted process can read every word from the AX tree with no screenshot. `TextView` is
 `open` (`TextView.swift:2384`), so the fix is local: a `WalletSecretWordView: TextView` overriding
-`accessibilityLabel()->nil` / `isAccessibilityElement=false` — NOT a change in the TGUIKit hub (app-wide
+`accessibilityLabel()->nil` / `isAccessibilityElement=false` — NOT a change in the AnsibleUIKit hub (app-wide
 AX change, ~90-pkg recompile). **Trade-off:** blocking AX outright breaks legitimate VoiceOver use;
 prefer a secure-text treatment or an explicit "read aloud" affordance rather than silently hiding it.
 

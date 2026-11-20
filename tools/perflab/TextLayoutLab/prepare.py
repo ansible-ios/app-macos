@@ -3,7 +3,7 @@ import hashlib,json,shutil,sys
 lab=Path(__file__).resolve().parent
 root=lab.parents[2]
 out=Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
-source=(root/'packages/TGUIKit/Sources/TextView.swift').read_text()
+source=(root/'packages/AnsibleUIKit/Sources/TextView.swift').read_text()
 def segment(s,start,end):
     return start+s.split(start,1)[1].split(end,1)[0]
 def extract(s):
@@ -33,7 +33,7 @@ for name,code in [('Baseline',(lab/'Fixtures/Baseline.swift.txt').read_text()),(
     target=out/'Sources'/name;target.mkdir(parents=True,exist_ok=True)
     (target/'TextView.swift').write_text(code)
     shutil.copy(lab/'Support.swift.txt',target/'Support.swift')
-prepared=root/'packages/TGUIKit/Sources/TextViewPreparedText.swift'
+prepared=root/'packages/AnsibleUIKit/Sources/TextViewPreparedText.swift'
 if prepared.exists():shutil.copy(prepared,out/'Sources/Candidate/TextViewPreparedText.swift')
 helper=lab/'Experiments/LineRangeIndex.swift'
 if helper.exists():shutil.copy(helper,out/'Sources/Candidate/TextViewLineRangeIndex.swift')

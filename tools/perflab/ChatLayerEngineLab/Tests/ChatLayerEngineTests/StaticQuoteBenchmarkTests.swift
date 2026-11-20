@@ -1,7 +1,7 @@
 import Cocoa
 import QuartzCore
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import ChatLayerEngine
 
@@ -16,7 +16,7 @@ final class StaticQuoteBenchmarkTests: XCTestCase {
 
     private func measure(folded: Bool) throws {
         guard ProcessInfo.processInfo.environment["CHAT_QUOTE_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in static quote benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let fixture = StaticQuoteTests()
         let sources = folded ? [FoldingQuoteTests().source("First quoted line\nSecond line\nThird line\nFourth line\nLast line", revealed: false), FoldingQuoteTests().source("First quoted line\nSecond line\nThird line\nFourth line\nLast line", revealed: true)] : [fixture.source("A quoted paragraph with several words that wrap onto lines.\nAnother quoted line.", colors: 2), fixture.source("مرحبا English שלום\nAnother different quoted message.", width: 200, colors: 1)]
         var results: [String: [[Double]]] = [:]

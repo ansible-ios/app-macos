@@ -18,7 +18,7 @@ MASK_BENCHMARK=1 MASK_REVERSE=1 swift test --package-path /tmp/VisualEffectMaskV
 cp /tmp/visual-effect-mask-benchmark.json /tmp/mask-reverse.json
 ```
 
-Use a fresh output directory. The repository directory is a template, not a directly buildable package. The generator copies two complete TGUIKit libraries, restoring the captured original `VisualEffectView.swift` in the baseline. It extracts the actual `ChatRowView.applyCutBands` method into small row hosts; only its access level and surrounding model types differ. Baseline row code restores the original flat-mask allocation statements. Real AppKit/TGUIKit views and layers perform the work. The fixture supplies precomputed panels and bubble geometry. Panel construction, bubble-mask composition and account lite-mode lookup are stubbed or outside timing; it does not build a complete Telegram row.
+Use a fresh output directory. The repository directory is a template, not a directly buildable package. The generator copies two complete AnsibleUIKit libraries, restoring the captured original `VisualEffectView.swift` in the baseline. It extracts the actual `ChatRowView.applyCutBands` method into small row hosts; only its access level and surrounding model types differ. Baseline row code restores the original flat-mask allocation statements. Real AppKit/AnsibleUIKit views and layers perform the work. The fixture supplies precomputed panels and bubble geometry. Panel construction, bubble-mask composition and account lite-mode lookup are stubbed or outside timing; it does not build a complete Telegram row.
 
 ## Validation scope
 
@@ -50,6 +50,6 @@ For 1,000 retained unmasked effects, explicitly owned CALayer objects fall from 
 
 ## Final regression results
 
-Release and Address Sanitizer each pass all seven final functional tests, with the optional benchmark skipped. Address Sanitizer disables leak detection. The frozen TGUIKit suite passes 397 functional tests with 18 optional measurements skipped; the chat/folding-text suite, including the actual asset-loader test, passes 337 with 33 optional measurements skipped. Both changed production files pass Swift syntax parsing.
+Release and Address Sanitizer each pass all seven final functional tests, with the optional benchmark skipped. Address Sanitizer disables leak detection. The frozen AnsibleUIKit suite passes 397 functional tests with 18 optional measurements skipped; the chat/folding-text suite, including the actual asset-loader test, passes 337 with 33 optional measurements skipped. Both changed production files pass Swift syntax parsing.
 
 The final generator reproduces both complete library source trees and all final test sources. All 1,072 recorded compiler inputs remain unchanged. Benchmark code and production sources are identical between timing and final validation; only the raster test setup was strengthened afterward. Complete logs, raw paired timings, generated row-host snapshots, source hashes and failure records are retained in results/. Unrelated profile-menu edits in ChatRowView are outside this change. The complete app has not been built or profiled by this lab.

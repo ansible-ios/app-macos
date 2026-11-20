@@ -10,7 +10,7 @@ let deps: [(String, String)] = [
     ("LocalAnimations", "../LocalAnimations"),
     ("Localization", "../Localization"),
     ("ShortPeerRow", "../ShortPeerRow"),
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("AnsibleContext", "../AnsibleContext"),
     ("AnsibleIconsTheme", "../AnsibleIconsTheme"),
     ("AnsibleTheme", "../AnsibleTheme"),

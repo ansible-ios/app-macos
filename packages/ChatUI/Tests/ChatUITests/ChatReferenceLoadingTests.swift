@@ -1,7 +1,7 @@
 import AppKit
 import XCTest
 import ChatHistoryModel
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatUI
 
 final class ChatReferenceLoadingTests: XCTestCase {

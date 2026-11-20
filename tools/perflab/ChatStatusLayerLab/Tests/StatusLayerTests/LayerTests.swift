@@ -1,6 +1,6 @@
 import XCTest
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 @testable import StatusLayers
 
 final class LayerTests: XCTestCase {

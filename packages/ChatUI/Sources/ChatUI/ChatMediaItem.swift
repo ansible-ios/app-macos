@@ -3,9 +3,9 @@ import Cocoa
 import TelegramCore
 import InAppSettings
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
-import TGModernGrowingTextView
+import AnsibleModernGrowingTextView
 import InputView
 import AnsibleMedia
 import AnsibleMediaResources

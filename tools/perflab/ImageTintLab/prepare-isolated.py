@@ -12,8 +12,8 @@ output = Path(sys.argv[1]).resolve()
 assert output.is_relative_to(Path('/tmp').resolve()) and not output.exists()
 subprocess.run([sys.executable, str(lab / 'prepare.py')], check=True)
 shutil.copytree(lab, output, ignore=shutil.ignore_patterns('.build', 'results'))
-kit = root / 'packages/TGUIKit'
-copy = output / 'TGUIKit'
+kit = root / 'packages/AnsibleUIKit'
+copy = output / 'AnsibleUIKit'
 hashes = {}
 for folder in ['Sources', 'Tests']:
     for path in (kit / folder).rglob('*'):
@@ -30,6 +30,6 @@ manifest = (kit / 'Package.swift').read_text()
 manifest = re.sub(r'(path: ")([^"]+)', lambda m: m[1] + str((kit / m[2]).resolve()) if m[2].startswith('..') else m[0], manifest)
 (copy / 'Package.swift').write_text(manifest)
 path = output / 'Package.swift'
-path.write_text(path.read_text().replace('../../../packages/TGUIKit', str(copy)))
+path.write_text(path.read_text().replace('../../../packages/AnsibleUIKit', str(copy)))
 (output / 'snapshot.json').write_text(json.dumps(hashes, indent=2) + '\n')
 print(output)

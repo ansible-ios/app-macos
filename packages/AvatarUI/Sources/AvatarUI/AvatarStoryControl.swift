@@ -2,7 +2,7 @@ import Cocoa
 import QuartzCore
 import TelegramCore
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 
 public final class AvatarStoryControl : Control {

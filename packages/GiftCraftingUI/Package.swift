@@ -5,7 +5,7 @@ import PackageDescription
 let deps: [(String, String)] = [
     ("StarsUI", "../StarsUI"),
     ("CubeUI", "../CubeUI"),
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("Localization", "../Localization"),
     ("AnsibleTheme", "../AnsibleTheme"),
     ("AnsibleContext", "../AnsibleContext"),

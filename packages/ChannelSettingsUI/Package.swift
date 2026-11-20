@@ -3,7 +3,7 @@
 import PackageDescription
 
 let deps: [(String, String)] = [
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("ColorPalette", "../ColorPalette"),
     ("Localization", "../Localization"),
     ("Strings", "../Strings"),

@@ -1,8 +1,8 @@
 import Cocoa
 import QuartzCore
 import XCTest
-import class TGUIKit.TextViewLayout
-import class TGUIKitBaseline.TextViewLayout
+import class AnsibleUIKit.TextViewLayout
+import class AnsibleUIKitBaseline.TextViewLayout
 
 final class RunMeasureBenchmarkTests: XCTestCase {
     func testCosts() throws {
@@ -47,8 +47,8 @@ final class RunMeasureBenchmarkTests: XCTestCase {
             ("mixed_quotes", String(repeating: "hello world one two three ", count: 12), Array(repeating: 1, count: 35) + Array(repeating: 0, count: 35) + Array(repeating: 2, count: 35), false, 400)
         ]
         for (name, text, pattern, decorated, count) in cases {
-            let oldText = TGUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated)
-            let newText = TGUIKit.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated)
+            let oldText = AnsibleUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated)
+            let newText = AnsibleUIKit.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated)
             if name.hasPrefix("colored_") {
                 for index in stride(from: 0, to: oldText.length, by: 3) {
                     let range = NSRange(location: index, length: min(3, oldText.length - index))
@@ -59,14 +59,14 @@ final class RunMeasureBenchmarkTests: XCTestCase {
             }
             let oldValue: NSAttributedString = name.hasPrefix("immutable_") ? oldText.copy() as! NSAttributedString : oldText
             let newValue: NSAttributedString = name.hasPrefix("immutable_") ? newText.copy() as! NSAttributedString : newText
-            let old = TGUIKitBaseline.TextViewLayout(oldValue, maximumNumberOfLines: name.contains("truncated_") ? 1 : 0)
-            let new = TGUIKit.TextViewLayout(newValue, maximumNumberOfLines: name.contains("truncated_") ? 1 : 0)
+            let old = AnsibleUIKitBaseline.TextViewLayout(oldValue, maximumNumberOfLines: name.contains("truncated_") ? 1 : 0)
+            let new = AnsibleUIKit.TextViewLayout(newValue, maximumNumberOfLines: name.contains("truncated_") ? 1 : 0)
             measure(name + "_cold", count: count, old: { _ in
-                let value = TGUIKitBaseline.TextViewLayout(oldValue, maximumNumberOfLines: name.contains("truncated_") ? 1 : 0)
+                let value = AnsibleUIKitBaseline.TextViewLayout(oldValue, maximumNumberOfLines: name.contains("truncated_") ? 1 : 0)
                 value.measure(width: 280)
                 return value.layoutSize.height
             }, new: { _ in
-                let value = TGUIKit.TextViewLayout(newValue, maximumNumberOfLines: name.contains("truncated_") ? 1 : 0)
+                let value = AnsibleUIKit.TextViewLayout(newValue, maximumNumberOfLines: name.contains("truncated_") ? 1 : 0)
                 value.measure(width: 280)
                 return value.layoutSize.height
             })

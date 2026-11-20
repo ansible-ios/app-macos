@@ -2,7 +2,7 @@ import Cocoa
 import XCTest
 import QuartzCore
 import ObjectiveC
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 @testable import ChatLayerEngineBaseline
 @testable import FoldingViewHarness
@@ -62,7 +62,7 @@ final class FormattedDateBenchmarkTests: XCTestCase {
     func testCompleteFormattedDateBindingCosts() throws {
         let environment = ProcessInfo.processInfo.environment
         guard environment["CHAT_FORMATTED_DATE_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in formatted date binding benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let reversed = environment["CHAT_FORMATTED_DATE_REVERSE"] == "1"
         var batches: [String: [[Double]]] = [:]
         var counts: [String: [Int]] = [:]

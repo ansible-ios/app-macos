@@ -32,8 +32,8 @@
     "tools/perflab/ActivityPlaybackLab/Tests/ActivityTests/ActivityTests.swift": "cb985580600364973b152f05d1b7d82a21dca9570d3d2b497ed59988da8ba8db",
     "tools/perflab/ActivityPlaybackLab/Sources/Activity/Generated.swift": "dfc2a3dec4b647b4d85f7e78a3d53ce7121dfe07ab280188b1505eb2eb43f389",
     "tools/perflab/ActivityPlaybackLab/prepare.py": "579307c86719f62b7eadce49f0a537cfc98c381b30e192fd146cc07bc65e7e66",
-    "packages/TGUIKit/Sources/AnimatableContentObserver.swift": "3f9e88c589975b2dbe128fbaf6a573cb6dca94d95f5baaf5c6f704705278cfe5",
-    "packages/TGUIKit/Sources/LayerPlaybackGate.swift": "551ac4a83becaef4805bc37eb694af9b151e595f5c9afb7141fefff512804d0c",
+    "packages/AnsibleUIKit/Sources/AnimatableContentObserver.swift": "3f9e88c589975b2dbe128fbaf6a573cb6dca94d95f5baaf5c6f704705278cfe5",
+    "packages/AnsibleUIKit/Sources/LayerPlaybackGate.swift": "551ac4a83becaef4805bc37eb694af9b151e595f5c9afb7141fefff512804d0c",
     "packages/ShortPeerRow/Tests/ShortPeerRowTests/ChatActivityPlaybackTests.swift": "0db358e07f9e68fccb50fe6955d72c170b826a051d84942360383dc679db4df3"
   },
   "benchmark_sha256": "8185e3f9fd938c9ef119e84ce00a0745ca37b85e15fbe14c842467898df163d1"

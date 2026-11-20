@@ -1,6 +1,6 @@
 import Cocoa
 import MapKit
-import TGUIKit
+import AnsibleUIKit
 import Postbox
 import TelegramCore
 import SwiftSignalKit

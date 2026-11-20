@@ -1,5 +1,5 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 import GeneralRows
 import AnsibleTheme
 import Localization

@@ -1,12 +1,12 @@
 import Cocoa
 import XCTest
 import QuartzCore
-@testable import class TGUIKit.ScrollView
-@testable import class TGUIKitBaseline.ScrollView
-import class TGUIKit.TableView
-import class TGUIKitBaseline.TableView
-import class TGUIKit.TableRowItem
-import class TGUIKitBaseline.TableRowItem
+@testable import class AnsibleUIKit.ScrollView
+@testable import class AnsibleUIKitBaseline.ScrollView
+import class AnsibleUIKit.TableView
+import class AnsibleUIKitBaseline.TableView
+import class AnsibleUIKit.TableRowItem
+import class AnsibleUIKitBaseline.TableRowItem
 
 final class PositionBenchmarkTests: XCTestCase {
     func testCosts() throws {
@@ -34,16 +34,16 @@ final class PositionBenchmarkTests: XCTestCase {
             results[name] = batches
         }
         let frame = NSRect(x: 0, y: 0, width: 420, height: 600)
-        let old = TGUIKitBaseline.ScrollView(frame: frame), new = TGUIKit.ScrollView(frame: frame)
+        let old = AnsibleUIKitBaseline.ScrollView(frame: frame), new = AnsibleUIKit.ScrollView(frame: frame)
         for scroll in [old as NSScrollView, new as NSScrollView] {
             scroll.documentView = NSView(frame: NSRect(x: 0, y: 0, width: 420, height: 60000))
         }
         measure("scroll_position", operations: [{ old.scrollPosition().current.rect.height }, { new.scrollPosition().current.rect.height }])
         measure("reset_scroll", operations: [{ old.resetScroll(); return 1 }, { new.resetScroll(); return 1 }])
-        let a = TGUIKitBaseline.TableView(frame: frame), b = TGUIKit.TableView(frame: frame)
+        let a = AnsibleUIKitBaseline.TableView(frame: frame), b = AnsibleUIKit.TableView(frame: frame)
         for index in 0..<1000 {
-            _ = a.addItem(item: TGUIKitBaseline.TableRowItem(.zero, stableId: index))
-            _ = b.addItem(item: TGUIKit.TableRowItem(.zero, stableId: index))
+            _ = a.addItem(item: AnsibleUIKitBaseline.TableRowItem(.zero, stableId: index))
+            _ = b.addItem(item: AnsibleUIKit.TableRowItem(.zero, stableId: index))
         }
         let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 840, height: 600), styleMask: .borderless, backing: .buffered, defer: false)
         window.isReleasedWhenClosed = false

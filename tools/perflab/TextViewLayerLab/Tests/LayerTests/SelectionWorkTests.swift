@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-@testable import TGUIKit
+@testable import AnsibleUIKit
 
 extension LayerTests {
     func selectionLayout(_ kind: Int, width: CGFloat = 230) -> TextViewLayout {

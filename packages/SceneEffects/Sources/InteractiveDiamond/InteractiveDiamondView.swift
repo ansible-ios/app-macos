@@ -1,6 +1,6 @@
 import Cocoa
 import Metal
-import TGUIKit
+import AnsibleUIKit
 
 public final class InteractiveDiamondView: View {
     public enum Appearance: UInt32, CaseIterable, Sendable {

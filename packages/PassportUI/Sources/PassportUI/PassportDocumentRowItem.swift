@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
@@ -17,7 +17,7 @@ import SecureIdUtils
 import AnsibleLinks
 import PhoneNumberUtils
 import KeyboardKey
-import TGPassportMRZ
+import AnsiblePassportMRZ
 import OCR
 import FilePanels
 import ObjcUtils

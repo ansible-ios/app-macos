@@ -4,7 +4,7 @@ import Metal
 import CryptoKit
 import ImageIO
 import Effects
-import TGUIKit
+import AnsibleUIKit
 
 _ = NSApplication.shared
 NSApp.setActivationPolicy(.accessory)

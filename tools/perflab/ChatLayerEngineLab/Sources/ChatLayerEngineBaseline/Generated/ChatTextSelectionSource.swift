@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 protocol ChatTextSelectionProvider {
     var textSelectionSources: ChatTextSelectionSources { get }

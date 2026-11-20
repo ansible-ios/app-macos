@@ -21,7 +21,7 @@ let package = Package(
         .package(name: "OpusBinding", path: "../../submodules/ansible-ios/submodules/OpusBinding"),
         .package(name: "TelegramVoip", path: "../../submodules/ansible-ios/submodules/TelegramVoip"),
         .package(name: "GZIP", path: "../GZIP"),
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "libwebp", path: "../../submodules/libwebp"),
         .package(name: "ApiCredentials", path: "../ApiCredentials"),
         .package(name: "ObjcUtils", path: "../ObjcUtils"),
@@ -35,7 +35,7 @@ let package = Package(
         .target(
             name: "AnsibleMedia",
             dependencies: [.product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil),
-                           .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                           .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                            .product(name: "TelegramCore", package: "TelegramCore", condition: nil),
                            .product(name: "GZIP", package: "GZIP", condition: nil),
                            .product(name: "Postbox", package: "Postbox", condition: nil),

@@ -69,13 +69,13 @@ Extra arguments: `-PerfLabPlaceholder shimmer|static|silhouette` selects the pla
 
 ## RenderBench (offscreen)
 
-`tools/perflab/RenderBench` renders a synthetic emoji panel (360x520 at 2x, 8 per line, 6 sections of 30 lines) with `CARenderer` into a Metal texture and measures render time per frame. It links the real TGUIKit, needs no account or window, and also works with the screen locked.
+`tools/perflab/RenderBench` renders a synthetic emoji panel (360x520 at 2x, 8 per line, 6 sections of 30 lines) with `CARenderer` into a Metal texture and measures render time per frame. It links the real AnsibleUIKit, needs no account or window, and also works with the screen locked.
 
 ```sh
 cd tools/perflab/RenderBench && swift build -c release
-.build/release/RenderBench --variants shimmer,tguikit,loaded --frames 600 --runs 3
+.build/release/RenderBench --variants shimmer,ansibleuikit,loaded --frames 600 --runs 3
 .build/release/RenderBench --mode idle
-.build/release/RenderBench --compare shimmer,tguikit --size 30 --snapshots /tmp/rb
+.build/release/RenderBench --compare shimmer,ansibleuikit --size 30 --snapshots /tmp/rb
 ```
 
 `--compare a,b` renders both variants at the same 31 timestamps across one shimmer cycle and prints the largest channel difference. `--placeholders 0.5` mixes in loaded emoji.
@@ -155,7 +155,7 @@ Grid metrics, besides the common ones:
 
 The counters behind these metrics are `PeerMediaGridDebug` in PeerMediaUI and exist only in DEBUG.
 
-The grid's table sets `TGClipView.skipsDisplayOnScroll`. AppKit marks a clip view as needing display on every scroll step, and the next display pass then walks every view under it asking whether it needs display; TGClipView draws nothing, so the walk is pure cost (about a quarter of the main thread while scrolling the grid). `-PerfLabClipNoDisplay 1` turns the skip on for every table in a DEBUG build, to measure other screens before enabling it there.
+The grid's table sets `AnsibleClipView.skipsDisplayOnScroll`. AppKit marks a clip view as needing display on every scroll step, and the next display pass then walks every view under it asking whether it needs display; AnsibleClipView draws nothing, so the walk is pure cost (about a quarter of the main thread while scrolling the grid). `-PerfLabClipNoDisplay 1` turns the skip on for every table in a DEBUG build, to measure other screens before enabling it there.
 
 ```sh
 tools/perflab/run.sh peer-media base -PerfLabScenarios enter,scroll,fling,deep,settle,verify -PerfLabRuns 2 -PerfLabWindowWidth 1000 -PerfLabWindowHeight 1000

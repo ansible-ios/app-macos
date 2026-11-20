@@ -1,6 +1,6 @@
 import Cocoa
 import QuartzCore
-import TGUIKit
+import AnsibleUIKit
 
 final class ChatDictationBubble {
     private static let inset: CGFloat = 8

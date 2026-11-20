@@ -1,7 +1,7 @@
 import Foundation
 import AppKit
 import Metal
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramVoip
 

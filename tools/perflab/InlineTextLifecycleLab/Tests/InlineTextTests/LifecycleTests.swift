@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-@testable import TGUIKit
+@testable import AnsibleUIKit
 
 private final class KeyWindow: NSWindow { override var isKeyWindow: Bool { true } }
 private final class Marker: NSObject {}
@@ -9,7 +9,7 @@ final class LifecycleTests: XCTestCase {
     private var created = 0
     private var renderers: [RendererFixture] = []
     override func setUp() {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         GeneralRowsHooks.shared.makeInlineTextRenderer = { [unowned self] in
             self.created += 1
             let renderer = RendererFixture()

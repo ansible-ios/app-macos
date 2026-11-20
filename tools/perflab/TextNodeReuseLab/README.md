@@ -15,7 +15,7 @@ swift test --package-path tools/perflab/TextNodeReuseLab --scratch-path /tmp/Tex
 swift test --package-path tools/perflab/TextNodeReuseLab --scratch-path /tmp/TextNodeReuseLab-tsan --sanitize thread
 ```
 
-The lab imports actual TGUIKit. Its generator obtains TextNode from commit `058cd5cf5`, renames its types and adds a testable TGUIKit import. That reference uses the unchanged shared glyph-run drawing helper. Generation hashes and a frozen baseline source accompany the evidence. The initial five regression tests failed with eight expected assertions against the unchanged library, then passed after the fix.
+The lab imports actual AnsibleUIKit. Its generator obtains TextNode from commit `058cd5cf5`, renames its types and adds a testable AnsibleUIKit import. That reference uses the unchanged shared glyph-run drawing helper. Generation hashes and a frozen baseline source accompany the evidence. The initial five regression tests failed with eight expected assertions against the unchanged library, then passed after the fix.
 
 ## Coverage and limits
 

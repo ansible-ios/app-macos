@@ -1,6 +1,6 @@
 # Async text lab
 
-Can chat text be rasterized off the main thread and still be byte-identical to today's `TextViewLayer` drawing? Standalone package on the real TGUIKit; every comparison is a WindowServer capture (`CGWindowListCreateImage`) of a real on-screen window, native `TextViewLayer` (CA backing store, drawn on main) against the candidate, byte for byte. Window color spaces: default (this Mac's "Color LCD", wide gamut), sRGB, Display P3.
+Can chat text be rasterized off the main thread and still be byte-identical to today's `TextViewLayer` drawing? Standalone package on the real AnsibleUIKit; every comparison is a WindowServer capture (`CGWindowListCreateImage`) of a real on-screen window, native `TextViewLayer` (CA backing store, drawn on main) against the candidate, byte for byte. Window color spaces: default (this Mac's "Color LCD", wide gamut), sRGB, Display P3.
 
 ```sh
 cd tools/perflab/AsyncTextLab

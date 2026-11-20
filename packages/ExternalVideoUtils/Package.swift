@@ -14,7 +14,7 @@ let package = Package(
         .package(name: "Postbox", path: "../../submodules/ansible-ios/submodules/Postbox"),
         .package(name: "ObjcUtils", path: "../ObjcUtils"),
         .package(name: "InAppVideoServices", path: "../InAppVideoServices"),
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "AnsibleTheme", path: "../AnsibleTheme"),
     ],
     targets: [
@@ -26,7 +26,7 @@ let package = Package(
                 .product(name: "Postbox", package: "Postbox", condition: nil),
                 .product(name: "ObjcUtils", package: "ObjcUtils", condition: nil),
                 .product(name: "InAppVideoServices", package: "InAppVideoServices", condition: nil),
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "AnsibleTheme", package: "AnsibleTheme", condition: nil),
             ],
             path: "Sources/ExternalVideoUtils"),

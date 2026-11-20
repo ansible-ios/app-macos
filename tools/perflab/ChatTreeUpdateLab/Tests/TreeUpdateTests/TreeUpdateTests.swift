@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 @testable import TreeBaseline
 
@@ -23,8 +23,8 @@ final class TreeUpdateTests: XCTestCase {
     }
 
     override func setUp() {
-        TGUIKitTestBootstrap.install()
-        TGUIKitAccessibility.isEnabled = true
+        AnsibleUIKitTestBootstrap.install()
+        AnsibleUIKitAccessibility.isEnabled = true
     }
 
     func pair(_ count: Int = 4, background: Int = 12) throws -> Pair {

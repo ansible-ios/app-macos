@@ -15,16 +15,16 @@ python3 tools/perflab/StickerPathLab/prepare-isolated.py /tmp/StickerPathValidat
 swift test --package-path /tmp/StickerPathValidation --scratch-path /tmp/StickerPathValidation-build -c release
 ASAN_OPTIONS=detect_leaks=0 swift test --package-path /tmp/StickerPathValidation --scratch-path /tmp/StickerPathValidation-asan --sanitize address --filter 'PathTests.(PathTests|ExtendedPathTests)'
 swift test --package-path /tmp/StickerPathValidation --scratch-path /tmp/StickerPathValidation-tsan --sanitize thread --filter 'PathTests.(PathTests|ExtendedPathTests)'
-swift test --package-path /tmp/StickerPathValidation/TGUIKit --scratch-path /tmp/StickerPathValidation-kit -c release
+swift test --package-path /tmp/StickerPathValidation/AnsibleUIKit --scratch-path /tmp/StickerPathValidation-kit -c release
 STICKER_PATH_BENCHMARK=1 swift test --package-path /tmp/StickerPathValidation --scratch-path /tmp/StickerPathValidation-build -c release --skip-build --filter PathBenchmarkTests
 cp /tmp/sticker-path-benchmark.json /tmp/path-forward.json
 STICKER_PATH_BENCHMARK=1 STICKER_PATH_REVERSE=1 swift test --package-path /tmp/StickerPathValidation --scratch-path /tmp/StickerPathValidation-build -c release --skip-build --filter PathBenchmarkTests
 cp /tmp/sticker-path-benchmark.json /tmp/path-reverse.json
 ```
 
-Use fresh output directories, run builds sequentially, and measure without competing compilers. The generator freezes two complete TGUIKit modules, differing only in the intended production files. Baselines come from commit 70200c4bc. Test-only properties expose placeholder images; they do not instrument parsing or drawing. Shared dependency paths and compiler inputs are recorded with the results. Source guards reject unrelated revisions of the two edited files.
+Use fresh output directories, run builds sequentially, and measure without competing compilers. The generator freezes two complete AnsibleUIKit modules, differing only in the intended production files. Baselines come from commit 70200c4bc. Test-only properties expose placeholder images; they do not instrument parsing or drawing. Shared dependency paths and compiler inputs are recorded with the results. Source guards reject unrelated revisions of the two edited files.
 
-`python3 tools/perflab/StickerPathLab/prepare-standalone.py /tmp/StickerPathQuick` creates the smaller exploratory package from `Standalone`, using complete parser/decoder sources and the exact PathSegment/renderPath suffix. It provides five fast differential tests and parser-only timings. The final validation and timings use the full TGUIKit modules and the expanded tests under `Tests`.
+`python3 tools/perflab/StickerPathLab/prepare-standalone.py /tmp/StickerPathQuick` creates the smaller exploratory package from `Standalone`, using complete parser/decoder sources and the exact PathSegment/renderPath suffix. It provides five fast differential tests and parser-only timings. The final validation and timings use the full AnsibleUIKit modules and the expanded tests under `Tests`.
 
 ## Coverage
 
@@ -44,7 +44,7 @@ These checks preserve the previous parser's behavior; they do not establish comp
 
 ## Experiments and measurement scope
 
-The first integer fast path rewound and rescanned decimal tokens. It reduced integer parsing time by 72–82%, but long numeric input became 8% slower. It was rejected. Single-pass scalar and UTF-8 variants are retained under Experiments, with their measured standalone sources in tar.gz archives. The final version uses the UTF-8 view and direct segment assembly, with exact-capacity argument buffers. Initial full-module tests needed selective imports because the package also declares a type named TGUIKit; those compile diagnostics are retained as fixture failures.
+The first integer fast path rewound and rescanned decimal tokens. It reduced integer parsing time by 72–82%, but long numeric input became 8% slower. It was rejected. Single-pass scalar and UTF-8 variants are retained under Experiments, with their measured standalone sources in tar.gz archives. The final version uses the UTF-8 view and direct segment assembly, with exact-capacity argument buffers. Initial full-module tests needed selective imports because the package also declares a type named AnsibleUIKit; those compile diagnostics are retained as fixture failures.
 
 Final release timings use nine alternating paired batches, then a separate process with the initial order reversed. Each result includes the same harness in both variants. Complete sticker construction includes real views, mask generation and the shimmer foreground. Rounded and unchanged controls do not use the edited parser. Standalone drawing measurements reuse pre-parsed segments.
 
@@ -52,7 +52,7 @@ The parser object's runtime and allocator sizes are measured separately. Neither
 
 ## Final results
 
-All ten focused tests pass in release, Address Sanitizer and Thread Sanitizer builds. The complete frozen TGUIKit suite passes 420 functional tests, with 18 optional measurements skipped. The small standalone reproduction passes its five differential tests. Address Sanitizer leak detection is disabled.
+All ten focused tests pass in release, Address Sanitizer and Thread Sanitizer builds. The complete frozen AnsibleUIKit suite passes 420 functional tests, with 18 optional measurements skipped. The small standalone reproduction passes its five differential tests. Address Sanitizer leak detection is disabled.
 
 A fresh generator reproduces 523 Swift sources and three manifests after temporary-path normalization. All 676 recorded compiler/dependency inputs and 259 final production source/test files verify unchanged against their recorded hashes. The candidate differs from the baseline only in the two intended source files; code preceding the renderer's segment loop is byte-identical. Neither final benchmark run had matching swift-frontend, xcodebuild or clang processes in its pre/post checks. Measurements ran on arm64 macOS 26.4 (25E246), Apple Swift 6.3.3.
 

@@ -5,7 +5,7 @@ import ColorPalette
 import GeneralRows
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import TelegramCore
 import AnsibleLinks

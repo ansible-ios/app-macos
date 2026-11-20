@@ -13,18 +13,18 @@ python3 tools/perflab/QuoteMeasureLab/prepare-isolated.py /tmp/QuoteMeasureValid
 swift test --package-path /tmp/QuoteMeasureValidation --scratch-path /tmp/QuoteMeasureValidation-build -c release
 ASAN_OPTIONS=detect_leaks=0 swift test --package-path /tmp/QuoteMeasureValidation --scratch-path /tmp/QuoteMeasureValidation-asan --sanitize address --filter QuoteMeasureTests
 swift test --package-path /tmp/QuoteMeasureValidation --scratch-path /tmp/QuoteMeasureValidation-tsan --sanitize thread --filter QuoteMeasureTests
-swift test --package-path /tmp/QuoteMeasureValidation/TGUIKit --scratch-path /tmp/QuoteMeasureValidation-kit -c release
+swift test --package-path /tmp/QuoteMeasureValidation/AnsibleUIKit --scratch-path /tmp/QuoteMeasureValidation-kit -c release
 QUOTE_MEASURE_BENCHMARK=1 swift test --package-path /tmp/QuoteMeasureValidation --scratch-path /tmp/QuoteMeasureValidation-build -c release --skip-build --filter QuoteBenchmarkTests
 cp /tmp/quote-measure-benchmark.json /tmp/quote-forward.json
 QUOTE_MEASURE_BENCHMARK=1 QUOTE_MEASURE_REVERSE=1 swift test --package-path /tmp/QuoteMeasureValidation --scratch-path /tmp/QuoteMeasureValidation-build -c release --skip-build --filter QuoteBenchmarkTests
 cp /tmp/quote-measure-benchmark.json /tmp/quote-reverse.json
 ```
 
-Use a fresh output directory. Build, test and benchmark sequentially. Timings should run without competing builds. The generator freezes two complete TGUIKit modules differing only in the production TextView.swift change. Both receive identical test-only fixture/snapshot helpers; those helpers are not added to production. Named theme icons use identical placeholders in both modules. The lab uses real Core Text shaping and TextViewLayer bitmap drawing.
+Use a fresh output directory. Build, test and benchmark sequentially. Timings should run without competing builds. The generator freezes two complete AnsibleUIKit modules differing only in the production TextView.swift change. Both receive identical test-only fixture/snapshot helpers; those helpers are not added to production. Named theme icons use identical placeholders in both modules. The lab uses real Core Text shaping and TextViewLayer bitmap drawing.
 
 ## Validation
 
-Five focused tests pass in release, Address Sanitizer and Thread Sanitizer. Address Sanitizer leak detection is disabled. The full frozen TGUIKit suite passes 420 functional tests, with 18 optional measurements/captures skipped (438 total). Three new production-target regressions cover last-nonempty quote selection, unsupported trailing values, and mutable source changes between measurements.
+Five focused tests pass in release, Address Sanitizer and Thread Sanitizer. Address Sanitizer leak detection is disabled. The full frozen AnsibleUIKit suite passes 420 functional tests, with 18 optional measurements/captures skipped (438 total). Three new production-target regressions cover last-nonempty quote selection, unsupported trailing values, and mutable source changes between measurements.
 
 The differential checks include:
 

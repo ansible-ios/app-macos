@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 
 final class ChatLayerTextLinkState: NSObject, NSViewToolTipOwner, Disposable {

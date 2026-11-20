@@ -4,7 +4,7 @@ import AlertsUI
 import FilePanels
 import CaptureExclusion
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import InAppSettings
 import Postbox

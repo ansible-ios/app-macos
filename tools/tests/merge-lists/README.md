@@ -8,7 +8,7 @@ python3 tools/tests/merge-lists/run.py --configuration release
 python3 tools/tests/merge-lists/run.py --benchmark
 ```
 
-The runner copies the complete working-tree `MergeLists.swift` into a temporary Swift package. This tests the actual production source without building AppKit or resolving the application's package graph. The XCTest files also belong to the normal TGUIKit test target.
+The runner copies the complete working-tree `MergeLists.swift` into a temporary Swift package. This tests the actual production source without building AppKit or resolving the application's package graph. The XCTest files also belong to the normal AnsibleUIKit test target.
 
 `MergeListsReference.swift` freezes the ascending implementation from commit `8ac0b9796d1560e7d6ab735eea14c5d218fecb68`. Keep it unchanged when optimizing production code. Exact comparisons cover every removal, insertion and update tuple, including row values, stable IDs, previous indices and ordering. Cases include empty lists, sort ties, duplicate IDs, changed sort positions, hash collisions, value equality across different IDs, unsorted inputs and both `allUpdated` settings. Sorted transitions additionally check reconstruction of the destination list.
 

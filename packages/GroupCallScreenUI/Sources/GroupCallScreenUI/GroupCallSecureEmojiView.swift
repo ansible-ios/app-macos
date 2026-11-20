@@ -1,6 +1,6 @@
 import Cocoa
 import AnsibleCallsCore
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import ObjcUtils

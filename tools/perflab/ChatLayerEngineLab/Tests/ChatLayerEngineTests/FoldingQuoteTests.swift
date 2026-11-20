@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import ChatLayerEngine
 
 final class FoldingQuoteTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install(); System.updateScaleFactor(2) }
+    override func setUp() { AnsibleUIKitTestBootstrap.install(); System.updateScaleFactor(2) }
     override func tearDown() { System.updateScaleFactor(2) }
 
     func source(_ string: String, width: CGFloat = 240, revealed: Bool, code: Bool = false, colors: Int = 0) -> FoldingTextLayout {
@@ -191,7 +191,7 @@ final class FoldingQuoteTests: XCTestCase {
     }
 
     func testFoldKeyboardAndAccessibilityActions() throws {
-        TGUIKitAccessibility.isEnabled = true
+        AnsibleUIKitAccessibility.isEnabled = true
         let layout = source("First\nSecond\nThird\nFourth", revealed: false)
         let scene = ChatLayerSceneView(frame: NSRect(x: 0, y: 0, width: 300, height: 300))
         let body = ChatLayerMessageTextNode(id: "body")

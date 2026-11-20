@@ -1,6 +1,6 @@
 import Cocoa
-import TGUIKit
-import TGModernGrowingTextView
+import AnsibleUIKit
+import AnsibleModernGrowingTextView
 import Localization
 import AnsibleContext
 import AnsibleUtils
@@ -11,7 +11,7 @@ import AlertsUI
 import LocalAnimations
 import AnsibleIconsTheme
 
-public final class WallpaperAdditionColorView : View, TGModernGrowingDelegate {
+public final class WallpaperAdditionColorView : View, AnsibleModernGrowingDelegate {
     public func textViewHeightChanged(_ height: CGFloat, animated: Bool) {
         
     }
@@ -58,7 +58,7 @@ public final class WallpaperAdditionColorView : View, TGModernGrowingDelegate {
         return true
     }
     
-    public func textViewSize(_ textView: TGModernGrowingTextView!) -> NSSize {
+    public func textViewSize(_ textView: AnsibleModernGrowingTextView!) -> NSSize {
         return textView.frame.size
     }
     
@@ -66,7 +66,7 @@ public final class WallpaperAdditionColorView : View, TGModernGrowingDelegate {
         return true
     }
     
-    public func maxCharactersLimit(_ textView: TGModernGrowingTextView!) -> Int32 {
+    public func maxCharactersLimit(_ textView: AnsibleModernGrowingTextView!) -> Int32 {
         return 7
     }
     
@@ -84,7 +84,7 @@ public final class WallpaperAdditionColorView : View, TGModernGrowingDelegate {
     public var resetClick:(()->Void)? = nil
     fileprivate let resetButton = ImageButton()
 
-    public let textView: TGModernGrowingTextView = TGModernGrowingTextView(frame: NSZeroRect, unscrollable: true)
+    public let textView: AnsibleModernGrowingTextView = AnsibleModernGrowingTextView(frame: NSZeroRect, unscrollable: true)
     public required init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         addSubview(textView)

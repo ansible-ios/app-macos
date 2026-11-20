@@ -1,6 +1,6 @@
 import Foundation
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 
 public class OriginalInvisibleInkDustView: View {
     private var currentParams: (size: CGSize, color: NSColor, textColor: NSColor, rects: [CGRect], wordRects: [CGRect])?

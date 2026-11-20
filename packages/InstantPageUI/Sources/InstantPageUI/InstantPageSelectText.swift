@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import AudioPlayerCore
 import Localization
@@ -16,7 +16,7 @@ import AnsibleMediaUtils
 import AnsibleMedia
 
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 
 import Postbox

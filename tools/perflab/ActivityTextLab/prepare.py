@@ -23,7 +23,7 @@ theme = theme[theme.index('public struct ActivitiesTheme'):theme.index('public f
 activity_path = root / 'submodules/ansible-ios/submodules/TelegramCore/Sources/State/PeerInputActivity.swift'
 activity = activity_path.read_text()
 activity = activity[activity.index('public enum PeerInputActivity:'):activity.index('extension PeerInputActivity {')]
-output = 'import AppKit\nimport TGUIKit\nimport SwiftSignalKit\n' + theme + geometry + activity + view
+output = 'import AppKit\nimport AnsibleUIKit\nimport SwiftSignalKit\n' + theme + geometry + activity + view
 output += current.replace('ChatActivitiesModel', 'CurrentModel') + reference.replace('ChatActivitiesModel', 'ReferenceModel')
 output += '\nstruct LabStrings {\n'
 for name in sorted(set(re.findall(r'strings\(\)\.([A-Za-z0-9_]+)', current))):

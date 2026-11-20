@@ -4,7 +4,7 @@ import ObjcUtils
 import Postbox
 import SwiftSignalKit
 import InAppVideoServices
-import TGUIKit
+import AnsibleUIKit
 import AnsibleTheme
 
 public let sharedVideoLoader:ExternalVideoLoader = {

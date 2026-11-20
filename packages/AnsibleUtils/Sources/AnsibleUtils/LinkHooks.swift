@@ -1,5 +1,5 @@
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 
 public struct LinkHooks {
     public let callbackLink: (String, @escaping (String) -> Void) -> Any

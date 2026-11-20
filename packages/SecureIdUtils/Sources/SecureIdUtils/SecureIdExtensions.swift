@@ -5,7 +5,7 @@ import TelegramCore
 import Postbox
 import SwiftSignalKit
 import Localization
-import TGPassportMRZ
+import AnsiblePassportMRZ
 
 public extension SentSecureValueType {
     var rawValue: String {
@@ -60,7 +60,7 @@ extension UpdateTwoStepVerificationPasswordResult : @retroactive Equatable {
 }
 
 public extension SecureIdGender {
-    static func gender(from mrz: TGPassportMRZ) -> SecureIdGender {
+    static func gender(from mrz: AnsiblePassportMRZ) -> SecureIdGender {
         switch mrz.gender.lowercased() {
         case "f":
             return .female
@@ -727,7 +727,7 @@ public extension SecureIdRequestedFormFieldValue  {
         return self
     }
     
-    func isEqualToMRZ(_ mrz: TGPassportMRZ) -> Bool {
+    func isEqualToMRZ(_ mrz: AnsiblePassportMRZ) -> Bool {
         switch mrz.documentType.lowercased() {
         case "p":
             if case .passport = self {

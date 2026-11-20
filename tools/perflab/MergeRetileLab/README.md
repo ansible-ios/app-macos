@@ -1,6 +1,6 @@
 # Merge retile lab
 
-Why a chat history merge cost 7–10 ms during a fast scroll, and the fix. Standalone package on the real TGUIKit; a chat-style table (`TableView(isFlipped: false)`, also flipped and with sticky headers) of 200 variable-height rows in a real window, history-window shifts applied with `TableView.merge` and `.saveVisible(.upper/.lower, false)` exactly like `ChatController`.
+Why a chat history merge cost 7–10 ms during a fast scroll, and the fix. Standalone package on the real AnsibleUIKit; a chat-style table (`TableView(isFlipped: false)`, also flipped and with sticky headers) of 200 variable-height rows in a real window, history-window shifts applied with `TableView.merge` and `.saveVisible(.upper/.lower, false)` exactly like `ChatController`.
 
 ```sh
 cd tools/perflab/MergeRetileLab

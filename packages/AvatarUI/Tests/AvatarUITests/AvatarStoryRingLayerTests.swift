@@ -1,6 +1,6 @@
 import XCTest
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import ColorPalette
 import Postbox
 import TelegramCore

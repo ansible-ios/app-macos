@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class DeferredSceneTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install(); TGUIKitAccessibility.isEnabled = true }
+    override func setUp() { AnsibleUIKitTestBootstrap.install(); AnsibleUIKitAccessibility.isEnabled = true }
 
     func testNativeLifecycleDoesNotAllocateAnUnusedScene() {
         let scene = ChatLayerSceneView(frame: NSRect(x: 0, y: 0, width: 300, height: 100), deferred: true)

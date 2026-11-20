@@ -1,6 +1,6 @@
 import Foundation
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
@@ -11,7 +11,7 @@ import AnsibleUtils
 import AvatarUI
 import GeneralRows
 import InputDataUI
-import TGModernGrowingTextView
+import AnsibleModernGrowingTextView
 import AlertsUI
 import PremiumUI
 import AppAnalytics

@@ -1,9 +1,9 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 
 final class TopicTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
     private func pair(_ item: TopicReplyItemLayout, width: CGFloat? = nil) -> (NativeTopicView, CandidateTopicView) {
         let frame = NSRect(origin: .zero, size: NSSize(width: width ?? item.size.width, height: max(1, item.size.height)))
         let old = NativeTopicView(frame: frame)

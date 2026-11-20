@@ -6,19 +6,19 @@ The candidate gates its timeline on active intent, key-window eligibility, ances
 
 ## Validation
 
-Eleven functional tests pass in debug, release, and Address Sanitizer builds. One additional benchmark is opt-in. The lab compiles the exact production activity view, indicator layer, theme value, and animation geometry with real TGUIKit/AppKit. Only production type names are prefixed to allow the preserved baseline from `4ae6313e0` to coexist. Account-backed activity-string construction is outside this lab.
+Eleven functional tests pass in debug, release, and Address Sanitizer builds. One additional benchmark is opt-in. The lab compiles the exact production activity view, indicator layer, theme value, and animation geometry with real AnsibleUIKit/AppKit. Only production type names are prefixed to allow the preserved baseline from `4ae6313e0` to coexist. Account-backed activity-string construction is outside this lab.
 
 Coverage includes:
 
 - Reproduction of the old stopped/offscreen playback bug, stop/restart, `.none`, phase preservation, and shape identity.
 - Scrolling out and back, focus changes, zero-sized views, hiding both the view and its ancestor, detach/reattach, and reparenting between scroll containers in the same or different windows.
 - Type/theme changes while paused, cleanup after AppKit autorelease pools drain, and 100-row visibility checks across multiple scroll positions.
-- Visibility notifications from the production TGUIKit `ScrollView` without custom notification settings.
+- Visibility notifications from the production AnsibleUIKit `ScrollView` without custom notification settings.
 - 927 byte-for-byte comparisons of sampled typing, recording, uploading, and choosing-sticker images at 1×/2×/3× scales. Every sample also requires nonblank output. These compare model-layer drawings; timing behavior is tested separately.
 
 The existing ShortPeerRow key-window regression now supplies a visible frame, and a same-configuration restart regression was added there. Those package tests were not built as a complete ShortPeerRow target; equivalent behavior is exercised by the isolated lab. Production source passes Swift frontend parsing in normal and `SHARE` configurations.
 
-One initial release build detected an unrelated concurrent edit to TGUIKit/ImageButton.swift and stopped. The retry and final suites passed against the current workspace. Other work was preserved.
+One initial release build detected an unrelated concurrent edit to AnsibleUIKit/ImageButton.swift and stopped. The retry and final suites passed against the current workspace. Other work was preserved.
 
 ## Performance evidence
 

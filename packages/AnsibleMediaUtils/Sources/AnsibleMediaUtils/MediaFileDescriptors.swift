@@ -2,7 +2,7 @@ import Foundation
 import TelegramCore
 import Postbox
 import Localization
-import TGUIKit
+import AnsibleUIKit
 
 public extension TelegramMediaFile {
     var customEmojiText:String? {

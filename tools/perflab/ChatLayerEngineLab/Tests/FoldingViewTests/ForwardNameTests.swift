@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 @testable import ChatLayerEngine
 
 final class ForwardNameTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install(); forwardTooltipCapture = nil }
+    override func setUp() { AnsibleUIKitTestBootstrap.install(); forwardTooltipCapture = nil }
 
     func layout(_ text: String = "Forwarded from Alice", link: String? = nil) -> TextViewLayout {
         let value = NSMutableAttributedString(string: text, attributes: [.font: NSFont.systemFont(ofSize: 12), .foregroundColor: NSColor.systemBlue])

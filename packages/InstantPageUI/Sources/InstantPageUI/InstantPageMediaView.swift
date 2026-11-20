@@ -5,7 +5,7 @@ import AnsibleMediaUtils
 import AnsibleTheme
 import AnsibleContext
 import AudioPlayerCore
-import TGUIKit
+import AnsibleUIKit
 import Postbox
 import TelegramCore
 import AnsibleMedia

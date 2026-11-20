@@ -1,7 +1,7 @@
 import Cocoa
 import Foundation
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 
 private extension EnginePeer {
     var compactDisplayTitle: String {

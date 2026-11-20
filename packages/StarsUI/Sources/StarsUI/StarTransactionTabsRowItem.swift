@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import AnsibleTheme
 import GeneralRows
 
@@ -83,7 +83,7 @@ private final class StarTransactionTabsRowView: GeneralContainableRowView {
     }
 
     override func accessibilityChildren() -> [Any]? {
-        return TGUIKitAccessibility.isEnabled ? accessibilityTabs : nil
+        return AnsibleUIKitAccessibility.isEnabled ? accessibilityTabs : nil
     }
 
     override func set(item: TableRowItem, animated: Bool = false) {

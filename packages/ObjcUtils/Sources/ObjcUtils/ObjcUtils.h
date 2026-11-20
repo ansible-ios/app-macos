@@ -64,7 +64,7 @@ NSArray<NSString *> * __nonnull dumpGlassEffectViewSubviewClasses(void);
 NSArray<NSString *> *  __nonnull cut_long_message(NSString *message, int max_length);
 int64_t SystemIdleTime(void);
 NSDictionary<NSString *, NSString *> * __nonnull audioTags(AVURLAsset *asset);
-NSImage *  __nonnull TGIdenticonImage(NSData *data, NSData *additionalData, CGSize size);
+NSImage *  __nonnull AnsibleIdenticonImage(NSData *data, NSData *additionalData, CGSize size);
 
 @interface NSData (TG)
 - (NSString *  __nonnull)stringByEncodingInHex;
@@ -74,7 +74,7 @@ BOOL isEnterAccessObjc(NSEvent *theEvent, BOOL byCmdEnter);
 BOOL isEnterEventObjc(NSEvent *theEvent);
 
 int colorIndexForGroupId(int64_t groupId);
-int64_t TGPeerIdFromChannelId(int32_t channelId);
+int64_t AnsiblePeerIdFromChannelId(int32_t channelId);
 int colorIndexForUid(int32_t uid, int32_t myUserId);
 
 
@@ -83,10 +83,10 @@ NSString * __nonnull currentKeyboardLanguage();
 NSEvent * __nullable createScrollWheelEvent();
 double mappingRange(double x, double in_min, double in_max, double out_min, double out_max);
 
-CGImageRef TGBlurredAlphaImage(CGImageRef source, CGSize size, CGFloat scale);
+CGImageRef AnsibleBlurredAlphaImage(CGImageRef source, CGSize size, CGFloat scale);
 CMTimebaseRef _Nullable createTimebase(void);
 CMTimebaseRef _Nullable createTimebaseWithClock(CMClockRef clock);
 
 BOOL setWindowCaptureExclusion(NSWindow * _Nonnull window, CGRect rect, BOOL exclude);
 
-void TGDisableLayerActions(CALayer * _Nonnull layer);
+void AnsibleDisableLayerActions(CALayer * _Nonnull layer);

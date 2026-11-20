@@ -31,7 +31,7 @@ NSString * NSLocalized(NSString * key, NSString *comment);
 extern "C" {
 #endif
 
-bool TGUse12hDateFormat();
+bool AnsibleUse12hDateFormat();
     
 #ifdef __cplusplus
 }

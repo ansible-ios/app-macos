@@ -6,7 +6,7 @@ import QuartzCore
 final class ChatTextReuseBenchmarkTests: XCTestCase {
     func testChatTextBindingCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_TEXT_REUSE_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in chat text binding benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let fixtures = ChatTextReuseTests()
         var results: [String: Any] = [:]
         for count in [1, 3, 12, 128] {

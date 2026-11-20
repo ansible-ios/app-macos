@@ -1,7 +1,7 @@
 import Cocoa
 import TelegramCore
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 
 public extension TelegramMediaFile {
     var videoSize:NSSize {

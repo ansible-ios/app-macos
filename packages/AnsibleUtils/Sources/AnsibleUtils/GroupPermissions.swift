@@ -1,7 +1,7 @@
 import Foundation
 import Postbox
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import Localization
 
 public let internal_allPossibleGroupPermissionList: [(TelegramChatBannedRightsFlags, TelegramChannelPermission)] = [

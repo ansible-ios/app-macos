@@ -2,13 +2,13 @@ import Cocoa
 import XCTest
 import QuartzCore
 import Darwin
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class RowHeaderBenchmarkTests: XCTestCase {
     func testHeaderBindingCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_HEADER_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in shared row header benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let factory = RowHeaderTests(), frame = NSRect(x: 0, y: 0, width: 300, height: 100)
         var results: [String: [[Double]]] = [:], sink = 0
         for present in [false, true] {
@@ -53,7 +53,7 @@ final class RowHeaderBenchmarkTests: XCTestCase {
 
     func testRetainedHeaderMemory() throws {
         guard let mode = ProcessInfo.processInfo.environment["CHAT_HEADER_MEMORY"], ["native", "layers"].contains(mode) else { throw XCTSkip("Opt-in fresh-process header memory probe") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let present = ProcessInfo.processInfo.environment["CHAT_HEADER_PRESENT"] == "1", count = 5000
         let factory = RowHeaderTests(), frame = NSRect(x: 0, y: 0, width: 300, height: 100)
         let items = autoreleasepool { (0..<count).map { HeaderBindingItem(present ? factory.layout("Forwarded message \($0)") : nil, frame: NSRect(x: 14, y: 10, width: 150, height: 20)) } }

@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class TextReentrancyTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     private func fixture() throws -> (ChatLayerSceneView, ChatLayerTextNode) {
         let scene = ChatLayerSceneView(frame: NSRect(x: 0, y: 0, width: 400, height: 200))

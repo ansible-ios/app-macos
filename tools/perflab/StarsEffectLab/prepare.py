@@ -14,7 +14,7 @@ current = source[source.index(start):source.index(end)]
 old = subprocess.check_output(['git', 'show', '2b88f9d2a:packages/PremiumStatusUI/Sources/PremiumStatusUI/PremiumStatusControl.swift'], cwd=root).decode()
 reference = (lab / 'Reference.swift.txt').read_text()
 assert old[old.index(start):old.index(end)] == reference
-output = 'import AppKit\nimport TGUIKit\nimport QuartzCore\n'
+output = 'import AppKit\nimport AnsibleUIKit\nimport QuartzCore\n'
 for name, text in [('CandidateStarsEffectLayer', current), ('ReferenceStarsEffectLayer', reference)]:
     output += text.replace('StarsEffectLayer', name).replace('Bundle.main.path(forResource:', 'Bundle.module.path(forResource:')
 target = lab / 'Sources/Effects/Generated.swift'

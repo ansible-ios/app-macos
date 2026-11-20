@@ -1,7 +1,7 @@
 import Foundation
 import Metal
 import MetalKit
-import TGUIKit
+import AnsibleUIKit
 
 public final class DataRainView: MTKView, MTKViewDelegate, PremiumDecorationProtocol {
     public func draw(in view: MTKView) {

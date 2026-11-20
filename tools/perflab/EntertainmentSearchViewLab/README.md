@@ -1,6 +1,6 @@
 # Search status view lab
 
-Builds the actual `PanelSearchStatusView` with TGUIKit, without TelegramCore or the main app. `prepare.py` copies the production view and presentation model into the lab. The six AppKit tests cover the single gradient/mask shimmer, lazy duck creation, release when hidden or detached, reduced motion, accessibility labels, and compact layout.
+Builds the actual `PanelSearchStatusView` with AnsibleUIKit, without TelegramCore or the main app. `prepare.py` copies the production view and presentation model into the lab. The six AppKit tests cover the single gradient/mask shimmer, lazy duck creation, release when hidden or detached, reduced motion, accessibility labels, and compact layout.
 
 The adjacent EntertainmentSearchLab covers startup, queries, loading/empty/result transitions, spacer-only sticker tables, and the production emoji state equality comparison. Its unrelated equality fields use simple array fixtures; the comparison body is extracted unchanged.
 

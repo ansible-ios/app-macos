@@ -13,7 +13,7 @@ import Cocoa
 import TelegramCore
 
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 
 

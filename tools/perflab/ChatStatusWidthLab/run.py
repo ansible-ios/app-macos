@@ -29,7 +29,7 @@ assert production.count('self.width = measureWidth()') == 1
 callsite = (root / 'packages/ChatUI/Sources/ChatUI/ChatRowItem.swift').read_text()
 assert 'NSMakeSize(frames.width, rightHeight)' in callsite
 assert 'self.rightFrames = isIncomingTypingDraft ? nil : ChatRightView.Frames(self,' in callsite
-extensions = (root / 'packages/TGUIKit/Sources/Extensions.swift').read_text()
+extensions = (root / 'packages/AnsibleUIKit/Sources/Extensions.swift').read_text()
 size_bounds = 'var bounds: CGRect {\n        return NSMakeRect(0, 0, width, height)\n    }'
 assert size_bounds in extensions
 focus_start = extensions.index('    func focus(_ size:NSSize) -> NSRect {', extensions.index('var center: CGPoint'))

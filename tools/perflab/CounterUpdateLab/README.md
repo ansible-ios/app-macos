@@ -1,6 +1,6 @@
 # Counter update lifecycle
 
-This native harness links the actual TGUIKit package and compares counter behavior with a renamed source snapshot from `8f8c448ca`. Generate the reference with `python3 tools/perflab/CounterUpdateLab/prepare.py`.
+This native harness links the actual AnsibleUIKit package and compares counter behavior with a renamed source snapshot from `8f8c448ca`. Generate the reference with `python3 tools/perflab/CounterUpdateLab/prepare.py`.
 
 ## Reproduced problems
 
@@ -32,7 +32,7 @@ Run paired benchmarks with:
 COUNTER_UPDATE_BENCHMARK=1 swift test --package-path tools/perflab/CounterUpdateLab --scratch-path /tmp/CounterUpdateLab-release -c release
 ```
 
-Benchmarks alternate original/candidate order over nine batches of 1,000 updates; the long changing-counter stress cases use batches of 50 updates to bound temporary allocations. Values are prepared outside the timed region. Functional and sanitizer runs omit the environment variable. Raw batches, regression logs, source hashes, and broader TGUIKit/chat results are retained in results/ and provenance.json.
+Benchmarks alternate original/candidate order over nine batches of 1,000 updates; the long changing-counter stress cases use batches of 50 updates to bound temporary allocations. Values are prepared outside the timed region. Functional and sanitizer runs omit the environment variable. Raw batches, regression logs, source hashes, and broader AnsibleUIKit/chat results are retained in results/ and provenance.json.
 
 This does not measure end-to-end chat scrolling or total app memory, and no full Telegram build was performed.
 

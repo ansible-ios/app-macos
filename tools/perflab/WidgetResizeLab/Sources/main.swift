@@ -1,5 +1,5 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 
 typealias Block = (id: String, height: CGFloat)
 

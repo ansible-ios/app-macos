@@ -1,11 +1,11 @@
 import AppKit
 import XCTest
 import QuartzCore
-@testable import class TGUIKit.TableView
-@testable import class TGUIKit.TGFlipableTableView
-import class TGUIKit.TableRowItem
-import class TGUIKit.TableRowView
-import class TGUIKit.TableStickItem
+@testable import class AnsibleUIKit.TableView
+@testable import class AnsibleUIKit.AnsibleFlipableTableView
+import class AnsibleUIKit.TableRowItem
+import class AnsibleUIKit.TableRowView
+import class AnsibleUIKit.TableStickItem
 
 private final class CandidateItem: TableRowItem {
     var rowHeight: CGFloat
@@ -33,7 +33,7 @@ func runCandidateScenario(flipped: Bool, count: Int, inset: CGFloat, render: Boo
     let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 500, height: 500), styleMask: .borderless, backing: .buffered, defer: false)
     window.isReleasedWhenClosed = false
     defer { window.close() }
-    let table = TGUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240), isFlipped: flipped)
+    let table = AnsibleUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240), isFlipped: flipped)
     table.hasVerticalScroller = false
     table.hasHorizontalScroller = false
     window.contentView!.addSubview(table)
@@ -103,7 +103,7 @@ func runCandidateStickyScenario() -> [[NSRect]] {
     let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 320, height: 240), styleMask: .borderless, backing: .buffered, defer: false)
     window.isReleasedWhenClosed = false
     defer { window.close() }
-    let table = TGUIKit.TableView(frame: window.contentView!.bounds)
+    let table = AnsibleUIKit.TableView(frame: window.contentView!.bounds)
     window.contentView!.addSubview(table)
     for id in 0..<100 {
         if id % 10 == 0 { _ = table.addItem(item: CandidateHeader(.zero)) }
@@ -127,7 +127,7 @@ func runCandidateStickyScenario() -> [[NSRect]] {
 
 private final class CandidateSecondaryHeader: TableStickItem {}
 
-private final class CandidateEndTable: TGFlipableTableView {
+private final class CandidateEndTable: AnsibleFlipableTableView {
     var completed: (() -> Void)?
     override func endUpdates() {
         super.endUpdates()
@@ -138,7 +138,7 @@ private final class CandidateEndTable: TGFlipableTableView {
 }
 
 func runCandidateReentrantCacheScenario(mode: Int) -> Bool {
-    let table = TGUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240))
+    let table = AnsibleUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240))
     let spy = CandidateEndTable(frame: table.bounds)
     table.tableView = spy
     table.updateAfterInitialize()
@@ -176,7 +176,7 @@ func runCandidateReentrantCacheScenario(mode: Int) -> Bool {
 }
 
 func runCandidateCacheRetentionScenario() -> [[Int]] {
-    let table = TGUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240))
+    let table = AnsibleUIKit.TableView(frame: NSRect(x: 0, y: 0, width: 320, height: 240))
     for id in 0..<40 {
         if id % 10 == 0 { _ = table.addItem(item: CandidateHeader(.zero)) }
         else { _ = table.addItem(item: CandidateSecondaryHeader(.zero)) }

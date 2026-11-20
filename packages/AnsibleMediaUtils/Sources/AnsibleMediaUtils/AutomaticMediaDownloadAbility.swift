@@ -1,7 +1,7 @@
 import Foundation
 import TelegramCore
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import AnsibleTheme
 import InAppSettings
 

@@ -1,6 +1,6 @@
 import AppKit
 import QuartzCore
-import TGUIKit
+import AnsibleUIKit
 
 final class ChatAIRewriteAnimation {
     private struct Word {

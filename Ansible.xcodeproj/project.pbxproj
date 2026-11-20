@@ -371,7 +371,7 @@
 		2795578E2AB86A65007EC996 /* libsharpyuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2795578D2AB86A5C007EC996 /* libsharpyuv.a */; };
 		2796FEF227423A8600DA653C /* EmojiSuggestions in Frameworks */ = {isa = PBXBuildFile; productRef = 2796FEF127423A8600DA653C /* EmojiSuggestions */; };
 		2796FEF527423D2100DA653C /* EDSunriseSet in Frameworks */ = {isa = PBXBuildFile; productRef = 2796FEF427423D2100DA653C /* EDSunriseSet */; };
-		2796FEF827423F5300DA653C /* TGPassportMRZ in Frameworks */ = {isa = PBXBuildFile; productRef = 2796FEF727423F5300DA653C /* TGPassportMRZ */; };
+		2796FEF827423F5300DA653C /* AnsiblePassportMRZ in Frameworks */ = {isa = PBXBuildFile; productRef = 2796FEF727423F5300DA653C /* AnsiblePassportMRZ */; };
 		2796FEFB2742408C00DA653C /* OCR in Frameworks */ = {isa = PBXBuildFile; productRef = 2796FEFA2742408C00DA653C /* OCR */; };
 		2796FEFE274241D600DA653C /* FastBlur in Frameworks */ = {isa = PBXBuildFile; productRef = 2796FEFD274241D600DA653C /* FastBlur */; };
 		2796FF01274242D200DA653C /* GZIP in Frameworks */ = {isa = PBXBuildFile; productRef = 2796FF00274242D200DA653C /* GZIP */; };
@@ -386,7 +386,7 @@
 		279B03592A4F1CB3007D2AB9 /* menu_stories.ass in Resources */ = {isa = PBXBuildFile; fileRef = 279B03582A4F1CB3007D2AB9 /* menu_stories.ass */; };
 		279BD40E29BB283700A8B640 /* menu_atsign.ass in Resources */ = {isa = PBXBuildFile; fileRef = 279BD40D29BB283700A8B640 /* menu_atsign.ass */; };
 		279DF45D2B99A29200E644A7 /* fragment_username.ass in Resources */ = {isa = PBXBuildFile; fileRef = 279DF45C2B99A29200E644A7 /* fragment_username.ass */; };
-		279E8ECB274259EE000E1BD5 /* TGVideoCameraMovie in Frameworks */ = {isa = PBXBuildFile; productRef = 279E8ECA274259EE000E1BD5 /* TGVideoCameraMovie */; };
+		279E8ECB274259EE000E1BD5 /* AnsibleVideoCameraMovie in Frameworks */ = {isa = PBXBuildFile; productRef = 279E8ECA274259EE000E1BD5 /* AnsibleVideoCameraMovie */; };
 		279E8ECE27425CBD000E1BD5 /* InAppVideoServices in Frameworks */ = {isa = PBXBuildFile; productRef = 279E8ECD27425CBD000E1BD5 /* InAppVideoServices */; };
 		279FD2A0273C1234004F08A1 /* BuildConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 279FD29F273C1234004F08A1 /* BuildConfig */; };
 		279FD2A7273C1251004F08A1 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 279FD2A6273C1251004F08A1 /* Zip */; };
@@ -431,7 +431,7 @@
 		27B6D05527393A3D00C785C7 /* GraphCore in Frameworks */ = {isa = PBXBuildFile; productRef = 27B6D05427393A3D00C785C7 /* GraphCore */; };
 		27B6D05727393A3D00C785C7 /* GraphUI in Frameworks */ = {isa = PBXBuildFile; productRef = 27B6D05627393A3D00C785C7 /* GraphUI */; };
 		27B6D05927393A4200C785C7 /* SwiftSignalKit in Frameworks */ = {isa = PBXBuildFile; productRef = 27B6D05827393A4200C785C7 /* SwiftSignalKit */; };
-		27B6D05B27393A4700C785C7 /* TGUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 27B6D05A27393A4700C785C7 /* TGUIKit */; };
+		27B6D05B27393A4700C785C7 /* AnsibleUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 27B6D05A27393A4700C785C7 /* AnsibleUIKit */; };
 		27B836192B5FC1AE00E82683 /* emoji14.txt in Resources */ = {isa = PBXBuildFile; fileRef = 27B836182B5FC1AE00E82683 /* emoji14.txt */; };
 		27B836202B5FF51F00E82683 /* menu_tag_rename.ass in Resources */ = {isa = PBXBuildFile; fileRef = 27B8361F2B5FF51F00E82683 /* menu_tag_rename.ass */; };
 		27B8364A2B6396E600E82683 /* menu_hd_lock.ass in Resources */ = {isa = PBXBuildFile; fileRef = 27B836472B6396E500E82683 /* menu_hd_lock.ass */; };
@@ -445,9 +445,9 @@
 		65CAC63E22B7EFC0B6A1B0E4 /* tab_calls.ass in Resources */ = {isa = PBXBuildFile; fileRef = D026A2AB6272FA18BF69A1B5 /* tab_calls.ass */; };
 		5BEDD9D091C1D7E3E6873BB8 /* tab_chats.ass in Resources */ = {isa = PBXBuildFile; fileRef = 9EA13536FAFAD60940490489 /* tab_chats.ass */; };
 		C102CCB7107CB4C46FD9C482 /* tab_settings.ass in Resources */ = {isa = PBXBuildFile; fileRef = A85B93196FEBE99CB4506DA9 /* tab_settings.ass */; };
-		27B8E7BD27424E90001B8DF7 /* TGGifConverter in Frameworks */ = {isa = PBXBuildFile; productRef = 27B8E7BC27424E90001B8DF7 /* TGGifConverter */; };
-		27B8E7C027424F2E001B8DF7 /* TGCurrencyFormatter in Frameworks */ = {isa = PBXBuildFile; productRef = 27B8E7BF27424F2E001B8DF7 /* TGCurrencyFormatter */; };
-		27B8E7C627425279001B8DF7 /* TGModernGrowingTextView in Frameworks */ = {isa = PBXBuildFile; productRef = 27B8E7C527425279001B8DF7 /* TGModernGrowingTextView */; };
+		27B8E7BD27424E90001B8DF7 /* AnsibleGifConverter in Frameworks */ = {isa = PBXBuildFile; productRef = 27B8E7BC27424E90001B8DF7 /* AnsibleGifConverter */; };
+		27B8E7C027424F2E001B8DF7 /* AnsibleCurrencyFormatter in Frameworks */ = {isa = PBXBuildFile; productRef = 27B8E7BF27424F2E001B8DF7 /* AnsibleCurrencyFormatter */; };
+		27B8E7C627425279001B8DF7 /* AnsibleModernGrowingTextView in Frameworks */ = {isa = PBXBuildFile; productRef = 27B8E7C527425279001B8DF7 /* AnsibleModernGrowingTextView */; };
 		27BC34542DEB3C0100598C60 /* direct_messages.ass in Resources */ = {isa = PBXBuildFile; fileRef = 27BC34532DEB3C0100598C60 /* direct_messages.ass */; };
 		27BCE4112A41C1090015E5EE /* menu_save_to_profile.ass in Resources */ = {isa = PBXBuildFile; fileRef = 27BCE4102A41C1090015E5EE /* menu_save_to_profile.ass */; };
 		27BE52422D9AC72600F40837 /* TdBinding in Frameworks */ = {isa = PBXBuildFile; productRef = 27BE52412D9AC72600F40837 /* TdBinding */; };
@@ -620,7 +620,7 @@
 		27F3B75427391E6B00B81F10 /* AnsibleIconsTheme in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3B75327391E6B00B81F10 /* AnsibleIconsTheme */; };
 		27F3B75627391E9200B81F10 /* AnsibleIconsTheme in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3B75527391E9200B81F10 /* AnsibleIconsTheme */; };
 		27F3B75C2739320000B81F10 /* SwiftSignalKit in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3B75B2739320000B81F10 /* SwiftSignalKit */; };
-		27F3B75E2739320F00B81F10 /* TGUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3B75D2739320F00B81F10 /* TGUIKit */; };
+		27F3B75E2739320F00B81F10 /* AnsibleUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3B75D2739320F00B81F10 /* AnsibleUIKit */; };
 		27F3BB772B48375800BC37C2 /* AnsibleMedia in Frameworks */ = {isa = PBXBuildFile; productRef = 27F3BB762B48375800BC37C2 /* AnsibleMedia */; };
 		27F3BB912B4C3D6600BC37C2 /* show_status_profile.ass in Resources */ = {isa = PBXBuildFile; fileRef = 27F3BB8F2B4C3D6500BC37C2 /* show_status_profile.ass */; };
 		27F3BB922B4C3D6600BC37C2 /* show_status_read.ass in Resources */ = {isa = PBXBuildFile; fileRef = 27F3BB902B4C3D6600BC37C2 /* show_status_read.ass */; };
@@ -1400,7 +1400,7 @@
 		2795578D2AB86A5C007EC996 /* libsharpyuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsharpyuv.a; path = "core-xprojects/libwebp/build/libwebp/lib/libsharpyuv.a"; sourceTree = "<group>"; };
 		2796FEF02742390000DA653C /* EmojiSuggestions */ = {isa = PBXFileReference; lastKnownFileType = folder; name = EmojiSuggestions; path = packages/EmojiSuggestions; sourceTree = "<group>"; };
 		2796FEF327423C8500DA653C /* EDSunriseSet */ = {isa = PBXFileReference; lastKnownFileType = folder; name = EDSunriseSet; path = packages/EDSunriseSet; sourceTree = "<group>"; };
-		2796FEF627423EE800DA653C /* TGPassportMRZ */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TGPassportMRZ; path = packages/TGPassportMRZ; sourceTree = "<group>"; };
+		2796FEF627423EE800DA653C /* AnsiblePassportMRZ */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsiblePassportMRZ; path = packages/AnsiblePassportMRZ; sourceTree = "<group>"; };
 		2796FEF92742401E00DA653C /* OCR */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OCR; path = packages/OCR; sourceTree = "<group>"; };
 		2796FEFC2742417C00DA653C /* FastBlur */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FastBlur; path = packages/FastBlur; sourceTree = "<group>"; };
 		2796FEFF2742427200DA653C /* GZIP */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GZIP; path = packages/GZIP; sourceTree = "<group>"; };
@@ -1416,7 +1416,7 @@
 		279BD40B29B71FA200A8B640 /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
 		279BD40D29BB283700A8B640 /* menu_atsign.ass */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_atsign.ass; sourceTree = "<group>"; };
 		279DF45C2B99A29200E644A7 /* fragment_username.ass */ = {isa = PBXFileReference; lastKnownFileType = file; path = fragment_username.ass; sourceTree = "<group>"; };
-		279E8EC9274259B7000E1BD5 /* TGVideoCameraMovie */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TGVideoCameraMovie; path = packages/TGVideoCameraMovie; sourceTree = "<group>"; };
+		279E8EC9274259B7000E1BD5 /* AnsibleVideoCameraMovie */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleVideoCameraMovie; path = packages/AnsibleVideoCameraMovie; sourceTree = "<group>"; };
 		279E8ECC27425BAE000E1BD5 /* InAppVideoServices */ = {isa = PBXFileReference; lastKnownFileType = folder; name = InAppVideoServices; path = packages/InAppVideoServices; sourceTree = "<group>"; };
 		279FD29C273C106C004F08A1 /* minizip */ = {isa = PBXFileReference; lastKnownFileType = folder; name = minizip; path = submodules/minizip; sourceTree = "<group>"; };
 		279FD29E273C10AD004F08A1 /* BuildConfig */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BuildConfig; path = submodules/BuildConfig; sourceTree = "<group>"; };
@@ -1469,9 +1469,9 @@
 		D026A2AB6272FA18BF69A1B5 /* tab_calls.ass */ = {isa = PBXFileReference; lastKnownFileType = file; path = tab_calls.ass; sourceTree = "<group>"; };
 		9EA13536FAFAD60940490489 /* tab_chats.ass */ = {isa = PBXFileReference; lastKnownFileType = file; path = tab_chats.ass; sourceTree = "<group>"; };
 		A85B93196FEBE99CB4506DA9 /* tab_settings.ass */ = {isa = PBXFileReference; lastKnownFileType = file; path = tab_settings.ass; sourceTree = "<group>"; };
-		27B8E7BB27424E4F001B8DF7 /* TGGifConverter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TGGifConverter; path = packages/TGGifConverter; sourceTree = "<group>"; };
-		27B8E7BE27424EDE001B8DF7 /* TGCurrencyFormatter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TGCurrencyFormatter; path = packages/TGCurrencyFormatter; sourceTree = "<group>"; };
-		27B8E7C42742523D001B8DF7 /* TGModernGrowingTextView */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TGModernGrowingTextView; path = packages/TGModernGrowingTextView; sourceTree = "<group>"; };
+		27B8E7BB27424E4F001B8DF7 /* AnsibleGifConverter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleGifConverter; path = packages/AnsibleGifConverter; sourceTree = "<group>"; };
+		27B8E7BE27424EDE001B8DF7 /* AnsibleCurrencyFormatter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleCurrencyFormatter; path = packages/AnsibleCurrencyFormatter; sourceTree = "<group>"; };
+		27B8E7C42742523D001B8DF7 /* AnsibleModernGrowingTextView */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleModernGrowingTextView; path = packages/AnsibleModernGrowingTextView; sourceTree = "<group>"; };
 		27BC34532DEB3C0100598C60 /* direct_messages.ass */ = {isa = PBXFileReference; lastKnownFileType = file; path = direct_messages.ass; sourceTree = "<group>"; };
 		27BCE4102A41C1090015E5EE /* menu_save_to_profile.ass */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_save_to_profile.ass; sourceTree = "<group>"; };
 		27BE52402D9AC71600F40837 /* TdBinding */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TdBinding; path = "submodules/ansible-ios/third-party/td/TdBinding"; sourceTree = "<group>"; };
@@ -1629,7 +1629,7 @@
 		27F2BBD027BF694800A37463 /* qrcode_matrix.ass */ = {isa = PBXFileReference; lastKnownFileType = file; path = qrcode_matrix.ass; sourceTree = "<group>"; };
 		27F37A252850F8F200AC8B90 /* voice_dots.ass */ = {isa = PBXFileReference; lastKnownFileType = file; path = voice_dots.ass; sourceTree = "<group>"; };
 		27F3B75227391D7700B81F10 /* AnsibleIconsTheme */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleIconsTheme; path = packages/AnsibleIconsTheme; sourceTree = "<group>"; };
-		27F3B7572739212200B81F10 /* TGUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TGUIKit; path = packages/TGUIKit; sourceTree = "<group>"; };
+		27F3B7572739212200B81F10 /* AnsibleUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnsibleUIKit; path = packages/AnsibleUIKit; sourceTree = "<group>"; };
 		27F3B75A2739300C00B81F10 /* SSignalKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SSignalKit; path = "submodules/ansible-ios/submodules/SSignalKit"; sourceTree = "<group>"; };
 		27F3B75F273933C800B81F10 /* GraphUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GraphUI; path = packages/GraphUI; sourceTree = "<group>"; };
 		27F3B7632739360100B81F10 /* GraphCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GraphCore; path = "submodules/ansible-ios/submodules/GraphCore"; sourceTree = "<group>"; };
@@ -2048,7 +2048,7 @@
 				270376292CA1FD70003EC235 /* libwebpdemux.a in Frameworks */,
 				278926C927550C8C00923087 /* Colors in Frameworks */,
 				2745FED3274F951100546B05 /* FastBlur in Frameworks */,
-				27F3B75E2739320F00B81F10 /* TGUIKit in Frameworks */,
+				27F3B75E2739320F00B81F10 /* AnsibleUIKit in Frameworks */,
 				270376022C9DBEDE003EC235 /* ObjcUtils in Frameworks */,
 				2703762B2CA1FD92003EC235 /* libwebp in Frameworks */,
 				27F3B75C2739320000B81F10 /* SwiftSignalKit in Frameworks */,
@@ -2210,7 +2210,7 @@
 				27D43DA0279176DE006968A6 /* libavformat.a in Frameworks */,
 				279737C52FA0E651006E25B4 /* SwiftMath in Frameworks */,
 				27D43DA627917717006968A6 /* libwebp.a in Frameworks */,
-				27B8E7C027424F2E001B8DF7 /* TGCurrencyFormatter in Frameworks */,
+				27B8E7C027424F2E001B8DF7 /* AnsibleCurrencyFormatter in Frameworks */,
 				27D696F6274F8458008A723E /* ColorPalette in Frameworks */,
 				27D43DA2279176E2006968A6 /* libswresample.a in Frameworks */,
 				27D43DAA27917721006968A6 /* libwebpdemux.a in Frameworks */,
@@ -2227,9 +2227,9 @@
 				27B6D05127393A3200C785C7 /* TelegramCore in Frameworks */,
 				2796FF1027424BA800DA653C /* DateUtils in Frameworks */,
 				277C209327A2F58E0070B3BF /* ManagedFile in Frameworks */,
-				27B6D05B27393A4700C785C7 /* TGUIKit in Frameworks */,
+				27B6D05B27393A4700C785C7 /* AnsibleUIKit in Frameworks */,
 				27A697A9273D3A5F00B33415 /* Localization in Frameworks */,
-				27B8E7C627425279001B8DF7 /* TGModernGrowingTextView in Frameworks */,
+				27B8E7C627425279001B8DF7 /* AnsibleModernGrowingTextView in Frameworks */,
 				A7D08F48236AC9B6002DC240 /* Sparkle.framework in Frameworks */,
 				D0DDECEA2322FA0200E1B359 /* Contacts.framework in Frameworks */,
 				27D43DA4279176FC006968A6 /* libopus.a in Frameworks */,
@@ -2284,13 +2284,13 @@
 				9F21F65D20B5A9C900332C85 /* MapKit.framework in Frameworks */,
 				C250B0351DB78A0A004E9FBE /* Quartz.framework in Frameworks */,
 				2796FF0B274248FB00DA653C /* ObjcUtils in Frameworks */,
-				279E8ECB274259EE000E1BD5 /* TGVideoCameraMovie in Frameworks */,
-				27B8E7BD27424E90001B8DF7 /* TGGifConverter in Frameworks */,
+				279E8ECB274259EE000E1BD5 /* AnsibleVideoCameraMovie in Frameworks */,
+				27B8E7BD27424E90001B8DF7 /* AnsibleGifConverter in Frameworks */,
 				2796FF0D274249B000DA653C /* RingBuffer in Frameworks */,
 				C250B0331DB788B3004E9FBE /* Foundation.framework in Frameworks */,
 				27D43DB42791779C006968A6 /* libmac_framework_objc_static.a in Frameworks */,
 				27D9131128353E58007CF40F /* StoreKit.framework in Frameworks */,
-				2796FEF827423F5300DA653C /* TGPassportMRZ in Frameworks */,
+				2796FEF827423F5300DA653C /* AnsiblePassportMRZ in Frameworks */,
 				278B89A62791939700ECF71C /* libwebp in Frameworks */,
 				C253A9671D92E3AF00CDC850 /* AVFoundation.framework in Frameworks */,
 				273C04052C2B75E900AF2751 /* MediaPlayer.framework in Frameworks */,
@@ -2879,9 +2879,9 @@
 				2785F7FE274F707F00FDF88F /* InAppSettings */,
 				2755491B274B7B3C0098A3CD /* TextRecognizing */,
 				279E8ECC27425BAE000E1BD5 /* InAppVideoServices */,
-				27B8E7C42742523D001B8DF7 /* TGModernGrowingTextView */,
-				27B8E7BE27424EDE001B8DF7 /* TGCurrencyFormatter */,
-				27B8E7BB27424E4F001B8DF7 /* TGGifConverter */,
+				27B8E7C42742523D001B8DF7 /* AnsibleModernGrowingTextView */,
+				27B8E7BE27424EDE001B8DF7 /* AnsibleCurrencyFormatter */,
+				27B8E7BB27424E4F001B8DF7 /* AnsibleGifConverter */,
 				2796FF0E27424A7C00DA653C /* DateUtils */,
 				2796FF09274248BC00DA653C /* ObjcUtils */,
 				2796FF062742480500DA653C /* CalendarUtils */,
@@ -2890,7 +2890,7 @@
 				2796FEFF2742427200DA653C /* GZIP */,
 				2796FEFC2742417C00DA653C /* FastBlur */,
 				2796FEF92742401E00DA653C /* OCR */,
-				2796FEF627423EE800DA653C /* TGPassportMRZ */,
+				2796FEF627423EE800DA653C /* AnsiblePassportMRZ */,
 				2796FEF327423C8500DA653C /* EDSunriseSet */,
 				2796FEF02742390000DA653C /* EmojiSuggestions */,
 				276651DA273D569400671FB4 /* ApiCredentials */,
@@ -2915,10 +2915,10 @@
 				27B6D0462739382800C785C7 /* TelegramCore */,
 				27F3B75F273933C800B81F10 /* GraphUI */,
 				27F3B75A2739300C00B81F10 /* SSignalKit */,
-				27F3B7572739212200B81F10 /* TGUIKit */,
+				27F3B7572739212200B81F10 /* AnsibleUIKit */,
 				27F3B75227391D7700B81F10 /* AnsibleIconsTheme */,
 				27F3B7632739360100B81F10 /* GraphCore */,
-				279E8EC9274259B7000E1BD5 /* TGVideoCameraMovie */,
+				279E8EC9274259B7000E1BD5 /* AnsibleVideoCameraMovie */,
 				277460EC2FDAB60400AEA204 /* RichTextEditorUI */,
 			);
 			name = Packages;
@@ -3631,7 +3631,7 @@
 				5A62F6BDEB7EDB55D4C17A92 /* FoundationUtils */,
 				27F3B75527391E9200B81F10 /* AnsibleIconsTheme */,
 				27F3B75B2739320000B81F10 /* SwiftSignalKit */,
-				27F3B75D2739320F00B81F10 /* TGUIKit */,
+				27F3B75D2739320F00B81F10 /* AnsibleUIKit */,
 				27B6D0482739388600C785C7 /* TelegramApi */,
 				27B6D04A2739388600C785C7 /* TelegramCore */,
 				27B6D04C2739388C00C785C7 /* Postbox */,
@@ -3804,7 +3804,7 @@
 				27B6D05427393A3D00C785C7 /* GraphCore */,
 				27B6D05627393A3D00C785C7 /* GraphUI */,
 				27B6D05827393A4200C785C7 /* SwiftSignalKit */,
-				27B6D05A27393A4700C785C7 /* TGUIKit */,
+				27B6D05A27393A4700C785C7 /* AnsibleUIKit */,
 				27E5C3BC2739761300C52BA0 /* MurMurHash32 */,
 				277E829C273A8E890037118C /* MtProtoKit */,
 				2700B221273ADC94003E4018 /* HotKey */,
@@ -3820,7 +3820,7 @@
 				276651DB273D574900671FB4 /* ApiCredentials */,
 				2796FEF127423A8600DA653C /* EmojiSuggestions */,
 				2796FEF427423D2100DA653C /* EDSunriseSet */,
-				2796FEF727423F5300DA653C /* TGPassportMRZ */,
+				2796FEF727423F5300DA653C /* AnsiblePassportMRZ */,
 				2796FEFA2742408C00DA653C /* OCR */,
 				2796FEFD274241D600DA653C /* FastBlur */,
 				2796FF00274242D200DA653C /* GZIP */,
@@ -3829,10 +3829,10 @@
 				2796FF0A274248FB00DA653C /* ObjcUtils */,
 				2796FF0C274249B000DA653C /* RingBuffer */,
 				2796FF0F27424BA800DA653C /* DateUtils */,
-				27B8E7BC27424E90001B8DF7 /* TGGifConverter */,
-				27B8E7BF27424F2E001B8DF7 /* TGCurrencyFormatter */,
-				27B8E7C527425279001B8DF7 /* TGModernGrowingTextView */,
-				279E8ECA274259EE000E1BD5 /* TGVideoCameraMovie */,
+				27B8E7BC27424E90001B8DF7 /* AnsibleGifConverter */,
+				27B8E7BF27424F2E001B8DF7 /* AnsibleCurrencyFormatter */,
+				27B8E7C527425279001B8DF7 /* AnsibleModernGrowingTextView */,
+				279E8ECA274259EE000E1BD5 /* AnsibleVideoCameraMovie */,
 				279E8ECD27425CBD000E1BD5 /* InAppVideoServices */,
 				2755491C274B7FCB0098A3CD /* TextRecognizing */,
 				27D696EF274F8449008A723E /* KeyboardKey */,
@@ -5429,9 +5429,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = EDSunriseSet;
 		};
-		2796FEF727423F5300DA653C /* TGPassportMRZ */ = {
+		2796FEF727423F5300DA653C /* AnsiblePassportMRZ */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TGPassportMRZ;
+			productName = AnsiblePassportMRZ;
 		};
 		2796FEFA2742408C00DA653C /* OCR */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5469,9 +5469,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftMath;
 		};
-		279E8ECA274259EE000E1BD5 /* TGVideoCameraMovie */ = {
+		279E8ECA274259EE000E1BD5 /* AnsibleVideoCameraMovie */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TGVideoCameraMovie;
+			productName = AnsibleVideoCameraMovie;
 		};
 		279E8ECD27425CBD000E1BD5 /* InAppVideoServices */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5553,21 +5553,21 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftSignalKit;
 		};
-		27B6D05A27393A4700C785C7 /* TGUIKit */ = {
+		27B6D05A27393A4700C785C7 /* AnsibleUIKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TGUIKit;
+			productName = AnsibleUIKit;
 		};
-		27B8E7BC27424E90001B8DF7 /* TGGifConverter */ = {
+		27B8E7BC27424E90001B8DF7 /* AnsibleGifConverter */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TGGifConverter;
+			productName = AnsibleGifConverter;
 		};
-		27B8E7BF27424F2E001B8DF7 /* TGCurrencyFormatter */ = {
+		27B8E7BF27424F2E001B8DF7 /* AnsibleCurrencyFormatter */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TGCurrencyFormatter;
+			productName = AnsibleCurrencyFormatter;
 		};
-		27B8E7C527425279001B8DF7 /* TGModernGrowingTextView */ = {
+		27B8E7C527425279001B8DF7 /* AnsibleModernGrowingTextView */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TGModernGrowingTextView;
+			productName = AnsibleModernGrowingTextView;
 		};
 		27BE52412D9AC72600F40837 /* TdBinding */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5669,9 +5669,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftSignalKit;
 		};
-		27F3B75D2739320F00B81F10 /* TGUIKit */ = {
+		27F3B75D2739320F00B81F10 /* AnsibleUIKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TGUIKit;
+			productName = AnsibleUIKit;
 		};
 		27F3BB762B48375800BC37C2 /* AnsibleMedia */ = {
 			isa = XCSwiftPackageProductDependency;

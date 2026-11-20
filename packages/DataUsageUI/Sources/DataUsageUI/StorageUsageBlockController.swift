@@ -1,6 +1,6 @@
 import Foundation
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import SwiftSignalKit
 import Postbox
@@ -100,7 +100,7 @@ final class SegmentContainerView : View {
     }
 
     override func accessibilityChildren() -> [Any]? {
-        guard TGUIKitAccessibility.isEnabled else {
+        guard AnsibleUIKitAccessibility.isEnabled else {
             return super.accessibilityChildren()
         }
         return collections.map { collection in

@@ -11,7 +11,7 @@ baseline='6ecf012c1'
 original=subprocess.check_output(['git','show',baseline+':'+path],cwd=root,text=True)
 current=(root/path).read_text()
 helper=current[current.index('struct ChatTopicIconIdentity:'):current.index('public final class TopicReplyItemLayout')]
-output='import Cocoa\nimport TGUIKit\n'+helper
+output='import Cocoa\nimport AnsibleUIKit\n'+helper
 pre_identity=subprocess.check_output(['git','show','c31bc868a:'+path],cwd=root,text=True)
 model_source = pre_identity if '--identity-baseline' in sys.argv else current
 generated_id = re.search(r'fileId: (.+?), file: file, emoji:', model_source).group(1)
@@ -21,9 +21,9 @@ for name,source in [('NativeTopicView',original),('PreIdentityTopicView',pre_ide
     frame = 'textView.frame' if name == 'NativeTopicView' else 'textLayer.frame.insetBy(dx: 2, dy: 3)'
     output+=body+'\nextension '+name+' {\nvar iconsForTesting: [InlineStickerItemLayer] { Array(inlineStickerItemViews.values) }\nvar textFrameForTesting: CGRect { '+frame+' }\n}\n'
 (lab/'Tests/TopicTests/Generated.swift').write_text(output)
-(lab/'generation.json').write_text(json.dumps({'baseline':baseline,'baseline_sha256':hashlib.sha256(original.encode()).hexdigest(),'source_sha256':hashlib.sha256(current.encode()).hexdigest(),'generated_sha256':hashlib.sha256(output.encode()).hexdigest(),'scope':'Complete native/current TopicReplyItemView with actual TGUIKit rendering; model/context and emoji decoding stand-ins.'},indent=2)+'\n')
+(lab/'generation.json').write_text(json.dumps({'baseline':baseline,'baseline_sha256':hashlib.sha256(original.encode()).hexdigest(),'source_sha256':hashlib.sha256(current.encode()).hexdigest(),'generated_sha256':hashlib.sha256(output.encode()).hexdigest(),'scope':'Complete native/current TopicReplyItemView with actual AnsibleUIKit rendering; model/context and emoji decoding stand-ins.'},indent=2)+'\n')
 
-binding_output='import Cocoa\nimport TGUIKit\n'
+binding_output='import Cocoa\nimport AnsibleUIKit\n'
 binding_hashes={}
 for file,kind in [('ChatTopicSeparatorItem.swift','Separator'),('MonoforumVerticalView.swift','Vertical')]:
     binding_path='packages/ChatUI/Sources/ChatUI/'+file

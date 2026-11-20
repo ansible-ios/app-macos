@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import ProgressReference
 
 protocol ProgressBar: Control {
@@ -264,8 +264,8 @@ final class ProgressTests: XCTestCase {
 
     func testAccessibilityAdjustments() {
         let (old, new) = pair()
-        TGUIKitAccessibility.isEnabled = true
-        defer { TGUIKitAccessibility.isEnabled = true }
+        AnsibleUIKitAccessibility.isEnabled = true
+        defer { AnsibleUIKitAccessibility.isEnabled = true }
         var values: [[Float]] = []
         for bar: any ProgressBar in [old, new] {
             var updates: [Float] = []
@@ -280,7 +280,7 @@ final class ProgressTests: XCTestCase {
             values.append(updates)
         }
         XCTAssertEqual(values[0], values[1])
-        TGUIKitAccessibility.isEnabled = false
+        AnsibleUIKitAccessibility.isEnabled = false
         XCTAssertFalse(new.accessibilityPerformIncrement())
     }
 

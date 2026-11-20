@@ -1,14 +1,14 @@
 import Cocoa
 import XCTest
 import QuartzCore
-import TGUIKit
+import AnsibleUIKit
 @testable import FoldingViewHarness
 
 final class QuoteIconBenchmarkTests: XCTestCase {
     func testTintAndCompleteDrawingCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_QUOTE_ICON_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in quote icon benchmark") }
         guard let path = ProcessInfo.processInfo.environment["CHAT_COPY_ICON_BUNDLE"], let bundle = Bundle(path: path) else { throw XCTSkip("Supply the asset-only probe bundle") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let reverse = ProcessInfo.processInfo.environment["CHAT_QUOTE_ICON_REVERSE"] == "1"
         let oldScale = System.backingScale, previous = AnsibleThemeHooks.imageOverride
         System.updateScaleFactor(2)

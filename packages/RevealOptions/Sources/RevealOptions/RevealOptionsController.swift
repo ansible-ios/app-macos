@@ -1,5 +1,5 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 
 public final class RevealOptionsController {
     private weak var hostView: NSView?

@@ -48,7 +48,7 @@ def freeze_package(source):
     (target / 'Package.swift').write_text(rewritten)
     return target
 
-kit = freeze_package(root / 'packages/TGUIKit')
+kit = freeze_package(root / 'packages/AnsibleUIKit')
 helper = root / 'packages/ChatUI/Sources/ChatUI/ChatReactionTextLayer.swift'
 reaction = root / 'packages/ChatUI/Sources/ChatUI/ChatReactionsView.swift'
 source_hashes[str(helper.relative_to(root))] = digest(helper)
@@ -56,7 +56,7 @@ source_hashes[str(reaction.relative_to(root))] = digest(reaction)
 subprocess.run([sys.executable, str(lab / 'generate.py'), str(root), str(output)], check=True)
 manifest = output / 'Package.swift'
 assert digest(manifest) == digest(lab / 'Package.swift'), 'Lab manifest changed during snapshot'
-manifest.write_text(manifest.read_text().replace('../../../packages/TGUIKit', str(kit)))
+manifest.write_text(manifest.read_text().replace('../../../packages/AnsibleUIKit', str(kit)))
 for source, expected in source_hashes.items():
     assert digest(root / source) == expected, 'Source changed during snapshot: ' + source
 for source in lab.rglob('*'):
@@ -67,5 +67,5 @@ for source in lab.rglob('*'):
 for source, expected in source_hashes.items():
     assert digest(root / source) == expected, 'Source changed during snapshot: ' + source
 frozen_hashes = {str(path.relative_to(output)): digest(path) for path in output.rglob('*') if path.is_file()}
-(output / 'provenance.json').write_text(json.dumps({'production_helper_sha256': digest(helper), 'source_sha256': source_hashes, 'frozen_sha256': frozen_hashes, 'scope': 'Exact reaction text layer and extracted passive bindings plus real TGUIKit and local dependencies; icon stand-in; no media, avatar fetches or account actions.'}, indent=2, sort_keys=True) + '\n')
+(output / 'provenance.json').write_text(json.dumps({'production_helper_sha256': digest(helper), 'source_sha256': source_hashes, 'frozen_sha256': frozen_hashes, 'scope': 'Exact reaction text layer and extracted passive bindings plus real AnsibleUIKit and local dependencies; icon stand-in; no media, avatar fetches or account actions.'}, indent=2, sort_keys=True) + '\n')
 print(output)

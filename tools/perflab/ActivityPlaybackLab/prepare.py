@@ -20,7 +20,7 @@ geometry = geometry[geometry.index('fileprivate let minDiameter:'):geometry.inde
 theme_path = root / 'packages/AnsibleTheme/Sources/AnsibleTheme/AnsiblePresentationTheme.swift'
 theme = theme_path.read_text()
 theme = theme[theme.index('public struct ActivitiesTheme'):theme.index('public final class AnsibleTabBarTheme')]
-output = 'import AppKit\nimport TGUIKit\n' + theme + geometry
+output = 'import AppKit\nimport AnsibleUIKit\n' + theme + geometry
 for prefix, body in [('Current', current), ('Reference', reference)]:
     for name in ['ChatActivityAnimation', 'ChatActivityIndicatorLayer', 'ChatActivitiesView']:
         body = body.replace(name, prefix + name)

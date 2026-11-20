@@ -39,7 +39,7 @@ old_item = subprocess.check_output(['git', 'show', base+':'+item_path], cwd=root
 old_view = subprocess.check_output(['git', 'show', base+':'+view_path], cwd=root, text=True)
 item = old_item if '--baseline' in sys.argv else (root/item_path).read_text()
 view = old_view if '--baseline' in sys.argv else (root/view_path).read_text()
-output = 'import Cocoa\nimport TGUIKit\n' + block(item, 'func chatListGramBadgeHidesUnreadCounter(').replace('Int32?', 'Int?') + '\n' + generate('ReferenceItem', old_item) + generate('CandidateItem', item)
+output = 'import Cocoa\nimport AnsibleUIKit\n' + block(item, 'func chatListGramBadgeHidesUnreadCounter(').replace('Int32?', 'Int?') + '\n' + generate('ReferenceItem', old_item) + generate('CandidateItem', item)
 for name, source in [('referenceGate', old_view), ('candidateGate', view)]:
     gate = next(line.strip() for line in source.splitlines() if 'if ' in line and 'item.ctxShortBadgeNode' in line)
     output += f'func {name}(_ item: GateItem) -> Bool {{\n    {gate}\n        return badgeNode.size.width > 0\n    }}\n    return false\n}}\n'

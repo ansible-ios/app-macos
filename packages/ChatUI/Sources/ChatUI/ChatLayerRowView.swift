@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 protocol ChatLayerHostedVisibility: AnyObject {
     var visibilityView: NSView? { get set }

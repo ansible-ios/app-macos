@@ -1,7 +1,7 @@
 import Foundation
 import WebKit
 import UserNotifications
-import TGUIKit
+import AnsibleUIKit
 import AppAnalytics
 import InputDataUI
 import SwiftSignalKit

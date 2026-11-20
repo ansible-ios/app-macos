@@ -4,7 +4,7 @@ TransformImageView previously rejected stale results at delivery, but a transfor
 
 The view now cancels its render state before disposing the upstream subscription. The rendering pipeline checks that state at entry, after drawing returns a non-nil context, and before protected-buffer conversion. Clear, replacement, explicit disposal and view deallocation all invalidate the state. Work already inside a drawing or conversion operation is not interrupted; these are cooperative checkpoints. Cancellation just after a checkpoint can still allow that stage to finish.
 
-The render state replaces the existing Atomic used for the already-rendered shortcut. It uses a small os_unfair_lock, the same primitive already used by TGUIKit's display-link gate. No lock is held while invoking transformations, comparing arguments, converting pixels or disposing subscriptions. Replaced argument values are released outside the lock. Existing source-version guards continue to protect delivery and reentrant callbacks.
+The render state replaces the existing Atomic used for the already-rendered shortcut. It uses a small os_unfair_lock, the same primitive already used by AnsibleUIKit's display-link gate. No lock is held while invoking transformations, comparing arguments, converting pixels or disposing subscriptions. Replaced argument values are released outside the lock. Existing source-version guards continue to protect delivery and reentrant callbacks.
 
 ## Evidence and baseline
 
@@ -36,12 +36,12 @@ For each cancellation-after-drawing scenario, the original finalized 190 images 
 
 The allocation check uses malloc_size on real instances. Both view instances occupy 640 bytes. The original Atomic state occupies 320 bytes and the new state 224 bytes: one state allocation in either implementation, with 96 fewer object bytes per transform binding on the tested host. This does not measure resident memory, allocator metadata or whole-app memory.
 
-The final implementation passed all 298 TGUIKit functional tests and all 134 chat mini-app functional tests in both release and AddressSanitizer: 432 in each configuration. There were 13 and 14 optional benchmarks skipped, respectively. All 21 image lifecycle tests also passed ThreadSanitizer without a race report.
+The final implementation passed all 298 AnsibleUIKit functional tests and all 134 chat mini-app functional tests in both release and AddressSanitizer: 432 in each configuration. There were 13 and 14 optional benchmarks skipped, respectively. All 21 image lifecycle tests also passed ThreadSanitizer without a race report.
 
 Source hashes and raw logs are recorded in render-cancellation-provenance.json and results/render-cancellation/. Tests use the current working tree, including unrelated pending changes. The full Telegram application was not built or benchmarked.
 
 ```sh
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter TransformImageRenderCancellationTests
-IMAGE_RENDER_BENCHMARK=1 swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter TransformImageRenderBenchmarkTests
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-tsan --sanitize thread --filter 'TransformImage(RenderCancellation|Signal)Tests'
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter TransformImageRenderCancellationTests
+IMAGE_RENDER_BENCHMARK=1 swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter TransformImageRenderBenchmarkTests
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-tsan --sanitize thread --filter 'TransformImage(RenderCancellation|Signal)Tests'
 ```

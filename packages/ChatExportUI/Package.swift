@@ -6,7 +6,7 @@ let deps: [(String, String)] = [
     ("AnsibleLinks", "../AnsibleLinks"),
     ("AnsibleMediaUtils", "../AnsibleMediaUtils"),
     ("ShortPeerRow", "../ShortPeerRow"),
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("ColorPalette", "../ColorPalette"),
     ("Localization", "../Localization"),
     ("AnsibleTheme", "../AnsibleTheme"),

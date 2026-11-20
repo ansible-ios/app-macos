@@ -2,7 +2,7 @@
 import Cocoa
 import CoreVideo
 import Metal
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import CallVideoLayer
 import PerfLab

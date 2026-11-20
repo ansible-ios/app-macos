@@ -9,7 +9,7 @@ let package = Package(
         .library(name: "FilePanels", targets: ["FilePanels"]),
     ],
     dependencies: [
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "AnsibleTheme", path: "../AnsibleTheme"),
         .package(name: "ColorPalette", path: "../ColorPalette"),
         .package(name: "AppAnalytics", path: "../AppAnalytics"),
@@ -18,7 +18,7 @@ let package = Package(
         .target(
             name: "FilePanels",
             dependencies: [
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "AnsibleTheme", package: "AnsibleTheme", condition: nil),
                 .product(name: "ColorPalette", package: "ColorPalette", condition: nil),
                 .product(name: "AppAnalytics", package: "AppAnalytics", condition: nil),

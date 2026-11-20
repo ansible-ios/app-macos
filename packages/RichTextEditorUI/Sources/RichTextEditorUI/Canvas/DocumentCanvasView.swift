@@ -136,7 +136,7 @@ final class DocumentCanvasView: NSView {
     /// block id, kind, media-area size, and per-tile frames (controls-local coords), returns a view the
     /// canvas positions over the media area (above tiles + select overlays). nil → no controls.
     var mediaControlsProvider: ((MediaControlsContext) -> NSView?)? { didSet { needsLayout = true } }
-    /// Host hook: present a custom (TGUIKit) context menu. Called from `menu(for:)` with the click location
+    /// Host hook: present a custom (AnsibleUIKit) context menu. Called from `menu(for:)` with the click location
     /// (canvas coords), the media under it, and the selection state; returning true suppresses the native menu.
     var contextMenuRequested: ((_ location: NSPoint, _ media: EditorMediaContext?, _ hasSelection: Bool, _ event: NSEvent) -> Bool)?
     /// Live collage tile views keyed by "groupID#index" so they survive edits/undo while the group persists.

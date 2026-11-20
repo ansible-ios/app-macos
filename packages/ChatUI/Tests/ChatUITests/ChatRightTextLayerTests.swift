@@ -1,6 +1,6 @@
 import XCTest
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatUI
 
 final class ChatRightTextLayerTests: XCTestCase {

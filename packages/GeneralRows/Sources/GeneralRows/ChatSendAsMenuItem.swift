@@ -1,6 +1,6 @@
 import Foundation
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import AnsibleTheme
 import ColorPalette
 import Localization

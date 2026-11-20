@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import Darwin
 @testable import BadgeLab
 
@@ -10,7 +10,7 @@ private final class BadgeDisplaySpy: View {
 }
 
 final class BadgeTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     private func field<T>(_ object: Any, _ name: String, as: T.Type = T.self) -> T? {
         Mirror(reflecting: object).children.first(where: { $0.label == name })?.value as? T

@@ -4,7 +4,7 @@ import PackageDescription
 
 let deps: [(String, String)] = [
     ("AppAnalytics", "../AppAnalytics"),
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("ColorPalette", "../ColorPalette"),
     ("InAppSettings", "../InAppSettings"),
     ("AnsibleTheme", "../AnsibleTheme"),
@@ -13,7 +13,7 @@ let deps: [(String, String)] = [
     ("AnsibleMedia", "../AnsibleMedia"),
     ("AnsibleMediaUtils", "../AnsibleMediaUtils"),
     ("ObjcUtils", "../ObjcUtils"),
-    ("TGVideoCameraMovie", "../TGVideoCameraMovie"),
+    ("AnsibleVideoCameraMovie", "../AnsibleVideoCameraMovie"),
     ("GZIP", "../GZIP"),
 ]
 

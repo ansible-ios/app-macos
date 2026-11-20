@@ -7,7 +7,7 @@ import SwiftSignalKit
 import RangeSet
 import Localization
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import AudioPlayerCore
 import MessageTextUtils

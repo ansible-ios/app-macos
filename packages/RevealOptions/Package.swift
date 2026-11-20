@@ -9,20 +9,20 @@ let package = Package(
         .library(name: "RevealOptions", targets: ["RevealOptions"]),
     ],
     dependencies: [
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
     ],
     targets: [
         .target(
             name: "RevealOptions",
             dependencies: [
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
             ],
             path: "Sources/RevealOptions"),
         .testTarget(
             name: "RevealOptionsTests",
             dependencies: [
                 "RevealOptions",
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
             ],
             path: "Tests/RevealOptionsTests"),
     ]

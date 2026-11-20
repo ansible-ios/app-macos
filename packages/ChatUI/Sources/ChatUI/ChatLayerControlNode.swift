@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 
 private let longHandleDisposable = MetaDisposable()

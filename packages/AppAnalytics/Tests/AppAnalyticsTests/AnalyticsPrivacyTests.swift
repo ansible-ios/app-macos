@@ -1,7 +1,7 @@
 import Foundation
 import XCTest
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 @testable import AppAnalytics
 
 final class AnalyticsPrivacyTests: XCTestCase {

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 struct HeaderItem {
     var forwardHeader: TextViewLayout?
     var defLeftInset: CGFloat

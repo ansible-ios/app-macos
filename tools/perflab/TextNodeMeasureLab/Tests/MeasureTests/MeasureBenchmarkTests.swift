@@ -2,10 +2,10 @@ import AppKit
 import CoreText
 import QuartzCore
 import XCTest
-import class TGUIKit.TextNode
-import class TGUIKit.TextNodeLayout
-import class TGUIKitBaseline.TextNode
-import class TGUIKitBaseline.TextNodeLayout
+import class AnsibleUIKit.TextNode
+import class AnsibleUIKit.TextNodeLayout
+import class AnsibleUIKitBaseline.TextNode
+import class AnsibleUIKitBaseline.TextNodeLayout
 
 final class MeasureBenchmarkTests: XCTestCase {
     func testCosts() throws {
@@ -46,10 +46,10 @@ final class MeasureBenchmarkTests: XCTestCase {
             let size = CGSize(width: width, height: 500)
             for selected in [false, true] {
                 measure(name + "_selected_\(selected)", old: {
-                    let layout = TGUIKitBaseline.TextNode.layoutText(value, nil, limit, .middle, size, nil, selected, .left).0
+                    let layout = AnsibleUIKitBaseline.TextNode.layoutText(value, nil, limit, .middle, size, nil, selected, .left).0
                     return layout.size.width + layout.size.height
                 }, new: {
-                    let layout = TGUIKit.TextNode.layoutText(value, nil, limit, .middle, size, nil, selected, .left).0
+                    let layout = AnsibleUIKit.TextNode.layoutText(value, nil, limit, .middle, size, nil, selected, .left).0
                     return layout.size.width + layout.size.height
                 })
             }
@@ -60,30 +60,30 @@ final class MeasureBenchmarkTests: XCTestCase {
         let labels = [title, status, detail]
         measure("three_label_construction", old: {
             var sum: CGFloat = 0
-            for label in labels { sum += TGUIKitBaseline.TextNode.layoutText(label, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left).0.size.width }
+            for label in labels { sum += AnsibleUIKitBaseline.TextNode.layoutText(label, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left).0.size.width }
             return sum
         }, new: {
             var sum: CGFloat = 0
-            for label in labels { sum += TGUIKit.TextNode.layoutText(label, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left).0.size.width }
+            for label in labels { sum += AnsibleUIKit.TextNode.layoutText(label, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left).0.size.width }
             return sum
         })
         let context = try XCTUnwrap(CGContext(data: nil, width: 400, height: 80, bitsPerComponent: 8, bytesPerRow: 1600, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue))
         context.scaleBy(x: 2, y: 2)
         measure("label_measure_and_draw", count: 2000, old: {
-            let value = TGUIKitBaseline.TextNode.layoutText(title, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left)
+            let value = AnsibleUIKitBaseline.TextNode.layoutText(title, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left)
             value.1.draw(CGRect(x: 2, y: 2, width: 160, height: 20), in: context, backingScaleFactor: 2, backgroundColor: .clear)
             return value.0.size.width
         }, new: {
-            let value = TGUIKit.TextNode.layoutText(title, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left)
+            let value = AnsibleUIKit.TextNode.layoutText(title, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left)
             value.1.draw(CGRect(x: 2, y: 2, width: 160, height: 20), in: context, backingScaleFactor: 2, backgroundColor: .clear)
             return value.0.size.width
         })
-        let old = TGUIKitBaseline.TextNode.layoutText(title, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left)
-        let new = TGUIKit.TextNode.layoutText(title, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left)
+        let old = AnsibleUIKitBaseline.TextNode.layoutText(title, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left)
+        let new = AnsibleUIKit.TextNode.layoutText(title, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left)
         measure("unchanged_layout_reuse", count: 200000, old: {
-            TGUIKitBaseline.TextNode.layoutText(maybeNode: old.1, title, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left).0.size.width
+            AnsibleUIKitBaseline.TextNode.layoutText(maybeNode: old.1, title, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left).0.size.width
         }, new: {
-            TGUIKit.TextNode.layoutText(maybeNode: new.1, title, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left).0.size.width
+            AnsibleUIKit.TextNode.layoutText(maybeNode: new.1, title, nil, 1, .end, CGSize(width: 160, height: 20), nil, false, .left).0.size.width
         })
         XCTAssertGreaterThan(sink, 0)
         try JSONSerialization.data(withJSONObject: ["unit": "microseconds_per_operation", "reverse": reverse, "batches": output], options: [.prettyPrinted, .sortedKeys]).write(to: URL(fileURLWithPath: "/tmp/text-node-measure-benchmark.json"))

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 private let glyphPadding: CGFloat = 2
 private let glyphCacheLimit = 768

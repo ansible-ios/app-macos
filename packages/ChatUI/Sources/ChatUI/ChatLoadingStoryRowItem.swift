@@ -2,7 +2,7 @@ import AppKit
 import Postbox
 import SwiftSignalKit
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import ChatHistoryModel
 import AnsibleTheme
 import AnsibleContext

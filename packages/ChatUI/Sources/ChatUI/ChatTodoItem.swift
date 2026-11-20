@@ -1,6 +1,6 @@
 import Cocoa
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import ComponentsUI
 import TelegramCore
 import InAppSettings

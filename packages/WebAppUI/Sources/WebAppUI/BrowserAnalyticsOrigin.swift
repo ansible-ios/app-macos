@@ -3,7 +3,7 @@ import Foundation
 import ObjectiveC
 import SwiftSignalKit
 import AnsibleContext
-import TGUIKit
+import AnsibleUIKit
 
 private var browserAnalyticsOriginKey: UInt8 = 0
 

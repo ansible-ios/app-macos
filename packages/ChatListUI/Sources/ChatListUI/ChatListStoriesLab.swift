@@ -1,7 +1,7 @@
 #if DEBUG
 import Cocoa
 import ObjectiveC
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import AnsibleContext
 import PerfLab

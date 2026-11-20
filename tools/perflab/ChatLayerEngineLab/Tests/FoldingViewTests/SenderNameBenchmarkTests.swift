@@ -2,13 +2,13 @@ import Cocoa
 import XCTest
 import QuartzCore
 import Darwin
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class SenderNameBenchmarkTests: XCTestCase {
     func testSenderBindingCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_SENDER_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in sender name benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let factory = SenderNameTests(), frame = NSRect(x: 0, y: 0, width: 300, height: 120)
         var results: [String: [[Double]]] = [:], sink = 0
         for present in [false, true] {
@@ -53,7 +53,7 @@ final class SenderNameBenchmarkTests: XCTestCase {
 
     func testRetainedSenderMemory() throws {
         guard let mode = ProcessInfo.processInfo.environment["CHAT_SENDER_MEMORY"], ["native", "layers"].contains(mode) else { throw XCTSkip("Opt-in fresh-process sender memory probe") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let present = ProcessInfo.processInfo.environment["CHAT_SENDER_PRESENT"] == "1", count = 5000
         let factory = SenderNameTests(), frame = NSRect(x: 0, y: 0, width: 300, height: 120)
         let items = autoreleasepool { (0..<count).map { SenderBindingItem(present ? factory.layout("Sender \($0)", link: "peer-\($0)") : nil) } }

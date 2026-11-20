@@ -1,6 +1,6 @@
 import Cocoa
 import HTMLBubbles
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 
 import SwiftSignalKit

@@ -19,7 +19,7 @@ DRAWING_CONTEXT_BENCHMARK=1 DRAWING_CONTEXT_REVERSE=1 swift test --package-path 
 cp /tmp/drawing-context-benchmark.json /tmp/drawing-context-reverse.json
 ```
 
-Use a fresh output directory and run benchmarks without competing compilers. The generator compiles two complete copies of TGUIKit. The baseline restores the captured original DrawingContext class; all other source files are identical. Both public APIs are called from the same test module, avoiding the different optimization boundaries of an extracted reference class. The default benchmark runs before installing custom settings; separate cases cover installed sRGB, half-float linear sRGB and display conversion to P3. Nine paired batches alternate execution order, and a second process reverses the initial order.
+Use a fresh output directory and run benchmarks without competing compilers. The generator compiles two complete copies of AnsibleUIKit. The baseline restores the captured original DrawingContext class; all other source files are identical. Both public APIs are called from the same test module, avoiding the different optimization boundaries of an extracted reference class. The default benchmark runs before installing custom settings; separate cases cover installed sRGB, half-float linear sRGB and display conversion to P3. Nine paired batches alternate execution order, and a second process reverses the initial order.
 
 ## Validation scope
 
@@ -29,7 +29,7 @@ The format-changing concurrency test disables display conversion. Simultaneous s
 
 ## Measurements
 
-Release results from two complete TGUIKit libraries, in microseconds per operation. Percentages are time saved; negative numbers indicate more time.
+Release results from two complete AnsibleUIKit libraries, in microseconds per operation. Percentages are time saved; negative numbers indicate more time.
 
 | Workload | Forward order | Reversed order |
 | --- | ---: | ---: |
@@ -48,6 +48,6 @@ The color-profile regression requires graphics settings to change. Current AppDe
 
 ## Recorded regression results
 
-Release, Address Sanitizer and Thread Sanitizer each pass all five focused functional tests; each skips the opt-in benchmark. The frozen TGUIKit suite passes 397 tests and skips 18 optional measurements. The chat/folding-text suite passes 336 tests and skips 34; its fixture-dependent asset-loader test is then run separately with the compiled icon bundle and passes, bringing functional coverage to 337 tests. The icon-tint suite passes all 14 functional tests with one benchmark skipped.
+Release, Address Sanitizer and Thread Sanitizer each pass all five focused functional tests; each skips the opt-in benchmark. The frozen AnsibleUIKit suite passes 397 tests and skips 18 optional measurements. The chat/folding-text suite passes 336 tests and skips 34; its fixture-dependent asset-loader test is then run separately with the compiled icon bundle and passes, bringing functional coverage to 337 tests. The icon-tint suite passes all 14 functional tests with one benchmark skipped.
 
 Both complete library source trees and their test sources reproduce exactly. All 1,316 recorded compiler inputs remain unchanged after validation. The final production source matches the frozen tested implementation. Results include raw paired batches, complete compressed logs, candidate/baseline drawing sources and input hashes. Exploratory extracted-reference timings are excluded from the reported results because their compilation boundary differed from production.

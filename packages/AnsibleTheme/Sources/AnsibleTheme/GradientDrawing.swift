@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public let premiumGradient = [NSColor(rgb: 0x6B93FF), NSColor(rgb: 0x976FFF), NSColor(rgb: 0xE46ACE)]
 

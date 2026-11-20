@@ -6,7 +6,7 @@ The container is now created on the first valid gesture and released after dismi
 
 ## Validation scope
 
-The mini-app compiles the complete production `ChatSwipeToReplyView`, the row's swipe properties/methods, and its swipe layout dispatch against real TGUIKit/AppKit/Core Animation. `prepare.py` extracts these regions from the current source and baseline `4d6b34ae4`; class renaming and visibility adjustments permit both implementations in one test target. A small native row shell and model/theme stand-ins replace unrelated chat machinery. The physical haptic call becomes a counter, allowing exact threshold assertions without triggering hardware.
+The mini-app compiles the complete production `ChatSwipeToReplyView`, the row's swipe properties/methods, and its swipe layout dispatch against real AnsibleUIKit/AppKit/Core Animation. `prepare.py` extracts these regions from the current source and baseline `4d6b34ae4`; class renaming and visibility adjustments permit both implementations in one test target. A small native row shell and model/theme stand-ins replace unrelated chat machinery. The physical haptic call becomes a counter, allowing exact threshold assertions without triggering hardware.
 
 The baseline reproduces ten failed assertions in seven tests, including premature cleanup of a new gesture, reentrant reply reset, unnecessary allocations, retained containers, and shifting an invalid row. The candidate adds four more functional tests for return-animation cancellation, resize geometry, weak release, and rendering. Nine exact bitmap comparisons cover three gesture distances at 1x/2x/3x. The fixture icon explicitly clears its transparent pixels because `generateImage` supplies an uninitialized drawing buffer.
 

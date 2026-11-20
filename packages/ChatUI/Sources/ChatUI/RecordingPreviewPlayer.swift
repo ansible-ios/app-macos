@@ -1,12 +1,12 @@
 import Cocoa
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
 import AnsibleMedia
 import ObjcUtils
-import TGVideoCameraMovie
+import AnsibleVideoCameraMovie
 import AVFoundation
 import MediaRecorderUI
 

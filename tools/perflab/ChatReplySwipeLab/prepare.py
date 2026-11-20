@@ -21,6 +21,6 @@ def generate(name, source):
 control = current[current.index('public final class ChatSwipeToReplyView'):current.index('public class ChatRowView:')]
 assert control == original[original.index('public final class ChatSwipeToReplyView'):original.index('public class ChatRowView:')]
 control = control.replace('public ', '')
-output = 'import Cocoa\nimport TGUIKit\n' + control + generate('NativeRow', original) + generate('CandidateRow', current)
+output = 'import Cocoa\nimport AnsibleUIKit\n' + control + generate('NativeRow', original) + generate('CandidateRow', current)
 (lab/'Tests/SwipeTests/Generated.swift').write_text(output)
 (lab/'generation.json').write_text(json.dumps({'baseline': baseline, 'source_sha256': hashlib.sha256(current.encode()).hexdigest(), 'baseline_sha256': hashlib.sha256(original.encode()).hexdigest(), 'generated_sha256': hashlib.sha256(output.encode()).hexdigest(), 'scope': 'Production swipe control, row swipe fields/methods, and layout dispatch. Stand-in row shell/model/theme. Haptic hardware call replaced by a counter.'},indent=2)+'\n')

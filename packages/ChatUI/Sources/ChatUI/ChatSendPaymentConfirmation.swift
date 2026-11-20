@@ -1,7 +1,7 @@
 import AlertsUI
 import AppAnalytics
 import Dispatch
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import Localization
 

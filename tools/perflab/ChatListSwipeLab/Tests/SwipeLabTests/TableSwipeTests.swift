@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-@testable import TGUIKit
+@testable import AnsibleUIKit
 @testable import SwipeLab
 
 final class TableSwipeTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     private func fixture(_ count: Int) -> (NSWindow, TableView) {
         let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 320, height: 500), styleMask: .borderless, backing: .buffered, defer: false)

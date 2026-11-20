@@ -1,6 +1,6 @@
 import XCTest
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 @testable import GiftControls
 
 final class ControlsTests: XCTestCase {

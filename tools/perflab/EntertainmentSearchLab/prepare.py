@@ -112,7 +112,7 @@ func stickerResults(context: StickerContext, query: String, category: EmojiCateg
 inputs = read("packages/AnsibleUtils/Sources/AnsibleUtils/InputSources.swift")
 start = inputs.index("    public func searchEmoji(")
 end = inputs.index("    public override init()", start)
-extensions = read("packages/TGUIKit/Sources/Extensions.swift")
+extensions = read("packages/AnsibleUIKit/Sources/Extensions.swift")
 a = extensions.index("public extension Sequence where Iterator.Element: Hashable {")
 b = extensions.index("public extension Sequence where Iterator.Element: Equatable {", a)
 (out / "GeneratedInputSources.swift").write_text('''import Foundation

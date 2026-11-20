@@ -15,19 +15,19 @@ One event vocabulary for every Telegram client, so usage can be compared across 
 | [examples/macos-peer-info-visibility.md](examples/macos-peer-info-visibility.md) | One screen wired end to end on macOS. |
 | [fixtures/flows.json](fixtures/flows.json) | Conformance cases; every client's tests must pass them. |
 | [generated/events.json](generated/events.json) | The resolved registry for code generation in any language. Do not edit. |
-| [tools/tg_events.py](tools/tg_events.py) | `lint` checks names against the rules; `gen` writes `generated/events.json` (and Swift for macOS); `coverage` checks that every screen in the macOS code has a decision. |
+| [tools/ansible_events.py](tools/ansible_events.py) | `lint` checks names against the rules; `gen` writes `generated/events.json` (and Swift for macOS); `coverage` checks that every screen in the macOS code has a decision. |
 | [tools/macos_inventory.py](tools/macos_inventory.py) | Finds every controller, `InputDataController` screen, window, alert and file panel in the macOS code. |
 | [coverage/macos-interactions.md](coverage/macos-interactions.md) | Source-audited media routes, expected semantics, exclusion matrix and per-route test evidence requirements. |
 | [coverage/macos.yaml](coverage/macos.yaml) | The decision for every item in the macOS inventory: which registry screens it shows, or why it is not a screen. |
 | [coverage/macos.md](coverage/macos.md) | Generated report: screens and their sources, ignored items, registry screens macOS does not have. |
-| [tools/test_tg_events.py](tools/test_tg_events.py) | Tests for lint, the inventory scanner and the coverage check. |
+| [tools/test_ansible_events.py](tools/test_ansible_events.py) | Tests for lint, the inventory scanner and the coverage check. |
 
 ## Changing names
 
 ```sh
 pip install pyyaml
-python3 tools/tg_events.py lint
-python3 tools/tg_events.py gen
+python3 tools/ansible_events.py lint
+python3 tools/ansible_events.py gen
 ```
 
 Edit `events.yaml`, run `lint` until it passes, run `gen`, and send the change for review. Add names; never rename or reuse them (RULES.md §8).
@@ -35,8 +35,8 @@ Edit `events.yaml`, run `lint` until it passes, run `gen`, and send the change f
 macOS also keeps its screen coverage complete. After adding, removing or renaming a screen in the code:
 
 ```sh
-python3 tools/tg_events.py coverage
-python3 tools/tg_events.py gen --check --swift ../../packages/AppAnalytics/Sources/AppAnalytics/AnalyticsRegistry.swift
+python3 tools/ansible_events.py coverage
+python3 tools/ansible_events.py gen --check --swift ../../packages/AppAnalytics/Sources/AppAnalytics/AnalyticsRegistry.swift
 python3 -m unittest discover -s tools -p 'test_*.py'
 ```
 
@@ -47,7 +47,7 @@ For a subclass that inherits its runtime screen tags, its mapping may declare `t
 macOS also regenerates its Swift registry:
 
 ```sh
-python3 tools/tg_events.py gen --swift ../../packages/AppAnalytics/Sources/AppAnalytics/AnalyticsRegistry.swift
+python3 tools/ansible_events.py gen --swift ../../packages/AppAnalytics/Sources/AppAnalytics/AnalyticsRegistry.swift
 ```
 
 ## Implementing in another client with an AI agent

@@ -31,6 +31,6 @@ def generate(name, source):
     badge = block(source, '        if let guestChatBadge = guestChatBadge')
     return 'final class ' + name + ': MetadataEnvironment {\n    func measureCounters(_ width: CGFloat) {\n' + counters + '\n    }\n    func measureHeader() {\n' + header + '\n    }\n    func measureBadge(_ widthForContent: CGFloat) {\n' + badge + '\n    }\n}\n'
 
-output = 'import Cocoa\nimport TGUIKit\n' + generate('ReferenceMetadata', original) + generate('CandidateMetadata', current)
+output = 'import Cocoa\nimport AnsibleUIKit\n' + generate('ReferenceMetadata', original) + generate('CandidateMetadata', current)
 (lab / 'Tests/MetadataTests/Generated.swift').write_text(output)
 (lab / 'generation.json').write_text(json.dumps({'baseline': baseline, 'original_sha256': hashlib.sha256(original.encode()).hexdigest(), 'candidate_sha256': hashlib.sha256(current.encode()).hexdigest(), 'generated_sha256': hashlib.sha256(output.encode()).hexdigest()}, indent=2) + '\n')

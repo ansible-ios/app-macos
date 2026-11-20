@@ -8,7 +8,7 @@ let deps: [(String, String)] = [
     ("AnsibleMediaResources", "../AnsibleMediaResources"),
     ("InlineStickers", "../InlineStickers"),
     ("InputView", "../InputView"),
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("AnsibleTheme", "../AnsibleTheme"),
     ("AnsibleContext", "../AnsibleContext"),
     ("ColorPalette", "../ColorPalette"),

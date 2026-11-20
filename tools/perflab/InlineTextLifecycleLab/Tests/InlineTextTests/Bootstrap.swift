@@ -1,7 +1,7 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 
-enum TGUIKitTestBootstrap {
+enum AnsibleUIKitTestBootstrap {
     private static var retained: [NSImage] = []
 
     private static let installed: Void = {

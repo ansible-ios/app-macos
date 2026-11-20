@@ -30,7 +30,7 @@ for module, imports in [('ChatLayerEngine', 'import InputTextView'), ('FoldingVi
     body = bodies[module].replace('AttributeKeys', 'ReferenceQuoteScanKeys').replace('func attribute(', 'func referenceQuoteScanAttribute(').replace('Self.attribute(', 'Self.referenceQuoteScanAttribute(')
     body = body.replace('text.hasBlockQuotes', '(text.attributedString.containsAttribute(attributeName: TextInputAttributes.quote) is TextViewBlockQuoteData)')
     destination = lab / 'Sources' / module / 'Generated/ReferenceQuoteScanPreparation.swift'
-    destination.write_text('import Cocoa\nimport TGUIKit\n' + imports + '\n\nextension ChatLayerMessageTextPresentation {\n' + body + '\n}\n')
+    destination.write_text('import Cocoa\nimport AnsibleUIKit\n' + imports + '\n\nextension ChatLayerMessageTextPresentation {\n' + body + '\n}\n')
 source = lab / 'Sources/FoldingViewHarness/Generated/LayerChatTextRow.swift'
 destination = lab / 'Sources/FoldingViewHarness/Generated/ReferencePreparationChatTextRow.swift'
 destination.write_text(source.read_text().replace('LayerChatTextRow', 'ReferencePreparationChatTextRow').replace('ChatLayerMessageTextPresentation.simpleText(', 'ChatLayerMessageTextPresentation.referenceSimpleText('))

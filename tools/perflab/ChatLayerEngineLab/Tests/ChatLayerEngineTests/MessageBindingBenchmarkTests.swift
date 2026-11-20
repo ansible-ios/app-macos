@@ -1,7 +1,7 @@
 import Cocoa
 import XCTest
 import Darwin
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 private protocol MessageBindingBenchmarkNode: AnyObject {
@@ -16,7 +16,7 @@ extension ChatLayerMessageTextNode: MessageBindingBenchmarkNode {}
 final class MessageBindingBenchmarkTests: XCTestCase {
     func testMessageConstructionUpdateAndReuse() throws {
         guard ProcessInfo.processInfo.environment["CHAT_MESSAGE_BINDING_BENCHMARK"] != nil else { throw XCTSkip("Opt-in message binding variants") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         var report: [String: Any] = [:]
         let reverse = ProcessInfo.processInfo.environment["CHAT_MESSAGE_BINDING_REVERSE"] != nil
         for blockCount in [1, 3, 12] {

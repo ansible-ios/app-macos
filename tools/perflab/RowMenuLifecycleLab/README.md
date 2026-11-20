@@ -37,14 +37,14 @@ No foreign Swift compiler/test processes were observed immediately before the ba
 ## Reproduction
 
 ```sh
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-menu-release -c release --filter TableRowMenuLifecycleTests
-ROW_MENU_BENCHMARK=sample swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-menu-release -c release --filter TableRowMenuLifecycleTests.testBindingCost
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-menu-release -c release --filter TableRowMenuLifecycleTests
+ROW_MENU_BENCHMARK=sample swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-menu-release -c release --filter TableRowMenuLifecycleTests.testBindingCost
 ```
 
 The benchmark writes /tmp/row-menu-sample.json. The test fixture restores the global legacy-menu setting after each case and closes every created empty menu controller. Tests and benchmarks run against the working tree, including unrelated pending changes; this is not an isolated clean-checkout validation.
 
 ## Full-suite validation
 
-TGUIKit passed 321 functional tests in release and AddressSanitizer (336 total, 15 opt-in tests skipped). The chat layer mini-app passed 134 functional tests in each configuration (148 total, 14 opt-in tests skipped). Together, 455 functional tests passed in each configuration. Production and functional test sources were unchanged between these final suite runs.
+AnsibleUIKit passed 321 functional tests in release and AddressSanitizer (336 total, 15 opt-in tests skipped). The chat layer mini-app passed 134 functional tests in each configuration (148 total, 14 opt-in tests skipped). Together, 455 functional tests passed in each configuration. Production and functional test sources were unchanged between these final suite runs.
 
 All 15 new lifecycle tests also passed under ThreadSanitizer (16 total, one opt-in benchmark skipped), with no race reports.

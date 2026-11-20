@@ -11,7 +11,7 @@ let package = Package(
             targets: ["InputView"]),
     ],
     dependencies: [
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "ColorPalette", path: "../ColorPalette"),
         .package(name: "Localization", path: "../Localization"),
         .package(name: "ObjcUtils", path: "../ObjcUtils"),
@@ -23,7 +23,7 @@ let package = Package(
         .target(
             name: "InputView",
             dependencies: [
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "Localization", package: "Localization", condition: nil),
                 .product(name: "ColorPalette", package: "ColorPalette", condition: nil),
                 .product(name: "ObjcUtils", package: "ObjcUtils", condition: nil),

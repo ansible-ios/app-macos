@@ -43,14 +43,14 @@ The direct improvement is cancellation of obsolete subscriptions and release of 
 ## Running the checks
 
 ```sh
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-text-menu-release -c release --filter TextViewMenuLifecycleTests
-TEXT_MENU_BENCHMARK=sample swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-text-menu-release -c release --filter TextViewMenuLifecycleTests.testMenuStateAllocationAndUpdateCost
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-text-menu-release -c release --filter TextViewMenuLifecycleTests
+TEXT_MENU_BENCHMARK=sample swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-text-menu-release -c release --filter TextViewMenuLifecycleTests.testMenuStateAllocationAndUpdateCost
 ```
 
 The benchmark writes /tmp/text-menu-sample.json.
 
 ## Final validation
 
-The final source passed all 360 TGUIKit functional tests in release and Address Sanitizer builds (377 total, 17 opt-in tests skipped). The chat-layer mini-app passed all 134 functional tests in both configurations (148 total, 14 skipped). The focused menu suite passed all 21 functional cases under Thread Sanitizer (22 total, one benchmark skipped), with no reported races. The opt-in final allocation benchmark passed separately.
+The final source passed all 360 AnsibleUIKit functional tests in release and Address Sanitizer builds (377 total, 17 opt-in tests skipped). The chat-layer mini-app passed all 134 functional tests in both configurations (148 total, 14 skipped). The focused menu suite passed all 21 functional cases under Thread Sanitizer (22 total, one benchmark skipped), with no reported races. The opt-in final allocation benchmark passed separately.
 
 That is 494 functional tests per full configuration. No full Telegram application build was run. Source hashes, exact baseline identity, archived regression failures, final test logs and allocation samples are recorded in provenance.json and results/.

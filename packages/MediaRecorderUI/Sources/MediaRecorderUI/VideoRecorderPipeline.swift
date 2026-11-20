@@ -1,6 +1,6 @@
 import Cocoa
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
@@ -12,7 +12,7 @@ import AnsibleUtils
 import AnsibleMedia
 import AnsibleMediaUtils
 import ObjcUtils
-import TGVideoCameraMovie
+import AnsibleVideoCameraMovie
 import AVFoundation
 import GZIP
 
@@ -24,7 +24,7 @@ private func roundVideoDecoration() -> (watermark: CGImage, planeFrames: CGImage
     guard let watermark = NSImage(named: "RoundVideoCorner")?.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
         return nil
     }
-    guard let data = NSDataAsset(name: "PlaneLogoPlain")?.data, let unzipped = TGGUnzipData(data, 5 * 1024 * 1024), let json = String(data: unzipped, encoding: .utf8), let animation = LottieRenderHooks.shared.makeRenderer(json) else {
+    guard let data = NSDataAsset(name: "PlaneLogoPlain")?.data, let unzipped = AnsibleGUnzipData(data, 5 * 1024 * 1024), let json = String(data: unzipped, encoding: .utf8), let animation = LottieRenderHooks.shared.makeRenderer(json) else {
         return nil
     }
     let frameSize = 68
@@ -46,18 +46,18 @@ private func roundVideoDecoration() -> (watermark: CGImage, planeFrames: CGImage
     return (watermark, planeFrames)
 }
 
-public class VideoRecorderPipeline : NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, TGVideoCameraMovieRecorderDelegate, AVCaptureAudioDataOutputSampleBufferDelegate  {
+public class VideoRecorderPipeline : NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AnsibleVideoCameraMovieRecorderDelegate, AVCaptureAudioDataOutputSampleBufferDelegate  {
     
     
-    public func movieRecorderDidFinishPreparing(_ recorder: TGVideoCameraMovieRecorder!) {
+    public func movieRecorderDidFinishPreparing(_ recorder: AnsibleVideoCameraMovieRecorder!) {
         
     }
     
-    public func movieRecorder(_ recorder: TGVideoCameraMovieRecorder!, didFailWithError error: Error!) {
+    public func movieRecorder(_ recorder: AnsibleVideoCameraMovieRecorder!, didFailWithError error: Error!) {
         status = .failed
     }
     
-    public func movieRecorderDidFinishRecording(_ recorder: TGVideoCameraMovieRecorder!) {
+    public func movieRecorderDidFinishRecording(_ recorder: AnsibleVideoCameraMovieRecorder!) {
         VideoRecorderPipeline.queue.async {
             self.segments.append(self.currentURL)
             self.completedDuration += self.lastSegmentDuration
@@ -119,10 +119,10 @@ public class VideoRecorderPipeline : NSObject, AVCaptureVideoDataOutputSampleBuf
         } |> distinctUntilChanged
     }
     
-    private let renderer:TGVideoCameraGLRenderer = TGVideoCameraGLRenderer()
+    private let renderer:AnsibleVideoCameraGLRenderer = AnsibleVideoCameraGLRenderer()
     private var renderingEnabled: Bool = false
 
-    private var recorder: TGVideoCameraMovieRecorder!
+    private var recorder: AnsibleVideoCameraMovieRecorder!
     
     
     private let path: String
@@ -165,7 +165,7 @@ public class VideoRecorderPipeline : NSObject, AVCaptureVideoDataOutputSampleBuf
         self.config = config
         super.init()
         
-        recorder = TGVideoCameraMovieRecorder(url: url, delegate: self, callbackQueue: VideoRecorderPipeline.queue.queue)
+        recorder = AnsibleVideoCameraMovieRecorder(url: url, delegate: self, callbackQueue: VideoRecorderPipeline.queue.queue)
         
         renderer.orientation = .portrait
         renderer.mirror = true
@@ -395,10 +395,10 @@ public class VideoRecorderPipeline : NSObject, AVCaptureVideoDataOutputSampleBuf
     }
     
     private func configureRecorderTracks() {
-        let audioSettings = TGMediaVideoConversionPresetSettings.audioSettings(for: TGMediaVideoConversionPresetVideoMessage, bitrate: Int32(config.audioBitrate))
+        let audioSettings = AnsibleMediaVideoConversionPresetSettings.audioSettings(for: AnsibleMediaVideoConversionPresetVideoMessage, bitrate: Int32(config.audioBitrate))
         recorder.addAudioTrack(withSourceFormatDescription: outputAudioFormatDescription, settings: audioSettings)
-        let size: CGSize = TGMediaVideoConversionPresetSettings.maximumSize(for: TGMediaVideoConversionPresetVideoMessage)
-        let videoSettings = TGMediaVideoConversionPresetSettings.videoSettings(for: TGMediaVideoConversionPresetVideoMessage, dimensions: size, bitrate: Int32(config.videoBitrate))
+        let size: CGSize = AnsibleMediaVideoConversionPresetSettings.maximumSize(for: AnsibleMediaVideoConversionPresetVideoMessage)
+        let videoSettings = AnsibleMediaVideoConversionPresetSettings.videoSettings(for: AnsibleMediaVideoConversionPresetVideoMessage, dimensions: size, bitrate: Int32(config.videoBitrate))
         recorder.addVideoTrack(withSourceFormatDescription: outputVideoFormatDescription, transform: CGAffineTransform.identity, settings: videoSettings)
         
         recorder.prepareToRecord()
@@ -428,7 +428,7 @@ public class VideoRecorderPipeline : NSObject, AVCaptureVideoDataOutputSampleBuf
             self.derivedFiles.append(next)
             let nextURL = URL(fileURLWithPath: next)
             self.currentURL = nextURL
-            self.recorder = TGVideoCameraMovieRecorder(url: nextURL, delegate: self, callbackQueue: VideoRecorderPipeline.queue.queue)
+            self.recorder = AnsibleVideoCameraMovieRecorder(url: nextURL, delegate: self, callbackQueue: VideoRecorderPipeline.queue.queue)
             self.configureRecorderTracks()
             
             self.isPaused = false

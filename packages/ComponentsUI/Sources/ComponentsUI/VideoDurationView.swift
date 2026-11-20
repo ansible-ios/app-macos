@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 open class VideoDurationView : View {
     private var textNode:(TextNodeLayout, TextNode)

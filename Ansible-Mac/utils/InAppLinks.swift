@@ -1,8 +1,8 @@
 import Cocoa
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
-import TGModernGrowingTextView
+import AnsibleModernGrowingTextView
 import Postbox
 import SwiftSignalKit
 import MtProtoKit

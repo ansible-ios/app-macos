@@ -1,11 +1,11 @@
-@testable import class TGUIKit.PathDataReader
-@testable import class TGUIKit.PathSegment
-@testable import func TGUIKit.renderPath
-@testable import func TGUIKit.decodeStickerThumbnailData
-@testable import class TGUIKitBaseline.PathDataReader
-@testable import class TGUIKitBaseline.PathSegment
-@testable import func TGUIKitBaseline.renderPath
-@testable import func TGUIKitBaseline.decodeStickerThumbnailData
+@testable import class AnsibleUIKit.PathDataReader
+@testable import class AnsibleUIKit.PathSegment
+@testable import func AnsibleUIKit.renderPath
+@testable import func AnsibleUIKit.decodeStickerThumbnailData
+@testable import class AnsibleUIKitBaseline.PathDataReader
+@testable import class AnsibleUIKitBaseline.PathSegment
+@testable import func AnsibleUIKitBaseline.renderPath
+@testable import func AnsibleUIKitBaseline.decodeStickerThumbnailData
 import Cocoa
 import XCTest
 
@@ -13,10 +13,10 @@ struct SegmentSignature: Equatable {
     let type: String
     let values: [UInt64]
 }
-func signature(_ segments: [TGUIKitBaseline.PathSegment]) -> [SegmentSignature] {
+func signature(_ segments: [AnsibleUIKitBaseline.PathSegment]) -> [SegmentSignature] {
     segments.map { SegmentSignature(type: String(describing: $0.type), values: $0.data.map(\.bitPattern)) }
 }
-func signature(_ segments: [TGUIKit.PathSegment]) -> [SegmentSignature] {
+func signature(_ segments: [AnsibleUIKit.PathSegment]) -> [SegmentSignature] {
     segments.map { SegmentSignature(type: String(describing: $0.type), values: $0.data.map(\.bitPattern)) }
 }
 func pathPixels(scale: Int, variant: Int, draw: (CGContext) -> Void) -> [UInt8] {
@@ -51,7 +51,7 @@ final class PathTests: XCTestCase {
             for value in values {
                 for ending in ["", " L 2 3 z", " 1 0 1 12 24 M 1 2"] {
                     let input = "M 1 2 " + command + " " + value + " 4 5 6 7 8" + ending
-                    XCTAssertTrue(signature(TGUIKitBaseline.PathDataReader(input: input).read()) == signature(TGUIKit.PathDataReader(input: input).read()), input)
+                    XCTAssertTrue(signature(AnsibleUIKitBaseline.PathDataReader(input: input).read()) == signature(AnsibleUIKit.PathDataReader(input: input).read()), input)
                     count += 1
                 }
             }
@@ -66,13 +66,13 @@ final class PathTests: XCTestCase {
             var input = "M 0 0 "
             for _ in 0..<random.next(120) { input += tokens[random.next(tokens.count)] }
             input += " L 10 20 z"
-            XCTAssertTrue(signature(TGUIKitBaseline.PathDataReader(input: input).read()) == signature(TGUIKit.PathDataReader(input: input).read()), input)
+            XCTAssertTrue(signature(AnsibleUIKitBaseline.PathDataReader(input: input).read()) == signature(AnsibleUIKit.PathDataReader(input: input).read()), input)
         }
         for _ in 0..<2000 {
             let data = Data((0..<random.next(200)).map { _ in UInt8(random.next(256)) })
-            let a = TGUIKitBaseline.decodeStickerThumbnailData(data), b = TGUIKit.decodeStickerThumbnailData(data)
+            let a = AnsibleUIKitBaseline.decodeStickerThumbnailData(data), b = AnsibleUIKit.decodeStickerThumbnailData(data)
             XCTAssertEqual(a, b)
-            XCTAssertTrue(signature(TGUIKitBaseline.PathDataReader(input: a).read()) == signature(TGUIKit.PathDataReader(input: b).read()))
+            XCTAssertTrue(signature(AnsibleUIKitBaseline.PathDataReader(input: a).read()) == signature(AnsibleUIKit.PathDataReader(input: b).read()))
         }
     }
 
@@ -90,11 +90,11 @@ final class PathTests: XCTestCase {
         ]
         var pairs = 0
         for input in paths {
-            let a = TGUIKitBaseline.PathDataReader(input: input).read(), b = TGUIKit.PathDataReader(input: input).read()
+            let a = AnsibleUIKitBaseline.PathDataReader(input: input).read(), b = AnsibleUIKit.PathDataReader(input: input).read()
             for scale in [1, 2, 3] {
                 for variant in 0..<3 {
-                    let old = pathPixels(scale: scale, variant: variant) { TGUIKitBaseline.renderPath(a, context: $0) }
-                    let new = pathPixels(scale: scale, variant: variant) { TGUIKit.renderPath(b, context: $0) }
+                    let old = pathPixels(scale: scale, variant: variant) { AnsibleUIKitBaseline.renderPath(a, context: $0) }
+                    let new = pathPixels(scale: scale, variant: variant) { AnsibleUIKit.renderPath(b, context: $0) }
                     XCTAssertTrue(old == new, input)
                     pairs += 1
                 }
@@ -104,14 +104,14 @@ final class PathTests: XCTestCase {
     }
 
     func testPackedSegmentArraysAndTrailingValuesMatch() {
-        let a: [TGUIKitBaseline.PathSegment] = [
+        let a: [AnsibleUIKitBaseline.PathSegment] = [
             .init(type: .M, data: [2, 2, 70, 2, 70, 70, 2, 70, 99]), .init(type: .z),
             .init(type: .m, data: [5, 5, 20, 0, 0, 20, -20, 0, 99]), .init(type: .z),
             .init(type: .M, data: [10, 10]), .init(type: .C, data: [30, 0, 50, 80, 60, 60, 70, 30, 80, 40, 90, 20, 1, 2]), .init(type: .S, data: [80, 90, 60, 90, 10, 20, 5, 5, 1]), .init(type: .z),
             .init(type: .m, data: [5, 5]), .init(type: .c, data: [10, -10, 20, 30, 40, 40, 10, 0, 20, -10, 30, -40, 1]), .init(type: .s, data: [-10, -10, -30, 30, -10, -10, -20, -20, 1]), .init(type: .l, data: [2, 4, 5, 8, 1]), .init(type: .L, data: [20, 20, 30, 40, 1]), .init(type: .z)
         ]
-        let b: [TGUIKit.PathSegment] = a.map { source in
-            let type: TGUIKit.PathSegment.SegmentType
+        let b: [AnsibleUIKit.PathSegment] = a.map { source in
+            let type: AnsibleUIKit.PathSegment.SegmentType
             switch source.type {
             case .M: type = .M
             case .m: type = .m
@@ -127,14 +127,14 @@ final class PathTests: XCTestCase {
         }
         for scale in [1, 2, 3] {
             for variant in 0..<3 {
-                XCTAssertTrue(pathPixels(scale: scale, variant: variant) { TGUIKitBaseline.renderPath(a, context: $0) } == pathPixels(scale: scale, variant: variant) { TGUIKit.renderPath(b, context: $0) })
+                XCTAssertTrue(pathPixels(scale: scale, variant: variant) { AnsibleUIKitBaseline.renderPath(a, context: $0) } == pathPixels(scale: scale, variant: variant) { AnsibleUIKit.renderPath(b, context: $0) })
             }
         }
     }
 
     func testReaderOwnsItsInputThroughTheIterator() {
         let source = (0..<1000).map { "L \($0) \($0 + 1)" }.joined(separator: " ")
-        let reader: TGUIKit.PathDataReader = autoreleasepool { TGUIKit.PathDataReader(input: "M 0 0 " + source + " z") }
+        let reader: AnsibleUIKit.PathDataReader = autoreleasepool { AnsibleUIKit.PathDataReader(input: "M 0 0 " + source + " z") }
         XCTAssertEqual(reader.read().count, 1002)
         XCTAssertTrue(reader.read().isEmpty)
     }

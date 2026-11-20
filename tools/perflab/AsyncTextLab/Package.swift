@@ -4,9 +4,9 @@ import PackageDescription
 let package = Package(
     name: "AsyncTextLab",
     platforms: [.macOS(.v10_15)],
-    dependencies: [.package(path: "../../../packages/TGUIKit")],
+    dependencies: [.package(path: "../../../packages/AnsibleUIKit")],
     targets: [
-        .target(name: "AsyncTextHarness", dependencies: ["TGUIKit"]),
-        .testTarget(name: "AsyncTextTests", dependencies: ["AsyncTextHarness", "TGUIKit"])
+        .target(name: "AsyncTextHarness", dependencies: ["AnsibleUIKit"]),
+        .testTarget(name: "AsyncTextTests", dependencies: ["AsyncTextHarness", "AnsibleUIKit"])
     ]
 )

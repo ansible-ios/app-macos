@@ -1,7 +1,7 @@
 import Foundation
 import Cocoa
 import ColorPalette
-import TGUIKit
+import AnsibleUIKit
 import AnsibleMedia
 import SwiftSignalKit
 import AnsibleContext

@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class DeferredDispatchTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func scene() -> ChatLayerSceneView {
         let scene = ChatLayerSceneView(frame: NSRect(x: 0, y: 0, width: 200, height: 80), deferred: true)

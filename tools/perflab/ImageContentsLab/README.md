@@ -2,11 +2,11 @@
 
 `ImageView.image` previously read its layer's current contents on every assignment, although only animated updates needed that value. The final change reads previous contents inside the animated path. Nonanimated, nonempty assignments continue writing every image but avoid the contents read. Clearing an already-empty layer skips the write; clearing a layer containing an image still works even if the stored `image` property was already nil.
 
-Only `packages/TGUIKit/Sources/ImageView.swift` changes. No cache, retained state, or extra allocation is introduced. `nsImage` assignments remain unchanged because NSImage is mutable. `TransformImageView` and `ChatRightIconLayer` are unchanged controls in the final benchmark.
+Only `packages/AnsibleUIKit/Sources/ImageView.swift` changes. No cache, retained state, or extra allocation is introduced. `nsImage` assignments remain unchanged because NSImage is mutable. `TransformImageView` and `ChatRightIconLayer` are unchanged controls in the final benchmark.
 
 ## Native regression tests
 
-The candidate uses the actual TGUIKit ImageView and TransformImageView. `prepare.py` copies their complete reference implementations from `89e1ce0ee`, with class renaming and a test import. The private ChatRightIconLayer is extracted verbatim from both versions of ChatRightView, with class renaming only. `generation.json` records source and generated-reference hashes. The standard test bootstrap supplies named presentation icons and screen scale.
+The candidate uses the actual AnsibleUIKit ImageView and TransformImageView. `prepare.py` copies their complete reference implementations from `89e1ce0ee`, with class renaming and a test import. The private ChatRightIconLayer is extracted verbatim from both versions of ChatRightView, with class renaming only. `generation.json` records source and generated-reference hashes. The standard test bootstrap supplies named presentation icons and screen scale.
 
 Thirteen functional tests cover:
 
@@ -49,9 +49,9 @@ IMAGE_CONTENTS_BENCHMARK=1 swift test --package-path tools/perflab/ImageContents
 IMAGE_CONTENTS_BENCHMARK=1 IMAGE_CONTENTS_REVERSE=1 swift test --package-path tools/perflab/ImageContentsLab -c release
 swift test --package-path tools/perflab/ImageContentsLab --sanitize address
 swift test --package-path tools/perflab/ImageContentsLab --sanitize thread
-swift test --package-path packages/TGUIKit -c release
+swift test --package-path packages/AnsibleUIKit -c release
 ```
 
 Run builds sequentially with separate scratch paths. Save `/tmp/image-contents-benchmark.json` before repeating a benchmark. Raw results, generated references, source hashes, and validation logs are retained under `results/`.
 
-Final validation passed on arm64 macOS 26.4: 13 new functional tests plus 371 existing TGUIKit functional tests (389 total, 18 opt-in tests skipped), both benchmark orders, and all 13 new tests under each of Address Sanitizer and Thread Sanitizer. No sanitizer errors were reported. The modified production file also parsed successfully. All 259 recorded source/test inputs remained unchanged through final verification.
+Final validation passed on arm64 macOS 26.4: 13 new functional tests plus 371 existing AnsibleUIKit functional tests (389 total, 18 opt-in tests skipped), both benchmark orders, and all 13 new tests under each of Address Sanitizer and Thread Sanitizer. No sanitizer errors were reported. The modified production file also parsed successfully. All 259 recorded source/test inputs remained unchanged through final verification.

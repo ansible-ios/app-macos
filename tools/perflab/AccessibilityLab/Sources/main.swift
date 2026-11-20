@@ -1,6 +1,6 @@
 import AppKit
 import ApplicationServices
-import TGUIKit
+import AnsibleUIKit
 
 private final class LabRowItem: TableRowItem {
     let title: String
@@ -236,7 +236,7 @@ let arguments = CommandLine.arguments
 _ = NSApplication.shared
 NSApp.setActivationPolicy(arguments.contains("--show") ? .regular : .accessory)
 registerPlaceholderImages()
-TGUIKitAccessibility.isEnabled = true
+AnsibleUIKitAccessibility.isEnabled = true
 
 fileprivate let lab = Lab()
 lab.window.makeKeyAndOrderFront(nil)

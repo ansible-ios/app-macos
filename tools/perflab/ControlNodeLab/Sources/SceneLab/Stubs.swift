@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class ChatLayerTextNode: ChatLayerNode {
     func synchronizeLinkToolTips(force: Bool) {}

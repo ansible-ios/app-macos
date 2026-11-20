@@ -1,7 +1,7 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 
-// Standalone harness for the modal morph (links only TGUIKit).
+// Standalone harness for the modal morph (links only AnsibleUIKit).
 //   Interactive (default): `swift run ModalMorphLab`  -> click the blue attach button to open,
 //                          "Close" inside the sheet to close. Morph is slowed for inspection.
 //   Capture:  `swift run ModalMorphLab auto <outputDir>` -> auto open/close, writes a contact sheet.

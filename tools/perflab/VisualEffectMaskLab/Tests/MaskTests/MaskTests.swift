@@ -1,7 +1,7 @@
 import Cocoa
 import XCTest
-import class TGUIKit.VisualEffect
-import class TGUIKitBaseline.VisualEffect
+import class AnsibleUIKit.VisualEffect
+import class AnsibleUIKitBaseline.VisualEffect
 
 final class MaskTests: XCTestCase {
     override func setUp() {
@@ -34,7 +34,7 @@ final class MaskTests: XCTestCase {
         XCTAssertEqual(a.dataProvider!.data! as Data, b.dataProvider!.data! as Data, file: file, line: line)
     }
 
-    func equal(_ current: TGUIKit.VisualEffect, _ reference: TGUIKitBaseline.VisualEffect, file: StaticString = #filePath, line: UInt = #line) {
+    func equal(_ current: AnsibleUIKit.VisualEffect, _ reference: AnsibleUIKitBaseline.VisualEffect, file: StaticString = #filePath, line: UInt = #line) {
         XCTAssertEqual(current.frame, reference.frame, file: file, line: line)
         XCTAssertEqual(current.maskImage?.size, reference.maskImage?.size, file: file, line: line)
         equalImage(current.maskImage?.cgImage(forProposedRect: nil, context: nil, hints: nil), reference.maskImage?.cgImage(forProposedRect: nil, context: nil, hints: nil), file: file, line: line)
@@ -47,7 +47,7 @@ final class MaskTests: XCTestCase {
     }
 
     func testMaskLayerIsLazyReusedAndReleased() {
-        let view = TGUIKit.VisualEffect(frame: CGRect(x: 0, y: 0, width: 64, height: 40))
+        let view = AnsibleUIKit.VisualEffect(frame: CGRect(x: 0, y: 0, width: 64, height: 40))
         XCTAssertNil(storedLayer(view, "overlayMask"))
         for _ in 0..<100 { view.maskContents = nil; view.layout() }
         XCTAssertNil(storedLayer(view, "overlayMask"))
@@ -72,7 +72,7 @@ final class MaskTests: XCTestCase {
     }
 
     func testPixelsAndGeometryMatchThroughResizeAndReplacement() {
-        let current = TGUIKit.VisualEffect(frame: .zero), reference = TGUIKitBaseline.VisualEffect(frame: .zero)
+        let current = AnsibleUIKit.VisualEffect(frame: .zero), reference = AnsibleUIKitBaseline.VisualEffect(frame: .zero)
         for index in 0..<4 {
             let image = bitmap(index)
             for size in [NSSize.zero, NSSize(width: 31.5, height: 47.25), NSSize(width: 100, height: 60)] {
@@ -93,8 +93,8 @@ final class MaskTests: XCTestCase {
     }
 
     func testNativeMaskReplacementAndMutationStillReset() {
-        let current = TGUIKit.VisualEffect(frame: CGRect(x: 0, y: 0, width: 64, height: 40))
-        let reference = TGUIKitBaseline.VisualEffect(frame: current.frame)
+        let current = AnsibleUIKit.VisualEffect(frame: CGRect(x: 0, y: 0, width: 64, height: 40))
+        let reference = AnsibleUIKitBaseline.VisualEffect(frame: current.frame)
         let image = bitmap()
         for step in 0..<4 {
             current.maskContents = image; reference.maskContents = image
@@ -190,7 +190,7 @@ final class MaskTests: XCTestCase {
                 for (a, b) in zip(current.cutBandViews, reference.cutBandViews) {
                     XCTAssertEqual(a.layer?.cornerRadius, b.layer?.cornerRadius)
                     XCTAssertEqual(a.layer?.masksToBounds, b.layer?.masksToBounds)
-                    if let a = a as? TGUIKit.VisualEffect, let b = b as? TGUIKitBaseline.VisualEffect { a.layout(); b.layout(); equal(a, b) }
+                    if let a = a as? AnsibleUIKit.VisualEffect, let b = b as? AnsibleUIKitBaseline.VisualEffect { a.layout(); b.layout(); equal(a, b) }
                 }
             }
         }

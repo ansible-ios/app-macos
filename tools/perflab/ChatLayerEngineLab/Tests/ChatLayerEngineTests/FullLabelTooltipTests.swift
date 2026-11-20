@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class FullLabelTooltipTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func testFullLabelTooltipRegistersMovesReusesAndClearsWithoutLinks() throws {
         let scene = LinkInteractionTests.TrackingScene(frame: NSRect(x: 0, y: 0, width: 300, height: 100))

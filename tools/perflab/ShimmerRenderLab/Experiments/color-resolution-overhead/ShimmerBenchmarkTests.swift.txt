@@ -2,23 +2,23 @@ import Cocoa
 import XCTest
 import Darwin
 import ObjectiveC
-import enum TGUIKit.ShimmerRasterProbe
-import enum TGUIKitBaseline.ShimmerRasterProbe
-import struct TGUIKit.System
-import struct TGUIKitBaseline.System
+import enum AnsibleUIKit.ShimmerRasterProbe
+import enum AnsibleUIKitBaseline.ShimmerRasterProbe
+import struct AnsibleUIKit.System
+import struct AnsibleUIKitBaseline.System
 
 final class ShimmerBenchmarkTests: XCTestCase {
     func testCosts() throws {
         guard ProcessInfo.processInfo.environment["SHIMMER_RENDER_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in shimmer render timing") }
         MeasureBootstrap.install()
-        TGUIKit.System.updateScaleFactor(1); TGUIKitBaseline.System.updateScaleFactor(1)
+        AnsibleUIKit.System.updateScaleFactor(1); AnsibleUIKitBaseline.System.updateScaleFactor(1)
         let reverse = ProcessInfo.processInfo.environment["SHIMMER_RENDER_REVERSE"] == "1"
         let factory = ShimmerTests()
-        TGUIKitBaseline.ShimmerRasterProbe.configure(before: nil)
-        TGUIKit.ShimmerRasterProbe.configure(before: nil)
+        AnsibleUIKitBaseline.ShimmerRasterProbe.configure(before: nil)
+        AnsibleUIKit.ShimmerRasterProbe.configure(before: nil)
         defer {
-            TGUIKitBaseline.ShimmerRasterProbe.configure(before: nil)
-            TGUIKit.ShimmerRasterProbe.configure(before: nil)
+            AnsibleUIKitBaseline.ShimmerRasterProbe.configure(before: nil)
+            AnsibleUIKit.ShimmerRasterProbe.configure(before: nil)
         }
         var detailed = Data([0, 128])
         for i in 0..<60 { detailed.append(contentsOf: [203, UInt8((i * 17) % 64), UInt8(128 + (i * 31) % 64)]) }
@@ -65,8 +65,8 @@ final class ShimmerBenchmarkTests: XCTestCase {
                 }
             }
         }
-        TGUIKitBaseline.ShimmerRasterProbe.configure(before: nil)
-        TGUIKit.ShimmerRasterProbe.configure(before: nil)
+        AnsibleUIKitBaseline.ShimmerRasterProbe.configure(before: nil)
+        AnsibleUIKit.ShimmerRasterProbe.configure(before: nil)
         let changing = [shimmer(.sticker, baseline: true), shimmer(.sticker, baseline: false)]
         for operation in ["changed_sticker_background", "sticker_construction"] {
             var batches = [[Double](), [Double]()]

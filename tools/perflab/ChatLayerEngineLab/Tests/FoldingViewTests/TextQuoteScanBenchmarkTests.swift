@@ -1,14 +1,14 @@
 import Cocoa
 import XCTest
 import QuartzCore
-import TGUIKit
+import AnsibleUIKit
 @testable import FoldingViewHarness
 @testable import ChatLayerEngine
 
 final class TextQuoteScanBenchmarkTests: XCTestCase {
     func testLookupAndBindingCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_QUOTE_SCAN_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in quote lookup and binding benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let reverse = ProcessInfo.processInfo.environment["CHAT_QUOTE_SCAN_REVERSE"] == "1"
         let context = BlockContext(), factory = ChatTextReuseTests()
         var results: [String: [[Double]]] = [:]

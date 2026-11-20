@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class ChatLayerButtonNode: ChatLayerNode {
     private var pressed = false

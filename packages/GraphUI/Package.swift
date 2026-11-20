@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(name: "TGUIKit", path: "../TGUIKit"),
+        .package(name: "AnsibleUIKit", path: "../AnsibleUIKit"),
         .package(name: "GraphCore", path: "../GraphCore"),
         .package(name: "SSignalKit", path: "../../submodules/ansible-ios/submodules/SSignalKit"),
     ],
@@ -24,7 +24,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "GraphUI",
-            dependencies: [.product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+            dependencies: [.product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                            .product(name: "GraphCore", package: "GraphCore", condition: nil),
                            .product(name: "SwiftSignalKit", package: "SSignalKit", condition: nil)],
             path: "Sources"),

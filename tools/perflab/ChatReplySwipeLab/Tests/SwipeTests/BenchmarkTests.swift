@@ -1,10 +1,10 @@
 import Cocoa
 import Darwin
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 
 final class BenchmarkTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
     private func make(_ native: Bool) -> RowEnvironment {
         let frame = NSRect(x: 0, y: 0, width: 400, height: 80)
         return native ? NativeRow(frame: frame) : CandidateRow(frame: frame)

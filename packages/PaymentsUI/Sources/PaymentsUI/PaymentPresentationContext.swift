@@ -1,6 +1,6 @@
 import AppAnalytics
 import InputDataUI
-import TGUIKit
+import AnsibleUIKit
 
 func paymentChildController(analyticsContext: AnalyticsContext, create: () -> ModalViewController) -> ModalViewController {
     let lifetime = analyticsContext.beginPresentation()

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 open class RestrictionWrappedView : Control {
     private let textView: TextView = TextView()

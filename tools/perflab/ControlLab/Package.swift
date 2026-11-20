@@ -4,6 +4,6 @@ import PackageDescription
 let package = Package(
     name: "ControlLab",
     platforms: [.macOS(.v10_15)],
-    dependencies: [.package(path: "../../../packages/TGUIKit")],
-    targets: [.executableTarget(name: "ControlLab", dependencies: ["TGUIKit"])]
+    dependencies: [.package(path: "../../../packages/AnsibleUIKit")],
+    targets: [.executableTarget(name: "ControlLab", dependencies: ["AnsibleUIKit"])]
 )

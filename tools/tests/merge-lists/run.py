@@ -11,11 +11,11 @@ parser.add_argument('--configuration', choices=['debug', 'release'], default='de
 parser.add_argument('--benchmark', action='store_true')
 args = parser.parse_args()
 root = pathlib.Path(__file__).resolve().parents[3]
-fixtures = root / 'packages/TGUIKit/Tests/TGUIKitTests'
+fixtures = root / 'packages/AnsibleUIKit/Tests/AnsibleUIKitTests'
 
 with tempfile.TemporaryDirectory(prefix='telegram-merge-lists-') as directory:
     package = pathlib.Path(directory)
-    for folder in ['Sources/TGUIKit', 'Sources/MergeListsReference', 'Sources/MergeListsBenchmark', 'Tests']:
+    for folder in ['Sources/AnsibleUIKit', 'Sources/MergeListsReference', 'Sources/MergeListsBenchmark', 'Tests']:
         (package / folder).mkdir(parents=True)
     (package / 'Package.swift').write_text('''// swift-tools-version:5.5
 import PackageDescription
@@ -23,14 +23,14 @@ let package = Package(
     name: "MergeListsRegression",
     platforms: [.macOS(.v10_13)],
     targets: [
-        .target(name: "TGUIKit"),
-        .target(name: "MergeListsReference", dependencies: ["TGUIKit"]),
-        .executableTarget(name: "MergeListsBenchmark", dependencies: ["TGUIKit", "MergeListsReference"]),
-        .testTarget(name: "MergeListsTests", dependencies: ["TGUIKit"], path: "Tests")
+        .target(name: "AnsibleUIKit"),
+        .target(name: "MergeListsReference", dependencies: ["AnsibleUIKit"]),
+        .executableTarget(name: "MergeListsBenchmark", dependencies: ["AnsibleUIKit", "MergeListsReference"]),
+        .testTarget(name: "MergeListsTests", dependencies: ["AnsibleUIKit"], path: "Tests")
     ]
 )
 ''')
-    shutil.copy2(root / 'packages/TGUIKit/Sources/MergeLists.swift', package / 'Sources/TGUIKit')
+    shutil.copy2(root / 'packages/AnsibleUIKit/Sources/MergeLists.swift', package / 'Sources/AnsibleUIKit')
     for name in ['MergeListsReference.swift', 'MergeListsTests.swift']:
         shutil.copy2(fixtures / name, package / 'Tests')
     reference = (fixtures / 'MergeListsReference.swift').read_text()

@@ -8,7 +8,7 @@ import AnsibleContext
 import TelegramCore
 import AnsibleTheme
 import AnsibleUtils
-import TGUIKit
+import AnsibleUIKit
 
 final class JoinChatWebViewOperation {
     let uniqueId: BrowserTabData.Unique

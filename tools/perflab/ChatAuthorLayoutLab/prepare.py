@@ -31,6 +31,6 @@ def generate(name, source):
     author = block(source, '        if !canFillAuthorName, let replyModel = replyModel', True)
     return 'final class ' + name + ': AuthorEnvironment {\n    func measureForward(_ width: CGFloat, widthForContent: CGFloat) {\n' + forward + '\n    }\n    func measureAuthor(_ widthForContent: CGFloat, cachedRightSize: NSSize) {\n' + author + '\n    }\n}\n'
 
-output = 'import Cocoa\nimport TGUIKit\n' + generate('ReferenceAuthor', original) + generate('CandidateAuthor', current)
+output = 'import Cocoa\nimport AnsibleUIKit\n' + generate('ReferenceAuthor', original) + generate('CandidateAuthor', current)
 (lab / 'Tests/AuthorTests/Generated.swift').write_text(output)
 (lab / 'generation.json').write_text(json.dumps({'baseline': baseline, 'original_sha256': hashlib.sha256(original.encode()).hexdigest(), 'candidate_sha256': hashlib.sha256(current.encode()).hexdigest(), 'generated_sha256': hashlib.sha256(output.encode()).hexdigest()}, indent=2) + '\n')

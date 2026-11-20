@@ -2,7 +2,7 @@
 import Cocoa
 import ImageIO
 import zlib
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox

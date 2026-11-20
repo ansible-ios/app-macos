@@ -1,17 +1,17 @@
 import Cocoa
 import XCTest
-import class TGUIKit.ShimmerLayer
-import class TGUIKit.ShimmerView
-import class TGUIKit.StickerShimmerEffectView
-import class TGUIKit.SilhouetteShimmerLayer
-import struct TGUIKit.System
-import enum TGUIKit.ShimmerRasterProbe
-import class TGUIKitBaseline.ShimmerLayer
-import class TGUIKitBaseline.ShimmerView
-import class TGUIKitBaseline.StickerShimmerEffectView
-import class TGUIKitBaseline.SilhouetteShimmerLayer
-import struct TGUIKitBaseline.System
-import enum TGUIKitBaseline.ShimmerRasterProbe
+import class AnsibleUIKit.ShimmerLayer
+import class AnsibleUIKit.ShimmerView
+import class AnsibleUIKit.StickerShimmerEffectView
+import class AnsibleUIKit.SilhouetteShimmerLayer
+import struct AnsibleUIKit.System
+import enum AnsibleUIKit.ShimmerRasterProbe
+import class AnsibleUIKitBaseline.ShimmerLayer
+import class AnsibleUIKitBaseline.ShimmerView
+import class AnsibleUIKitBaseline.StickerShimmerEffectView
+import class AnsibleUIKitBaseline.SilhouetteShimmerLayer
+import struct AnsibleUIKitBaseline.System
+import enum AnsibleUIKitBaseline.ShimmerRasterProbe
 
 final class LockedCounts {
     private let lock = NSLock()
@@ -44,31 +44,31 @@ func shimmer(_ kind: ShimmerKind, baseline: Bool) -> ShimmerHarness {
     if baseline {
         switch kind {
         case .layer:
-            let v = TGUIKitBaseline.ShimmerLayer()
+            let v = AnsibleUIKitBaseline.ShimmerLayer()
             return ShimmerHarness(object: v, update: { v.update(backgroundColor: $0.background, foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size, imageSize: $0.imageSize, cornerRadius: $0.radius) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { v.maskFrameForLab })
         case .view:
-            let v = TGUIKitBaseline.ShimmerView()
+            let v = AnsibleUIKitBaseline.ShimmerView()
             return ShimmerHarness(object: v, update: { v.update(backgroundColor: $0.background, foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size, imageSize: $0.imageSize, cornerRadius: $0.radius) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { v.maskFrameForLab })
         case .sticker:
-            let v = TGUIKitBaseline.StickerShimmerEffectView()
+            let v = AnsibleUIKitBaseline.StickerShimmerEffectView()
             return ShimmerHarness(object: v, update: { v.update(backgroundColor: $0.background, foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { v.maskFrameForLab })
         case .silhouette:
-            let v = TGUIKitBaseline.SilhouetteShimmerLayer()
+            let v = AnsibleUIKitBaseline.SilhouetteShimmerLayer()
             return ShimmerHarness(object: v, update: { v.update(foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size, imageSize: $0.imageSize) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { nil })
         }
     } else {
         switch kind {
         case .layer:
-            let v = TGUIKit.ShimmerLayer()
+            let v = AnsibleUIKit.ShimmerLayer()
             return ShimmerHarness(object: v, update: { v.update(backgroundColor: $0.background, foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size, imageSize: $0.imageSize, cornerRadius: $0.radius) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { v.maskFrameForLab })
         case .view:
-            let v = TGUIKit.ShimmerView()
+            let v = AnsibleUIKit.ShimmerView()
             return ShimmerHarness(object: v, update: { v.update(backgroundColor: $0.background, foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size, imageSize: $0.imageSize, cornerRadius: $0.radius) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { v.maskFrameForLab })
         case .sticker:
-            let v = TGUIKit.StickerShimmerEffectView()
+            let v = AnsibleUIKit.StickerShimmerEffectView()
             return ShimmerHarness(object: v, update: { v.update(backgroundColor: $0.background, foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { v.maskFrameForLab })
         case .silhouette:
-            let v = TGUIKit.SilhouetteShimmerLayer()
+            let v = AnsibleUIKit.SilhouetteShimmerLayer()
             return ShimmerHarness(object: v, update: { v.update(foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size, imageSize: $0.imageSize) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { nil })
         }
     }
@@ -90,11 +90,11 @@ final class ShimmerTests: XCTestCase {
 
     override func setUp() {
         MeasureBootstrap.install()
-        TGUIKit.System.updateScaleFactor(1); TGUIKitBaseline.System.updateScaleFactor(1)
+        AnsibleUIKit.System.updateScaleFactor(1); AnsibleUIKitBaseline.System.updateScaleFactor(1)
     }
     override func tearDown() {
-        TGUIKit.ShimmerRasterProbe.configure(before: nil)
-        TGUIKitBaseline.ShimmerRasterProbe.configure(before: nil)
+        AnsibleUIKit.ShimmerRasterProbe.configure(before: nil)
+        AnsibleUIKitBaseline.ShimmerRasterProbe.configure(before: nil)
     }
     func until(_ condition: () -> Bool, file: StaticString = #filePath, line: UInt = #line) {
         let end = CACurrentMediaTime() + 5
@@ -109,7 +109,7 @@ final class ShimmerTests: XCTestCase {
     func testFreshRasterPixelsMatchAcrossModesColorsDataSizesAndScales() throws {
         var pairs = 0
         for scale: CGFloat in [1, 2, 3] {
-            TGUIKit.System.updateScaleFactor(scale); TGUIKitBaseline.System.updateScaleFactor(scale)
+            AnsibleUIKit.System.updateScaleFactor(scale); AnsibleUIKitBaseline.System.updateScaleFactor(scale)
             for kind in ShimmerKind.allCases {
                 let backgrounds: [NSColor?] = kind == .silhouette ? [nil] : [nil, .white, NSColor(calibratedRed: 0.2, green: 0.3, blue: 0.6, alpha: 0.5)]
                 for background in backgrounds {
@@ -136,8 +136,8 @@ final class ShimmerTests: XCTestCase {
     func testTransparentRepeatedUpdatesRenderOnlyOnce() throws {
         for kind in [ShimmerKind.layer, .view, .sticker] {
             let oldCounts = LockedCounts(), newCounts = LockedCounts()
-            TGUIKitBaseline.ShimmerRasterProbe.configure(before: { oldCounts.add($0) })
-            TGUIKit.ShimmerRasterProbe.configure(before: { newCounts.add($0) })
+            AnsibleUIKitBaseline.ShimmerRasterProbe.configure(before: { oldCounts.add($0) })
+            AnsibleUIKit.ShimmerRasterProbe.configure(before: { newCounts.add($0) })
             let a = shimmer(kind, baseline: true), b = shimmer(kind, baseline: false)
             var input = ShimmerInput(); input.data = rectangle
             for _ in 0..<30 { a.update(input); b.update(input) }
@@ -193,12 +193,12 @@ final class ShimmerTests: XCTestCase {
 
     func testScaleChangeUpdatesEveryRasterWithoutChangingLogicalGeometry() throws {
         for kind in ShimmerKind.allCases {
-            TGUIKit.System.updateScaleFactor(1); TGUIKitBaseline.System.updateScaleFactor(1)
+            AnsibleUIKit.System.updateScaleFactor(1); AnsibleUIKitBaseline.System.updateScaleFactor(1)
             let a = shimmer(kind, baseline: true), b = shimmer(kind, baseline: false)
             var input = ShimmerInput(); input.background = .white
             a.update(input); b.update(input)
             until { a.image() != nil && b.image() != nil }
-            TGUIKit.System.updateScaleFactor(2); TGUIKitBaseline.System.updateScaleFactor(2)
+            AnsibleUIKit.System.updateScaleFactor(2); AnsibleUIKitBaseline.System.updateScaleFactor(2)
             a.update(input); b.update(input)
             until { b.image()?.width == 128 }
             XCTAssertEqual(a.image()?.width, 64)
@@ -216,8 +216,8 @@ final class ShimmerTests: XCTestCase {
                     let before: (CGSize) -> Void = { size in
                         if size == firstSize { started.signal(); _ = release.wait(timeout: .now() + 5) }
                     }
-                    if baseline { TGUIKitBaseline.ShimmerRasterProbe.configure(before: before, after: { done.add($0) }) }
-                    else { TGUIKit.ShimmerRasterProbe.configure(before: before, after: { done.add($0) }) }
+                    if baseline { AnsibleUIKitBaseline.ShimmerRasterProbe.configure(before: before, after: { done.add($0) }) }
+                    else { AnsibleUIKit.ShimmerRasterProbe.configure(before: before, after: { done.add($0) }) }
                     let value = shimmer(kind, baseline: baseline)
                     var input = ShimmerInput(); input.background = oldBackground
                     value.update(input)
@@ -230,15 +230,15 @@ final class ShimmerTests: XCTestCase {
                     pump()
                     if baseline { until { value.image()?.width == 64 } }
                     else { XCTAssertEqual(value.image()?.width, 90) }
-                    TGUIKit.ShimmerRasterProbe.configure(before: nil)
-                    TGUIKitBaseline.ShimmerRasterProbe.configure(before: nil)
+                    AnsibleUIKit.ShimmerRasterProbe.configure(before: nil)
+                    AnsibleUIKitBaseline.ShimmerRasterProbe.configure(before: nil)
                 }
             }
         }
     }
 
     func testSilhouetteOpacityAnimationChangesWithColors() throws {
-        let old = TGUIKitBaseline.SilhouetteShimmerLayer(), new = TGUIKit.SilhouetteShimmerLayer()
+        let old = AnsibleUIKitBaseline.SilhouetteShimmerLayer(), new = AnsibleUIKit.SilhouetteShimmerLayer()
         let window = NSWindow(contentRect: CGRect(x: 0, y: 0, width: 200, height: 120), styleMask: [.borderless], backing: .buffered, defer: false)
         window.isReleasedWhenClosed = false
         let host = NSView(frame: CGRect(x: 0, y: 0, width: 200, height: 120))
@@ -305,7 +305,7 @@ final class ShimmerTests: XCTestCase {
         for kind in [ShimmerKind.layer, .view, .silhouette] {
             let started = DispatchSemaphore(value: 0), release = DispatchSemaphore(value: 0)
             let done = LockedCounts(), size = CGSize(width: 64, height: 48)
-            TGUIKit.ShimmerRasterProbe.configure(before: { current in
+            AnsibleUIKit.ShimmerRasterProbe.configure(before: { current in
                 if current == size { started.signal(); _ = release.wait(timeout: .now() + 5) }
             }, after: { done.add($0) })
             weak var owner: AnyObject?
@@ -321,7 +321,7 @@ final class ShimmerTests: XCTestCase {
             release.signal()
             until { done.get(size) == 1 }
             pump()
-            TGUIKit.ShimmerRasterProbe.configure(before: nil)
+            AnsibleUIKit.ShimmerRasterProbe.configure(before: nil)
         }
     }
 

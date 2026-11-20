@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 
 final class BindingTests: XCTestCase {
     private var windows: [NSWindow] = []
     override func setUp() {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         InlineStickerItemLayer.resolvesImmediately = true
         InlineStickerItemLayer.created = 0
     }

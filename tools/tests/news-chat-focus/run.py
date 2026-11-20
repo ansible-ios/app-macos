@@ -50,7 +50,7 @@ let package = Package(
 ''')
 fixture = pathlib.Path(__file__).with_name('NewsChatFocusRegressionTests.swift').read_text()
 (tests / 'NewsChatFocusRegressionTests.swift').write_text('import Foundation\nimport XCTest\nimport SwiftSignalKit\n\n' + implementation + fixture)
-table_source = read_source('packages/TGUIKit/Sources/TableView.swift')
+table_source = read_source('packages/AnsibleUIKit/Sources/TableView.swift')
 short_start = table_source.index('        if documentHeight < height {')
 short_end = table_source.index('        if let item = item {', short_start)
 short_branch = table_source[short_start:short_end]

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 class ReferenceObserverView: NSView, Notifable {
     var item: AnyObject?

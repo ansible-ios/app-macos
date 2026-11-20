@@ -1,6 +1,6 @@
 import Cocoa
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import AnsibleMedia
 import AVFoundation
 import TelegramCore

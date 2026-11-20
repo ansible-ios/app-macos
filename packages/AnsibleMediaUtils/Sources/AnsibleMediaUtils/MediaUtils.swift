@@ -3,7 +3,7 @@ import SwiftSignalKit
 import TelegramCore
 import FastBlur
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import AVFoundation
 import Accelerate
 import GZIP
@@ -1853,7 +1853,7 @@ public func putToTemp(image:NSImage, compress: Bool = true) -> Signal<String, No
         
         if compress {
             if let data = compressImageToJPEG(image.cgImage(forProposedRect: nil, context: nil, hints: nil)!, quality: compress ? 0.83 : 1.0) {
-                let path = NSTemporaryDirectory() + "tg_image_\(arc4random()).jpeg"
+                let path = NSTemporaryDirectory() + "ansible_image_\(arc4random()).jpeg"
                 try? data.write(to: URL(fileURLWithPath: path))
                 subscriber.putNext(path)
             }
@@ -1865,7 +1865,7 @@ public func putToTemp(image:NSImage, compress: Bool = true) -> Signal<String, No
             
             let ext = (UTTypeCopyPreferredTagWithClass(utType, kUTTagClassFilenameExtension)?.takeRetainedValue() as? String) ?? (utType as String).nsstring.pathExtension
             
-            let path = NSTemporaryDirectory() + "tg_image_\(arc4random()).\(ext)"
+            let path = NSTemporaryDirectory() + "ansible_image_\(arc4random()).\(ext)"
             let options = NSMutableDictionary()
             let mutableData: CFMutableData = NSMutableData() as CFMutableData
             
@@ -2259,7 +2259,7 @@ public func chatMessagePhotoThumbnail(account: Account,  imageReference: ImageMe
 private func builtinWallpaperData() -> Signal<ImageRenderData, NoError> {
     return Signal { subscriber in
         if let filePath = Bundle.main.path(forResource: "builtin-wallpaper-svg", ofType: nil), let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)) {
-            if let data = TGGUnzipData(data, 8 * 1024 * 1024) {
+            if let data = AnsibleGUnzipData(data, 8 * 1024 * 1024) {
                 subscriber.putNext(ImageRenderData(nil, data, true))
             }
         }

@@ -6,7 +6,7 @@ import Foundation
 let mozjpegLibraryPath = URL(fileURLWithPath: #filePath).deletingLastPathComponent().appendingPathComponent("../../core-xprojects/Mozjpeg/build").standardized.path
 
 let deps: [(String, String)] = [
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("AnsibleTheme", "../AnsibleTheme"),
     ("ColorPalette", "../ColorPalette"),
     ("ChatModeTypes", "../ChatModeTypes"),

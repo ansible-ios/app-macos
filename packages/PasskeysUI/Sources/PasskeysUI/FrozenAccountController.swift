@@ -1,6 +1,6 @@
 
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import InputDataUI
 import GeneralRows

@@ -1,9 +1,9 @@
 import AppAnalytics
 import Cocoa
 import ImageIO
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
-import TGModernGrowingTextView
+import AnsibleModernGrowingTextView
 import SwiftSignalKit
 import Postbox
 import InputView
@@ -1197,7 +1197,7 @@ private func writePreviewPlaceholderImage(color: NSColor, path: String) -> Bool 
 
 private func previewPlaceholderResource(color: NSColor) -> TelegramMediaResource? {
     let key = color.argb
-    let path = NSTemporaryDirectory() + "tg_preview_placeholder_\(key).png"
+    let path = NSTemporaryDirectory() + "ansible_preview_placeholder_\(key).png"
     if let current = previewPlaceholderResources.with({ $0[key] }) {
         if !FileManager.default.fileExists(atPath: path) {
             _ = writePreviewPlaceholderImage(color: color, path: path)
@@ -2164,7 +2164,7 @@ public class PreviewSenderController: ModalViewController, Notifable {
             }
             
             if state.state == .archive {
-                let dir = NSTemporaryDirectory() + "tg_temp_archive_\(archiveRandomId)"
+                let dir = NSTemporaryDirectory() + "ansible_temp_archive_\(archiveRandomId)"
                 try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true, attributes: nil)
                 containers.append(ArchiverSenderContainer(path: dir, files: urls))
             }
@@ -3389,7 +3389,7 @@ public class PreviewSenderController: ModalViewController, Notifable {
         return !result
     }
     
-    func textViewSize(_ textView: TGModernGrowingTextView!) -> NSSize {
+    func textViewSize(_ textView: AnsibleModernGrowingTextView!) -> NSSize {
         return NSMakeSize(textView.frame.width, textView.frame.height)
     }
     

@@ -18,7 +18,7 @@ The ordinary color test performs an initial start and 120 ticks. Calls to withAl
 
 ## Paired release measurements
 
-Nine paired batches alternate reference/current order after warmup. Each batch uses 10,000 steady callbacks or 500 repeated starts. Both implementations use real SwiftSignalKit timers and native TGUIKit/AppKit objects. Timer callbacks are captured once outside timed loops. Autorelease pools bound temporary objects between batches.
+Nine paired batches alternate reference/current order after warmup. Each batch uses 10,000 steady callbacks or 500 repeated starts. Both implementations use real SwiftSignalKit timers and native AnsibleUIKit/AppKit objects. Timer callbacks are captured once outside timed loops. Autorelease pools bound temporary objects between batches.
 
 | Operation | Reference median | Current median |
 | --- | ---: | ---: |
@@ -30,8 +30,8 @@ Steady callback work fell by about 90% in this fixture. At 25 ticks per second, 
 ## Run
 
 ```sh
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter SpinnerLifecycleTests
-SPINNER_BENCHMARK=1 swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-release -c release --filter SpinnerLifecycleTests.testTickAndRepeatedStartBenchmark
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter SpinnerLifecycleTests
+SPINNER_BENCHMARK=1 swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-release -c release --filter SpinnerLifecycleTests.testTickAndRepeatedStartBenchmark
 ```
 
 Run benchmarks after other compiler/test work has finished. The JSON report is written to /tmp/spinner-benchmark.json. Full-suite and sanitizer evidence, source hashes and original-source snapshots are archived alongside this document. No full Telegram application build or account/network test is performed by this lab.
@@ -40,4 +40,4 @@ Validation uses the current worktree, including unrelated pending changes; it is
 
 ## Final validation
 
-The complete TGUIKit suite passed all 371 functional tests in release and Address Sanitizer builds (389 total, 18 optional tests skipped). The chat-layer mini-app passed all 134 functional tests in both configurations (148 total, 14 skipped): 505 functional tests per configuration in total. Focused spinner and hidden-container checks passed all 12 functional tests under Thread Sanitizer (13 total, one optional benchmark skipped), with no reported races. Final source hashes remained unchanged throughout these runs.
+The complete AnsibleUIKit suite passed all 371 functional tests in release and Address Sanitizer builds (389 total, 18 optional tests skipped). The chat-layer mini-app passed all 134 functional tests in both configurations (148 total, 14 skipped): 505 functional tests per configuration in total. Focused spinner and hidden-container checks passed all 12 functional tests under Thread Sanitizer (13 total, one optional benchmark skipped), with no reported races. Final source hashes remained unchanged throughout these runs.

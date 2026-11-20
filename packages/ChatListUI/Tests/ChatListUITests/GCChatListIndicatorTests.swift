@@ -1,6 +1,6 @@
 import XCTest
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 import Postbox
 import AnsibleUtils
 @testable import ChatListUI

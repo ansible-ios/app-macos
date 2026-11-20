@@ -1,6 +1,6 @@
 import Foundation
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 
 final class Avatar_StickersList : View {

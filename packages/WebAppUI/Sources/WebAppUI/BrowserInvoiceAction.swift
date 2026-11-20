@@ -3,7 +3,7 @@ import Localization
 import SwiftSignalKit
 import AnsibleContext
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 
 final class BrowserInvoiceAction {
     private var generation: UInt64 = 0

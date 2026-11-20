@@ -1,6 +1,6 @@
 import Cocoa
 import TelegramCore
-import TGGifConverter
+import AnsibleGifConverter
 import Postbox
 import SwiftSignalKit
 import AnsibleMediaResources
@@ -16,7 +16,7 @@ public func fetchGifMediaResource(resource: LocalFileGifMediaResource) -> Signal
         let exportPath = NSTemporaryDirectory() + "\(resource.randomId).mp4"
         if let data = try? Data(contentsOf: URL(fileURLWithPath: resource.path)) {
             queue.async {
-                TGGifConverter.convertGif(toMp4: data, exportPath: exportPath, completionHandler: { path in
+                AnsibleGifConverter.convertGif(toMp4: data, exportPath: exportPath, completionHandler: { path in
                     _ = NSTemporaryDirectory() + "\(arc4random()).mp4"
 //                    let remuxed = FFMpegRemuxer.remux(path, to: remuxedPath)
 //                    if remuxed {
@@ -99,7 +99,7 @@ public func fetchArchiveMediaResource(resource: LocalFileArchiveMediaResource) -
         let disposable = archiver.archive(source, startIfNeeded: true).start(next: { status in
             switch status {
             case let .done(url):
-                if resource.path.contains("tg_temp_archive_") {
+                if resource.path.contains("ansible_temp_archive_") || resource.path.contains("tg_temp_archive_") {
                     try? FileManager.default.removeItem(atPath: resource.path)
                 }
                 subscriber.putNext(.moveLocalFile(path: url.path))

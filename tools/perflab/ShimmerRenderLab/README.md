@@ -15,14 +15,14 @@ ASAN_OPTIONS=detect_leaks=0 swift test --package-path /tmp/ShimmerValidation --s
 swift test --package-path /tmp/ShimmerValidation --scratch-path /tmp/ShimmerValidation-tsan --sanitize thread --filter ShimmerTests.testCandidateRapidRequestsPublishTheLatestMask
 python3 tools/perflab/ShimmerRenderLab/prepare-isolated.py /tmp/ShimmerTiming --without-probe
 swift test --package-path /tmp/ShimmerTiming --scratch-path /tmp/ShimmerTiming-build -c release --filter ShimmerBenchmarkTests
-swift test --package-path /tmp/ShimmerTiming/TGUIKit --scratch-path /tmp/ShimmerTiming-kit -c release
+swift test --package-path /tmp/ShimmerTiming/AnsibleUIKit --scratch-path /tmp/ShimmerTiming-kit -c release
 SHIMMER_RENDER_BENCHMARK=1 swift test --package-path /tmp/ShimmerTiming --scratch-path /tmp/ShimmerTiming-build -c release --skip-build --filter ShimmerBenchmarkTests
 cp /tmp/shimmer-render-benchmark.json /tmp/shimmer-forward.json
 SHIMMER_RENDER_BENCHMARK=1 SHIMMER_RENDER_REVERSE=1 swift test --package-path /tmp/ShimmerTiming --scratch-path /tmp/ShimmerTiming-build -c release --skip-build --filter ShimmerBenchmarkTests
 cp /tmp/shimmer-render-benchmark.json /tmp/shimmer-reverse.json
 ```
 
-Build and measure sequentially with no competing compilers during timing. Each generator requires a new output directory. It freezes complete baseline and candidate TGUIKit modules and records source hashes. Shared dependencies remain at their recorded repository paths. Reference sources preserve the original and candidate revisions with SHA-256 guards.
+Build and measure sequentially with no competing compilers during timing. Each generator requires a new output directory. It freezes complete baseline and candidate AnsibleUIKit modules and records source hashes. Shared dependencies remain at their recorded repository paths. Reference sources preserve the original and candidate revisions with SHA-256 guards.
 
 The functional snapshot appends identical test-only image/mask inspectors and an image-generation hook to both modules. The hook gates out-of-order requests and counts rasterization. The timing snapshot omits the raster hook calls, so the eliminated baseline work is not inflated by counter/lock overhead. Its async contents observers drain delivery after timed submission loops; synchronous sticker updates have no observer. No inspectors or probes are added to production.
 
@@ -36,11 +36,11 @@ An early candidate resolved every color to CGColor on every call. It made alread
 
 Release measurements use nine alternating paired batches and repeat in reverse initial order. Async results report main-thread update/submission cost, not end-to-end raster latency. Synchronous sticker measurements include image generation. Changed-input controls for all three async classes, synchronous changed-background updates and construction expose added work. Object instance and allocator sizes measure only each top-level object, not all child layers, transient allocations or process memory. Extra cache fields and retained disposables have a storage cost; reduced redundant work is not evidence of lower total retained app memory.
 
-These fixtures use real TGUIKit, AppKit and Core Animation. They do not measure whole-app scrolling FPS, message-opening latency or the complete media pipeline.
+These fixtures use real AnsibleUIKit, AppKit and Core Animation. They do not measure whole-app scrolling FPS, message-opening latency or the complete media pipeline.
 
 ## Final validation and results
 
-All 12 focused release tests and all 12 focused Address Sanitizer tests pass. The candidate-only rapid-replacement test passes Thread Sanitizer; this is not a claim that the complete baseline or suite is race-free. The complete frozen TGUIKit suite passes 420 functional tests, with 18 optional measurements skipped. Leak detection is disabled for the Address Sanitizer run.
+All 12 focused release tests and all 12 focused Address Sanitizer tests pass. The candidate-only rapid-replacement test passes Thread Sanitizer; this is not a claim that the complete baseline or suite is race-free. The complete frozen AnsibleUIKit suite passes 420 functional tests, with 18 optional measurements skipped. Leak detection is disabled for the Address Sanitizer run.
 
 A fresh generator reproduces 521 Swift source files and three manifests after temporary-path normalization. All 1,228 recorded snapshot/dependency inputs and 259 production source/test files are verified unchanged. The two measured production files match the applied changes exactly. The path parser/renderer and foreground gradient implementation remain byte-identical to the originals. Other worktree changes are frozen identically in both modules. The baseline versions of the two changed files come from commit 95f414a59; reproducing the whole fixture also requires the recorded dependency/worktree inputs.
 

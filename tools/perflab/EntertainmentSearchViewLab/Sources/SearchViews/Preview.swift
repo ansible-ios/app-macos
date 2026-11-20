@@ -1,5 +1,5 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 
 public func writeSearchPreviews(directory: String, duckFile: String) throws {
     initializeSearchViewLab()

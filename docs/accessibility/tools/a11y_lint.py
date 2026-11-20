@@ -109,7 +109,7 @@ def row_findings(repo, sources, package):
         for base, rel, module, line, own in decls:
             if package and module != package:
                 continue
-            if module == "TGUIKit":
+            if module == "AnsibleUIKit":
                 continue
             if not labelled(name):
                 findings.append({"module": module, "path": rel, "line": line, "kind": "TableRowItem", "name": name})
@@ -165,7 +165,7 @@ def scan(repo, package=None):
                     continue
                 rel = os.path.relpath(path, repo)
                 module = module_of(rel)
-                if module == "TGUIKit":
+                if module == "AnsibleUIKit":
                     continue
                 with open(path, encoding="utf-8", errors="replace") as f:
                     text = strip_comments(f.read())

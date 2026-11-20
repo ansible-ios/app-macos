@@ -10,7 +10,7 @@ This pass also fixes three lifecycle problems:
 
 ## Native validation
 
-`prepare.py` extracts the complete `PremiumStatusControl` class from baseline `df79cde92` and the working tree, changing only class names. Both versions compile against real TGUIKit controls, SimpleLayer, notification observers, and removal animations. Tests use native windows, scroll views, hierarchy changes, visible rectangles, and Core Animation contents.
+`prepare.py` extracts the complete `PremiumStatusControl` class from baseline `df79cde92` and the working tree, changing only class names. Both versions compile against real AnsibleUIKit controls, SimpleLayer, notification observers, and removal animations. Tests use native windows, scroll views, hierarchy changes, visible rectangles, and Core Animation contents.
 
 Account services, peer observation, media files, icons, and animation implementations are fixtures. Emoji fixtures record playback, expose the file-update callback, and model the real layer's preview restoration on stop. Particle fixtures record `isPlaying`; actual emitter simulation and Lottie decoding are outside this harness. Geometry comparisons use fixture icons, not pixel snapshots of production assets. The complete PremiumStatusUI package and Telegram application are not built.
 
@@ -41,9 +41,9 @@ PREMIUM_STATUS_BENCHMARK=1 swift test --package-path tools/perflab/PremiumStatus
 PREMIUM_STATUS_BENCHMARK=1 PREMIUM_STATUS_REVERSE=1 swift test --package-path tools/perflab/PremiumStatusLifecycleLab -c release
 swift test --package-path tools/perflab/PremiumStatusLifecycleLab --sanitize address
 swift test --package-path tools/perflab/PremiumStatusLifecycleLab --sanitize thread
-swift test --package-path packages/TGUIKit -c release --filter 'AnimatableContentObserverTests|AnimationObserverWorkTests|AnimationObserverLifecycleTests'
+swift test --package-path packages/AnsibleUIKit -c release --filter 'AnimatableContentObserverTests|AnimationObserverWorkTests|AnimationObserverLifecycleTests'
 ```
 
 Use separate scratch paths and sequential builds. Save `/tmp/premium-status-lifecycle-benchmark.json` after each benchmark run. `results/` contains logs, generated source, production changes, hashes, and the final validation record. Whole-file parsing separately checks the production source.
 
-Final checks passed: 14 functional lifecycle tests and 20 existing TGUIKit observer regressions in release; the 14 lifecycle tests also passed under each of Address Sanitizer and Thread Sanitizer. Both final benchmark orders passed all assertions, and whole-file parsing succeeded. No sanitizer errors were reported.
+Final checks passed: 14 functional lifecycle tests and 20 existing AnsibleUIKit observer regressions in release; the 14 lifecycle tests also passed under each of Address Sanitizer and Thread Sanitizer. Both final benchmark orders passed all assertions, and whole-file parsing succeeded. No sanitizer errors were reported.

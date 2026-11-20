@@ -11,6 +11,6 @@ expected = original
 for old, new in json.loads((lab / 'Reference/changes.json').read_text()):
     assert expected.count(old) == 1
     expected = expected.replace(old, new)
-current = (root / 'packages/TGUIKit/Sources/BlurEdgeView.swift').read_text()
+current = (root / 'packages/AnsibleUIKit/Sources/BlurEdgeView.swift').read_text()
 assert current == expected
 (lab / 'generation.json').write_text(json.dumps({'production_sha256': hashlib.sha256(current.encode()).hexdigest()}, indent=2) + '\n')

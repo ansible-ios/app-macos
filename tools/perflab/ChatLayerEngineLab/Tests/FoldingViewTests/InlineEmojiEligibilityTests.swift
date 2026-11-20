@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputView
 import InputTextView
 import InlineStickerLayer
@@ -11,7 +11,7 @@ final class InlineEmojiEligibilityTests: XCTestCase {
     typealias Sticker = InlineStickerLayer.InlineStickerItem
 
     override func setUp() {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
     }
 
     private func sticker(_ id: Int64 = 1) -> Sticker {

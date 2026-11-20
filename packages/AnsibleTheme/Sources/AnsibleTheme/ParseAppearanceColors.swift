@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import ColorPalette
 
 private let colors: [UInt32: String] = [

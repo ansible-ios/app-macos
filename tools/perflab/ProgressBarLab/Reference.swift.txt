@@ -139,7 +139,7 @@ public class LinearProgressControl: Control {
     
     
     public override func isAccessibilityElement() -> Bool {
-        guard TGUIKitAccessibility.isEnabled, !isAccessibilityDecorative, !isHidden else {
+        guard AnsibleUIKitAccessibility.isEnabled, !isAccessibilityDecorative, !isHidden else {
             return false
         }
         return onUserChanged != nil || super.isAccessibilityElement()
@@ -160,7 +160,7 @@ public class LinearProgressControl: Control {
         if let value = super.accessibilityValue() {
             return value
         }
-        guard TGUIKitAccessibility.isEnabled else {
+        guard AnsibleUIKitAccessibility.isEnabled else {
             return nil
         }
         return "\(Int((progress * 100).rounded()))%"
@@ -179,7 +179,7 @@ public class LinearProgressControl: Control {
     }
 
     private func accessibilityAdjust(by delta: CGFloat) -> Bool {
-        guard TGUIKitAccessibility.isEnabled, isEnabled, let onUserChanged = onUserChanged else {
+        guard AnsibleUIKitAccessibility.isEnabled, isEnabled, let onUserChanged = onUserChanged else {
             return false
         }
         let value = min(max(_progress + delta, 0), 1)

@@ -4,7 +4,7 @@ import SwiftSignalKit
 import TelegramCore
 import ColorPalette
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import ThemeSettings
 import FoundationUtils
 

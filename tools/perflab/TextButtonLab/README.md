@@ -1,8 +1,8 @@
-# TGUIKit text button performance lab
+# AnsibleUIKit text button performance lab
 
-This standalone AppKit mini-app benchmarks the real TGUIKit package without building Telegram or TelegramCore. TextButton appears throughout chat actions, chat-list controls, and shared navigation. `--preview` opens a scrollable window with 100 buttons; click to change their selection and animate their subtitles.
+This standalone AppKit mini-app benchmarks the real AnsibleUIKit package without building Telegram or TelegramCore. TextButton appears throughout chat actions, chat-list controls, and shared navigation. `--preview` opens a scrollable window with 100 buttons; click to change their selection and animate their subtitles.
 
-The baseline is `TitleButton.swift` at commit `4d3f1f417`. `prepare.py` copies the current TGUIKit package into a temporary directory, substitutes only that file for the baseline, and uses identical dependencies and benchmark code for both variants. It records the source hashes and compiler version. It does not switch or overwrite the working checkout.
+The baseline is `TitleButton.swift` at commit `4d3f1f417`. `prepare.py` copies the current AnsibleUIKit package into a temporary directory, substitutes only that file for the baseline, and uses identical dependencies and benchmark code for both variants. It records the source hashes and compiler version. It does not switch or overwrite the working checkout.
 
 ```sh
 bash tools/perflab/TextButtonLab/run.sh baseline > tools/perflab/TextButtonLab/Evidence/baseline.json
@@ -39,9 +39,9 @@ Dynamic colors bypass reuse. Content/style/scale changes and detectable external
 `TextButtonLayoutTests` compares against `LegacyTextButton`, copied from the baseline with only its declaration/imports adapted for the test target. Coverage includes unchanged-state glyph reuse, repeated setters, sizing, title/subtitle independence, disabled and selected states, fonts, colors, glass tint, dynamic colors, backing scale, external layout changes, mutable-layout isolation, subtitle lifetime/removal/readdition, automatic sizing, empty/multiline/Unicode strings, accessibility actions, state callbacks, and subtitle animations in an AppKit window. Rendering uses 24 zero-tolerance pixel comparisons: 1×/2× scales, three image directions, with/without subtitles, and narrow/wide sizes.
 
 ```sh
-swift test --package-path packages/TGUIKit
-swift test --package-path packages/TGUIKit -c release
-swift test --package-path packages/TGUIKit --scratch-path /tmp/telegram-textbutton-asan --sanitize=address --filter 'TextButtonLayoutTests|TextButtonBarViewTreeTests|ImageButtonTreeTests'
+swift test --package-path packages/AnsibleUIKit
+swift test --package-path packages/AnsibleUIKit -c release
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/telegram-textbutton-asan --sanitize=address --filter 'TextButtonLayoutTests|TextButtonBarViewTreeTests|ImageButtonTreeTests'
 ```
 
-All 163 TGUIKit tests passed in both debug and release configurations. Address Sanitizer passed 36 focused tests without reported memory errors. Raw measurements and medians are in `Evidence`. Validation results include source hashes. These are control-level CPU measurements, not proof of faster Telegram chat opening, scrolling frame delivery, or GPU rendering. No full Telegram app build is required by this lab.
+All 163 AnsibleUIKit tests passed in both debug and release configurations. Address Sanitizer passed 36 focused tests without reported memory errors. Raw measurements and medians are in `Evidence`. Validation results include source hashes. These are control-level CPU measurements, not proof of faster Telegram chat opening, scrolling frame delivery, or GPU rendering. No full Telegram app build is required by this lab.

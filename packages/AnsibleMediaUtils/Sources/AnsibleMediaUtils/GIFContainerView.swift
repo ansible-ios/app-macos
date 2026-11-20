@@ -1,7 +1,7 @@
 import Cocoa
 import TelegramCore
 
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import AnsibleTheme
 import InAppSettings

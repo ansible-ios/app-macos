@@ -5,7 +5,7 @@ import TelegramCore
 import InAppSettings
 import Postbox
 import TgVoipWebrtc
-import TGUIKit
+import AnsibleUIKit
 import TelegramVoip
 import Localization
 import ColorPalette
@@ -106,12 +106,12 @@ func callLogsToRemove(_ files: [(URL, Date)], limit: Int) -> [URL] {
 private let setupLogs: Bool = {
     OngoingCallThreadLocalContextWebrtc.setupLoggingFunction({ value in
         if let value = value {
-            Logger.shared.log("TGVOIP", value)
+            Logger.shared.log("AnsibleVOIP", value)
         }
     })
     /*OngoingCallThreadLocalContextWebrtcCustom.setupLoggingFunction({ value in
      if let value = value {
-     Logger.shared.log("TGVOIP", value)
+     Logger.shared.log("AnsibleVOIP", value)
      }
      })*/
     return true

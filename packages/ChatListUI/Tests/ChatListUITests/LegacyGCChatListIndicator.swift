@@ -1,7 +1,7 @@
 import Cocoa
 import AnsibleUtils
 import QuartzCore
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 
 final class LegacyGCChatListIndicator : View {

@@ -1,7 +1,7 @@
 import Cocoa
 import SwiftSignalKit
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import DateUtils
 import Localization
 import AnsibleContext

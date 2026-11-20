@@ -2,7 +2,7 @@ import Cocoa
 import TelegramCore
 import Postbox
 import ColorPalette
-import TGUIKit
+import AnsibleUIKit
 
 public extension Peer {
     var namePeerColor: PeerNameColor? {

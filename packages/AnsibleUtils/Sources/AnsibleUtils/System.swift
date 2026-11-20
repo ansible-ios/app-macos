@@ -3,7 +3,7 @@ import AVFoundation
 import SwiftSignalKit
 import TelegramCore
 
-import TGUIKit
+import AnsibleUIKit
 import Postbox
 import CoreMediaIO
 import Localization

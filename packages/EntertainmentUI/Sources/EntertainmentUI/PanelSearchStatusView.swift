@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class PanelSearchStatusView: View {
     private let titleView = TextView()

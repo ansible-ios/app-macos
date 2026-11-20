@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public struct DateSelectorHooks {
     public let showPremiumBoarding: (Window) -> Void

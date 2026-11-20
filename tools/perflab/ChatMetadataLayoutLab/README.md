@@ -1,6 +1,6 @@
 # Chat metadata layout reuse
 
-This native macOS test package extracts the counter, forwarded-header, and guest-badge sizing blocks verbatim from `ChatRowItem.makeSize`. It compares the working-tree implementation with commit `84be5dd1a`, using the real TGUIKit TextViewLayout, Core Text measurement, block-image generation, and TextView drawing. The small environment fixture supplies model flags, colors, and strings without building TelegramCore or the full app.
+This native macOS test package extracts the counter, forwarded-header, and guest-badge sizing blocks verbatim from `ChatRowItem.makeSize`. It compares the working-tree implementation with commit `84be5dd1a`, using the real AnsibleUIKit TextViewLayout, Core Text measurement, block-image generation, and TextView drawing. The small environment fixture supplies model flags, colors, and strings without building TelegramCore or the full app.
 
 Run from the repository root:
 
@@ -23,7 +23,7 @@ The initial seven tests produced 16 expected assertion failures against the base
 - Guest-badge shrink/expand sequences, widths at the natural-size boundary, repeated sizing, tiny widths, invalidation, and stable Core Text lines and block-image identity.
 - 366 exact raster comparisons at drawing transforms of 1x and 2x, including 60 empty-layout comparisons; nonempty fixtures also require nonzero pixels. Geometry, attributed text, and embedded-item rectangles are checked separately.
 
-The badge uses an opaque embedded-item marker with the same attribute shape as production. It exercises text preparation and reserved inline geometry, but does not fetch or draw the eye icon. Palette/model fixtures do not replace TGUIKit rendering. This package does not instantiate the complete ChatRowItem, exercise a live chat, or prove end-to-end frame-time or application-memory gains. Whole-file parsing checks syntax separately; the main application was not built.
+The badge uses an opaque embedded-item marker with the same attribute shape as production. It exercises text preparation and reserved inline geometry, but does not fetch or draw the eye icon. Palette/model fixtures do not replace AnsibleUIKit rendering. This package does not instantiate the complete ChatRowItem, exercise a live chat, or prove end-to-end frame-time or application-memory gains. Whole-file parsing checks syntax separately; the main application was not built.
 
 ## Measured result
 
@@ -41,6 +41,6 @@ The combined fixture saves about 11 microseconds per repeated sizing pass. It co
 
 Reuse is local to existing row-owned layouts, with no additional per-row fields or shared cache. Header text/style changes replace the layout. Zero-sized layouts remeasure. Truncated badges remeasure when their available width changes, allowing expansion; naturally fitting badges retain their existing layout and block image.
 
-Validation passed: 518 functional release tests (13 metadata, 371 TGUIKit, 134 chat-layer), 13 focused tests under Address Sanitizer, and the same 13 under Thread Sanitizer. Whole-file parsing also passed. Benchmark-only tests were skipped in sanitizer and broader regression runs.
+Validation passed: 518 functional release tests (13 metadata, 371 AnsibleUIKit, 134 chat-layer), 13 focused tests under Address Sanitizer, and the same 13 under Thread Sanitizer. Whole-file parsing also passed. Benchmark-only tests were skipped in sanitizer and broader regression runs.
 
 Raw logs, benchmark samples, source snapshots, and hashes are stored in `results/` as committed evidence. Generated build files remain ignored.

@@ -2,7 +2,7 @@ import Foundation
 import ObjectiveC
 import Postbox
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 
 public final class AnalyticsContext {

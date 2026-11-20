@@ -9,7 +9,7 @@ import AlertsUI
 import PhoneNumberUtils
 import InAppSettings
 import ColorPalette
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 

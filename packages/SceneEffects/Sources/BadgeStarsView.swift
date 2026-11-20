@@ -1,6 +1,6 @@
 import Cocoa
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import SceneKit
 
 public final class BadgeStarsView: NSView, PremiumDecorationProtocol {

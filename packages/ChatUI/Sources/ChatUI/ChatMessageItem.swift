@@ -1,11 +1,11 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import InAppVideoServices
 import Postbox
 import SwiftSignalKit
 import InAppSettings
-import TGModernGrowingTextView
+import AnsibleModernGrowingTextView
 import Strings
 import InputView
 import ColorPalette

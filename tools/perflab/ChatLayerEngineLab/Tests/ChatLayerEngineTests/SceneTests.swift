@@ -1,13 +1,13 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class SceneTests: XCTestCase {
     override func setUp() {
         _ = NSApplication.shared
         NSApp.setActivationPolicy(.accessory)
-        TGUIKitAccessibility.isEnabled = true
+        AnsibleUIKitAccessibility.isEnabled = true
     }
     func scene() -> ChatLayerSceneView {
         let scene = ChatLayerSceneView(frame: NSRect(x: 0, y: 0, width: 400, height: 200))

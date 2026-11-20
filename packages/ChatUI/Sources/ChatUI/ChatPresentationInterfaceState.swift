@@ -2,7 +2,7 @@ import Cocoa
 import OpusBinding
 import Postbox
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import AnsibleMedia
 import Localization

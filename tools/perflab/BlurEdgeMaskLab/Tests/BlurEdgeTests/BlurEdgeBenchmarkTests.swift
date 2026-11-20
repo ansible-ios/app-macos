@@ -2,16 +2,16 @@ import Cocoa
 import CoreImage
 import XCTest
 import Darwin
-import class TGUIKit.BlurEdgeView
-import class TGUIKitBaseline.BlurEdgeView
-import enum TGUIKit.BlurEdgeCacheInspection
-import enum TGUIKit.ContainedViewLayoutTransition
-import enum TGUIKitBaseline.ContainedViewLayoutTransition
+import class AnsibleUIKit.BlurEdgeView
+import class AnsibleUIKitBaseline.BlurEdgeView
+import enum AnsibleUIKit.BlurEdgeCacheInspection
+import enum AnsibleUIKit.ContainedViewLayoutTransition
+import enum AnsibleUIKitBaseline.ContainedViewLayoutTransition
 
 final class BlurEdgeBenchmarkTests: XCTestCase {
     func testCosts() throws {
         guard ProcessInfo.processInfo.environment["BLUR_EDGE_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in blur edge benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let reverse = ProcessInfo.processInfo.environment["BLUR_EDGE_REVERSE"] == "1"
         let factory = BlurEdgeTests()
         let (a, b) = factory.pair(size: CGSize(width: 420, height: 48))
@@ -53,8 +53,8 @@ final class BlurEdgeBenchmarkTests: XCTestCase {
             { newIndex += 1; b.frame.size.width = CGFloat(460 + newIndex % 17); b.layout(); return Int(b.bounds.width) }
         ])
         measure("create_destroy_17_sizes", count: 500, operations: [
-            { oldIndex += 1; let view = TGUIKitBaseline.BlurEdgeView(frame: CGRect(x: 0, y: 0, width: 610 + oldIndex % 17, height: 35)); return Int(view.bounds.width) },
-            { newIndex += 1; let view = TGUIKit.BlurEdgeView(frame: CGRect(x: 0, y: 0, width: 610 + newIndex % 17, height: 35)); return Int(view.bounds.width) }
+            { oldIndex += 1; let view = AnsibleUIKitBaseline.BlurEdgeView(frame: CGRect(x: 0, y: 0, width: 610 + oldIndex % 17, height: 35)); return Int(view.bounds.width) },
+            { newIndex += 1; let view = AnsibleUIKit.BlurEdgeView(frame: CGRect(x: 0, y: 0, width: 610 + newIndex % 17, height: 35)); return Int(view.bounds.width) }
         ])
         let (missA, missB) = factory.pair(size: CGSize(width: 420, height: 48))
         var oldMissIndex = 0, newMissIndex = 0
@@ -73,7 +73,7 @@ final class BlurEdgeBenchmarkTests: XCTestCase {
             return ["unique_masks": Set(images.map(ObjectIdentifier.init)).count, "unique_bitmaps": bitmaps.count, "unique_source_bitmap_bytes": bitmaps.values.reduce(0) { $0 + $1.bytesPerRow * $1.height }]
         }
         XCTAssertGreaterThan(sink, 0)
-        let metadata: [String: Any] = ["unit": "microseconds_per_operation", "reverse": reverse, "batches_before_after": results, "retained_16_views": ["baseline": try bitmapStorage(oldMasks), "candidate": try bitmapStorage(newMasks)], "view_allocation_bytes": ["baseline": malloc_size(Unmanaged.passUnretained(a).toOpaque()), "candidate": malloc_size(Unmanaged.passUnretained(b).toOpaque())], "cache_entry_count": TGUIKit.BlurEdgeCacheInspection.count, "sink": sink]
+        let metadata: [String: Any] = ["unit": "microseconds_per_operation", "reverse": reverse, "batches_before_after": results, "retained_16_views": ["baseline": try bitmapStorage(oldMasks), "candidate": try bitmapStorage(newMasks)], "view_allocation_bytes": ["baseline": malloc_size(Unmanaged.passUnretained(a).toOpaque()), "candidate": malloc_size(Unmanaged.passUnretained(b).toOpaque())], "cache_entry_count": AnsibleUIKit.BlurEdgeCacheInspection.count, "sink": sink]
         try JSONSerialization.data(withJSONObject: metadata, options: [.prettyPrinted, .sortedKeys]).write(to: URL(fileURLWithPath: "/tmp/blur-edge-mask-benchmark.json"))
     }
 }

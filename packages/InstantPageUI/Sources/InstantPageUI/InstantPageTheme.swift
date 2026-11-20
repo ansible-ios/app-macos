@@ -5,7 +5,7 @@ import Postbox
 import AnsibleTheme
 import AnsibleUtils
 import ColorPalette
-import TGUIKit
+import AnsibleUIKit
 
 public enum InstantPageFontStyle {
     case sans

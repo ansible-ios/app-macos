@@ -13,18 +13,18 @@ python3 tools/perflab/TextRunMeasureLab/prepare-isolated.py /tmp/TextRunMeasureV
 swift test --package-path /tmp/TextRunMeasureValidation --scratch-path /tmp/TextRunMeasureValidation-build -c release
 ASAN_OPTIONS=detect_leaks=0 swift test --package-path /tmp/TextRunMeasureValidation --scratch-path /tmp/TextRunMeasureValidation-asan --sanitize address --filter RunMeasureTests
 swift test --package-path /tmp/TextRunMeasureValidation --scratch-path /tmp/TextRunMeasureValidation-tsan --sanitize thread --filter RunMeasureTests
-swift test --package-path /tmp/TextRunMeasureValidation/TGUIKit --scratch-path /tmp/TextRunMeasureValidation-kit -c release
+swift test --package-path /tmp/TextRunMeasureValidation/AnsibleUIKit --scratch-path /tmp/TextRunMeasureValidation-kit -c release
 RUN_MEASURE_BENCHMARK=1 swift test --package-path /tmp/TextRunMeasureValidation --scratch-path /tmp/TextRunMeasureValidation-build -c release --skip-build --filter RunMeasureBenchmarkTests
 cp /tmp/run-measure-benchmark.json /tmp/run-forward.json
 RUN_MEASURE_BENCHMARK=1 RUN_MEASURE_REVERSE=1 swift test --package-path /tmp/TextRunMeasureValidation --scratch-path /tmp/TextRunMeasureValidation-build -c release --skip-build --filter RunMeasureBenchmarkTests
 cp /tmp/run-measure-benchmark.json /tmp/run-reverse.json
 ```
 
-Use a fresh output directory. Build, test and benchmark sequentially. Timings should run without competing builds. The baseline is commit 3a4df7194. The generator freezes two complete TGUIKit modules differing only in the production TextView.swift change. Its source guard intentionally requires the recorded original or candidate revision; rerun a historical lab from its recorded checkout when later TextView.swift changes exist. Both receive identical test-only fixture/snapshot helpers reused from QuoteMeasureLab; those helpers are not added to production. Named theme icons use identical placeholders in both modules. The lab uses real Core Text shaping and TextViewLayer bitmap drawing.
+Use a fresh output directory. Build, test and benchmark sequentially. Timings should run without competing builds. The baseline is commit 3a4df7194. The generator freezes two complete AnsibleUIKit modules differing only in the production TextView.swift change. Its source guard intentionally requires the recorded original or candidate revision; rerun a historical lab from its recorded checkout when later TextView.swift changes exist. Both receive identical test-only fixture/snapshot helpers reused from QuoteMeasureLab; those helpers are not added to production. Named theme icons use identical placeholders in both modules. The lab uses real Core Text shaping and TextViewLayer bitmap drawing.
 
 ## Validation
 
-Seven focused tests pass in release, Address Sanitizer and Thread Sanitizer. Address Sanitizer leak detection is disabled. The full frozen TGUIKit suite passes 420 functional tests, with 18 optional measurements/captures skipped (438 total).
+Seven focused tests pass in release, Address Sanitizer and Thread Sanitizer. Address Sanitizer leak detection is disabled. The full frozen AnsibleUIKit suite passes 420 functional tests, with 18 optional measurements/captures skipped (438 total).
 
 The differential checks include:
 

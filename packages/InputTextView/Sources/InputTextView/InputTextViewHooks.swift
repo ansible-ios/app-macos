@@ -1,7 +1,7 @@
 import Cocoa
 import AppAnalytics
 import InputView
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import TelegramCore
 

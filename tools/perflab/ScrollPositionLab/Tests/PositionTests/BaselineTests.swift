@@ -1,18 +1,18 @@
 import AppKit
 import XCTest
-@testable import class TGUIKitBaseline.ScrollView
-@testable import class TGUIKitBaseline.TGClipView
-@testable import class TGUIKitBaseline.TableView
-@testable import class TGUIKitBaseline.TableRowItem
-@testable import struct TGUIKitBaseline.ScrollPosition
-@testable import enum TGUIKitBaseline.ScrollDirection
+@testable import class AnsibleUIKitBaseline.ScrollView
+@testable import class AnsibleUIKitBaseline.AnsibleClipView
+@testable import class AnsibleUIKitBaseline.TableView
+@testable import class AnsibleUIKitBaseline.TableRowItem
+@testable import struct AnsibleUIKitBaseline.ScrollPosition
+@testable import enum AnsibleUIKitBaseline.ScrollDirection
 
 private final class PositionDocumentBaseline: NSView {
     var documentIsFlipped = false
     override var isFlipped: Bool { documentIsFlipped }
 }
 
-private final class PositionClipBaseline: TGClipView {
+private final class PositionClipBaseline: AnsibleClipView {
     var documentReads = 0
     override var documentRect: NSRect {
         documentReads += 1

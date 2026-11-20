@@ -55,7 +55,7 @@ for marker in ['    private func updateText(', '    private func updateNativeTex
 path.write_text(text)
 previous_preparation = (lab / 'Reference/ChatLayerMessageText+Layout.swift').read_text()
 methods = '\n\n'.join(declaration(previous_preparation, marker) for marker in ['    private enum AttributeKeys {', '    @inline(__always)', '    static func simpleText('])
-(native / 'PlainTextPreparation.swift').write_text('import Cocoa\nimport TGUIKit\n@testable import ChatLayerEngine\n\nextension ChatLayerMessageTextPresentation {\n' + methods + '\n}\n')
+(native / 'PlainTextPreparation.swift').write_text('import Cocoa\nimport AnsibleUIKit\n@testable import ChatLayerEngine\n\nextension ChatLayerMessageTextPresentation {\n' + methods + '\n}\n')
 current_caption = (root / 'packages/ChatUI/Sources/ChatUI/ChatRowView.swift').read_text()
 previous_caption = (lab / 'Reference/ChatRowView.swift').read_text()
 path = native / 'Captions.swift'
@@ -71,15 +71,15 @@ path.write_text(text)
 (output / 'Package.swift').write_text('''// swift-tools-version:5.5
 import PackageDescription
 let package = Package(name: "InlineEmojiBindingLab", platforms: [.macOS(.v10_15)], dependencies: [
-    .package(path: "TGUIKit"), .package(name: "SSignalKit", path: "%s")
+    .package(path: "AnsibleUIKit"), .package(name: "SSignalKit", path: "%s")
 ], targets: [
     .target(name: "TelegramCore"), .target(name: "AnsibleContext"), .target(name: "InputView"),
-    .target(name: "InlineStickerLayer", dependencies: ["TGUIKit", "AnsibleContext", "InputView"]),
-    .target(name: "InputTextView", dependencies: ["TGUIKit"]),
-    .target(name: "ChatLayerEngine", dependencies: ["TGUIKit", "InputTextView", "TelegramCore", "AnsibleContext", "InputView", "InlineStickerLayer", .product(name: "SwiftSignalKit", package: "SSignalKit")]),
-    .target(name: "CandidateBindingHarness", dependencies: ["TGUIKit", "ChatLayerEngine", "InputTextView", "AnsibleContext", "InputView", "InlineStickerLayer"]),
-    .target(name: "NativeBindingHarness", dependencies: ["TGUIKit", "ChatLayerEngine", "InputTextView", "AnsibleContext", "InputView", "InlineStickerLayer"]),
-    .testTarget(name: "BindingTests", dependencies: ["TGUIKit", "CandidateBindingHarness", "NativeBindingHarness", "AnsibleContext", "InputView", "InlineStickerLayer"])
+    .target(name: "InlineStickerLayer", dependencies: ["AnsibleUIKit", "AnsibleContext", "InputView"]),
+    .target(name: "InputTextView", dependencies: ["AnsibleUIKit"]),
+    .target(name: "ChatLayerEngine", dependencies: ["AnsibleUIKit", "InputTextView", "TelegramCore", "AnsibleContext", "InputView", "InlineStickerLayer", .product(name: "SwiftSignalKit", package: "SSignalKit")]),
+    .target(name: "CandidateBindingHarness", dependencies: ["AnsibleUIKit", "ChatLayerEngine", "InputTextView", "AnsibleContext", "InputView", "InlineStickerLayer"]),
+    .target(name: "NativeBindingHarness", dependencies: ["AnsibleUIKit", "ChatLayerEngine", "InputTextView", "AnsibleContext", "InputView", "InlineStickerLayer"]),
+    .testTarget(name: "BindingTests", dependencies: ["AnsibleUIKit", "CandidateBindingHarness", "NativeBindingHarness", "AnsibleContext", "InputView", "InlineStickerLayer"])
 ])
 ''' % (root / 'submodules/ansible-ios/submodules/SSignalKit'))
 tests = output / 'Tests/BindingTests'
@@ -111,7 +111,7 @@ def collect(base):
     for value in re.findall(r'\.package\([^\n]*?path: "([^"]+)"', manifest.read_text()):
         collect(base / value)
 collect(output)
-provenance = {'pre_inline_reference': reference, 'current_production_sha256': before, 'compiler_input_sha256': {str(path): hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(inputs)}, 'template_sha256': {str(path.relative_to(lab)): hashlib.sha256(path.read_bytes()).hexdigest() for path in lab.rglob('*') if path.is_file()}, 'scope': 'Exact pre-inline body/caption/preparation methods versus current; shared current native FoldingTextView/TGUIKit; shared deterministic media/account modules; baseline must instantiate native renderer, candidate must instantiate layer renderer before timing.'}
+provenance = {'pre_inline_reference': reference, 'current_production_sha256': before, 'compiler_input_sha256': {str(path): hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(inputs)}, 'template_sha256': {str(path.relative_to(lab)): hashlib.sha256(path.read_bytes()).hexdigest() for path in lab.rglob('*') if path.is_file()}, 'scope': 'Exact pre-inline body/caption/preparation methods versus current; shared current native FoldingTextView/AnsibleUIKit; shared deterministic media/account modules; baseline must instantiate native renderer, candidate must instantiate layer renderer before timing.'}
 (output / 'binding-provenance.json').write_text(json.dumps(provenance, indent=2) + '\n')
 assert before == {str(path): hashlib.sha256(path.read_bytes()).hexdigest() for path in sources}, 'Production changed during snapshot'
 print(output)

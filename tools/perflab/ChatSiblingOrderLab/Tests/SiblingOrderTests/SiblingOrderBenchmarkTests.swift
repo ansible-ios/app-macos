@@ -1,13 +1,13 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 @testable import SortingBaseline
 
 final class SiblingOrderBenchmarkTests: XCTestCase {
     func testCosts() throws {
         guard ProcessInfo.processInfo.environment["SIBLING_ORDER_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in sibling order benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let reverse = ProcessInfo.processInfo.environment["SIBLING_ORDER_REVERSE"] == "1"
         let factory = SiblingOrderTests()
         var sink = 0, results: [String: [[Double]]] = [:]

@@ -1,6 +1,6 @@
 import Foundation
 import AnsibleCallsCore
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import Postbox
 import ColorPalette

@@ -19,7 +19,7 @@ final class InteractiveMediaOverlayView: NSView {
 }
 
 /// A clickable, translucent overlay placed ON TOP of a hosted media view: clicking it selects the media
-/// block, and it tints with the select colour while the block is selected. (The package can't use TGUIKit
+/// block, and it tints with the select colour while the block is selected. (The package can't use AnsibleUIKit
 /// `Control`, so this is a plain `NSView` that forwards `mouseDown`. It does not call `super`, so the click
 /// is consumed as a "select" rather than reaching the media view's own — currently no-op — actions.)
 @available(macOS 12, *)

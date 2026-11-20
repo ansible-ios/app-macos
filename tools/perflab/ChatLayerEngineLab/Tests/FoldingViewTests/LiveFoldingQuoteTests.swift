@@ -1,12 +1,12 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import FoldingViewHarness
 @testable import ChatLayerEngine
 
 final class LiveFoldingQuoteTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
     let fixtures = ChatTextReuseTests()
     let text = "First quoted line\nSecond quoted line\nThird quoted line\nFourth quoted line\nLast quoted line"
 

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public final class PremiumGradientView : View {
     public required init(frame frameRect: NSRect) {

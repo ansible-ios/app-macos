@@ -1,7 +1,7 @@
 import Foundation
 
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import InputDataUI
 import GeneralRows

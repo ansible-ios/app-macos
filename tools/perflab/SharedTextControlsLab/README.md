@@ -17,7 +17,7 @@ swift test --package-path tools/perflab/SharedTextControlsLab --scratch-path /tm
 swift test --package-path tools/perflab/SharedTextControlsLab --scratch-path /tmp/SharedTextControlsLab-tsan --sanitize thread
 ```
 
-This mini-app test package uses actual TGUIKit controls. `prepare.py` obtains both original controls from `c2a11539d`, renames their types and adds a testable import. Both variants use the same actual TextNode implementation. Generation metadata records original, candidate and generated reference hashes.
+This mini-app test package uses actual AnsibleUIKit controls. `prepare.py` obtains both original controls from `c2a11539d`, renames their types and adds a testable import. Both variants use the same actual TextNode implementation. Generation metadata records original, candidate and generated reference hashes.
 
 ## Regression evidence
 
@@ -27,7 +27,7 @@ A regression in the first candidate was caught before committing: skipping const
 
 There are 448 exact nonblank bitmap comparisons: 256 label pairs and 192 header pairs. Label sequences cover Latin, RTL, emoji and multiline text, autosizing, alignment, insets, frame changes, fitting and text replacement. Header cases cover status visibility, title images on either side, offsets, truncation and title rectangles. Rendering contexts use 1x and 2x scales; label layers use the matching contentsScale. Detached header views retain the harness's 2x backing scale for text smoothing in both variants. These are native control drawings, not whole Telegram screenshots.
 
-The full TGUIKit and chat-layer suites are run after the focused tests; results and exact input hashes are recorded in `provenance.json`. No full Telegram build was performed.
+The full AnsibleUIKit and chat-layer suites are run after the focused tests; results and exact input hashes are recorded in `provenance.json`. No full Telegram build was performed.
 
 ## Benchmark and memory scope
 

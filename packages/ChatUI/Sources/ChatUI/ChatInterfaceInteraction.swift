@@ -1,7 +1,7 @@
 import Cocoa
 import Postbox
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import MapKit
 import InputView

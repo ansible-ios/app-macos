@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import ChatLayerEngine
 
 final class CodeHeaderTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install(); System.updateScaleFactor(2) }
+    override func setUp() { AnsibleUIKitTestBootstrap.install(); System.updateScaleFactor(2) }
     override func tearDown() { System.updateScaleFactor(2) }
 
     func source(_ string: String = "let value = 1\nprint(value)\nthird\nfourth\nfifth", width: CGFloat = 240, folded: Bool? = nil) -> FoldingTextLayout {
@@ -185,7 +185,7 @@ final class CodeHeaderTests: XCTestCase {
     }
 
     func testHeaderKeyboardAccessibilityAndResizing() throws {
-        TGUIKitAccessibility.isEnabled = true
+        AnsibleUIKitAccessibility.isEnabled = true
         let layout = source()
         var copied = 0
         layout.blocks[0].text.interactions.copyToClipboard = { _ in copied += 1 }

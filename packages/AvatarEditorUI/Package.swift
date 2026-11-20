@@ -4,7 +4,7 @@ import PackageDescription
 
 let deps: [(String, String)] = [
     ("AppAnalytics", "../AppAnalytics"),
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("GeneralRows", "../GeneralRows"),
     ("InputDataUI", "../InputDataUI"),
     ("AnsibleUtils", "../AnsibleUtils"),

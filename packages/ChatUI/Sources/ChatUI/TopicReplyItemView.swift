@@ -1,11 +1,11 @@
 import Cocoa
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import SwiftSignalKit
 import Postbox
 import ColorPalette
-import TGModernGrowingTextView
+import AnsibleModernGrowingTextView
 import Strings
 import AnsibleContext
 import AnsibleTheme

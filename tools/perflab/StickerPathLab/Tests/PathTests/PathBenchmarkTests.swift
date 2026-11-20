@@ -1,13 +1,13 @@
-@testable import class TGUIKit.PathDataReader
-@testable import func TGUIKit.renderPath
-@testable import func TGUIKit.decodeStickerThumbnailData
-@testable import func TGUIKit.generateStickerPlaceholderImage
-@testable import class TGUIKit.StickerShimmerEffectView
-@testable import class TGUIKitBaseline.PathDataReader
-@testable import func TGUIKitBaseline.renderPath
-@testable import func TGUIKitBaseline.decodeStickerThumbnailData
-@testable import func TGUIKitBaseline.generateStickerPlaceholderImage
-@testable import class TGUIKitBaseline.StickerShimmerEffectView
+@testable import class AnsibleUIKit.PathDataReader
+@testable import func AnsibleUIKit.renderPath
+@testable import func AnsibleUIKit.decodeStickerThumbnailData
+@testable import func AnsibleUIKit.generateStickerPlaceholderImage
+@testable import class AnsibleUIKit.StickerShimmerEffectView
+@testable import class AnsibleUIKitBaseline.PathDataReader
+@testable import func AnsibleUIKitBaseline.renderPath
+@testable import func AnsibleUIKitBaseline.decodeStickerThumbnailData
+@testable import func AnsibleUIKitBaseline.generateStickerPlaceholderImage
+@testable import class AnsibleUIKitBaseline.StickerShimmerEffectView
 import Cocoa
 import XCTest
 import ObjectiveC
@@ -35,8 +35,8 @@ final class PathBenchmarkTests: XCTestCase {
                     autoreleasepool {
                         let start = CACurrentMediaTime()
                         for _ in 0..<300 {
-                            if variant == 0 { sink += TGUIKitBaseline.PathDataReader(input: input).read().count }
-                            else { sink += TGUIKit.PathDataReader(input: input).read().count }
+                            if variant == 0 { sink += AnsibleUIKitBaseline.PathDataReader(input: input).read().count }
+                            else { sink += AnsibleUIKit.PathDataReader(input: input).read().count }
                         }
                         batches[variant].append((CACurrentMediaTime() - start) * 1e6 / 300)
                     }
@@ -48,15 +48,15 @@ final class PathBenchmarkTests: XCTestCase {
         let context = CGContext(data: nil, width: 128, height: 96, bitsPerComponent: 8, bytesPerRow: 512, space: CGColorSpace(name: CGColorSpace.sRGB)!, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
         context.setFillColor(CGColor(red: 0.2, green: 0.3, blue: 0.4, alpha: 0.5))
         for (name, input) in drawing {
-            let old = TGUIKitBaseline.PathDataReader(input: input).read(), new = TGUIKit.PathDataReader(input: input).read()
+            let old = AnsibleUIKitBaseline.PathDataReader(input: input).read(), new = AnsibleUIKit.PathDataReader(input: input).read()
             var batches = [[Double](), [Double]()]
             for batch in 0..<9 {
                 for variant in ((batch % 2 == 0) != reverse ? [0, 1] : [1, 0]) {
                     let start = CACurrentMediaTime()
                     for _ in 0..<300 {
                         context.beginPath()
-                        if variant == 0 { TGUIKitBaseline.renderPath(old, context: context) }
-                        else { TGUIKit.renderPath(new, context: context) }
+                        if variant == 0 { AnsibleUIKitBaseline.renderPath(old, context: context) }
+                        else { AnsibleUIKit.renderPath(new, context: context) }
                     }
                     batches[variant].append((CACurrentMediaTime() - start) * 1e6 / 300)
                 }
@@ -75,19 +75,19 @@ final class PathBenchmarkTests: XCTestCase {
                             let start = CACurrentMediaTime()
                             for _ in 0..<200 {
                                 if operation == "decode_parse" {
-                                    if variant == 0 { sink += TGUIKitBaseline.PathDataReader(input: TGUIKitBaseline.decodeStickerThumbnailData(data)).read().count }
-                                    else { sink += TGUIKit.PathDataReader(input: TGUIKit.decodeStickerThumbnailData(data)).read().count }
+                                    if variant == 0 { sink += AnsibleUIKitBaseline.PathDataReader(input: AnsibleUIKitBaseline.decodeStickerThumbnailData(data)).read().count }
+                                    else { sink += AnsibleUIKit.PathDataReader(input: AnsibleUIKit.decodeStickerThumbnailData(data)).read().count }
                                 } else if operation == "placeholder_image" {
                                     let size = CGSize(width: 64, height: 48), imageSize = CGSize(width: 512, height: 512)
-                                    let image = variant == 0 ? TGUIKitBaseline.generateStickerPlaceholderImage(data: data, size: size, scale: 2, imageSize: imageSize, backgroundColor: nil, foregroundColor: .black) : TGUIKit.generateStickerPlaceholderImage(data: data, size: size, scale: 2, imageSize: imageSize, backgroundColor: nil, foregroundColor: .black)
+                                    let image = variant == 0 ? AnsibleUIKitBaseline.generateStickerPlaceholderImage(data: data, size: size, scale: 2, imageSize: imageSize, backgroundColor: nil, foregroundColor: .black) : AnsibleUIKit.generateStickerPlaceholderImage(data: data, size: size, scale: 2, imageSize: imageSize, backgroundColor: nil, foregroundColor: .black)
                                     sink += image?.width ?? 0
                                 } else {
                                     if variant == 0 {
-                                        let value = TGUIKitBaseline.StickerShimmerEffectView()
+                                        let value = AnsibleUIKitBaseline.StickerShimmerEffectView()
                                         value.update(backgroundColor: nil, data: data, size: CGSize(width: 64, height: 48))
                                         retained.append(value)
                                     } else {
-                                        let value = TGUIKit.StickerShimmerEffectView()
+                                        let value = AnsibleUIKit.StickerShimmerEffectView()
                                         value.update(backgroundColor: nil, data: data, size: CGSize(width: 64, height: 48))
                                         retained.append(value)
                                     }
@@ -104,7 +104,7 @@ final class PathBenchmarkTests: XCTestCase {
             }
         }
         for unchanged in [false, true] {
-            let old = TGUIKitBaseline.StickerShimmerEffectView(), new = TGUIKit.StickerShimmerEffectView()
+            let old = AnsibleUIKitBaseline.StickerShimmerEffectView(), new = AnsibleUIKit.StickerShimmerEffectView()
             let size = CGSize(width: 64, height: 48)
             old.update(backgroundColor: nil, data: nil, size: size)
             new.update(backgroundColor: nil, data: nil, size: size)
@@ -118,11 +118,11 @@ final class PathBenchmarkTests: XCTestCase {
                         let start = CACurrentMediaTime()
                         for _ in 0..<count {
                             if variant == 0 {
-                                let value = unchanged ? old : TGUIKitBaseline.StickerShimmerEffectView()
+                                let value = unchanged ? old : AnsibleUIKitBaseline.StickerShimmerEffectView()
                                 value.update(backgroundColor: nil, data: nil, size: size)
                                 if !unchanged { retained.append(value) }
                             } else {
-                                let value = unchanged ? new : TGUIKit.StickerShimmerEffectView()
+                                let value = unchanged ? new : AnsibleUIKit.StickerShimmerEffectView()
                                 value.update(backgroundColor: nil, data: nil, size: size)
                                 if !unchanged { retained.append(value) }
                             }
@@ -136,7 +136,7 @@ final class PathBenchmarkTests: XCTestCase {
             }
             results[unchanged ? "unchanged_control" : "rounded_control"] = batches
         }
-        let a = TGUIKitBaseline.PathDataReader(input: "M 0 0"), b = TGUIKit.PathDataReader(input: "M 0 0")
+        let a = AnsibleUIKitBaseline.PathDataReader(input: "M 0 0"), b = AnsibleUIKit.PathDataReader(input: "M 0 0")
         let sizes = ["runtime": [class_getInstanceSize(object_getClass(a)!), class_getInstanceSize(object_getClass(b)!)], "allocator": [malloc_size(Unmanaged.passUnretained(a).toOpaque()), malloc_size(Unmanaged.passUnretained(b).toOpaque())]]
         XCTAssertGreaterThan(sink, 0)
         try JSONSerialization.data(withJSONObject: ["unit": "microseconds_per_operation", "reverse": reverse, "batches": results, "reader_bytes": sizes], options: [.prettyPrinted, .sortedKeys]).write(to: URL(fileURLWithPath: "/tmp/sticker-path-benchmark.json"))

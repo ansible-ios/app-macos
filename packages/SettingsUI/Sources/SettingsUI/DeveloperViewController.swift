@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import ApiCredentials
@@ -396,7 +396,7 @@ public func DeveloperViewController(context: any AccountContextProtocol) -> Inpu
         alert(for: context.window, header: "Memory Report", info: report.split(separator: "\n").prefix(18).joined(separator: "\n"))
     }, toggleAccessibilityTree: {
         FastSettings.accessibilityTreeEnabled = !FastSettings.accessibilityTreeEnabled
-        TGUIKitAccessibility.isEnabled = FastSettings.accessibilityTreeEffective
+        AnsibleUIKitAccessibility.isEnabled = FastSettings.accessibilityTreeEffective
         updateState { current in
             var current = current
             current.accessibilityTree = FastSettings.accessibilityTreeEnabled

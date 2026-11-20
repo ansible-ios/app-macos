@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public struct EditImageCanvasColor: Hashable {
     public var red: CGFloat

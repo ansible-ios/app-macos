@@ -89,15 +89,15 @@ public final class MapSnapshotMediaResourceRepresentation: CachedMediaResourceRe
 }
 
 
-let TGGoogleMapsOffset: Int = 268435456
-let TGGoogleMapsRadius = Double(TGGoogleMapsOffset) / Double.pi
+let AnsibleGoogleMapsOffset: Int = 268435456
+let AnsibleGoogleMapsRadius = Double(AnsibleGoogleMapsOffset) / Double.pi
 
 private func yToLatitude(_ y: Int) -> Double {
-    return ((Double.pi / 2.0) - 2 * atan(exp((Double(y - TGGoogleMapsOffset)) / TGGoogleMapsRadius))) * 180.0 / Double.pi;
+    return ((Double.pi / 2.0) - 2 * atan(exp((Double(y - AnsibleGoogleMapsOffset)) / AnsibleGoogleMapsRadius))) * 180.0 / Double.pi;
 }
 
 private func latitudeToY(_ latitude: Double) -> Int {
-    return Int(round(Double(TGGoogleMapsOffset) - TGGoogleMapsRadius * log((1.0 + sin(latitude * Double.pi / 180.0)) / (1.0 - sin(latitude * Double.pi / 180.0))) / 2.0))
+    return Int(round(Double(AnsibleGoogleMapsOffset) - AnsibleGoogleMapsRadius * log((1.0 + sin(latitude * Double.pi / 180.0)) / (1.0 - sin(latitude * Double.pi / 180.0))) / 2.0))
 }
 
 private func adjustGMapLatitude(_ latitude: Double, offset: Int, zoom: Int) -> Double {

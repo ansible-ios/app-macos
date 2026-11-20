@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public protocol ShortPeerBadgeNode: AnyObject {
     var isSelected: Bool { get set }

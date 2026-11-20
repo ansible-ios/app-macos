@@ -1,7 +1,7 @@
 import Cocoa
 import QuartzCore
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ReactionHarness
 
 private final class ReactionTestWindow: Window {
@@ -20,8 +20,8 @@ final class PassiveReactionTests: XCTestCase {
         NSApp.setActivationPolicy(.accessory)
         System.updateScaleFactor(2)
         System.liquidGlass = false
-        accessibilityWasEnabled = TGUIKitAccessibility.isEnabled
-        TGUIKitAccessibility.isEnabled = true
+        accessibilityWasEnabled = AnsibleUIKitAccessibility.isEnabled
+        AnsibleUIKitAccessibility.isEnabled = true
         if Self.images.isEmpty {
             for name in ["Icon_SearchField", "Icon_SearchClear", "Icon_Quote", "Icon_Quote_Collapse", "Icon_Quote_Expand", "Icon_CopyCode"] {
                 let image = NSImage(size: NSSize(width: 16, height: 16), flipped: false) { rect in
@@ -38,7 +38,7 @@ final class PassiveReactionTests: XCTestCase {
     override func tearDown() {
         for window in windows { window.contentView = nil; window.close() }
         windows.removeAll()
-        TGUIKitAccessibility.isEnabled = accessibilityWasEnabled
+        AnsibleUIKitAccessibility.isEnabled = accessibilityWasEnabled
         System.updateScaleFactor(2)
     }
 
@@ -396,9 +396,9 @@ final class PassiveReactionTests: XCTestCase {
             current.isHidden = true
             XCTAssertNil(current.countAccessibility)
             current.isHidden = false
-            TGUIKitAccessibility.isEnabled = false
+            AnsibleUIKitAccessibility.isEnabled = false
             XCTAssertNil(current.countAccessibility)
-            TGUIKitAccessibility.isEnabled = true
+            AnsibleUIKitAccessibility.isEnabled = true
             current.bind(reaction(nil), animated: true)
             XCTAssertFalse(accessible.isAccessibilityElement())
             XCTAssertNil(accessible.accessibilityParent())

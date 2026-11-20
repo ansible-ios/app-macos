@@ -1,6 +1,6 @@
 import Cocoa
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 #if SHARE
 import AnsibleUtilsShare
 #else

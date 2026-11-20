@@ -1,8 +1,8 @@
 # Text updates and table scrolling lab
 
-This standalone AppKit mini-app builds the real TGUIKit package without Telegram or TelegramCore. It benchmarks text updates both detached and mounted in a window, plus actual TGUIKit tables containing 300 text rows, links, and optional primary/secondary sticky headers. `--preview` opens the table for interactive scrolling and text selection.
+This standalone AppKit mini-app builds the real AnsibleUIKit package without Telegram or TelegramCore. It benchmarks text updates both detached and mounted in a window, plus actual AnsibleUIKit tables containing 300 text rows, links, and optional primary/secondary sticky headers. `--preview` opens the table for interactive scrolling and text selection.
 
-The baseline is commit `28cf6ba5f`. `prepare.py` copies TGUIKit into a temporary package and replaces only `TextView.swift` and `TableView.swift` for the baseline. Both variants use identical dependencies and fixtures. The working checkout is never switched. Compiler and source hashes are recorded in `Evidence/*-provenance.json`.
+The baseline is commit `28cf6ba5f`. `prepare.py` copies AnsibleUIKit into a temporary package and replaces only `TextView.swift` and `TableView.swift` for the baseline. Both variants use identical dependencies and fixtures. The working checkout is never switched. Compiler and source hashes are recorded in `Evidence/*-provenance.json`.
 
 ```sh
 bash tools/perflab/TextScrollLab/run.sh baseline > tools/perflab/TextScrollLab/Evidence/baseline.json
@@ -42,7 +42,7 @@ Full scrolling elapsed time was essentially unchanged. Process CPU measurements 
 
 ## Correctness checks
 
-All 176 TGUIKit tests passed in both debug and release. All 35 focused Address Sanitizer tests passed without reported memory errors. `Evidence/validation.json` records hashes of the verified production and test sources.
+All 176 AnsibleUIKit tests passed in both debug and release. All 35 focused Address Sanitizer tests passed without reported memory errors. `Evidence/validation.json` records hashes of the verified production and test sources.
 
 `TextViewUpdateRegressionTests` covers tooltip reuse and invalidation, changed link destinations, highlight ordering, external layer-order changes, redraws, selection inheritance, mutable measurements, nil layouts, spoiler selection/reveal, embedded-content visibility, blur/drawing-lock transitions, geometry repair, subclass callbacks, and custom layout callbacks.
 
@@ -51,7 +51,7 @@ All 176 TGUIKit tests passed in both debug and release. All 35 focused Address S
 The mini-app compares six rendered text fixtures byte-for-byte at 1× and 2× rasterization scales. The snapshot window uses a 2× backing scale; text measurements use the fixture's scale. Fixtures include multilingual text, emoji, links, and selection, with nonempty-render sentinels. It also compares 42 sticky-header frame/visibility/item and visible-range checkpoints across both orientations and zero/one/two headers. PNG previews, raw RGBA buffers, geometry traces, and source hashes are retained.
 
 ```sh
-swift test --package-path packages/TGUIKit
-swift test --package-path packages/TGUIKit -c release
-swift test --package-path packages/TGUIKit --scratch-path /tmp/telegram-textscroll-asan --sanitize=address --filter 'TextViewUpdateRegressionTests|TableScrollGeometryTests|TextViewUpdateTests|AccessibilityTableReproTests|TextButtonLayoutTests'
+swift test --package-path packages/AnsibleUIKit
+swift test --package-path packages/AnsibleUIKit -c release
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/telegram-textscroll-asan --sanitize=address --filter 'TextViewUpdateRegressionTests|TableScrollGeometryTests|TextViewUpdateTests|AccessibilityTableReproTests|TextButtonLayoutTests'
 ```

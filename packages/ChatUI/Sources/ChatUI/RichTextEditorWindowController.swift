@@ -1,6 +1,6 @@
 import Cocoa
 import AppAnalytics
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import UniformTypeIdentifiers
 import TelegramCore
@@ -472,7 +472,7 @@ public func RichTextEditorController(context: any AccountContextProtocol, initia
         coordinator.dispose()
     }
 
-    // Hardware-keyboard formatting shortcuts, registered on the modal's window the standard TGUIKit way
+    // Hardware-keyboard formatting shortcuts, registered on the modal's window the standard AnsibleUIKit way
     // (mirrors the chat composer's ⌘B/⌘I/⌘U, ⇧⌘M/X/P). Scoped to the controller and torn down on disappear.
     controller.didLoad = { controller, _ in
         // Pin the toolbar ABOVE the scrolling table (a direct ScrollView subview doesn't scroll with the
@@ -1115,7 +1115,7 @@ public final class RichTextEditorCoordinator {
             badge.image = composed
             badge.sizeToFit()
             button.addSubview(badge)
-            // TGUIKit views are flipped: bottom-right = (width − w, height − h).
+            // AnsibleUIKit views are flipped: bottom-right = (width − w, height − h).
             badge.setFrameOrigin(NSMakePoint(button.frame.width - badge.frame.width, button.frame.height - badge.frame.height))
         }
 
@@ -1341,7 +1341,7 @@ public final class RichTextEditorCoordinator {
         )
     }
 
-    /// An icon toolbar button that opens the app's `ContextMenu` (TGUIKit) on click. `items` is evaluated
+    /// An icon toolbar button that opens the app's `ContextMenu` (AnsibleUIKit) on click. `items` is evaluated
     /// fresh each click so the menu's selected-item marks reflect the current selection.
     private static func makeMenuButton(icon: CGImage, items: @escaping () -> [ContextMenuItem]) -> EditorIconButton {
         return EditorIconButton(image: icon, click: { control in
@@ -1662,7 +1662,7 @@ public final class RichTextEditorCoordinator {
         return view
     }
 
-    /// Presents the app's (TGUIKit) context menu in place of the native one. Standard edit items plus, when
+    /// Presents the app's (AnsibleUIKit) context menu in place of the native one. Standard edit items plus, when
     /// the click is on a media, collage actions: Add Photo or Video, and a Collage↔Slider toggle.
     private static func presentEditorContextMenu(_ editor: RichTextEditorView, media: EditorMediaContext?, hasSelection: Bool, event: NSEvent, context: any AccountContextProtocol, cache: MediaFileCache, disposable: MetaDisposable, analyticsContext: AnalyticsContext) {
         let origin = Analytics.shared.captureContext(engine: context.engine, peerId: context.peerId, inherited: analyticsContext)
@@ -2781,7 +2781,7 @@ private final class RichEditorModalController: InputDataModalController {
 /// modal exists) can fire actions the controller wires up afterward.
 public final class ActionBox { var action: (() -> Void)? }
 
-/// A square icon button (TGUIKit `ImageButton`, a `Control` — its click handler receives the control,
+/// A square icon button (AnsibleUIKit `ImageButton`, a `Control` — its click handler receives the control,
 /// for anchoring menus/popovers). Doesn't accept first responder, so the editor keeps focus.
 private final class EditorIconButton: ImageButton {
     init(image: CGImage, size: CGFloat = 30, click: @escaping (Control) -> Void) {

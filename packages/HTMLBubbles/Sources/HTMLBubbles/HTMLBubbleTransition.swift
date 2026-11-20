@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 enum HTMLBubbleDiff {
     static func firstChange(old: [HTMLBubbleTile], new: [HTMLBubbleTile]) -> CGFloat? {

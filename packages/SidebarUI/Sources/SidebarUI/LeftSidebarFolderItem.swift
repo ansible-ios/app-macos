@@ -7,7 +7,7 @@ import Localization
 import GeneralRows
 import InputDataUI
 
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import SwiftSignalKit
 import AppAnalytics

@@ -2,7 +2,7 @@ import Cocoa
 import TelegramCore
 import Postbox
 import ColorPalette
-import TGUIKit
+import AnsibleUIKit
 
 public extension Message {
     func isIncoming(_ account: Account, _ isBubbled: Bool) -> Bool {

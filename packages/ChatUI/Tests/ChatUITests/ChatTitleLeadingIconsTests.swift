@@ -3,7 +3,7 @@ import XCTest
 import Postbox
 import TelegramCore
 import PremiumStatusUI
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatUI
 
 private final class VerificationHeaderFixture: TitledBarView {

@@ -3,7 +3,7 @@ import ObjectiveC
 import Postbox
 import SwiftSignalKit
 import AnsibleContext
-import TGUIKit
+import AnsibleUIKit
 
 private var forumControllerOriginKey: UInt8 = 0
 

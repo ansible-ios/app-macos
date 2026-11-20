@@ -11,7 +11,7 @@ import SwiftSignalKit
 import Postbox
 import TelegramCore
 import InAppSettings
-import TGUIKit
+import AnsibleUIKit
 import AppAnalytics
 
 

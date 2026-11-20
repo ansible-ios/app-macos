@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import WidgetSandbox
 
 public protocol HTMLTwidgetRow: AnyObject {

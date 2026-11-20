@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 @testable import ChatLayerEngine
 
 final class MessageTextPreparationTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func assertEquivalent(_ layout: FoldingTextLayout, file: StaticString = #filePath, line: UInt = #line) {
         let original = LegacyChatLayerMessageTextPresentation(layout)

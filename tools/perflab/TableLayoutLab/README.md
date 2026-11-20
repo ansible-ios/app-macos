@@ -16,10 +16,10 @@ TABLE_LAYOUT_BENCHMARK=1 swift test --package-path /tmp/TableLayoutValidation --
 cp /tmp/table-layout-benchmark.json /tmp/table-forward.json
 TABLE_LAYOUT_BENCHMARK=1 TABLE_LAYOUT_REVERSE=1 swift test --package-path /tmp/TableLayoutValidation --scratch-path /tmp/TableLayoutValidation-build -c release --skip-build --filter LayoutBenchmarkTests
 cp /tmp/table-layout-benchmark.json /tmp/table-reverse.json
-swift test --package-path /tmp/TableLayoutValidation/TGUIKit --scratch-path /tmp/TableLayoutValidation-kit -c release
+swift test --package-path /tmp/TableLayoutValidation/AnsibleUIKit --scratch-path /tmp/TableLayoutValidation-kit -c release
 ```
 
-Use fresh output directories and measure without competing builds. The generator freezes complete candidate and baseline TGUIKit libraries. TableView.swift is their only production difference. An identical test-only extension exposes cached index counts, header frames and index validity; it adds no instance fields or production API. The reference contains unrelated pending TableView edits that were already present when captured and are preserved by this change.
+Use fresh output directories and measure without competing builds. The generator freezes complete candidate and baseline AnsibleUIKit libraries. TableView.swift is their only production difference. An identical test-only extension exposes cached index counts, header frames and index validity; it adds no instance fields or production API. The reference contains unrelated pending TableView edits that were already present when captured and are preserved by this change.
 
 ## Measurements
 
@@ -48,7 +48,7 @@ Five focused tests pass in release and Address Sanitizer with leak detection dis
 
 A baseline-versus-baseline control compares another 72 snapshots. A sticky-header scenario compares header frames through scrolling, layout and removal. Cache tests prove that both existing arrays survive repeated unchanged layouts and invalidate after real insertion. A native table subclass injects synchronous callbacks from endUpdates: inserting a header, switching the primary class, switching the secondary class, replacing the first row at the same count, and removing all rows. All five cases per implementation preserve correct indexes.
 
-Three additional tests in the production TGUIKit target count actual header-class queries. Twenty unchanged layouts trigger no rescans, while real insertion/removal and either class change still refresh the relevant indexes. The complete frozen TGUIKit suite passes 407 functional tests with 18 optional measurements skipped. Its existing tests cover coalesced scrolling, viewport geometry, resize anchoring, selection and animation completion.
+Three additional tests in the production AnsibleUIKit target count actual header-class queries. Twenty unchanged layouts trigger no rescans, while real insertion/removal and either class change still refresh the relevant indexes. The complete frozen AnsibleUIKit suite passes 407 functional tests with 18 optional measurements skipped. Its existing tests cover coalesced scrolling, viewport geometry, resize anchoring, selection and animation completion.
 
 A fresh generator reproduced all 515 Swift source and test files in both libraries and the host. All 668 final compiler inputs are retained by hash and verified unchanged. The measured production source equals the current worktree, with only the identical test-only inspection extension appended in the lab. The final snapshot adds the three production regression tests; its 354 library source files and benchmark implementation match the measured versions. The comparison test was renamed after the experiment changed direction; its assertions stayed unchanged and release/Address Sanitizer were rerun. No complete Telegram application build was performed.
 

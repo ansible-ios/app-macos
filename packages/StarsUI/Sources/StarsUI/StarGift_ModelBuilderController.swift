@@ -1,6 +1,6 @@
 import Cocoa
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import UniqueGiftBackground
 import TelegramCore
 import Postbox

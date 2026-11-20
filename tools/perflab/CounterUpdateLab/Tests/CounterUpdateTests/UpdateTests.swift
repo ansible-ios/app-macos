@@ -1,9 +1,9 @@
 import Cocoa
 import XCTest
-@testable import TGUIKit
+@testable import AnsibleUIKit
 
 final class UpdateTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     private func value(_ text: String = "12 participants online", count: String = "12", width: CGFloat = 240, kerned: Bool = false, rolling: Bool = false) -> DynamicCounterTextView.Value {
         DynamicCounterTextView.make(for: text, count: count, font: .normal(13), textColor: .black, width: width, kerned: kerned, rolling: rolling)

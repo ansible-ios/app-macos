@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputView
 import InputTextView
 import AnsibleContext
@@ -33,7 +33,7 @@ final class LiveInlineEmojiTests: XCTestCase {
     }
 
     override func setUp() {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         System.updateScaleFactor(2)
         MediaLayer.onCreate = nil
     }

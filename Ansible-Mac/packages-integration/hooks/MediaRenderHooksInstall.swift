@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 func installMediaRenderHooks() {
     MediaRenderHooks.install(MediaRenderHooks(themePreview: { palette, wallpaper, backgroundMode in

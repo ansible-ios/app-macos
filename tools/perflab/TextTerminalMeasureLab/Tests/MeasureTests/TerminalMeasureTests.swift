@@ -1,9 +1,9 @@
 import Cocoa
 import XCTest
-import class TGUIKit.TextViewLayout
-import struct TGUIKit.TextViewCutout
-import class TGUIKitBaseline.TextViewLayout
-import struct TGUIKitBaseline.TextViewCutout
+import class AnsibleUIKit.TextViewLayout
+import struct AnsibleUIKit.TextViewCutout
+import class AnsibleUIKitBaseline.TextViewLayout
+import struct AnsibleUIKitBaseline.TextViewCutout
 
 final class TerminalMeasureTests: XCTestCase {
     override func setUp() { MeasureBootstrap.install() }
@@ -11,7 +11,7 @@ final class TerminalMeasureTests: XCTestCase {
     func testEveryQuotePatternAndRangeMatchesEnumeration() {
         for value in 0..<1024 {
             let pattern = (0..<5).map { (value >> ($0 * 2)) & 3 }
-            let layout = TGUIKit.TextViewLayout(TGUIKit.TextViewLayout.quoteFixture("abcde", pattern: pattern))
+            let layout = AnsibleUIKit.TextViewLayout(AnsibleUIKit.TextViewLayout.quoteFixture("abcde", pattern: pattern))
             for start in 0..<5 {
                 for length in 1...(5 - start) {
                     let result = layout.quoteLookupIDs(NSRange(location: start, length: length))
@@ -22,8 +22,8 @@ final class TerminalMeasureTests: XCTestCase {
     }
 
     func compare(_ text: String, pattern: [Int], decorated: Bool, width: CGFloat, limit: Int32 = 0, alignment: NSTextAlignment = .left, pixels: Bool = false, cutout: Bool = false) {
-        let old = TGUIKitBaseline.TextViewLayout(TGUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated), maximumNumberOfLines: limit, cutout: cutout ? TGUIKitBaseline.TextViewCutout(topLeft: CGSize(width: 20, height: 30), bottomRight: CGSize(width: 15, height: 20)) : nil, alignment: alignment)
-        let new = TGUIKit.TextViewLayout(TGUIKit.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated), maximumNumberOfLines: limit, cutout: cutout ? TGUIKit.TextViewCutout(topLeft: CGSize(width: 20, height: 30), bottomRight: CGSize(width: 15, height: 20)) : nil, alignment: alignment)
+        let old = AnsibleUIKitBaseline.TextViewLayout(AnsibleUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated), maximumNumberOfLines: limit, cutout: cutout ? AnsibleUIKitBaseline.TextViewCutout(topLeft: CGSize(width: 20, height: 30), bottomRight: CGSize(width: 15, height: 20)) : nil, alignment: alignment)
+        let new = AnsibleUIKit.TextViewLayout(AnsibleUIKit.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated), maximumNumberOfLines: limit, cutout: cutout ? AnsibleUIKit.TextViewCutout(topLeft: CGSize(width: 20, height: 30), bottomRight: CGSize(width: 15, height: 20)) : nil, alignment: alignment)
         for step in 0..<2 {
             old.measure(width: width + CGFloat(step * 11))
             new.measure(width: width + CGFloat(step * 11))
@@ -67,14 +67,14 @@ final class TerminalMeasureTests: XCTestCase {
 
     func testMutableSourcesInvalidatePreparedLayouts() {
         let text = String(repeating: "word hello world ", count: 12)
-        let oldSource = TGUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: [])
-        let newSource = TGUIKit.TextViewLayout.quoteFixture(text, pattern: [])
-        let old = TGUIKitBaseline.TextViewLayout(oldSource)
-        let new = TGUIKit.TextViewLayout(newSource)
+        let oldSource = AnsibleUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: [])
+        let newSource = AnsibleUIKit.TextViewLayout.quoteFixture(text, pattern: [])
+        let old = AnsibleUIKitBaseline.TextViewLayout(oldSource)
+        let new = AnsibleUIKit.TextViewLayout(newSource)
         for step in 0..<24 {
             let pattern = step % 3 == 0 ? [] : step % 3 == 1 ? [1, 0, 2, 0] : [2, 3, 0]
-            oldSource.setAttributedString(TGUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: step % 2 == 0))
-            newSource.setAttributedString(TGUIKit.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: step % 2 == 0))
+            oldSource.setAttributedString(AnsibleUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: step % 2 == 0))
+            newSource.setAttributedString(AnsibleUIKit.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: step % 2 == 0))
             old.measure(width: CGFloat(120 + step))
             new.measure(width: CGFloat(120 + step))
             XCTAssertEqual(old.quoteMeasurementSnapshot(), new.quoteMeasurementSnapshot())
@@ -85,14 +85,14 @@ final class TerminalMeasureTests: XCTestCase {
         let text = String(repeating: "hello مرحبا 日本語 ", count: 8)
         let patterns = [[], [1], [2], [1, 0, 2, 0, 3, 0]]
         let expected = patterns.map { pattern -> [Double] in
-            let layout = TGUIKitBaseline.TextViewLayout(TGUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern), maximumNumberOfLines: 0)
+            let layout = AnsibleUIKitBaseline.TextViewLayout(AnsibleUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern), maximumNumberOfLines: 0)
             layout.measure(width: 160)
             return layout.quoteMeasurementSnapshot()
         }
         let lock = NSLock()
         var mismatches = 0
         DispatchQueue.concurrentPerform(iterations: 256) { index in
-            let layout = TGUIKit.TextViewLayout(TGUIKit.TextViewLayout.quoteFixture(text, pattern: patterns[index % patterns.count]), maximumNumberOfLines: 0)
+            let layout = AnsibleUIKit.TextViewLayout(AnsibleUIKit.TextViewLayout.quoteFixture(text, pattern: patterns[index % patterns.count]), maximumNumberOfLines: 0)
             layout.measure(width: 160)
             if layout.quoteMeasurementSnapshot() != expected[index % patterns.count] {
                 lock.lock()
@@ -123,8 +123,8 @@ final class TerminalMeasureTests: XCTestCase {
                 for width: CGFloat in [35, 100, 300] {
                     for limit: Int32 in [0, 1, 2] {
                         for truncation: CTLineTruncationType in [.start, .middle, .end] {
-                            let old = TGUIKitBaseline.TextViewLayout(source, maximumNumberOfLines: limit, truncationType: truncation)
-                            let new = TGUIKit.TextViewLayout(source, maximumNumberOfLines: limit, truncationType: truncation)
+                            let old = AnsibleUIKitBaseline.TextViewLayout(source, maximumNumberOfLines: limit, truncationType: truncation)
+                            let new = AnsibleUIKit.TextViewLayout(source, maximumNumberOfLines: limit, truncationType: truncation)
                             old.measure(width: width)
                             new.measure(width: width)
                             XCTAssertEqual(old.quoteMeasurementSnapshot(), new.quoteMeasurementSnapshot(), "\(textIndex), \(mode), \(width), \(limit), \(truncation.rawValue)")
@@ -146,8 +146,8 @@ final class TerminalMeasureTests: XCTestCase {
         for index in 0..<1000 {
             autoreleasepool {
                 let source = NSAttributedString(string: "item \(index) שלום مرحبا 👨‍👩‍👧‍👦", attributes: [.font: NSFont.systemFont(ofSize: 14), .foregroundColor: NSColor.black])
-                let old = TGUIKitBaseline.TextViewLayout(source, maximumNumberOfLines: index % 3 == 0 ? 1 : 0)
-                let new = TGUIKit.TextViewLayout(source, maximumNumberOfLines: index % 3 == 0 ? 1 : 0)
+                let old = AnsibleUIKitBaseline.TextViewLayout(source, maximumNumberOfLines: index % 3 == 0 ? 1 : 0)
+                let new = AnsibleUIKit.TextViewLayout(source, maximumNumberOfLines: index % 3 == 0 ? 1 : 0)
                 old.measure(width: CGFloat(40 + index % 180))
                 new.measure(width: CGFloat(40 + index % 180))
                 XCTAssertEqual(old.quoteMeasurementSnapshot(), new.quoteMeasurementSnapshot())
@@ -169,8 +169,8 @@ final class TerminalMeasureTests: XCTestCase {
                 let source = NSAttributedString(string: string, attributes: [.font: NSFont.systemFont(ofSize: 14), .foregroundColor: NSColor.black, .paragraphStyle: paragraph, .kern: mode == 4 ? -4 : 0.4, .ligature: mode == 3 ? 0 : 1, .baselineOffset: mode == 4 ? -3 : 0])
                 for width: CGFloat in [.leastNonzeroMagnitude, .leastNormalMagnitude, 0.0001, 1, 10, 100, .greatestFiniteMagnitude] {
                     for limit: Int32 in [1, 2, 3] {
-                        let old = TGUIKitBaseline.TextViewLayout(source, maximumNumberOfLines: limit)
-                        let new = TGUIKit.TextViewLayout(source, maximumNumberOfLines: limit)
+                        let old = AnsibleUIKitBaseline.TextViewLayout(source, maximumNumberOfLines: limit)
+                        let new = AnsibleUIKit.TextViewLayout(source, maximumNumberOfLines: limit)
                         old.measure(width: width)
                         new.measure(width: width)
                         XCTAssertEqual(old.quoteMeasurementSnapshot(), new.quoteMeasurementSnapshot(), "\(stringIndex), \(mode), \(width), \(limit)")
@@ -184,10 +184,10 @@ final class TerminalMeasureTests: XCTestCase {
         for width: CGFloat in [0, -1, -100, .infinity, -.infinity, .nan] {
             for pattern in [[], [1], [2]] {
                 for cutout in [false, true] {
-                    let oldSource = TGUIKitBaseline.TextViewLayout.quoteFixture("hello world שלום", pattern: pattern, decorated: true)
-                    let newSource = TGUIKit.TextViewLayout.quoteFixture("hello world שלום", pattern: pattern, decorated: true)
-                    let old = TGUIKitBaseline.TextViewLayout(oldSource, constrainedWidth: width, maximumNumberOfLines: 1, cutout: cutout ? .init(topRight: CGSize(width: 100, height: 200)) : nil)
-                    let new = TGUIKit.TextViewLayout(newSource, constrainedWidth: width, maximumNumberOfLines: 1, cutout: cutout ? .init(topRight: CGSize(width: 100, height: 200)) : nil)
+                    let oldSource = AnsibleUIKitBaseline.TextViewLayout.quoteFixture("hello world שלום", pattern: pattern, decorated: true)
+                    let newSource = AnsibleUIKit.TextViewLayout.quoteFixture("hello world שלום", pattern: pattern, decorated: true)
+                    let old = AnsibleUIKitBaseline.TextViewLayout(oldSource, constrainedWidth: width, maximumNumberOfLines: 1, cutout: cutout ? .init(topRight: CGSize(width: 100, height: 200)) : nil)
+                    let new = AnsibleUIKit.TextViewLayout(newSource, constrainedWidth: width, maximumNumberOfLines: 1, cutout: cutout ? .init(topRight: CGSize(width: 100, height: 200)) : nil)
                     old.measure(width: width)
                     new.measure(width: width)
                     let a = old.quoteMeasurementSnapshot(), b = new.quoteMeasurementSnapshot()
@@ -200,8 +200,8 @@ final class TerminalMeasureTests: XCTestCase {
 
     func testLineLimitTransitionsWithPreparedText() {
         let source = NSAttributedString(string: String(repeating: "hello שלום 👨‍👩‍👧‍👦 ", count: 10), attributes: [.font: NSFont.systemFont(ofSize: 14), .foregroundColor: NSColor.black])
-        let old = TGUIKitBaseline.TextViewLayout(source)
-        let new = TGUIKit.TextViewLayout(source)
+        let old = AnsibleUIKitBaseline.TextViewLayout(source)
+        let new = AnsibleUIKit.TextViewLayout(source)
         for limit: Int32 in [1, 2, 0, -1, .min, 3, 1] {
             old.maximumNumberOfLines = limit
             new.maximumNumberOfLines = limit
@@ -245,8 +245,8 @@ final class TerminalMeasureTests: XCTestCase {
                 for width: CGFloat in [.leastNonzeroMagnitude, 1, 10, 30, 160] {
                     for limit: Int32 in [1, 2, 3] {
                         for truncation: CTLineTruncationType in [.start, .middle, .end] {
-                            let old = TGUIKitBaseline.TextViewLayout(source, maximumNumberOfLines: limit, truncationType: truncation)
-                            let new = TGUIKit.TextViewLayout(source, maximumNumberOfLines: limit, truncationType: truncation)
+                            let old = AnsibleUIKitBaseline.TextViewLayout(source, maximumNumberOfLines: limit, truncationType: truncation)
+                            let new = AnsibleUIKit.TextViewLayout(source, maximumNumberOfLines: limit, truncationType: truncation)
                             old.measure(width: width)
                             new.measure(width: width)
                             XCTAssertEqual(old.quoteMeasurementSnapshot(), new.quoteMeasurementSnapshot(), "\(text), \(extent), \(width), \(limit), \(truncation.rawValue)")

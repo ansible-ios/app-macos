@@ -27,7 +27,7 @@ def block(source, marker):
 
 
 state = (html / 'HTMLBubbleState.swift').read_text()
-anchor = (root / 'packages/TGUIKit/Sources/TableRowResizeAnchor.swift').read_text()
+anchor = (root / 'packages/AnsibleUIKit/Sources/TableRowResizeAnchor.swift').read_text()
 anchor = anchor[anchor.index('public struct TableRowResizeAnchor'):anchor.index('    public func pin(')] + block(anchor, '    public static func offset(') + '\n}'
 layout = '\n'.join(block(state, marker) for marker in [
     'private struct TwidgetLayout',

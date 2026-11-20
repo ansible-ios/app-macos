@@ -3,7 +3,7 @@ import Cocoa
 import TelegramCore
 import Postbox
 import ColorPalette
-import TGUIKit
+import AnsibleUIKit
 import ThemeSettings
 
 public extension TelegramBaseTheme {

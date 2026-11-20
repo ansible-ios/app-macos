@@ -36,11 +36,11 @@ Severity reflects how often it runs in daily use multiplied by its cost. S1 runs
 | # | Finding | Where | Cost | Fix |
 |---|---|---|---|---|
 | 1 | `suspendAwareDelay(N)` is not one timer. For N > 4.4 s it fires a 4 s repeating timer (no leeway) that only checks the clock until the deadline. About 45-50 polling loops per account (AccountTaskManager 1-12 h refreshes, story polls, chat themes, disk space, notification permission) are always armed. | `SwiftSignalKit2/Source/Signal_Timing.swift:35` | ~12 wakeups/s per account, hidden | one wall-clock deadline (`schedule(wallDeadline:)` keeps the "fire after sleep" behaviour) with leeway |
-| 2 | The shared display link wakes the main thread on every vsync (120 Hz) and skips frames afterwards; 25 fps GIFs and 30 fps loops still cost 120 main wakeups/s | `TGUIKit/Sources/DisplayLinkAnimator.swift:5-303` | 120 wakeups/s whenever anything animates | skip on the CVDisplayLink thread when no request is due; never signal the main queue for a skipped frame |
+| 2 | The shared display link wakes the main thread on every vsync (120 Hz) and skips frames afterwards; 25 fps GIFs and 30 fps loops still cost 120 main wakeups/s | `AnsibleUIKit/Sources/DisplayLinkAnimator.swift:5-303` | 120 wakeups/s whenever anything animates | skip on the CVDisplayLink thread when no request is due; never signal the main queue for a skipped frame |
 | 3 | Star-gift emoji status sparkles (`StarsEffectLayer`, CAEmitterLayer) never pause: not on resign key, not when the app is in the background, not in lite mode | `PremiumStatusUI/PremiumStatusControl.swift:17-78, 274` | continuous WindowServer compositing at display rate for every visible collectible status (chat list rows, author names, chat title, own status) | stop the emitter (`birthRate = 0`) with the existing `updateAnimatableContent` gating |
 | 4 | Paid-star reaction sparkles (`StarsButtonEffectLayer`) on every message with a star reaction, ungated | `ChatUI/ChatReactionsView.swift:1085`, `StarsUI/StarsWidgets.swift:19` | same as #3, one per visible message | same gating |
 | 5 | Reactions and fact-check managers re-add their own batch after every run, forever. Every message with reactions the chat has ever shown (not only visible ones) is re-requested about every 20 s, fact checks every 2 s, while the chat exists, also in background. iOS has no such loop; it re-runs the visible pass every 10 s. | `ChatUI/ChatMessageThrottledProcessingManager.swift:75` | 1 request / 20 s per open chat, growing payload | drop the self re-add; refresh the visible range every 10 s while key and visible (iOS parity) |
-| 6 | Chat list rebuilds a whole `ChatListRowItem` (attributed text, 4+ text layouts, badges) on any change of the entry, including partner presence and reaction/view counts of the top message, and measures it twice (`premeasuredWidth` never set) | `ChatListUI/ChatListController.swift:339, 541`, `TGUIKit/TableView.swift:3575` | per presence/typing/reaction event | set `premeasuredWidth`; project the entry to what the row draws |
+| 6 | Chat list rebuilds a whole `ChatListRowItem` (attributed text, 4+ text layouts, badges) on any change of the entry, including partner presence and reaction/view counts of the top message, and measures it twice (`premeasuredWidth` never set) | `ChatListUI/ChatListController.swift:339, 541`, `AnsibleUIKit/TableView.swift:3575` | per presence/typing/reaction event | set `premeasuredWidth`; project the entry to what the row draws |
 | 7 | Every `PeerListState` change (typing anywhere, connection status, stories, downloads, search) re-runs the 14-input chat list pipeline and a full diff | `ChatListUI/PeersListController.swift:2653`, `ChatListController.swift:960` | per event, heavy accounts hundreds/min | `map` to a projection + `distinctUntilChanged`; filter activities to loaded peers |
 | 8 | No chat list or chat history transition is skipped or coalesced while the window is hidden or occluded | `ChatListController`, `ChatController.applyTransition` | all of the above runs in background | occlusion-aware coalescing (latest transition only) |
 | 9 | Settings is loaded at startup and keeps a 14-input pipeline (own presence, stories, balances, sessions) alive offscreen forever | `SettingsUI/AccountViewController.swift:1150` | every emission rebuilds ~30 rows offscreen | subscribe on appear, dispose on disappear |
@@ -51,7 +51,7 @@ Severity reflects how often it runs in daily use multiplied by its cost. S1 runs
 | 13b | The Rust engine pings about every 2-3 s per session while the user is online, and worker/download sessions also get `online` and stay connected 20 min | `mtproto-engine/crates/mtproto-core/src/session/mod.rs:1296-1316, 2887` | network radio and CPU never idle during active use | floor the online keepalive; don't forward `online` to non-main sessions (engine change, needs the engine harness) |
 | 13c | Sleep observers are swapped (`willSleep` → wake handler, `didWake` → sleep handler) and the 5 s presence timer re-sets `shouldBeServiceTaskMaster(.always)`, so the display-sleep network pause lasts at most 5 s | `Ansible-Mac/account/SharedWakeupManager.swift:61, 69, 172` | network stays up while the display sleeps | swap, dedupe, respect `isSleeping` |
 | 13d | Animated emoji per-frame cost: video emoji ≤ 40 pt (inline text, reactions, emoji panel) are VP9-decoded in software on every frame forever (never cached); tinted emoji (`paintToText`, default statuses) skip the frame cache and rasterize in rlottie every frame; cached frames are re-converted to the display colour space on every loop | `AnsibleMedia/LottiePlayer.swift:1800, 1771, 469`, `InlineStickerLayer/InlineStickerItemLayer.swift:778` | full decode/rasterize per frame at up to 30 fps per visible emoji | cache small webm and tinted animations; cache display-converted frames |
-| 13e | Spoiler dust emitters (text and media, up to ~14k live particles for a media spoiler) keep simulating after reveal at alpha 0 and when the window is not key | `TGUIKit/InvisibleInkDustView.swift:63-388` | WindowServer particles for every spoiler ever shown in the visible window | `birthRate = 0`/remove on reveal and when not key |
+| 13e | Spoiler dust emitters (text and media, up to ~14k live particles for a media spoiler) keep simulating after reveal at alpha 0 and when the window is not key | `AnsibleUIKit/InvisibleInkDustView.swift:63-388` | WindowServer particles for every spoiler ever shown in the visible window | `birthRate = 0`/remove on reveal and when not key |
 
 ### S2: frequent, conditional, or cheaper per event
 
@@ -61,8 +61,8 @@ Severity reflects how often it runs in daily use multiplied by its cost. S1 runs
 | 14 | Dock badge and status-bar icon redrawn (CoreText + 2 bitmaps) on every emission without dedupe, also when the status item is off | `GeneralRows/GlobalBadgeNode.swift:185` | `distinctUntilChanged`, skip when hidden |
 | 15 | Voice-chat indicator in chat list rows: endless `DisplayLinkAnimator` rebuilding a CGPath per frame on main | `ChatListUI/GCChatListIndicator.swift:39` | Core Animation path keyframes |
 | 16 | Voice-chat header: 30 Hz timer creating a new `DisplayLinkAnimator` per tick even at level 0 | `ChatUI/ChatHeaderController.swift:1943`, `AvatarUI/AvatarContentView.swift:108` | skip unchanged levels, pause when not key |
-| 17 | Spinners on 25 Hz timers check only their own `isHidden`; the inline-bot spinner keeps ticking hidden until the chat closes | `TGUIKit/SpinningProgressView.swift:81`, `ChatUI/ChatInputSendButton.swift:347` | stop when hidden or out of window |
-| 18 | `FireTimerControl` / `PollTimerView` redraw a bitmap at 120 Hz until the deadline (invite links expiring in days, polls with deadlines) | `TGUIKit/FireTimerControl.swift:254`, `PollTimerView.swift:240` | redraw only when the arc moves a pixel |
+| 17 | Spinners on 25 Hz timers check only their own `isHidden`; the inline-bot spinner keeps ticking hidden until the chat closes | `AnsibleUIKit/SpinningProgressView.swift:81`, `ChatUI/ChatInputSendButton.swift:347` | stop when hidden or out of window |
+| 18 | `FireTimerControl` / `PollTimerView` redraw a bitmap at 120 Hz until the deadline (invite links expiring in days, polls with deadlines) | `AnsibleUIKit/FireTimerControl.swift:254`, `PollTimerView.swift:240` | redraw only when the arc moves a pixel |
 | 19 | Slow-mode countdown runs a full interface-state update 5x/s | `ChatUI/ChatController.swift:10915` | 1 Hz on the second boundary |
 | 20 | Paused AV1/HLS players keep a 5 Hz `Foundation.Timer` | `AnsibleMedia/ChunkMediaPlayerV2.swift:345` | invalidate on pause |
 | 21 | Relative-date rows keep ticking at 1 Hz for the row's lifetime | `ChatListUI/ChatListRowItem.swift:2337`, `ChatUI/ChatMessageItem.swift:602` | recompute the period each tick |
@@ -70,9 +70,9 @@ Severity reflects how often it runs in daily use multiplied by its cost. S1 runs
 | 23 | HTML bubble 1 Hz stats timer per bubble while the debug overlay is off | `HTMLBubbles/HTMLBubbleView.swift:219` | only with the overlay |
 | 24 | Passcode auto-lock polls every 10 s with an account-manager transaction, also without a passcode | `Ansible-Mac/account/SharedNotificationManager.swift:208` | one timer for the remaining time |
 | 25 | Draft custom emoji in the input loop forever, also when the window is not key | `InputTextView/UIInputView.swift:57` | key-window gating |
-| 26 | Spoiler dust emitters never stop | `TGUIKit/InvisibleInkDustView.swift:127` | stop when not key |
+| 26 | Spoiler dust emitters never stop | `AnsibleUIKit/InvisibleInkDustView.swift:127` | stop when not key |
 | 27 | Custom emoji in chat list previews, reactions and messages loop forever while the window is key, even with the user away | `InlineStickerItemLayer`, `LottiePlayer.swift` | idle cap: pause loops after N s without input |
-| 28 | Context menu polls its parent window at 20 Hz; popovers at 5 Hz | `TGUIKit/AppMenuController.swift:470`, `Popover.swift:312` | observe instead of polling |
+| 28 | Context menu polls its parent window at 20 Hz; popovers at 5 Hz | `AnsibleUIKit/AppMenuController.swift:470`, `Popover.swift:312` | observe instead of polling |
 | 29 | Battery level polled every 60 s through IOKit, `didSet` runs even when unchanged | `Ansible-Mac/account/SharedAccountContext.swift:275` | skip when the threshold is off |
 | 30 | Day-change 60 s timer duplicates the `NSCalendarDayChanged` observer | `AnsibleTheme/AppearanceGlobal.swift:80` | remove |
 | 31a | `MediaPlayer` `.loop` (autoplay videos, GIFs-as-mp4, video avatars) builds a new frame source, thread and decoder on every loop; `MediaPlayerView` polls frames on a main-queue timer and hops to main per frame | `AnsibleMedia/MediaPlayer.swift:871`, `MediaPlayerView.swift:205-361` | loop inside the source; enqueue with `requestMediaDataWhenReady` off main |
@@ -139,10 +139,10 @@ The managers re-poll only the latest batch handed in by the visible pass (visibl
 Behavior change, iOS parity: reactions of messages that scrolled away are no longer re-requested every 20 s, and nothing is polled while Telegram is in the background. Visible messages still refresh every ~5 s (TelegramCore throttles requests to one per 20 s per message).
 Proof: `ChatUITests/ThrottledProcessingManagerTests` (only the latest batch is re-polled, nothing while inactive, resume on activation, one-shot managers unchanged).
 
-### #2 Display link wakeups (TGUIKit)
+### #2 Display link wakeups (AnsibleUIKit)
 
 The CVDisplayLink thread now counts vsyncs and signals the main queue only when the next link is due; the main thread publishes "vsyncs until due" after every delivery and `.fps` links accumulate the real elapsed time. Every link keeps its exact cadence.
-Proof, `TGUIKitTests/DisplayLinkRateTests` on the 120 Hz built-in display (old driver vs new, same harness):
+Proof, `AnsibleUIKitTests/DisplayLinkRateTests` on the 120 Hz built-in display (old driver vs new, same harness):
 
 | Active links | ticks/s per link | main deliveries/s old | new |
 |---|---|---|---|
@@ -162,11 +162,11 @@ Tests: `ChatUITests/StarsEmitterPauseTests`.
 Proof, `tools/perflab/PowerLabs/Audio/idle-output.swift` (HAL output with a silent callback, 15 s phases, 2 rounds): running costs coreaudiod 6.4-6.8 % CPU plus 0.3-0.4 % in the app and holds `PreventUserIdleSystemSleep` (the Mac cannot idle-sleep); stopped costs 0.07-0.27 % and the assertion is released.
 Test: `ChatUITests/AudioRendererIdleStopTests` drives the real `MediaPlayerAudioRenderer`: output running during the grace period, stopped after it, running again on play.
 
-### #13e Spoiler dust (TGUIKit, DustLayer)
+### #13e Spoiler dust (AnsibleUIKit, DustLayer)
 
 `InvisibleInkDustView` (text), `MediaDustView` (media, chat list, media grid) and `MediaDustView2` (paid media, invoices) freeze their emitter timeline (`speed = 0`) when the window is not key or the view has no window, and after a reveal once the 0.3 s fade-out is done. Frozen dust stays visible, the way paused Lottie keeps its frame. Revealed dust was simulating at alpha 0 until the message was reused.
 Proof, `tools/perflab/PowerLabs/Emitter/offscreen.swift` (variants): playing 720 of 720 frames need a render; frozen 1 of 720 with the same particles on screen (984 vs 960 particle pixels); frozen right at creation also shows a full field (CA simulates the emitter's last `lifetime` seconds), so a spoiler that arrives while Telegram is in the background is not blank.
-Tests: `TGUIKitTests/SpoilerDustPlaybackTests`. Shared helpers: `CALayer.setTimelineFrozen`, `WindowKeyObserver` (TGUIKit `LayerPlaybackGate.swift`).
+Tests: `AnsibleUIKitTests/SpoilerDustPlaybackTests`. Shared helpers: `CALayer.setTimelineFrozen`, `WindowKeyObserver` (AnsibleUIKit `LayerPlaybackGate.swift`).
 
 ### #13d Video custom emoji frame cache (AnsibleMedia)
 
@@ -186,7 +186,7 @@ Not changed: tinted emoji (`paintToText`, default statuses) also skip the cache,
 ### #6 (part) Chat list rows measured twice (ChatListUI)
 
 `ChatListRowItem.init` already measures at the table width, then `TableView.insert/replace` measured it again because the chat list never set `premeasuredWidth` (ChatController has since the 2026-09-28 loop). Every row rebuilt by a presence, typing, reaction or read-state change paid CoreText twice. `prepareEntries` now marks exact `ChatListRowItem`s as premeasured; subclasses (the HTML demo row) and other row types still measure in the table, and the table re-measures anyway when its width differs.
-Proof: `TGUIKitTests/PremeasuredRowTests` (insert/replace skip `makeSize` at the same width, measure at a different one); ChatListUITests 99/99 pass.
+Proof: `AnsibleUIKitTests/PremeasuredRowTests` (insert/replace skip `makeSize` at the same width, measure at a different one); ChatListUITests 99/99 pass.
 
 ### #23 HTML bubble stats timer (HTMLBubbles)
 
@@ -198,10 +198,10 @@ TelegramCore emits `notificationMessages` and `reactionNotifications` for every 
 Both streams now drop empty batches before any work and start from `[]`, so `combineLatest` still never waits and a cancelled in-flight run is still re-paired with its messages (no notification can be lost; an empty batch could never notify anything). The two in-app settings flags the pipeline used to refresh on every batch now come from their own settings subscription, so they stay current between notifications.
 Verified with the DerivedData type-check harness (`Telegram-Mac` target, no new errors).
 
-### #17 Spinners inside hidden containers (TGUIKit)
+### #17 Spinners inside hidden containers (AnsibleUIKit)
 
 `ProgressIndicator` checked only its own `isHidden`, so a spinner whose container was hidden kept its 25 Hz main-thread timer and redraw. The inline-bot progress button is one: after the first inline query it stays in the input as a hidden view and spun until the chat closed. It now checks `isHiddenOrHasHiddenAncestor` (AppKit already sends `viewDidHide`/`viewDidUnhide` for ancestor changes).
-Proof: `TGUIKitTests/ProgressIndicatorHiddenTests` fails on the old condition (still spinning in a hidden container) and passes now; unhiding restarts it.
+Proof: `AnsibleUIKitTests/ProgressIndicatorHiddenTests` fails on the old condition (still spinning in a hidden container) and passes now; unhiding restarts it.
 
 ### Measured and left alone
 

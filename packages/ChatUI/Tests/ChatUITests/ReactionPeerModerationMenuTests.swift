@@ -2,7 +2,7 @@ import XCTest
 import AppKit
 import Postbox
 import TelegramCore
-@testable import TGUIKit
+@testable import AnsibleUIKit
 import Localization
 @testable import ChatUI
 

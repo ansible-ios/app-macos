@@ -51,7 +51,7 @@
     "packages/EntertainmentUI/Sources/EntertainmentUI/StickersViewController.swift": "424047be2d448d85d687f36712fa55d5f8e3cbc59bee006b1c8e589d74614360",
     "packages/EntertainmentUI/Sources/EntertainmentUI/EmojiesController.swift": "9b83580c427ca5a14e1c8e2525be67b3fb1aa70f5829b95c3ec8d3567bf49d1c",
     "packages/AnsibleUtils/Sources/AnsibleUtils/InputSources.swift": "0a342c9f4e3ba8d01ca660721fa6562b3452e9e33a03d96052d59bae1f4e2709",
-    "packages/TGUIKit/Sources/Extensions.swift": "866dad29f2faac7c5529ade3ca10fb93dc37383ad9b473c8a7c45eb05a243212",
+    "packages/AnsibleUIKit/Sources/Extensions.swift": "866dad29f2faac7c5529ade3ca10fb93dc37383ad9b473c8a7c45eb05a243212",
     "tools/perflab/EntertainmentSearchLab/Tests/SearchLabTests/SearchTests.swift": "23ee17d84d97f7088ae6d5a114503ccdf45dd33b6bacf3a99cb7235bb0c9e5a0",
     "tools/perflab/EntertainmentSearchLab/Sources/SearchLab/Benchmark.swift": "275bf512646b6c241c5957f1d8b9233683becbafdb9917ddd077a5ba025d18cd"
   },

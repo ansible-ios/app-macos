@@ -51,7 +51,7 @@ while depth:
     cursor += 1
 folding_output = lab / 'Sources/InputTextView/Generated'
 folding_output.mkdir(parents=True, exist_ok=True)
-(folding_output / 'Size.swift').write_text('import Cocoa\nimport TGUIKit\n\nextension FoldingTextLayout {\n' + folding_text[start:cursor] + '\n}\n')
+(folding_output / 'Size.swift').write_text('import Cocoa\nimport AnsibleUIKit\n\nextension FoldingTextLayout {\n' + folding_text[start:cursor] + '\n}\n')
 def declaration(source, marker):
     start = source.index(marker)
     cursor = source.index('{', start) + 1
@@ -65,7 +65,7 @@ mask_function = declaration(folding_text, 'private final class FoldingQuoteMaskC
 wrapper = declaration(folding_text, 'private final class WrapperView : View')
 interaction_protocol = declaration(folding_text, 'private protocol FoldingBlockInteractionState: AnyObject {')
 quote_icon = declaration(folding_text, 'private let quoteIcon: CGImage = {') + '()\n'
-quote_text = 'import Cocoa\nimport TGUIKit\n\n' + quote_icon + '\n' + declaration(folding_text, 'public final class FoldingTextQuoteLayer: SimpleLayer {') + '\n'
+quote_text = 'import Cocoa\nimport AnsibleUIKit\n\n' + quote_icon + '\n' + declaration(folding_text, 'public final class FoldingTextQuoteLayer: SimpleLayer {') + '\n'
 reference_wrapper = lab / 'Reference/FoldingWrapper.swift.txt'
 assert hashlib.sha256(reference_wrapper.read_bytes()).hexdigest() == json.loads((lab / 'Reference/folding-wrapper-provenance.json').read_text())['captured_sha256']
 original_painter = declaration(reference_wrapper.read_text(), '    class BlockLayer: SimpleLayer {')
@@ -101,7 +101,7 @@ public func updateCandidateFoldingWrapper(_ view: View, layout: FoldingTextLayou
     (view as! CandidateWrapperView).update(layout, isRevealed: layout.isRevealed, context: ReferenceContext(), transition: transition)
 }
 '''
-(folding_output / 'QuoteWrapper.swift').write_text('import Cocoa\nimport TGUIKit\n\n' + quote_icon + mask_function + '\n\nextension FoldingTextLayout {\n' + view_layout + '\n}\n\n' + interaction_protocol + '\n' + wrapper + '\n' + native_factory)
+(folding_output / 'QuoteWrapper.swift').write_text('import Cocoa\nimport AnsibleUIKit\n\n' + quote_icon + mask_function + '\n\nextension FoldingTextLayout {\n' + view_layout + '\n}\n\n' + interaction_protocol + '\n' + wrapper + '\n' + native_factory)
 selection_source = root / 'packages/ChatUI/Sources/ChatUI/ChatSelectText.swift'
 selection_text = selection_source.read_text()
 selection_reference = lab / 'Reference/SelectManager.swift.txt'
@@ -138,8 +138,8 @@ for name, manager, method in [('SelectionLoopHarness', 'SelectManager', declarat
         runSelector(window: window, chatInteraction: ChatInteraction())
     }
 """ + method + '\n}\n'
-(output / 'SelectManager.swift').write_text('import Cocoa\nimport TGUIKit\nimport SwiftSignalKit\nimport TelegramCore\n\n' + selection_prefix + selection_helpers + '\n' + selection_reference.read_text().replace('SelectManager', 'LegacySelectManager') + '\n' + declaration(selection_text, 'public protocol MultipleSelectable') + '\n' + selectors)
-(lab / 'provenance.json').write_text(json.dumps({'production_sha256': {str(source.relative_to(root)): hashlib.sha256(source.read_bytes()).hexdigest() for source in sources + geometry_sources + [row_source, folding_source, selection_source, root / 'packages/TGUIKit/Sources/TextView.swift']}}, indent=2) + '\n')
+(output / 'SelectManager.swift').write_text('import Cocoa\nimport AnsibleUIKit\nimport SwiftSignalKit\nimport TelegramCore\n\n' + selection_prefix + selection_helpers + '\n' + selection_reference.read_text().replace('SelectManager', 'LegacySelectManager') + '\n' + declaration(selection_text, 'public protocol MultipleSelectable') + '\n' + selectors)
+(lab / 'provenance.json').write_text(json.dumps({'production_sha256': {str(source.relative_to(root)): hashlib.sha256(source.read_bytes()).hexdigest() for source in sources + geometry_sources + [row_source, folding_source, selection_source, root / 'packages/AnsibleUIKit/Sources/TextView.swift']}}, indent=2) + '\n')
 
 blocks_reference = lab / 'Reference/FoldingBlocks.swift.txt'
 assert hashlib.sha256(blocks_reference.read_bytes()).hexdigest() == json.loads((lab / 'Reference/folding-blocks-provenance.json').read_text())['captured_sha256']
@@ -165,7 +165,7 @@ func makeNAMEBlock(quoted: Bool) -> BlockHarness {
     }
 }
 """.replace('NAME', name)
-    (blocks_output / (name + '.swift')).write_text('import Cocoa\nimport TGUIKit\nimport InputTextView\n\n' + contents + factory)
+    (blocks_output / (name + '.swift')).write_text('import Cocoa\nimport AnsibleUIKit\nimport InputTextView\n\n' + contents + factory)
 playback_source = root / 'packages/InlineStickerLayer/Sources/InlineStickerLayer/InlineStickerPlayback.swift'
 keys_source = root / 'packages/InlineStickerLayer/Sources/InlineStickerLayer/InlineStickerKeyCollection.swift'
 playback_text = playback_source.read_text().replace('updateInlineStickerPlayback', 'performInlineStickerPlayback')
@@ -175,7 +175,7 @@ for prefix in ['@inlinable ', '@usableFromInline ', 'public ']:
     keys_text = keys_text.replace(prefix, '')
 (blocks_output / 'Playback.swift').write_text(playback_text)
 (blocks_output / 'Keys.swift').write_text(keys_text)
-blocks_provenance = {'production_sha256': {str(source.relative_to(root)): hashlib.sha256(source.read_bytes()).hexdigest() for source in [folding_source, playback_source, keys_source, root / 'packages/TGUIKit/Sources/AnimatableContentObserver.swift']}}
+blocks_provenance = {'production_sha256': {str(source.relative_to(root)): hashlib.sha256(source.read_bytes()).hexdigest() for source in [folding_source, playback_source, keys_source, root / 'packages/AnsibleUIKit/Sources/AnimatableContentObserver.swift']}}
 (lab / 'folding-blocks-provenance.json').write_text(json.dumps(blocks_provenance, indent=2) + '\n')
 
 view_reference = lab / 'Reference/FoldingTextView.swift.txt'
@@ -187,7 +187,7 @@ for legacy, contents in [(False, folding_text), (True, view_reference.read_text(
     contents = '\n'.join(line for line in contents.splitlines() if not line.startswith('import ')).replace('public ', '')
     if legacy:
         contents = contents.replace('FoldingText', 'LegacyFoldingText')
-    (view_output / (name + '.swift')).write_text('import Cocoa\nimport TGUIKit\nimport AnsibleContext\n' + contents)
+    (view_output / (name + '.swift')).write_text('import Cocoa\nimport AnsibleUIKit\nimport AnsibleContext\n' + contents)
 view_dependencies = (lab / 'Sources/FoldingBlocksHarness/Dependencies.swift').read_text().split('final class BlockHarness {')[0].replace('import InputTextView\n', '')
 view_dependencies = view_dependencies.replace('enum LiteMode { case emoji }\n', '').replace(declaration(view_dependencies, 'protocol AccountContextProtocol: AnyObject {') + '\n', '')
 view_dependencies = view_dependencies.replace('var account = 0', 'var account = AnsibleContext.Account()').replace('var inlinePacksContext = 0', 'var inlinePacksContext = AnsibleContext.InlineStickersContext()')
@@ -196,7 +196,7 @@ view_dependencies = view_dependencies.replace('init(account: Int, inlinePacksCon
 (view_output / 'Playback.swift').write_text(playback_text)
 (view_output / 'Keys.swift').write_text(keys_text)
 
-view_provenance_sources = [folding_source, root / 'packages/TGUIKit/Sources/TextView.swift', root / 'packages/TGUIKit/Sources/Control.swift', root / 'packages/TGUIKit/Sources/DisplayLinkAnimator.swift', lab / 'Sources/FoldingBlocksHarness/Dependencies.swift', lab / 'Sources/FoldingViewHarness/AnimationDependencies.swift', playback_source, keys_source]
+view_provenance_sources = [folding_source, root / 'packages/AnsibleUIKit/Sources/TextView.swift', root / 'packages/AnsibleUIKit/Sources/Control.swift', root / 'packages/AnsibleUIKit/Sources/DisplayLinkAnimator.swift', lab / 'Sources/FoldingBlocksHarness/Dependencies.swift', lab / 'Sources/FoldingViewHarness/AnimationDependencies.swift', playback_source, keys_source]
 (lab / 'folding-view-provenance.json').write_text(json.dumps({'production_and_stand_in_sha256': {str(source.relative_to(root)): hashlib.sha256(source.read_bytes()).hexdigest() for source in view_provenance_sources}, 'baseline': 'd02da2792', 'transforms': ['remove external imports', 'remove public visibility', 'prefix baseline FoldingText type names with Legacy']}, indent=2) + '\n')
 
 text_binding_reference = lab / 'Reference/ChatMessageTextBinding.swift.txt'
@@ -206,15 +206,15 @@ text_binding = declaration(text_binding_source.read_text(), '    private func up
 native_binding_reference = lab / 'Reference/NativeMessageTextBinding.swift.txt'
 assert hashlib.sha256(native_binding_reference.read_bytes()).hexdigest() == json.loads((lab / 'Reference/native-message-binding-provenance.json').read_text())['sha256']
 for name, binding in [('ReplacementChatTextRow', text_binding_reference.read_text()), ('ReusedChatTextRow', text_binding), ('PreviousNativeChatTextRow', native_binding_reference.read_text())]:
-    (lab / 'Sources/FoldingViewHarness/Generated' / (name + '.swift')).write_text('import Cocoa\nimport TGUIKit\n\nfinal class ' + name + ': ChatTextRow {\n    override func bind(_ next: ChatMessageItem, animated: Bool = false) {\n        let previous = item as? ChatMessageItem\n        item = next\n        updateText(for: next, previous: previous, animated: animated)\n    }\n' + binding + '\n' + declaration(text_binding_source.read_text(), '    public override var selectableTextViews:') + '\n}\n')
+    (lab / 'Sources/FoldingViewHarness/Generated' / (name + '.swift')).write_text('import Cocoa\nimport AnsibleUIKit\n\nfinal class ' + name + ': ChatTextRow {\n    override func bind(_ next: ChatMessageItem, animated: Bool = false) {\n        let previous = item as? ChatMessageItem\n        item = next\n        updateText(for: next, previous: previous, animated: animated)\n    }\n' + binding + '\n' + declaration(text_binding_source.read_text(), '    public override var selectableTextViews:') + '\n}\n')
 
 plain_text_adapter = (root / 'packages/ChatUI/Sources/ChatUI/ChatLayerMessageText+Layout.swift').read_text()
 plain_text_methods = '\n\n'.join(declaration(plain_text_adapter, marker) for marker in ['    private enum AttributeKeys {', '    @inline(__always)', '    private static func supportsInlineEmoji(', '    static func simpleText('])
-(lab / 'Sources/FoldingViewHarness/Generated/PlainTextPreparation.swift').write_text('import Cocoa\nimport TGUIKit\nimport InputView\nimport InlineStickerLayer\n@testable import ChatLayerEngine\n\nextension ChatLayerMessageTextPresentation {\n' + plain_text_methods.replace('as? InlineStickerItem', 'as? InlineStickerLayer.InlineStickerItem') + '\n}\n')
+(lab / 'Sources/FoldingViewHarness/Generated/PlainTextPreparation.swift').write_text('import Cocoa\nimport AnsibleUIKit\nimport InputView\nimport InlineStickerLayer\n@testable import ChatLayerEngine\n\nextension ChatLayerMessageTextPresentation {\n' + plain_text_methods.replace('as? InlineStickerItem', 'as? InlineStickerLayer.InlineStickerItem') + '\n}\n')
 
 live_text = text_binding_source.read_text()
 live_methods = '\n\n'.join(declaration(live_text, marker) for marker in ['    private func updateText(', '    private func updateNativeText(', '    func firstTextBaseline(', '    public override var selectableTextViews:', '    override var textSelectionSources:', '    public override func updateAnimatableContent()'])
-(lab / 'Sources/FoldingViewHarness/Generated/LayerChatTextRow.swift').write_text('import Cocoa\nimport TGUIKit\n@testable import ChatLayerEngine\n\nfinal class LayerChatTextRow: ChatTextRow {\n' + declaration(live_text, '    var textContentView:') + '\n    override func bind(_ next: ChatMessageItem, animated: Bool = false) {\n        textBindingVersion &+= 1\n        let previous = item as? ChatMessageItem\n        item = next\n        updateText(for: next, previous: previous, animated: animated)\n    }\n' + live_methods + '\n}\n')
+(lab / 'Sources/FoldingViewHarness/Generated/LayerChatTextRow.swift').write_text('import Cocoa\nimport AnsibleUIKit\n@testable import ChatLayerEngine\n\nfinal class LayerChatTextRow: ChatTextRow {\n' + declaration(live_text, '    var textContentView:') + '\n    override func bind(_ next: ChatMessageItem, animated: Bool = false) {\n        textBindingVersion &+= 1\n        let previous = item as? ChatMessageItem\n        item = next\n        updateText(for: next, previous: previous, animated: animated)\n    }\n' + live_methods + '\n}\n')
 
 outer_text_layout = declaration(live_text[live_text.index('    public override func updateLayout('):], '        if let text = textContentView {')
 with (lab / 'Sources/FoldingViewHarness/Generated/LayerChatTextRow.swift').open('a') as stream:
@@ -224,7 +224,7 @@ runpy.run_path(str(lab / "prepare-observers.py"))
 runpy.run_path(str(lab / "prepare-captions.py"))
 
 highlight_method = declaration(folding_text, '    public func highlight(text: String, color: NSColor, range: NSRange? = nil)')
-(folding_output / 'HighlightReference.swift').write_text('import Cocoa\nimport TGUIKit\n\npublic final class NativeMessageHighlightHarness {\n    let layouts: FoldingTextLayout?\n    let textViews: [TextView]\n    public init(layouts: FoldingTextLayout, textViews: [TextView]) { self.layouts = layouts; self.textViews = textViews }\n' + highlight_method + '\n}\n')
+(folding_output / 'HighlightReference.swift').write_text('import Cocoa\nimport AnsibleUIKit\n\npublic final class NativeMessageHighlightHarness {\n    let layouts: FoldingTextLayout?\n    let textViews: [TextView]\n    public init(layouts: FoldingTextLayout, textViews: [TextView]) { self.layouts = layouts; self.textViews = textViews }\n' + highlight_method + '\n}\n')
 
 highlight_baseline = subprocess.check_output(['git', 'show', '0d986d65f:packages/ChatUI/Sources/ChatUI/ChatLayerTextNode.swift'], cwd=root, text=True)
 (output / 'ReferenceHighlightTextNode.swift').write_text(highlight_baseline.replace('ChatLayerTextNode', 'ReferenceHighlightTextNode'))
@@ -237,16 +237,16 @@ reentrancy_baseline = subprocess.check_output(['git', 'show', '7e69ec48e:package
 
 message_binding_baseline = subprocess.check_output(['git', 'show', '8f78986bf:packages/ChatUI/Sources/ChatUI/ChatLayerMessageText.swift'], cwd=root, text=True)
 message_binding_class = message_binding_baseline[message_binding_baseline.index('final class ChatLayerMessageTextNode:'):]
-(output / 'ReferenceMessageBindingNode.swift').write_text('import Cocoa\nimport TGUIKit\nimport InputTextView\n\n' + message_binding_class.replace('ChatLayerMessageTextNode', 'ReferenceMessageBindingNode'))
+(output / 'ReferenceMessageBindingNode.swift').write_text('import Cocoa\nimport AnsibleUIKit\nimport InputTextView\n\n' + message_binding_class.replace('ChatLayerMessageTextNode', 'ReferenceMessageBindingNode'))
 
 message_binding_prepass = (lab / 'results/message-binding/prepass-candidate.swift.txt').read_text()
 message_binding_prepass_class = message_binding_prepass[message_binding_prepass.index('final class ChatLayerMessageTextNode:'):]
-(output / 'PrepassMessageBindingNode.swift').write_text('import Cocoa\nimport TGUIKit\nimport InputTextView\n\n' + message_binding_prepass_class.replace('ChatLayerMessageTextNode', 'PrepassMessageBindingNode'))
+(output / 'PrepassMessageBindingNode.swift').write_text('import Cocoa\nimport AnsibleUIKit\nimport InputTextView\n\n' + message_binding_prepass_class.replace('ChatLayerMessageTextNode', 'PrepassMessageBindingNode'))
 
 header_baseline = subprocess.check_output(['git', 'show', '778589c29:packages/ChatUI/Sources/ChatUI/ChatRowView.swift'], cwd=root, text=True)
 header_current = row_source.read_text()
 header_fixture = """import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class HeaderBindingItem {
     let forwardHeader: TextViewLayout?
@@ -279,7 +279,7 @@ final class %s: View {
 (output / 'HeaderBinding.swift').write_text(header_fixture)
 
 badge_fixture = """import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class BadgeBindingItem {
     let adminBadge: TextViewLayout
@@ -308,7 +308,7 @@ final class %s: View {
 
 sender_baseline = subprocess.check_output(['git', 'show', 'f99d1ddde:packages/ChatUI/Sources/ChatUI/ChatRowView.swift'], cwd=root, text=True)
 sender_fixture = """import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class HostedRightStub: View {
     var isContentHosted: Bool { false }
@@ -429,7 +429,7 @@ forward_baseline = subprocess.check_output(['git', 'show', 'e2ae34ce8:packages/C
 forward_host_baseline = subprocess.check_output(['git', 'show', 'e2ae34ce8:packages/ChatUI/Sources/ChatUI/ChatLayerRowView.swift'], cwd=root, text=True)
 (output / 'BeforeForwardNameRowView.swift').write_text(forward_host_baseline.replace('ChatLayerRowView', 'BeforeForwardNameRowView'))
 forward_fixture = """import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 struct ForwardBindingContext { let account = 0 }
 struct ForwardBindingInfo { let author: Int }
@@ -563,4 +563,4 @@ with (folding_output / 'QuoteLayer.swift').open('a') as stream:
 
 inline_emoji_sources = [root / 'packages/ChatUI/Sources/ChatUI' / name for name in ['ChatLayerInlineEmoji.swift', 'ChatLayerMessageTextView.swift', 'ChatLayerMessageText+Layout.swift', 'ChatMessageView.swift', 'ChatRowView.swift']]
 inline_emoji_sources += [lab / path for path in ['Sources/AnsibleContext/Context.swift', 'Sources/InputView/Emoji.swift', 'Sources/InlineStickerLayer/Media.swift', 'Sources/FoldingViewHarness/ChatTextDependencies.swift', 'Sources/FoldingViewHarness/CaptionDependencies.swift', 'Tests/FoldingViewTests/LiveInlineEmojiTests.swift', 'prepare.py', 'prepare-captions.py', 'Package.swift']]
-(lab / 'inline-emoji-integration-provenance.json').write_text(json.dumps({'source_sha256': {str(source.relative_to(root)): hashlib.sha256(source.read_bytes()).hexdigest() for source in inline_emoji_sources}, 'scope': 'Exact production helper and host; extracted production body/caption methods; real TGUIKit; deterministic media/account stand-ins; no real decoding or asynchronous fetching'}, indent=2) + '\n')
+(lab / 'inline-emoji-integration-provenance.json').write_text(json.dumps({'source_sha256': {str(source.relative_to(root)): hashlib.sha256(source.read_bytes()).hexdigest() for source in inline_emoji_sources}, 'scope': 'Exact production helper and host; extracted production body/caption methods; real AnsibleUIKit; deterministic media/account stand-ins; no real decoding or asynchronous fetching'}, indent=2) + '\n')

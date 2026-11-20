@@ -1,7 +1,7 @@
 import Cocoa
 import Postbox
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 import Localization
 #if SHARE
 import AnsibleUtilsShare

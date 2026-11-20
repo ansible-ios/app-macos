@@ -6,7 +6,7 @@ import re
 
 lab = Path(__file__).resolve().parent
 root = lab.parents[2]
-source = root / 'packages/TGUIKit/Sources/DrawingContext.swift'
+source = root / 'packages/AnsibleUIKit/Sources/DrawingContext.swift'
 s = source.read_text()
 original = gzip.decompress((lab / 'Reference/drawing-context.swift.txt.gz').read_bytes()).decode()
 metadata = json.loads((lab / 'Reference/provenance.json').read_text())

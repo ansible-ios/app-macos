@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public final class CallWindowSource {
     private static let maxControlSize = NSMakeSize(200, 120)

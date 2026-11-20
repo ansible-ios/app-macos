@@ -4,7 +4,7 @@ import SwiftSignalKit
 import Postbox
 import TelegramCore
 import ColorPalette
-import TGUIKit
+import AnsibleUIKit
 import InAppSettings
 import ThemeSettings
 import Reactions
@@ -643,7 +643,7 @@ final class AccountContext {
                 if FastSettings.accessibilityServerDisabled != disabled {
                     FastSettings.accessibilityServerDisabled = disabled
                 }
-                TGUIKitAccessibility.isEnabled = FastSettings.accessibilityTreeEffective
+                AnsibleUIKitAccessibility.isEnabled = FastSettings.accessibilityTreeEffective
             }
             #endif
         }))

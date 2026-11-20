@@ -1,6 +1,6 @@
 import Cocoa
 import CoreText
-import TGUIKit
+import AnsibleUIKit
 
 extension ChatLayerSceneView: ChatBubbleCustomTextSelection {
     func clearBubbleSelection() {

@@ -1,6 +1,6 @@
 # Chat author and forward-name layout reuse
 
-This native macOS lab extracts the author and forward-name sizing blocks verbatim from `ChatRowItem.makeSize`, comparing the working tree with `ba81323e5`. Both implementations use real TGUIKit TextViewLayout, Core Text, link hit testing, and TextView drawing. Small model fixtures provide row flags, badge layouts, and a reply-sizing call recorder.
+This native macOS lab extracts the author and forward-name sizing blocks verbatim from `ChatRowItem.makeSize`, comparing the working tree with `ba81323e5`. Both implementations use real AnsibleUIKit TextViewLayout, Core Text, link hit testing, and TextView drawing. Small model fixtures provide row flags, badge layouts, and a reply-sizing call recorder.
 
 ```sh
 python3 tools/perflab/ChatAuthorLayoutLab/prepare.py
@@ -24,9 +24,9 @@ The initial seven tests failed nine identity assertions against the original imp
 - Reply sizing calls, arguments, and top offsets remain identical. The test recorder does not implement the real reply model; its internal rendering is outside this lab's scope.
 - 488 exact raster pairs at 1x and 2x drawing transforms, with size, line frame, and range comparisons. Empty strings and tiny constraints are explicitly permitted to draw no pixels; other cases require nonzero pixels.
 
-The production call-site audit found these layouts are constructed once per row and read by TextView or chat accessory controls. Badge or effective-width changes still trigger measurement. Replaced or dropped layouts also measure. No new per-row fields, shared cache, or TGUIKit API is introduced. Reply model remeasurement remains outside the reuse guard.
+The production call-site audit found these layouts are constructed once per row and read by TextView or chat accessory controls. Badge or effective-width changes still trigger measurement. Replaced or dropped layouts also measure. No new per-row fields, shared cache, or AnsibleUIKit API is introduced. Reply model remeasurement remains outside the reuse guard.
 
-These are extracted production sizing blocks, not an instantiated ChatRowItem or a live-chat benchmark. Native rendering uses the real TGUIKit implementation; application data, callback payloads, and reply-model behavior use fixtures. Whole-file parsing supplements extraction but does not establish that the full application builds.
+These are extracted production sizing blocks, not an instantiated ChatRowItem or a live-chat benchmark. Native rendering uses the real AnsibleUIKit implementation; application data, callback payloads, and reply-model behavior use fixtures. Whole-file parsing supplements extraction but does not establish that the full application builds.
 
 ## Performance
 
@@ -44,4 +44,4 @@ Benchmark attributes include an opaque peer-link object, exercising the conserva
 
 Evidence is saved in `results/`: frozen extracted code, source delta, baseline failure log, benchmark samples, sanitizer/regression logs, and validation-source hashes. Previous metadata blocks are independently re-extracted from the updated ChatRowItem and confirmed byte-identical before their regression suite runs.
 
-Validation passed: 156 functional release tests (9 author, 13 metadata, 134 chat-layer), plus the 9 author tests under each of Address Sanitizer and Thread Sanitizer. Whole-file parsing passed. TGUIKit source hashes were unchanged from the previous full 371-test functional release run; that suite was not repeated for this call-site-only change.
+Validation passed: 156 functional release tests (9 author, 13 metadata, 134 chat-layer), plus the 9 author tests under each of Address Sanitizer and Thread Sanitizer. Whole-file parsing passed. AnsibleUIKit source hashes were unchanged from the previous full 371-test functional release run; that suite was not repeated for this call-site-only change.

@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 import InputTextView
 
 final class QuoteRedrawTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install(); System.updateScaleFactor(2) }
+    override func setUp() { AnsibleUIKitTestBootstrap.install(); System.updateScaleFactor(2) }
     override func tearDown() { System.updateScaleFactor(2); DeviceGraphicsContextSettings.install(nil) }
 
     func quotes(code: Bool = false, header: Bool = false, colors: Int = 2) -> [TextViewBlockQuote] {

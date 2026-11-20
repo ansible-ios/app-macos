@@ -1,6 +1,6 @@
 import Cocoa
 import AVFoundation
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import AnsibleMedia
 import TelegramMediaPlayer

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class ChatRowContentView: View {
     private(set) var forwardHeader: CurrentChatTextLayer?
@@ -83,7 +83,7 @@ final class ChatRowContentView: View {
     }
 
     private var headerAccessibilityElement: ChatForwardHeaderAccessibilityElement? {
-        guard TGUIKitAccessibility.isEnabled, forwardHeader != nil else {
+        guard AnsibleUIKitAccessibility.isEnabled, forwardHeader != nil else {
             return nil
         }
         if forwardHeaderAccessibility == nil {
@@ -93,7 +93,7 @@ final class ChatRowContentView: View {
     }
 
     override func accessibilityChildren() -> [Any]? {
-        guard TGUIKitAccessibility.isEnabled else { return nil }
+        guard AnsibleUIKitAccessibility.isEnabled else { return nil }
         if let element = headerAccessibilityElement {
             let index = min(forwardHeaderSubviewIndex, subviews.count)
             return NSAccessibility.unignoredChildren(from: Array(subviews.prefix(index))) + [element] + NSAccessibility.unignoredChildren(from: Array(subviews.dropFirst(index)))
@@ -118,7 +118,7 @@ private final class ChatForwardHeaderAccessibilityElement: NSAccessibilityElemen
     }
 
     override func isAccessibilityElement() -> Bool {
-        guard TGUIKitAccessibility.isEnabled, let owner, !owner.isHiddenOrHasHiddenAncestor,
+        guard AnsibleUIKitAccessibility.isEnabled, let owner, !owner.isHiddenOrHasHiddenAncestor,
               let header = owner.forwardHeader, !header.isHidden else {
             return false
         }

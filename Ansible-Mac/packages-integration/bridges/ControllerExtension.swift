@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 #if SHARE
 import AnsibleUtilsShare
 typealias AnsibleGenericViewController<T: NSView> = AnsibleUtilsShare.AnsibleGenericViewController<T, AccountContext>

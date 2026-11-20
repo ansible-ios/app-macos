@@ -1,9 +1,9 @@
 import Cocoa
 import XCTest
-@testable import TGUIKit
+@testable import AnsibleUIKit
 
 final class FactoryTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     private let texts: [String?] = [nil, "", "Hello", "12:34", "Alice Smith", "👩🏽‍💻", "🇦🇪 ❤️", "مرحبا بالعالم", "שלום", "漢字かな", "e\u{301}", "a\u{0}b", "first\nsecond\tline", " \n "]
     private var fonts: [NSFont?] { [nil, .normal(10), .systemFont(ofSize: 13, weight: .semibold), .monospacedSystemFont(ofSize: 12, weight: .regular), NSFontManager.shared.convert(.systemFont(ofSize: 15), toHaveTrait: .italicFontMask)] }

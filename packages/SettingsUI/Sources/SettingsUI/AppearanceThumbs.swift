@@ -2,7 +2,7 @@ import Cocoa
 import TelegramCore
 import InAppSettings
 import ColorPalette
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import Postbox
 import ThemeSettings

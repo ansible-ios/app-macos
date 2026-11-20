@@ -3,7 +3,7 @@ import Cocoa
 import AVFoundation
 import CoreMedia
 import ScreenCaptureKit
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TgVoipWebrtc
 import PerfLab

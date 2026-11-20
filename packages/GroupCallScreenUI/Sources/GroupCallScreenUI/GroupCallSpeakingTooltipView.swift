@@ -1,7 +1,7 @@
 import Cocoa
 import AnsibleCallsCore
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 
 import Postbox

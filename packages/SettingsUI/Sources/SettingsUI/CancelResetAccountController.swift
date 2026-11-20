@@ -2,7 +2,7 @@ import Cocoa
 
 
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import Localization
 import AnsibleContext
 import AnsibleUtils

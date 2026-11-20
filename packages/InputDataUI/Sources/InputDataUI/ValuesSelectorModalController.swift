@@ -5,7 +5,7 @@ import AnsibleTheme
 import AnsibleUtils
 import Localization
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 
 private final class ValuesSelectorArguments <T> where T : Equatable {

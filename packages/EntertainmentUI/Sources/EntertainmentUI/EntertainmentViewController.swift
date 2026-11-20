@@ -1,10 +1,10 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 
 import Postbox
-import TGModernGrowingTextView
+import AnsibleModernGrowingTextView
 import InAppSettings
 import Localization
 import Strings
@@ -109,7 +109,7 @@ public final class EntertainmentView : View {
     private let tabAccessibilityCells = EntertainmentAccessibilityCells()
 
     public override func accessibilityChildren() -> [Any]? {
-        guard TGUIKitAccessibility.isEnabled else {
+        guard AnsibleUIKitAccessibility.isEnabled else {
             return super.accessibilityChildren()
         }
         var children = NSAccessibility.unignoredChildren(from: subviews.filter { $0 !== tabs })

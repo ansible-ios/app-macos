@@ -3,7 +3,7 @@
 import PackageDescription
 
 let deps: [(String, String)] = [
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("ColorPalette", "../ColorPalette"),
     ("InAppSettings", "../InAppSettings"),
     ("Localization", "../Localization"),
@@ -27,7 +27,7 @@ let deps: [(String, String)] = [
     ("ShortPeerRow", "../ShortPeerRow"),
     ("InputTextView", "../InputTextView"),
     ("InputView", "../InputView"),
-    ("TGModernGrowingTextView", "../TGModernGrowingTextView"),
+    ("AnsibleModernGrowingTextView", "../AnsibleModernGrowingTextView"),
     ("AnsibleMedia", "../AnsibleMedia"),
     ("AnsibleMediaResources", "../AnsibleMediaResources"),
     ("AnsibleMediaUtils", "../AnsibleMediaUtils"),
@@ -76,7 +76,7 @@ let package = Package(
             name: "StoriesUITests",
             dependencies: [
                 "StoriesUI",
-                .product(name: "TGUIKit", package: "TGUIKit", condition: nil),
+                .product(name: "AnsibleUIKit", package: "AnsibleUIKit", condition: nil),
                 .product(name: "AvatarUI", package: "AvatarUI", condition: nil),
                 .product(name: "ColorPalette", package: "ColorPalette", condition: nil),
                 .product(name: "AnsibleTheme", package: "AnsibleTheme", condition: nil),

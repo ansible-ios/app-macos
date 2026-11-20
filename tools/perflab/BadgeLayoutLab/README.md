@@ -15,9 +15,9 @@ swift test --package-path tools/perflab/BadgeLayoutLab --scratch-path /tmp/Badge
 swift test --package-path tools/perflab/BadgeLayoutLab --scratch-path /tmp/BadgeLayoutLab-tsan --sanitize thread
 ```
 
-The generator extracts construction blocks, selected/unselected accessors and the view condition from actual ChatListUI sources. It compares them with commit `4536e7fd6`. The GRAM predicate is extracted too, adapting `Int32?` to the harness's `Int?`. The outer item, account state and theme are small adapters. BadgeNode, TextNode, View, CoreText and drawing are the actual TGUIKit implementation.
+The generator extracts construction blocks, selected/unselected accessors and the view condition from actual ChatListUI sources. It compares them with commit `4536e7fd6`. The GRAM predicate is extracted too, adapting `Int32?` to the harness's `Int?`. The outer item, account state and theme are small adapters. BadgeNode, TextNode, View, CoreText and drawing are the actual AnsibleUIKit implementation.
 
-`--baseline` substitutes the original feature snippets; it does not restore the TGUIKit library. The recorded initial baseline run used the original BadgeNode and the first five regression tests, before adding the shared initializer tests. It produced 15 expected assertions in five tests. Do not describe a current `--baseline` run as a complete original-library baseline.
+`--baseline` substitutes the original feature snippets; it does not restore the AnsibleUIKit library. The recorded initial baseline run used the original BadgeNode and the first five regression tests, before adding the shared initializer tests. It produced 15 expected assertions in five tests. Do not describe a current `--baseline` run as a complete original-library baseline.
 
 ## Results
 

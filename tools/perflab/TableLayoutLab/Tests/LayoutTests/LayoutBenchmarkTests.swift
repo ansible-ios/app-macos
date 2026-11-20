@@ -1,15 +1,15 @@
 import AppKit
 import XCTest
 import QuartzCore
-import class TGUIKit.TableView
-import class TGUIKitBaseline.TableView
-import class TGUIKit.TableRowItem
-import class TGUIKitBaseline.TableRowItem
-import class TGUIKit.TableStickItem
-import class TGUIKitBaseline.TableStickItem
+import class AnsibleUIKit.TableView
+import class AnsibleUIKitBaseline.TableView
+import class AnsibleUIKit.TableRowItem
+import class AnsibleUIKitBaseline.TableRowItem
+import class AnsibleUIKit.TableStickItem
+import class AnsibleUIKitBaseline.TableStickItem
 
-private final class BenchmarkHeader: TGUIKit.TableStickItem {}
-private final class BaselineBenchmarkHeader: TGUIKitBaseline.TableStickItem {}
+private final class BenchmarkHeader: AnsibleUIKit.TableStickItem {}
+private final class BaselineBenchmarkHeader: AnsibleUIKitBaseline.TableStickItem {}
 
 final class LayoutBenchmarkTests: XCTestCase {
     func testLayoutCosts() throws {
@@ -37,15 +37,15 @@ final class LayoutBenchmarkTests: XCTestCase {
         for rows in [0, 40, 1000, 10000] {
             let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 840, height: 600), styleMask: .borderless, backing: .buffered, defer: false)
             window.isReleasedWhenClosed = false
-            let a = TGUIKitBaseline.TableView(frame: NSRect(x: 0, y: 0, width: 420, height: 600))
-            let b = TGUIKit.TableView(frame: NSRect(x: 420, y: 0, width: 420, height: 600))
+            let a = AnsibleUIKitBaseline.TableView(frame: NSRect(x: 0, y: 0, width: 420, height: 600))
+            let b = AnsibleUIKit.TableView(frame: NSRect(x: 420, y: 0, width: 420, height: 600))
             window.contentView!.addSubview(a); window.contentView!.addSubview(b)
             a.beginTableUpdates(); b.beginTableUpdates()
             for id in 0..<rows {
                 if id % 20 == 0 {
                     _ = a.addItem(item: BaselineBenchmarkHeader(.zero)); _ = b.addItem(item: BenchmarkHeader(.zero))
                 } else {
-                    _ = a.addItem(item: TGUIKitBaseline.TableRowItem(.zero, stableId: id)); _ = b.addItem(item: TGUIKit.TableRowItem(.zero, stableId: id))
+                    _ = a.addItem(item: AnsibleUIKitBaseline.TableRowItem(.zero, stableId: id)); _ = b.addItem(item: AnsibleUIKit.TableRowItem(.zero, stableId: id))
                 }
             }
             a.endTableUpdates(); b.endTableUpdates()

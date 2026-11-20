@@ -1,5 +1,5 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 
 public enum ColorProbeBootstrap {
     private static var retained: [NSImage] = []

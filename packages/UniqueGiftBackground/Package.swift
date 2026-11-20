@@ -4,7 +4,7 @@ import PackageDescription
 
 let deps: [(String, String)] = [
     ("UniqueGiftRenderer", "../UniqueGiftRenderer"),
-    ("TGUIKit", "../TGUIKit"),
+    ("AnsibleUIKit", "../AnsibleUIKit"),
     ("AnsibleUtils", "../AnsibleUtils"),
     ("AnsibleContext", "../AnsibleContext"),
 ]

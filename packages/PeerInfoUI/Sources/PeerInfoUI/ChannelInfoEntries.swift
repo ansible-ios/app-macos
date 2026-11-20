@@ -2,7 +2,7 @@ import Cocoa
 import Postbox
 import TelegramCore
 import CurrencyFormat
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import InAppSettings
 import AlertsUI

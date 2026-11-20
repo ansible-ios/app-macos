@@ -1,6 +1,6 @@
 import XCTest
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 import AnsibleTheme
 @testable import GeneralRows
 
@@ -11,7 +11,7 @@ final class GeneralRowAccessibilityTests: XCTestCase {
     override func setUp() {
         super.setUp()
         UITestBootstrap.install()
-        TGUIKitAccessibility.isEnabled = true
+        AnsibleUIKitAccessibility.isEnabled = true
     }
 
     override func tearDown() {

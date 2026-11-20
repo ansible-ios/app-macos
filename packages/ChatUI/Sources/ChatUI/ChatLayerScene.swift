@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 enum ChatLayerTreeError: Error, Equatable {
     case duplicateIdentifier
@@ -857,19 +857,19 @@ class ChatLayerSceneView: View {
 
     override func isAccessibilityElement() -> Bool {
         guard hasLayerContent else { return super.isAccessibilityElement() }
-        return TGUIKitAccessibility.isEnabled && !isHiddenOrHasHiddenAncestor && (!root.accessibleChildren().isEmpty || super.isAccessibilityElement())
+        return AnsibleUIKitAccessibility.isEnabled && !isHiddenOrHasHiddenAncestor && (!root.accessibleChildren().isEmpty || super.isAccessibilityElement())
     }
     override func accessibilityRole() -> NSAccessibility.Role? { hasLayerContent ? .group : super.accessibilityRole() }
 
     override func accessibilityChildren() -> [Any]? {
         guard hasLayerContent else { return super.accessibilityChildren() }
-        guard TGUIKitAccessibility.isEnabled, !isHiddenOrHasHiddenAncestor else { return nil }
+        guard AnsibleUIKitAccessibility.isEnabled, !isHiddenOrHasHiddenAncestor else { return nil }
         return root.accessibleChildren() + (super.accessibilityChildren() ?? [])
     }
     override func accessibilityHitTest(_ point: NSPoint) -> Any? {
         guard let window else { return super.accessibilityHitTest(point) }
         let local = convert(window.convertPoint(fromScreen: point), from: nil)
-        if hasLayerContent, TGUIKitAccessibility.isEnabled, !isHiddenOrHasHiddenAncestor, bounds.contains(local), let result = root.accessibilityHit(at: local, from: root.layer) { return result }
+        if hasLayerContent, AnsibleUIKitAccessibility.isEnabled, !isHiddenOrHasHiddenAncestor, bounds.contains(local), let result = root.accessibilityHit(at: local, from: root.layer) { return result }
         return super.accessibilityHitTest(point)
     }
 }
@@ -878,7 +878,7 @@ fileprivate final class ChatLayerAccessibilityElement: NSAccessibilityElement {
     private weak var node: ChatLayerNode?
     init(node: ChatLayerNode) { self.node = node; super.init() }
     override func isAccessibilityElement() -> Bool {
-        guard TGUIKitAccessibility.isEnabled, let node, let scene = node.scene, !scene.isHiddenOrHasHiddenAncestor else { return false }
+        guard AnsibleUIKitAccessibility.isEnabled, let node, let scene = node.scene, !scene.isHiddenOrHasHiddenAncestor else { return false }
         return node.isVisible && node.accessibilityRole != nil
     }
     override func accessibilityRole() -> NSAccessibility.Role? { node?.accessibilityRole }

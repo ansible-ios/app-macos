@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 struct ForwardBindingContext { let account = 0 }
 struct ForwardBindingInfo { let author: Int }

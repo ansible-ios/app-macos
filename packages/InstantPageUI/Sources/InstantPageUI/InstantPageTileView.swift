@@ -3,7 +3,7 @@ import Localization
 import AnsibleUtils
 import AnsibleMediaUtils
 import AnsibleTheme
-import TGUIKit
+import AnsibleUIKit
 import AnsibleContext
 import AudioPlayerCore
 

@@ -1,13 +1,13 @@
 import Cocoa
 import Foundation
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import ColorPalette
 import InAppSettings
 import AnsibleTheme
 import AnsibleMedia
 import ObjcUtils
-import TGVideoCameraMovie
+import AnsibleVideoCameraMovie
 import AVFoundation
 import Localization
 

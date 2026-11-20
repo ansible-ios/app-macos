@@ -1,6 +1,6 @@
 import Cocoa
 import InputTextView
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import AVFoundation
 import AVKit

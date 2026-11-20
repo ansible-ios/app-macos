@@ -1,13 +1,13 @@
 import Cocoa
 import XCTest
 import QuartzCore
-import TGUIKit
+import AnsibleUIKit
 @testable import FoldingViewHarness
 
 final class QuoteMaskBenchmarkTests: XCTestCase {
     func testMaskAndLayoutCosts() throws {
         guard ProcessInfo.processInfo.environment["CHAT_QUOTE_MASK_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in quote mask benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let reverse = ProcessInfo.processInfo.environment["CHAT_QUOTE_MASK_REVERSE"] == "1"
         let factory = QuoteMaskTests()
         var results: [String: [[Double]]] = [:]

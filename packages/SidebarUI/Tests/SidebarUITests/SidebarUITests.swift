@@ -6,7 +6,7 @@ import Postbox
 import InAppSettings
 import InputDataUI
 import InputView
-import TGUIKit
+import AnsibleUIKit
 @testable import SidebarUI
 
 final class SidebarUITests: XCTestCase {

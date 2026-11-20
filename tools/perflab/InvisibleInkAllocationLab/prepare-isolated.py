@@ -17,8 +17,8 @@ assert hashlib.sha256(compiled_reference.read_bytes()).hexdigest() == metadata['
 source = root / metadata['source']
 assert hashlib.sha256(source.read_bytes()).hexdigest() == metadata['candidate_full_source_sha256']
 shutil.copytree(lab, output, ignore=shutil.ignore_patterns('.build', 'results', '__pycache__'))
-kit = root / 'packages/TGUIKit'
-copy = output / 'TGUIKit'
+kit = root / 'packages/AnsibleUIKit'
+copy = output / 'AnsibleUIKit'
 hashes = {}
 for folder in ['Sources', 'Tests']:
     for path in (kit / folder).rglob('*'):
@@ -39,6 +39,6 @@ hashes[str((kit / 'Package.swift').relative_to(root))] = hashlib.sha256(manifest
 manifest = re.sub(r'(path: ")([^"]+)', lambda m: m[1] + str((kit / m[2]).resolve()) if m[2].startswith('..') else m[0], manifest)
 (copy / 'Package.swift').write_text(manifest)
 path = output / 'Package.swift'
-path.write_text(path.read_text().replace('../../../packages/TGUIKit', str(copy)))
+path.write_text(path.read_text().replace('../../../packages/AnsibleUIKit', str(copy)))
 (output / 'source-manifest.json').write_text(json.dumps(hashes, indent=2, sort_keys=True) + '\n')
 print(output)

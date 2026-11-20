@@ -67,7 +67,7 @@ send_button = (chat / 'Sources/ChatUI/ChatInputSendButton.swift').read_text()
 waveform_tests = Path(__file__).with_name('WaveformTests.swift').read_text().replace('__ACTIVATE_SEND__', source_block(send_button, 'private func activateSend()').replace('private ', ''))
 
 flight_tests = Path(__file__).with_name('ButtonFlightTests.swift').read_text()
-animation_utils = (root / 'packages/TGUIKit/Sources/CAAnimationUtils.swift').read_text()
+animation_utils = (root / 'packages/AnsibleUIKit/Sources/CAAnimationUtils.swift').read_text()
 completion = source_block(animation_utils, 'public class CALayerAnimationDelegate:') + '\n' + source_block(animation_utils, 'public extension CAAnimation {')
 for placeholder, code in [('__ANIMATION_COMPLETION__', completion), ('__SET_DICTATING__', source_block(send_button, 'func setDictating(')), ('__DICTATION_APPEARANCE__', source_block(send_button, 'private func updateDictationAppearance()')), ('__FINISH_DICTATION__', source_block(send_button, 'private func finishDictationTransition()')), ('__PLANE_FLIGHT__', source_block(send_button, 'private func animatePlaneFlight()').replace('ChatInputSendButton.', 'FlightButton.')), ('__BUTTON_FLIGHT__', source_block(send_button, 'func animateDictationTransition(').replace('ChatInputSendButton.', 'FlightButton.')), ('__CANCEL_FLIGHT__', source_block(send_button, 'private func cancelDictationTransition()')), ('__DETACH_FLIGHT__', source_block(send_button, 'public override func viewDidMoveToWindow()')), ('__CAPTURE_ORIGIN__', source_block(recording_view, 'private func dictationButtonOrigin()').replace('private ', ''))]:
     flight_tests = flight_tests.replace(placeholder, code)
@@ -97,7 +97,7 @@ let package = Package(name: "VoiceToText", platforms: [.macOS(.v10_15)], targets
     (directory / 'Tests/TextEffectTests.swift').write_text(Path(__file__).with_name('TextEffectTests.swift').read_text())
     (directory / 'Tests/Waveform.swift').write_text((chat / 'Sources/ChatUI/ChatDictationWaveform.swift').read_text())
     (directory / 'Tests/Aura.swift').write_text((chat / 'Sources/ChatUI/ChatDictationAura.swift').read_text())
-    (directory / 'Tests/WaveformView.swift').write_text((chat / 'Sources/ChatUI/ChatDictationWaveformView.swift').read_text().replace('import TGUIKit\n', ''))
+    (directory / 'Tests/WaveformView.swift').write_text((chat / 'Sources/ChatUI/ChatDictationWaveformView.swift').read_text().replace('import AnsibleUIKit\n', ''))
     (directory / 'Tests/WaveformTests.swift').write_text(waveform_tests)
     (directory / 'Tests/ButtonFlightTests.swift').write_text(flight_tests)
     (directory / 'Tests/DictationText.swift').write_text((chat / 'Sources/ChatUI/ChatInputDictationText.swift').read_text())

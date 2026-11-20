@@ -1,10 +1,10 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import FoldingViewHarness
 
 final class CaptionReuseTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func caption(_ id: Int, stableId: UInt32? = nil, text: String? = nil, context: BlockContext, blocks: Int = 1, quoted: Bool = false, streaming: Bool = false, loading: Bool = false, offset: NSPoint = .zero) -> ChatRowItem.RowCaption {
         let body = ChatTextReuseTests().item(id, count: blocks, quoted: quoted, context: context, streaming: streaming, text: text, collapsable: quoted)

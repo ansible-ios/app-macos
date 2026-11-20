@@ -1,5 +1,5 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 
 enum ThemeImage { case starReactionParticle }
 struct AnsibleThemeHooks {

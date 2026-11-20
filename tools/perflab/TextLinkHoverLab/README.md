@@ -50,16 +50,16 @@ The text-snapshot validation adds measurable work to the hovered view's updates.
 ## Reproduction
 
 ```sh
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-link-hover-release -c release --filter TextViewLinkHoverTests
-TEXT_HOVER_BENCHMARK=sample swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-link-hover-release -c release --filter TextViewLinkHoverTests.testAllocationAndUpdateCosts
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-link-hover-release -c release --filter TextViewLinkHoverTests
+TEXT_HOVER_BENCHMARK=sample swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-link-hover-release -c release --filter TextViewLinkHoverTests.testAllocationAndUpdateCosts
 ```
 
 The benchmark writes /tmp/text-hover-sample.json. Tests use hidden AppKit windows, real timers, synthetic events passed directly to the views and real SwiftSignalKit subscriptions. No system mouse events are posted and no network request or visible preview popup is opened. Tests run against a worktree with unrelated pending changes; this is not a clean-checkout or full Telegram build.
 
 ## Validation provenance
 
-The full TGUIKit release run passed 339 functional tests (355 total, 16 optional tests skipped). The final benchmark expansion happened afterward; production and every functional test/helper remained byte-for-byte unchanged. The exact pre-expansion harness is archived as baseline-and-release-tests.swift.gz and the expanded benchmark passed separately.
+The full AnsibleUIKit release run passed 339 functional tests (355 total, 16 optional tests skipped). The final benchmark expansion happened afterward; production and every functional test/helper remained byte-for-byte unchanged. The exact pre-expansion harness is archived as baseline-and-release-tests.swift.gz and the expanded benchmark passed separately.
 
-The full TGUIKit AddressSanitizer suite also passed all 339 functional tests. The chat layer mini-app passed 134 functional tests in release and AddressSanitizer (148 total, 14 optional tests skipped). Together, 473 functional tests passed in each configuration.
+The full AnsibleUIKit AddressSanitizer suite also passed all 339 functional tests. The chat layer mini-app passed 134 functional tests in release and AddressSanitizer (148 total, 14 optional tests skipped). Together, 473 functional tests passed in each configuration.
 
 All 18 new lifecycle tests passed under ThreadSanitizer (19 total, one optional benchmark skipped), with no race reports.

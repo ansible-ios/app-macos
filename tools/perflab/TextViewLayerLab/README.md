@@ -25,7 +25,7 @@ The layer is suitable for decorative text. It does not provide TextView's access
 
 ## Validation
 
-The preparation script copies actual production TGUIKit sources into a temporary package, and appends the preserved draw method from `bce10beff` as a reference subclass in the same source file. This retains private helper access without widening production APIs. Two reference bookkeeping writes are redirected to test accessors. The current and previous chat text-layer classes are extracted verbatim apart from class renaming. The reference uses current TextView hosting/update code; it isolates drawing changes and the chat wrapper migration, not the entire historical TGUIKit implementation.
+The preparation script copies actual production AnsibleUIKit sources into a temporary package, and appends the preserved draw method from `bce10beff` as a reference subclass in the same source file. This retains private helper access without widening production APIs. Two reference bookkeeping writes are redirected to test accessors. The current and previous chat text-layer classes are extracted verbatim apart from class renaming. The reference uses current TextView hosting/update code; it isolates drawing changes and the chat wrapper migration, not the entire historical AnsibleUIKit implementation.
 
 Initial foundation validation: nine functional tests passed in debug, release and Address Sanitizer, with one opt-in benchmark skipped. There are 1,680 exact bitmap comparisons across the rendering matrices, plus a copied-layer comparison:
 
@@ -38,7 +38,7 @@ Initial foundation validation: nine functional tests passed in debug, release an
 
 Fixtures include RTL, CJK, combining characters, emoji, truncation, font/color changes, underlines, strikethroughs, quotes, code and embedded placeholders. Nonblank assertions cover nonempty ordinary view fixtures. Separate tests cover layout release, selection preservation, mutable layout invalidation and view/closure lifetimes. The new standalone layer copy test caught an initial contents-scale mismatch, which is fixed.
 
-The full TGUIKit suite passes 216 functional tests, with two optional tests skipped. Three focused layer API tests live in the production package. No full Telegram build, live VoiceOver session or end-to-end scrolling measurement was performed. Bitmap equality exercises CoreText drawing directly, not GPU compositing or frame pacing.
+The full AnsibleUIKit suite passes 216 functional tests, with two optional tests skipped. Three focused layer API tests live in the production package. No full Telegram build, live VoiceOver session or end-to-end scrolling measurement was performed. Bitmap equality exercises CoreText drawing directly, not GPU compositing or frame pacing.
 
 ## Measurements
 
@@ -63,7 +63,7 @@ swift test --package-path /tmp/TextViewLayerLab-work/TextViewLayerLab --scratch-
 swift test -c release --package-path /tmp/TextViewLayerLab-work/TextViewLayerLab --scratch-path /tmp/TextViewLayerLab-release
 swift test --sanitize address --package-path /tmp/TextViewLayerLab-work/TextViewLayerLab --scratch-path /tmp/TextViewLayerLab-asan
 TEXT_LAYER_BENCHMARK=1 swift test -c release --skip-build --package-path /tmp/TextViewLayerLab-work/TextViewLayerLab --scratch-path /tmp/TextViewLayerLab-release --filter LayerTests.testBenchmark
-swift test --package-path packages/TGUIKit --scratch-path /tmp/TGUIKit-goal-debug
+swift test --package-path packages/AnsibleUIKit --scratch-path /tmp/AnsibleUIKit-goal-debug
 ```
 
 The benchmark writes `/tmp/text-layer-benchmark.json`. Use separate scratch directories for each package, and do not rerun preparation while builds read that copy. `provenance.json` records production/reference hashes. Logs and final measurements are saved alongside this document.

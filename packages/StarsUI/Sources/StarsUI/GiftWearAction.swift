@@ -2,7 +2,7 @@ import Foundation
 import SwiftSignalKit
 import TelegramCore
 import AnsibleContext
-import TGUIKit
+import AnsibleUIKit
 
 final class GiftWearAction {
     enum Outcome {

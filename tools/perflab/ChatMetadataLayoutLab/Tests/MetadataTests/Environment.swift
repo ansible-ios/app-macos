@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 enum MetadataRenderType { case list, bubble }
 enum MetadataForwardType { case FullHeader, ShortHeader, none }

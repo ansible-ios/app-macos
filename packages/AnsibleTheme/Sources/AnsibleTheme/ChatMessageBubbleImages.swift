@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 public enum MessageBubbleImageNeighbors: Hashable {
     case none

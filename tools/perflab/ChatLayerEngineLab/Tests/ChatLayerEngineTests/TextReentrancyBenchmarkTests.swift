@@ -1,13 +1,13 @@
 import Cocoa
 import XCTest
 import Darwin
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class TextReentrancyBenchmarkTests: XCTestCase {
     func testBindingGuardOverhead() throws {
         guard ProcessInfo.processInfo.environment["CHAT_REENTRANCY_BENCHMARK"] != nil else { throw XCTSkip("Opt-in binding guard overhead") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let layout = MessageTextTests().layout(["An ordinary message without an active search highlight."]).blocks[0].text
         let old = ReferenceReentrancyTextNode(id: "old", selectable: true)
         let new = ChatLayerTextNode(id: "new", selectable: true)

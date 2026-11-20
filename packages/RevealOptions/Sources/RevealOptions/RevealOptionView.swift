@@ -1,5 +1,5 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 
 private let animationTriggerProgress: CGFloat = 0.1
 private let interactiveAnimationResetProgress: CGFloat = 0.01

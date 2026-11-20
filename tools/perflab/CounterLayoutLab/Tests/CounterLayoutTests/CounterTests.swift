@@ -1,9 +1,9 @@
 import Cocoa
 import XCTest
-@testable import TGUIKit
+@testable import AnsibleUIKit
 
 final class CounterTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     private var fonts: [NSFont] {
         [NSFont.systemFont(ofSize: 13), NSFont.boldSystemFont(ofSize: 17), NSFont(name: "Menlo", size: 12), NSFont(name: "Times New Roman Italic", size: 15), NSFont(name: "Apple Color Emoji", size: 14)].compactMap { $0 }

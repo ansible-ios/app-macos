@@ -4,10 +4,10 @@ import PackageDescription
 let package = Package(
     name: "WaveformClipLayerLab",
     platforms: [.macOS(.v10_15)],
-    dependencies: [.package(path: "../../../packages/TGUIKit")],
+    dependencies: [.package(path: "../../../packages/AnsibleUIKit")],
     targets: [
-        .target(name: "WaveformCurrent", dependencies: ["TGUIKit"]),
-        .target(name: "WaveformOriginal", dependencies: ["TGUIKit"]),
-        .testTarget(name: "WaveformTests", dependencies: ["WaveformCurrent", "WaveformOriginal", "TGUIKit"])
+        .target(name: "WaveformCurrent", dependencies: ["AnsibleUIKit"]),
+        .target(name: "WaveformOriginal", dependencies: ["AnsibleUIKit"]),
+        .testTarget(name: "WaveformTests", dependencies: ["WaveformCurrent", "WaveformOriginal", "AnsibleUIKit"])
     ]
 )

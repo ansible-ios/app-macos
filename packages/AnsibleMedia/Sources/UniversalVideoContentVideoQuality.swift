@@ -5,7 +5,7 @@ import MediaPlayer
 import SwiftSignalKit
 import TelegramMediaPlayer
 import RangeSet
-import TGUIKit
+import AnsibleUIKit
 import Postbox
 import TelegramCore
 import AppKit

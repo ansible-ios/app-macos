@@ -19,7 +19,7 @@ The Telegram macOS project uses **InputDataController** for list/form-based UI. 
 
 ```swift
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import TelegramCore
 import Postbox

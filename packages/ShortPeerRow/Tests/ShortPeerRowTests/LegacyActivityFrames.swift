@@ -1,5 +1,5 @@
 import AppKit
-import TGUIKit
+import AnsibleUIKit
 import AnsibleTheme
 
 private let legacyMinDiameter: CGFloat = 3.5

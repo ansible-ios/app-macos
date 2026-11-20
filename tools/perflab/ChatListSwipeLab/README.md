@@ -2,13 +2,13 @@
 
 Every navigation swipe update previously scanned all loaded chat-list rows and called the full ChatListRowView.set(item:) method on each existing chat row. The progress value only controls content and compact-badge opacity. The full binding path also visits text, avatar, media, activity, badge and layout work that does not depend on that value.
 
-The controller now uses TGUIKit's existing available-row enumeration. Rows update the two opacity values directly while their split layout matches the bound item. A changed split layout retains the full binding path. Normal data/theme updates still call set(item:). No cache or per-row state was added. Available-row enumeration uses its existing small temporary array of item/view pairs; that allocation is included in the traversal benchmark.
+The controller now uses AnsibleUIKit's existing available-row enumeration. Rows update the two opacity values directly while their split layout matches the bound item. A changed split layout retains the full binding path. Normal data/theme updates still call set(item:). No cache or per-row state was added. Available-row enumeration uses its existing small temporary array of item/view pairs; that allocation is included in the traversal benchmark.
 
 A newly created compact badge now starts at the current gesture opacity, including its fade target. Previously it started fully opaque midway through a gesture. A progress callback that rebinds the view cannot overwrite the new binding's opacity.
 
 ## Harness and boundaries
 
-prepare.py extracts the exact progress method, initial content-opacity block, compact-badge binding block, trailing layout invalidations, controller swipe method and progress getter from production. The reference comes from commit 590fd8894. Both variants compile together against the real TGUIKit package. AppKit windows, CALayer opacity/animations and TableView enumeration are real.
+prepare.py extracts the exact progress method, initial content-opacity block, compact-badge binding block, trailing layout invalidations, controller swipe method and progress getter from production. The reference comes from commit 590fd8894. Both variants compile together against the real AnsibleUIKit package. AppKit windows, CALayer opacity/animations and TableView enumeration are real.
 
 Telegram account and row models, badge content, controller navigation layout and the unrelated portions of the full row binding are adapters. The binding counter proves entry into set(item:), not how much CPU its omitted portions use. Rendering comparisons use colored content and badge fixtures, not complete Telegram chat-list cells. No full ChatListUI/Telegram build, account/network test, retained-memory measurement or end-to-end FPS claim is made.
 

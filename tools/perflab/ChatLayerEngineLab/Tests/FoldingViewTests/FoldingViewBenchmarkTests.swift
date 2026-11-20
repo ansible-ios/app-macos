@@ -6,7 +6,7 @@ import QuartzCore
 final class FoldingViewBenchmarkTests: XCTestCase {
     func testNativeViewUpdateCosts() throws {
         guard ProcessInfo.processInfo.environment["FOLDING_VIEW_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in native folding view benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         let fixtures = FoldingViewTests()
         var results: [String: Any] = [:]
         var sink = 0

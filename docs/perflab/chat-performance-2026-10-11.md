@@ -1,32 +1,32 @@
 # Chat and chat list performance (2026-10-11)
 
-Second pass after the power audit (`power-audit.md`), aimed at the chat and the chat list. Static audits of the chat list, the chat history and the TGUIKit primitives, then fixes one by one, each with a test that fails on the old code or a measurement.
+Second pass after the power audit (`power-audit.md`), aimed at the chat and the chat list. Static audits of the chat list, the chat history and the AnsibleUIKit primitives, then fixes one by one, each with a test that fails on the old code or a measurement.
 
 ## Log
 
-### 1. App-wide geometry observers (TGUIKit `AnimatableContentObserver`)
+### 1. App-wide geometry observers (AnsibleUIKit `AnimatableContentObserver`)
 
 Views that refresh their animated content on scrolling (custom emoji, emoji statuses, media, reactions; 18 files use the observers) subscribe to the enclosing scroll view's clip-view bounds and document frame. For a view outside any scroll view (chat title bar, headers, status controls) both were `nil`, and `NotificationCenter` treats a `nil` object as "any object": the view was called back for every frame and bounds change of every NSView in the app, on every row relayout and animation step. Unregistering also removed all of the target's observers, and a view leaving its window stayed registered.
 Now: no `nil`-object registrations (a view without a scroll view follows its window's resize instead, plus its own frame and key state as before), unregistering removes exactly what was registered, and a view without a window unregisters.
-Proof: `TGUIKitTests/AnimatableContentObserverTests` — 100 frame and bounds changes of an unrelated view called the old observer 198 times, the new one 0; window resize, own frame and scroll-view scrolling still update. TGUIKit 91/91.
+Proof: `AnsibleUIKitTests/AnimatableContentObserverTests` — 100 frame and bounds changes of an unrelated view called the old observer 198 times, the new one 0; window resize, own frame and scroll-view scrolling still update. AnsibleUIKit 91/91.
 
-### 2. Control background re-applied on every mouse move (TGUIKit `Control`)
+### 2. Control background re-applied on every mouse move (AnsibleUIKit `Control`)
 
 `controlState` is re-assigned on every mouse move over a control (every TextView and button in rows), and its didSet always ran `apply(state:)`: a `layer.backgroundColor` write and, for animated controls, a new 0.2 s `backgroundColor` animation from the presentation value to the same model value, which keeps Core Animation rendering. The color write and the animation now happen only when the color actually changes; state handlers and cursor updates are untouched.
-Proof: `TGUIKitTests/ControlStateApplyTests` fails on the old code (a background animation per unchanged update) and passes now; hover still animates.
+Proof: `AnsibleUIKitTests/ControlStateApplyTests` fails on the old code (a background animation per unchanged update) and passes now; hover still animates.
 
 ### 3. Avatar cache hits wrote themselves back (AnsibleUtils `peerAvatarImage`)
 
 Every avatar served from the photo cache (chat list rows, message authors, headers) was stored again with `cachePeerPhoto`: under the cache lock, `setImage` removed the entry, re-inserted it without its display scopes and ran eviction. The lookup already refreshes `lastUsed`, and `AvatarLayer` re-attaches the display scope (clearing the orphan mark) whenever its contents are set, so a hit now just returns the image. Verified with the type-check harness.
 
-### 4. TransformImageView set its layer contents twice (TGUIKit)
+### 4. TransformImageView set its layer contents twice (AnsibleUIKit)
 
-Every image set ended with `preventsCapture = preventsCapture`, which re-ran a didSet whose capture branch is commented out and wrote `layer.contents` a second time. Removed. TGUIKit 92/92.
+Every image set ended with `preventsCapture = preventsCapture`, which re-ran a didSet whose capture branch is commented out and wrote `layer.contents` a second time. Removed. AnsibleUIKit 92/92.
 
-### 5. Spoiler rects for text without spoilers (TGUIKit `TextViewLayout`)
+### 5. Spoiler rects for text without spoilers (AnsibleUIKit `TextViewLayout`)
 
 `spoilerRects` walked every line and allocated a filtered spoiler array per line even when the text has no spoilers, and `TextView.update`/`layout`/`draw` call it 4-5 times per update (2-5 text views per row). It now returns `[]` immediately when there are no spoilers (the same result).
-Proof, `TGUIKitTests/TextViewUpdateTests.testUpdateCost` (20 text views, 20,000 update + layout + flush, two interleaved rounds): 6.09 / 6.21 µs → 4.80 / 4.75 µs per update (−22 %). `testRepeatedUpdatesKeepTheLayerOrder` pins the layer order.
+Proof, `AnsibleUIKitTests/TextViewUpdateTests.testUpdateCost` (20 text views, 20,000 update + layout + flush, two interleaved rounds): 6.09 / 6.21 µs → 4.80 / 4.75 µs per update (−22 %). `testRepeatedUpdatesKeepTheLayerOrder` pins the layer order.
 Rejected after measuring: skipping the `drawLayer`/`embeddedContainer` re-insert in `updateBackgroundBlur` when already in place made updates slower (7.30 vs 6.39 µs); re-inserting a layer at its own index is cheaper than checking.
 
 ### 6. Chat list rows resubscribed to their peer on every set (ChatListUI)
@@ -48,10 +48,10 @@ Group-call "speaking" updates arrive as `.voiceChat` input activities and change
 Not done, on purpose: filtering activities to the loaded rows. With `distinctUntilChanged` the projection would keep a stale activity map for unloaded chats, and a chat paged into the list would show it.
 Proof: `ChatListUITests/ChatListStateProjectionTests.testVoiceChatActivitiesDoNotRebuildTheList`.
 
-### 10. Chat list main-thread tail after an empty transition (ChatListUI, TGUIKit)
+### 10. Chat list main-thread tail after an empty transition (ChatListUI, AnsibleUIKit)
 
 Every chat list pipeline run (typing anywhere, story, birthday and suggestion emissions) ended in `enqueueTransition`, which after `TableView.merge` ran three full enumerations of the table, `afterTransaction` (a fourth enumeration plus a redraw of the space row and the table mask), a new `TableAutohide`, the pinned-items update and a new delayed preload signal, even when `merge` returned early because nothing changed. `TableView.merge(with:)` now reports whether it applied anything (`@discardableResult`, so other callers are unchanged), and the tail runs only when it did. Everything in the tail derives from the table items, which an unapplied merge leaves untouched; header-driven inset changes have their own `updateScrollerInset` call.
-Proof: `TGUIKitTests/TableMergeResultTests`; TGUIKit 95/95, ChatListUITests 105/105.
+Proof: `AnsibleUIKitTests/TableMergeResultTests`; AnsibleUIKit 95/95, ChatListUITests 105/105.
 
 ### 11. Bubble backdrop reset on every row set (ChatUI)
 

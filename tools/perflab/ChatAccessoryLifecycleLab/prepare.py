@@ -36,7 +36,7 @@ def generate(name, source):
     return 'class ' + name + ': AccessoryBase {\n' + properties + '\n    var observerForTesting: AnimatableContentTokenObserver? { contentObserver }\n    var headerLayers: [InlineStickerItemLayer] { Array(header_inlineStickerItemViews.values) }\n    var messageLayers: [InlineStickerItemLayer] { Array(text_inlineStickerItemViews.values) }\n    func apply(_ model: FixtureModel, animated: Bool = false) {\n        headerView.update(model.header)\n        textView?.update(model.message)\n' + message + '\n' + header + '\n' + tail + '\n    }\n' + methods + '\n}\n'
 
 lifecycle_candidate = subprocess.check_output(['git', 'show', '9953e0ace:' + path], cwd=root, text=True)
-output = 'import Cocoa\nimport TGUIKit\n' + generate('ReferenceAccessory', original) + generate('CandidateAccessory', lifecycle_candidate)
+output = 'import Cocoa\nimport AnsibleUIKit\n' + generate('ReferenceAccessory', original) + generate('CandidateAccessory', lifecycle_candidate)
 (lab / 'Tests/AccessoryTests/Generated.swift').write_text(output)
 helpers = {}
 for name in ['InlineStickerPlayback.swift', 'InlineStickerKeyCollection.swift']:
@@ -61,7 +61,7 @@ for name in ['NativeAccessoryView', 'ChatAccessoryView']:
     else:
         full_source += 'var headerFrame: CGRect { headerContent.frame }\nvar messageFrame: CGRect { messageContent.frame }\nvar pollFrame: CGRect? { pollIconLayer?.frame }\nvar quoteFrame: CGRect? { quoteLayer?.frame }\n'
     full_source += '}\n'
-(lab / 'Tests/AccessoryTests/GeneratedFull.swift').write_text('import Cocoa\nimport TGUIKit\nimport ColorPalette\n' + full_source)
+(lab / 'Tests/AccessoryTests/GeneratedFull.swift').write_text('import Cocoa\nimport AnsibleUIKit\nimport ColorPalette\n' + full_source)
 content = current[current.index('final class ChatAccessoryTextContent'):current.index('private final class StarsView')]
-(lab / 'Tests/AccessoryTests/GeneratedTextContent.swift').write_text('import Cocoa\nimport TGUIKit\n' + content)
+(lab / 'Tests/AccessoryTests/GeneratedTextContent.swift').write_text('import Cocoa\nimport AnsibleUIKit\n' + content)
 (lab / 'full-generation.json').write_text(json.dumps({'baseline': '9953e0ace', 'source_sha256': {path: hashlib.sha256(current.encode()).hexdigest()}, 'full_generated_sha256': hashlib.sha256(full_source.encode()).hexdigest(), 'transforms': ['replace native baseline class names', 'remove external imports and public visibility from enclosing accessory views', 'append read-only test accessors and pattern-image injection'], 'scope': 'Complete production ChatAccessoryView and StarsView plus exact text/icon content helpers; account, media, model and theme services are stand-ins.'}, indent=2) + '\n')

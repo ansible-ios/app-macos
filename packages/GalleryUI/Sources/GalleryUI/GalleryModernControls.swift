@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import ExternalVideoUtils
 import InputTextView
 import TelegramCore
@@ -222,7 +222,7 @@ public class GalleryModernControlsView: View {
     
     public override func accessibilityChildren() -> [Any]? {
         var children = super.accessibilityChildren() ?? []
-        guard TGUIKitAccessibility.isEnabled, let currentState = currentState else {
+        guard AnsibleUIKitAccessibility.isEnabled, let currentState = currentState else {
             return children
         }
         authorAccessibilityElement.setAccessibilityLabel(currentState.peer?.displayTitle ?? strings().peerDeletedUser)

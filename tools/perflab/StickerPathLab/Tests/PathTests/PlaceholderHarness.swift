@@ -1,12 +1,12 @@
 import Cocoa
-@testable import class TGUIKit.StickerShimmerEffectView
-@testable import class TGUIKit.ShimmerLayer
-@testable import class TGUIKit.ShimmerView
-@testable import class TGUIKit.SilhouetteShimmerLayer
-@testable import class TGUIKitBaseline.StickerShimmerEffectView
-@testable import class TGUIKitBaseline.ShimmerLayer
-@testable import class TGUIKitBaseline.ShimmerView
-@testable import class TGUIKitBaseline.SilhouetteShimmerLayer
+@testable import class AnsibleUIKit.StickerShimmerEffectView
+@testable import class AnsibleUIKit.ShimmerLayer
+@testable import class AnsibleUIKit.ShimmerView
+@testable import class AnsibleUIKit.SilhouetteShimmerLayer
+@testable import class AnsibleUIKitBaseline.StickerShimmerEffectView
+@testable import class AnsibleUIKitBaseline.ShimmerLayer
+@testable import class AnsibleUIKitBaseline.ShimmerView
+@testable import class AnsibleUIKitBaseline.SilhouetteShimmerLayer
 
 enum ShimmerKind: CaseIterable { case layer, view, sticker, silhouette }
 
@@ -32,31 +32,31 @@ func shimmer(_ kind: ShimmerKind, baseline: Bool) -> ShimmerHarness {
     if baseline {
         switch kind {
         case .layer:
-            let v = TGUIKitBaseline.ShimmerLayer()
+            let v = AnsibleUIKitBaseline.ShimmerLayer()
             return ShimmerHarness(object: v, update: { v.update(backgroundColor: $0.background, foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size, imageSize: $0.imageSize, cornerRadius: $0.radius) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { v.maskFrameForLab })
         case .view:
-            let v = TGUIKitBaseline.ShimmerView()
+            let v = AnsibleUIKitBaseline.ShimmerView()
             return ShimmerHarness(object: v, update: { v.update(backgroundColor: $0.background, foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size, imageSize: $0.imageSize, cornerRadius: $0.radius) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { v.maskFrameForLab })
         case .sticker:
-            let v = TGUIKitBaseline.StickerShimmerEffectView()
+            let v = AnsibleUIKitBaseline.StickerShimmerEffectView()
             return ShimmerHarness(object: v, update: { v.update(backgroundColor: $0.background, foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { v.maskFrameForLab })
         case .silhouette:
-            let v = TGUIKitBaseline.SilhouetteShimmerLayer()
+            let v = AnsibleUIKitBaseline.SilhouetteShimmerLayer()
             return ShimmerHarness(object: v, update: { v.update(foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size, imageSize: $0.imageSize) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { nil })
         }
     } else {
         switch kind {
         case .layer:
-            let v = TGUIKit.ShimmerLayer()
+            let v = AnsibleUIKit.ShimmerLayer()
             return ShimmerHarness(object: v, update: { v.update(backgroundColor: $0.background, foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size, imageSize: $0.imageSize, cornerRadius: $0.radius) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { v.maskFrameForLab })
         case .view:
-            let v = TGUIKit.ShimmerView()
+            let v = AnsibleUIKit.ShimmerView()
             return ShimmerHarness(object: v, update: { v.update(backgroundColor: $0.background, foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size, imageSize: $0.imageSize, cornerRadius: $0.radius) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { v.maskFrameForLab })
         case .sticker:
-            let v = TGUIKit.StickerShimmerEffectView()
+            let v = AnsibleUIKit.StickerShimmerEffectView()
             return ShimmerHarness(object: v, update: { v.update(backgroundColor: $0.background, foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { v.maskFrameForLab })
         case .silhouette:
-            let v = TGUIKit.SilhouetteShimmerLayer()
+            let v = AnsibleUIKit.SilhouetteShimmerLayer()
             return ShimmerHarness(object: v, update: { v.update(foregroundColor: $0.foreground, shimmeringColor: $0.shimmering, data: $0.data, size: $0.size, imageSize: $0.imageSize) }, image: { v.imageForLab }, imageLayer: { v.imageLayerForLab }, maskFrame: { nil })
         }
     }

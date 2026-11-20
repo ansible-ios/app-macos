@@ -1,7 +1,7 @@
 import Cocoa
 import Postbox
 import TelegramCore
-import TGUIKit
+import AnsibleUIKit
 
 public struct QuoteMessageIndex : Hashable {
     public let messageId: MessageId

@@ -1,11 +1,11 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import FoldingViewHarness
 @testable import ChatLayerEngine
 
 final class LiveStaticQuoteTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
     let fixtures = ChatTextReuseTests()
     func testStaticQuotePixelsAndViewCounts() throws {
         let context = BlockContext()

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 final class ReusedChatTextRow: ChatTextRow {
     override func bind(_ next: ChatMessageItem, animated: Bool = false) {

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 struct FixturePalette { let grayBackground = NSColor.gray }
 struct FixtureChat {

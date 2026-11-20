@@ -25,7 +25,7 @@ public enum ArchiveSource : Hashable {
     public var contents:[URL] {
         switch self {
         case let .resource(resource):
-            if resource.path.contains("tg_temp_archive_") {
+            if resource.path.contains("ansible_temp_archive_") || resource.path.contains("tg_temp_archive_") {
                 let files = try? FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath: resource.path), includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
                 return files ?? [URL(fileURLWithPath: resource.path)]
             }

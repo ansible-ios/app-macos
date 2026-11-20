@@ -3,7 +3,7 @@ import FolderSharingUI
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 
 func ShareCloudFolderController(context: AccountContext, filter: ChatListFilter, link: ExportedChatFolderLink?, updated: @escaping (ExportedChatFolderLink, ExportedChatFolderLink?) -> Void) -> InputDataModalController {
     return FolderSharingUI.ShareCloudFolderController(context: context, environment: AppFolderSharingUIEnvironment(context), filter: filter, link: link, updated: updated)

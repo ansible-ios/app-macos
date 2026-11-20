@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 private final class TestWindow: Window {
@@ -12,7 +12,7 @@ private final class TestWindow: Window {
 
 final class TextTests: XCTestCase {
     override func setUp() {
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         NSApp.setActivationPolicy(.accessory)
         System.updateScaleFactor(2)
     }

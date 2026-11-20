@@ -14,7 +14,7 @@ fields = view[view.index('    private weak var item:ChatRowItem?'):view.index(' 
 assert 'bindTooltip(item)' in view[view.index('    public func set(item:ChatRowItem'):view.index('        guard let frames = item.rightFrames')]
 assert 'updateTooltip' not in item and 'updateCountDownTimer' not in item and 'originalFullDate' not in item
 reference = (lab / 'Reference.swift.txt').read_text()
-output = 'import Cocoa\nimport TGUIKit\nimport SwiftSignalKit\n\n'
+output = 'import Cocoa\nimport AnsibleUIKit\nimport SwiftSignalKit\n\n'
 output += 'class ChatRowItem: ItemEnvironment {\n' + method + '}\n'
 output += 'class CurrentTooltipView: ViewEnvironment {\n' + fields + '    func set(_ item: ChatRowItem) { bindTooltip(item) }\n' + helpers + '}\n'
 output += reference

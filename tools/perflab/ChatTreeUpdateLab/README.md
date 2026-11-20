@@ -16,7 +16,7 @@ TREE_UPDATE_BENCHMARK=1 TREE_UPDATE_REVERSE=1 swift test --package-path /tmp/Cha
 cp /tmp/chat-tree-update-benchmark.json /tmp/tree-reverse.json
 ```
 
-Use a fresh output directory. Timing should run without competing compiler work. The generator uses the existing ChatLayerEngineLab host, freezes TGUIKit, and creates two complete engine modules differing only in ChatLayerScene.swift. The baseline restores the exact captured original file. Both modules receive the same test-only state-allocation inspector. No inspector is included in production.
+Use a fresh output directory. Timing should run without competing compiler work. The generator uses the existing ChatLayerEngineLab host, freezes AnsibleUIKit, and creates two complete engine modules differing only in ChatLayerScene.swift. The baseline restores the exact captured original file. Both modules receive the same test-only state-allocation inspector. No inspector is included in production.
 
 Omit the filter to run the complete host regression suite. Its actual copy-icon asset test needs `CHAT_COPY_ICON_BUNDLE` pointing at the existing asset-only app bundle; final validation used `/tmp/PrecomposedTintFinalAssets/Probe.app`. Other theme images and account models are supplied by the existing standalone fixtures.
 
@@ -52,7 +52,7 @@ Nine focused tests cover all 65 unique subsets/permutations of four children, co
 
 All nine pass release and Address Sanitizer, with sanitizer leak detection disabled. The full chat/folding-text suite passes 346 functional tests with 34 optional measurements skipped, including the actual icon-loader fixture. The final benchmark snapshot differs from that full-suite snapshot only in additional small-tree benchmark cases; every production source and functional test is byte-identical. Both input manifests are retained and verified. The changed production file passes Swift syntax parsing.
 
-A fresh generator reproduced all 99 engine/harness sources, 73 host test files, 177 TGUIKit sources and 76 TGUIKit test files exactly. All 578 recorded final compiler inputs remain unchanged, and the production file equals the measured source. A complete application build has not been performed by this lab.
+A fresh generator reproduced all 99 engine/harness sources, 73 host test files, 177 AnsibleUIKit sources and 76 AnsibleUIKit test files exactly. All 578 recorded final compiler inputs remain unchanged, and the production file equals the measured source. A complete application build has not been performed by this lab.
 
 ## Issues caught during development
 

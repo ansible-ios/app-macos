@@ -22,8 +22,8 @@ for name in ['prepare.py', 'prepare-captions.py', 'prepare-observers.py']:
     path.write_text(source.replace('.relative_to(root)', ''))
 subprocess.run([sys.executable, str(output / 'prepare.py')], check=True)
 
-kit = root / 'packages/TGUIKit'
-kit_copy = output / 'TGUIKit'
+kit = root / 'packages/AnsibleUIKit'
+kit_copy = output / 'AnsibleUIKit'
 paths = [p for folder in ['Sources', 'Tests'] for p in (kit / folder).rglob('*') if p.is_file()]
 paths.append(kit / 'Package.swift')
 hashes = {str(p.relative_to(kit)): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
@@ -38,8 +38,8 @@ manifest = (kit_copy / 'Package.swift').read_text()
 manifest = re.sub(r'(path: ")([^"]+)', lambda match: match[1] + str((kit / match[2]).resolve()) if match[2].startswith('..') else match[0], manifest)
 (kit_copy / 'Package.swift').write_text(manifest)
 path = output / 'Package.swift'
-source = path.read_text().replace('../../../packages/TGUIKit', str(kit_copy))
+source = path.read_text().replace('../../../packages/AnsibleUIKit', str(kit_copy))
 source = source.replace('../../../submodules/ansible-ios/submodules/SSignalKit', str(root / 'submodules/ansible-ios/submodules/SSignalKit'))
 path.write_text(source)
-(output / 'tguikit-snapshot.json').write_text(json.dumps(hashes, indent=2) + '\n')
+(output / 'ansibleuikit-snapshot.json').write_text(json.dumps(hashes, indent=2) + '\n')
 print(output)

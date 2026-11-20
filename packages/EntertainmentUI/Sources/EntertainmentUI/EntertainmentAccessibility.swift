@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 
 struct EntertainmentAccessibilityCell {
     let id: AnyHashable
@@ -80,7 +80,7 @@ final class EntertainmentGridControl: Control {
 
     override func accessibilityChildren() -> [Any]? {
         var children = super.accessibilityChildren() ?? []
-        guard TGUIKitAccessibility.isEnabled, let cells = accessibilityCells?() else {
+        guard AnsibleUIKitAccessibility.isEnabled, let cells = accessibilityCells?() else {
             return children
         }
         children.append(contentsOf: cellElements.elements(for: cells, in: self))

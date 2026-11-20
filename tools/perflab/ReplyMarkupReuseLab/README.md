@@ -8,7 +8,7 @@ The container stores one optional account identifier. No global cache or persist
 
 ## Validation
 
-The lab compiles the complete production ReplyMarkupNode and InteractiveTextView against real TGUIKit and AppKit. The baseline is 9c2a08831. The button-layout model, account, theme and inline renderer are explicit fixtures; emoji decoding and account-backed actions are not executed. Production node methods and control methods are copied without algorithm changes; only baseline/candidate node and path-helper names differ. generation.json records their hashes.
+The lab compiles the complete production ReplyMarkupNode and InteractiveTextView against real AnsibleUIKit and AppKit. The baseline is 9c2a08831. The button-layout model, account, theme and inline renderer are explicit fixtures; emoji decoding and account-backed actions are not executed. Production node methods and control methods are copied without algorithm changes; only baseline/candidate node and path-helper names differ. generation.json records their hashes.
 
 Eleven functional tests cover repeated redraw, new model/action binding, growth/shrink/removal, icon addition/removal, corner reset, same-account reuse and account isolation, highlighted/animating fallback, plain-host compatibility, Lite mode, inline-renderer cleanup, attached-window playback lifecycle, background blur/style transitions and ownership release. Nine exact raster comparisons cover three scales, RTL/CJK/emoji text, decorative images and square/input/bubble corner modes after rebinding. Nonblank output is required. Physical mouse-button state is conservatively checked in production; tests exercise the separate highlighted/animation exclusions rather than synthesizing system-wide mouse presses.
 

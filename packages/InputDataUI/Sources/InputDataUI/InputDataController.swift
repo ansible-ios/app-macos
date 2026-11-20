@@ -5,7 +5,7 @@ import AnsibleTheme
 import AnsibleUtils
 import Localization
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import TelegramCore
 import SwiftSignalKit
 import ObjcUtils
@@ -1351,7 +1351,7 @@ public class InputDataController: GenericViewController<InputDataView> {
     }
     
     public override var supportSwipes: Bool {
-        let horizontal = ObjcUtils.findElements(byClass: "TGUIKit.HorizontalTableView", in: genericView.tableView).first as? HorizontalTableView
+        let horizontal = ObjcUtils.findElements(byClass: "AnsibleUIKit.HorizontalTableView", in: genericView.tableView).first as? HorizontalTableView
         if let horizontal = horizontal {
             return !horizontal._mouseInside()
         }

@@ -1,7 +1,7 @@
 import Cocoa
 import XCTest
 import SwiftSignalKit
-@testable import TGUIKit
+@testable import AnsibleUIKit
 
 private final class CountingLayer: CALayer {
     struct Animation: Equatable {
@@ -24,7 +24,7 @@ private final class CountingLayer: CALayer {
 
 final class ContentsTests: XCTestCase {
     private var windows: [NSWindow] = []
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
     override func tearDown() {
         windows.forEach { $0.contentView = nil; $0.close() }
         windows.removeAll()

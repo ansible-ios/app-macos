@@ -1,12 +1,12 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 final class BenchmarkTests: XCTestCase {
     func testRetainedRowFootprint() throws {
         guard let mode = ProcessInfo.processInfo.environment["CHAT_LAYER_MEMORY_MODE"], ["native", "layers"].contains(mode) else { throw XCTSkip("Opt-in fresh-process memory measurement") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         System.updateScaleFactor(2)
         let count = 1500
         let fixtures = autoreleasepool { (0..<count).map { PlainRowFixture(width: 400 + CGFloat($0 % 4) * 20, variant: $0 % 4) } }
@@ -47,7 +47,7 @@ final class BenchmarkTests: XCTestCase {
 
     func testRowBenchmarks() throws {
         guard ProcessInfo.processInfo.environment["CHAT_LAYER_BENCHMARK"] == "1" else { throw XCTSkip("Opt-in release benchmark") }
-        TGUIKitTestBootstrap.install()
+        AnsibleUIKitTestBootstrap.install()
         System.updateScaleFactor(2)
         let fixtures = (0..<4).map { PlainRowFixture(width: 400 + CGFloat($0) * 20, variant: $0) }
         let native = NativePlainRow(fixtures[0]), candidate = LayerPlainRow(fixtures[0])

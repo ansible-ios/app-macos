@@ -1,11 +1,11 @@
 import AppKit
 import QuartzCore
 import Metal
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 
 struct Options {
-    var variants: [String] = ["loaded", "shimmer", "static", "silhouette", "replica", "tguikit", "line", "section"]
+    var variants: [String] = ["loaded", "shimmer", "static", "silhouette", "replica", "ansibleuikit", "line", "section"]
     var frames: Int = 600
     var warmup: Int = 60
     var speed: CGFloat = 1800
@@ -218,7 +218,7 @@ final class Scene {
                         layer.frame = aspect
                         layer.contents = silhouetteImage(index: index, color: foregroundColor)
                         container.addSublayer(layer)
-                    case "tguikit":
+                    case "ansibleuikit":
                         let shimmer = SilhouetteShimmerLayer()
                         container.addSublayer(shimmer)
                         shimmer.update(foregroundColor: foregroundColor, shimmeringColor: shimmeringColor, data: nil, size: emojiSize, imageSize: CGSize(width: 512, height: 512))
@@ -400,7 +400,7 @@ func capture(variant: String, times: [Double]) -> [[UInt8]] {
 }
 
 if options.mode == "create" {
-    for variant in ["shimmer", "tguikit", "shimmer", "tguikit"] {
+    for variant in ["shimmer", "ansibleuikit", "shimmer", "ansibleuikit"] {
         let count = 2000
         let host = CALayer()
         var layers: [CALayer] = []

@@ -2,7 +2,7 @@ import Foundation
 import ObjectiveC
 import TelegramCore
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 
 public final class Analytics {
     public typealias Sink = (_ type: String, _ data: JSON) -> Void

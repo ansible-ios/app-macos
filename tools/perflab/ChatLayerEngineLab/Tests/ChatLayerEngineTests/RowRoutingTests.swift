@@ -1,6 +1,6 @@
 import Cocoa
 import XCTest
-import TGUIKit
+import AnsibleUIKit
 @testable import ChatLayerEngine
 
 private final class NativeHitCounter { var calls = 0 }
@@ -99,7 +99,7 @@ private final class RoutingFixture {
 }
 
 final class RowRoutingTests: XCTestCase {
-    override func setUp() { TGUIKitTestBootstrap.install() }
+    override func setUp() { AnsibleUIKitTestBootstrap.install() }
 
     func testPointsWithoutLayerTargetsSkipNativeTraversal() {
         let reference = RoutingFixture(reference: true), current = RoutingFixture(reference: false)

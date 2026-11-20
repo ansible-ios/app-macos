@@ -2,7 +2,7 @@ import Foundation
 import Postbox
 import TelegramCore
 import SwiftSignalKit
-import TGUIKit
+import AnsibleUIKit
 import ThemeSettings
 import AnsibleUtils
 import ColorPalette
@@ -206,7 +206,7 @@ public func moveWallpaperToCache(postbox: Postbox, path: String, resource: Teleg
         if let gift, let image {
             let resourcePath = postbox.mediaBox.resourcePath(resource)
             let data = try? Data(contentsOf: URL(fileURLWithPath: resourcePath))
-            if let data = TGGUnzipData(data, 8 * 1024 * 1024) {
+            if let data = AnsibleGUnzipData(data, 8 * 1024 * 1024) {
                 let slotsData = svgSlotsDataFromSVG(data, image.size)
                 if let slotsData {
                     let path = wallpapers + "/" + resource.id.stringRepresentation + "\(settings.stringValue)" + "-\(gift.slug)-metadata.json"

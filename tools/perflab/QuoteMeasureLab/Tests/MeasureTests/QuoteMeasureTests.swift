@@ -1,9 +1,9 @@
 import Cocoa
 import XCTest
-import class TGUIKit.TextViewLayout
-import struct TGUIKit.TextViewCutout
-import class TGUIKitBaseline.TextViewLayout
-import struct TGUIKitBaseline.TextViewCutout
+import class AnsibleUIKit.TextViewLayout
+import struct AnsibleUIKit.TextViewCutout
+import class AnsibleUIKitBaseline.TextViewLayout
+import struct AnsibleUIKitBaseline.TextViewCutout
 
 final class QuoteMeasureTests: XCTestCase {
     override func setUp() { MeasureBootstrap.install() }
@@ -11,7 +11,7 @@ final class QuoteMeasureTests: XCTestCase {
     func testEveryQuotePatternAndRangeMatchesEnumeration() {
         for value in 0..<1024 {
             let pattern = (0..<5).map { (value >> ($0 * 2)) & 3 }
-            let layout = TGUIKit.TextViewLayout(TGUIKit.TextViewLayout.quoteFixture("abcde", pattern: pattern))
+            let layout = AnsibleUIKit.TextViewLayout(AnsibleUIKit.TextViewLayout.quoteFixture("abcde", pattern: pattern))
             for start in 0..<5 {
                 for length in 1...(5 - start) {
                     let result = layout.quoteLookupIDs(NSRange(location: start, length: length))
@@ -22,8 +22,8 @@ final class QuoteMeasureTests: XCTestCase {
     }
 
     func compare(_ text: String, pattern: [Int], decorated: Bool, width: CGFloat, limit: Int32 = 0, alignment: NSTextAlignment = .left, pixels: Bool = false, cutout: Bool = false) {
-        let old = TGUIKitBaseline.TextViewLayout(TGUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated), maximumNumberOfLines: limit, cutout: cutout ? TGUIKitBaseline.TextViewCutout(topLeft: CGSize(width: 20, height: 30), bottomRight: CGSize(width: 15, height: 20)) : nil, alignment: alignment)
-        let new = TGUIKit.TextViewLayout(TGUIKit.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated), maximumNumberOfLines: limit, cutout: cutout ? TGUIKit.TextViewCutout(topLeft: CGSize(width: 20, height: 30), bottomRight: CGSize(width: 15, height: 20)) : nil, alignment: alignment)
+        let old = AnsibleUIKitBaseline.TextViewLayout(AnsibleUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated), maximumNumberOfLines: limit, cutout: cutout ? AnsibleUIKitBaseline.TextViewCutout(topLeft: CGSize(width: 20, height: 30), bottomRight: CGSize(width: 15, height: 20)) : nil, alignment: alignment)
+        let new = AnsibleUIKit.TextViewLayout(AnsibleUIKit.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: decorated), maximumNumberOfLines: limit, cutout: cutout ? AnsibleUIKit.TextViewCutout(topLeft: CGSize(width: 20, height: 30), bottomRight: CGSize(width: 15, height: 20)) : nil, alignment: alignment)
         for step in 0..<2 {
             old.measure(width: width + CGFloat(step * 11))
             new.measure(width: width + CGFloat(step * 11))
@@ -67,14 +67,14 @@ final class QuoteMeasureTests: XCTestCase {
 
     func testMutableSourcesInvalidatePreparedLayouts() {
         let text = String(repeating: "word hello world ", count: 12)
-        let oldSource = TGUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: [])
-        let newSource = TGUIKit.TextViewLayout.quoteFixture(text, pattern: [])
-        let old = TGUIKitBaseline.TextViewLayout(oldSource)
-        let new = TGUIKit.TextViewLayout(newSource)
+        let oldSource = AnsibleUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: [])
+        let newSource = AnsibleUIKit.TextViewLayout.quoteFixture(text, pattern: [])
+        let old = AnsibleUIKitBaseline.TextViewLayout(oldSource)
+        let new = AnsibleUIKit.TextViewLayout(newSource)
         for step in 0..<24 {
             let pattern = step % 3 == 0 ? [] : step % 3 == 1 ? [1, 0, 2, 0] : [2, 3, 0]
-            oldSource.setAttributedString(TGUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: step % 2 == 0))
-            newSource.setAttributedString(TGUIKit.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: step % 2 == 0))
+            oldSource.setAttributedString(AnsibleUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: step % 2 == 0))
+            newSource.setAttributedString(AnsibleUIKit.TextViewLayout.quoteFixture(text, pattern: pattern, decorated: step % 2 == 0))
             old.measure(width: CGFloat(120 + step))
             new.measure(width: CGFloat(120 + step))
             XCTAssertEqual(old.quoteMeasurementSnapshot(), new.quoteMeasurementSnapshot())
@@ -85,14 +85,14 @@ final class QuoteMeasureTests: XCTestCase {
         let text = String(repeating: "hello مرحبا 日本語 ", count: 8)
         let patterns = [[], [1], [2], [1, 0, 2, 0, 3, 0]]
         let expected = patterns.map { pattern -> [Double] in
-            let layout = TGUIKitBaseline.TextViewLayout(TGUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern), maximumNumberOfLines: 0)
+            let layout = AnsibleUIKitBaseline.TextViewLayout(AnsibleUIKitBaseline.TextViewLayout.quoteFixture(text, pattern: pattern), maximumNumberOfLines: 0)
             layout.measure(width: 160)
             return layout.quoteMeasurementSnapshot()
         }
         let lock = NSLock()
         var mismatches = 0
         DispatchQueue.concurrentPerform(iterations: 256) { index in
-            let layout = TGUIKit.TextViewLayout(TGUIKit.TextViewLayout.quoteFixture(text, pattern: patterns[index % patterns.count]), maximumNumberOfLines: 0)
+            let layout = AnsibleUIKit.TextViewLayout(AnsibleUIKit.TextViewLayout.quoteFixture(text, pattern: patterns[index % patterns.count]), maximumNumberOfLines: 0)
             layout.measure(width: 160)
             if layout.quoteMeasurementSnapshot() != expected[index % patterns.count] {
                 lock.lock()

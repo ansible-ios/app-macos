@@ -16,8 +16,8 @@ path = output / 'prepare.py'
 source = path.read_text().replace('root = lab.parents[2]', 'root = Path(' + repr(str(root)) + ')')
 path.write_text(source.replace('.relative_to(root)', ''))
 subprocess.run([sys.executable, str(path)], check=True)
-kit = root / 'packages/TGUIKit'
-kit_copy = output / 'TGUIKit'
+kit = root / 'packages/AnsibleUIKit'
+kit_copy = output / 'AnsibleUIKit'
 paths = [p for folder in ['Sources', 'Tests'] for p in (kit / folder).rglob('*') if p.is_file()]
 paths.append(kit / 'Package.swift')
 hashes = {str(p.relative_to(kit)): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
@@ -32,6 +32,6 @@ manifest = (kit_copy / 'Package.swift').read_text()
 manifest = re.sub(r'(path: ")([^"]+)', lambda match: match[1] + str((kit / match[2]).resolve()) if match[2].startswith('..') else match[0], manifest)
 (kit_copy / 'Package.swift').write_text(manifest)
 path = output / 'Package.swift'
-path.write_text(path.read_text().replace('../../../packages/TGUIKit', str(kit_copy)))
-(output / 'tguikit-snapshot.json').write_text(json.dumps(hashes, indent=2) + '\n')
+path.write_text(path.read_text().replace('../../../packages/AnsibleUIKit', str(kit_copy)))
+(output / 'ansibleuikit-snapshot.json').write_text(json.dumps(hashes, indent=2) + '\n')
 print(output)

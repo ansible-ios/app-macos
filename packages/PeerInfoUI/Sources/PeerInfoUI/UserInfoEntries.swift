@@ -5,7 +5,7 @@ import PhoneNumberUtils
 import CurrencyFormat
 import SwiftSignalKit
 import Postbox
-import TGUIKit
+import AnsibleUIKit
 import InputView
 import AffiliateUI
 import AlertsUI

@@ -4,7 +4,7 @@ import AnsibleTheme
 import GeneralRows
 import InputDataUI
 import Localization
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import Postbox
 import TelegramCore

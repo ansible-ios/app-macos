@@ -3,7 +3,7 @@ import TelegramCore
 import Postbox
 import ColorPalette
 import ApiCredentials
-import TGUIKit
+import AnsibleUIKit
 
 extension WallpaperSettings {
     public var stringValue: String {

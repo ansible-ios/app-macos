@@ -23,9 +23,9 @@ for folder in [engine, baseline]:
 shutil.copytree(lab / 'Tests/TreeUpdateTests', output / 'Tests/TreeUpdateTests')
 path = output / 'Package.swift'
 s = path.read_text()
-marker = '        .target(name: "ChatLayerEngine", dependencies: ["TGUIKit", "InputTextView", "TelegramCore", .product(name: "SwiftSignalKit", package: "SSignalKit")]),'
+marker = '        .target(name: "ChatLayerEngine", dependencies: ["AnsibleUIKit", "InputTextView", "TelegramCore", .product(name: "SwiftSignalKit", package: "SSignalKit")]),'
 assert s.count(marker) == 1
-s = s.replace(marker, marker + '\n' + marker.replace('name: "ChatLayerEngine"', 'name: "TreeBaseline"') + '\n        .testTarget(name: "TreeUpdateTests", dependencies: ["ChatLayerEngine", "TreeBaseline", "TGUIKit"]),')
+s = s.replace(marker, marker + '\n' + marker.replace('name: "ChatLayerEngine"', 'name: "TreeBaseline"') + '\n        .testTarget(name: "TreeUpdateTests", dependencies: ["ChatLayerEngine", "TreeBaseline", "AnsibleUIKit"]),')
 path.write_text(s)
 candidate_sources = {str(p.relative_to(engine)): hashlib.sha256(p.read_bytes()).hexdigest() for p in engine.rglob('*') if p.is_file()}
 baseline_sources = {str(p.relative_to(baseline)): hashlib.sha256(p.read_bytes()).hexdigest() for p in baseline.rglob('*') if p.is_file()}

@@ -1,5 +1,5 @@
 import Cocoa
-import TGUIKit
+import AnsibleUIKit
 import SwiftSignalKit
 import AnsibleContext
 @_exported import UniqueGiftRenderer

@@ -1,7 +1,7 @@
 import Foundation
 import Cocoa
 import CoreText
-import TGUIKit
+import AnsibleUIKit
 
 private func qrStudioUsernameFont(size: CGFloat, weight: NSFont.Weight) -> NSFont {
     if #available(macOS 10.15, *) {
