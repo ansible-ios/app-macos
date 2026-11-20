@@ -2172,7 +2172,7 @@ public enum EmojiesControllerMode {
 
 public final class EmojiesController<Context: AccountContextProtocol> : AnsibleGenericViewController<AnimatedEmojiesView, Context>, TableViewDelegate {
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.EmojiesController")
+        return localizedString("Entertainment.Emoji", legacyKey: "Telegram.EmojiesController")
     }
     private let disposable = MetaDisposable()
     

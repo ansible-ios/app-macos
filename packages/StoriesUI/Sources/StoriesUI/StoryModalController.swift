@@ -2189,7 +2189,7 @@ private final class StoryViewController: Control, Notifable {
 public final class StoryModalController<Context: AccountContextProtocol> : ModalViewController, Notifable {
 
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.StoryModalController")
+        return localizedString("StorageUsage.Category.Stories", legacyKey: "Telegram.StoryModalController")
     }
     
     private var contextQueryState: (ChatPresentationInputQuery?, Disposable)?

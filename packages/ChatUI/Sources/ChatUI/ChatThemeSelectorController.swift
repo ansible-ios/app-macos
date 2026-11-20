@@ -381,7 +381,7 @@ final class ChatThemeSelectorView : View {
 
 final class ChatThemeSelectorController<Context: AccountContextProtocol> : AnsibleGenericViewController<ChatThemeSelectorView, Context> {
     override var defaultBarTitle: String {
-        return localizedString("Telegram.ChatThemeSelectorController")
+        return localizedString("AccountSettings.Theme", legacyKey: "Telegram.ChatThemeSelectorController")
     }
     private let chatInteraction: ChatInteraction
     private let readyDisposable = MetaDisposable()

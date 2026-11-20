@@ -619,12 +619,12 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
         
         let displayUpgrade:(Float?) -> Void = { progress in
             if let progress = progress {
-                let view = ObjcUtils.findElements(byClass: "Telegram.OpmizeDatabaseView", in: self.window.contentView!).first as? OpmizeDatabaseView ?? OpmizeDatabaseView(frame: self.window.bounds)
+                let view = ObjcUtils.findElements(byClass: NSStringFromClass(OpmizeDatabaseView.self), in: self.window.contentView!).first as? OpmizeDatabaseView ?? OpmizeDatabaseView(frame: self.window.bounds)
                 view.setProgress(progress)
                 self.window.contentView?.addSubview(view, positioned: .below, relativeTo: self.window.contentView?.subviews.first)
                 self.window.makeKeyAndOrderFront(self)
             } else {
-                ObjcUtils.findElements(byClass: "Telegram.OpmizeDatabaseView", in: self.window.contentView!).first?.removeFromSuperview()
+                ObjcUtils.findElements(byClass: NSStringFromClass(OpmizeDatabaseView.self), in: self.window.contentView!).first?.removeFromSuperview()
             }
         }
         
@@ -1119,7 +1119,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
                             contextValue.rootView.removeFromSuperview()
                         }
                         
-                        ObjcUtils.findElements(byClass: "Telegram.OpmizeDatabaseView", in: self.window.contentView!).first?.removeFromSuperview()
+                        ObjcUtils.findElements(byClass: NSStringFromClass(OpmizeDatabaseView.self), in: self.window.contentView!).first?.removeFromSuperview()
                         
                         closeModal(ColdStartPasslockController.self)
                         closeAllPopovers(for: window)
@@ -1222,7 +1222,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
                 _ = (self.authContext.get()
                     |> deliverOnMainQueue).start(next: { context in
                         
-                        ObjcUtils.findElements(byClass: "Telegram.OpmizeDatabaseView", in: self.window.contentView!).first?.removeFromSuperview()
+                        ObjcUtils.findElements(byClass: NSStringFromClass(OpmizeDatabaseView.self), in: self.window.contentView!).first?.removeFromSuperview()
                         
                         if let authContextValue = self.authContextValue {
                             authContextValue.account.shouldBeServiceTaskMaster.set(.single(.never))

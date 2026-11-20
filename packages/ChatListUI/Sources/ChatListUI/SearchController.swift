@@ -748,7 +748,7 @@ public enum SearchControllerTarget {
 
 public class SearchController<Context: AccountContextProtocol>: GenericViewController<TableView>,TableViewDelegate {
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.SearchController")
+        return localizedString("SearchField.Search", legacyKey: "Telegram.SearchController")
     }
     
     

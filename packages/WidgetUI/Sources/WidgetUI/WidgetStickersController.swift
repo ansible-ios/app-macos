@@ -195,7 +195,7 @@ public final class WidgetStickersContainer<Context: AccountContextProtocol> : Vi
 public final class WidgetStickersController<Context: AccountContextProtocol> : AnsibleGenericViewController<WidgetView<WidgetStickersContainer<Context>>, Context> {
 
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.WidgetStickersController")
+        return localizedString("EmptyChat.Stickers", legacyKey: "Telegram.WidgetStickersController")
     }
 
     struct State : Equatable {

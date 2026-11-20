@@ -12,7 +12,7 @@ import Localization
 
 open class ChatScheduleController<Context: AccountContextProtocol>: ChatController<Context>, ChatScheduleControllerKind {
     open override var defaultBarTitle: String {
-        return localizedString("Telegram.ChatScheduleController")
+        return localizedString("Chat.Title.ScheduledMessages", legacyKey: "Telegram.ChatScheduleController")
     }
     private let focusTarget: ChatFocusTarget?
     public override init(context: Context, chatLocation:ChatLocation, mode: ChatMode = .scheduled, focusTarget: ChatFocusTarget? = nil, initialAction:ChatInitialAction? = nil, chatLocationContextHolder: Atomic<ChatLocationContextHolder?>? = nil) {

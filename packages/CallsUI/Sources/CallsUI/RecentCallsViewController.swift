@@ -376,7 +376,7 @@ public class RecentCallsViewController<Context: AccountContextProtocol>: Ansible
     }
 
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.RecentCallsViewController")
+        return localizedString("PrivacySettings.VoiceCalls", legacyKey: "Telegram.RecentCallsViewController")
     }
 
     public override init(_ context: Context) {

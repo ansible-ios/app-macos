@@ -386,7 +386,7 @@ public class AuthController : GenericViewController<AuthView> {
     }
 
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.AuthController")
+        return localizedString("LoginWidget.LogIn", legacyKey: "Telegram.AuthController")
     }
     
     private func cancelOrBack(_ state: State, updateState:@escaping((State) -> State) -> Void) {

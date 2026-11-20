@@ -641,7 +641,7 @@ class StorageUsageBlockController<Context: AccountContextProtocol>: AnsibleGener
    
    
    override var defaultBarTitle: String {
-       return localizedString("Telegram.StorageUsageBlockController")
+       return localizedString("StorageUsage.Header", legacyKey: "Telegram.StorageUsageBlockController")
    }
    
    override func backSettings() -> (String, CGImage?) {

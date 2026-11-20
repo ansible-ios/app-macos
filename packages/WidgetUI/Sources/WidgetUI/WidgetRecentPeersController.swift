@@ -119,7 +119,7 @@ public final class WidgetRecentPeersContainer<Context: AccountContextProtocol>: 
 public final class WidgetRecentPeersController<Context: AccountContextProtocol> : AnsibleGenericViewController<WidgetView<WidgetRecentPeersContainer<Context>>, Context> {
 
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.WidgetRecentPeersController")
+        return localizedString("Widget.Recent.Title", legacyKey: "Telegram.WidgetRecentPeersController")
     }
 
     struct State : Equatable {

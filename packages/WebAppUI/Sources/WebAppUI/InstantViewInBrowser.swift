@@ -22,7 +22,7 @@ private struct PageState : Equatable {
 open class InstantViewInBrowser<Context: AccountContextProtocol> : AnsibleGenericViewController<View, Context>, BrowserPage {
 
     open override var defaultBarTitle: String {
-        return localizedString("Telegram.InstantViewInBrowser")
+        return localizedString("WebBrowser.InstantView", legacyKey: "Telegram.InstantViewInBrowser")
     }
     
         

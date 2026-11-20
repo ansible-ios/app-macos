@@ -1901,7 +1901,7 @@ public class ChatListController<Context: AccountContextProtocol> : PeersListCont
         case .filter:
             return filterValue.filter.title
         default:
-            return localizedString("Telegram.ChatListController")
+            return localizedString("ChatList.Filter.Back", legacyKey: "Telegram.ChatListController")
         }
     }
 

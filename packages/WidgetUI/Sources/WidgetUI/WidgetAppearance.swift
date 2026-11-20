@@ -197,7 +197,7 @@ public final class WidgetAppearanceView : View {
 public final class WidgetAppearanceController<Context: AccountContextProtocol> : AnsibleGenericViewController<WidgetView<WidgetAppearanceView>, Context> {
 
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.WidgetAppearanceController")
+        return localizedString("EmptyChat.Appearance", legacyKey: "Telegram.WidgetAppearanceController")
     }
     
     private struct State : Equatable {

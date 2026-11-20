@@ -340,7 +340,7 @@ private final class PeerMediaSupplyment : InteractionContentViewProtocol {
 open class PeerMediaPhotosController<Context: AccountContextProtocol>: TableViewController<Context>, PeerMediaSearchable {
 
     open override var defaultBarTitle: String {
-        return localizedString("Telegram.PeerMediaPhotosController")
+        return localizedString("Search.Filter.Photos", legacyKey: "Telegram.PeerMediaPhotosController")
     }
 
     private let peerId: PeerId

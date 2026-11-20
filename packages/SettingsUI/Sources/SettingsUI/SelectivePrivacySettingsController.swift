@@ -757,7 +757,7 @@ open class SelectivePrivacySettingsController<Context: AccountContextProtocol>: 
     private let globalSettings: GlobalPrivacySettings?
     private let flow: AnalyticsFlow<AnalyticsFlows.SettingsPrivacyRule>
     open override var defaultBarTitle: String {
-        return localizedString("Telegram.SelectivePrivacySettingsController")
+        return localizedString("StoryPrivacy.Reveal.Title", legacyKey: "Telegram.SelectivePrivacySettingsController")
     }
 
     public init(_ context: Context, kind: SelectivePrivacySettingsKind, current: SelectivePrivacySettings, callSettings: SelectivePrivacySettings? = nil, phoneDiscoveryEnabled: Bool?, globalSettings: GlobalPrivacySettings? = nil, updated: @escaping (SelectivePrivacySettings, SelectivePrivacySettings?, Bool?, GlobalPrivacySettings?) -> Void) {

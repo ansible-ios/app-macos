@@ -175,7 +175,7 @@ private final class CustomAccentColorView : View {
 public class CustomAccentColorModalController: ModalViewController {
 
     public override var defaultBarTitle: String {
-        return localizedString("Telegram.CustomAccentColorModalController")
+        return localizedString("GeneralSettings.AccentColor", legacyKey: "Telegram.CustomAccentColorModalController")
     }
 
     public enum SelectMode {

@@ -323,7 +323,7 @@ private func entries(_ view: MultiplePeersView, state: State, arguments: Argumen
 class CreateGroupViewController<Context: AccountContextProtocol>: ComposeViewController<CreateGroupStateResult, [PeerId], TableView, Context> {
 
     override var defaultBarTitle: String {
-        return localizedString("Telegram.CreateGroupViewController")
+        return localizedString("Group.NewGroup", legacyKey: "Telegram.CreateGroupViewController")
     }
     
     private let disposable:MetaDisposable = MetaDisposable()
