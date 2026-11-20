@@ -32,3 +32,9 @@ diff --git a/submodules/TelegramCore/Sources/TelegramEngine/Peers/TelegramEngine
 @@ -1348 +1348 @@
 -        public func setChannelForumMode(id: EnginePeer.Id, isForum: Bool, displayForumAsTabs: Bool, displayForumAsSidebar: Bool) -> Signal<Never, NoError> {
 +        public func setChannelForumMode(id: EnginePeer.Id, isForum: Bool, displayForumAsTabs: Bool, displayForumAsSidebar: Bool) -> Signal<Never, SetChannelForumModeError> {
+diff --git a/submodules/TelegramCore/Sources/TelegramEngine/Peers/ChannelCreation.swift b/submodules/TelegramCore/Sources/TelegramEngine/Peers/ChannelCreation.swift
+--- a/submodules/TelegramCore/Sources/TelegramEngine/Peers/ChannelCreation.swift
++++ b/submodules/TelegramCore/Sources/TelegramEngine/Peers/ChannelCreation.swift
+@@ -80 +80 @@
+-                        |> castError(CreateChannelError.self)
++                        |> mapError { _ in CreateChannelError.generic }

@@ -26,6 +26,10 @@ receive = source[a:b]
 a = source.index("    let update:()->Void =")
 b = source.index("    let signal = statePromise.get()", a)
 actions = source[a:b]
+source = (core / "TelegramEngine/Peers/ChannelCreation.swift").read_text()
+a = source.index("return _internal_setChannelForumMode(")
+b = source.index("|> then(.single(peerId))", a) + len("|> then(.single(peerId))")
+creation = source[a:b]
 source = (core / "ApiUtils/TelegramMediaAction.swift").read_text()
 a = source.index("func forumTopicEditComponents(")
 b = source.index("func telegramMediaActionFromApiAction", a)
@@ -39,7 +43,7 @@ a = source.index("extension TelegramMediaWidget")
 b = source.index("func storeMessageReplacingWidget", a)
 widget_update = source[a:source.rfind("}", a, b) + 1]
 fixture = Path(__file__).with_name("ForumErrorsTests.swift").read_text()
-for key, value in {"CORE":function, "FACADE":facade, "STATE":state, "SETUP":setup, "RECEIVE":receive, "ACTIONS":actions, "TOPIC":topic, "WIDGET_CHANGE":widget_change, "WIDGET_UPDATE":widget_update}.items():
+for key, value in {"CORE":function, "FACADE":facade, "STATE":state, "SETUP":setup, "RECEIVE":receive, "ACTIONS":actions, "CREATION":creation, "TOPIC":topic, "WIDGET_CHANGE":widget_change, "WIDGET_UPDATE":widget_update}.items():
     fixture = fixture.replace("__" + key + "__", value)
 with tempfile.TemporaryDirectory(prefix="forum-errors-") as directory:
     directory = Path(directory)

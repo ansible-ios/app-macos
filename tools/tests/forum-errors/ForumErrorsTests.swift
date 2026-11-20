@@ -233,3 +233,18 @@ for chat in changes {
     }
 }
 print("Layer 233 topic/widget semantics: \(checks - priorChecks) checks PASS")
+
+enum CreateChannelError { case generic }
+func finishForumCreation(postbox: Postbox, network: Network, stateManager: AccountStateManager, peerId: PeerId) -> Signal<PeerId, CreateChannelError> {
+__CREATION__
+}
+for failure in [false, true] {
+    let account = Account()
+    var result: PeerId?
+    var errors = 0
+    let disposable = finishForumCreation(postbox: account.postbox, network: account.network, stateManager: account.stateManager, peerId: 111).start(next: { result = $0 }, error: { _ in errors += 1 })
+    if failure { account.network.fail?("CHAT_ADMIN_REQUIRED") } else { account.network.succeed?() }
+    expect(failure ? (errors == 1 && result == nil) : (errors == 0 && result == 111), "forum creation continuation preserves errors and success")
+    disposable.dispose()
+}
+print("Forum creation continuation: 2 checks PASS")
