@@ -30,6 +30,9 @@ jobs:
           git -c url.https://github.com/.insteadOf=git@github.com: submodule update --init --depth 1 -- \
             submodules/ansible-ios submodules/tgcalls third-party/twidget third-party/widget-sandbox
 
+      - name: Test widget delivery ordering
+        run: python3 tools/tests/widget-live-replay/run.py
+
       - name: Test community avatar navigation
         run: python3 tools/tests/community-dropdown/run.py
 

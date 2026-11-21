@@ -52,6 +52,7 @@ public final class HTMLBubbleState: NSObject, HTMLScriptHost {
     var widgetPreview = false
     var widgetPreviewLocale = "en-US"
     private var currentWidgetData = WidgetData()
+    private var widgetDataRevision: UInt64 = 0
     var widgetData: WidgetData {
         lock.lock()
         defer { lock.unlock() }
@@ -61,11 +62,20 @@ public final class HTMLBubbleState: NSObject, HTMLScriptHost {
     func updateWidgetData(_ data: WidgetData) {
         lock.lock()
         currentWidgetData = data
-        let prepared = twidgetPrepared?.value.host
+        widgetDataRevision &+= 1
+        let revision = widgetDataRevision
         lock.unlock()
         let update = { [weak self] in
+            guard let self else { return }
+            self.lock.lock()
+            guard self.widgetDataRevision == revision else {
+                self.lock.unlock()
+                return
+            }
+            let prepared = self.twidgetPrepared?.value.host
+            self.lock.unlock()
             prepared?.setData(data)
-            self?.twidgetHost?.setData(data)
+            self.twidgetHost?.setData(data)
         }
         if Thread.isMainThread { update() } else { DispatchQueue.main.async(execute: update) }
     }
