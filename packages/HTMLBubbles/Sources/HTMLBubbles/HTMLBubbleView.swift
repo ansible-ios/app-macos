@@ -26,7 +26,7 @@ public final class HTMLBubbleView: View, HTMLBubbleVisibility, HorizontalScrollC
     private var observer: Int?
     private var tileLayers: [CALayer] = []
     private var currentKey: String?
-    private let renderQueue = DispatchQueue(label: "org.telegram.HTMLBubbleView", qos: .userInitiated, target: HTMLBubbleRenderer.queue)
+    private let renderQueue = DispatchQueue(label: "org.ansible.HTMLBubbleView", qos: .userInitiated, target: HTMLBubbleRenderer.queue)
     private var rendering = false
     private var renderAgain = false
     private var trackingArea: NSTrackingArea?

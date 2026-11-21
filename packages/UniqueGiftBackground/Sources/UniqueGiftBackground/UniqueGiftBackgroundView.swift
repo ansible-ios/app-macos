@@ -65,7 +65,7 @@ public final class UniqueGiftBackgroundLayer: CALayer {
 
     private static let renderQueue: OperationQueue = {
         let queue = OperationQueue()
-        queue.name = "org.telegram.uniqueGiftBackground"
+        queue.name = "org.ansible.uniqueGiftBackground"
         queue.qualityOfService = .userInitiated
         queue.maxConcurrentOperationCount = max(1, min(4, ProcessInfo.processInfo.activeProcessorCount / 2))
         return queue

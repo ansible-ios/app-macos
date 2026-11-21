@@ -124,7 +124,7 @@ private func chatExportSkipsMessage(_ message: Message) -> Bool {
 
 public func exportChatToHtml(context: any AccountContextProtocol, peerId: PeerId, peerTitle: String, settings: ChatExportSettings) -> Signal<ChatExportUpdate, NoError> {
     return Signal { subscriber in
-        let queue = Queue(name: "org.telegram.chatExport")
+        let queue = Queue(name: "org.ansible.chatExport")
         let cancelled = Atomic<Bool>(value: false)
         queue.async {
             let run = ChatExportRun(context: context, peerId: peerId, peerTitle: peerTitle, settings: settings, cancelled: cancelled, emit: { update in
@@ -1106,7 +1106,7 @@ public func finishTakeoutSession(context: any AccountContextProtocol, success: B
 
 public func exportAllChatsToHtml(context: any AccountContextProtocol, settings: FullExportSettings) -> Signal<FullExportUpdate, NoError> {
     return Signal { subscriber in
-        let queue = Queue(name: "org.telegram.fullExport")
+        let queue = Queue(name: "org.ansible.fullExport")
         let cancelled = Atomic<Bool>(value: false)
         let sessionsSignal: Signal<ActiveSessionsContextState, NoError>? = settings.sections.contains(.sessions) ? context.activeSessionsContext.state : nil
         let webSessionsSignal: Signal<WebSessionsContextState, NoError>? = settings.sections.contains(.sessions) ? context.webSessions.state : nil

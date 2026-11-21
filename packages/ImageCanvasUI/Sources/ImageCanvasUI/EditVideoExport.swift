@@ -701,7 +701,7 @@ public enum EditVideoExport {
                 return EmptyDisposable
             }
             writer.startSession(atSourceTime: .zero)
-            let queue = DispatchQueue(label: "org.telegram.editVideo.streaming")
+            let queue = DispatchQueue(label: "org.ansible.editVideo.streaming")
             let remaining = Atomic<Int>(value: audioOutput == nil ? 1 : 2)
             let finish: () -> Void = {
                 guard !stopped.with({ $0 }), reader.status != .failed, reader.status != .cancelled else {
@@ -856,7 +856,7 @@ public enum EditVideoExport {
                 }
             }
             for (output, input, label) in pairs {
-                let queue = DispatchQueue(label: "org.telegram.editVideo.\(label)")
+                let queue = DispatchQueue(label: "org.ansible.editVideo.\(label)")
                 input.requestMediaDataWhenReady(on: queue) {
                     while input.isReadyForMoreMediaData {
                         var done = false

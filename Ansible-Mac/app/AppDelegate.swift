@@ -398,7 +398,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
         
         self.containerUrl = containerUrl.path
 
-        try! PasscodeEnvironment.shared.configure(PasscodeConfiguration(appGroupIdentifier: ApiEnvironment.group, processRole: .mainApp, biometricKeychainService: "org.telegram.ton-wallet.vault.v1.biometric", keychainScope: ApiEnvironment.keychainScope), privateAccessGroup: { ApiEnvironment.group })
+        try! PasscodeEnvironment.shared.configure(PasscodeConfiguration(appGroupIdentifier: ApiEnvironment.group, processRole: .mainApp, biometricKeychainService: "org.ansible.passcode.v1.biometric", legacyBiometricKeychainService: "org.telegram.ton-wallet.vault.v1.biometric", keychainScope: ApiEnvironment.keychainScope), privateAccessGroup: { ApiEnvironment.group })
         
         TempBox.initializeShared(basePath: self.containerUrl, processType: "app", launchSpecificId: arc4random64())
         

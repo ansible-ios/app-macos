@@ -13,7 +13,7 @@ sh scripts/configure_frameworks.sh
          
 export FASTLANE_XCODE_LIST_TIMEOUT=120
 fastlane Release
-tar cf  "./output/Telegram.tar" -C "./output" .
+tar cf  "./output/Ansible.tar" -C "./output" .
 
 
 
@@ -26,5 +26,5 @@ tar cf  "./output/Telegram.tar" -C "./output" .
 #                -workspace Ansible-Mac.xcworkspace \
 #                -scheme Release \
 #                -configuration Release \
-#                -archivePath "${OUTPUT}/Telegram.xcarchive"
+#                -archivePath "${OUTPUT}/Ansible.xcarchive"
        

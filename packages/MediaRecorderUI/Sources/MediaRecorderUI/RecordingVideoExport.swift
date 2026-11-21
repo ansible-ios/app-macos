@@ -47,7 +47,7 @@ private final class RecordingVideoExportStorage {
 }
 
 private final class RecordingVideoExportOperation {
-    static let queue = Queue(name: "org.telegram.recording-video-export")
+    static let queue = Queue(name: "org.ansible.recording-video-export")
     private let cancelled = Atomic(value: false)
     private let storage = RecordingVideoExportStorage()
     private let subscriber: Subscriber<RecordingVideoExportResult?, NoError>

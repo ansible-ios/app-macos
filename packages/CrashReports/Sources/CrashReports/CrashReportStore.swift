@@ -21,7 +21,7 @@ public final class CrashReportStore {
     private let processName: String
     private let handledKey: String
     private let defaults: UserDefaults
-    private let queue = Queue(name: "org.telegram.crashReports")
+    private let queue = Queue(name: "org.ansible.crashReports")
     private let reportsPromise = ValuePromise<[CrashReport]>([], ignoreRepeated: true)
     private var started = false
 

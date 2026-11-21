@@ -1,0 +1,77 @@
+diff --git a/submodules/PasscodeCore/Sources/Passcode.swift b/submodules/PasscodeCore/Sources/Passcode.swift
+--- a/submodules/PasscodeCore/Sources/Passcode.swift
++++ b/submodules/PasscodeCore/Sources/Passcode.swift
+@@ -15,0 +16 @@
++    public let legacyBiometricKeychainService: String?
+@@ -18 +19 @@
+-    public init(appGroupIdentifier: String, processRole: ProcessRole, biometricKeychainService: String? = nil, keychainScope: String? = nil) {
++    public init(appGroupIdentifier: String, processRole: ProcessRole, biometricKeychainService: String? = nil, legacyBiometricKeychainService: String? = nil, keychainScope: String? = nil) {
+@@ -21,0 +23 @@
++        self.legacyBiometricKeychainService = legacyBiometricKeychainService
+@@ -87,0 +90,11 @@
++
++    #if os(macOS)
++    var legacyBiometricService: String? {
++        self.mutex.lock()
++        defer { self.mutex.unlock() }
++        guard let configuration = self.configuration, configuration.processRole == .mainApp,
++              let legacy = configuration.legacyBiometricKeychainService, !legacy.isEmpty,
++              legacy != configuration.biometricKeychainService else { return nil }
++        return legacy
++    }
++    #endif
+@@ -142 +155,13 @@
+-        if let value = try self.rawRead(account, context: context) {
++        let current = try self.query(account)
++        #if os(macOS)
++        if let legacy = self.legacyQuery(account, current: current) {
++            return try Self.readMigratingBiometric(current: { try self.rawRead(current, context: context) }, legacy: { try self.rawRead(legacy, context: context) }, rename: {
++                var authenticated = legacy
++                if let context { authenticated[kSecUseAuthenticationContext as String] = context }
++                // A metadata-only update preserves the secret, its ACL and enrollment binding.
++                let attributes = [kSecAttrService as String: try self.service(account)]
++                return SecItemUpdate(authenticated as CFDictionary, attributes as CFDictionary)
++            })
++        }
++        #endif
++        if let value = try self.rawRead(current, context: context) {
+@@ -153,2 +178,24 @@
+-    private func rawRead(_ account: String, context: LAContext?) throws -> Data? {
+-        var query = try self.query(account)
++    #if os(macOS)
++    private func legacyQuery(_ account: String, current: [String: Any]) -> [String: Any]? {
++        guard account.hasPrefix("biometric."), let service = self.environment.legacyBiometricService else { return nil }
++        var legacy = current
++        legacy[kSecAttrService as String] = PasscodeKeychainScope.service(service, environment: self.environment)
++        return legacy
++    }
++
++    static func readMigratingBiometric(current: () throws -> Data?, legacy: () throws -> Data?, rename: () throws -> OSStatus) throws -> Data? {
++        if let data = try current() { return data }
++        // Only item-not-found falls through. Authentication failures propagate from rawRead.
++        guard let data = try legacy() else { return try current() }
++        let status = try rename()
++        if status == errSecUserCanceled { throw PasscodeError.cancelled }
++        if status == errSecDuplicateItem || status == errSecItemNotFound {
++            return try current()
++        }
++        // If the authenticated item cannot be renamed, use it and retry on the next unlock.
++        return data
++    }
++    #endif
++
++    private func rawRead(_ identity: [String: Any], context: LAContext?) throws -> Data? {
++        var query = identity
+@@ -213 +260,11 @@
+-        let status = SecItemDelete(try self.query(account) as CFDictionary)
++        let current = try self.query(account)
++        #if os(macOS)
++        if let legacy = self.legacyQuery(account, current: current) {
++            try self.delete(legacy)
++        }
++        #endif
++        try self.delete(current)
++    }
++
++    private func delete(_ identity: [String: Any]) throws {
++        let status = SecItemDelete(identity as CFDictionary)

@@ -66,7 +66,7 @@ public extension TextRecognizing {
         }
     }
 
-    private static let subjectQueue = Queue(name: "org.telegram.Vision.subject", qos: .userInitiated)
+    private static let subjectQueue = Queue(name: "org.ansible.Vision.subject", qos: .userInitiated)
     
     static func liftSubject(_ cgImage: CGImage, at point: CGPoint?) -> Signal<Subject?, NoError> {
         return Signal { subscriber in

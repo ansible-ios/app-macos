@@ -42,6 +42,11 @@ jobs:
           python3 scripts/prepare-ansible-api.py
           python3 scripts/prepare-ansible-api.py --check
 
+      - name: Test biometric service migration and buildbox archives
+        run: |
+          sh tools/tests/biometric-migration/run.sh
+          python3 tools/tests/ci-build/test_incremental.py ArchiveTests SyncTests
+
       - name: Test forum RPC failures and settings recovery
         run: python3 tools/tests/forum-errors/run.py
 

@@ -71,7 +71,7 @@ public final class HTMLBubbleRendering {
 }
 
 public enum HTMLBubbleRenderer {
-    public static let queue = DispatchQueue(label: "org.telegram.HTMLBubbleRenderer", qos: .userInitiated, attributes: .concurrent)
+    public static let queue = DispatchQueue(label: "org.ansible.HTMLBubbleRenderer", qos: .userInitiated, attributes: .concurrent)
 
     private static let tileHeight: CGFloat = 64
     private static let eagerPixelLimit: CGFloat = 3_000_000

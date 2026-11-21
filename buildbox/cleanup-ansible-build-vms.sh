@@ -18,11 +18,11 @@ return $result
 }
 
 function clean_once {
-RUNNING_PIDS=$(pgrep -f buildbox/build-telegram.sh)
+RUNNING_PIDS=$(pgrep -f buildbox/build.sh)
 
 if [ "$BUILD_MACHINE" == "linux" ]; then
-virsh list --all --name | grep build-telegram | while read vm ; do
-VM_PID=$(echo $vm | egrep -o 'build-telegram-[0-9]+' | egrep -o '[0-9]+')
+virsh list --all --name | grep build-ansible | while read vm ; do
+VM_PID=$(echo $vm | egrep -o 'build-ansible-[0-9]+' | egrep -o '[0-9]+')
 if [ ! -z "$VM_PID" ] && [ ! -z "$vm" ]; then
 if `list_include_item "$RUNNING_PIDS" "$VM_PID"` ; then
 echo "$vm:$VM_PID is still valid"
@@ -35,8 +35,8 @@ echo "Can't parse VM string $vm"
 fi
 done
 elif [ "$BUILD_MACHINE" == "macOS" ]; then
-prlctl list -a | grep build-telegram | while read vm ; do
-VM_PID=$(echo $vm | grep -Eo 'build-telegram-\d+' | grep -Eo '\d+')
+prlctl list -a | grep build-ansible | while read vm ; do
+VM_PID=$(echo $vm | grep -Eo 'build-ansible-\d+' | grep -Eo '\d+')
 VM_UUID=$(echo $vm | grep -Eo '\{(\d|[a-f]|-)*\}')
 if [ ! -z "$VM_PID" ] && [ ! -z "$VM_UUID" ]; then
 if `list_include_item "$RUNNING_PIDS" "$VM_PID"` ; then

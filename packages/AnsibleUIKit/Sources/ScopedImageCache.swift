@@ -43,7 +43,7 @@ public final class ScopedImageCache {
     private var keysByScope: [Int: Set<Int>] = [:]
     private var totalCost: Int = 0
     private var sweepTimer: DispatchSourceTimer?
-    private let sweepQueue = DispatchQueue(label: "org.telegram.scopedImageCache.sweep", qos: .utility)
+    private let sweepQueue = DispatchQueue(label: "org.ansible.scopedImageCache.sweep", qos: .utility)
 
     public init(countLimit: Int, byteLimit: Int, idleTimeout: TimeInterval, closedScopeGrace: TimeInterval, sweepInterval: TimeInterval = 60, clock: @escaping () -> CFAbsoluteTime = CFAbsoluteTimeGetCurrent) {
         self.countLimit = countLimit

@@ -35,7 +35,7 @@ public final class UniqueGiftBackgroundCache {
     private var totalBytes = 0
     private var clock: UInt64 = 0
     private var sweepTimer: DispatchSourceTimer?
-    private let sweepQueue = DispatchQueue(label: "org.telegram.uniqueGiftBackgroundCache.sweep", qos: .utility)
+    private let sweepQueue = DispatchQueue(label: "org.ansible.uniqueGiftBackgroundCache.sweep", qos: .utility)
 
     public init(byteLimit: Int, idleTimeout: TimeInterval = .infinity, sweepInterval: TimeInterval = 60.0) {
         self.byteLimit = byteLimit

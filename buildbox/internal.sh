@@ -8,14 +8,14 @@ export PATH="$PATH:/opt/homebrew/bin"
 
 
 tag="$1"
-BUILD_OUTPUT="${TELEGRAM_BUILD_ROOT:-$HOME}/build-$tag"
+BUILD_OUTPUT="${ANSIBLE_BUILD_ROOT:-$HOME}/build-$tag"
 
-lock="$HOME/telegram-build.lock"
-if [ -z "$TELEGRAM_BUILD_LOCK_HELD" ]; then
+lock="$HOME/ansible-build.lock"
+if [ -z "$ANSIBLE_BUILD_LOCK_HELD" ]; then
     if ! lockf -k -t 0 "$lock" true 2>/dev/null; then
-        echo "Another Telegram build is running on this machine, waiting for it: $(cat "$lock.owner" 2>/dev/null)"
+        echo "Another Ansible build is running on this machine, waiting for it: $(cat "$lock.owner" 2>/dev/null)"
     fi
-    export TELEGRAM_BUILD_LOCK_HELD=1
+    export ANSIBLE_BUILD_LOCK_HELD=1
     exec lockf -k -t 10800 "$lock" sh "$0" "$@"
 fi
 echo "job ${CI_JOB_ID:-manual} $tag $(git rev-parse --short HEAD) since $(date -u '+%Y-%m-%d %H:%M:%S UTC')" > "$lock.owner"

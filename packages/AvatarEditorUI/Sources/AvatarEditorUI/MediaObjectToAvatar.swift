@@ -27,7 +27,7 @@ private final class StickerToMp4Context {
         return statusPromise.get()
     }
     
-    public static let queue: Queue = Queue(name: "org.telegram.sticker-to-mp4")
+    public static let queue: Queue = Queue(name: "org.ansible.sticker-to-mp4")
     
     private var status: StickerToMp4.Status = .initializing("") {
         didSet {

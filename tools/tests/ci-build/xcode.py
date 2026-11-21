@@ -27,7 +27,7 @@ obj("mainbuild", "PBXBuildFile", fileRef=ids["main"])
 for kind in ["project", "target"]:
     obj(kind + "configs", "XCConfigurationList", buildConfigurations=[ids[kind + "config"]], defaultConfigurationIsVisible=0, defaultConfigurationName="Release")
 obj("projectconfig", "XCBuildConfiguration", buildSettings={"SDKROOT": "macosx", "MACOSX_DEPLOYMENT_TARGET": "12.0", "SWIFT_VERSION": "5.0", "SWIFT_COMPILATION_MODE": "wholemodule", "SWIFT_OPTIMIZATION_LEVEL": "-O", "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym", "ARCHS": "arm64 x86_64", "ONLY_ACTIVE_ARCH": "NO"}, name="Release")
-obj("targetconfig", "XCBuildConfiguration", buildSettings={"PRODUCT_NAME": "Ansible", "PRODUCT_BUNDLE_IDENTIFIER": "org.telegram.ci-build-smoke", "GENERATE_INFOPLIST_FILE": "YES", "CODE_SIGNING_ALLOWED": "NO", "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "PRODUCTION"}, name="Release")
+obj("targetconfig", "XCBuildConfiguration", buildSettings={"PRODUCT_NAME": "Ansible", "PRODUCT_BUNDLE_IDENTIFIER": "org.ansible.ci-build-smoke", "GENERATE_INFOPLIST_FILE": "YES", "CODE_SIGNING_ALLOWED": "NO", "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "PRODUCTION"}, name="Release")
 project = source / "Ansible.xcodeproj"
 project.mkdir()
 (project / "project.pbxproj").write_bytes(plistlib.dumps(dict(archiveVersion="1", classes={}, objectVersion="56", objects=objects, rootObject=ids["project"])))
@@ -47,7 +47,7 @@ fixture.environment["SMOKE_DERIVED_DATA"] = str(fixture.root / "DerivedData")
 print("Xcode archive smoke fixture: " + str(fixture.root), flush=True)
 
 try:
-    for name, options in [("baseline", {}), ("cache-enabled", {"TELEGRAM_COMPILATION_CACHE": "YES"}), ("cache-repeat", {"TELEGRAM_COMPILATION_CACHE": "YES"})]:
+    for name, options in [("baseline", {}), ("cache-enabled", {"ANSIBLE_COMPILATION_CACHE": "YES"}), ("cache-repeat", {"ANSIBLE_COMPILATION_CACHE": "YES"})]:
         result = fixture.build(**options)
         write(fixture.root / (name + ".log"), result.stdout + result.stderr)
         output = fixture.root / "builds/build-Beta/Ansible.app/Contents/MacOS/Ansible"

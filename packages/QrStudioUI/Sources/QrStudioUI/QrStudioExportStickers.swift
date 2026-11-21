@@ -203,9 +203,9 @@ private func qrStudioExportResourcePath(context: any AccountContextProtocol, fil
     }
 }
 
-private let qrStudioExportDecodeQueue = Queue(name: "org.telegram.QrStudioExportDecode", qos: .userInitiated)
+private let qrStudioExportDecodeQueue = Queue(name: "org.ansible.QrStudioExportDecode", qos: .userInitiated)
 
-private let qrStudioPreviewDecodeQueue = Queue(name: "org.telegram.QrStudioPreviewDecode", qos: .userInteractive)
+private let qrStudioPreviewDecodeQueue = Queue(name: "org.ansible.QrStudioPreviewDecode", qos: .userInteractive)
 
 func qrStudioDecodeExportSticker(context: any AccountContextProtocol, file: TelegramMediaFile, pixelSide: Int, tint: NSColor?, firstFrameOnly: Bool) -> Signal<QrStudioExportSticker?, NoError> {
     guard pixelSide > 0 else {

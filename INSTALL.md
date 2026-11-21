@@ -251,12 +251,14 @@ channel conditions, signing, dSYMs and deployment serialization are preserved.
 No explicit DerivedData cleanup is added; Xcode continues to use its normal location.
 
 On a runner with compilation-cache support, set the CI variable
-`TELEGRAM_COMPILATION_CACHE=YES` to trial Xcode compilation caching with diagnostic
+`ANSIBLE_COMPILATION_CACHE=YES` to trial Xcode compilation caching with diagnostic
 remarks. `NO` explicitly disables it; leaving it unset preserves the toolchain's
 default. Compare a baseline, a repeated build and a small source change before
 enabling it permanently. The normal pipeline does not opt into this setting.
 
-`TELEGRAM_BUILD_ROOT` optionally relocates the `build-<channel>` directories; its
+The VM build uses the SSH account `ansible` by default. Set `ANSIBLE_VM_USER` when the guest image uses another account.
+
+`ANSIBLE_BUILD_ROOT` optionally relocates the `build-<channel>` directories; its
 default is the user's home directory. This is also used by isolated script tests.
 It does not relax the machine-wide build lock.
 

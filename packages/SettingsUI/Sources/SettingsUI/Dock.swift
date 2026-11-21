@@ -1,7 +1,7 @@
 import AppKit
 
 public final class Dock {
-    private static let iconQueue = DispatchQueue(label: "org.telegram.custom-app-icon", qos: .utility)
+    private static let iconQueue = DispatchQueue(label: "org.ansible.custom-app-icon", qos: .utility)
     private static var iconUpdate: DispatchWorkItem?
     private static var appliedPath: String?
     private static var hasAppliedIcon = false

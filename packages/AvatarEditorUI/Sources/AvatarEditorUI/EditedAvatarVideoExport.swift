@@ -44,7 +44,7 @@ private final class EditedAvatarVideoFiles {
 }
 
 private final class EditedAvatarVideoExport {
-    static let queue = Queue(name: "org.telegram.edited-avatar-export")
+    static let queue = Queue(name: "org.ansible.edited-avatar-export")
     private let cancelled = Atomic(value: false)
     private let files = EditedAvatarVideoFiles()
     private let subscriber: Subscriber<VideoAvatarGeneratorState, NoError>

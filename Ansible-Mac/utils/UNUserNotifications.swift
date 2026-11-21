@@ -18,7 +18,7 @@ class UNUserNotifications : NSObject {
         case provisional = 3
     }
     fileprivate let manager: SharedNotificationManager
-    fileprivate let queue:Queue = Queue(name: "org.telegram.notifies")
+    fileprivate let queue:Queue = Queue(name: "org.ansible.notifies")
     internal required init(manager: SharedNotificationManager) {
         self.manager = manager
         super.init()

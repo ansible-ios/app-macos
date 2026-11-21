@@ -64,7 +64,7 @@ public final class TextRecognizing {
     }
 
     
-    private static let queue = Queue(name: "org.telegram.Vision", qos: .background)
+    private static let queue = Queue(name: "org.ansible.Vision", qos: .background)
     public enum Error : Equatable {
         case generic
     }

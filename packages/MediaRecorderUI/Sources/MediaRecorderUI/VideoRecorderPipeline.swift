@@ -148,7 +148,7 @@ public class VideoRecorderPipeline : NSObject, AVCaptureVideoDataOutputSampleBuf
     private var startTimeInterval: TimeInterval = 0
     private var decorationStartTime: CMTime?
 
-    private static let queue: Queue = Queue(name: "org.telegram.InstantVideoQueue")
+    private static let queue: Queue = Queue(name: "org.ansible.InstantVideoQueue")
     
     private let startRecordAfterAudioBuffer:Atomic<Bool> = Atomic(value: false)
     private var pipelineSetupFailed: Bool = false

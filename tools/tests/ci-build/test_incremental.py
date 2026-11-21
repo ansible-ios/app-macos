@@ -26,7 +26,7 @@ def run(command, **kwargs):
 
 class TemporaryTest(unittest.TestCase):
     def setUp(self):
-        directory = tempfile.TemporaryDirectory(prefix="telegram ci tests ")
+        directory = tempfile.TemporaryDirectory(prefix="ansible ci tests ")
         self.addCleanup(directory.cleanup)
         self.root = Path(directory.name)
 
@@ -258,7 +258,7 @@ Path(os.environ["ARCHIVE_RECORD"]).write_text(json.dumps(sys.argv[1:]))
 if os.environ.get("ARCHIVE_RESULT"):
     print("error: deliberate archive failure")
     sys.exit(int(os.environ["ARCHIVE_RESULT"]))
-archive = Path("../telegrammacos.xcarchive")
+archive = Path(sys.argv[sys.argv.index("-archivePath") + 1])
 app = archive / "Products/Applications/Ansible.app/Contents"
 app.mkdir(parents=True, exist_ok=True)
 (app / "Info.plist").write_text("fixture")
@@ -271,9 +271,9 @@ print("Build Timing Summary\\nCompileSwift: fixture")
         self.logs = self.source / ".ci-build-logs/job"
         self.logs.mkdir(parents=True)
         self.environment = dict(os.environ, PATH=str(mock.parent) + os.pathsep + os.environ["PATH"],
-                                TELEGRAM_BUILD_ROOT=str(self.root / "builds"), ARCHIVE_RECORD=str(self.record),
+                                ANSIBLE_BUILD_ROOT=str(self.root / "builds"), ARCHIVE_RECORD=str(self.record),
                                 CI_BUILD_LOG_DIR=str(self.logs), BUILD_TIMING_LOG=str(self.logs / "timings.tsv"))
-        self.environment.pop("TELEGRAM_COMPILATION_CACHE", None)
+        self.environment.pop("ANSIBLE_COMPILATION_CACHE", None)
 
     def build(self, channel="Beta", **environment):
         return run(["sh", "buildbox/build-mac.sh", channel], cwd=self.source, env=dict(self.environment, **environment))
@@ -294,12 +294,12 @@ print("Build Timing Summary\\nCompileSwift: fixture")
 
     def test_warm_archive_preserves_channel_config_and_cache_is_opt_in(self):
         self.build()
-        config = self.root / "builds/build-Beta/telegrammacos/Ansible-Mac/Release.xcconfig"
+        config = self.root / "builds/build-Beta/ansiblemacos/Ansible-Mac/Release.xcconfig"
         before = config.stat().st_mtime_ns
-        self.build(TELEGRAM_COMPILATION_CACHE="YES")
+        self.build(ANSIBLE_COMPILATION_CACHE="YES")
         self.assertEqual(before, config.stat().st_mtime_ns)
         self.assertIn("COMPILATION_CACHE_ENABLE_CACHING=YES", json.loads(self.record.read_text()))
-        self.build(TELEGRAM_COMPILATION_CACHE="NO")
+        self.build(ANSIBLE_COMPILATION_CACHE="NO")
         self.assertIn("COMPILATION_CACHE_ENABLE_CACHING=NO", json.loads(self.record.read_text()))
 
     def test_failed_preparation_never_archives_and_failed_archive_never_packages(self):

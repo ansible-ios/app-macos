@@ -102,7 +102,7 @@ public final class AnalyticsScope {
 }
 
 final class AnalyticsCollectionPolicy {
-    private let queue = DispatchQueue(label: "org.telegram.analytics.collection")
+    private let queue = DispatchQueue(label: "org.ansible.analytics.collection")
     private let queueKey = DispatchSpecificKey<Bool>()
     private var enabled = false
     private var owner: AnyObject?

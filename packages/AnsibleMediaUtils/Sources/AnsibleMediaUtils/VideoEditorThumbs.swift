@@ -41,7 +41,7 @@ private func videoEditorThumbnailImage(_ image: CGImage, size: CGSize, blurred: 
 }
 
 private final class VideoEditorImageRequest {
-    private let queue = Queue(name: "org.telegram.video-editor-thumbnails")
+    private let queue = Queue(name: "org.ansible.video-editor-thumbnails")
     private let cancelled = Atomic(value: false)
     private let asset: AVAsset
     private let composition: AVVideoComposition?

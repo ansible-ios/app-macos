@@ -12,6 +12,7 @@ XCODE_VERSION="15.1"
 
 
 GUEST_SHELL="bash"
+VM_USER="${ANSIBLE_VM_USER:-ansible}"
 
 
 VM_BASE_NAME="macos$(echo $MACOS_VERSION | sed -e 's/\.'/_/g)_Xcode$(echo $XCODE_VERSION | sed -e 's/\.'/_/g)"
@@ -26,21 +27,21 @@ rm -rf "$HOME/build-$BUILD_CONFIGURATION"
 mkdir -p "$HOME/build-$BUILD_CONFIGURATION"
 
 PROCESS_ID="$$"
-VM_NAME="$VM_BASE_NAME-$(openssl rand -hex 10)-build-telegram-$PROCESS_ID"
+VM_NAME="$VM_BASE_NAME-$(openssl rand -hex 10)-build-ansible-$PROCESS_ID"
 
 prlctl clone "$VM_BASE_NAME" --linked --name "$VM_NAME"
 prlctl start "$VM_NAME"
 
 
-rm -f "$HOME/build-$BUILD_CONFIGURATION/Telegram.tar"
-tar cf "$HOME/build-$BUILD_CONFIGURATION/Telegram.tar" --exclude "$BUILDBOX_DIR" --exclude ".git" --exclude "./submodules/ansible-ios/.git" --exclude "./submodules/Sparkle/.git" --exclude "./submodules/ton/.git" --exclude "./submodules/Zip/.git"  --exclude "./submodules/libtgvoip/.git" "."
+rm -f "$HOME/build-$BUILD_CONFIGURATION/Ansible.tar"
+tar cf "$HOME/build-$BUILD_CONFIGURATION/Ansible.tar" --exclude "$BUILDBOX_DIR" --exclude ".git" --exclude "./submodules/ansible-ios/.git" --exclude "./submodules/Sparkle/.git" --exclude "./submodules/ton/.git" --exclude "./submodules/Zip/.git"  --exclude "./submodules/libtgvoip/.git" "."
 
 
 
 while [ 1 ]; do
     TEST_IP=$(prlctl exec "$VM_NAME" "ifconfig | grep inet | grep broadcast | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | head -1 | tr '\n' '\0'" || echo "")
     if [ ! -z "$TEST_IP" ]; then
-        RESPONSE=$(ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null telegram@"$TEST_IP" -o ServerAliveInterval=60 -t "echo -n 1")
+        RESPONSE=$(ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$VM_USER"@"$TEST_IP" -o ServerAliveInterval=60 -t "echo -n 1")
         if [ "$RESPONSE" == "1" ]; then
             VM_IP="$TEST_IP"
             break
@@ -49,20 +50,20 @@ while [ 1 ]; do
 sleep 1
 done
 #
-ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null telegram@"$VM_IP" -o ServerAliveInterval=60 -t "rm -rf build/"
-ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null telegram@"$VM_IP" -o ServerAliveInterval=60 -t "mkdir -p build;"
-scp -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -pr "$HOME/build-$BUILD_CONFIGURATION/Telegram.tar" telegram@"$VM_IP":build
+ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$VM_USER"@"$VM_IP" -o ServerAliveInterval=60 -t "rm -rf build/"
+ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$VM_USER"@"$VM_IP" -o ServerAliveInterval=60 -t "mkdir -p build;"
+scp -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -pr "$HOME/build-$BUILD_CONFIGURATION/Ansible.tar" "$VM_USER"@"$VM_IP":build
 
-ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null telegram@"$VM_IP" -o ServerAliveInterval=60 -t "tar -xf build/Telegram.tar -C ./build"
-ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null telegram@"$VM_IP" -o ServerAliveInterval=60 -t "mkdir -p build/buildbox"
-scp -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -pr "$BUILDBOX_DIR/build-vm.sh" telegram@"$VM_IP":build/buildbox
-ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null telegram@"$VM_IP" -o ServerAliveInterval=60 -t "$GUEST_SHELL -l build/buildbox/build-vm.sh $BUILD_CONFIGURATION" || true
+ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$VM_USER"@"$VM_IP" -o ServerAliveInterval=60 -t "tar -xf build/Ansible.tar -C ./build"
+ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$VM_USER"@"$VM_IP" -o ServerAliveInterval=60 -t "mkdir -p build/buildbox"
+scp -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -pr "$BUILDBOX_DIR/build-vm.sh" "$VM_USER"@"$VM_IP":build/buildbox
+ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$VM_USER"@"$VM_IP" -o ServerAliveInterval=60 -t "$GUEST_SHELL -l build/buildbox/build-vm.sh $BUILD_CONFIGURATION" || true
 
-scp -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -pr telegram@"$VM_IP":build/output/Telegram.tar "$HOME/build-$BUILD_CONFIGURATION/Telegram.tar"
+scp -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -pr "$VM_USER"@"$VM_IP":build/output/Ansible.tar "$HOME/build-$BUILD_CONFIGURATION/Ansible.tar"
 
 
-tar -xf "$HOME/build-$BUILD_CONFIGURATION/Telegram.tar" -C "$HOME/build-$BUILD_CONFIGURATION"
-rm -f "$HOME/build-$BUILD_CONFIGURATION/Telegram.tar"
+tar -xf "$HOME/build-$BUILD_CONFIGURATION/Ansible.tar" -C "$HOME/build-$BUILD_CONFIGURATION"
+rm -f "$HOME/build-$BUILD_CONFIGURATION/Ansible.tar"
 
 prlctl stop "$VM_NAME" --kill
 prlctl delete "$VM_NAME"

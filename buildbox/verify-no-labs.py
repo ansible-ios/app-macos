@@ -33,7 +33,7 @@ def verify(app):
             if source.read(4) not in MACH_O_MAGICS:
                 continue
         count += 1
-        with tempfile.TemporaryDirectory(prefix="telegram-lab-check-") as directory:
+        with tempfile.TemporaryDirectory(prefix="ansible-lab-check-") as directory:
             binary = Path(directory) / "binary"
             subprocess.run(["xcrun", "strip", "-S", "-o", str(binary), str(path)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
             for command in (["xcrun", "nm", "-a", "-arch", "all", str(binary)], ["/usr/bin/strings", "-a", str(binary)]):

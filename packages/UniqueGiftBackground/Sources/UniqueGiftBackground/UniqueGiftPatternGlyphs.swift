@@ -11,7 +11,7 @@ public final class UniqueGiftPatternGlyphs {
     public static let shared = UniqueGiftPatternGlyphs()
 
     private static let capacity = 64
-    private static let queue = Queue(name: "org.telegram.uniqueGiftPatternGlyphs", qos: .userInitiated)
+    private static let queue = Queue(name: "org.ansible.uniqueGiftPatternGlyphs", qos: .userInitiated)
 
     private var glyphs: [Int64: UniqueGiftGlyph] = [:]
     private var recent: [Int64] = []

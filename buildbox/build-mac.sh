@@ -6,25 +6,16 @@ BUILD_CONFIGURATION=$1
 
 PWDPATH=$PWD
 
-CPPATH="${TELEGRAM_BUILD_ROOT:-$HOME}/build-${BUILD_CONFIGURATION}"
-PROJECT="${CPPATH}/telegrammacos"
+CPPATH="${ANSIBLE_BUILD_ROOT:-$HOME}/build-${BUILD_CONFIGURATION}"
+PROJECT="${CPPATH}/ansiblemacos"
 
 
 sh "$PWDPATH/scripts/time-step.sh" source-sync \
     sh "$PWDPATH/buildbox/sync-source.sh" "$PWDPATH" "$PROJECT"
 
+# Clear only this build's products. Older checkouts and runner-owned files may coexist here.
+rm -rf "$CPPATH/ansiblemacos.xcarchive" "$CPPATH/Ansible.app" "$CPPATH/Ansible.app.dSYM" "$CPPATH/Ansible.app.DSYM.zip"
 cd "$PROJECT"
-cd ..
-files_to_remove=$(ls -A | grep -v telegrammacos || true)
-if [ -n "$files_to_remove" ]; then
-    rm -r $files_to_remove
-else
-    echo "No files to remove."
-fi
-
-rm -r telegrammacos.xcarchive || true
-
-cd telegrammacos
 
 
 BUILD_LOG_DIR="${CI_BUILD_LOG_DIR:-$CPPATH}"
@@ -48,13 +39,13 @@ case "${BUILD_CONFIGURATION}" in
 esac
 
 set --
-case "${TELEGRAM_COMPILATION_CACHE:-}" in
+case "${ANSIBLE_COMPILATION_CACHE:-}" in
     YES|NO)
-        set -- "COMPILATION_CACHE_ENABLE_CACHING=$TELEGRAM_COMPILATION_CACHE" \
+        set -- "COMPILATION_CACHE_ENABLE_CACHING=$ANSIBLE_COMPILATION_CACHE" \
             "COMPILATION_CACHE_ENABLE_DIAGNOSTIC_REMARKS=YES"
         ;;
     "") ;;
-    *) echo "TELEGRAM_COMPILATION_CACHE must be YES or NO" >&2; exit 1 ;;
+    *) echo "ANSIBLE_COMPILATION_CACHE must be YES or NO" >&2; exit 1 ;;
 esac
 
 XCODEBUILD_LOG="$BUILD_LOG_DIR/xcodebuild.log"
@@ -62,7 +53,7 @@ echo "Archiving, full log: ${XCODEBUILD_LOG}"
 if ! sh scripts/time-step.sh archive xcodebuild archive -showBuildTimingSummary -workspace "Ansible-Mac.xcworkspace" \
 -scheme Release \
 -configuration Release \
--archivePath ./ \
+-archivePath "$CPPATH/ansiblemacos.xcarchive" \
 COMPILER_INDEX_STORE_ENABLE=NO \
 "SWIFT_ACTIVE_COMPILATION_CONDITIONS=\$(inherited) ${CHANNEL_CONDITION}" "$@" > "${XCODEBUILD_LOG}" 2>&1; then
     grep -E -A3 '(^|: )(fatal )?error: |^ld: [^w]|^Undefined symbols' "${XCODEBUILD_LOG}" | head -300 || true
@@ -76,7 +67,7 @@ sed -n '/^Build Timing Summary/,$p' "$XCODEBUILD_LOG" | tail -60
 
 cd ..
 
-archive="./telegrammacos.xcarchive"
+archive="./ansiblemacos.xcarchive"
 appname="Ansible.app"
 
 rm -rf ${appname} ${appname}.dSYM ${appname}.DSYM.zip
