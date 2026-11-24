@@ -189,8 +189,8 @@ class UserInfoArguments<Context: AccountContextProtocol> : PeerInfoArguments<Con
     func editBot(_ payload: String?, action: Bool = true) -> Void {
         let context = self.context
         if let username = peer?.addressName {
-            let botFather = showModalProgress(signal: PeerInfoUIHooks.shared.resolveUsername("botfather", context), for: context.window)
-            _ = botFather.start(next: { [weak self] peer in
+            let botManager = showModalProgress(signal: PeerInfoUIHooks.shared.resolveUsername("BotManager", context), for: context.window)
+            _ = botManager.start(next: { [weak self] peer in
                 if let peer = peer {
                     let payload = payload != nil ? "-\(payload!)" : ""
                     let initialAction: ChatInitialAction?
@@ -210,7 +210,7 @@ class UserInfoArguments<Context: AccountContextProtocol> : PeerInfoArguments<Con
             BrowserStateContext.get(context).open(tab: .mainapp(bot: .init(peer), source: .generic))
         }
     }
-    func openBotfather() {
+    func openBotManager() {
         self.editBot(nil, action: false)
     }
     func openEditBotUsername() {
@@ -2405,7 +2405,7 @@ enum UserInfoEntry<Context: AccountContextProtocol>: PeerInfoEntry {
             })
         case let .botEditInfo(_, viewType):
             return GeneralTextRowItem(initialSize, stableId: stableId.hashValue, text: .markdown(strings().peerInfoBotEditInfo, linkHandler: { _ in
-                arguments.openBotfather()
+                arguments.openBotManager()
             }), viewType: viewType)
         case let .about(_, text, launchApp, viewType):
             if text.isEmpty {

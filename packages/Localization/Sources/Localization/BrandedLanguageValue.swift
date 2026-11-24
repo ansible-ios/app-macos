@@ -8,6 +8,11 @@ private let legacyBrandTokens = try! NSRegularExpression(
 private let marketplaceOrMessenger = #"^(?:https?://)?(?:t\.me|telegram\.me|(?:www\.)?fragment\.com)(?=/|[?#]|$)"#
 
 func brandedLanguageValue(_ value: String, key: String) -> String {
+    var value = value
+    if key == "PeerInfo.BotEdit.Info" || key == "Bot.Grossing.Disclaimer.Alert.Text" {
+        value = value.replacingOccurrences(of: #"(?i)@botfather(?![a-z0-9_])"#, with: "@BotManager", options: .regularExpression)
+        value = value.replacingOccurrences(of: #"(?i)https?://(?:asme\.su|t\.me|telegram\.me)/botfather(?=[)?#\s]|$)"#, with: "https://asme.su/BotManager", options: .regularExpression)
+    }
     let matches = legacyBrandTokens.matches(in: value, range: NSRange(value.startIndex..., in: value))
     guard !matches.isEmpty else { return value }
     let result = NSMutableString(string: value)

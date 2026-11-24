@@ -1079,7 +1079,7 @@ public final class L10n {
   public static var botGrossingDisclaimerAlertHeader: String  { return L10n.tr("Localizable", "Bot.Grossing.Disclaimer.Alert.Header") }
   /// Understood
   public static var botGrossingDisclaimerAlertOk: String  { return L10n.tr("Localizable", "Bot.Grossing.Disclaimer.Alert.ok") }
-  /// This catalogue ranks mini apps based on their daily revenue, measured in Ansible Diamonds. To be listed, developers must set their main mini app in [@botfather](https://asme.su/botfather), have over **1,000** daily users, and earn a daily revenue above **1,000** Ansible Diamonds, based on the weekly average.
+  /// This catalogue ranks mini apps based on their daily revenue, measured in Ansible Diamonds. To be listed, developers must set their main mini app in [@BotManager](https://asme.su/BotManager), have over **1,000** daily users, and earn a daily revenue above **1,000** Ansible Diamonds, based on the weekly average.
   public static var botGrossingDisclaimerAlertText: String  { return L10n.tr("Localizable", "Bot.Grossing.Disclaimer.Alert.Text") }
   /// Open Link
   public static var botInlineAuthHeader: String  { return L10n.tr("Localizable", "Bot.InlineAuth.Header") }
@@ -12797,7 +12797,7 @@ public final class L10n {
   public static var peerInfoBotEditBalance: String  { return L10n.tr("Localizable", "PeerInfo.BotEdit.Balance") }
   /// Edit Commands
   public static var peerInfoBotEditCommands: String  { return L10n.tr("Localizable", "PeerInfo.BotEdit.Commands") }
-  /// Use [@BotFather]() to manage this bot.
+  /// Use [@BotManager]() to manage this bot.
   public static var peerInfoBotEditInfo: String  { return L10n.tr("Localizable", "PeerInfo.BotEdit.Info") }
   /// Edit Intro
   public static var peerInfoBotEditIntro: String  { return L10n.tr("Localizable", "PeerInfo.BotEdit.Intro") }
