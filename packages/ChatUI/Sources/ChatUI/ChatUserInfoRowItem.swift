@@ -15,7 +15,7 @@ public final class ChatUserInfoRowItem : ChatRowItem {
     fileprivate var attributes: ChatServiceItem.GiftData.UniqueAttributes
     fileprivate var settings: PeerStatusSettings
     
-    fileprivate let commontGroups: TextViewLayout
+    fileprivate let verificationWarning: TextViewLayout?
     private let _peer: EnginePeer
     public let groupsCount: Int
     
@@ -41,7 +41,9 @@ public final class ChatUserInfoRowItem : ChatRowItem {
         self.groupsCount = groupsCount
         
         
-        commontGroups = .init(.initialize(string: strings().chatServiceNotOfficial , color: textColor.withAlphaComponent(0.8), font: .normal(.text)))
+        verificationWarning = peer.isVerified ? nil : .init(.initialize(
+            string: strings().chatServiceNotOfficial, color: textColor.withAlphaComponent(0.8), font: .normal(.text)
+        ))
 
         
         if let registrationDate = settings.registrationDate {
@@ -80,13 +82,13 @@ public final class ChatUserInfoRowItem : ChatRowItem {
         
         attributes.makeSize(width: 260)
         
-        commontGroups.measure(width: 260)
+        verificationWarning?.measure(width: 260)
         
         return true
     }
     
     public override var height: CGFloat {
-        return attributes.height + 10 + commontGroups.layoutSize.height + 10
+        return attributes.height + 20 + (verificationWarning?.layoutSize.height ?? 0)
     }
     
     public func openCommonGroups() {
@@ -104,7 +106,7 @@ private final class ChatUserInfoRowView : TableRowView {
         
         
         private var visualEffect: VisualEffect?
-        private let commontGroupsView = TextView()
+        private let verificationWarningView = TextView()
         
         private var attributesView: UniqueAttributesView = .init(frame: .zero)
         
@@ -115,7 +117,7 @@ private final class ChatUserInfoRowView : TableRowView {
             layer?.cornerRadius = 12
                         
             addSubview(attributesView)
-            addSubview(commontGroupsView)
+            addSubview(verificationWarningView)
         }
         
         func update(item: ChatUserInfoRowItem, animated: Bool) {
@@ -150,7 +152,10 @@ private final class ChatUserInfoRowView : TableRowView {
             
             self.scaleOnClick = item.groupsCount > 0
             
-            commontGroupsView.update(item.commontGroups)
+            verificationWarningView.isHidden = item.verificationWarning == nil
+            if let warning = item.verificationWarning {
+                verificationWarningView.update(warning)
+            }
             
             needsLayout = true
         }
@@ -160,7 +165,9 @@ private final class ChatUserInfoRowView : TableRowView {
             visualEffect?.frame = bounds
             attributesView.frame = bounds.focusX(attributesView.frame.size, y: 5)
             
-            commontGroupsView.centerX(y: attributesView.frame.maxY - 5)
+            if !verificationWarningView.isHidden {
+                verificationWarningView.centerX(y: attributesView.frame.maxY - 5)
+            }
         }
         
         deinit {
