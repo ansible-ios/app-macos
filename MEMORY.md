@@ -12,7 +12,7 @@
 
 ## Репозитории и изменения
 
-- Этот репозиторий: `https://github.com/ansible-ios/app-macos`, native macOS fork `TelegramMessenger/telegram-macos` (Swift/AppKit), не Qt Telegram Desktop и не сборка iOS через Catalyst.
+- Этот репозиторий: `https://github.com/ansible-ios/as-macos`, native macOS fork `TelegramMessenger/telegram-macos` (Swift/AppKit), не Qt Telegram Desktop и не сборка iOS через Catalyst.
 - На Mac checkout: `/Users/qwe/Documents/ansible/ansible-ios/app-macos`.
 - Последние коммиты реализации: `053e16c5` (ребрендинг/совместимые переводы), `441d443a` (проверки кадров/документация). Более ранний `28f988e7` — исходная установка утверждённых PNG, он НЕ завершал весь ребрендинг.
 - `as-translations-api`: отдельный репозиторий `https://github.com/ansible-app/as-translations-api`, локально `/Users/qwe/Documents/ansible/ansible-app/as-translations-api`. Выпущенные изменения: `da1bcdd`, `0137f40`, `a84640a`.

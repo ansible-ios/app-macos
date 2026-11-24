@@ -1,32 +1,32 @@
 [submodule "submodules/libtgvoip"]
 	path = submodules/libtgvoip
-	url = https://github.com/ansible-ios/libtgvoip.git
+	url = https://github.com/ansible-ios/as-libvoip.git
 [submodule "submodules/Sparkle"]
 	path = submodules/Sparkle
-	url = https://github.com/ansible-ios/sparkle.git
+	url = https://github.com/ansible-ios/as-sparkle.git
 	branch = master
 [submodule "submodules/telegram-ios"]
 	branch = master
 	path = submodules/ansible-ios
-	url = https://github.com/ansible-ios/telegram-ios-macos.git
+	url = https://github.com/ansible-ios/as-ios-macos-deps.git
 [submodule "submodules/tgcalls"]
 	path = submodules/tgcalls
-	url = https://github.com/ansible-ios/tgcalls.git
+	url = https://github.com/ansible-ios/as-calls.git
 [submodule "submodules/tg_owt"]
 	path = submodules/tg_owt
-	url = https://github.com/ansible-ios/tg_owt.git
+	url = https://github.com/ansible-ios/as-owt.git
 [submodule "submodules/libprisma"]
 	path = submodules/libprisma
-	url = https://github.com/ansible-ios/libprisma.git
+	url = https://github.com/ansible-ios/as-libprisma.git
 [submodule "submodules/regex"]
 	path = submodules/regex
-	url = https://github.com/ansible-ios/regex.git
+	url = https://github.com/ansible-ios/as-regex.git
 [submodule "third-party/twidget"]
 	path = third-party/twidget
-	url = https://github.com/ansible-ios/twidget.git
+	url = https://github.com/ansible-ios/as-twidget.git
 [submodule "submodules/tlottie"]
 	path = submodules/tlottie
-	url = https://github.com/ansible-ios/tlottie.git
+	url = https://github.com/ansible-ios/as-tlottie.git
 [submodule "third-party/widget-sandbox"]
 	path = third-party/widget-sandbox
-	url = https://github.com/ansible-ios/widget-sandbox.git
+	url = https://github.com/ansible-ios/as-widget-sandbox.git
