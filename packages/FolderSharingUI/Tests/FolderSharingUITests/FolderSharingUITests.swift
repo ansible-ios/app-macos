@@ -20,7 +20,14 @@ final class FolderSharingUITests: XCTestCase {
     }
 
     private func link(_ slug: String = "first", title: String = "Original", ids: [PeerId]? = nil) -> ExportedChatFolderLink {
-        return ExportedChatFolderLink(title: title, link: "https://t.me/addlist/\(slug)", peerIds: ids ?? [group(1).id], isRevoked: false)
+        return ExportedChatFolderLink(title: title, link: "https://asme.su/addlist/\(slug)", peerIds: ids ?? [group(1).id], isRevoked: false)
+    }
+
+    func testExportedFolderLinkSlug() {
+        for url in ["https://asme.su/addlist/a_B-2", "https://www.asme.su/addlist/a_B-2", "https://t.me/addlist/a_B-2", "a_B-2"] {
+            let invite = ExportedChatFolderLink(title: "", link: url, peerIds: [], isRevoked: false)
+            XCTAssertEqual(invite.slug, "a_B-2", url)
+        }
     }
 
     private func closureState(localId: Int32? = nil) -> FolderSharingClosureState {
